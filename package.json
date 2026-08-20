@@ -1,0 +1,46 @@
+{
+  "name": "booked-appointments",
+  "version": "0.1.0",
+  "description": "Agent-first booked-appointment job runner: MCP server + matching CLI. V1 playbook is US commercial janitorial / contract cleaning.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "booked-appointments": "dist/cli.js",
+    "booked-appointments-mcp": "dist/mcp.js"
+  },
+  "files": [
+    "dist",
+    "docs",
+    "fixtures",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "test": "tsx --test test/**/*.test.ts",
+    "cli": "tsx src/cli.ts",
+    "mcp": "tsx src/mcp.ts"
+  },
+  "keywords": [
+    "mcp",
+    "cli",
+    "appointments",
+    "janitorial",
+    "agent"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.8.0"
+  }
+}

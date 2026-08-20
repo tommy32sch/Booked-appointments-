@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "booked-appointments": {
+      "command": "npx",
+      "args": ["booked-appointments-mcp"]
+    }
+  }
+}

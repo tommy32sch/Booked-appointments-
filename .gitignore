@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.booked-appointments/
+*.log
+.DS_Store
+coverage/
