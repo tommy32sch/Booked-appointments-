@@ -34,11 +34,18 @@ npm test
 | List stored targets | `list_targets` | `list-targets` |
 | Qualify one target (rule-based) | `score_target` | `score-target` |
 | Draft exclusive-walkthrough outreach (does not send) | `draft_outreach` | `draft-outreach` |
+| Send one captain-approved email (SMTP; no send-all) | `send_outreach` | `send-outreach` |
 | Calendar **stub** + next hook | `calendar_booking` | `calendar-booking` |
 
 `find_targets` does **not** call Google Maps or LinkedIn. Pass structured public records you already have, and/or run the returned query pack on public sources.
 
 `calendar_booking` is a **clean stub**: no live Google Calendar integration, no fake OAuth. It returns `next_hook.create_exclusive_walkthrough_event` for a later connector.
+
+`draft_outreach` is draft-only. Sending is a separate **review-gated** step: captain reviews that one message, then `send_outreach` / `send-outreach` with `approved=true`. One target + one channel + one draft per call. No send-all, no default send. Email is the only v1 send path (real SMTP). Phone and LinkedIn return `CHANNEL_NOT_SENDABLE`. If `SMTP_USER` / `SMTP_PASS` are missing, the tool returns `SEND_NOT_CONFIGURED` and does **not** fake a send. `send_status=sent` only after a real transport accepts the message.
+
+**Send done-definition:** this one approved email was handed to a real SMTP transport — or the typed config error.
+
+SMTP env: `SMTP_USER`, `SMTP_PASS` (required Gmail/SMTP credential), `SMTP_HOST` (default `smtp.gmail.com`), `SMTP_PORT`, `SMTP_FROM`, optional `SMTP_SECURE`.
 
 ## CLI (JSON in / JSON out)
 
@@ -48,6 +55,7 @@ npx booked-appointments find-targets --input fixtures/example-targets.json --geo
 npx booked-appointments list-targets
 npx booked-appointments score-target --id <id>
 npx booked-appointments draft-outreach --id <id> --channel email
+npx booked-appointments send-outreach --id <id> --channel email --approved true
 npx booked-appointments calendar-booking --id <id>
 ```
 

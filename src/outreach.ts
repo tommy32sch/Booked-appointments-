@@ -46,7 +46,8 @@ export function draftOutreach(
     "This ask is an exclusive, calendar-booked walkthrough for one janitorial buyer — not a shared inbound lead.";
 
   const compliance = [
-    "Draft only. This product does not send email, place calls, or post on LinkedIn.",
+    "Draft only. draft_outreach does not send email, place calls, or post on LinkedIn.",
+    "Sending is a separate send_outreach / send-outreach call and requires approved=true on this one message after human/captain review. There is no send-all or default send.",
     "TCPA: do not autodial or text a mobile number without the required consent / lawful basis.",
     "CAN-SPAM: commercial email must identify the sender, include a physical postal address, and honor unsubscribe.",
     "Public-info contact only. Do not use this draft against patient/PHI lists."

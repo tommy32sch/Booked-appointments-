@@ -9,7 +9,8 @@ import {
   runFindTargets,
   runListTargets,
   runPlaybook,
-  runScoreTarget
+  runScoreTarget,
+  runSendOutreach
 } from "./tools.js";
 import type { Result } from "./result.js";
 import type { OutreachChannel, RawTarget } from "./types.js";
@@ -86,6 +87,7 @@ Commands (MCP tool):
   list-targets        list_targets
   score-target        score_target
   draft-outreach      draft_outreach
+  send-outreach       send_outreach
   calendar-booking    calendar_booking
   tools               list the 1:1 tool map
   version             package version
@@ -98,12 +100,17 @@ Flags:
   --id <target-id>
   --channel email|phone|linkedin
   --buyer-name <name>     janitorial buyer display name
+  --approved true         required for send-outreach (boolean true on this one message)
+  --subject <text>        optional approved email subject (send-outreach)
+  --body <text>           optional approved email body (send-outreach)
   --store <path>          default ${DEFAULT_STORE_PATH}
   --persist true|false    find-targets only (default true)
   --include-examples true|false
   --proposed-slots <iso,iso>
 
-Done (v1): exclusive walkthrough booked on a calendar — calendar_booking is a stub.
+Send (v1): draft-outreach never sends. send-outreach needs approved=true on that one
+email, then hands it to real SMTP (SMTP_USER, SMTP_PASS, optional SMTP_HOST/PORT/FROM/SECURE).
+No send-all. Phone/LinkedIn are not sendable. Calendar booking is still a stub.
 Docs: docs/agent.md
 `;
 
@@ -130,6 +137,7 @@ export async function runCli(argv: string[]): Promise<Result<unknown>> {
             "list-targets": "list_targets",
             "score-target": "score_target",
             "draft-outreach": "draft_outreach",
+            "send-outreach": "send_outreach",
             "calendar-booking": "calendar_booking"
           }
         }
@@ -161,6 +169,27 @@ export async function runCli(argv: string[]): Promise<Result<unknown>> {
         channel: flagString(flags, "channel") as OutreachChannel | undefined,
         buyer_name: flagString(flags, "buyer-name"),
         store_path: storePath(flags)
+      });
+    case "send-outreach":
+      if (flags.ids !== undefined || flags.all !== undefined || flags["send-all"] !== undefined) {
+        return {
+          ok: false,
+          error: {
+            code: "SEND_ALL_REJECTED",
+            message:
+              "send-outreach is one target + one channel + one draft per call. --ids, --all, and --send-all are rejected."
+          }
+        };
+      }
+      return runSendOutreach({
+        id: flagString(flags, "id"),
+        target: await loadTarget(flagString(flags, "input")),
+        channel: flagString(flags, "channel") as OutreachChannel | undefined,
+        buyer_name: flagString(flags, "buyer-name"),
+        store_path: storePath(flags),
+        approved: flagBool(flags, "approved"),
+        subject: flagString(flags, "subject"),
+        body: flagString(flags, "body")
       });
     case "calendar-booking":
       return runCalendarBooking({

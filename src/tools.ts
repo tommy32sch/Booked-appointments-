@@ -9,6 +9,7 @@ import {
   listTargetsInputSchema,
   playbookInputSchema,
   scoreTargetInputSchema,
+  sendOutreachInputSchema,
   type CalendarBookingInput,
   type DraftOutreachInput,
   type FindTargetsInput,
@@ -16,6 +17,15 @@ import {
   type PlaybookInput,
   type ScoreTargetInput
 } from "./schemas.js";
+import {
+  assertSendableChannel,
+  recipientEmail,
+  rejectBulkSend,
+  requireExplicitApproval,
+  resolveSendTransport,
+  SEND_DONE_DEFINITION,
+  type SendOutreachOptions
+} from "./send.js";
 import { scoreTarget } from "./score.js";
 import { getStore } from "./store.js";
 import { compactTarget, normalizeTarget, normalizeTargets } from "./targets.js";
@@ -151,6 +161,85 @@ export async function runDraftOutreach(input: DraftOutreachInput = {}): Promise<
   });
 }
 
+export async function runSendOutreach(
+  input: unknown = {},
+  options: SendOutreachOptions = {}
+): Promise<Result<unknown>> {
+  const bulk = rejectBulkSend(input);
+  if (!bulk.ok) return bulk;
+
+  const approval = requireExplicitApproval(input);
+  if (!approval.ok) return approval;
+
+  const parsed = sendOutreachInputSchema.safeParse(input);
+  if (!parsed.success) {
+    return err("INVALID_INPUT", "Invalid send_outreach input.", parsed.error.flatten());
+  }
+
+  const channel = parsed.data.channel ?? "email";
+  const sendable = assertSendableChannel(channel);
+  if (!sendable.ok) return sendable;
+
+  const target = await resolveTarget(parsed.data);
+  if (!target.ok) return target;
+
+  const to = recipientEmail(target.data.public_contact?.email);
+  if (!to.ok) return to;
+
+  const resolved = resolveSendTransport(options);
+  if (!resolved.ok) return resolved;
+
+  const draft = draftOutreach(target.data, channel, parsed.data.buyer_name);
+  const subject = parsed.data.subject?.trim() || draft.subject;
+  const body = parsed.data.body?.trim() || draft.body;
+  if (!subject) {
+    return err("INVALID_INPUT", "Approved email is missing a subject. Pass subject or use the generated draft.");
+  }
+
+  let receipt;
+  try {
+    receipt = await resolved.data.transport.send({
+      from: resolved.data.config.from,
+      to: to.data,
+      subject,
+      text: body
+    });
+  } catch (error) {
+    return err(
+      "SEND_FAILED",
+      "SMTP transport rejected the send. send_status is not sent.",
+      error instanceof Error ? error.message : String(error)
+    );
+  }
+
+  if (!receipt.accepted) {
+    return err("SEND_FAILED", "SMTP transport did not accept the message. send_status is not sent.");
+  }
+
+  return ok({
+    send_status: "sent",
+    approved: true,
+    channel: "email" as const,
+    purpose: "book_exclusive_walkthrough",
+    shared_lead: false,
+    target: compactTarget(target.data),
+    to: to.data,
+    from: resolved.data.config.from,
+    subject,
+    body,
+    compliance: draft.compliance,
+    transport: {
+      kind: "smtp" as const,
+      host: resolved.data.config.host,
+      port: resolved.data.config.port,
+      accepted: true as const,
+      message_id: receipt.messageId ?? null
+    },
+    note: draft.note,
+    done: SEND_DONE_DEFINITION
+  });
+}
+
 export async function runCalendarBooking(input: CalendarBookingInput = {}): Promise<Result<unknown>> {
   const parsed = calendarBookingInputSchema.safeParse(input);
   if (!parsed.success) {
@@ -171,5 +260,6 @@ export const toolHandlers = {
   list_targets: runListTargets,
   score_target: runScoreTarget,
   draft_outreach: runDraftOutreach,
+  send_outreach: runSendOutreach,
   calendar_booking: runCalendarBooking
 } as const;

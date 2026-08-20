@@ -14,6 +14,7 @@ const EXPECTED_TOOLS = [
   "list_targets",
   "score_target",
   "draft_outreach",
+  "send_outreach",
   "calendar_booking"
 ];
 

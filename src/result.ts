@@ -3,7 +3,13 @@ export type ErrorCode =
   | "TARGET_NOT_FOUND"
   | "STORE_ERROR"
   | "UNSUPPORTED_VERTICAL"
-  | "UNKNOWN_TOOL";
+  | "UNKNOWN_TOOL"
+  | "NOT_APPROVED"
+  | "SEND_ALL_REJECTED"
+  | "SEND_NOT_CONFIGURED"
+  | "CHANNEL_NOT_SENDABLE"
+  | "MISSING_RECIPIENT"
+  | "SEND_FAILED";
 
 export type ToolError = {
   code: ErrorCode;

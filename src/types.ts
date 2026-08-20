@@ -94,6 +94,7 @@ export const TOOL_NAMES = [
   "list_targets",
   "score_target",
   "draft_outreach",
+  "send_outreach",
   "calendar_booking"
 ] as const;
 
@@ -105,6 +106,7 @@ export const CLI_COMMANDS = [
   "list-targets",
   "score-target",
   "draft-outreach",
+  "send-outreach",
   "calendar-booking"
 ] as const;
 

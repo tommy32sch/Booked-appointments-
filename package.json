@@ -36,10 +36,12 @@
   "license": "MIT",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.0",
+    "nodemailer": "^9.0.5",
     "zod": "^3.25.0"
   },
   "devDependencies": {
     "@types/node": "^22.15.0",
+    "@types/nodemailer": "^8.0.1",
     "tsx": "^4.20.0",
     "typescript": "^5.8.0"
   }
