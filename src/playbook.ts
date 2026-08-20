@@ -32,7 +32,7 @@ export const COMPLIANCE_NOTES = {
   public_end_leads_only: "Use public end-leads only (Maps, sites, LinkedIn). This product does not call those APIs.",
   no_phi: "Do not scrape patients or PHI. A medical/office building as a facility to clean is in-scope; patient lists are not.",
   tcpa: "TCPA applies to calls and texts. Drafts are not permission to autodial or text. The calling agent / buyer must have a lawful basis before outreach.",
-  can_spam: "CAN-SPAM applies to commercial email. Drafts include identify-sender, physical-address, and unsubscribe placeholders. Sending is out of band.",
+  can_spam: "CAN-SPAM applies to commercial email. Drafts include identify-sender, physical-address, and unsubscribe placeholders. Sending requires send_outreach with approved=true after human/captain review of that one message; draft_outreach never sends.",
   no_protected_systems: "Public-info approaches only. Do not exploit or scrape protected systems."
 } as const;
 
@@ -98,6 +98,8 @@ export function getJanitorialPlaybook() {
       list_targets: "List normalized / stored targets.",
       score_target: "Rule-based qualify. No invented conversion rates.",
       draft_outreach: "Draft outreach whose ask is an exclusive walkthrough. Does not send.",
+      send_outreach:
+        "Send one reviewed email. Requires approved=true on that one message. No send-all. Email via real SMTP only. Phone/LinkedIn return CHANNEL_NOT_SENDABLE. Missing SMTP credentials return SEND_NOT_CONFIGURED (no fake send).",
       calendar_booking: "Clean stub. States the next hook for a real calendar connector. No OAuth, no live Google Calendar."
     },
     job_loop: [
@@ -105,12 +107,15 @@ export function getJanitorialPlaybook() {
       "2. find_targets — get query pack for a US geo; ingest any structured public records you already collected.",
       "3. list_targets — see normalized targets in the job store.",
       "4. score_target — qualify; skip disqualified (residential, PHI, non-US).",
-      "5. draft_outreach — draft email/phone/LinkedIn aimed at booking an exclusive walkthrough. Agent/buyer sends out of band under TCPA/CAN-SPAM.",
-      "6. calendar_booking — v1 returns a stub + next hook. A later connector creates the exclusive walkthrough event."
+      "5. draft_outreach — draft email/phone/LinkedIn aimed at booking an exclusive walkthrough. Does not send.",
+      "6. Human/captain reviews that one message. No send-all.",
+      "7. send_outreach — only after approved=true on that one message. Email is handed to a real SMTP transport (or SEND_NOT_CONFIGURED). Phone/LinkedIn are CHANNEL_NOT_SENDABLE.",
+      "8. calendar_booking — v1 returns a stub + next hook. A later connector creates the exclusive walkthrough event."
     ],
     done: {
       definition: "An exclusive walkthrough is booked on a calendar for this buyer and this site. Not a shared inbound lead.",
-      v1: "Calendar booking is stubbed. Tools through draft_outreach are live on fixture/public-structured input. calendar_booking describes the next hook only."
+      v1: "Calendar booking is stubbed. Tools through draft_outreach and review-gated send_outreach are live on fixture/public-structured input. calendar_booking describes the next hook only.",
+      send: "This one approved email was handed to a real SMTP transport — or a typed config error (SEND_NOT_CONFIGURED). Never send_status=sent unless a real transport accepted the message. No send-all."
     }
   };
 }

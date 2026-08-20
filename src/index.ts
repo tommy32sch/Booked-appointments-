@@ -1,5 +1,12 @@
 export { calendarBookingStub, CALENDAR_STUB_MESSAGE } from "./calendar.js";
 export { draftOutreach } from "./outreach.js";
+export {
+  createNodemailerTransport,
+  readSmtpConfig,
+  rejectBulkSend,
+  requireExplicitApproval,
+  SEND_DONE_DEFINITION
+} from "./send.js";
 export { getJanitorialPlaybook, publicSearchQueries, resolvePlaybook } from "./playbook.js";
 export { scoreTarget } from "./score.js";
 export { normalizeTarget, normalizeTargets } from "./targets.js";

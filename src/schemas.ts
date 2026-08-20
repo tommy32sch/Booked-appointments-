@@ -70,6 +70,21 @@ export const draftOutreachInputSchema = z.object({
   store_path: z.string().optional()
 });
 
+/**
+ * approved is unknown so missing / false / "yes" / 1 become NOT_APPROVED
+ * in the runner instead of a generic schema error.
+ */
+export const sendOutreachInputSchema = z.object({
+  id: z.string().optional(),
+  target: rawTargetSchema.optional(),
+  channel: z.enum(OUTREACH_CHANNELS).optional(),
+  buyer_name: z.string().optional(),
+  store_path: z.string().optional(),
+  approved: z.unknown().optional(),
+  subject: z.string().optional(),
+  body: z.string().optional()
+});
+
 export const calendarBookingInputSchema = z.object({
   id: z.string().optional(),
   target: rawTargetSchema.optional(),
@@ -82,4 +97,5 @@ export type FindTargetsInput = z.infer<typeof findTargetsInputSchema>;
 export type ListTargetsInput = z.infer<typeof listTargetsInputSchema>;
 export type ScoreTargetInput = z.infer<typeof scoreTargetInputSchema>;
 export type DraftOutreachInput = z.infer<typeof draftOutreachInputSchema>;
+export type SendOutreachInput = z.infer<typeof sendOutreachInputSchema>;
 export type CalendarBookingInput = z.infer<typeof calendarBookingInputSchema>;

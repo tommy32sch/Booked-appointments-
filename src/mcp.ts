@@ -10,7 +10,8 @@ import {
   runFindTargets,
   runListTargets,
   runPlaybook,
-  runScoreTarget
+  runScoreTarget,
+  runSendOutreach
 } from "./tools.js";
 import type { Result } from "./result.js";
 
@@ -104,7 +105,7 @@ export function createServer(): McpServer {
     {
       title: "Draft exclusive-walkthrough outreach",
       description:
-        "Draft email, phone, or LinkedIn outreach whose only ask is an exclusive calendar-booked walkthrough. Does not send. TCPA/CAN-SPAM apply out of band.",
+        "Draft email, phone, or LinkedIn outreach whose only ask is an exclusive calendar-booked walkthrough. Draft only — does not send. After captain/human review of that one message, use send_outreach with approved=true. TCPA/CAN-SPAM stay on the payload.",
       inputSchema: {
         id: z.string().optional(),
         target: z.record(z.unknown()).optional(),
@@ -114,6 +115,34 @@ export function createServer(): McpServer {
       }
     },
     async (args) => asToolResult(await runDraftOutreach(args as never))
+  );
+
+  server.registerTool(
+    "send_outreach",
+    {
+      title: "Send one reviewed outreach email",
+      description:
+        "Send one already-reviewed outreach message. Requires approved=true (boolean) on THAT one message. No send-all, no default send, no arrays/glob/all. Email is the only v1 send path (SMTP). Phone/LinkedIn return CHANNEL_NOT_SENDABLE. If SMTP_USER/SMTP_PASS are missing, returns SEND_NOT_CONFIGURED and does not fake a send. send_status=sent only after a real SMTP transport accepts the message.",
+      inputSchema: {
+        id: z.string().optional().describe("One stored target id. Not an array, not 'all', not a glob."),
+        target: z.record(z.unknown()).optional().describe("One inline structured public record. Not an array."),
+        channel: z
+          .enum(["email", "phone", "linkedin"])
+          .optional()
+          .describe("One channel. Default email. Only email is sendable in v1."),
+        buyer_name: z.string().optional().describe("Janitorial buyer display name. Do not invent a real company."),
+        store_path: z.string().optional(),
+        approved: z
+          .unknown()
+          .optional()
+          .describe(
+            "Must be boolean true for this one message after human/captain review. Missing, false, or any other value is NOT_APPROVED. No default send."
+          ),
+        subject: z.string().optional().describe("Optional approved subject. Defaults to the generated draft for this target+channel."),
+        body: z.string().optional().describe("Optional approved body. Defaults to the generated draft for this target+channel.")
+      }
+    },
+    async (args) => asToolResult(await runSendOutreach(args))
   );
 
   server.registerTool(

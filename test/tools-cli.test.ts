@@ -114,6 +114,7 @@ test("CLI maps 1:1 onto tools for playbook, ingest, score, draft, calendar", asy
     "list_targets",
     "score_target",
     "draft_outreach",
+    "send_outreach",
     "calendar_booking"
   ]);
 });
