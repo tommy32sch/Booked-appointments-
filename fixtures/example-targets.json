@@ -1,0 +1,66 @@
+{
+  "note": "EXAMPLE DATA WITH NO SOURCE. Not real customers. Not from Maps, LinkedIn, or any live API. For tests and agent dry-runs only.",
+  "records": [
+    {
+      "example": true,
+      "source": "example",
+      "source_note": "Example record with no source. Not a real customer. For tests and agent dry-runs only.",
+      "name": "Example Office Park LLC",
+      "site_type": "office",
+      "address": {
+        "street": "100 Example Way",
+        "city": "Austin",
+        "state": "TX",
+        "postal_code": "78701",
+        "country": "US"
+      },
+      "decision_maker": {
+        "name": "Alex Rivera",
+        "title": "Facilities Manager"
+      },
+      "public_contact": {
+        "email": "facilities@example-office-park.example",
+        "website": "https://example-office-park.example"
+      },
+      "notes": "Example multi-tenant office park. Not a real customer."
+    },
+    {
+      "example": true,
+      "source": "example",
+      "source_note": "Example record with no source. Not a real customer. For tests and agent dry-runs only.",
+      "name": "Example Warehouse 9",
+      "site_type": "warehouse",
+      "address": {
+        "street": "900 Example Freight Rd",
+        "city": "Dallas",
+        "state": "TX",
+        "country": "US"
+      },
+      "decision_maker": {
+        "name": "Jordan Lee",
+        "title": "Operations Manager"
+      },
+      "public_contact": {
+        "phone": "+1-555-0100",
+        "website": "https://example-warehouse-9.example"
+      },
+      "notes": "Example warehouse. Not a real customer."
+    },
+    {
+      "example": true,
+      "source": "example",
+      "source_note": "Example record with no source. Not a real customer. For tests and agent dry-runs only.",
+      "name": "Example Neighborhood Homes",
+      "site_type": "other",
+      "address": {
+        "city": "Austin",
+        "state": "TX",
+        "country": "US"
+      },
+      "decision_maker": {
+        "title": "Homeowner"
+      },
+      "notes": "Residential house cleaning inquiry. Should disqualify."
+    }
+  ]
+}
