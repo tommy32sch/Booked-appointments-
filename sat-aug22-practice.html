@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Saturday Aug 22 — Circulatory + Airway</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat Aug 22 — Circulatory + Airway</h1>
+  <div class="sub">From your Otter lecture only · tap any answer</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+
+const BANK = [{"ch":"circ","q":"The circulatory system requires three working components to deliver oxygen and sugar to cells. Which set correctly names them?","opts":[{"t":"Stomach, liver, and intestines","ok":false,"why":"Circulatory / cardiovascular system = three parts: Pump = heart, Pipes = vessels (veins and arteries), Fluid = blood."},{"t":"Brain, nerves, and spinal cord","ok":false,"why":"Circulatory / cardiovascular system = three parts: Pump = heart, Pipes = vessels (veins and arteries), Fluid = blood."},{"t":"Heart, vessels, and blood","ok":true,"why":"Circulatory / cardiovascular system = three parts: Pump = heart, Pipes = vessels (veins and arteries), Fluid = blood."},{"t":"Lungs, alveoli, and bronchioles","ok":false,"why":"Circulatory / cardiovascular system = three parts: Pump = heart, Pipes = vessels (veins and arteries), Fluid = blood."}]},{"ch":"circ","q":"Which circulation loop carries blood from the heart to the lungs to pick up oxygen?","opts":[{"t":"Systemic circulation","ok":false,"why":"Pulmonary circulation: heart → lungs to pick up O2. Systemic: O2 blood out through the body and back."},{"t":"Coronary circulation","ok":false,"why":"Pulmonary circulation: heart → lungs to pick up O2. Systemic: O2 blood out through the body and back."},{"t":"Pulmonary circulation","ok":true,"why":"Pulmonary circulation: heart → lungs to pick up O2. Systemic: O2 blood out through the body and back."},{"t":"Hepatic circulation","ok":false,"why":"Pulmonary circulation: heart → lungs to pick up O2. Systemic: O2 blood out through the body and back."}]},{"ch":"circ","q":"Compared with the right ventricle, why is the left ventricular wall much thicker?","opts":[{"t":"It only needs to reach the lungs and return","ok":false,"why":"RV only has to reach the lungs and back. LV has to reach fingertips, toes, head. Cross-section: LV wall much thicker."},{"t":"It generates the electrical impulse for the SA node","ok":false,"why":"RV only has to reach the lungs and back. LV has to reach fingertips, toes, head. Cross-section: LV wall much thicker."},{"t":"It must pump blood to the fingertips, toes, and head","ok":true,"why":"RV only has to reach the lungs and back. LV has to reach fingertips, toes, head. Cross-section: LV wall much thicker."},{"t":"It receives blood from the vena cava","ok":false,"why":"RV only has to reach the lungs and back. LV has to reach fingertips, toes, head. Cross-section: LV wall much thicker."}]},{"ch":"circ","q":"Blood returning from the body enters which chamber first?","opts":[{"t":"Left ventricle","ok":false,"why":"Deoxygenated back from body → RA → RV → lungs."},{"t":"Left atrium","ok":false,"why":"Deoxygenated back from body → RA → RV → lungs."},{"t":"Right atrium","ok":true,"why":"Deoxygenated back from body → RA → RV → lungs."},{"t":"Right ventricle","ok":false,"why":"Deoxygenated back from body → RA → RV → lungs."}]},{"ch":"circ","q":"Which valve sits between the right atrium and right ventricle?","opts":[{"t":"Tricuspid","ok":true,"why":"Right AV valve: tricuspid (3 flaps). Left: bicuspid = mitral."},{"t":"Aortic","ok":false,"why":"Right AV valve: tricuspid (3 flaps). Left: bicuspid = mitral."},{"t":"Pulmonic","ok":false,"why":"Right AV valve: tricuspid (3 flaps). Left: bicuspid = mitral."},{"t":"Mitral","ok":false,"why":"Right AV valve: tricuspid (3 flaps). Left: bicuspid = mitral."}]},{"ch":"circ","q":"What is the correct sequence of valves that blood passes through in normal flow?","opts":[{"t":"Mitral, aortic, tricuspid, pulmonic","ok":false,"why":"Sequence of valves: tricuspid → pulmonic → bicuspid/mitral → aortic. Mnemonics: try before you buy; TPMA."},{"t":"Pulmonic, aortic, tricuspid, mitral","ok":false,"why":"Sequence of valves: tricuspid → pulmonic → bicuspid/mitral → aortic. Mnemonics: try before you buy; TPMA."},{"t":"Aortic, tricuspid, pulmonic, mitral","ok":false,"why":"Sequence of valves: tricuspid → pulmonic → bicuspid/mitral → aortic. Mnemonics: try before you buy; TPMA."},{"t":"Tricuspid, pulmonic, bicuspid/mitral, aortic","ok":true,"why":"Sequence of valves: tricuspid → pulmonic → bicuspid/mitral → aortic. Mnemonics: try before you buy; TPMA."}]},{"ch":"circ","q":"Which vessels carry deoxygenated blood away from the heart toward the lungs?","opts":[{"t":"Pulmonary arteries","ok":true,"why":"RV → pulmonary arteries (away from heart, deoxygenated to lungs). Every artery oxygenated except pulmonary arteries."},{"t":"Superior vena cava","ok":false,"why":"RV → pulmonary arteries (away from heart, deoxygenated to lungs). Every artery oxygenated except pulmonary arteries."},{"t":"Pulmonary veins","ok":false,"why":"RV → pulmonary arteries (away from heart, deoxygenated to lungs). Every artery oxygenated except pulmonary arteries."},{"t":"Aorta","ok":false,"why":"RV → pulmonary arteries (away from heart, deoxygenated to lungs). Every artery oxygenated except pulmonary arteries."}]},{"ch":"circ","q":"What is the primary pacemaker of the heart under normal conditions?","opts":[{"t":"Coronary artery","ok":false,"why":"SA node (sinoatrial): primary pacemaker. Every normal pulse starts here. Sinus rhythm = electricity from the SA node. EMT-level emphasis: SA node = primary pacemaker."},{"t":"Left ventricle","ok":false,"why":"SA node (sinoatrial): primary pacemaker. Every normal pulse starts here. Sinus rhythm = electricity from the SA node. EMT-level emphasis: SA node = primary pacemaker."},{"t":"SA node","ok":true,"why":"SA node (sinoatrial): primary pacemaker. Every normal pulse starts here. Sinus rhythm = electricity from the SA node. EMT-level emphasis: SA node = primary pacemaker."},{"t":"AV node","ok":false,"why":"SA node (sinoatrial): primary pacemaker. Every normal pulse starts here. Sinus rhythm = electricity from the SA node. EMT-level emphasis: SA node = primary pacemaker."}]},{"ch":"circ","q":"Cardiac output is calculated as which product?","opts":[{"t":"Preload times afterload","ok":false,"why":"Cardiac output = blood moved in one minute = SV × HR. Example: SV 80 mL, HR 70 → 5600 mL = 5.6 L/min."},{"t":"Tidal volume times respiratory rate","ok":false,"why":"Cardiac output = blood moved in one minute = SV × HR. Example: SV 80 mL, HR 70 → 5600 mL = 5.6 L/min."},{"t":"Blood pressure times pulse pressure","ok":false,"why":"Cardiac output = blood moved in one minute = SV × HR. Example: SV 80 mL, HR 70 → 5600 mL = 5.6 L/min."},{"t":"Stroke volume times heart rate","ok":true,"why":"Cardiac output = blood moved in one minute = SV × HR. Example: SV 80 mL, HR 70 → 5600 mL = 5.6 L/min."}]},{"ch":"circ","q":"According to Frank-Starling principle as taught, stretching the heart muscle with greater filling produces what effect?","opts":[{"t":"Vasodilation of the aorta","ok":false,"why":"Frank-Starling / Starling’s law: heart like a rubber band — stretch more (more fill) → stronger snap; little fill → weak snap. Preload = how much blood is returning to / filling the heart."},{"t":"A stronger contraction","ok":true,"why":"Frank-Starling / Starling’s law: heart like a rubber band — stretch more (more fill) → stronger snap; little fill → weak snap. Preload = how much blood is returning to / filling the heart."},{"t":"A weaker snap","ok":false,"why":"Frank-Starling / Starling’s law: heart like a rubber band — stretch more (more fill) → stronger snap; little fill → weak snap. Preload = how much blood is returning to / filling the heart."},{"t":"Immediate bradycardia","ok":false,"why":"Frank-Starling / Starling’s law: heart like a rubber band — stretch more (more fill) → stronger snap; little fill → weak snap. Preload = how much blood is returning to / filling the heart."}]},{"ch":"circ","q":"Widespread vasodilation, as in anaphylaxis, produces which change in blood pressure?","opts":[{"t":"No change in afterload","ok":false,"why":"Vasodilation = bigger pipes = lower pressure. Anaphylaxis: widespread vasodilation. EpiPen one job named: massive vasoconstriction."},{"t":"Lower pressure","ok":true,"why":"Vasodilation = bigger pipes = lower pressure. Anaphylaxis: widespread vasodilation. EpiPen one job named: massive vasoconstriction."},{"t":"Higher pressure","ok":false,"why":"Vasodilation = bigger pipes = lower pressure. Anaphylaxis: widespread vasodilation. EpiPen one job named: massive vasoconstriction."},{"t":"Increased stroke volume only","ok":false,"why":"Vasodilation = bigger pipes = lower pressure. Anaphylaxis: widespread vasodilation. EpiPen one job named: massive vasoconstriction."}]},{"ch":"circ","q":"Which abdominal organs are described as solid and blood-saturated, making damage likely to cause major internal bleeding?","opts":[{"t":"Alveoli, bronchioles, trachea","ok":false,"why":"Solid (blood-saturated / “the bleeders”): spleen, liver, pancreas, kidneys. Lots of blood in them. Damage → major internal bleed. Hollow → major internal infection."},{"t":"Spleen, liver, pancreas, kidneys","ok":true,"why":"Solid (blood-saturated / “the bleeders”): spleen, liver, pancreas, kidneys. Lots of blood in them. Damage → major internal bleed. Hollow → major internal infection."},{"t":"Stomach, intestines, bladder, gallbladder","ok":false,"why":"Solid (blood-saturated / “the bleeders”): spleen, liver, pancreas, kidneys. Lots of blood in them. Damage → major internal bleed. Hollow → major internal infection."},{"t":"Aorta, vena cava, mesentery only","ok":false,"why":"Solid (blood-saturated / “the bleeders”): spleen, liver, pancreas, kidneys. Lots of blood in them. Damage → major internal bleed. Hollow → major internal infection."}]},{"ch":"circ","q":"Where does gas exchange between blood and body cells (or alveoli) actually occur?","opts":[{"t":"Inside the left ventricle chambers","ok":false,"why":"Gas exchange on the blood side happens only at capillaries. Not in the aorta, not in other arteries."},{"t":"Throughout the aorta and large arteries","ok":false,"why":"Gas exchange on the blood side happens only at capillaries. Not in the aorta, not in other arteries."},{"t":"Only at the capillary level","ok":true,"why":"Gas exchange on the blood side happens only at capillaries. Not in the aorta, not in other arteries."},{"t":"Along the entire length of every vein","ok":false,"why":"Gas exchange on the blood side happens only at capillaries. Not in the aorta, not in other arteries."}]},{"ch":"circ","q":"What is the approximate lifespan of a red blood cell before the spleen removes it?","opts":[{"t":"Indefinitely until trauma","ok":false,"why":"RBC lifespan: about 120 days. Spleen removes old RBCs. Bones produce new RBCs."},{"t":"About 7 days","ok":false,"why":"RBC lifespan: about 120 days. Spleen removes old RBCs. Bones produce new RBCs."},{"t":"About 30 days","ok":false,"why":"RBC lifespan: about 120 days. Spleen removes old RBCs. Bones produce new RBCs."},{"t":"About 120 days","ok":true,"why":"RBC lifespan: about 120 days. Spleen removes old RBCs. Bones produce new RBCs."}]},{"ch":"circ","q":"Which description matches an arterial bleed as taught?","opts":[{"t":"Bright red and spurting with each left-ventricle contraction","ok":true,"why":"Arterial bleed: bright red (high O2) + spurting (pressure, each LV pump). Venous bleed: darker red + flowing / oozing."},{"t":"Darker red and steadily oozing","ok":false,"why":"Arterial bleed: bright red (high O2) + spurting (pressure, each LV pump). Venous bleed: darker red + flowing / oozing."},{"t":"Only occurs inside the liver","ok":false,"why":"Arterial bleed: bright red (high O2) + spurting (pressure, each LV pump). Venous bleed: darker red + flowing / oozing."},{"t":"Clear fluid without pressure","ok":false,"why":"Arterial bleed: bright red (high O2) + spurting (pressure, each LV pump). Venous bleed: darker red + flowing / oozing."}]},{"ch":"circ","q":"The superior vena cava returns blood from which region into the right atrium?","opts":[{"t":"Lower body into the bottom of the RA","ok":false,"why":"Superior vena cava: upper body (head, arms) into top of RA. Inferior vena cava: lower body into bottom of RA."},{"t":"Upper body (head and arms) into the top of the RA","ok":true,"why":"Superior vena cava: upper body (head, arms) into top of RA. Inferior vena cava: lower body into bottom of RA."},{"t":"Lungs into the left atrium","ok":false,"why":"Superior vena cava: upper body (head, arms) into top of RA. Inferior vena cava: lower body into bottom of RA."},{"t":"Coronary surface into the left ventricle","ok":false,"why":"Superior vena cava: upper body (head, arms) into top of RA. Inferior vena cava: lower body into bottom of RA."}]},{"ch":"circ","q":"In the example given for average adult values, what cardiac output results from a stroke volume of 80 mL and heart rate of 70?","opts":[{"t":"5.6 L/min","ok":true,"why":"SV 80 mL, HR 70 → 5600 mL = 5.6 L/min. Adult blood volume about five to six liters."},{"t":"8.0 L/min","ok":false,"why":"SV 80 mL, HR 70 → 5600 mL = 5.6 L/min. Adult blood volume about five to six liters."},{"t":"12 L/min","ok":false,"why":"SV 80 mL, HR 70 → 5600 mL = 5.6 L/min. Adult blood volume about five to six liters."},{"t":"2.5 L/min","ok":false,"why":"SV 80 mL, HR 70 → 5600 mL = 5.6 L/min. Adult blood volume about five to six liters."}]},{"ch":"circ","q":"What does the term preload refer to in the lecture?","opts":[{"t":"How narrow the arteries are that the heart pumps into","ok":false,"why":"Preload = how much blood is returning to / filling the heart. More in → more out. Bleeding = decreased preload."},{"t":"How much blood is returning to and filling the heart","ok":true,"why":"Preload = how much blood is returning to / filling the heart. More in → more out. Bleeding = decreased preload."},{"t":"The electrical delay at the AV node","ok":false,"why":"Preload = how much blood is returning to / filling the heart. More in → more out. Bleeding = decreased preload."},{"t":"The thickness of the left ventricular wall","ok":false,"why":"Preload = how much blood is returning to / filling the heart. More in → more out. Bleeding = decreased preload."}]},{"ch":"circ","q":"Which node holds the electrical impulse for a split second so the ventricles can fill before they contract?","opts":[{"t":"AV node","ok":true,"why":"AV node: holds the impulse a split second so ventricles fill, then fires through ventricles. SA node is the primary pacemaker."},{"t":"SA node","ok":false,"why":"AV node: holds the impulse a split second so ventricles fill, then fires through ventricles. SA node is the primary pacemaker."},{"t":"Pulmonic node","ok":false,"why":"AV node: holds the impulse a split second so ventricles fill, then fires through ventricles. SA node is the primary pacemaker."},{"t":"Coronary node","ok":false,"why":"AV node: holds the impulse a split second so ventricles fill, then fires through ventricles. SA node is the primary pacemaker."}]},{"ch":"circ","q":"Coronary arteries arise immediately off which vessel and supply the heart muscle itself?","opts":[{"t":"Pulmonary artery","ok":false,"why":"Coronary arteries on the surface of the heart. Off the aorta immediately. Chamber blood does not feed the heart muscle cells."},{"t":"Superior vena cava","ok":false,"why":"Coronary arteries on the surface of the heart. Off the aorta immediately. Chamber blood does not feed the heart muscle cells."},{"t":"Aorta","ok":true,"why":"Coronary arteries on the surface of the heart. Off the aorta immediately. Chamber blood does not feed the heart muscle cells."},{"t":"Inferior vena cava","ok":false,"why":"Coronary arteries on the surface of the heart. Off the aorta immediately. Chamber blood does not feed the heart muscle cells."}]},{"ch":"circ","q":"A patient on blood thinners (anticoagulants) is at greater risk in trauma primarily because of what effect?","opts":[{"t":"Their stroke volume doubles","ok":false,"why":"Blood thinners take away the body’s ability to form clots. Worse in trauma — uncontrolled bleed because they can’t clot."},{"t":"They cannot form clots, so bleeding is harder to control","ok":true,"why":"Blood thinners take away the body’s ability to form clots. Worse in trauma — uncontrolled bleed because they can’t clot."},{"t":"They always develop tachycardia first","ok":false,"why":"Blood thinners take away the body’s ability to form clots. Worse in trauma — uncontrolled bleed because they can’t clot."},{"t":"Their SA node stops firing","ok":false,"why":"Blood thinners take away the body’s ability to form clots. Worse in trauma — uncontrolled bleed because they can’t clot."}]},{"ch":"circ","q":"Which pulse site is described as tucked under the bicep and squeezed against the humerus?","opts":[{"t":"Carotid","ok":false,"why":"Brachial (tucked under the bicep; squeeze against the humerus). Radial = wrist; carotid = neck; femoral = just inside the groin."},{"t":"Brachial","ok":true,"why":"Brachial (tucked under the bicep; squeeze against the humerus). Radial = wrist; carotid = neck; femoral = just inside the groin."},{"t":"Radial","ok":false,"why":"Brachial (tucked under the bicep; squeeze against the humerus). Radial = wrist; carotid = neck; femoral = just inside the groin."},{"t":"Femoral","ok":false,"why":"Brachial (tucked under the bicep; squeeze against the humerus). Radial = wrist; carotid = neck; femoral = just inside the groin."}]},{"ch":"circ","q":"The top number of a blood-pressure reading reflects pressure during which cardiac event?","opts":[{"t":"SA node firing only","ok":false,"why":"Top number (always bigger): pressure when the left ventricle pumps (example 120). Bottom: when the LV relaxes and fills (example 80)."},{"t":"Left ventricle pumping","ok":true,"why":"Top number (always bigger): pressure when the left ventricle pumps (example 120). Bottom: when the LV relaxes and fills (example 80)."},{"t":"Right atrium receiving blood","ok":false,"why":"Top number (always bigger): pressure when the left ventricle pumps (example 120). Bottom: when the LV relaxes and fills (example 80)."},{"t":"Left ventricle relaxing and filling","ok":false,"why":"Top number (always bigger): pressure when the left ventricle pumps (example 120). Bottom: when the LV relaxes and fills (example 80)."}]},{"ch":"circ","q":"In which abdominal quadrant is the spleen located according to the lecture?","opts":[{"t":"RUQ","ok":false,"why":"Spleen = LUQ, patient’s left. Solid / blood-saturated. Damaged spleen = major internal bleed."},{"t":"RLQ","ok":false,"why":"Spleen = LUQ, patient’s left. Solid / blood-saturated. Damaged spleen = major internal bleed."},{"t":"LUQ (patient’s left)","ok":true,"why":"Spleen = LUQ, patient’s left. Solid / blood-saturated. Damaged spleen = major internal bleed."},{"t":"LLQ only if enlarged","ok":false,"why":"Spleen = LUQ, patient’s left. Solid / blood-saturated. Damaged spleen = major internal bleed."}]},{"ch":"circ","q":"Hollow abdominal organs are associated with what main problem if punctured?","opts":[{"t":"Major internal bleed","ok":false,"why":"Hollow (example stomach has acid) → acid leaks → major internal infection. Solid = bleed; hollow = infection."},{"t":"Immediate hypertension","ok":false,"why":"Hollow (example stomach has acid) → acid leaks → major internal infection. Solid = bleed; hollow = infection."},{"t":"Major internal infection","ok":true,"why":"Hollow (example stomach has acid) → acid leaks → major internal infection. Solid = bleed; hollow = infection."},{"t":"Rapid clotting","ok":false,"why":"Hollow (example stomach has acid) → acid leaks → major internal infection. Solid = bleed; hollow = infection."}]},{"ch":"airway","q":"What is the most common cause of airway obstruction in an unresponsive patient according to the lecture?","opts":[{"t":"Laryngospasm","ok":false,"why":"Most common block is the tongue; muscles relax in unresponsive patients and the tongue falls back blocking the airway."},{"t":"The tongue falling back","ok":true,"why":"Most common block is the tongue; muscles relax in unresponsive patients and the tongue falls back blocking the airway."},{"t":"Foreign body aspiration","ok":false,"why":"Most common block is the tongue; muscles relax in unresponsive patients and the tongue falls back blocking the airway."},{"t":"Swelling from infection","ok":false,"why":"Most common block is the tongue; muscles relax in unresponsive patients and the tongue falls back blocking the airway."}]},{"ch":"airway","q":"Which airway-opening technique should be used for a patient with suspected head, neck, or spine trauma?","opts":[{"t":"NPA insertion immediately","ok":false,"why":"Jaw thrust for suspected trauma to head/neck/spine; no head tilt."},{"t":"Jaw thrust","ok":true,"why":"Jaw thrust for suspected trauma to head/neck/spine; no head tilt."},{"t":"Head-tilt chin-lift","ok":false,"why":"Jaw thrust for suspected trauma to head/neck/spine; no head tilt."},{"t":"Recovery position first","ok":false,"why":"Jaw thrust for suspected trauma to head/neck/spine; no head tilt."}]},{"ch":"airway","q":"When is the head-tilt chin-lift maneuver appropriate?","opts":[{"t":"Medical patients without trauma","ok":true,"why":"Head-tilt chin-lift is for medical patients / no trauma."},{"t":"Suspected spinal injury","ok":false,"why":"Head-tilt chin-lift is for medical patients / no trauma."},{"t":"Only pediatric patients","ok":false,"why":"Head-tilt chin-lift is for medical patients / no trauma."},{"t":"All unresponsive patients","ok":false,"why":"Head-tilt chin-lift is for medical patients / no trauma."}]},{"ch":"airway","q":"An OPA is indicated for which patient?","opts":[{"t":"Unresponsive with no gag reflex","ok":true,"why":"OPA for patients who do not have a gag reflex; unresponsive + no gag."},{"t":"Responsive but snoring","ok":false,"why":"OPA for patients who do not have a gag reflex; unresponsive + no gag."},{"t":"Conscious with gag reflex","ok":false,"why":"OPA for patients who do not have a gag reflex; unresponsive + no gag."},{"t":"Any patient needing airway support","ok":false,"why":"OPA for patients who do not have a gag reflex; unresponsive + no gag."}]},{"ch":"airway","q":"Which adjunct is used when a gag reflex is present?","opts":[{"t":"Simple face mask","ok":false,"why":"Gag reflex present = NPA; for patients who still have a gag but cannot keep airway open."},{"t":"OPA","ok":false,"why":"Gag reflex present = NPA; for patients who still have a gag but cannot keep airway open."},{"t":"BVM only","ok":false,"why":"Gag reflex present = NPA; for patients who still have a gag but cannot keep airway open."},{"t":"NPA","ok":true,"why":"Gag reflex present = NPA; for patients who still have a gag but cannot keep airway open."}]},{"ch":"airway","q":"How is an NPA measured according to the lecture?","opts":[{"t":"Nose to the chin","ok":false,"why":"Measure: nose to earlobe."},{"t":"Nose to earlobe","ok":true,"why":"Measure: nose to earlobe."},{"t":"Tip of nose to angle of jaw","ok":false,"why":"Measure: nose to earlobe."},{"t":"Corner of mouth to earlobe","ok":false,"why":"Measure: nose to earlobe."}]},{"ch":"airway","q":"What is the SpO2 goal stated in class?","opts":[{"t":"92% or above","ok":false,"why":"SpO2 goal: 94% or above."},{"t":"94% or above","ok":true,"why":"SpO2 goal: 94% or above."},{"t":"90% or above","ok":false,"why":"SpO2 goal: 94% or above."},{"t":"100%","ok":false,"why":"SpO2 goal: 94% or above."}]},{"ch":"airway","q":"What flow rate was given for a non-rebreather mask?","opts":[{"t":"6–10 L/min","ok":false,"why":"NRB 10–15 L/min; most patients get NRB."},{"t":"10–15 L/min","ok":true,"why":"NRB 10–15 L/min; most patients get NRB."},{"t":"2–6 L/min","ok":false,"why":"NRB 10–15 L/min; most patients get NRB."},{"t":"15–25 L/min","ok":false,"why":"NRB 10–15 L/min; most patients get NRB."}]},{"ch":"airway","q":"What flow rate is used with a BVM?","opts":[{"t":"10–15 L/min","ok":false,"why":"BVM at 15 L/min for inadequate or not breathing."},{"t":"2–6 L/min","ok":false,"why":"BVM at 15 L/min for inadequate or not breathing."},{"t":"15 L/min","ok":true,"why":"BVM at 15 L/min for inadequate or not breathing."},{"t":"5–10 L/min","ok":false,"why":"BVM at 15 L/min for inadequate or not breathing."}]},{"ch":"airway","q":"Nasal cannula flow rate range from the lecture?","opts":[{"t":"1–4 L/min","ok":false,"why":"Nasal cannula 2–6 L/min."},{"t":"2–6 L/min","ok":true,"why":"Nasal cannula 2–6 L/min."},{"t":"10–15 L/min","ok":false,"why":"Nasal cannula 2–6 L/min."},{"t":"6–10 L/min","ok":false,"why":"Nasal cannula 2–6 L/min."}]},{"ch":"airway","q":"When suctioning, when should suction be applied?","opts":[{"t":"On the way out only","ok":true,"why":"Suction only on the way out; do not suction on the way in because that pushes stuff down into the lungs."},{"t":"On the way in only","ok":false,"why":"Suction only on the way out; do not suction on the way in because that pushes stuff down into the lungs."},{"t":"Both in and out","ok":false,"why":"Suction only on the way out; do not suction on the way in because that pushes stuff down into the lungs."},{"t":"Continuously once inserted","ok":false,"why":"Suction only on the way out; do not suction on the way in because that pushes stuff down into the lungs."}]},{"ch":"airway","q":"Maximum continuous suction time for an adult?","opts":[{"t":"20 seconds","ok":false,"why":"Adult: up to 15 seconds."},{"t":"10 seconds","ok":false,"why":"Adult: up to 15 seconds."},{"t":"5 seconds","ok":false,"why":"Adult: up to 15 seconds."},{"t":"15 seconds","ok":true,"why":"Adult: up to 15 seconds."}]},{"ch":"airway","q":"Maximum continuous suction time for a child?","opts":[{"t":"10 seconds","ok":true,"why":"Child: up to 10 seconds."},{"t":"15 seconds","ok":false,"why":"Child: up to 10 seconds."},{"t":"30 seconds","ok":false,"why":"Child: up to 10 seconds."},{"t":"5 seconds","ok":false,"why":"Child: up to 10 seconds."}]},{"ch":"airway","q":"Maximum continuous suction time for an infant?","opts":[{"t":"10 seconds","ok":false,"why":"Infant: up to 5 seconds."},{"t":"5 seconds","ok":true,"why":"Infant: up to 5 seconds."},{"t":"3 seconds","ok":false,"why":"Infant: up to 5 seconds."},{"t":"15 seconds","ok":false,"why":"Infant: up to 5 seconds."}]},{"ch":"airway","q":"What is the recovery position used for?","opts":[{"t":"Unconscious but breathing on their own","ok":true,"why":"Unconscious but breathing on their own; put on their side so secretions can drool out."},{"t":"Trauma patient with spinal injury","ok":false,"why":"Unconscious but breathing on their own; put on their side so secretions can drool out."},{"t":"Unconscious patient not breathing","ok":false,"why":"Unconscious but breathing on their own; put on their side so secretions can drool out."},{"t":"Conscious patient in distress","ok":false,"why":"Unconscious but breathing on their own; put on their side so secretions can drool out."}]},{"ch":"airway","q":"Respiratory distress is defined in the lecture as which condition?","opts":[{"t":"Stopped breathing completely","ok":false,"why":"Respiratory distress: Trouble breathing, still moving air. Respiratory arrest: Stopped breathing completely."},{"t":"Trouble breathing while still moving air","ok":true,"why":"Respiratory distress: Trouble breathing, still moving air. Respiratory arrest: Stopped breathing completely."},{"t":"Complete airway obstruction only","ok":false,"why":"Respiratory distress: Trouble breathing, still moving air. Respiratory arrest: Stopped breathing completely."},{"t":"Need for immediate CPR","ok":false,"why":"Respiratory distress: Trouble breathing, still moving air. Respiratory arrest: Stopped breathing completely."}]},{"ch":"airway","q":"Which sign is specifically called out as a good one to look for in respiratory distress?","opts":[{"t":"Absent pulse","ok":false,"why":"Sitting upright, leaning forward — tripod (he called this a good one to look for)."},{"t":"Pale skin without cyanosis","ok":false,"why":"Sitting upright, leaning forward — tripod (he called this a good one to look for)."},{"t":"Tripod position (sitting upright, leaning forward)","ok":true,"why":"Sitting upright, leaning forward — tripod (he called this a good one to look for)."},{"t":"Slow breathing only","ok":false,"why":"Sitting upright, leaning forward — tripod (he called this a good one to look for)."}]},{"ch":"airway","q":"What is the rigid suction catheter named in the lecture?","opts":[{"t":"NPA","ok":false,"why":"Rigid suction catheter = Yankauer. Flexible = French."},{"t":"French","ok":false,"why":"Rigid suction catheter = Yankauer. Flexible = French."},{"t":"OPA","ok":false,"why":"Rigid suction catheter = Yankauer. Flexible = French."},{"t":"Yankauer","ok":true,"why":"Rigid suction catheter = Yankauer. Flexible = French."}]},{"ch":"airway","q":"Treatment for respiratory distress signs listed in class includes which actions?","opts":[{"t":"Open airway, give oxygen, assist ventilations, watch SpO2, listen to breath sounds","ok":true,"why":"Treat all of these the same: Open the airway; give oxygen; assist ventilations; watch oxygen saturation; listen to breath sounds; help them with that."},{"t":"Use only nasal cannula at 1 L/min","ok":false,"why":"Treat all of these the same: Open the airway; give oxygen; assist ventilations; watch oxygen saturation; listen to breath sounds; help them with that."},{"t":"Ignore oxygen and go straight to transport","ok":false,"why":"Treat all of these the same: Open the airway; give oxygen; assist ventilations; watch oxygen saturation; listen to breath sounds; help them with that."},{"t":"Only start CPR immediately","ok":false,"why":"Treat all of these the same: Open the airway; give oxygen; assist ventilations; watch oxygen saturation; listen to breath sounds; help them with that."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+
+const CH_NAME = {
+  circ: "Circulatory · Ch 6",
+  airway: "Airway · Ch 7"
+};
+
+let queue = [];
+let i = 0;
+let correct = 0;
+let answered = 0;
+let locked = false;
+let missed = [];
+
+function $(id) { return document.getElementById(id); }
+
+function start() {
+  queue = shuffle(BANK).map(function(q) {
+    return { ch: q.ch, q: q.q, opts: shuffle(q.opts) };
+  });
+  i = 0; correct = 0; answered = 0; locked = false; missed = [];
+  $("nextBtn").textContent = "Next";
+  render();
+}
+
+function updateScore() {
+  $("score").textContent = correct + " / " + answered;
+  const n = queue.length;
+  $("progLabel").textContent = (i < n) ? ("Question " + (i + 1) + " of " + n) : ("Done · " + n + " questions");
+  $("progBar").style.width = (n ? Math.round(((i + (locked ? 1 : 0)) / n) * 100) : 0) + "%";
+}
+
+function render() {
+  locked = false;
+  $("nextBtn").classList.remove("visible");
+  if (i >= queue.length) { return endScreen(); }
+  const q = queue[i];
+  const letters = ["A", "B", "C", "D"];
+  let optsHtml = "";
+  q.opts.forEach(function(o, idx) {
+    optsHtml += '<button type="button" class="opt" data-idx="' + idx + '">'
+      + '<span class="letter">' + letters[idx] + '</span>'
+      + '<span class="ot"></span></button>';
+  });
+  $("main").innerHTML =
+    '<div class="card">'
+    + '<div class="ch-tag">' + (CH_NAME[q.ch] || q.ch) + '</div>'
+    + '<p class="qtext"></p>'
+    + '<div class="opts">' + optsHtml + '</div>'
+    + '<div class="why" id="whyBox"></div>'
+    + '</div>'
+    + '<p id="start-note">Answers lock on the first tap. Explanations come from Saturday lecture only.</p>';
+  $("main").querySelector(".qtext").textContent = q.q;
+  const buttons = $("main").querySelectorAll(".opt");
+  buttons.forEach(function(btn, idx) {
+    btn.querySelector(".ot").textContent = q.opts[idx].t;
+    btn.addEventListener("click", function() { pick(idx); });
+  });
+  updateScore();
+  window.scrollTo(0, 0);
+}
+
+function pick(idx) {
+  if (locked) return;
+  locked = true;
+  const q = queue[i];
+  const chosen = q.opts[idx];
+  const correctOpt = q.opts.find(function(o) { return o.ok; });
+  answered += 1;
+  if (chosen.ok) correct += 1;
+  else {
+    missed.push({
+      ch: q.ch,
+      q: q.q,
+      chosen: chosen.t,
+      why: chosen.why,
+      right: correctOpt.t
+    });
+  }
+  const buttons = $("main").querySelectorAll(".opt");
+  buttons.forEach(function(btn, j) {
+    btn.classList.add("locked");
+    btn.disabled = true;
+    const o = q.opts[j];
+    if (j === idx && o.ok) btn.classList.add("chosen", "right");
+    else if (j === idx && !o.ok) btn.classList.add("chosen", "wrong");
+    else if (o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box = $("whyBox");
+  const verdict = chosen.ok
+    ? '<div class="verdict ok">Correct</div>'
+    : '<div class="verdict bad">Incorrect</div>';
+  const extra = chosen.ok ? "" :
+    '<div class="correct-line">Correct answer: ' + escapeHtml(correctOpt.t) + '</div>';
+  box.innerHTML = verdict + '<div class="why-body"></div>' + extra;
+  box.querySelector(".why-body").textContent = chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent = (i + 1 >= queue.length) ? "See results" : "Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function endScreen() {
+  locked = true;
+  $("nextBtn").classList.remove("visible");
+  const n = queue.length;
+  const pct = n ? Math.round((correct / n) * 100) : 0;
+  let missHtml = "";
+  if (missed.length === 0) {
+    missHtml = '<p>No missed questions. Nice work.</p>';
+  } else {
+    missHtml = '<div class="miss"><h3>Missed questions (' + missed.length + ')</h3>';
+    missed.forEach(function(m) {
+      missHtml += '<div class="miss-item">'
+        + '<div class="ch-tag">' + (CH_NAME[m.ch] || m.ch) + '</div>'
+        + '<div class="mq"></div>'
+        + '<div class="mwhy"></div>'
+        + '</div>';
+    });
+    missHtml += '</div>';
+  }
+  $("main").innerHTML =
+    '<div class="card end">'
+    + '<h2>Quiz complete</h2>'
+    + '<div class="big">' + correct + ' / ' + n + '</div>'
+    + '<div class="pct">' + pct + '% · Saturday lecture only</div>'
+    + missHtml
+    + '<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button>'
+    + '</div>';
+  if (missed.length) {
+    const items = $("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m, idx) {
+      items[idx].querySelector(".mq").textContent = m.q;
+      items[idx].querySelector(".mwhy").textContent =
+        "You chose: " + m.chosen + " — " + m.why + "  Correct: " + m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore();
+  window.scrollTo(0, 0);
+}
+
+$("nextBtn").addEventListener("click", function() {
+  if (!locked) return;
+  i += 1;
+  render();
+});
+
+start();
+</script>
+</body>
+</html>
