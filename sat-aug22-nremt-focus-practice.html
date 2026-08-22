@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat Aug 22 — NREMT-weighted class facts</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat notes · NREMT-weighted drill</h1>
+  <div class="sub">His lecture facts only · stacked toward official Primary Assessment weight · not real NREMT items</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":"primary","q":"Which pair did he say cells need to make the energy that keeps them alive?","opts":[{"t":"Bile and lymph only","ok":false,"why":"11:27 review: for a cell to make energy it has to use oxygen and blood glucose. Plenty of both → plenty of energy. Heat from that work is why we sit at 98.6."},{"t":"Only clotting factor 8","ok":false,"why":"11:27 review: for a cell to make energy it has to use oxygen and blood glucose. Plenty of both → plenty of energy. Heat from that work is why we sit at 98.6."},{"t":"Only CSF","ok":false,"why":"11:27 review: for a cell to make energy it has to use oxygen and blood glucose. Plenty of both → plenty of energy. Heat from that work is why we sit at 98.6."},{"t":"Oxygen and blood glucose (sugar)","ok":true,"why":"11:27 review: for a cell to make energy it has to use oxygen and blood glucose. Plenty of both → plenty of energy. Heat from that work is why we sit at 98.6."}]},{"ch":"primary","q":"Homeostasis ranges he actually listed in the 10:48 talk?","opts":[{"t":"HR 40–60, RR 6–10, BGL 40–60, SpO2 80–85","ok":false,"why":"He listed those four ranges out loud. 98.6 showed up later as heat from every cell, not as a replacement for those numbers."},{"t":"Only a temperature of 98.6 and nothing else","ok":false,"why":"He listed those four ranges out loud. 98.6 showed up later as heat from every cell, not as a replacement for those numbers."},{"t":"HR 100–140, RR 30–40, BGL 200–300, SpO2 70–80","ok":false,"why":"He listed those four ranges out loud. 98.6 showed up later as heat from every cell, not as a replacement for those numbers."},{"t":"HR 60–100, adult RR 12–20, BGL 80–120, SpO2 94–99","ok":true,"why":"He listed those four ranges out loud. 98.6 showed up later as heat from every cell, not as a replacement for those numbers."}]},{"ch":"primary","q":"JVD versus a flat external jugular, as he taught it?","opts":[{"t":"JVD = empty tank; flat = too much pressure","ok":false,"why":"External jugulars: engorged = blood backing up, too much pressure on the heart. Flat = empty tank. He did not name the two book diagnoses."},{"t":"Both mean the same as bronchodilation","ok":false,"why":"External jugulars: engorged = blood backing up, too much pressure on the heart. Flat = empty tank. He did not name the two book diagnoses."},{"t":"JVD is only a left-lobe stroke","ok":false,"why":"External jugulars: engorged = blood backing up, too much pressure on the heart. Flat = empty tank. He did not name the two book diagnoses."},{"t":"Distended = backup, right side cannot take inflow. Flat/groove = empty tank (big bleed)","ok":true,"why":"External jugulars: engorged = blood backing up, too much pressure on the heart. Flat = empty tank. He did not name the two book diagnoses."}]},{"ch":"primary","q":"What word did he use for shock in the 11:27 preview?","opts":[{"t":"Hypertension from extra bile","ok":false,"why":"Shock = hypoperfusion. Not enough O2 → less energy → less heat. One treatment he named no matter the cause: blankets. Shock types/stages were not in these notes."},{"t":"Only a missing clotting factor","ok":false,"why":"Shock = hypoperfusion. Not enough O2 → less energy → less heat. One treatment he named no matter the cause: blankets. Shock types/stages were not in these notes."},{"t":"A plague of the lymph nodes","ok":false,"why":"Shock = hypoperfusion. Not enough O2 → less energy → less heat. One treatment he named no matter the cause: blankets. Shock types/stages were not in these notes."},{"t":"Hypoperfusion — not circulating enough blood and oxygen to the cells","ok":true,"why":"Shock = hypoperfusion. Not enough O2 → less energy → less heat. One treatment he named no matter the cause: blankets. Shock types/stages were not in these notes."}]},{"ch":"primary","q":"Why blankets in that shock preview, even if the room is warm?","opts":[{"t":"To hide the patient from bystanders","ok":false,"why":"He said one shock treatment does not care what caused the shock: keep them warm. Environmental temperature is not the point."},{"t":"Because the gallbladder stores heat","ok":false,"why":"He said one shock treatment does not care what caused the shock: keep them warm. Environmental temperature is not the point."},{"t":"Because lymph has no pump","ok":false,"why":"He said one shock treatment does not care what caused the shock: keep them warm. Environmental temperature is not the point."},{"t":"Cells making less energy make less heat, so the body gets colder; cold then becomes its own problem","ok":true,"why":"He said one shock treatment does not care what caused the shock: keep them warm. Environmental temperature is not the point."}]},{"ch":"primary","q":"Aerobic versus anaerobic in his close (before Otter capped)?","opts":[{"t":"Aerobic means no oxygen","ok":false,"why":"Without enough O2 you do not get the easy wastes (CO2 you breathe, water you pee). Lactic acid builds up instead. Same idea as a lifting burn. Last ~6 min of that talk is not in the notes."},{"t":"Both words only describe kidney stones","ok":false,"why":"Without enough O2 you do not get the easy wastes (CO2 you breathe, water you pee). Lactic acid builds up instead. Same idea as a lifting burn. Last ~6 min of that talk is not in the notes."},{"t":"Anaerobic is how the liver stores glycogen","ok":false,"why":"Without enough O2 you do not get the easy wastes (CO2 you breathe, water you pee). Lactic acid builds up instead. Same idea as a lifting burn. Last ~6 min of that talk is not in the notes."},{"t":"Aerobic = enough air/oxygen and lots of energy. Anaerobic: an- = without; backup path makes lactic acid that is harder to dump than breathing off CO2","ok":true,"why":"Without enough O2 you do not get the easy wastes (CO2 you breathe, water you pee). Lactic acid builds up instead. Same idea as a lifting burn. Last ~6 min of that talk is not in the notes."}]},{"ch":"primary","q":"Phrenic memory he gave for breathing?","opts":[{"t":"C1 keeps the liver alive","ok":false,"why":"Cord: motor down, sensory up. Injury = paralysis below + numbness. Phrenic C3–4–5 keep the diaphragm alive."},{"t":"T12 is the only breathing nerve","ok":false,"why":"Cord: motor down, sensory up. Injury = paralysis below + numbness. Phrenic C3–4–5 keep the diaphragm alive."},{"t":"The spleen ventilates the lungs","ok":false,"why":"Cord: motor down, sensory up. Injury = paralysis below + numbness. Phrenic C3–4–5 keep the diaphragm alive."},{"t":"C3, 4, and 5 keep the diaphragm alive","ok":true,"why":"Cord: motor down, sensory up. Injury = paralysis below + numbness. Phrenic C3–4–5 keep the diaphragm alive."}]},{"ch":"primary","q":"What job did he give the RAS?","opts":[{"t":"It stores bile behind the liver","ok":false,"why":"10:48: reticular activating system = consciousness gatekeeper. Not a 911 complaint by name. Hypothalamus in that same block was temperature."},{"t":"It is the only pulse check","ok":false,"why":"10:48: reticular activating system = consciousness gatekeeper. Not a 911 complaint by name. Hypothalamus in that same block was temperature."},{"t":"It names the two book JVD diagnoses","ok":false,"why":"10:48: reticular activating system = consciousness gatekeeper. Not a 911 complaint by name. Hypothalamus in that same block was temperature."},{"t":"Consciousness gatekeeper that filters sensory noise and lets noteworthy input through","ok":true,"why":"10:48: reticular activating system = consciousness gatekeeper. Not a 911 complaint by name. Hypothalamus in that same block was temperature."}]},{"ch":"primary","q":"Life threats versus the list he called life-altering?","opts":[{"t":"Genitals first, airway last","ok":false,"why":"11:27: genital injury may not kill you but can end reproduction. Eyeball: probably not fatal, blindness is a big deal. His list: hands, feet, face, genitals."},{"t":"Only the lymph nodes count","ok":false,"why":"11:27: genital injury may not kill you but can end reproduction. Eyeball: probably not fatal, blindness is a big deal. His list: hands, feet, face, genitals."},{"t":"Life-altering means skip the hospital","ok":false,"why":"11:27: genital injury may not kill you but can end reproduction. Eyeball: probably not fatal, blindness is a big deal. His list: hands, feet, face, genitals."},{"t":"Hunt life threats first. After that: hands, feet, face, and genitals (face also has airway)","ok":true,"why":"11:27: genital injury may not kill you but can end reproduction. Eyeball: probably not fatal, blindness is a big deal. His list: hands, feet, face, genitals."}]},{"ch":"airway","q":"Beta-2 in his receptor table, and why albuterol?","opts":[{"t":"Beta-2 = heart rate only","ok":false,"why":"Saturday endocrine talk: beta-2 = 2 lungs. Albuterol → beta-2. Do not invent doses — not in the notes."},{"t":"Albuterol is an alpha clamp on vessels","ok":false,"why":"Saturday endocrine talk: beta-2 = 2 lungs. Albuterol → beta-2. Do not invent doses — not in the notes."},{"t":"Beta-2 stores glycogen","ok":false,"why":"Saturday endocrine talk: beta-2 = 2 lungs. Albuterol → beta-2. Do not invent doses — not in the notes."},{"t":"Beta-2 = lungs = bronchodilation. Albuterol goes there because asthma is bronchoconstriction","ok":true,"why":"Saturday endocrine talk: beta-2 = 2 lungs. Albuterol → beta-2. Do not invent doses — not in the notes."}]},{"ch":"airway","q":"What does beta-1 do in that same table?","opts":[{"t":"Two lungs: bronchodilation only","ok":false,"why":"Beta-1 = 1 heart. Increases HR and contractility. Beta blockers block beta-1 for chronic high BP."},{"t":"Vessels: vasoconstriction only","ok":false,"why":"Beta-1 = 1 heart. Increases HR and contractility. Beta blockers block beta-1 for chronic high BP."},{"t":"Gut: rest and digest","ok":false,"why":"Beta-1 = 1 heart. Increases HR and contractility. Beta blockers block beta-1 for chronic high BP."},{"t":"One heart: faster rate and stronger contractility","ok":true,"why":"Beta-1 = 1 heart. Increases HR and contractility. Beta blockers block beta-1 for chronic high BP."}]},{"ch":"airway","q":"Alpha receptors, as he lumped them?","opts":[{"t":"Open bronchioles","ok":false,"why":"Alpha (1+2 lumped) hooks vessels → vasoconstriction. Epi binds alpha and beta, not one family only."},{"t":"Produce speech in Broca’s area","ok":false,"why":"Alpha (1+2 lumped) hooks vessels → vasoconstriction. Epi binds alpha and beta, not one family only."},{"t":"Absorb nutrients in the ileum","ok":false,"why":"Alpha (1+2 lumped) hooks vessels → vasoconstriction. Epi binds alpha and beta, not one family only."},{"t":"Hook vessels and cause vasoconstriction","ok":true,"why":"Alpha (1+2 lumped) hooks vessels → vasoconstriction. Epi binds alpha and beta, not one family only."}]},{"ch":"airway","q":"Cerebrum vs cerebellum in the shoe story (LOC / neuro impression)?","opts":[{"t":"Kid learning = cerebellum; adult automatic = cerebrum","ok":false,"why":"Conscious learning and recall of past events = cerebrum. Muscle-memory coordination = cerebellum."},{"t":"Both are skin layers","ok":false,"why":"Conscious learning and recall of past events = cerebrum. Muscle-memory coordination = cerebellum."},{"t":"Both are only the RAS","ok":false,"why":"Conscious learning and recall of past events = cerebrum. Muscle-memory coordination = cerebellum."},{"t":"Kid learning to tie = cerebrum. Adult tying without looking = cerebellum (coordination)","ok":true,"why":"Conscious learning and recall of past events = cerebrum. Muscle-memory coordination = cerebellum."}]},{"ch":"primary","q":"On stroke, what was his EMT-level takeaway (10:19/10:48 block)?","opts":[{"t":"Give a clot-busting drug on scene","ok":false,"why":"Recognize stroke, not which lobe. No treatment until CT. Ch 18. Not a stroke-scale how-to — that was not in the notes."},{"t":"Decide the exact lobe before transport","ok":false,"why":"Recognize stroke, not which lobe. No treatment until CT. Ch 18. Not a stroke-scale how-to — that was not in the notes."},{"t":"Intubate every stroke","ok":false,"why":"Recognize stroke, not which lobe. No treatment until CT. Ch 18. Not a stroke-scale how-to — that was not in the notes."},{"t":"Recognize it; do not pick the lobe in the field; no treatment until CT because type is unknown","ok":true,"why":"Recognize stroke, not which lobe. No treatment until CT. Ch 18. Not a stroke-scale how-to — that was not in the notes."}]},{"ch":"tx","q":"What did he say insulin does?","opts":[{"t":"Stores bile in the gallbladder","ok":false,"why":"11:27: metabolism = ability to use sugar. Insulin is that key. Type 1: pancreas stops making it. Specific diabetes treatment: not in the notes."},{"t":"Is clotting factor 8","ok":false,"why":"11:27: metabolism = ability to use sugar. Insulin is that key. Type 1: pancreas stops making it. Specific diabetes treatment: not in the notes."},{"t":"Pumps lymph","ok":false,"why":"11:27: metabolism = ability to use sugar. Insulin is that key. Type 1: pancreas stops making it. Specific diabetes treatment: not in the notes."},{"t":"Gives cells the ability to use the glucose already in the blood","ok":true,"why":"11:27: metabolism = ability to use sugar. Insulin is that key. Type 1: pancreas stops making it. Specific diabetes treatment: not in the notes."}]},{"ch":"tx","q":"Insulin vs glucagon as he paired them (10:48 tail)?","opts":[{"t":"Insulin raises it; glucagon lowers it","ok":false,"why":"Endocrine pancreas: opposite mechanisms. Somatostatin referees and they do not cover it at EMT level."},{"t":"Both only constrict vessels","ok":false,"why":"Endocrine pancreas: opposite mechanisms. Somatostatin referees and they do not cover it at EMT level."},{"t":"Both are burn depths","ok":false,"why":"Endocrine pancreas: opposite mechanisms. Somatostatin referees and they do not cover it at EMT level."},{"t":"Insulin lowers blood sugar; glucagon raises it","ok":true,"why":"Endocrine pancreas: opposite mechanisms. Somatostatin referees and they do not cover it at EMT level."}]},{"ch":"tx","q":"Hemophilia field point he actually made?","opts":[{"t":"Never hold pressure","ok":false,"why":"Missing puzzle pieces (example factor 8 — he said you do not have to memorize the number). Management he named: give clotting factors. Not an EMT dose chart."},{"t":"Treat it with albuterol","ok":false,"why":"Missing puzzle pieces (example factor 8 — he said you do not have to memorize the number). Management he named: give clotting factors. Not an EMT dose chart."},{"t":"It is only a thyroid problem","ok":false,"why":"Missing puzzle pieces (example factor 8 — he said you do not have to memorize the number). Management he named: give clotting factors. Not an EMT dose chart."},{"t":"They cannot clot. Pressure can hold; if you let up, bleeding resumes. They give the missing factors (he did not give you a dose)","ok":true,"why":"Missing puzzle pieces (example factor 8 — he said you do not have to memorize the number). Management he named: give clotting factors. Not an EMT dose chart."}]},{"ch":"tx","q":"Where is extra sugar stored, and in what form?","opts":[{"t":"Gallbladder stores it as bile","ok":false,"why":"Glucose in blood; extra can be peed out or kept. Body prefers to keep it as glycogen in the liver. Break-glass backup, not permanent."},{"t":"Spleen stores it as old red cells","ok":false,"why":"Glucose in blood; extra can be peed out or kept. Body prefers to keep it as glycogen in the liver. Break-glass backup, not permanent."},{"t":"Thyroid stores it as calcium","ok":false,"why":"Glucose in blood; extra can be peed out or kept. Body prefers to keep it as glycogen in the liver. Break-glass backup, not permanent."},{"t":"Liver stores it as glycogen and can put it back in the blood if BGL drops","ok":true,"why":"Glucose in blood; extra can be peed out or kept. Body prefers to keep it as glycogen in the liver. Break-glass backup, not permanent."}]},{"ch":"tx","q":"If the gallbladder is out, what did he say the person lost?","opts":[{"t":"All bile production from the liver","ok":false,"why":"Gallbladder = green sac behind the liver that stores bile and dumps it after a fatty meal. Removal → storage gone, fatty-food indigestion."},{"t":"All water absorption in the large intestine","ok":false,"why":"Gallbladder = green sac behind the liver that stores bile and dumps it after a fatty meal. Removal → storage gone, fatty-food indigestion."},{"t":"The ability to form any clot","ok":false,"why":"Gallbladder = green sac behind the liver that stores bile and dumps it after a fatty meal. Removal → storage gone, fatty-food indigestion."},{"t":"The backup storage of bile, so a big fatty meal is hard to digest","ok":true,"why":"Gallbladder = green sac behind the liver that stores bile and dumps it after a fatty meal. Removal → storage gone, fatty-food indigestion."}]},{"ch":"secondary","q":"His tackle list for abdominal organs?","opts":[{"t":"Memorize every enzyme first","ok":false,"why":"Ch 19 will try to ID problems. For now: solid/hollow, location, function. Liver solid RUQ. Spleen solid LUQ, old RBCs. SI all over, absorb."},{"t":"Only name lymph nodes","ok":false,"why":"Ch 19 will try to ID problems. For now: solid/hollow, location, function. Liver solid RUQ. Spleen solid LUQ, old RBCs. SI all over, absorb."},{"t":"Skip geography","ok":false,"why":"Ch 19 will try to ID problems. For now: solid/hollow, location, function. Liver solid RUQ. Spleen solid LUQ, old RBCs. SI all over, absorb."},{"t":"Hollow versus solid, where it sits, and what it does","ok":true,"why":"Ch 19 will try to ID problems. For now: solid/hollow, location, function. Liver solid RUQ. Spleen solid LUQ, old RBCs. SI all over, absorb."}]},{"ch":"secondary","q":"Why is appendicitis classically RLQ in the 11:27 talk?","opts":[{"t":"The liver is a hollow RLQ organ","ok":false,"why":"That is also why the 10:48 story’s leak from a hollow appendix matters. Hollow vs solid is the scoring idea, not a surgical protocol."},{"t":"The pancreas only lives in the RLQ","ok":false,"why":"That is also why the 10:48 story’s leak from a hollow appendix matters. Hollow vs solid is the scoring idea, not a surgical protocol."},{"t":"The thyroid is in the RLQ","ok":false,"why":"That is also why the 10:48 story’s leak from a hollow appendix matters. Hollow vs solid is the scoring idea, not a surgical protocol."},{"t":"Small intestine meets large intestine in the RLQ, and the appendix sits off the start of the large intestine","ok":true,"why":"That is also why the 10:48 story’s leak from a hollow appendix matters. Hollow vs solid is the scoring idea, not a surgical protocol."}]},{"ch":"secondary","q":"Large-intestine jobs he named?","opts":[{"t":"It is the only nutrient-absorption site","ok":false,"why":"By the time leftovers arrive, nutrients are already taken. Water in, then elimination."},{"t":"It stores glycogen","ok":false,"why":"By the time leftovers arrive, nutrients are already taken. Water in, then elimination."},{"t":"It is the heart of the lymph system","ok":false,"why":"By the time leftovers arrive, nutrients are already taken. Water in, then elimination."},{"t":"Water absorption, then stool. Path: up the right, across, down the left, midline out. No large intestine would mean constant diarrhea","ok":true,"why":"By the time leftovers arrive, nutrients are already taken. Water in, then elimination."}]},{"ch":"secondary","q":"On a pain complaint, whose right, and what else did he want asked?","opts":[{"t":"Your right as you face the stretcher; skip radiation","ok":false,"why":"10:48 tail. Ch 10 ‘detective’ skill itself is later — not in these notes as a full assessment sheet."},{"t":"Only whether JVD is present","ok":false,"why":"10:48 tail. Ch 10 ‘detective’ skill itself is later — not in these notes as a full assessment sheet."},{"t":"Only the hypothalamus temperature","ok":false,"why":"10:48 tail. Ch 10 ‘detective’ skill itself is later — not in these notes as a full assessment sheet."},{"t":"The patient’s right, not yours; onset activity, better/worse, describe, where, and whether it moves","ok":true,"why":"10:48 tail. Ch 10 ‘detective’ skill itself is later — not in these notes as a full assessment sheet."}]},{"ch":"secondary","q":"Pancreas location and why the pain can travel?","opts":[{"t":"On top of the kidneys as a triangle","ok":false,"why":"Not on their chart. GI enzymes for starch/protein plus endocrine insulin/glucagon."},{"t":"Under the epidermis","ok":false,"why":"Not on their chart. GI enzymes for starch/protein plus endocrine insulin/glucagon."},{"t":"In the left frontal lobe","ok":false,"why":"Not on their chart. GI enzymes for starch/protein plus endocrine insulin/glucagon."},{"t":"Upper mid abdomen on the RUQ/LUQ border, far back, so mid-upper pain can radiate to the back","ok":true,"why":"Not on their chart. GI enzymes for starch/protein plus endocrine insulin/glucagon."}]},{"ch":"secondary","q":"Spleen, as he placed it?","opts":[{"t":"Hollow RLQ; stores bile","ok":false,"why":"Solid = blood-saturated bleeder if traumatized (same idea as liver in the RUQ). Function he said: old RBCs."},{"t":"Master gland under the brain","ok":false,"why":"Solid = blood-saturated bleeder if traumatized (same idea as liver in the RUQ). Function he said: old RBCs."},{"t":"Skin layer named full thickness","ok":false,"why":"Solid = blood-saturated bleeder if traumatized (same idea as liver in the RUQ). Function he said: old RBCs."},{"t":"Solid organ, left upper quadrant; gets rid of old red blood cells","ok":true,"why":"Solid = blood-saturated bleeder if traumatized (same idea as liver in the RUQ). Function he said: old RBCs."}]},{"ch":"medical","q":"Hypothalamus vs pituitary in the 11:27 endocrine review?","opts":[{"t":"Both are lymph nodes","ok":false,"why":"Domino example: hypothalamus → pituitary → adrenals → epinephrine. Fight-or-flight is still a hormone hitting alpha and beta."},{"t":"Hypothalamus stores bile","ok":false,"why":"Domino example: hypothalamus → pituitary → adrenals → epinephrine. Fight-or-flight is still a hormone hitting alpha and beta."},{"t":"Both sit in the RUQ","ok":false,"why":"Domino example: hypothalamus → pituitary → adrenals → epinephrine. Fight-or-flight is still a hormone hitting alpha and beta."},{"t":"Hypothalamus bridges nervous electricity to hormone release; pituitary is the master gland that tells other glands what to dump","ok":true,"why":"Domino example: hypothalamus → pituitary → adrenals → epinephrine. Fight-or-flight is still a hormone hitting alpha and beta."}]},{"ch":"medical","q":"Thyroid vs parathyroids?","opts":[{"t":"Thyroid makes factor 8; parathyroids make bile","ok":false,"why":"Young high metabolism; older often slower. Extra calcium → bones or urine; low → pull from bone."},{"t":"Both only raise blood sugar","ok":false,"why":"Young high metabolism; older often slower. Extra calcium → bones or urine; low → pull from bone."},{"t":"Thyroid is the sewer system","ok":false,"why":"Young high metabolism; older often slower. Extra calcium → bones or urine; low → pull from bone."},{"t":"Thyroid (neck) is overall metabolism — hypo is low/slow. Four parathyroid nodules regulate calcium, with bone as storage, especially so the heart can keep squeezing","ok":true,"why":"Young high metabolism; older often slower. Extra calcium → bones or urine; low → pull from bone."}]},{"ch":"medical","q":"Kidneys: plumbing and the dehydrated pee story?","opts":[{"t":"One pipe that always dumps everything","ok":false,"why":"Keep vs get rid of. Extra sugar after the liver is full can be peed out. Well hydrated → pee extra water."},{"t":"They convert water into bile","ok":false,"why":"Keep vs get rid of. Extra sugar after the liver is full can be peed out. Well hydrated → pee extra water."},{"t":"They store water in the gallbladder","ok":false,"why":"Keep vs get rid of. Extra sugar after the liver is full can be peed out. Well hydrated → pee extra water."},{"t":"Three pipes — blood in, blood kept, urine out. Dehydrated: save every drop, so they pee less","ok":true,"why":"Keep vs get rid of. Extra sugar after the liver is full can be peed out. Well hydrated → pee extra water."}]},{"ch":"medical","q":"pH split he actually said?","opts":[{"t":"Only the spleen sets pH","ok":false,"why":"Brain can use both systems if pH is off. Also mentioned BP via fluid volume."},{"t":"Kidneys breathe off CO2","ok":false,"why":"Brain can use both systems if pH is off. Also mentioned BP via fluid volume."},{"t":"pH is only a thyroid number","ok":false,"why":"Brain can use both systems if pH is off. Also mentioned BP via fluid volume."},{"t":"Two big ingredients in blood are CO2 and water. Kidneys handle water. Lungs handle CO2 by breathing faster or slower","ok":true,"why":"Brain can use both systems if pH is off. Also mentioned BP via fluid volume."}]},{"ch":"medical","q":"Lymphatic system in this weekend’s talks?","opts":[{"t":"It is the main shock treatment","ok":false,"why":"Swollen neck nodes = full of trash. That is the extent."},{"t":"It has a second heart in the neck","ok":false,"why":"Swollen neck nodes = full of trash. That is the extent."},{"t":"It is how insulin works","ok":false,"why":"Swollen neck nodes = full of trash. That is the extent."},{"t":"Sewer of the body; no heart pump; motion, exercise, and breathing move lymph; they barely talk it except plague in the disaster chapter","ok":true,"why":"Swollen neck nodes = full of trash. That is the extent."}]},{"ch":"scene","q":"Scene Size-up and Safety is 15–19% of the official exam. What from HIS Saturday talks covers it?","opts":[{"t":"Saturday fully taught triage tags","ok":false,"why":"Official domain includes plan-before-arrival, protect the scene, PPE, find patients, triage, request resources. Those job tasks are not in the Saturday Otter files. Ch 2 notes exist separately. Not in his Saturday notes / don’t invent."},{"t":"He ran a hazmat algorithm","ok":false,"why":"Official domain includes plan-before-arrival, protect the scene, PPE, find patients, triage, request resources. Those job tasks are not in the Saturday Otter files. Ch 2 notes exist separately. Not in his Saturday notes / don’t invent."},{"t":"He listed every PPE by call type","ok":false,"why":"Official domain includes plan-before-arrival, protect the scene, PPE, find patients, triage, request resources. Those job tasks are not in the Saturday Otter files. Ch 2 notes exist separately. Not in his Saturday notes / don’t invent."},{"t":"Almost nothing new Saturday — use the already-written workplace-safety / wellness notes, and do not invent PPE or triage from the blueprint","ok":true,"why":"Official domain includes plan-before-arrival, protect the scene, PPE, find patients, triage, request resources. Those job tasks are not in the Saturday Otter files. Ch 2 notes exist separately. Not in his Saturday notes / don’t invent."}]},{"ch":"ops","q":"Operations is 10–14% officially. What did Saturday add?","opts":[{"t":"He taught a full radio-report format at 11:27","ok":false,"why":"Official operations tasks: equipment, med/supply inventory, documentation, responder well-being. Saturday was anatomy. Not in Saturday notes / don’t invent."},{"t":"He certified the rig checklist","ok":false,"why":"Official operations tasks: equipment, med/supply inventory, documentation, responder well-being. Saturday was anatomy. Not in Saturday notes / don’t invent."},{"t":"He wrote the state PCR rule set","ok":false,"why":"Official operations tasks: equipment, med/supply inventory, documentation, responder well-being. Saturday was anatomy. Not in Saturday notes / don’t invent."},{"t":"Saturday did not add ambulance checks or a new PCR lesson — lean on the Ch 3–4 legal / comms / documentation notes you already have, and do not invent inventory lists","ok":true,"why":"Official operations tasks: equipment, med/supply inventory, documentation, responder well-being. Saturday was anatomy. Not in Saturday notes / don’t invent."}]},{"ch":"primary","q":"What is NOT in his notes because Otter capped the 11:27 talk?","opts":[{"t":"The gallbladder location","ok":false,"why":"Otter free plan: 30 minutes per conversation. Do not invent the rest of shock, CPR, or treatment algorithms."},{"t":"That insulin lets cells use glucose","ok":false,"why":"Otter free plan: 30 minutes per conversation. Do not invent the rest of shock, CPR, or treatment algorithms."},{"t":"That the spleen is solid LUQ","ok":false,"why":"Otter free plan: 30 minutes per conversation. Do not invent the rest of shock, CPR, or treatment algorithms."},{"t":"The last ~6 minutes after the aerobic/anaerobic cut, and any extra shock-chapter material he did not say before 27:38","ok":true,"why":"Otter free plan: 30 minutes per conversation. Do not invent the rest of shock, CPR, or treatment algorithms."}]},{"ch":"tx","q":"Epinephrine, as he smashed the names and receptors?","opts":[{"t":"Use only noradrenaline on tests","ok":false,"why":"Fight-or-flight package is non-specific (bleed, pump fail, or anaphylactic vasodilation still dump epi). Doses: not in the notes."},{"t":"It comes from the pancreas","ok":false,"why":"Fight-or-flight package is non-specific (bleed, pump fail, or anaphylactic vasodilation still dump epi). Doses: not in the notes."},{"t":"It binds beta-2 only","ok":false,"why":"Fight-or-flight package is non-specific (bleed, pump fail, or anaphylactic vasodilation still dump epi). Doses: not in the notes."},{"t":"Adrenaline = epinephrine; at EMT level they smash norepinephrine in too and keep saying epinephrine. It binds alpha and beta, not one family only","ok":true,"why":"Fight-or-flight package is non-specific (bleed, pump fail, or anaphylactic vasodilation still dump epi). Doses: not in the notes."}]},{"ch":"airway","q":"Baroreceptors live in exactly which two places?","opts":[{"t":"Jugulars and the foramen magnum","ok":false,"why":"10:19 talk. They watch pressure and help drive the epi package. Not a treatment step."},{"t":"Small intestine and the dermis","ok":false,"why":"10:19 talk. They watch pressure and help drive the epi package. Not a treatment step."},{"t":"Pulmonary veins and the spleen","ok":false,"why":"10:19 talk. They watch pressure and help drive the epi package. Not a treatment step."},{"t":"Aorta just out of the left ventricle, and the carotids","ok":true,"why":"10:19 talk. They watch pressure and help drive the epi package. Not a treatment step."}]}];
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {primary:"Primary / perfusion",airway:"Airway / receptors",tx:"Treatment preview",secondary:"Secondary / abdomen",medical:"Medical / endocrine-renal",scene:"Scene (gap)",ops:"Operations (gap)"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Class facts only. Official NREMT weights used to pick topics — these are not Registry items.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · class facts, NREMT-weighted topics</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
