@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat Aug 22 afternoon — moving / positioning</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat Aug 22 · afternoon moving</h1>
+  <div class="sub">1:01 + 1:32 + 2:01 (capped) · lecture only · not the 2:47 live talk</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":"gurney","q":"A driveway curb is coming. Which gurney move matches what he taught?","opts":[{"t":"Two hands, one front one back; take the curb at an angle, not straight","ok":false,"why":"Two people: front and back or it swings. Curb straight or it tilts. Do not take the gurney on stairs or off-road."},{"t":"One hand at the side only; take the curb straight, not angled","ok":false,"why":"Two people: front and back or it swings. Curb straight or it tilts. Do not take the gurney on stairs or off-road."},{"t":"Two hands, one front one back; walk it down the stairs, not the curb","ok":false,"why":"Two people: front and back or it swings. Curb straight or it tilts. Do not take the gurney on stairs or off-road."},{"t":"Two hands, one front one back; take the curb straight, not angled","ok":true,"why":"Two people: front and back or it swings. Curb straight or it tilts. Do not take the gurney on stairs or off-road."}]},{"ch":"gurney","q":"You are loading the ambulance. Which load and lock pair did he want?","opts":[{"t":"Feet first, feet end heavier; lock the gurney to the floor","ok":false,"why":"Patient loaded headfirst, looks out the back. Head side is heavier. Locking bracket to the floor. Everyone rides the gurney."},{"t":"Head first, head end heavier; leave the gurney unlocked to roll","ok":false,"why":"Patient loaded headfirst, looks out the back. Head side is heavier. Locking bracket to the floor. Everyone rides the gurney."},{"t":"Head first, head end lighter; lock the gurney to the floor","ok":false,"why":"Patient loaded headfirst, looks out the back. Head side is heavier. Locking bracket to the floor. Everyone rides the gurney."},{"t":"Head first, head end heavier; lock the gurney to the floor","ok":true,"why":"Patient loaded headfirst, looks out the back. Head side is heavier. Locking bracket to the floor. Everyone rides the gurney."}]},{"ch":"gurney","q":"The patient says they can sit in a captain’s chair. What did he want anyway?","opts":[{"t":"Put them in the chair, skip the gurney, and skip the belt","ok":false,"why":"Everyone goes on the gurney even if they could sit. If they worsen in a chair you then have to move them. Sit up on the gurney if needed; still belted."},{"t":"Put them on the backboard only, lie them flat, and skip the belt","ok":false,"why":"Everyone goes on the gurney even if they could sit. If they worsen in a chair you then have to move them. Sit up on the gurney if needed; still belted."},{"t":"Put them on the stair chair for the whole ride, and belt them","ok":false,"why":"Everyone goes on the gurney even if they could sit. If they worsen in a chair you then have to move them. Sit up on the gurney if needed; still belted."},{"t":"Put them on the gurney, sit them up if needed, and belt them","ok":true,"why":"Everyone goes on the gurney even if they could sit. If they worsen in a chair you then have to move them. Sit up on the gurney if needed; still belted."}]},{"ch":"gurney","q":"When is the wheeled stretcher the wrong tool in this lecture?","opts":[{"t":"Hospital hallway or ambulance floor; it is top-heavy with tiny wheels","ok":false,"why":"Do not take it off-road or down stairs. Powered 40–145 lb empty; motors add weight but you lift less."},{"t":"Stairs or off-road desert; it is low and wide with huge wheels","ok":false,"why":"Do not take it off-road or down stairs. Powered 40–145 lb empty; motors add weight but you lift less."},{"t":"Only when the patient is in shock; it is top-heavy with tiny wheels","ok":false,"why":"Do not take it off-road or down stairs. Powered 40–145 lb empty; motors add weight but you lift less."},{"t":"Stairs or off-road desert; it is top-heavy with tiny wheels","ok":true,"why":"Do not take it off-road or down stairs. Powered 40–145 lb empty; motors add weight but you lift less."}]},{"ch":"shock","q":"No special medical need. How should they ride, versus a shock concern?","opts":[{"t":"Comfort if they pick it; shock gets extra O2, cool, feet-up, slow transport","ok":false,"why":"Position of comfort if no medical preference. Shock four-pack: lots of O2, keep warm, supine, rapid transport. Later he retired feet-up."},{"t":"Always flat; shock gets extra O2, warm, sitting Fowler, fast transport","ok":false,"why":"Position of comfort if no medical preference. Shock four-pack: lots of O2, keep warm, supine, rapid transport. Later he retired feet-up."},{"t":"Always prone; shock gets room air, warm, flat supine, fast transport","ok":false,"why":"Position of comfort if no medical preference. Shock four-pack: lots of O2, keep warm, supine, rapid transport. Later he retired feet-up."},{"t":"Comfort if they pick it; shock gets extra O2, warm, flat supine, fast transport","ok":true,"why":"Position of comfort if no medical preference. Shock four-pack: lots of O2, keep warm, supine, rapid transport. Later he retired feet-up."}]},{"ch":"board","q":"A possible-spine patient is on the ground. Who runs the log roll?","opts":[{"t":"Two people: feet hold C-spine and count; one rolls the body after a collar","ok":false,"why":"Book log roll is four. Head = manual C-spine and in charge. Collar before the roll. Head does not lift by the head."},{"t":"Four people: feet hold C-spine and count; three roll the body before a collar","ok":false,"why":"Book log roll is four. Head = manual C-spine and in charge. Collar before the roll. Head does not lift by the head."},{"t":"Four people: head lifts by the skull and counts; three shove sideways","ok":false,"why":"Book log roll is four. Head = manual C-spine and in charge. Collar before the roll. Head does not lift by the head."},{"t":"Four people: head holds C-spine and counts; three roll the body after a collar","ok":true,"why":"Book log roll is four. Head = manual C-spine and in charge. Collar before the roll. Head does not lift by the head."}]},{"ch":"board","q":"Which conscious patient did he still want on a board?","opts":[{"t":"Arm bruise only after the crash, or hunger, thirst, weakness, paralysis","ok":false,"why":"Now: pain, neuro signs, unconscious trauma, or a poor historian. Old: almost every trauma. Combative/refuse: med control if you skip what others would do."},{"t":"Neck or back pain after the crash, or a stuffy nose with no neuro change","ok":false,"why":"Now: pain, neuro signs, unconscious trauma, or a poor historian. Old: almost every trauma. Combative/refuse: med control if you skip what others would do."},{"t":"Old walking-wounded rule: board every trauma even if they deny pain","ok":false,"why":"Now: pain, neuro signs, unconscious trauma, or a poor historian. Old: almost every trauma. Combative/refuse: med control if you skip what others would do."},{"t":"Neck or back pain after the crash, or numbness, tingling, weakness, paralysis","ok":true,"why":"Now: pain, neuro signs, unconscious trauma, or a poor historian. Old: almost every trauma. Combative/refuse: med control if you skip what others would do."}]},{"ch":"board","q":"Intoxicated, says no neck pain, but says ow when you press mid-back. What did they do?","opts":[{"t":"Treat them as a clear historian and skip the board; alcohol sharpens the pain report","ok":false,"why":"Poor historian example from class. They boarded him. Palpate the spine during the log roll."},{"t":"Treat them as a poor historian and use only a stair chair; alcohol can dull the pain report","ok":false,"why":"Poor historian example from class. They boarded him. Palpate the spine during the log roll."},{"t":"Treat them as a clear historian and board; alcohol never changes the pain report","ok":false,"why":"Poor historian example from class. They boarded him. Palpate the spine during the log roll."},{"t":"Treat them as a poor historian and board; alcohol can dull the pain report","ok":true,"why":"Poor historian example from class. They boarded him. Palpate the spine during the log roll."}]},{"ch":"lift","q":"Power grip, as he named it?","opts":[{"t":"Palms down, about ten inches apart, overhand on the load","ok":false,"why":"Shoulders over pelvis, straight back, lift with the legs, weight close. Power grip palms up ~10 in."},{"t":"Palms up, about thirty inches apart, underhand on the load","ok":false,"why":"Shoulders over pelvis, straight back, lift with the legs, weight close. Power grip palms up ~10 in."},{"t":"Palms up, about ten inches apart, lift with a rounded back","ok":false,"why":"Shoulders over pelvis, straight back, lift with the legs, weight close. Power grip palms up ~10 in."},{"t":"Palms up, about ten inches apart, underhand on the load","ok":true,"why":"Shoulders over pelvis, straight back, lift with the legs, weight close. Power grip palms up ~10 in."}]},{"ch":"move","q":"You need more hands for a heavy patient. What is a lift assist here?","opts":[{"t":"A second ambulance by default, not extra people on scene","ok":false,"why":"Lift assist = people. About 250 lb two-person expectation at his agency. Ask facility staff."},{"t":"A helicopter by default, not extra people on scene","ok":false,"why":"Lift assist = people. About 250 lb two-person expectation at his agency. Ask facility staff."},{"t":"Extra people on scene, plus a second ambulance every time","ok":false,"why":"Lift assist = people. About 250 lb two-person expectation at his agency. Ask facility staff."},{"t":"Extra people on scene, not a second ambulance by default","ok":true,"why":"Lift assist = people. About 250 lb two-person expectation at his agency. Ask facility staff."}]},{"ch":"move","q":"Why did he say bariatric is mostly a width problem?","opts":[{"t":"A regular gurney already holds about 1200 lb; the wide one is about 750 lb","ok":false,"why":"Regular ~750 lb. Bariatric wider ~1200 lb he said. Keep low. Load with lift-gate or ramp plus winch."},{"t":"A regular gurney already holds about 250 lb; the wide one is about 400 lb","ok":false,"why":"Regular ~750 lb. Bariatric wider ~1200 lb he said. Keep low. Load with lift-gate or ramp plus winch."},{"t":"A regular gurney already holds about 750 lb; the stair chair is about 1200 lb","ok":false,"why":"Regular ~750 lb. Bariatric wider ~1200 lb he said. Keep low. Load with lift-gate or ramp plus winch."},{"t":"A regular gurney already holds about 750 lb; the wide one is about 1200 lb","ok":true,"why":"Regular ~750 lb. Bariatric wider ~1200 lb he said. Keep low. Load with lift-gate or ramp plus winch."}]},{"ch":"move","q":"Car on fire, patient still in the seat. Which move category?","opts":[{"t":"Urgent: about one minute, still a full backboard package","ok":false,"why":"Emergency = fire / wreck on fire / pulseless in wreck. They may be mad you worsened spine — they are alive. Urgent ~1 min, not full board time. Non-urgent = stable."},{"t":"Non-urgent: scene is stable, take your time on the board","ok":false,"why":"Emergency = fire / wreck on fire / pulseless in wreck. They may be mad you worsened spine — they are alive. Urgent ~1 min, not full board time. Non-urgent = stable."},{"t":"Emergency: seconds, grab-and-go, then a complete two-minute board","ok":false,"why":"Emergency = fire / wreck on fire / pulseless in wreck. They may be mad you worsened spine — they are alive. Urgent ~1 min, not full board time. Non-urgent = stable."},{"t":"Emergency: seconds, grab-and-go, spine care may be incomplete","ok":true,"why":"Emergency = fire / wreck on fire / pulseless in wreck. They may be mad you worsened spine — they are alive. Urgent ~1 min, not full board time. Non-urgent = stable."}]},{"ch":"move","q":"Patient is stable, scene is stable, lots of time. Which move?","opts":[{"t":"Emergency: skip the path and use the most lifting you can","ok":false,"why":"Non-urgent when both scene and patient are stable. Least lift."},{"t":"Urgent: one-minute drag and skip the gurney lock","ok":false,"why":"Non-urgent when both scene and patient are stable. Least lift."},{"t":"Non-urgent: plan the path and run a grab-and-go from the fire","ok":false,"why":"Non-urgent when both scene and patient are stable. Least lift."},{"t":"Non-urgent: plan the path and use the least lifting you can","ok":true,"why":"Non-urgent when both scene and patient are stable. Least lift."}]},{"ch":"move","q":"Unconscious on a stairwell, possible spine. How do they come down?","opts":[{"t":"On a stair chair, strong hands at head and feet, head first","ok":false,"why":"Stairs + unconscious = board, strong at head/feet, feet first. Stair chair is for awake, not spine. Diamond carry = four sides preferred."},{"t":"On a board, strong hands at head and feet, head first","ok":false,"why":"Stairs + unconscious = board, strong at head/feet, feet first. Stair chair is for awake, not spine. Diamond carry = four sides preferred."},{"t":"On a stair chair, one person at the feet only, feet first","ok":false,"why":"Stairs + unconscious = board, strong at head/feet, feet first. Stair chair is for awake, not spine. Diamond carry = four sides preferred."},{"t":"On a board, strong hands at head and feet, feet first","ok":true,"why":"Stairs + unconscious = board, strong at head/feet, feet first. Stair chair is for awake, not spine. Diamond carry = four sides preferred."}]},{"ch":"move","q":"Awake, no spine worry, no elevator. Which device?","opts":[{"t":"Stair chair down the stairs, stay on it for the whole ambulance ride","ok":false,"why":"Stair chair: conscious, no spine, no elevator. A board can be just a carry tool — off it at the bottom if no spine worry."},{"t":"Backboard down the stairs as the only option, head first","ok":false,"why":"Stair chair: conscious, no spine, no elevator. A board can be just a carry tool — off it at the bottom if no spine worry."},{"t":"Gurney down the stairs, one person at the side","ok":false,"why":"Stair chair: conscious, no spine, no elevator. A board can be just a carry tool — off it at the bottom if no spine worry."},{"t":"Stair chair down the stairs, then off it at the bottom if you want","ok":true,"why":"Stair chair: conscious, no spine, no elevator. A board can be just a carry tool — off it at the bottom if no spine worry."}]},{"ch":"dev","q":"Suspected hip fracture on the floor. Which tool did he point at?","opts":[{"t":"Stair chair: it splits so you do not log-roll the hip","ok":false,"why":"Scoop splits, hip fx. He mentioned a 50%/12 mo stat he heard — not a protocol. Vacuum mattress is the beanbag for kyphosis."},{"t":"Scoop stretcher: it needs a full four-person log roll first","ok":false,"why":"Scoop splits, hip fx. He mentioned a 50%/12 mo stat he heard — not a protocol. Vacuum mattress is the beanbag for kyphosis."},{"t":"Vacuum mattress only: it splits so you do not log-roll the hip","ok":false,"why":"Scoop splits, hip fx. He mentioned a 50%/12 mo stat he heard — not a protocol. Vacuum mattress is the beanbag for kyphosis."},{"t":"Scoop stretcher: it splits so you do not log-roll the hip","ok":true,"why":"Scoop splits, hip fx. He mentioned a 50%/12 mo stat he heard — not a protocol. Vacuum mattress is the beanbag for kyphosis."}]},{"ch":"dev","q":"Older patient with a very curved thoracic spine. Which mattress idea?","opts":[{"t":"Hard backboard only: it conforms after you suck the air out","ok":false,"why":"Vacuum = beanbag + suction; kyphosis; rare locally; call the doc if unsure."},{"t":"Vacuum mattress: it stays rigid before you suck the air out","ok":false,"why":"Vacuum = beanbag + suction; kyphosis; rare locally; call the doc if unsure."},{"t":"Stair chair: it conforms after you suck the air out","ok":false,"why":"Vacuum = beanbag + suction; kyphosis; rare locally; call the doc if unsure."},{"t":"Vacuum mattress: it conforms after you suck the air out","ok":true,"why":"Vacuum = beanbag + suction; kyphosis; rare locally; call the doc if unsure."}]},{"ch":"dev","q":"A neonate 0–1 month needs a controlled box. What was his role in that story?","opts":[{"t":"Isolette belongs to the EMT student; he ran the ventilator","ok":false,"why":"Isolette = neonate 0–1 month. Flight crew’s patient. He called it an Uber-style drive. Cut mid-story — not in the notes after that."},{"t":"Isolette belongs to the flight crew; he intubated in the box","ok":false,"why":"Isolette = neonate 0–1 month. Flight crew’s patient. He called it an Uber-style drive. Cut mid-story — not in the notes after that."},{"t":"Scoop belongs to the flight crew; he mostly just drove","ok":false,"why":"Isolette = neonate 0–1 month. Flight crew’s patient. He called it an Uber-style drive. Cut mid-story — not in the notes after that."},{"t":"Isolette belongs to the flight crew; he mostly just drove","ok":true,"why":"Isolette = neonate 0–1 month. Flight crew’s patient. He called it an Uber-style drive. Cut mid-story — not in the notes after that."}]},{"ch":"pos","q":"Shock positioning now, versus the old feet-up habit?","opts":[{"t":"Feet-up; the flat supine move is retired","ok":false,"why":"2:01 talk: shock is flat supine now. No more feet-up. Same four-pack still has supine."},{"t":"High Fowler; the feet-up move is the new default","ok":false,"why":"2:01 talk: shock is flat supine now. No more feet-up. Same four-pack still has supine."},{"t":"Prone; the feet-up / Trendelenburg-style move is retired","ok":false,"why":"2:01 talk: shock is flat supine now. No more feet-up. Same four-pack still has supine."},{"t":"Flat supine; the feet-up / Trendelenburg-style move is retired","ok":true,"why":"2:01 talk: shock is flat supine now. No more feet-up. Same four-pack still has supine."}]},{"ch":"pos","q":"Pregnancy past twenty weeks on the gurney. Which side and why?","opts":[{"t":"Right side so the uterus is off the IVC; that is supine hypotensive syndrome","ok":false,"why":">20 weeks left side. IVC/aorta sandwich. Also faces the bench. Exact week rule beyond what he said: not in the notes."},{"t":"Left side so the uterus is off the trachea; that is recovery-position syndrome","ok":false,"why":">20 weeks left side. IVC/aorta sandwich. Also faces the bench. Exact week rule beyond what he said: not in the notes."},{"t":"Flat supine so the uterus stays on the IVC; that is shock position","ok":false,"why":">20 weeks left side. IVC/aorta sandwich. Also faces the bench. Exact week rule beyond what he said: not in the notes."},{"t":"Left side so the uterus is off the IVC; that is supine hypotensive syndrome","ok":true,"why":">20 weeks left side. IVC/aorta sandwich. Also faces the bench. Exact week rule beyond what he said: not in the notes."}]},{"ch":"pos","q":"Unresponsive, breathing, no spine worry. Which position?","opts":[{"t":"Flat supine so the tongue is less likely to block","ok":false,"why":"Recovery if unresponsive + breathing + no spine. Fowler / sit for dyspnea. Comfort = ask. Seizure: recovery if they breathe; else back and suction."},{"t":"Recovery on the side so shock pressure stays high","ok":false,"why":"Recovery if unresponsive + breathing + no spine. Fowler / sit for dyspnea. Comfort = ask. Seizure: recovery if they breathe; else back and suction."},{"t":"High Fowler so the tongue is less likely to block","ok":false,"why":"Recovery if unresponsive + breathing + no spine. Fowler / sit for dyspnea. Comfort = ask. Seizure: recovery if they breathe; else back and suction."},{"t":"Recovery on the side so the tongue is less likely to block","ok":true,"why":"Recovery if unresponsive + breathing + no spine. Fowler / sit for dyspnea. Comfort = ask. Seizure: recovery if they breathe; else back and suction."}]},{"ch":"pos","q":"Short of breath, talking in phrases. Which default sit did he like?","opts":[{"t":"Flat supine; dyspnea likes down","ok":false,"why":"Sit for dyspnea. Shock is the flat exception. Comfort otherwise."},{"t":"Prone; dyspnea likes face-down","ok":false,"why":"Sit for dyspnea. Shock is the flat exception. Comfort otherwise."},{"t":"Trendelenburg feet-up; dyspnea likes up","ok":false,"why":"Sit for dyspnea. Shock is the flat exception. Comfort otherwise."},{"t":"Fowler or high-Fowler sitting up; dyspnea likes up","ok":true,"why":"Sit for dyspnea. Shock is the flat exception. Comfort otherwise."}]},{"ch":"restr","q":"They are truly combative. Restraint package from this talk?","opts":[{"t":"First resort, about two people, stay prone, never supine","ok":false,"why":"Restrain only if hurting self/others. Don’t start at psych — fix O2/sugar/head first. LE preferred. Document or it reads like kidnapping. Monitor ABCs."},{"t":"Last resort, about five people, stay prone, never supine","ok":false,"why":"Restrain only if hurting self/others. Don’t start at psych — fix O2/sugar/head first. LE preferred. Document or it reads like kidnapping. Monitor ABCs."},{"t":"Last resort, about two people, stay supine, hog-tie the legs","ok":false,"why":"Restrain only if hurting self/others. Don’t start at psych — fix O2/sugar/head first. LE preferred. Document or it reads like kidnapping. Monitor ABCs."},{"t":"Last resort, about five people, stay supine, never prone","ok":true,"why":"Restrain only if hurting self/others. Don’t start at psych — fix O2/sugar/head first. LE preferred. Document or it reads like kidnapping. Monitor ABCs."}]},{"ch":"safe","q":"Partner wants one more height notch and the gurney is already steep. What phrase did he want?","opts":[{"t":"Ask “are you strong enough” before the lift, not “are we”","ok":false,"why":"Near-drop story: ego, one more notch, 45°, about 7 seconds. Phrase it as we. Stronger/taller at the head of a manual gurney."},{"t":"Ask “are we fast enough” after the drop, not “are you”","ok":false,"why":"Near-drop story: ego, one more notch, 45°, about 7 seconds. Phrase it as we. Stronger/taller at the head of a manual gurney."},{"t":"Skip the question and take the extra notch for speed","ok":false,"why":"Near-drop story: ego, one more notch, 45°, about 7 seconds. Phrase it as we. Stronger/taller at the head of a manual gurney."},{"t":"Ask “are we strong enough” before the lift, not “are you”","ok":true,"why":"Near-drop story: ego, one more notch, 45°, about 7 seconds. Phrase it as we. Stronger/taller at the head of a manual gurney."}]},{"ch":"safe","q":"Who stands at the head of a manual gurney if one partner is clearly stronger?","opts":[{"t":"The weaker, shorter person takes the heavier head end","ok":false,"why":"Head end is heavier. Stronger/taller → head. Two hands always."},{"t":"The stronger, taller person takes only the light foot end","ok":false,"why":"Head end is heavier. Stronger/taller → head. Two hands always."},{"t":"Neither; one person walks a manual gurney from the side","ok":false,"why":"Head end is heavier. Stronger/taller → head. Two hands always."},{"t":"The stronger, taller person takes the heavier head end","ok":true,"why":"Head end is heavier. Stronger/taller → head. Two hands always."}]},{"ch":"carry","q":"Four EMTs moving a load on flat ground. Preferred carry shape?","opts":[{"t":"Diamond: one on each of the two long sides only","ok":false,"why":"Diamond carry: four sides preferred."},{"t":"Line: four in a row at the feet","ok":false,"why":"Diamond carry: four sides preferred."},{"t":"Diamond: two on the stair chair, two on the isolette","ok":false,"why":"Diamond carry: four sides preferred."},{"t":"Diamond: one on each of the four sides","ok":true,"why":"Diamond carry: four sides preferred."}]},{"ch":"dev","q":"Sitting in a wreck, stable and awake, possible spine. Rare device he named?","opts":[{"t":"Stair chair for a seated extrication, used on every wreck","ok":false,"why":"Vest/KED-type: sitting in car, rare, stable + conscious. Not the default grab-and-go."},{"t":"Vest / KED-type for an unconscious stair carry, used rarely","ok":false,"why":"Vest/KED-type: sitting in car, rare, stable + conscious. Not the default grab-and-go."},{"t":"Scoop for a seated extrication, used on every wreck","ok":false,"why":"Vest/KED-type: sitting in car, rare, stable + conscious. Not the default grab-and-go."},{"t":"Vest / KED-type for a seated extrication, used rarely","ok":true,"why":"Vest/KED-type: sitting in car, rare, stable + conscious. Not the default grab-and-go."}]},{"ch":"dev","q":"Stokes / basket talk, as far as he got?","opts":[{"t":"No sides; used only in the ambulance; a stair chair rides in the basket","ok":false,"why":"Stokes: raised sides, Camelback/water/rope. Board in water; hoist in Stokes; board-in-basket possible. Testing light because gear is not national."},{"t":"Raised sides; used only for neonates; a board cannot ride in the basket","ok":false,"why":"Stokes: raised sides, Camelback/water/rope. Board in water; hoist in Stokes; board-in-basket possible. Testing light because gear is not national."},{"t":"Raised sides; used with rope or water work; never pair it with a board","ok":false,"why":"Stokes: raised sides, Camelback/water/rope. Board in water; hoist in Stokes; board-in-basket possible. Testing light because gear is not national."},{"t":"Raised sides; used with rope or water work; a board can ride in the basket","ok":true,"why":"Stokes: raised sides, Camelback/water/rope. Board in water; hoist in Stokes; board-in-basket possible. Testing light because gear is not national."}]},{"ch":"gurney","q":"Powered versus manual gurney — the trade he named?","opts":[{"t":"Motors make the empty bed lighter; you still lift the same empty weight","ok":false,"why":"40–145 lb range. Motors add a ton of empty weight; trade-off is you don’t lift that. You still lift some to load unless there is an arm."},{"t":"Motors make the empty bed heavier; you must never lock it to the floor","ok":false,"why":"40–145 lb range. Motors add a ton of empty weight; trade-off is you don’t lift that. You still lift some to load unless there is an arm."},{"t":"Motors make the empty bed heavier; you can now take it down stairs","ok":false,"why":"40–145 lb range. Motors add a ton of empty weight; trade-off is you don’t lift that. You still lift some to load unless there is an arm."},{"t":"Motors make the empty bed heavier; you press a button instead of lifting that weight","ok":true,"why":"40–145 lb range. Motors add a ton of empty weight; trade-off is you don’t lift that. You still lift some to load unless there is an arm."}]},{"ch":"board","q":"Skills-test backboard station, as he described it?","opts":[{"t":"One of seven stations; two-person team you pick; X on the legs only","ok":false,"why":"More holes = better strap placement. Two of seven stations are team. You can talk. Test once, not every position."},{"t":"All seven stations; four-person team the proctor picks; no straps","ok":false,"why":"More holes = better strap placement. Two of seven stations are team. You can talk. Test once, not every position."},{"t":"One of seven stations; four-person team you pick; only a single chest belt","ok":false,"why":"More holes = better strap placement. Two of seven stations are team. You can talk. Test once, not every position."},{"t":"One of seven stations; four-person team you pick; X on the torso, then hips and legs","ok":true,"why":"More holes = better strap placement. Two of seven stations are team. You can talk. Test once, not every position."}]},{"ch":"pos","q":"After a seizure they start breathing and there is no spine issue. Position?","opts":[{"t":"Flat shock position; if they are not breathing, sit them high Fowler","ok":false,"why":"Seizure recovering = recovery if they breathe; else back + suction. Spoken in the 2:01 clip before the cap."},{"t":"Recovery on the side; if they are not breathing, leave them prone","ok":false,"why":"Seizure recovering = recovery if they breathe; else back + suction. Spoken in the 2:01 clip before the cap."},{"t":"High Fowler; if they are not breathing, keep them on the left side","ok":false,"why":"Seizure recovering = recovery if they breathe; else back + suction. Spoken in the 2:01 clip before the cap."},{"t":"Recovery on the side; if they are not breathing, back and get ready to suction","ok":true,"why":"Seizure recovering = recovery if they breathe; else back + suction. Spoken in the 2:01 clip before the cap."}]},{"ch":"cap","q":"The 2:01 positioning talk is 42 minutes of audio. What is missing from these notes?","opts":[{"t":"Spoken text stops about 10:00; the last ~14 minutes are not in the notes","ok":false,"why":"Otter 30-min per conversation cap. Do not invent the chapter he was about to start."},{"t":"Spoken text stops about 28:05; the first ~14 minutes are not in the notes","ok":false,"why":"Otter 30-min per conversation cap. Do not invent the chapter he was about to start."},{"t":"Spoken text is complete to 42:27; nothing after 28:05 is missing","ok":false,"why":"Otter 30-min per conversation cap. Do not invent the chapter he was about to start."},{"t":"Spoken text stops about 28:05; the last ~14 minutes are not in the notes","ok":true,"why":"Otter 30-min per conversation cap. Do not invent the chapter he was about to start."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {gurney:"Gurney",shock:"Shock pack",board:"Board / log roll",lift:"Body mechanics",move:"Moves / stairs",dev:"Other devices",pos:"Positioning",restr:"Restraints",safe:"Lift safety",carry:"Carries",cap:"Otter cap"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Afternoon Ch 8 moving only. 2:01 talk capped ~28:05. 2:47 live assessment is not in this quiz.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · afternoon moving only</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
