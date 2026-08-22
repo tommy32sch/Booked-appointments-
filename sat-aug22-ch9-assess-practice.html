@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat Aug 22 · Ch 9 patient assessment</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat Aug 22 · Ch 9 patient assessment</h1>
+  <div class="sub">2:47 talk ended · Otter-capped 1:25:55 of 1:39:43 · lecture only</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":"scene","q":"On a wreck with bystanders still in the roadway, whose safety did he put first?","opts":[{"t":"Crew first, then you, then bystanders, then the patient","ok":false,"why":"Safety order he likes: me, crew, bystanders, patient."},{"t":"Patient first, then crew, then bystanders, then you","ok":false,"why":"Safety order he likes: me, crew, bystanders, patient."},{"t":"You first, then crew, then bystanders, then the patient","ok":true,"why":"Safety order he likes: me, crew, bystanders, patient."},{"t":"Bystanders first, then you, then crew, then the patient","ok":false,"why":"Safety order he likes: me, crew, bystanders, patient."}]},{"ch":"scene","q":"Skill-sheet start. Which pair is an auto-fail if you skip it?","opts":[{"t":"Field impression, then the two chest-pain drugs","ok":false,"why":"BSI (gloves / PPE / “BSI”) then scene safety. Skip either = auto-fail."},{"t":"Gloves / BSI, then saying the scene is safe","ok":true,"why":"BSI (gloves / PPE / “BSI”) then scene safety. Skip either = auto-fail."},{"t":"Rapid exam, then the transport decision","ok":false,"why":"BSI (gloves / PPE / “BSI”) then scene safety. Skip either = auto-fail."},{"t":"A&O×4 questions, then the pulse-ox goal","ok":false,"why":"BSI (gloves / PPE / “BSI”) then scene safety. Skip either = auto-fail."}]},{"ch":"scene","q":"First ambulance at a highway wreck. Which park matches what he wanted?","opts":[{"t":"About 100 ft, before the wreck, so the rig is a wall","ok":true,"why":"About 100 ft. First unit barricades before the wreck."},{"t":"About 100 ft, past the wreck, so the rig is a wall","ok":false,"why":"About 100 ft. First unit barricades before the wreck."},{"t":"About 20 ft, before the wreck, so the rig is a wall","ok":false,"why":"About 100 ft. First unit barricades before the wreck."},{"t":"About 100 ft, before the wreck, then pull the wall","ok":false,"why":"About 100 ft. First unit barricades before the wreck."}]},{"ch":"scene","q":"Fire is already barricading the wreck. Where should the second unit sit?","opts":[{"t":"Before the wreck so you become the new wall","ok":false,"why":"Second parks past so you leave without pulling the wall."},{"t":"Past the wreck so you leave without taking the wall","ok":true,"why":"Second parks past so you leave without pulling the wall."},{"t":"Past the wreck so you leave after you take the wall","ok":false,"why":"Second parks past so you leave without pulling the wall."},{"t":"Beside the wreck so you leave without taking the wall","ok":false,"why":"Second parks past so you leave without pulling the wall."}]},{"ch":"scene","q":"Which pair is the clean testing split he wanted?","opts":[{"t":"MOI is illness type; NOI is crash force plus hidden injury","ok":false,"why":"MOI = mechanism + hidden injury + surgery ASAP. NOI = illness type. Testing = clean split."},{"t":"MOI is crash force plus hidden injury; NOI is illness type","ok":true,"why":"MOI = mechanism + hidden injury + surgery ASAP. NOI = illness type. Testing = clean split."},{"t":"MOI is illness type; NOI is who parks first on the highway","ok":false,"why":"MOI = mechanism + hidden injury + surgery ASAP. NOI = illness type. Testing = clean split."},{"t":"MOI is crash force plus hidden injury; NOI is always both at once","ok":false,"why":"MOI = mechanism + hidden injury + surgery ASAP. NOI = illness type. Testing = clean split."}]},{"ch":"scene","q":"Eight people in one building all short of breath. What did he want?","opts":[{"t":"Walk in and start eight medical assessments","ok":false,"why":"Many similar patients = hazmat — stay out."},{"t":"Stay out and treat it as a possible hazmat problem","ok":true,"why":"Many similar patients = hazmat — stay out."},{"t":"Walk in and treat it as eight separate asthma attacks","ok":false,"why":"Many similar patients = hazmat — stay out."},{"t":"Stay out and treat it as a one-patient practice call","ok":false,"why":"Many similar patients = hazmat — stay out."}]},{"ch":"scene","q":"More than one patient shows up in this course block. What is true?","opts":[{"t":"This block stays one-patient; MCI later flips the first weeks","ok":true,"why":"This course block = one patient. MCI later flips first five weeks."},{"t":"This block starts multi-patient; MCI later keeps the first weeks","ok":false,"why":"This course block = one patient. MCI later flips first five weeks."},{"t":"This block stays one-patient; MCI later keeps the same rules","ok":false,"why":"This course block = one patient. MCI later flips first five weeks."},{"t":"This block starts multi-patient; docs and abandonment never change","ok":false,"why":"This course block = one patient. MCI later flips first five weeks."}]},{"ch":"scene","q":"A stem does not name your partner’s level. What should you assume?","opts":[{"t":"Medic on a rescue; skip extra help unless the stem names an EMT","ok":false,"why":"Scenarios / NREMT: assume EMT on an ambulance; request medics unless the stem says partner is a medic."},{"t":"EMT on an ambulance; request medics unless the stem names a medic","ok":true,"why":"Scenarios / NREMT: assume EMT on an ambulance; request medics unless the stem says partner is a medic."},{"t":"EMT on an ambulance; never request medics unless the stem names fire","ok":false,"why":"Scenarios / NREMT: assume EMT on an ambulance; request medics unless the stem says partner is a medic."},{"t":"Medic on an ambulance; request help only after the secondary exam","ok":false,"why":"Scenarios / NREMT: assume EMT on an ambulance; request medics unless the stem says partner is a medic."}]},{"ch":"scene","q":"Medical and trauma skill sheets share six scene lines. Which order is right?","opts":[{"t":"Safety → BSI → extra help → C-spine → count → MOI/NOI","ok":false,"why":"Six lines: BSI → safety → MOI/NOI → # patients → extra resources → consider C-spine."},{"t":"BSI → safety → MOI/NOI → count → extra help → consider C-spine","ok":true,"why":"Six lines: BSI → safety → MOI/NOI → # patients → extra resources → consider C-spine."},{"t":"BSI → safety → extra help → count → MOI/NOI → skip C-spine","ok":false,"why":"Six lines: BSI → safety → MOI/NOI → # patients → extra resources → consider C-spine."},{"t":"MOI/NOI → BSI → safety → count → extra help → consider C-spine","ok":false,"why":"Six lines: BSI → safety → MOI/NOI → # patients → extra resources → consider C-spine."}]},{"ch":"ops","q":"Which five-part run matches the buckets he tied to the test?","opts":[{"t":"Scene, then primary, then history, then secondary, then reassess","ok":true,"why":"Five pieces: scene → primary → history → secondary → reassess."},{"t":"Primary, then scene, then history, then secondary, then reassess","ok":false,"why":"Five pieces: scene → primary → history → secondary → reassess."},{"t":"Scene, then secondary, then history, then primary, then reassess","ok":false,"why":"Five pieces: scene → primary → history → secondary → reassess."},{"t":"Scene, then primary, then secondary, then history, then skip reassess","ok":false,"why":"Five pieces: scene → primary → history → secondary → reassess."}]},{"ch":"primary","q":"How big did he say the primary-assessment slice of the test is?","opts":[{"t":"About 10–15 percent, the smallest slice","ok":false,"why":"Primary = biggest NREMT bucket. He said ~35–45% of the test."},{"t":"About 35–45 percent, the biggest slice","ok":true,"why":"Primary = biggest NREMT bucket. He said ~35–45% of the test."},{"t":"About 70–80 percent, the only slice","ok":false,"why":"Primary = biggest NREMT bucket. He said ~35–45% of the test."},{"t":"About 35–45 percent, the smallest slice","ok":false,"why":"Primary = biggest NREMT bucket. He said ~35–45% of the test."}]},{"ch":"gi","q":"You get eyes on a still, blue, unresponsive person. First GI question?","opts":[{"t":"Could they be dead? If maybe, check a pulse and start CPR now","ok":true,"why":"First GI question: could they be dead? If maybe → pulse / CPR now."},{"t":"Could they be dead? If maybe, finish A&O×4 then start CPR","ok":false,"why":"First GI question: could they be dead? If maybe → pulse / CPR now."},{"t":"Could they be hungry? If maybe, check a pulse and start CPR now","ok":false,"why":"First GI question: could they be dead? If maybe → pulse / CPR now."},{"t":"Could they be dead? If maybe, skip the pulse and start history","ok":false,"why":"First GI question: could they be dead? If maybe → pulse / CPR now."}]},{"ch":"gi","q":"Mute on the couch, looking around, family says this is new. What is true?","opts":[{"t":"Calm GI proves they are fine; a mute stroke is off the list","ok":false,"why":"GI can be wrong (mute stroke; “out” was asleep). Stroke story: looks fine → time-sensitive, get going."},{"t":"Calm GI can be wrong; a time-sensitive brain problem can still sit there","ok":true,"why":"GI can be wrong (mute stroke; “out” was asleep). Stroke story: looks fine → time-sensitive, get going."},{"t":"Calm GI can be wrong; only a trauma problem can still sit there","ok":false,"why":"GI can be wrong (mute stroke; “out” was asleep). Stroke story: looks fine → time-sensitive, get going."},{"t":"Calm GI proves they are fine; stay put until speech comes back","ok":false,"why":"GI can be wrong (mute stroke; “out” was asleep). Stroke story: looks fine → time-sensitive, get going."}]},{"ch":"life","q":"Bright-red spurting from an arm as you walk up. What now?","opts":[{"t":"Save the bleed for circulation on the sheet; finish airway first","ok":false,"why":"Find a life threat → treat that life threat. Bright-red spurting: treat now."},{"t":"Treat the bleed now; a life threat does not wait for its later box","ok":true,"why":"Find a life threat → treat that life threat. Bright-red spurting: treat now."},{"t":"Treat the bleed now; only after you finish the full secondary","ok":false,"why":"Find a life threat → treat that life threat. Bright-red spurting: treat now."},{"t":"Save the bleed for history; a life threat waits for its later box","ok":false,"why":"Find a life threat → treat that life threat. Bright-red spurting: treat now."}]},{"ch":"avpu","q":"Slumped on the couch, eyes shut, no look when you walk in. Which letter?","opts":[{"t":"A, because they are sitting up on furniture","ok":false,"why":"A = awake/alert, looking around. Slumped couch = not awake."},{"t":"Not A; sitting up does not make them awake and looking","ok":true,"why":"A = awake/alert, looking around. Slumped couch = not awake."},{"t":"U already; you skip voice and pain entirely","ok":false,"why":"A = awake/alert, looking around. Slumped couch = not awake."},{"t":"V already; slumped means they answered your name","ok":false,"why":"A = awake/alert, looking around. Slumped couch = not awake."}]},{"ch":"avpu","q":"You say your name. They mutter “hey” or the eyes flicker. Next move?","opts":[{"t":"Call them V and stop; do not add a pain check","ok":true,"why":"V = any response to voice (hey or eyes open). Stop when you get a level. No pain if already A or V."},{"t":"Call them A and stop; do not add a pain check","ok":false,"why":"V = any response to voice (hey or eyes open). Stop when you get a level. No pain if already A or V."},{"t":"Call them V and keep going; add a sternal rub anyway","ok":false,"why":"V = any response to voice (hey or eyes open). Stop when you get a level. No pain if already A or V."},{"t":"Call them U and stop; a mutter does not count as voice","ok":false,"why":"V = any response to voice (hey or eyes open). Stop when you get a level. No pain if already A or V."}]},{"ch":"avpu","q":"No response to voice. Which set still counts as pain (P)?","opts":[{"t":"Sternal knuckles, trap pinch, or nail squeeze; any moan or swat","ok":true,"why":"P = sternal rub, trap pinch, nail-bed squeeze. Any moan / swat / turn-away = pain."},{"t":"Sternal knuckles, trap pinch, or nail squeeze; only a full sentence","ok":false,"why":"P = sternal rub, trap pinch, nail-bed squeeze. Any moan / swat / turn-away = pain."},{"t":"Light tap on the hair, or a wave only; any moan or swat","ok":false,"why":"P = sternal rub, trap pinch, nail-bed squeeze. Any moan / swat / turn-away = pain."},{"t":"Sternal knuckles only after they already answer to your voice","ok":false,"why":"P = sternal rub, trap pinch, nail-bed squeeze. Any moan / swat / turn-away = pain."}]},{"ch":"avpu","q":"No response to a real pain check. What is left on AVPU?","opts":[{"t":"Keep going to A&O×4 because U still has more checks","ok":false,"why":"U = no response to pain. No further checks."},{"t":"Call them U and stop; there are no further LOC checks","ok":true,"why":"U = no response to pain. No further checks."},{"t":"Call them P and stop; no response still means pain","ok":false,"why":"U = no response to pain. No further checks."},{"t":"Call them V and stop; pain failure upgrades them to voice","ok":false,"why":"U = no response to pain. No further checks."}]},{"ch":"ao","q":"Awake, misses the year, no good excuse. Which consent path?","opts":[{"t":"Expressed, because one miss still proves full capacity","ok":false,"why":"Miss one → implied consent unless circumstantial. Unsure → treat or med control."},{"t":"Implied, unless a circumstantial miss makes that miss reasonable","ok":true,"why":"Miss one → implied consent unless circumstantial. Unsure → treat or med control."},{"t":"Implied, even when a circumstantial miss makes that miss reasonable","ok":false,"why":"Miss one → implied consent unless circumstantial. Unsure → treat or med control."},{"t":"Expressed, unless they also miss their own name on the same pass","ok":false,"why":"Miss one → implied consent unless circumstantial. Unsure → treat or med control."}]},{"ch":"ao","q":"They nail name, place, year, and president. Capacity?","opts":[{"t":"Guaranteed; ×4 always means they can refuse anything","ok":false,"why":"A&O×4 ≈ capacity, not a guarantee. Always/never/guarantee are test traps. Motorcycle 7× same talk."},{"t":"Strong case, not a guarantee; always/never words are traps","ok":true,"why":"A&O×4 ≈ capacity, not a guarantee. Always/never/guarantee are test traps. Motorcycle 7× same talk."},{"t":"No case at all; ×4 is only used for infants on this sheet","ok":false,"why":"A&O×4 ≈ capacity, not a guarantee. Always/never/guarantee are test traps. Motorcycle 7× same talk."},{"t":"Strong case, and a guarantee; always/never words are required","ok":false,"why":"A&O×4 ≈ capacity, not a guarantee. Always/never/guarantee are test traps. Motorcycle 7× same talk."}]},{"ch":"ao","q":"Not at their baseline and nobody who knows them is there. What now?","opts":[{"t":"Assume the best and stay; hope they are newly altered","ok":false,"why":"Not A&O×4 (or not baseline) = altered. Nobody present → assume worst, hope best."},{"t":"Assume the worst and move; hope it later turns out to be baseline","ok":true,"why":"Not A&O×4 (or not baseline) = altered. Nobody present → assume worst, hope best."},{"t":"Assume the worst and stay; never ask what is normal","ok":false,"why":"Not A&O×4 (or not baseline) = altered. Nobody present → assume worst, hope best."},{"t":"Assume the best and move; only trauma counts as altered","ok":false,"why":"Not A&O×4 (or not baseline) = altered. Nobody present → assume worst, hope best."}]},{"ch":"life","q":"Which breathing word is an immediate life threat on his list?","opts":[{"t":"Distress: plenty of air, they just dislike the work","ok":false,"why":"Failure = still breathing but not enough (6/min shallow OD). Distress is not on the immediate-threat list. Arrest = not breathing."},{"t":"Failure: still breathing, but not enough (six and shallow)","ok":true,"why":"Failure = still breathing but not enough (6/min shallow OD). Distress is not on the immediate-threat list. Arrest = not breathing."},{"t":"Distress: still breathing, but not enough (six and shallow)","ok":false,"why":"Failure = still breathing but not enough (6/min shallow OD). Distress is not on the immediate-threat list. Arrest = not breathing."},{"t":"Failure: plenty of air, they just dislike the work","ok":false,"why":"Failure = still breathing but not enough (6/min shallow OD). Distress is not on the immediate-threat list. Arrest = not breathing."}]},{"ch":"airway","q":"Unconscious, no vomit seen yet. What should you assume is blocking?","opts":[{"t":"Food first; the tongue is a later chapter only","ok":false,"why":"Tongue is #1 airway obstruction. Unconscious: assume the tongue."},{"t":"The tongue first; it is the usual obstruction he named","ok":true,"why":"Tongue is #1 airway obstruction. Unconscious: assume the tongue."},{"t":"The tongue first; skip opening and go straight to history","ok":false,"why":"Tongue is #1 airway obstruction. Unconscious: assume the tongue."},{"t":"Nothing; talking is not required to prove the path is open","ok":false,"why":"Tongue is #1 airway obstruction. Unconscious: assume the tongue."}]},{"ch":"airway","q":"Unconscious after a wreck. Which open-the-path pair is right?","opts":[{"t":"Jaw thrust: cheeks, angle of jaw, push the jaw up; do not crank the neck","ok":true,"why":"Jaw-thrust if trauma/spine (cheeks; angle of jaw; push jaw up; don’t crank the neck)."},{"t":"Head-tilt chin-lift: cheeks, angle of jaw, push the jaw up; crank the neck","ok":false,"why":"Jaw-thrust if trauma/spine (cheeks; angle of jaw; push jaw up; don’t crank the neck)."},{"t":"Jaw thrust: tilt the head back hard; crank the neck on purpose","ok":false,"why":"Jaw-thrust if trauma/spine (cheeks; angle of jaw; push jaw up; don’t crank the neck)."},{"t":"Head-tilt chin-lift: cheeks, angle of jaw, push the jaw up; no neck worry","ok":false,"why":"Jaw-thrust if trauma/spine (cheeks; angle of jaw; push jaw up; don’t crank the neck)."}]},{"ch":"airway","q":"No trauma, just an overdose on the floor. Which open?","opts":[{"t":"Jaw thrust, because there is never a spine worry here","ok":false,"why":"Head-tilt chin-lift if NO spine worry."},{"t":"Head-tilt chin-lift, because there is no spine worry here","ok":true,"why":"Head-tilt chin-lift if NO spine worry."},{"t":"Head-tilt chin-lift, because every overdose is a spine case","ok":false,"why":"Head-tilt chin-lift if NO spine worry."},{"t":"Jaw thrust, because talking already proved the path is open","ok":false,"why":"Head-tilt chin-lift if NO spine worry."}]},{"ch":"airway","q":"A toddler is crying hard and a grown-up is arguing with you. Airway?","opts":[{"t":"Both paths are open; talking or crying lets you move on","ok":true,"why":"Talking or crying = airway good → move on."},{"t":"Both paths are blocked; talking or crying means start suction","ok":false,"why":"Talking or crying = airway good → move on."},{"t":"Only the toddler is open; arguing never proves an adult path","ok":false,"why":"Talking or crying = airway good → move on."},{"t":"Both paths are open; still stop and do a full jaw thrust first","ok":false,"why":"Talking or crying = airway good → move on."}]},{"ch":"airway","q":"Which four-step airway order did he give before “maintain”?","opts":[{"t":"Clear, then open, then assess, then maintain later","ok":false,"why":"Four airway steps: open, assess, clear, maintain (adjunct later / tomorrow Ch 11)."},{"t":"Open, then assess, then clear, then maintain later","ok":true,"why":"Four airway steps: open, assess, clear, maintain (adjunct later / tomorrow Ch 11)."},{"t":"Open, then maintain, then assess, then clear later","ok":false,"why":"Four airway steps: open, assess, clear, maintain (adjunct later / tomorrow Ch 11)."},{"t":"Assess, then history, then open, then maintain later","ok":false,"why":"Four airway steps: open, assess, clear, maintain (adjunct later / tomorrow Ch 11)."}]},{"ch":"airway","q":"Unconscious and you hear wet gurgling. Which pair is true?","opts":[{"t":"Normal air is quiet; gurgling means get the stuff out","ok":true,"why":"Normal breathing is quiet. Gurgling → suction."},{"t":"Normal air is loud; gurgling means the path is already fine","ok":false,"why":"Normal breathing is quiet. Gurgling → suction."},{"t":"Normal air is quiet; gurgling means skip suction and start history","ok":false,"why":"Normal breathing is quiet. Gurgling → suction."},{"t":"Normal air is loud; gurgling means only a head-tilt is enough","ok":false,"why":"Normal breathing is quiet. Gurgling → suction."}]},{"ch":"breathe","q":"Adult rate for “consider breathing for them,” and which side is almost always yes?","opts":[{"t":"Faster than 8 or slower than 28; the fast side is almost always yes","ok":false,"why":"Adult: consider PPV if >28 or <8. Slow almost always ventilate; fast is a maybe."},{"t":"Faster than 28 or slower than 8; the slow side is almost always yes","ok":true,"why":"Adult: consider PPV if >28 or <8. Slow almost always ventilate; fast is a maybe."},{"t":"Faster than 28 or slower than 8; the fast side is almost always yes","ok":false,"why":"Adult: consider PPV if >28 or <8. Slow almost always ventilate; fast is a maybe."},{"t":"Faster than 40 or slower than 2; the slow side is almost always no","ok":false,"why":"Adult: consider PPV if >28 or <8. Slow almost always ventilate; fast is a maybe."}]},{"ch":"breathe","q":"Pulse-ox goal he named, and what the number actually is?","opts":[{"t":"About 80–85%; share of plasma water, never skewed","ok":false,"why":"SpO2 goal ~94–99%. Pulse ox = % of hemoglobin seats; can be falsely skewed."},{"t":"About 94–99%; share of hemoglobin “seats,” can be skewed","ok":true,"why":"SpO2 goal ~94–99%. Pulse ox = % of hemoglobin seats; can be falsely skewed."},{"t":"About 94–99%; share of plasma water, never skewed","ok":false,"why":"SpO2 goal ~94–99%. Pulse ox = % of hemoglobin seats; can be falsely skewed."},{"t":"About 70–75%; share of hemoglobin “seats,” can be skewed","ok":false,"why":"SpO2 goal ~94–99%. Pulse ox = % of hemoglobin seats; can be falsely skewed."}]},{"ch":"circ","q":"Awake and talking. Where do you feel the pulse first?","opts":[{"t":"Radial at the wrist; a missing wrist pulse in a talker hints at low pressure","ok":true,"why":"Conscious → radial. No radial but talking = low BP. Strong = BP likely good."},{"t":"Carotid at the neck; a missing neck pulse in a talker hints at high pressure","ok":false,"why":"Conscious → radial. No radial but talking = low BP. Strong = BP likely good."},{"t":"Brachial at the arm; a missing arm pulse in a talker proves arrest","ok":false,"why":"Conscious → radial. No radial but talking = low BP. Strong = BP likely good."},{"t":"Radial at the wrist; a strong wrist pulse in a talker proves they need CPR","ok":false,"why":"Conscious → radial. No radial but talking = low BP. Strong = BP likely good."}]},{"ch":"circ","q":"Unresponsive adult or child older than one. Which pulse site?","opts":[{"t":"Radial, because the neck is reserved for infants","ok":false,"why":"Unresponsive child/adult → carotid."},{"t":"Carotid, because the neck is used once they are unresponsive","ok":true,"why":"Unresponsive child/adult → carotid."},{"t":"Brachial, because the arm is used for every unresponsive adult","ok":false,"why":"Unresponsive child/adult → carotid."},{"t":"Carotid, because the neck is used only if they are chatting","ok":false,"why":"Unresponsive child/adult → carotid."}]},{"ch":"circ","q":"Unconscious infant under one year. Why brachial, not neck?","opts":[{"t":"Neck pressure can collapse a floppy infant path; after one year the parts hold","ok":true,"why":"Infant unconscious → brachial (carotid pressure could collapse infant airway; after one year structures solid enough)."},{"t":"Wrist pressure can collapse a floppy infant path; after one year skip pulses","ok":false,"why":"Infant unconscious → brachial (carotid pressure could collapse infant airway; after one year structures solid enough)."},{"t":"Neck pressure never matters in an infant; after one year use only the foot","ok":false,"why":"Infant unconscious → brachial (carotid pressure could collapse infant airway; after one year structures solid enough)."},{"t":"Arm pressure can collapse a floppy infant path; after one year use only the wrist","ok":false,"why":"Infant unconscious → brachial (carotid pressure could collapse infant airway; after one year structures solid enough)."}]},{"ch":"treat","q":"When does a field impression unlock the condition-specific meds he named?","opts":[{"t":"After secondary; overdose → Narcan, anaphylaxis → their EpiPen","ok":true,"why":"After secondary = field impression → meds. Overdose → Narcan. Anaphylaxis → EpiPen. Chest-pain two drugs: not in his notes."},{"t":"After scene size-up; overdose → EpiPen, anaphylaxis → Narcan","ok":false,"why":"After secondary = field impression → meds. Overdose → Narcan. Anaphylaxis → EpiPen. Chest-pain two drugs: not in his notes."},{"t":"After secondary; overdose → the unnamed chest pair, anaphylaxis → Narcan","ok":false,"why":"After secondary = field impression → meds. Overdose → Narcan. Anaphylaxis → EpiPen. Chest-pain two drugs: not in his notes."},{"t":"After greeting only; overdose → Narcan, anaphylaxis → skip all meds","ok":false,"why":"After secondary = field impression → meds. Overdose → Narcan. Anaphylaxis → EpiPen. Chest-pain two drugs: not in his notes."}]},{"ch":"sec","q":"They rate pain an 8. Sign or symptom, and why?","opts":[{"t":"Sign, because any number you can write down is proveable","ok":false,"why":"Signs = proveable. Symptoms = their word. Pain 0–10 is still a symptom."},{"t":"Symptom, because you still have to take their word for it","ok":true,"why":"Signs = proveable. Symptoms = their word. Pain 0–10 is still a symptom."},{"t":"Sign, because pain is cyanosis you can both see on them","ok":false,"why":"Signs = proveable. Symptoms = their word. Pain 0–10 is still a symptom."},{"t":"Symptom, because an 8 is the same as a counted pulse rate","ok":false,"why":"Signs = proveable. Symptoms = their word. Pain 0–10 is still a symptom."}]},{"ch":"cap","q":"The 2:47 talk is 1:39:43 of audio. What is missing from these notes?","opts":[{"t":"Spoken text stops about 1:10:00; the last ~14 minutes are not in the notes","ok":false,"why":"Otter 90-min cap. Transcript ends 1:25:55; audio 1:39:43. Last ~14 min not in the notes — don’t invent."},{"t":"Spoken text stops about 1:25:55; the last ~14 minutes are not in the notes","ok":true,"why":"Otter 90-min cap. Transcript ends 1:25:55; audio 1:39:43. Last ~14 min not in the notes — don’t invent."},{"t":"Spoken text stops about 1:25:55; the first ~14 minutes are not in the notes","ok":false,"why":"Otter 90-min cap. Transcript ends 1:25:55; audio 1:39:43. Last ~14 min not in the notes — don’t invent."},{"t":"Spoken text is complete to 1:39:43; nothing after 1:25:55 is missing","ok":false,"why":"Otter 90-min cap. Transcript ends 1:25:55; audio 1:39:43. Last ~14 min not in the notes — don’t invent."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {scene:"Scene / safety",ops:"Five parts",primary:"Primary",gi:"General impression",life:"Life threats",avpu:"AVPU",ao:"A&O×4 / consent",airway:"Airway",breathe:"Breathing",circ:"Circulation",treat:"Treatment",sec:"Signs / symptoms",cap:"Otter cap"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Ch 9 assessment only. 2:47 talk ended. Otter-capped 1:25:55 of 1:39:43. Do not invent the last ~14 min.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · Ch 9 assessment only</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
