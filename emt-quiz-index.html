@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EMT quizzes</title>
+<style>
+:root {
+  --bg: #f4efe6; --paper: #fffdf8; --ink: #1c2430; --muted: #5a6573;
+  --navy: #1e3a5f; --line: #d8d0c4; --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.4; }
+header {
+  position: sticky; top: 0; z-index: 2;
+  background: var(--navy); color: #fff;
+  padding: calc(12px + var(--safe-t)) 16px 14px;
+}
+header h1 { margin: 0; font-size: 1.15rem; }
+header p { margin: 4px 0 0; font-size: .8rem; opacity: .85; }
+main { padding: 16px; max-width: 640px; margin: 0 auto; }
+a.card {
+  display: block; background: var(--paper); color: inherit; text-decoration: none;
+  border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 0 0 12px;
+  box-shadow: 0 2px 10px rgba(28,36,48,.06);
+}
+a.card:active { transform: scale(.99); }
+.kicker { font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+.title { margin: 4px 0 2px; font-size: 1.05rem; font-weight: 700; color: var(--navy); }
+.meta { margin: 0; font-size: .85rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>EMT quizzes</h1>
+  <p>From your notes and Otter class only. Tap a topic.</p>
+</header>
+<main>
+  <a class="card" href="https://rawcdn.githack.com/tommy32sch/Booked-appointments-/d5ea8db29f7d92e6cd7eb1cc276c47c2b693a616/emt-practice.html">
+    <div class="kicker">Book chapters 1–6</div>
+    <div class="title">Chapters 1–6</div>
+    <p class="meta">112 questions. Harder rewrite from your notes. Tap any answer for why.</p>
+  </a>
+  <a class="card" href="https://rawcdn.githack.com/tommy32sch/Booked-appointments-/8b6728ffa774efc4ceba7624697b224cf8d23f75/sat-aug22-practice.html">
+    <div class="kicker">Saturday Aug 22 morning</div>
+    <div class="title">Circulatory + Airway</div>
+    <p class="meta">44 questions. Heart, blood, bleed, spleen, airway. 8:02–9:32 talks.</p>
+  </a>
+  <a class="card" href="https://rawcdn.githack.com/tommy32sch/Booked-appointments-/bd15aee5b8272e6924ba4394bfbbb0a0bbcbceba/sat-aug22-later-practice.html">
+    <div class="kicker">Saturday Aug 22 later</div>
+    <div class="title">Endocrine, Nervous, Skin, GI</div>
+    <p class="meta">28 questions. 10:19 full talk plus the 10:48 talk (that one was still going).</p>
+  </a>
+</main>
+</body>
+</html>
