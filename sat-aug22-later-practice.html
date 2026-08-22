@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Saturday later talks — endocrine, nervous, skin, GI</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat Aug 22 later talks</h1>
+  <div class="sub">10:19 endocrine/nervous + 10:48 live note · lecture only</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":"endo","q":"Where did he place the adrenal glands, and what do the word parts mean?","opts":[{"t":"Behind the stomach; ad- = around, renal = vessel","ok":false,"why":"Adrenal glands sit as a triangle/pyramid on top of the kidneys. Ad- = above; renal = kidney."},{"t":"In the brainstem; ad- = after, renal = nerve","ok":false,"why":"Adrenal glands sit as a triangle/pyramid on top of the kidneys. Ad- = above; renal = kidney."},{"t":"On top of the kidneys; ad- = above, renal = kidney","ok":true,"why":"Adrenal glands sit as a triangle/pyramid on top of the kidneys. Ad- = above; renal = kidney."},{"t":"Inside the liver; ad- = beside, renal = filter","ok":false,"why":"Adrenal glands sit as a triangle/pyramid on top of the kidneys. Ad- = above; renal = kidney."}]},{"ch":"endo","q":"At EMT level, how did he treat adrenaline and norepinephrine?","opts":[{"t":"Smash them together; keep using epinephrine as the name","ok":true,"why":"Adrenaline = epinephrine; norepinephrine/noradrenaline also exist, but they smash together at EMT level. He said they will keep using epinephrine."},{"t":"Use only noradrenaline on tests","ok":false,"why":"Adrenaline = epinephrine; norepinephrine/noradrenaline also exist, but they smash together at EMT level. He said they will keep using epinephrine."},{"t":"Say they come from the pancreas","ok":false,"why":"Adrenaline = epinephrine; norepinephrine/noradrenaline also exist, but they smash together at EMT level. He said they will keep using epinephrine."},{"t":"Treat them as opposite hormones only","ok":false,"why":"Adrenaline = epinephrine; norepinephrine/noradrenaline also exist, but they smash together at EMT level. He said they will keep using epinephrine."}]},{"ch":"endo","q":"What effect did he assign to alpha receptors?","opts":[{"t":"Bronchodilation of the lungs","ok":false,"why":"Alpha (1+2 lumped) hooks vessels and causes vasoconstriction."},{"t":"Vision processing in the occipital lobe","ok":false,"why":"Alpha (1+2 lumped) hooks vessels and causes vasoconstriction."},{"t":"Increased digestive motility","ok":false,"why":"Alpha (1+2 lumped) hooks vessels and causes vasoconstriction."},{"t":"Vasoconstriction of vessels","ok":true,"why":"Alpha (1+2 lumped) hooks vessels and causes vasoconstriction."}]},{"ch":"endo","q":"Beta-1 was taught with which hook and which heart effects?","opts":[{"t":"Gut: rest and digest","ok":false,"why":"Beta-1 = 1 heart. Increases HR and contractility."},{"t":"2 lungs: bronchodilation only","ok":false,"why":"Beta-1 = 1 heart. Increases HR and contractility."},{"t":"Vessels: vasoconstriction only","ok":false,"why":"Beta-1 = 1 heart. Increases HR and contractility."},{"t":"1 heart: faster rate and stronger contractility","ok":true,"why":"Beta-1 = 1 heart. Increases HR and contractility."}]},{"ch":"endo","q":"What does beta-2 do in his table?","opts":[{"t":"Speech production in Broca’s area","ok":false,"why":"Beta-2 = 2 lungs = bronchodilation."},{"t":"Raise blood sugar only","ok":false,"why":"Beta-2 = 2 lungs = bronchodilation."},{"t":"Vasoconstriction of the aorta","ok":false,"why":"Beta-2 = 2 lungs = bronchodilation."},{"t":"Bronchodilation of bronchi/bronchioles toward the alveoli","ok":true,"why":"Beta-2 = 2 lungs = bronchodilation."}]},{"ch":"endo","q":"The registry-style line he quoted says epinephrine binds to which receptor families?","opts":[{"t":"Beta-2 only","ok":false,"why":"He said epinephrine binds to alpha and beta, not one family only."},{"t":"Alpha and beta, not one family only","ok":true,"why":"He said epinephrine binds to alpha and beta, not one family only."},{"t":"Chemoreceptors only","ok":false,"why":"He said epinephrine binds to alpha and beta, not one family only."},{"t":"Alpha only","ok":false,"why":"He said epinephrine binds to alpha and beta, not one family only."}]},{"ch":"endo","q":"Albuterol was tied to which receptor, and why that patient?","opts":[{"t":"Beta-2, because asthma is bronchoconstriction","ok":true,"why":"Albuterol → beta-2. Asthma = bronchoconstriction."},{"t":"Baroreceptors in the carotids","ok":false,"why":"Albuterol → beta-2. Asthma = bronchoconstriction."},{"t":"Beta-1, because it speeds the heart","ok":false,"why":"Albuterol → beta-2. Asthma = bronchoconstriction."},{"t":"Alpha, because it clamps vessels","ok":false,"why":"Albuterol → beta-2. Asthma = bronchoconstriction."}]},{"ch":"endo","q":"What do beta blockers do in his description?","opts":[{"t":"Replace epinephrine in the EpiPen","ok":false,"why":"Beta blockers block beta-1 for chronic high BP; they bind but block."},{"t":"Block beta-1; used for chronic high BP; they bind but block","ok":true,"why":"Beta blockers block beta-1 for chronic high BP; they bind but block."},{"t":"Open beta-2 so the lungs stay dilated","ok":false,"why":"Beta blockers block beta-1 for chronic high BP; they bind but block."},{"t":"Stimulate alpha to raise pressure immediately","ok":false,"why":"Beta blockers block beta-1 for chronic high BP; they bind but block."}]},{"ch":"endo","q":"Baroreceptors live in exactly which two places?","opts":[{"t":"Aorta (just out of the left ventricle) and the carotids","ok":true,"why":"Baroreceptors in exactly two places: aorta and carotids."},{"t":"Small intestine and the dermis","ok":false,"why":"Baroreceptors in exactly two places: aorta and carotids."},{"t":"Jugulars and the foramen magnum","ok":false,"why":"Baroreceptors in exactly two places: aorta and carotids."},{"t":"Pulmonary veins and the spleen","ok":false,"why":"Baroreceptors in exactly two places: aorta and carotids."}]},{"ch":"endo","q":"He called the fight-or-flight epi package non-specific. Which situations did he group together?","opts":[{"t":"Only spinal cord injury","ok":false,"why":"BP drop → adrenals → epi. Same package whether bleed, pump fail, or anaphylactic vasodilation."},{"t":"Bleed, heart-attack pump fail, and anaphylactic vasodilation","ok":true,"why":"BP drop → adrenals → epi. Same package whether bleed, pump fail, or anaphylactic vasodilation."},{"t":"Only asthma attacks","ok":false,"why":"BP drop → adrenals → epi. Same package whether bleed, pump fail, or anaphylactic vasodilation."},{"t":"Only high blood sugar","ok":false,"why":"BP drop → adrenals → epi. Same package whether bleed, pump fail, or anaphylactic vasodilation."}]},{"ch":"endo","q":"Chemoreceptors, as he listed them, watch which chemistry?","opts":[{"t":"Only sodium and potassium","ok":false,"why":"Chemoreceptors: chemistry of blood and fluid around brain/cord — O2, CO2, sugar, pH."},{"t":"O2, CO2, sugar, and pH","ok":true,"why":"Chemoreceptors: chemistry of blood and fluid around brain/cord — O2, CO2, sugar, pH."},{"t":"Only CSF pressure","ok":false,"why":"Chemoreceptors: chemistry of blood and fluid around brain/cord — O2, CO2, sugar, pH."},{"t":"Only skin temperature","ok":false,"why":"Chemoreceptors: chemistry of blood and fluid around brain/cord — O2, CO2, sugar, pH."}]},{"ch":"endo","q":"Which pairing matches sympathetic vs parasympathetic as he named them?","opts":[{"t":"Superficial vs full thickness","ok":false,"why":"Sympathetic = fight or flight. Parasympathetic = feed and breed / rest and digest."},{"t":"CNS vs PNS","ok":false,"why":"Sympathetic = fight or flight. Parasympathetic = feed and breed / rest and digest."},{"t":"Motor out vs sensory in","ok":false,"why":"Sympathetic = fight or flight. Parasympathetic = feed and breed / rest and digest."},{"t":"Fight or flight vs rest and digest (feed and breed)","ok":true,"why":"Sympathetic = fight or flight. Parasympathetic = feed and breed / rest and digest."}]},{"ch":"neuro","q":"CNS vs PNS in his split?","opts":[{"t":"CNS is the adrenals; PNS is the kidneys","ok":false,"why":"CNS = brain + spinal cord. PNS = all other nerves."},{"t":"CNS is motor only; PNS is sensory only","ok":false,"why":"CNS = brain + spinal cord. PNS = all other nerves."},{"t":"CNS is brain plus spinal cord; PNS is all the other nerves","ok":true,"why":"CNS = brain + spinal cord. PNS = all other nerves."},{"t":"CNS is only the cerebrum; PNS is only the skin","ok":false,"why":"CNS = brain + spinal cord. PNS = all other nerves."}]},{"ch":"neuro","q":"Somatic vs autonomic, as he hooked them?","opts":[{"t":"Both are the same as alpha and beta","ok":false,"why":"Somatic = voluntary skeletal. Autonomic = involuntary (HR, asleep breathing, gut)."},{"t":"Somatic is voluntary skeletal (Soma muscle-relaxer hook); autonomic is involuntary","ok":true,"why":"Somatic = voluntary skeletal. Autonomic = involuntary (HR, asleep breathing, gut)."},{"t":"Somatic is the liver; autonomic is the spleen","ok":false,"why":"Somatic = voluntary skeletal. Autonomic = involuntary (HR, asleep breathing, gut)."},{"t":"Somatic is only vision; autonomic is only hearing","ok":false,"why":"Somatic = voluntary skeletal. Autonomic = involuntary (HR, asleep breathing, gut)."}]},{"ch":"neuro","q":"What job did he give the brainstem, and what did he say not to do with midbrain/pons/medulla?","opts":[{"t":"Vision only; memorize each part separately","ok":false,"why":"Brainstem (midbrain, pons, medulla — don’t split): BP + breathing. Most protected, deepest."},{"t":"Speech production; treat as one lobe","ok":false,"why":"Brainstem (midbrain, pons, medulla — don’t split): BP + breathing. Most protected, deepest."},{"t":"Nutrient absorption; name all cranial nerves","ok":false,"why":"Brainstem (midbrain, pons, medulla — don’t split): BP + breathing. Most protected, deepest."},{"t":"BP and breathing; don’t split those three names","ok":true,"why":"Brainstem (midbrain, pons, medulla — don’t split): BP + breathing. Most protected, deepest."}]},{"ch":"neuro","q":"Cerebrum vs cerebellum in the shoe-tying story?","opts":[{"t":"Both are brainstem only","ok":false,"why":"Learning the task is conscious cerebrum. Adult muscle-memory coordination is cerebellum. Recall of past events is still cerebrum."},{"t":"Kid learning to tie = cerebrum; adult tying without looking = cerebellum","ok":true,"why":"Learning the task is conscious cerebrum. Adult muscle-memory coordination is cerebellum. Recall of past events is still cerebrum."},{"t":"Kid learning = cerebellum; adult automatic = cerebrum","ok":false,"why":"Learning the task is conscious cerebrum. Adult muscle-memory coordination is cerebellum. Recall of past events is still cerebrum."},{"t":"Both are skin layers","ok":false,"why":"Learning the task is conscious cerebrum. Adult muscle-memory coordination is cerebellum. Recall of past events is still cerebrum."}]},{"ch":"neuro","q":"Which lobe did he tie to Broca’s and speech production?","opts":[{"t":"Occipital","ok":false,"why":"Frontal: personality, judgment, concentration; Broca’s, left frontal, speech production."},{"t":"Left frontal","ok":true,"why":"Frontal: personality, judgment, concentration; Broca’s, left frontal, speech production."},{"t":"Temporal only for vision","ok":false,"why":"Frontal: personality, judgment, concentration; Broca’s, left frontal, speech production."},{"t":"Right cerebellum","ok":false,"why":"Frontal: personality, judgment, concentration; Broca’s, left frontal, speech production."}]},{"ch":"neuro","q":"Occipital lobe, as he said it?","opts":[{"t":"Vision — eyes in front, processing in back","ok":true,"why":"Occipital = vision. Eyes front, processing back."},{"t":"Keep the diaphragm alive","ok":false,"why":"Occipital = vision. Eyes front, processing back."},{"t":"Spatial awareness only","ok":false,"why":"Occipital = vision. Eyes front, processing back."},{"t":"Taste and hearing","ok":false,"why":"Occipital = vision. Eyes front, processing back."}]},{"ch":"neuro","q":"On stroke, what was his EMT-level takeaway?","opts":[{"t":"Recognize it; no treatment until CT because type is unknown","ok":true,"why":"Recognize stroke, not which lobe. No treatment until CT. Ch 18."},{"t":"Decide the exact lobe in the field","ok":false,"why":"Recognize stroke, not which lobe. No treatment until CT. Ch 18."},{"t":"Intubate every stroke","ok":false,"why":"Recognize stroke, not which lobe. No treatment until CT. Ch 18."},{"t":"Give a clot-busting drug on scene","ok":false,"why":"Recognize stroke, not which lobe. No treatment until CT. Ch 18."}]},{"ch":"neuro","q":"What job did he give the hypothalamus, and what is the RAS?","opts":[{"t":"Hypothalamus: temperature; RAS: consciousness gatekeeper","ok":true,"why":"Hypothalamus: temperature. Reticular activating system: consciousness gatekeeper that filters sensory noise."},{"t":"Hypothalamus: urine; RAS: skin burns","ok":false,"why":"Hypothalamus: temperature. Reticular activating system: consciousness gatekeeper that filters sensory noise."},{"t":"Hypothalamus: vision; RAS: bronchodilation","ok":false,"why":"Hypothalamus: temperature. Reticular activating system: consciousness gatekeeper that filters sensory noise."},{"t":"Both are baroreceptors in the aorta","ok":false,"why":"Hypothalamus: temperature. Reticular activating system: consciousness gatekeeper that filters sensory noise."}]},{"ch":"neuro","q":"What does CSF do in his analogy?","opts":[{"t":"Carries motor signals down the cord","ok":false,"why":"CSF washes brain and cord and dissipates energy. Same idea as amniotic fluid and water barrels. Spinal tap samples it."},{"t":"Dissipates energy, like amniotic fluid or freeway water barrels","ok":true,"why":"CSF washes brain and cord and dissipates energy. Same idea as amniotic fluid and water barrels. Spinal tap samples it."},{"t":"Measures blood sugar","ok":false,"why":"CSF washes brain and cord and dissipates energy. Same idea as amniotic fluid and water barrels. Spinal tap samples it."},{"t":"Makes epinephrine in the adrenals","ok":false,"why":"CSF washes brain and cord and dissipates energy. Same idea as amniotic fluid and water barrels. Spinal tap samples it."}]},{"ch":"neuro","q":"JVD vs a flat external jugular, as he taught it?","opts":[{"t":"JVD = empty tank; flat = too much pressure","ok":false,"why":"Distended EJ = blood backing up, too much pressure, right side can’t accept inflow. Flat/groove = empty tank. He did not name the two book conditions."},{"t":"JVD = backup / right side can’t take inflow; flat = empty tank (big bleed)","ok":true,"why":"Distended EJ = blood backing up, too much pressure, right side can’t accept inflow. Flat/groove = empty tank. He did not name the two book conditions."},{"t":"JVD = only a left-lobe stroke; flat = asthma","ok":false,"why":"Distended EJ = blood backing up, too much pressure, right side can’t accept inflow. Flat/groove = empty tank. He did not name the two book conditions."},{"t":"Both mean the same as bronchodilation","ok":false,"why":"Distended EJ = blood backing up, too much pressure, right side can’t accept inflow. Flat/groove = empty tank. He did not name the two book conditions."}]},{"ch":"neuro","q":"Motor and sensory on the cord, plus the phrenic memory he gave?","opts":[{"t":"Both travel only in the jugulars","ok":false,"why":"Cord exits foramen magnum. Motor down, sensory up. Injury: paralysis below + numbness. Phrenic C3, 4, 5 keep the diaphragm alive."},{"t":"Signals stop at the adrenals","ok":false,"why":"Cord exits foramen magnum. Motor down, sensory up. Injury: paralysis below + numbness. Phrenic C3, 4, 5 keep the diaphragm alive."},{"t":"Motor down, sensory up; injury = paralysis below + numbness; C3-4-5 keep the diaphragm alive","ok":true,"why":"Cord exits foramen magnum. Motor down, sensory up. Injury: paralysis below + numbness. Phrenic C3, 4, 5 keep the diaphragm alive."},{"t":"Motor up, sensory down; injury = only a headache; C1 keeps the liver alive","ok":false,"why":"Cord exits foramen magnum. Motor down, sensory up. Injury: paralysis below + numbness. Phrenic C3, 4, 5 keep the diaphragm alive."}]},{"ch":"skin","q":"Which set is the homeostasis ranges he actually said?","opts":[{"t":"HR 40–60, RR 6–10, BGL 40–60, SpO2 80–85","ok":false,"why":"He listed HR 60–100, adult RR 12–20, BGL 80–120, SpO2% 94–99."},{"t":"HR 60–100, adult RR 12–20, BGL 80–120, SpO2 94–99","ok":true,"why":"He listed HR 60–100, adult RR 12–20, BGL 80–120, SpO2% 94–99."},{"t":"Only a temperature of 98.6","ok":false,"why":"He listed HR 60–100, adult RR 12–20, BGL 80–120, SpO2% 94–99."},{"t":"HR 100–140, RR 30–40, BGL 200–300, SpO2 70–80","ok":false,"why":"He listed HR 60–100, adult RR 12–20, BGL 80–120, SpO2% 94–99."}]},{"ch":"skin","q":"Match public burn numbers to the class names he used.","opts":[{"t":"Burns are named only by rule of nines in this lecture","ok":false,"why":"1st = superficial = epidermis. 2nd = partial thickness = into dermis. 3rd = full thickness = all skin layers. Rule of nines not in these notes."},{"t":"All three are only epidermis","ok":false,"why":"1st = superficial = epidermis. 2nd = partial thickness = into dermis. 3rd = full thickness = all skin layers. Rule of nines not in these notes."},{"t":"1st superficial (epidermis), 2nd partial thickness (into dermis), 3rd full thickness (all layers)","ok":true,"why":"1st = superficial = epidermis. 2nd = partial thickness = into dermis. 3rd = full thickness = all skin layers. Rule of nines not in these notes."},{"t":"1st full thickness, 2nd superficial, 3rd partial","ok":false,"why":"1st = superficial = epidermis. 2nd = partial thickness = into dermis. 3rd = full thickness = all skin layers. Rule of nines not in these notes."}]},{"ch":"gi","q":"Small intestine job and the three names he said not to keep splitting?","opts":[{"t":"Store CSF; frontal, parietal, occipital","ok":false,"why":"Small intestine = nutrient absorption. Three segments they won’t keep splitting: duodenum, jejunum, ileum."},{"t":"Make epinephrine; cerebrum, cerebellum, brainstem","ok":false,"why":"Small intestine = nutrient absorption. Three segments they won’t keep splitting: duodenum, jejunum, ileum."},{"t":"Filter urine; cortex, medulla, pelvis","ok":false,"why":"Small intestine = nutrient absorption. Three segments they won’t keep splitting: duodenum, jejunum, ileum."},{"t":"Nutrient absorption; duodenum, jejunum, ileum","ok":true,"why":"Small intestine = nutrient absorption. Three segments they won’t keep splitting: duodenum, jejunum, ileum."}]},{"ch":"gi","q":"Peristalsis, as he defined it?","opts":[{"t":"Left-ventricle squeeze that makes a pulse","ok":false,"why":"Peristalsis = smooth-muscle waves. No pump. Abdominal leak can paralyze peristalsis."},{"t":"Smooth-muscle waves that move contents; there is no pump","ok":true,"why":"Peristalsis = smooth-muscle waves. No pump. Abdominal leak can paralyze peristalsis."},{"t":"A spinal tap of CSF","ok":false,"why":"Peristalsis = smooth-muscle waves. No pump. Abdominal leak can paralyze peristalsis."},{"t":"Alpha-receptor clamp on the aorta","ok":false,"why":"Peristalsis = smooth-muscle waves. No pump. Abdominal leak can paralyze peristalsis."}]},{"ch":"gi","q":"What did he actually get out about appendicitis before the live recording cut?","opts":[{"t":"It is a right-upper-quadrant liver bleed","ok":false,"why":"Appendicitis: lower-quadrant pain, Ch 19. Story: confirmed, not ruptured yet, surgery delayed. Transcript ends mid-sentence. Otter outline extras were not spoken."},{"t":"Lower-quadrant pain, Ch 19; daughter story not ruptured yet; surgery delayed — story incomplete","ok":true,"why":"Appendicitis: lower-quadrant pain, Ch 19. Story: confirmed, not ruptured yet, surgery delayed. Transcript ends mid-sentence. Otter outline extras were not spoken."},{"t":"Full ruptured-appendix protocol with NG suction and antibiotics","ok":false,"why":"Appendicitis: lower-quadrant pain, Ch 19. Story: confirmed, not ruptured yet, surgery delayed. Transcript ends mid-sentence. Otter outline extras were not spoken."},{"t":"It is treated with albuterol","ok":false,"why":"Appendicitis: lower-quadrant pain, Ch 19. Story: confirmed, not ruptured yet, surgery delayed. Transcript ends mid-sentence. Otter outline extras were not spoken."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {endo:"Endocrine / receptors",neuro:"Nervous / CSF / JVD",skin:"Homeostasis / skin",gi:"GI (live cut)"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">From later Saturday lecture only. Live 10:48 talk was still incomplete.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · later talks only</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
