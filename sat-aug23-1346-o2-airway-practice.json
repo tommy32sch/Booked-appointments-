@@ -1,0 +1,834 @@
+[
+  {
+    "ch": "fork",
+    "q": "Big device fork this hour?",
+    "opts": [
+      {
+        "t": "Adequate and they need oxygen \u2192 NRB; apneic or inadequate \u2192 BVM",
+        "ok": true,
+        "why": "R/R/Q picks the tool, not mentation."
+      },
+      {
+        "t": "Unconscious always BVM even at 18 with good rise",
+        "ok": false,
+        "why": "R/R/Q picks the tool, not mentation."
+      },
+      {
+        "t": "Adequate always nasal cannula on the registry",
+        "ok": false,
+        "why": "R/R/Q picks the tool, not mentation."
+      },
+      {
+        "t": "Apnea gets a Venturi at 2 L",
+        "ok": false,
+        "why": "R/R/Q picks the tool, not mentation."
+      }
+    ]
+  },
+  {
+    "ch": "unc",
+    "q": "Unconscious, 18 breaths, good chest rise. Device?",
+    "opts": [
+      {
+        "t": "Raise the percent \u2014 NRB \u2014 you do not have to bag just because they are out",
+        "ok": true,
+        "why": "Common miss: out \u2260 bag."
+      },
+      {
+        "t": "BVM at 20/min because they are unconscious",
+        "ok": false,
+        "why": "Common miss: out \u2260 bag."
+      },
+      {
+        "t": "Nothing; unconscious people cannot use a mask",
+        "ok": false,
+        "why": "Common miss: out \u2260 bag."
+      },
+      {
+        "t": "CPAP because they cannot follow commands",
+        "ok": false,
+        "why": "Common miss: out \u2260 bag."
+      }
+    ]
+  },
+  {
+    "ch": "mask",
+    "q": "Any mask on the face \u2014 LPM rule?",
+    "opts": [
+      {
+        "t": "10 to 15 LPM; less than 10 and you are suffocating them through a straw",
+        "ok": true,
+        "why": "NRB, partial, trach mask, BVM \u2014 all masks 10\u201315."
+      },
+      {
+        "t": "1 to 6 on every mask",
+        "ok": false,
+        "why": "NRB, partial, trach mask, BVM \u2014 all masks 10\u201315."
+      },
+      {
+        "t": "8 LPM is the safe middle he named",
+        "ok": false,
+        "why": "NRB, partial, trach mask, BVM \u2014 all masks 10\u201315."
+      },
+      {
+        "t": "Match the tank psi, not liters",
+        "ok": false,
+        "why": "NRB, partial, trach mask, BVM \u2014 all masks 10\u201315."
+      }
+    ]
+  },
+  {
+    "ch": "flap",
+    "q": "Why \u201cnon-rebreather\u201d?",
+    "opts": [
+      {
+        "t": "Flaps let exhale out and seal on inhale so they do not rebreathe that air",
+        "ok": true,
+        "why": "Clean supply near 100% from the tank, then leak to ~90\u201395%."
+      },
+      {
+        "t": "The bag forces every breath for them",
+        "ok": false,
+        "why": "Clean supply near 100% from the tank, then leak to ~90\u201395%."
+      },
+      {
+        "t": "It only works if they are conscious",
+        "ok": false,
+        "why": "Clean supply near 100% from the tank, then leak to ~90\u201395%."
+      },
+      {
+        "t": "The flaps dump oxygen on the floor on purpose",
+        "ok": false,
+        "why": "Clean supply near 100% from the tank, then leak to ~90\u201395%."
+      }
+    ]
+  },
+  {
+    "ch": "nc",
+    "q": "Nasal cannula numbers he actually said?",
+    "opts": [
+      {
+        "t": "1 to 6 LPM, about 24 to 44% (1 L \u2248 24%, 6 L \u2248 44%); registry rarely wants this answer",
+        "ok": true,
+        "why": "He lives at 2 or 4. 1 is almost room air. 6 whistles and burns dry."
+      },
+      {
+        "t": "10 to 15 LPM, 90 to 95%",
+        "ok": false,
+        "why": "He lives at 2 or 4. 1 is almost room air. 6 whistles and burns dry."
+      },
+      {
+        "t": "Officially 2 L only; 6 L is the national correct",
+        "ok": false,
+        "why": "He lives at 2 or 4. 1 is almost room air. 6 whistles and burns dry."
+      },
+      {
+        "t": "1 to 6 LPM, 90%",
+        "ok": false,
+        "why": "He lives at 2 or 4. 1 is almost room air. 6 whistles and burns dry."
+      }
+    ]
+  },
+  {
+    "ch": "six",
+    "q": "You want to turn the cannula to 6. His thought?",
+    "opts": [
+      {
+        "t": "If they need that much, they should probably already be on an NRB",
+        "ok": true,
+        "why": "0.5 is on the knob; they do not use it."
+      },
+      {
+        "t": "6 is his everyday real-world default",
+        "ok": false,
+        "why": "0.5 is on the knob; they do not use it."
+      },
+      {
+        "t": "6 L on a cannula equals 100% sealed oxygen",
+        "ok": false,
+        "why": "0.5 is on the knob; they do not use it."
+      },
+      {
+        "t": "Drop to 0.5 L the dial also showed",
+        "ok": false,
+        "why": "0.5 is on the knob; they do not use it."
+      }
+    ]
+  },
+  {
+    "ch": "part",
+    "q": "Partial rebreather as he taught it?",
+    "opts": [
+      {
+        "t": "Pop the NRB valves off; about 80\u201390%; still 10\u201315 LPM; he has never done it on purpose",
+        "ok": true,
+        "why": "Book: hyperventilation later in Ch 16."
+      },
+      {
+        "t": "A separately packaged EMS go-to at 1\u20136 LPM",
+        "ok": false,
+        "why": "Book: hyperventilation later in Ch 16."
+      },
+      {
+        "t": "90\u201395% with flaps on",
+        "ok": false,
+        "why": "Book: hyperventilation later in Ch 16."
+      },
+      {
+        "t": "The only device for apnea",
+        "ok": false,
+        "why": "Book: hyperventilation later in Ch 16."
+      }
+    ]
+  },
+  {
+    "ch": "ven",
+    "q": "Venturi in this lecture?",
+    "opts": [
+      {
+        "t": "Not an EMS carry; long-term percent control; read the adapter that is already on \u2014 do not invent LPM/%",
+        "ok": true,
+        "why": "He said he does not know those numbers. Two transports were on a trach."
+      },
+      {
+        "t": "Orange is always 2 L and 24% as a fact he measured",
+        "ok": false,
+        "why": "He said he does not know those numbers. Two transports were on a trach."
+      },
+      {
+        "t": "You pick Venturi first on every SOB test item",
+        "ok": false,
+        "why": "He said he does not know those numbers. Two transports were on a trach."
+      },
+      {
+        "t": "It replaces the BVM for apnea",
+        "ok": false,
+        "why": "He said he does not know those numbers. Two transports were on a trach."
+      }
+    ]
+  },
+  {
+    "ch": "trach",
+    "q": "No trach mask in the bag, patient breathing adequately through a stoma?",
+    "opts": [
+      {
+        "t": "Put a non-rebreather over the tracheostomy and run 10 to 15 LPM",
+        "ok": true,
+        "why": "Functionally still a mask. They must still be adequate movers."
+      },
+      {
+        "t": "Cannula in the nose at 1\u20136",
+        "ok": false,
+        "why": "Functionally still a mask. They must still be adequate movers."
+      },
+      {
+        "t": "CPAP on the face for every stoma",
+        "ok": false,
+        "why": "Functionally still a mask. They must still be adequate movers."
+      },
+      {
+        "t": "Venturi orange adapter he specified",
+        "ok": false,
+        "why": "Functionally still a mask. They must still be adequate movers."
+      }
+    ]
+  },
+  {
+    "ch": "hum",
+    "q": "Humidified oxygen on scene with a D tank on its side?",
+    "opts": [
+      {
+        "t": "You usually cannot \u2014 the sterile jug is for upright wall meters and will spill; give dry oxygen if they need it",
+        "ok": true,
+        "why": "Comfort / long-term / later irritated airways if you have it."
+      },
+      {
+        "t": "Always withhold oxygen until you have a jug",
+        "ok": false,
+        "why": "Comfort / long-term / later irritated airways if you have it."
+      },
+      {
+        "t": "Screw the jug onto the laid-down D tank",
+        "ok": false,
+        "why": "Comfort / long-term / later irritated airways if you have it."
+      },
+      {
+        "t": "Humidify only by running 0.5 LPM",
+        "ok": false,
+        "why": "Comfort / long-term / later irritated airways if you have it."
+      }
+    ]
+  },
+  {
+    "ch": "bvm",
+    "q": "BVM indication + oxygen number?",
+    "opts": [
+      {
+        "t": "Apnea or inadequate rate and/or volume; 10\u201315 LPM; 100% if the seal is tight",
+        "ok": true,
+        "why": "Room air does not leak if you really sealed it."
+      },
+      {
+        "t": "Adequate 18 and good rise; 1\u20136 LPM; 24%",
+        "ok": false,
+        "why": "Room air does not leak if you really sealed it."
+      },
+      {
+        "t": "Any unconscious patient; 8 LPM",
+        "ok": false,
+        "why": "Room air does not leak if you really sealed it."
+      },
+      {
+        "t": "Mild cough obstruction only",
+        "ok": false,
+        "why": "Room air does not leak if you really sealed it."
+      }
+    ]
+  },
+  {
+    "ch": "rate",
+    "q": "Adult you are breathing for (pulse present)?",
+    "opts": [
+      {
+        "t": "One breath every 6 seconds, which is 10 breaths a minute",
+        "ok": true,
+        "why": "Memorize both phrasings. Wrong rate poisons an otherwise right answer."
+      },
+      {
+        "t": "20 breaths a minute like a child",
+        "ok": false,
+        "why": "Memorize both phrasings. Wrong rate poisons an otherwise right answer."
+      },
+      {
+        "t": "12 to 20 because that is normal adult rate",
+        "ok": false,
+        "why": "Memorize both phrasings. Wrong rate poisons an otherwise right answer."
+      },
+      {
+        "t": "One breath every 2 to 3 seconds",
+        "ok": false,
+        "why": "Memorize both phrasings. Wrong rate poisons an otherwise right answer."
+      }
+    ]
+  },
+  {
+    "ch": "peds",
+    "q": "Child or infant you are breathing for?",
+    "opts": [
+      {
+        "t": "One breath every 2 to 3 seconds, which is 20 to 30 a minute; still 10\u201315 LPM",
+        "ok": true,
+        "why": "Faster breaths, same flow. Three BVM sizes: adult, child, infant."
+      },
+      {
+        "t": "Same 10 a minute; drop LPM to 1\u20136",
+        "ok": false,
+        "why": "Faster breaths, same flow. Three BVM sizes: adult, child, infant."
+      },
+      {
+        "t": "40 a minute to match a crying infant",
+        "ok": false,
+        "why": "Faster breaths, same flow. Three BVM sizes: adult, child, infant."
+      },
+      {
+        "t": "Only blow by, no mask",
+        "ok": false,
+        "why": "Faster breaths, same flow. Three BVM sizes: adult, child, infant."
+      }
+    ]
+  },
+  {
+    "ch": "sq",
+    "q": "How hard do you squeeze?",
+    "opts": [
+      {
+        "t": "Gentle over about one second, just until you see chest rise, then stop and count",
+        "ok": true,
+        "why": "Stop at rise. Count out loud."
+      },
+      {
+        "t": "Blast the whole bag twice a second",
+        "ok": false,
+        "why": "Stop at rise. Count out loud."
+      },
+      {
+        "t": "Half a bag every time \u2014 he defined half in mL",
+        "ok": false,
+        "why": "Stop at rise. Count out loud."
+      },
+      {
+        "t": "Until the stomach is firm",
+        "ok": false,
+        "why": "Stop at rise. Count out loud."
+      }
+    ]
+  },
+  {
+    "ch": "comp",
+    "q": "You bag too fast and too hard. What did he stack?",
+    "opts": [
+      {
+        "t": "Gastric distension and high chest pressure that drops blood pressure \u2014 you can lose a pulse",
+        "ok": true,
+        "why": "Be the calm person."
+      },
+      {
+        "t": "Higher blood pressure from extra oxygen",
+        "ok": false,
+        "why": "Be the calm person."
+      },
+      {
+        "t": "Only a sore thumb",
+        "ok": false,
+        "why": "Be the calm person."
+      },
+      {
+        "t": "Automatic CPAP benefit",
+        "ok": false,
+        "why": "Be the calm person."
+      }
+    ]
+  },
+  {
+    "ch": "cpr2",
+    "q": "Apneic adult with no pulse?",
+    "opts": [
+      {
+        "t": "CPR \u2014 he named 30 compressions and 2 breaths for the adult this hour, not 1 every 6 seconds alone",
+        "ok": true,
+        "why": "Kid CPR numbers change later."
+      },
+      {
+        "t": "Only 10 breaths a minute and skip compressions",
+        "ok": false,
+        "why": "Kid CPR numbers change later."
+      },
+      {
+        "t": "CPAP while you think",
+        "ok": false,
+        "why": "Kid CPR numbers change later."
+      },
+      {
+        "t": "NRB flaps will breathe for them",
+        "ok": false,
+        "why": "Kid CPR numbers change later."
+      }
+    ]
+  },
+  {
+    "ch": "home",
+    "q": "Home 1 L cannula, called for difficulty breathing, still adequate?",
+    "opts": [
+      {
+        "t": "Your assessment; bump them up to an NRB if they need a lot",
+        "ok": true,
+        "why": "Same R/R/Q rules."
+      },
+      {
+        "t": "Never touch a home liter flow",
+        "ok": false,
+        "why": "Same R/R/Q rules."
+      },
+      {
+        "t": "Venturi only",
+        "ok": false,
+        "why": "Same R/R/Q rules."
+      },
+      {
+        "t": "BVM because they already own oxygen",
+        "ok": false,
+        "why": "Same R/R/Q rules."
+      }
+    ]
+  },
+  {
+    "ch": "pass",
+    "q": "Passive ventilation / NRB during CPR?",
+    "opts": [
+      {
+        "t": "Recoil pulls a little oxygen; not really AHA/NREMT yet; you get a similar leak-in with a flowing BVM on the face",
+        "ok": true,
+        "why": "Industry ahead of the book. Ch 14 later."
+      },
+      {
+        "t": "The national correct instead of compressions",
+        "ok": false,
+        "why": "Industry ahead of the book. Ch 14 later."
+      },
+      {
+        "t": "It fully ventilates them so you skip 30:2",
+        "ok": false,
+        "why": "Industry ahead of the book. Ch 14 later."
+      },
+      {
+        "t": "He said it is already the written-test answer",
+        "ok": false,
+        "why": "Industry ahead of the book. Ch 14 later."
+      }
+    ]
+  },
+  {
+    "ch": "vent",
+    "q": "Transport ventilator for the EMT test?",
+    "opts": [
+      {
+        "t": "Paramedic gear, not EMT-tested; it frees you; titrate tidal volume to chest rise",
+        "ok": true,
+        "why": "He used 500 mL \u00d7 10 as a dial example, not a must-memorize protocol."
+      },
+      {
+        "t": "EMT must set PEEP tables he listed",
+        "ok": false,
+        "why": "He used 500 mL \u00d7 10 as a dial example, not a must-memorize protocol."
+      },
+      {
+        "t": "Always 800 mL because bigger is safer",
+        "ok": false,
+        "why": "He used 500 mL \u00d7 10 as a dial example, not a must-memorize protocol."
+      },
+      {
+        "t": "It replaces the need for a pulse",
+        "ok": false,
+        "why": "He used 500 mL \u00d7 10 as a dial example, not a must-memorize protocol."
+      }
+    ]
+  },
+  {
+    "ch": "cpap",
+    "q": "Main CPAP patient he will see on a question?",
+    "opts": [
+      {
+        "t": "Pulmonary edema \u2014 blast fluid off the alveoli \u2014 alert, follows commands",
+        "ok": true,
+        "why": "Freeway-window back-pressure picture."
+      },
+      {
+        "t": "Apnea \u2014 CPAP is a ventilator",
+        "ok": false,
+        "why": "Freeway-window back-pressure picture."
+      },
+      {
+        "t": "Facial smash",
+        "ok": false,
+        "why": "Freeway-window back-pressure picture."
+      },
+      {
+        "t": "SBP 88 and wet lungs",
+        "ok": false,
+        "why": "Freeway-window back-pressure picture."
+      }
+    ]
+  },
+  {
+    "ch": "bp",
+    "q": "Adult low blood pressure number for a CPAP veto?",
+    "opts": [
+      {
+        "t": "Less than 90 systolic \u2014 88/60 in a stem means you cannot pick CPAP",
+        "ok": true,
+        "why": "CPAP raises chest pressure and drops BP."
+      },
+      {
+        "t": "Less than 120",
+        "ok": false,
+        "why": "CPAP raises chest pressure and drops BP."
+      },
+      {
+        "t": "Less than 60 diastolic only",
+        "ok": false,
+        "why": "CPAP raises chest pressure and drops BP."
+      },
+      {
+        "t": "Any pressure is fine because oxygen raises BP",
+        "ok": false,
+        "why": "CPAP raises chest pressure and drops BP."
+      }
+    ]
+  },
+  {
+    "ch": "cno",
+    "q": "CPAP is off the table if?",
+    "opts": [
+      {
+        "t": "They cannot follow commands, cannot protect the airway, are hypotensive, have trauma/PTX/face injury, shock, GI bleed, vomit/nausea, or they want to lie down while SOB",
+        "ok": true,
+        "why": "Docs can zonk people on CPAP; you cannot. Lying down SOB = they gave up \u2192 bag."
+      },
+      {
+        "t": "They are alert with wet lungs and a 110 systolic",
+        "ok": false,
+        "why": "Docs can zonk people on CPAP; you cannot. Lying down SOB = they gave up \u2192 bag."
+      },
+      {
+        "t": "They are sitting and talking through distress",
+        "ok": false,
+        "why": "Docs can zonk people on CPAP; you cannot. Lying down SOB = they gave up \u2192 bag."
+      },
+      {
+        "t": "Hospital docs already used it once in a story",
+        "ok": false,
+        "why": "Docs can zonk people on CPAP; you cannot. Lying down SOB = they gave up \u2192 bag."
+      }
+    ]
+  },
+  {
+    "ch": "mild",
+    "q": "Mild airway obstruction?",
+    "opts": [
+      {
+        "t": "They still move air (cough, little talk, noisy) \u2014 hands off, maybe an NRB while they cough",
+        "ok": true,
+        "why": "Body\u2019s cough is better than you. Load O2 in case it goes severe."
+      },
+      {
+        "t": "Five back blows immediately",
+        "ok": false,
+        "why": "Body\u2019s cough is better than you. Load O2 in case it goes severe."
+      },
+      {
+        "t": "Abdominal thrusts on a talking cougher",
+        "ok": false,
+        "why": "Body\u2019s cough is better than you. Load O2 in case it goes severe."
+      },
+      {
+        "t": "Blind finger sweep first",
+        "ok": false,
+        "why": "Body\u2019s cough is better than you. Load O2 in case it goes severe."
+      }
+    ]
+  },
+  {
+    "ch": "sev",
+    "q": "Severe awake adult or child \u2014 AHA now, even if the 12th book missed it?",
+    "opts": [
+      {
+        "t": "Five back blows, then five abdominal thrusts, repeat",
+        "ok": true,
+        "why": "Why a 13th edition is coming. Abdominal thrusts, fist above the umbilicus \u2014 not the royalty name."
+      },
+      {
+        "t": "Only abdominal thrusts forever; backs are infants only",
+        "ok": false,
+        "why": "Why a 13th edition is coming. Abdominal thrusts, fist above the umbilicus \u2014 not the royalty name."
+      },
+      {
+        "t": "Five chest thrusts only, like the infant book",
+        "ok": false,
+        "why": "Why a 13th edition is coming. Abdominal thrusts, fist above the umbilicus \u2014 not the royalty name."
+      },
+      {
+        "t": "Hands off plus NRB only",
+        "ok": false,
+        "why": "Why a 13th edition is coming. Abdominal thrusts, fist above the umbilicus \u2014 not the royalty name."
+      }
+    ]
+  },
+  {
+    "ch": "inf",
+    "q": "Infant severe obstruction \u2014 book this hour?",
+    "opts": [
+      {
+        "t": "Support on the forearm, five back blows, sandwich flip, five chest thrusts \u2014 unchanged",
+        "ok": true,
+        "why": "Only adult/child gained backs."
+      },
+      {
+        "t": "Five abdominal thrusts like an adult",
+        "ok": false,
+        "why": "Only adult/child gained backs."
+      },
+      {
+        "t": "Backs only, no chest",
+        "ok": false,
+        "why": "Only adult/child gained backs."
+      },
+      {
+        "t": "NRB until they pass out",
+        "ok": false,
+        "why": "Only adult/child gained backs."
+      }
+    ]
+  },
+  {
+    "ch": "down",
+    "q": "They were choking, now unresponsive?",
+    "opts": [
+      {
+        "t": "Supine and start CPR \u2014 compressions still try to pop the object",
+        "ok": true,
+        "why": "You already know they may not be in arrest yet."
+      },
+      {
+        "t": "Keep standing abdominal thrusts",
+        "ok": false,
+        "why": "You already know they may not be in arrest yet."
+      },
+      {
+        "t": "CPAP",
+        "ok": false,
+        "why": "You already know they may not be in arrest yet."
+      },
+      {
+        "t": "Wait to see if they are truly dead first",
+        "ok": false,
+        "why": "You already know they may not be in arrest yet."
+      }
+    ]
+  },
+  {
+    "ch": "dent",
+    "q": "Dentures?",
+    "opts": [
+      {
+        "t": "Stable and not in the way \u2014 leave them; loose and a problem \u2014 take them out",
+        "ok": true,
+        "why": "Do not create an airway problem."
+      },
+      {
+        "t": "Always pull dentures before any OPA",
+        "ok": false,
+        "why": "Do not create an airway problem."
+      },
+      {
+        "t": "Always leave even if they flop in the airway",
+        "ok": false,
+        "why": "Do not create an airway problem."
+      },
+      {
+        "t": "Cut every wire with trauma shears first",
+        "ok": false,
+        "why": "Do not create an airway problem."
+      }
+    ]
+  },
+  {
+    "ch": "face2",
+    "q": "Facial trauma reminders he tied back?",
+    "opts": [
+      {
+        "t": "Suction blood in the airway; direct pressure on external bleed; no NPA; no CPAP; OPA is still OK if they qualify",
+        "ok": true,
+        "why": "Swelling can close the path \u2014 later chapter."
+      },
+      {
+        "t": "NPA is preferred because the mouth is bloody",
+        "ok": false,
+        "why": "Swelling can close the path \u2014 later chapter."
+      },
+      {
+        "t": "CPAP to tamponade the face",
+        "ok": false,
+        "why": "Swelling can close the path \u2014 later chapter."
+      },
+      {
+        "t": "Never OPA if the face is hit",
+        "ok": false,
+        "why": "Swelling can close the path \u2014 later chapter."
+      }
+    ]
+  },
+  {
+    "ch": "why",
+    "q": "Three reasons he will give oxygen even without waiting for a perfect number?",
+    "opts": [
+      {
+        "t": "SpO2 less than 94, any difficulty/labored/they say they cannot breathe, or shock signs",
+        "ok": true,
+        "why": "None of those \u2192 probably no O2."
+      },
+      {
+        "t": "Only a printed 90%",
+        "ok": false,
+        "why": "None of those \u2192 probably no O2."
+      },
+      {
+        "t": "Only if they ask and look well",
+        "ok": false,
+        "why": "None of those \u2192 probably no O2."
+      },
+      {
+        "t": "Venturi color first",
+        "ok": false,
+        "why": "None of those \u2192 probably no O2."
+      }
+    ]
+  },
+  {
+    "ch": "rng",
+    "q": "94\u201399 versus 90\u201399 at the end of class?",
+    "opts": [
+      {
+        "t": "Run 94 to 99 for now",
+        "ok": true,
+        "why": "Last clarifying question."
+      },
+      {
+        "t": "Switch the whole class to 90\u201399",
+        "ok": false,
+        "why": "Last clarifying question."
+      },
+      {
+        "t": "99\u2013100 only",
+        "ok": false,
+        "why": "Last clarifying question."
+      },
+      {
+        "t": "80\u201394",
+        "ok": false,
+        "why": "Last clarifying question."
+      }
+    ]
+  },
+  {
+    "ch": "cheyne",
+    "q": "Cheyne\u2013Stokes or ataxic after big head trauma?",
+    "opts": [
+      {
+        "t": "High chance you need to ventilate; time with their inhale if they have one; do not match 40 shallow breaths",
+        "ok": true,
+        "why": "Net about 10 good breaths a minute."
+      },
+      {
+        "t": "Never bag patterned breathing",
+        "ok": false,
+        "why": "Net about 10 good breaths a minute."
+      },
+      {
+        "t": "NRB only because some breaths look deep",
+        "ok": false,
+        "why": "Net about 10 good breaths a minute."
+      },
+      {
+        "t": "CPAP for the apnea pauses",
+        "ok": false,
+        "why": "Net about 10 good breaths a minute."
+      }
+    ]
+  },
+  {
+    "ch": "skill",
+    "q": "BVM skill station sequence he described?",
+    "opts": [
+      {
+        "t": "Open, suction, OPA, then bag \u2014 say the rate while your hand actually waits six seconds",
+        "ok": true,
+        "why": "Every class the mouth says six and the hand races."
+      },
+      {
+        "t": "Bag first, then look",
+        "ok": false,
+        "why": "Every class the mouth says six and the hand races."
+      },
+      {
+        "t": "NPA on every trauma mannequin",
+        "ok": false,
+        "why": "Every class the mouth says six and the hand races."
+      },
+      {
+        "t": "15/10/5 suction times",
+        "ok": false,
+        "why": "Every class the mouth says six and the hand races."
+      }
+    ]
+  }
+]
