@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat 9:32 — perfusion (from recap)</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat 9:32 — perfusion</h1>
+  <div class="sub">Recap only · you/your · 24 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":"rbc","q":"Your patient is bleeding. Besides volume, what are they losing in this recap?","opts":[{"t":"Only white cells, so infection starts in minutes","ok":false,"why":"RBCs are oxygen trucks. Bleeding costs oxygen-carrying capacity, not just tank volume."},{"t":"Oxygen-carrying capacity — RBCs with hemoglobin","ok":true,"why":"RBCs are oxygen trucks. Bleeding costs oxygen-carrying capacity, not just tank volume."},{"t":"Only diastolic pressure; systolic always holds","ok":false,"why":"RBCs are oxygen trucks. Bleeding costs oxygen-carrying capacity, not just tank volume."},{"t":"Only the tricuspid valve’s seal","ok":false,"why":"RBCs are oxygen trucks. Bleeding costs oxygen-carrying capacity, not just tank volume."}]},{"ch":"iv","q":"You give IV fluid for a bleeder. What does this recap say it does not do?","opts":[{"t":"It never changes pressure or volume","ok":false,"why":"IV fluids can help pressure and volume. They do not carry oxygen. Only blood restores oxygen-carrying capacity."},{"t":"It does not carry oxygen — only blood restores that","ok":true,"why":"IV fluids can help pressure and volume. They do not carry oxygen. Only blood restores oxygen-carrying capacity."},{"t":"It immediately replaces every lost platelet","ok":false,"why":"IV fluids can help pressure and volume. They do not carry oxygen. Only blood restores oxygen-carrying capacity."},{"t":"It turns the pipes into a fire hose","ok":false,"why":"IV fluids can help pressure and volume. They do not carry oxygen. Only blood restores oxygen-carrying capacity."}]},{"ch":"wbc","q":"Leukocytes (WBCs) in this recap — job, and how hard you lean on them in acute trauma?","opts":[{"t":"They carry oxygen; they are your first shock lever","ok":false,"why":"WBCs fight infection. Important conceptually, not the main EMT lever in acute trauma or shock."},{"t":"They fight infection; not your main acute trauma/shock focus","ok":true,"why":"WBCs fight infection. Important conceptually, not the main EMT lever in acute trauma or shock."},{"t":"They form the clot by clumping first","ok":false,"why":"WBCs fight infection. Important conceptually, not the main EMT lever in acute trauma or shock."},{"t":"They set systolic to 90 by themselves","ok":false,"why":"WBCs fight infection. Important conceptually, not the main EMT lever in acute trauma or shock."}]},{"ch":"plt","q":"Platelets — what do you need them for here?","opts":[{"t":"They haul glucose and hormones in plasma","ok":false,"why":"Platelets clump together to form a clot. That is how you start to stabilize hemorrhage."},{"t":"They clump to form a clot and help control bleeding","ok":true,"why":"Platelets clump together to form a clot. That is how you start to stabilize hemorrhage."},{"t":"They are the only thing IV fluid replaces","ok":false,"why":"Platelets clump together to form a clot. That is how you start to stabilize hemorrhage."},{"t":"They squeeze the left ventricle","ok":false,"why":"Platelets clump together to form a clot. That is how you start to stabilize hemorrhage."}]},{"ch":"plasma","q":"Besides the three cell types, what else is blood hauling in this recap?","opts":[{"t":"Only nitrogen and bone marrow","ok":false,"why":"Plasma carries sugar, hormones, nutrients, carbon dioxide, and waste (lactic acid, debris)."},{"t":"Glucose, hormones, nutrients, CO₂, and waste such as lactic acid","ok":true,"why":"Plasma carries sugar, hormones, nutrients, carbon dioxide, and waste (lactic acid, debris)."},{"t":"Only the gag reflex and tidal volume","ok":false,"why":"Plasma carries sugar, hormones, nutrients, carbon dioxide, and waste (lactic acid, debris)."},{"t":"Only the pulmonic valve leaflets","ok":false,"why":"Plasma carries sugar, hormones, nutrients, carbon dioxide, and waste (lactic acid, debris)."}]},{"ch":"ppf","q":"Blood pressure in this recap is which three parts?","opts":[{"t":"Lungs, diaphragm, and residual volume only","ok":false,"why":"Pump = heart, pipes = vessels, fluid = blood volume. All three make BP."},{"t":"Pump (heart), pipes (vessels), fluid (blood volume)","ok":true,"why":"Pump = heart, pipes = vessels, fluid = blood volume. All three make BP."},{"t":"Only SAMPLE, OPQRST, and DCAP-BTLS","ok":false,"why":"Pump = heart, pipes = vessels, fluid = blood volume. All three make BP."},{"t":"Only WBC, RBC, and the gag reflex","ok":false,"why":"Pump = heart, pipes = vessels, fluid = blood volume. All three make BP."}]},{"ch":"fail","q":"Pump or pipes or fluid fails. What happens next here?","opts":[{"t":"The other two always keep BP and perfusion normal","ok":false,"why":"Any one of the three failing drops BP, cuts perfusion, and starves cells of oxygen."},{"t":"BP drops, perfusion falls, cells do not get oxygen","ok":true,"why":"Any one of the three failing drops BP, cuts perfusion, and starves cells of oxygen."},{"t":"You only get right-sided JVD and nothing else","ok":false,"why":"Any one of the three failing drops BP, cuts perfusion, and starves cells of oxygen."},{"t":"Diastolic becomes the only number you use","ok":false,"why":"Any one of the three failing drops BP, cuts perfusion, and starves cells of oxygen."}]},{"ch":"sys","q":"Systolic BP — what is it, and which number do you use in emergencies?","opts":[{"t":"Resting fill pressure; you ignore it and use only diastolic","ok":false,"why":"Systolic is left-ventricular squeeze into the body. EMTs mainly use the top number for decisions."},{"t":"Pressure when the left ventricle contracts; that is your field number","ok":true,"why":"Systolic is left-ventricular squeeze into the body. EMTs mainly use the top number for decisions."},{"t":"Pressure in the pulmonary veins only","ok":false,"why":"Systolic is left-ventricular squeeze into the body. EMTs mainly use the top number for decisions."},{"t":"The WBC count expressed as mmHg","ok":false,"why":"Systolic is left-ventricular squeeze into the body. EMTs mainly use the top number for decisions."}]},{"ch":"dia","q":"Diastolic BP in this recap?","opts":[{"t":"The squeeze of the left ventricle into the aorta","ok":false,"why":"Diastolic is resting/fill pressure. Much less important for prehospital emergency decisions."},{"t":"Resting pressure while the heart relaxes and fills — less important prehospital","ok":true,"why":"Diastolic is resting/fill pressure. Much less important for prehospital emergency decisions."},{"t":"The only number that proves shock","ok":false,"why":"Diastolic is resting/fill pressure. Much less important for prehospital emergency decisions."},{"t":"Oxygen-carrying capacity in mmHg","ok":false,"why":"Diastolic is resting/fill pressure. Much less important for prehospital emergency decisions."}]},{"ch":"90","q":"Adult systolic cutoff this recap wants you to carry?","opts":[{"t":"≥ 60 mmHg is always enough perfusion","ok":false,"why":"Adult systolic ≥ 90 is usually enough pressure. Under 90 is hypotension and high suspicion for shock."},{"t":"≥ 90 mmHg is the usual perfusion target; < 90 is hypotension and a shock flag","ok":true,"why":"Adult systolic ≥ 90 is usually enough pressure. Under 90 is hypotension and high suspicion for shock."},{"t":"≥ 140 is required before you reassess","ok":false,"why":"Adult systolic ≥ 90 is usually enough pressure. Under 90 is hypotension and high suspicion for shock."},{"t":"Any systolic is fine if the pulse ox is 99%","ok":false,"why":"Adult systolic ≥ 90 is usually enough pressure. Under 90 is hypotension and high suspicion for shock."}]},{"ch":"trend","q":"One set of vitals versus two or more — what does this recap call them?","opts":[{"t":"One set is a full diagnosis; two sets are wasted time","ok":false,"why":"One set is a snapshot. Two or more sets show a trend. Document at least two so you can say stable, improving, or deteriorating."},{"t":"One set is a snapshot; two or more is a trend (better, worse, same)","ok":true,"why":"One set is a snapshot. Two or more sets show a trend. Document at least two so you can say stable, improving, or deteriorating."},{"t":"Two sets are only for stable patients every 5 minutes","ok":false,"why":"One set is a snapshot. Two or more sets show a trend. Document at least two so you can say stable, improving, or deteriorating."},{"t":"Vitals never need a second set if the first systolic is 90","ok":false,"why":"One set is a snapshot. Two or more sets show a trend. Document at least two so you can say stable, improving, or deteriorating."}]},{"ch":"clock","q":"Reassessment clocks from this recap?","opts":[{"t":"Unstable every 15 minutes; stable every 5","ok":false,"why":"Critical/unstable: every 5 minutes (BP, HR, RR, SpO₂, mental status). Stable: every 15."},{"t":"Unstable / critical every 5 minutes; stable every 15","ok":true,"why":"Critical/unstable: every 5 minutes (BP, HR, RR, SpO₂, mental status). Stable: every 15."},{"t":"Everyone every 30 minutes once you have one BP","ok":false,"why":"Critical/unstable: every 5 minutes (BP, HR, RR, SpO₂, mental status). Stable: every 15."},{"t":"Only reassess if diastolic changes","ok":false,"why":"Critical/unstable: every 5 minutes (BP, HR, RR, SpO₂, mental status). Stable: every 15."}]},{"ch":"perf","q":"Perfusion in one line from this recap?","opts":[{"t":"Only the sound of valves snapping shut","ok":false,"why":"Perfusion is delivery of oxygen and nutrients and removal of waste at the cell."},{"t":"Good stuff in (O₂ and nutrients) and trash out (CO₂, acids, junk)","ok":true,"why":"Perfusion is delivery of oxygen and nutrients and removal of waste at the cell."},{"t":"Only diastolic pressure in the right atrium","ok":false,"why":"Perfusion is delivery of oxygen and nutrients and removal of waste at the cell."},{"t":"Only WBC count above 10","ok":false,"why":"Perfusion is delivery of oxygen and nutrients and removal of waste at the cell."}]},{"ch":"double","q":"Cells are poorly perfused. Why are they “doubly unhappy” here?","opts":[{"t":"They have too much oxygen and no waste at all","ok":false,"why":"Inadequate perfusion starves the cell and lets waste build (lactic acid if they go anaerobic)."},{"t":"Not enough oxygen/nutrients, and waste (lactic acid) piles up","ok":true,"why":"Inadequate perfusion starves the cell and lets waste build (lactic acid if they go anaerobic)."},{"t":"The tricuspid valve is thicker than the left wall","ok":false,"why":"Inadequate perfusion starves the cell and lets waste build (lactic acid if they go anaerobic)."},{"t":"IV fluid immediately fixes both problems","ok":false,"why":"Inadequate perfusion starves the cell and lets waste build (lactic acid if they go anaerobic)."}]},{"ch":"shock","q":"Hypoperfusion versus shock in EMS, this recap?","opts":[{"t":"They are different diseases; shock is only bleeding","ok":false,"why":"Hypoperfusion = shock. Interchangeable in EMS. Low adult systolic (especially < 90) plus poor-perfusion signs."},{"t":"They are the same word — not enough circulation for cellular needs","ok":true,"why":"Hypoperfusion = shock. Interchangeable in EMS. Low adult systolic (especially < 90) plus poor-perfusion signs."},{"t":"Hypoperfusion is only a pipe problem; shock is only fever","ok":false,"why":"Hypoperfusion = shock. Interchangeable in EMS. Low adult systolic (especially < 90) plus poor-perfusion signs."},{"t":"Shock requires a diastolic under 40 and nothing else","ok":false,"why":"Hypoperfusion = shock. Interchangeable in EMS. Low adult systolic (especially < 90) plus poor-perfusion signs."}]},{"ch":"pump","q":"Which cluster is a pump problem in this recap?","opts":[{"t":"Sepsis, anaphylaxis, and neurogenic vasodilation","ok":false,"why":"Pump: heart too weak or squeezed — MI, CHF, tension pneumo, tamponade."},{"t":"Massive MI, CHF, tension pneumothorax, pericardial tamponade","ok":true,"why":"Pump: heart too weak or squeezed — MI, CHF, tension pneumo, tamponade."},{"t":"GI bleed and severe dehydration only","ok":false,"why":"Pump: heart too weak or squeezed — MI, CHF, tension pneumo, tamponade."},{"t":"Platelets clumping too well","ok":false,"why":"Pump: heart too weak or squeezed — MI, CHF, tension pneumo, tamponade."}]},{"ch":"pipe","q":"Pipes too wide — analogy and shock family?","opts":[{"t":"Kitchen sink on a fire hose; that is only hemorrhage","ok":false,"why":"Vasodilation drops pressure even with volume still there. Distributive: sepsis, anaphylaxis, neurogenic."},{"t":"Fire hose on a kitchen sink — vasodilation; distributive (sepsis, anaphylaxis, neurogenic)","ok":true,"why":"Vasodilation drops pressure even with volume still there. Distributive: sepsis, anaphylaxis, neurogenic."},{"t":"Left ventricle backup into the lungs only","ok":false,"why":"Vasodilation drops pressure even with volume still there. Distributive: sepsis, anaphylaxis, neurogenic."},{"t":"IV fluid carrying extra oxygen","ok":false,"why":"Vasodilation drops pressure even with volume still there. Distributive: sepsis, anaphylaxis, neurogenic."}]},{"ch":"fluid","q":"Fluid-problem shock in this recap looks like what?","opts":[{"t":"Vessels too dilated with a full tank","ok":false,"why":"Fluid fail is not enough volume: trauma bleed, GI bleed, severe dehydration."},{"t":"Not enough in the tank — hemorrhage, GI bleed, severe dehydration","ok":true,"why":"Fluid fail is not enough volume: trauma bleed, GI bleed, severe dehydration."},{"t":"Only a mitral valve that will not open","ok":false,"why":"Fluid fail is not enough volume: trauma bleed, GI bleed, severe dehydration."},{"t":"Only fever climbing slowly to 105 °F","ok":false,"why":"Fluid fail is not enough volume: trauma bleed, GI bleed, severe dehydration."}]},{"ch":"speed","q":"500 mL blood loss — what decides whether they tank?","opts":[{"t":"Amount alone; speed never matters","ok":false,"why":"Significant loss is often 500–1000 mL, but speed (and age/hydration/illness) decide tolerance. Slow can compensate; fast can syncope."},{"t":"Speed and the patient: 500 mL in 30–45 min may be tolerated; in 60 seconds they can collapse","ok":true,"why":"Significant loss is often 500–1000 mL, but speed (and age/hydration/illness) decide tolerance. Slow can compensate; fast can syncope."},{"t":"Only if diastolic is the number that changes first","ok":false,"why":"Significant loss is often 500–1000 mL, but speed (and age/hydration/illness) decide tolerance. Slow can compensate; fast can syncope."},{"t":"Only if they already got IV fluid","ok":false,"why":"Significant loss is often 500–1000 mL, but speed (and age/hydration/illness) decide tolerance. Slow can compensate; fast can syncope."}]},{"ch":"comp","q":"Sympathetic compensation this recap lists?","opts":[{"t":"Slower HR, wider pipes, slower breathing","ok":false,"why":"Fight-or-flight: tachycardia, vasoconstriction, increased respiratory rate."},{"t":"Faster HR, vasoconstriction to raise BP, faster RR for O₂ in / CO₂ out","ok":true,"why":"Fight-or-flight: tachycardia, vasoconstriction, increased respiratory rate."},{"t":"Only platelet clumping and a fever to 105 °F","ok":false,"why":"Fight-or-flight: tachycardia, vasoconstriction, increased respiratory rate."},{"t":"Only a rise in diastolic with a falling systolic","ok":false,"why":"Fight-or-flight: tachycardia, vasoconstriction, increased respiratory rate."}]},{"ch":"stages","q":"Compensated versus decompensated shock here?","opts":[{"t":"Compensated already has a systolic under 90; decompensated never drops BP","ok":false,"why":"Compensated still holds BP. Decompensated is hypotension with obvious poor perfusion. Slow problems compensate; fast ones crash."},{"t":"Compensated: shock signs with a still-okay BP. Decompensated: hypotension plus clear poor perfusion","ok":true,"why":"Compensated still holds BP. Decompensated is hypotension with obvious poor perfusion. Slow problems compensate; fast ones crash."},{"t":"They are the same; only the fever analogy changes","ok":false,"why":"Compensated still holds BP. Decompensated is hypotension with obvious poor perfusion. Slow problems compensate; fast ones crash."},{"t":"Decompensated is only a WBC problem","ok":false,"why":"Compensated still holds BP. Decompensated is hypotension with obvious poor perfusion. Slow problems compensate; fast ones crash."}]},{"ch":"path","q":"One RBC from the right atrium — correct valve order through the lungs to the body?","opts":[{"t":"Mitral → aortic → pulmonic → tricuspid","ok":false,"why":"RA → tricuspid → RV → pulmonic → pulmonary arteries → alveoli → pulmonary veins → LA → mitral → LV → aortic → aorta."},{"t":"Tricuspid → pulmonic → (lungs) → mitral/bicuspid → aortic","ok":true,"why":"RA → tricuspid → RV → pulmonic → pulmonary arteries → alveoli → pulmonary veins → LA → mitral → LV → aortic → aorta."},{"t":"Aortic → tricuspid → mitral → pulmonic","ok":false,"why":"RA → tricuspid → RV → pulmonic → pulmonary arteries → alveoli → pulmonary veins → LA → mitral → LV → aortic → aorta."},{"t":"Pulmonic → mitral → tricuspid → aortic, skip the lungs","ok":false,"why":"RA → tricuspid → RV → pulmonic → pulmonary arteries → alveoli → pulmonary veins → LA → mitral → LV → aortic → aorta."}]},{"ch":"left","q":"Left-sided pump is failing. Where does blood back up, and what do you see?","opts":[{"t":"Into the body first — JVD and ankle edema only","ok":false,"why":"Left fail: cannot go forward to the body, so backup LV → LA → pulmonary veins → lung capillaries."},{"t":"Into the lungs — pulmonary edema, SOB, crackles","ok":true,"why":"Left fail: cannot go forward to the body, so backup LV → LA → pulmonary veins → lung capillaries."},{"t":"Only into the SVC, never the pulmonary veins","ok":false,"why":"Left fail: cannot go forward to the body, so backup LV → LA → pulmonary veins → lung capillaries."},{"t":"Nowhere — IV fluid carries the oxygen instead","ok":false,"why":"Left fail: cannot go forward to the body, so backup LV → LA → pulmonary veins → lung capillaries."}]},{"ch":"right","q":"Right-sided pump is failing. Backup where?","opts":[{"t":"Into the lungs — crackles and a CHF picture only","ok":false,"why":"Right fail: cannot go to the lungs, so backup RV → RA → SVC/IVC → systemic venous congestion."},{"t":"Into systemic veins — JVD, peripheral edema, liver enlargement","ok":true,"why":"Right fail: cannot go to the lungs, so backup RV → RA → SVC/IVC → systemic venous congestion."},{"t":"Through the aortic valve into the body as extra stroke volume","ok":false,"why":"Right fail: cannot go to the lungs, so backup RV → RA → SVC/IVC → systemic venous congestion."},{"t":"Nowhere — the right side never backs up","ok":false,"why":"Right fail: cannot go to the lungs, so backup RV → RA → SVC/IVC → systemic venous congestion."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"rbc":"RBCs / bleed","iv":"IV fluid","wbc":"WBCs","plt":"Platelets","plasma":"Plasma","ppf":"Pump-pipes-fluid","fail":"Any one fails","sys":"Systolic","dia":"Diastolic","90":"Adult 90","trend":"Trends","clock":"Reassess","perf":"Perfusion","double":"Doubly unhappy","shock":"Shock = hypo","pump":"Pump shock","pipe":"Pipe shock","fluid":"Fluid shock","speed":"Bleed speed","comp":"Compensation","stages":"Comp vs decomp","path":"RBC path","left":"Left fail","right":"Right fail"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the Sat 9:32 perfusion recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · perfusion recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
