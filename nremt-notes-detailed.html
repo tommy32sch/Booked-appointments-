@@ -7,7 +7,7 @@ body { margin:0; background:#f4efe6; color:#1c2430; font-family:-apple-system,Bl
 header { background:#1e3a5f; color:#fff; padding:calc(12px + env(safe-area-inset-top)) 16px 14px; position:sticky; top:0; z-index:2; }
 header h1 { color:#fff; margin:0; font-size:1.1rem; font-weight:600; }
 header p { margin:4px 0 0; opacity:.85; font-size:.8rem; }
-main { padding:16px; max-width:720px; margin:0 auto; }
+main { padding:16px; max-width:720px; margin:0 auto; padding-bottom:calc(32px + env(safe-area-inset-bottom)); }
 nav { display:flex; flex-wrap:wrap; gap:8px; margin:0 0 16px; }
 nav a { font-size:.82rem; color:#1e3a5f; background:#e8e1d4; border-radius:999px; padding:4px 10px; text-decoration:none; }
 h1 { font-size:1.28rem; color:#1e3a5f; margin:1.4em 0 .4em; }
@@ -22,276 +22,160 @@ hr { border:0; border-top:1px solid #d8d0c4; margin:28px 0; }
 </style></head>
 <body>
 <header><h1>Detailed notes</h1>
-<p>The lecture told as a story. Lecture only.</p></header>
+<p>The recaps told in your voice. These three talks only. Will grow.</p></header>
 <main>
 <nav>
-<a href="#ch1">Chapter 1</a><a href="#ch2">Chapter 2</a><a href="#ch3">Chapter 3</a><a href="#ch4">Chapter 4</a><a href="#ch5">Chapter 5</a><a href="#ch6">Chapter 6</a><a href="#circ">Saturday morning</a><a href="#endo">Saturday</a><a href="#rev">Saturday 11:27 review</a><a href="#ch8">Chapter 8</a><a href="#ch9">Chapter 9</a><a href="#air">Airway and oxygen</a></nav>
-<article id="ch1">
-<h1>Chapter 1 — EMS systems</h1>
-<h2>Safety <span class="tag">NREMT</span></h2>
-<p>Always make sure you are safe before you answer the call or walk to the patient.</p>
-<h2>How EMS grew <span class="tag">NREMT</span></h2>
-<p>Here is the history. In 1966 a White Paper said trauma deaths were too high and that shove started modern EMS. In 1970 NHTSA (National Highway Traffic Safety Administration) was created under the Department of Transportation. In 1971 AAOS (American Academy of Orthopaedic Surgeons) published the first EMT textbook. The job moved from just a ride to a healthcare system with a physician watching over it.</p>
-<h2>Who does what <span class="tag">NREMT</span></h2>
-<p>Four levels showed up. EMR (Emergency Medical Responder) is about 50 hours of CPR and first aid. EMT is about 130–150 hours of BLS (basic life support) and a limited med list. AEMT (Advanced EMT) adds IVs and more meds. Paramedic is ALS (advanced life support), at least 1,000 hours, with advanced airways, EKG work, and about 55–60 meds. Every EMT and paramedic works under the Medical Director’s license. That doctor is legally responsible for the care you give. Arizona historically recognized EMT and Paramedic only. EMR and AEMT arrived later and jobs are still limited. In the city, advanced skills usually stay with paramedics. Some rural agencies let trained EMTs start IVs if the medical director approves.</p>
-<h2>Orders and errors <span class="tag">NREMT</span></h2>
-<p>Offline medical direction means standing orders. You do not call. Examples: CPR and AED, oxygen, epinephrine for anaphylaxis. That is most routine care. Online means you call a doctor by radio or phone. That order is for that one situation. New problem, new call. Use it when you are unsure, the case is odd, or you need extra permission. Three error types: a skills miss is knowing the right move and doing it wrong (oxygen at 2 LPM instead of 15). A rules miss is applying a known rule to the wrong problem (treating a stroke like low sugar). A knowledge miss is a new, incomplete picture and a wrong plan (wrong antidote).</p>
-<h2>Prevention, advocacy, consent <span class="tag">NREMT</span></h2>
-<p>Primary prevention stops trouble before it starts: vaccines, seatbelts, public teaching. Secondary finds it early: screenings and early treatment of high blood pressure or cholesterol. Both sit on research. Advocacy means acting in the patient’s best interest, especially if they cannot speak. Speak up if care is rough or wrong. Honor wishes including a DNR (do not resuscitate). Explain what you are doing. Protect privacy and dignity. Report unsafe care or errors. If the person has decision-making capacity they can refuse treatment and transport even with a badly injured, partly amputated leg. Assess capacity carefully and write it all down. If they later become unconscious or lose capacity, implied consent takes over and you treat and transport.</p>
+<a href="#assess">Assessment</a><a href="#reassess">Reassess</a><a href="#suction">Suction</a>
+</nav>
+<article id="assess">
+<h1>Patient assessment overview — detailed</h1>
+<p>This recap is the map you run on every call: from the doorway to the hospital bed.</p>
+<h2>The order you actually work <span class="tag">NREMT</span></h2>
+<p>Scene size-up. Primary assessment to find and treat life threats. History with OPQRST and SAMPLE. Secondary exam plus a full set of vitals. Field impression and the treatments that match it. Reassessment until you hand them off.</p>
+<p>Skip a block and you skip a job. Primary is universal. History waits until ABCs are handled and they can answer.</p>
+<h2>Scene — you have not touched them yet <span class="tag">NREMT</span></h2>
+<p>BSI and PPE first. Is the scene safe for you, your partner, the patient, and bystanders? Trauma MOI or medical NOI? How many patients? Do you need fire, police, ALS, extra units?</p>
+<p>Call law early if you suspect abuse or violence, or if the scene feels unsafe or is heating up.</p>
+<h2>Primary — life threats, then priority <span class="tag">NREMT</span></h2>
+<p>General impression: sick or not, major bleeding, obvious distress, trauma vs medical, age, how they are sitting or lying.</p>
+<p>Level of consciousness is AVPU. If they are Alert, check orientation: person, place, time, event. Alert and oriented ×4 usually means decision-making capacity and expressed consent. Confused, verbal, pain, or unresponsive usually means implied consent.</p>
+<p>Airway: open and clear? Upper-airway sounds you hear without a stethoscope: snoring (tongue), gurgling (fluid — suction), stridor (upper swelling, think anaphylaxis). Fix it: open, suction, adjuncts per protocol.</p>
+<p>Breathing is rate, rhythm, quality. Adult normal 12–20. Watch chest rise, accessory muscles, nasal flaring, retractions. Lower-airway sounds need the chest piece: wheezing is bronchoconstriction (asthma), high-pitched, often on the way out; crackles are fluid in alveoli (pulmonary edema), wet bubbling; rhonchi are mucus/congestion (pneumonia), low rattling. Then you decide oxygen, ventilation support, and how fast you leave.</p>
+<p>Circulation: pulse rate, rhythm, quality. Adult 60–100. Skin color, temperature, condition. Cap refill especially in kids. Major bleeding: stop it the moment you see it.</p>
+<p>Critical trauma gets a rapid head-to-toe scan for other life threats. Then you decide load-and-go versus more time on scene.</p>
+<h2>History <span class="tag">NREMT</span></h2>
+<p>OPQRST for the present illness, especially pain or breathing: when and what they were doing; what makes it better or worse; what it feels like; where it is and if it travels; 0–10; how long and whether it is changing.</p>
+<p>SAMPLE is the wider history: signs and symptoms, allergies, medications, past medical history, last oral intake, events leading up.</p>
+<p>Ask about alcohol and drugs calmly. You are not law enforcement; you need the truth to treat them. If they deny and you still suspect it, you may ask once more, then drop it and write “Patient denies alcohol or drug use.” At EMT level most treatments do not swing on undisclosed use. If they lie and the outcome is bad, you are not liable for reasonable decisions based on what you had.</p>
+<p>Suspected abuse (child, elder, domestic) or a serious safety worry is a mandatory report. Reporting a suspicion is not defamation even if it later is untrue. Defamation is you stating a false fact (“That guy IS a child abuser”). Document observations and quotes, then report the suspicion.</p>
+<p>Charts must be objective, verifiable, and true. You can write what you see and what someone said in quotes. You do not write who is guilty.</p>
+<p>Any female of childbearing age with lower abdominal pain is possibly pregnant. Ask if there is any chance and when the last period was. Document the denial and the date they give. With abdominal complaints also ask nausea, vomiting, diarrhea, and bowel or bladder changes. Sexual history and STIs only if they are clinically relevant (fever plus belly pain, GU symptoms).</p>
+<h2>Secondary <span class="tag">NREMT</span></h2>
+<p>Hands-on, on scene or in the box once primary and history are moving.</p>
+<p>Focused exam for a responsive medical patient who can localize the problem. Detailed head-to-toe for the unconscious (medical or trauma), significant MOI even if they are awake (ejection, high speed, big fall), or when you think injuries are multiple or hidden.</p>
+<p>Inspect, palpate, auscultate. DCAP-BTLS on each region: deformities, contusions, abrasions, punctures/penetrations, burns, tenderness, lacerations, swelling. Compare sides — lungs, limbs, grips.</p>
+<h2>Vitals and neuro <span class="tag">NREMT</span></h2>
+<p>Adult respirations 12–20; younger kids run faster. Adult pulse 60–100; kids higher. Rate, rhythm, quality.</p>
+<p>Adult systolic 90–120. Under 90 is hypotension and a shock concern. 120–130 is the hypertension range they gave. In emergencies you care most about systolic.</p>
+<p>Under 10 years, minimum systolic is 2 × age in years + 70. A 4-year-old is 78. At 10 the formula hits 90 and you use the adult cutoff.</p>
+<p>GCS: eyes 1–4, verbal 1–5, motor 1–6. Total 3–15. Fifteen is fully alert and oriented. Three is no eye, verbal, or motor. Memorize the table.</p>
+<p>Pupils: PERRL — equal, round, reactive to light. Both constrict together. Note unequal, fixed and dilated, sluggish. Pinpoint often opioids/downers. Dilated often stimulants or brain injury.</p>
+<p>SpO₂ is hemoglobin saturation. Want 94–99%. Carbon monoxide can look falsely high because the machine treats CO as occupied hemoglobin. It does not tell you how many red cells exist.</p>
+<p>Glucose 80–120 mg/dL. Under 80 is low. Check the confused, altered, or unconscious, known diabetics, and anyone who could be stroke, intoxication, or hypoglycemia — they mimic each other.</p>
+<h2>Impression, treatments, reassess, handoff <span class="tag">NREMT</span></h2>
+<p>After scene, primary, history, and secondary plus vitals, you say what you think is going on: suspected ACS/MI, hypoglycemia, asthma flare, stroke, shock from bleeding. That is a field impression, not a formal diagnosis.</p>
+<p>Treat ABCs first — position, oxygen, ventilation, bleeding. Then the EMT-scope meds your protocols allow. On a test, if one option is assist ventilations and another is give a drug, and breathing is inadequate, you ventilate first.</p>
+<p>Reassess mental status/GCS, airway, breathing, circulation, vitals, and whether treatments worked. Unstable about every 5 minutes. Stable about every 15.</p>
+<p>Handoff is short: scene and chief complaint, primary findings and life threats, OPQRST and SAMPLE highlights, exam and vitals with trends, GCS and pupils, what you gave and what it did.</p>
 <section class="prac">
 <h2>Practice</h2>
 <ul>
-<li>Do this: Stand at the door and say out loud when you are safe enough to walk in. You did it right if you said safety first, before any patient care.</li>
-<li>Do this: Say the four levels and their hours: EMR, EMT, AEMT, paramedic. You did it right if EMR is about 50 hours, EMT 130–150, paramedic at least 1,000, and AEMT is IVs plus more meds.</li>
-<li>Do this: Point at an imaginary radio. Say one offline example and one online example. You did it right if offline is CPR, oxygen, or epi without a call, and online is one situation by phone.</li>
-<li>Do this: Act the three error types with the oxygen and stroke stories. You did it right if skills is 2 LPM instead of 15, rules is stroke treated as low sugar, knowledge is a wrong new plan.</li>
-<li>Do this: Tell a partner they can refuse a ride with a bad leg if they have capacity. You did it right if you also said write it down, and if they pass out later you treat under implied consent.</li>
-<li>Do this: Name one primary and one secondary prevention. You did it right if primary is vaccines, seatbelts, or teaching, and secondary is screening or early blood-pressure care.</li>
+<li>Do this: Recite the six-step flow without looking. You did it right if you said scene, primary, history, secondary, impression/interventions, reassessment — in that order.</li>
+<li>Do this: Name the five scene tasks plus when you call law. You did it right if you have BSI, safety, MOI/NOI, number, resources, and law for abuse or an escalating scene.</li>
+<li>Do this: Pair upper-airway sounds you hear without a stethoscope. You did it right if snoring is tongue, gurgling is fluid and suction, stridor is swelling.</li>
+<li>Do this: Give adult RR, pulse, systolic band, and the peds hypotension formula. You did it right if 12–20, 60–100, 90–120, and 2×age+70 under age 10.</li>
+<li>Do this: Score a fully alert patient and a no-response patient on GCS. You did it right if 15 (4+5+6) and 3.</li>
+<li>Do this: Pick focused vs detailed for a talking belly-pain patient vs an ejection. You did it right if focused for the first and detailed for the second.</li>
+<li>Do this: Write one chart line for a bruise and one for a quote. You did it right if the bruise is what you see and the quote is in their words, not “he is an abuser.”</li>
+<li>Do this: Choose ventilate vs give a drug when breathing is inadequate. You did it right if you ventilate first.</li>
 </ul>
 </section>
 </article>
 <hr>
-<article id="ch2">
-<h1>Chapter 2 — Workplace safety</h1>
-<h2>You first <span class="tag">NREMT</span></h2>
-<p>Protect yourself so you can help. Scene, PPE (personal protective equipment), BSI (body substance isolation — gloves and eye protection), safe lifting, and awareness. You cannot help if you become the patient. At the front door look, listen, smell, and read the mood. Keep scanning the whole scene, not just the patient. After a task, pause and look again. Trust your gut. Call police for violence, weapons, threats, crime scenes, aggressive people, or suspected abuse. Call hazmat for spills, unknown stuff, chemical smells, toxic exposure, or industrial chemicals.</p>
-<h2>How stress looks <span class="tag">NREMT</span></h2>
-<p>Fight-or-flight is the sympathetic system plus stress hormones. Heart and blood pressure climb, breathing speeds, pupils open, blood leaves the gut and skin for big muscles, heart, lungs, and brain, digestion slows, muscles tense, you sweat, pain dulls, senses sharpen. That package can look like shock: pale, cool, sweaty, nauseated, anxious. Your own stress can wreck decisions. Acute stress is during or right after a bad call. Delayed shows days to months later as nightmares, flashbacks, numbness. Cumulative is burnout from too many hard calls.</p>
-<h2>Infection control <span class="tag">NREMT</span></h2>
-<p>A pathogen causes disease. Contamination is the germ on a person or surface. Exposure is the germ getting into you in a way that can infect. Transmission is how it moves: direct, indirect, droplet, airborne (TB and measles), or vector (bugs). Treat every patient as infectious. Hands and gloves every time. Add eyes, mask, gown, N95 as the risk says. Sanitizer at least 60% if hands are not dirty. Soap and water if soiled or after norovirus or C. diff. Don: hands, gown, mask, eyes, gloves. Doff: gloves, gown, eyes, mask, hands. N95 must be fit-tested. Never recap needles. Match other providers’ PPE. After a stick or splash: hand off the patient, wash or flush, do not squeeze or bleach, report now, get evaluated within hours, PEP if indicated, no cost to you.</p>
-<h2>Parking and talk <span class="tag">NREMT</span></h2>
-<p>Order is you with gloves, then crew, then the patient. Park at least 100 feet from fire, crash, or hazmat. First unit parks before the wreck (upstream). Later units park past it (downstream). Hazmat: uphill and upwind. Test line: use the ERG (Emergency Response Guidebook). If it is not safe, stay out. With a critical patient, introduce yourself, explain, orient them, be honest without being cruel, leave hope without false hope, and notify family when you can. Grief stages are denial, anger, bargaining, depression, acceptance, and people skip around.</p>
+<article id="reassess">
+<h1>Reassessment — detailed</h1>
+<p>Once the first assessment and the first treatments are in and you are rolling, the job is not over. Ongoing reassessment is the fifth piece of patient assessment.</p>
+<h2>The clocks <span class="tag">NREMT</span></h2>
+<p>Unstable or critical patients get a full reassess about every 5 minutes. Practically, when you finish one pass it is almost time for the next. Stable patients get about every 15 minutes.</p>
+<p>Unstable in this recap includes shock, severe trauma, chest pain with concerning signs, altered mental status. Stable means normal vitals, no bad trends, improving.</p>
+<h2>What you actually reassess <span class="tag">NREMT</span></h2>
+<p>Airway: still open, still protected? Breathing: rate, depth, quality, work of breathing, and breath sounds if they apply. Circulation: pulse rate/rhythm/quality, skin, new or ongoing major bleeding. Mental status: AVPU, orientation to person/place/time/event, new confusion, agitation, lethargy, unresponsiveness.</p>
+<p>Then a new full vital set: blood pressure, heart rate, respiratory rate, SpO₂ if you have it, glucose if indicated, pain 0–10. Compare to the last set. Better, worse, or the same?</p>
+<p>One set is a snapshot. Two or more sets are a trend. Falling blood pressure with rising heart rate and respiratory rate can mean they are heading toward shock. Numbers that barely move mean the condition is at least not clearly getting worse or better.</p>
+<h2>When the picture flips <span class="tag">NREMT</span></h2>
+<p>Any significant change — better or worse — sends you back to the beginning of primary assessment: mental status, then airway, then breathing, then circulation.</p>
+<p>Example: you were talking; they go unresponsive. You do not keep chatting through SAMPLE. You restart MS → A → B → C.</p>
+<p>Example: you were doing CPR and you get a pulse back. Stop compressions. Then reassess mental status, airway, breathing, and circulation. ROSC is not automatic good breathing. The heart can restart while they still need you to ventilate.</p>
+<p>Logic: the biggest life threats first, every time the patient changes.</p>
+<h2>Recheck everything you already did <span class="tag">NREMT</span></h2>
+<p>If you did it, you re-check it. Is it still effective? Is it still safe?</p>
+<p>Tourniquet: bleeding still held, still sitting right, not too loose or too tight. Dressings: soaking through?</p>
+<p>Splints: swelling can turn a correct splint into a tourniquet. Distal pulse, motor, sensation. Cap refill and color past the splint. Can they wiggle fingers or toes? New numbness, tingling, or severe compression pain? Loosen or adjust per protocol if it is too tight.</p>
+<p>Medications: for chest pain (nitro, aspirin where appropriate) ask the new pain number against the old one. Eight to five is progress. Watch for adverse effects. After glucose, recheck the sugar. After oxygen or a breathing med, recheck SpO₂, distress, breath sounds, work of breathing.</p>
+<p>Restraints: still on, not injuring them. Distal circulation, sensation, movement. Warm, pink, normal cap refill. They can still feel and move fingers and toes.</p>
+<h2>Test-world meds <span class="tag">NREMT</span></h2>
+<p>This recap splits book/National Registry world from the street.</p>
+<p>On exams, assume you need an online order unless the question already says you have orders or your protocol authorizes the drug. The safe pick is contact medical control for permission before you give it.</p>
+<p>If the stem already gave you the order, do not pick the “call first” answer.</p>
+<p>On the street many meds are standing offline orders. That is not the default you use on the test.</p>
+<h2>Sequence <span class="tag">NREMT</span></h2>
+<p>The order inside an answer choice matters. Administer → contact medical control → reassess has the right chores in the wrong order. On the test that is wrong.</p>
+<p>Correct default sequence: contact medical control, administer if approved, reassess the patient.</p>
+<p>Do not ask “are these steps roughly right?” Ask “is this the correct order?”</p>
+<h2>The point of the program <span class="tag">NREMT</span></h2>
+<p>Later chapters will walk anatomy, specific illnesses, and a tailored assessment. The core goal stays: make a field impression and do the right treatments. Reassessment, ABC checks, and vital trends feed that question: what is going on with my patient, and what am I going to do?</p>
 <section class="prac">
 <h2>Practice</h2>
 <ul>
-<li>Do this: At a closed door, look, listen, sniff, and say the mood out loud. You did it right if you named look, listen, smell, and mood before you entered.</li>
-<li>Do this: Put on imaginary PPE in order, then take it off in order. You did it right if on is hands-gown-mask-eyes-gloves and off is gloves-gown-eyes-mask-hands.</li>
-<li>Do this: Mime a needlestick: hand off, wash, do not squeeze, report. You did it right if you never squeezed or bleached and you said report now.</li>
-<li>Do this: Park two chairs 100 feet from a wreck. First chair before, second past. You did it right if first is upstream and second is downstream.</li>
-<li>Do this: Tell a partner they look pale and sweaty and name fight-or-flight vs shock as a look-alike. You did it right if you said stress can copy shock.</li>
-<li>Do this: Introduce yourself to a stuffed animal as a critical patient. You did it right if you used your name, said you are an EMT, and oriented them without false hope.</li>
-<li>Do this: Name the five grief stages out of order on purpose. You did it right if you said people skip around and still listed all five.</li>
+<li>Do this: Say the two clocks out loud. You did it right if unstable is 5 minutes and stable is 15.</li>
+<li>Do this: List what one full reassess pass includes. You did it right if you have mental status, ABCs, a new full vital set, and every intervention you already did.</li>
+<li>Do this: Read two BP/HR/RR sets that are sliding. You did it right if you called the second set a trend toward shock, not a snapshot.</li>
+<li>Do this: Act ROSC after CPR. You did it right if you stopped compressions and rechecked mental status, airway, breathing, and circulation — and you said they may still need ventilations.</li>
+<li>Do this: Recheck a splint after swelling. You did it right if you named distal pulse, motor, sensation, cap refill, and new numbness or severe pain.</li>
+<li>Do this: Ask a chest-pain pain score after nitro. You did it right if you compared now to the first number (8 to 5 is improvement).</li>
+<li>Do this: Pick the exam med sequence when the stem does not give orders. You did it right if you contact medical control, then give the drug, then reassess.</li>
+<li>Do this: Cross out an option that has the right three steps in the wrong order. You did it right if you treated that option as wrong.</li>
 </ul>
 </section>
 </article>
 <hr>
-<article id="ch3">
-<h1>Chapter 3 — Medical, legal, ethical</h1>
-<h2>Duty <span class="tag">NREMT</span></h2>
-<p>Act in good faith and meet the standard of care — what a reasonably careful EMT with similar training would do in the same situation. Negligence is missing that standard and causing harm. All four pieces must be there: duty, breach, damages, causation. Abandonment is walking away without consent and without handing off to equal or higher care while they still need you. Stay in protocols, stay until a real handoff, write refusals, never leave someone who still needs care.</p>
-<h2>Consent <span class="tag">NREMT</span></h2>
-<p>Expressed consent is an alert person with capacity who agrees, words or a nod or an arm held out, and they know the plan. Informed consent is the full version: nature, risks, benefits, alternatives. All informed consent is expressed. Not all expressed consent is fully informed. Implied is for the unresponsive or badly altered true emergency — a reasonable person would want help. Involuntary is a legal hold or danger to self or others. If they have capacity they can refuse even if they may die. If they lack capacity and it is an emergency, treat. A valid refusal needs capacity, a real explanation, a free choice, and a signature when you can get one. Capacity means they understand, they see what can happen, they can reason, and they can say a choice. Before you leave, reassess, confirm, tell them to call 911 if worse, try to leave them with a responsible person, get a signature or write that they refused to sign, and call medical control if your shop requires it.</p>
-<h2>Paper, privacy, restraint, death <span class="tag">NREMT</span></h2>
-<p>A living will often is not enough for EMS to stop resuscitation. You need a valid DNR (do not resuscitate) or POLST. If they are awake and have capacity, that beats paper. If you doubt the paper, treat and call medical control. Share identifying care facts only with people who need them for care, when the law says so, with a court order, or with written permission. Not the news. Not social. Restraint is last resort: danger, protect, allow care, lesser steps failed. Never face-down. Never hog-tie. Soft restraints are the EMS pick. Chemical sedation is ALS. Watch breathing and circulation. Presumptive signs (unresponsive, no breath, no pulse, fixed pupils) do not let you withhold. Definitive signs are lividity, rigor, decomposition, injuries incompatible with life, or a valid DNR/POLST. Doubt means CPR. Medical examiner cases: unexpected, trauma, violence, suicide, suspicious, no recent physician. Police first. Do not move the body.</p>
+<article id="suction">
+<h1>Airway and suction — detailed</h1>
+<p>This recap is unconscious-airway work and suction. The mindset is simple: always fix the airway first. You cannot assess or fix breathing if air cannot reach the lungs.</p>
+<h2>Talking vs down <span class="tag">NREMT</span></h2>
+<p>If they are conscious and talking or crying, treat the airway as patent. Say “airway check” and move on to breathing.</p>
+<p>If they are unconscious, assume they are not protecting the airway. The muscles relax. The tongue falls back and can fully obstruct. Do not grade breathing until you have opened and cleared, or you will miss a simple blockage.</p>
+<h2>Where you stand <span class="tag">NREMT</span></h2>
+<p>Preferred: patient supine, you at the head of the bed. That is the control position.</p>
+<p>Awake people often sit themselves up. That is them protecting their own airway.</p>
+<p>If you cannot lay them flat — trapped in a car — you may need an urgent or extrication move. You can give up a perfect spine package to treat an immediate airway or breathing threat.</p>
+<h2>Which opener <span class="tag">NREMT</span></h2>
+<p>Head-tilt–chin-lift when you do not suspect a spinal cord injury. Forehead and bony chin. Tilt so the tongue comes off the posterior pharynx. Easier, more effective, easier to keep. Use it for the elderly found unconscious in bed, or a witnessed collapse on a couch with no fall or trauma.</p>
+<p>Jaw thrust when spine injury is suspected, possible, or you just are not sure — err on the side of caution. Fingers behind the angle of the jaw, thumbs on the cheekbones, jaw forward into an underbite, head and neck in line. It protects C-spine while it opens the airway. It is hard to hold. Let go and the jaw and tongue fall back and the obstruction is back.</p>
+<h2>Four steps in this lesson <span class="tag">NREMT</span></h2>
+<p>Open. Assess (look in the mouth for blood, vomit, secretions, foreign material, teeth; listen for gurgling). Clear with suction if — and only if — you see that fluid or you hear gurgling. Maintain so the tongue does not re-block (adjuncts, position, more suction, ventilation). Maintain was slated for the next segment; the idea still belongs here.</p>
+<p>Do not invent fluid on a test. If the stem never says fluid or gurgling, do not pick suction.</p>
+<p>Opening the mouth does not need a ritual. Cross-finger technique is mostly a textbook move.</p>
+<h2>Units and catheters <span class="tag">NREMT</span></h2>
+<p>Battery-powered portable unit is what you use most on scene. Wall-mounted unit in the ambulance or hospital. Hand-powered is the backup. It wears you out and material can drop back when you pause.</p>
+<p>Rigid Yankauer is the oral default — larger opening for vomit, blood, chunky stuff. Flexible French / whistle-tip is thinner and clogs. Use it for a tracheostomy or down an endotracheal tube, not a mouth full of vomit.</p>
+<p>Check the machine at the start of the shift: power, battery, charging, tubing and canister seated, vacuum present. The book number for adequate vacuum is greater than 300 mmHg. Some units have a gauge or light; others you occlude with a gloved finger.</p>
+<p>Tubing, catheter, and canister are single-patient and disposable. They go in biohazard trash. You disinfect the machine body and restock sterile replacements. Plug it back in.</p>
+<h2>How you suction <span class="tag">NREMT</span></h2>
+<p>Open and control the airway first with the correct maneuver. Stay at the head. Look and listen.</p>
+<p>If indicated, turn the unit on and prove it works.</p>
+<p>Measure corner of mouth to earlobe, or corner of mouth to the angle of the jaw. That measured length is the deepest you go.</p>
+<p>Insert with the vent hole uncovered so you are not sucking on the way in. Only as far as you can see / that measured depth. Not into the trachea.</p>
+<p>Cover the vent with a finger to start suction. Gentle circular motion while you withdraw. Never suction while you advance.</p>
+<p>Suction until the airway is clear, up to 10 seconds. That ceiling is now for all ages — adult, child, infant.</p>
+<p>If you will pass again, flush sterile water through the tubing so clots do not sit in the line.</p>
+<h2>Aspiration math and the least-bad choice <span class="tag">NREMT</span></h2>
+<p>Aspiration means blood, vomit, or secretions reached the lungs. It raises mortality about 30–70 percent on top of whatever started the call.</p>
+<p>If suction is not in your hand, roll them onto their side immediately. Gravity is the first tool. Sit a dyspneic patient up. Those position moves are often faster than digging for a machine.</p>
+<p>If the catheter keeps clogging on thick vomit, stop repeating a failed pass. Log roll, drain, suction, scoop with the catheter — not a finger.</p>
+<p>If they are still wet after a maxed pass: suction up to 10 seconds, ventilate about 2 minutes, repeat. Yes, bagging can shove leftover material down. That is aspiration risk. No oxygen is 100 percent mortality, which is worse. After you have used the suction window, you oxygenate.</p>
+<p>When it is clear, say “airway check.” Then breathing: rate, rhythm, quality, oxygen or ventilations as indicated.</p>
 <section class="prac">
 <h2>Practice</h2>
 <ul>
-<li>Do this: Recite the four negligence pieces on your fingers. You did it right if you said duty, breach, damages, causation.</li>
-<li>Do this: Role-play a refusal: explain risks, ask them to sign, then they will not. You did it right if you reassessed, encouraged 911, and said you would write that they would not sign.</li>
-<li>Do this: Hold out your arm as expressed consent, then close your eyes as implied. You did it right if expressed is an alert yes and implied is unresponsive emergency.</li>
-<li>Do this: Say out loud when you would restrain and how you would never position them. You did it right if last resort, never prone, never hog-tie, watch ABCs.</li>
-<li>Do this: Name presumptive vs definitive death and what you do if unsure. You did it right if doubt equals CPR and definitive includes lividity, rigor, decomposition, unsurvivable injury, or valid DNR/POLST.</li>
-<li>Do this: Tell a friend you will not post the call on social media. You did it right if you said care team, law, court, or written permission only.</li>
+<li>Do this: Point at a talking patient, then an unconscious one. You did it right if talking is “airway check, go to breathing,” and unconscious is assume not protected, open and clear first.</li>
+<li>Do this: Pick tilt-chin vs jaw thrust for bed-found medical vs a wreck. You did it right if no-spine medical is tilt-chin and possible spine (or unsure) is jaw thrust.</li>
+<li>Do this: Name the only two suction triggers. You did it right if you see fluid/blood/vomit/secretions or you hear gurgling — and you refused suction when the stem has neither.</li>
+<li>Do this: Measure a rigid catheter on your own face. You did it right if it is corner of mouth to earlobe or angle of jaw, and you do not bury it in the trachea.</li>
+<li>Do this: Mime insert vs withdraw. You did it right if the vent is open on the way in and you cover it and circle only on the way out, 10 seconds max for every age.</li>
+<li>Do this: Choose portable vs wall vs hand, and rigid vs flexible. You did it right if scene is battery portable, oral vomit is rigid, trach/ET is flexible.</li>
+<li>Do this: Vomit and no suction in your hand. You did it right if you log-roll to the side for gravity while a partner grabs the unit.</li>
+<li>Do this: Still dirty after 10 seconds. You did it right if you ventilate about 2 minutes next, because no oxygen is 100% mortality.</li>
 </ul>
 </section>
-</article>
-<hr>
-<article id="ch4">
-<h1>Chapter 4 — Communication</h1>
-<h2>How you talk <span class="tag">NREMT</span></h2>
-<p>Build trust. Start open (What happened?) then close in for facts. Eye contact, clear speech, real listening. Change for age, culture, hearing, vision, or fear. Honest without harsh. Confrontation calmly points at a mismatch (You said you do not drink, but I smell alcohol). Interpretation restates the fear. Explanation says what you are doing. Summary checks the story. Do not give false comfort, lead the answer, give life advice, cut them off, use jargon, judge, or talk over them with your partner. Kids: their words, caregivers in, simple language. Ten golden rules: keep eye contact, exchange names, tell the truth, use plain words, watch what you say about them, watch your body, speak slow and clear, face people who read lips, give time, stay calm and sure.</p>
-<h2>Radio, PCR, handoff <span class="tag">NREMT</span></h2>
-<p>Radio is brief, professional, plain English, no name on the air, orders repeated back. Hospital notice uses SBAR: Situation, Background, Assessment, Recommendation and ETA. The PCR (patient care report) is a legal permanent record. Put in who they are, the complaint, history, vitals, what you found, what you did, how they answered, and times. Facts only. If it is not on the page it did not happen. Cross one line through a mistake, initial, date, write the fix. Never erase. On a refusal write capacity, risks explained, that they understood, and the signature or that they would not sign. Care transfers only after a verbal handoff to equal or higher level and a completed PCR.</p>
-<section class="prac">
-<h2>Practice</h2>
-<ul>
-<li>Do this: Ask a person What’s going on today? then one yes/no. You did it right if open came first.</li>
-<li>Do this: Recite SBAR to an imaginary nurse while looking at your watch for ETA. You did it right if you hit Situation, Background, Assessment, Recommendation, ETA.</li>
-<li>Do this: Say a radio report with no name and repeat a fake order back. You did it right if the name never appeared and you echoed the order.</li>
-<li>Do this: Draw a one-line PCR fix on scrap paper, initial and date it. You did it right if you did not scribble it out or erase.</li>
-<li>Do this: Walk the ten golden rules on your fingers. You did it right if you hit eye contact, names, truth, plain words, careful talk, body language, slow speech, face hearing-impaired, time, calm.</li>
-<li>Do this: Hand a notebook to a partner and say you are transferring care. You did it right if you gave a verbal report and said the PCR is done.</li>
-</ul>
-</section>
-</article>
-<hr>
-<article id="ch5">
-<h1>Chapter 5 — Terms</h1>
-<h2>Building words <span class="tag">NREMT</span></h2>
-<p>A medical word is a prefix, a root, often an o just to say it, and a suffix. Prefixes: tachy (fast), brady (slow), hyper (high), hypo (low), a/an (without), dys (hard, painful, or abnormal), pre and post. Roots: cardi heart, hepat liver, nephr kidney, neur nerve, psych mind, thorac chest. Suffixes: itis, pathy, algia, ectomy, megaly, ology, osis, emia, pnea, phagia. Numbers and colors as in the key. Practice builds only from that list: tachycardia is fast heart, bradypnea is slow breathing, hepatitis is liver inflammation, hypoglycemia is low sugar in the blood, bilateral is two sides, cyanosis is a blue abnormal look.</p>
-<h2>Map of the body <span class="tag">NREMT</span></h2>
-<p>Left and right are the patient’s. Superior toward the head, inferior toward the feet, anterior/ventral front, posterior/dorsal back, medial in, lateral out, proximal closer to the trunk, distal farther, superficial near the skin, deep farther in. Stand them in anatomical position in your head: face you, arms at sides, palms forward. Movement words: flex, extend, abduct, adduct, rotate, circumduct, palm up or down, toes down or up. Positions you write: supine, prone, recovery on the side, Fowler about 45–90, semi-Fowler about 30–45, Trendelenburg rare (feet up), shock position older and use caution. Chart how you found them and how you transported.</p>
-<section class="prac">
-<h2>Practice</h2>
-<ul>
-<li>Do this: Split tachycardia and bradypnea out loud. You did it right if tachy-cardi is fast heart and brady-pnea is slow breathing.</li>
-<li>Do this: Point on your own body: superior, inferior, medial, lateral, proximal, distal. You did it right if left/right were the patient’s and proximal was toward the trunk.</li>
-<li>Do this: Lie supine, then roll to recovery, then sit Fowler. You did it right if you named each position as you moved.</li>
-<li>Do this: Flex and extend an elbow, then abduct and adduct an arm. You did it right if abduct went away from midline.</li>
-<li>Do this: Color drill: cyan, erythr, leuk, jaund. You did it right if blue, red, white, yellow.</li>
-<li>Do this: Write found supine, transported semi-Fowler on a scrap. You did it right if both positions are there.</li>
-</ul>
-</section>
-</article>
-<hr>
-<article id="ch6">
-<h1>Chapter 6 — Body (skeleton)</h1>
-<h2>Map first <span class="tag">NREMT</span></h2>
-<p>Anatomy is what it looks like. Physiology is how it works. Topographic anatomy is the surface landmarks you use to find deeper stuff. Always start from anatomical position: standing, facing you, arms at sides, palms forward. Sagittal cuts left and right (midsagittal is equal halves). Coronal or frontal cuts front and back. Transverse, horizontal, or axial cuts top and bottom — a cross-section. Life stacks: cells, tissues, organs, systems, the whole person.</p>
-<h2>Why you do ABC <span class="tag">NREMT</span></h2>
-<p>Cells need oxygen, glucose, water and nutrients. Oxygen plus sugar makes energy (ATP), carbon dioxide, water, and heat. Brain cells die fast without oxygen or sugar. Skin lasts longer. That is why airway, breathing, and circulation come first.</p>
-<h2>Skeleton only <span class="tag">NREMT</span></h2>
-<p>This chapter stopped at bone. The skeleton gives shape and support, protects organs, moves with muscle, stores calcium, and makes blood in marrow. An adult has 206 bones. The spine is 33 vertebrae: 7 cervical, 12 thoracic, 5 lumbar, 5 fused in the sacrum, 4 fused in the coccyx. The cranium list is frontal, two parietal, and occipital. The face has 14 bones; the list includes nasal, zygoma, maxilla, and mandible. Twelve pairs of ribs and one sternum. Shoulder is clavicle and scapula. Arm is humerus, radius, ulna, carpals, metacarpals, phalanges. Pelvis is ilium, ischium, pubis on each side and it can bleed the most. Leg is femur, patella, tibia, fibula, tarsals, metatarsals, phalanges.</p>
-<section class="prac">
-<h2>Practice</h2>
-<ul>
-<li>Do this: Stand in anatomical position and say it. You did it right if face forward, arms at sides, palms forward.</li>
-<li>Do this: Slice the air three ways: sagittal, coronal, transverse. You did it right if left-right, front-back, top-bottom.</li>
-<li>Do this: Count the spine on your fingers: 7, 12, 5, 5 fused, 4 fused. You did it right if the total is 33.</li>
-<li>Do this: Tap your pelvis and say why it matters in trauma. You did it right if you said highest bleed potential.</li>
-<li>Do this: Name the four skull bones, then the four face bones. You did it right if cranium is frontal, two parietal, occipital, and face includes nasal, zygoma, maxilla, mandible.</li>
-<li>Do this: Say why ABC beats skin care using the brain vs skin line. You did it right if brain dies fast without oxygen or sugar.</li>
-</ul>
-</section>
-</article>
-<hr>
-<article id="circ">
-<h1>Saturday morning — Circulation and airway</h1>
-<h2>Pump, pipes, fluid <span class="tag">NREMT</span></h2>
-<p>Saturday morning was circulation, then airway. Three parts must work: pump, pipes, fluid. Fail one and you lose blood pressure and delivery of oxygen and sugar. Two loops: pulmonary to the lungs, systemic to the body. The heart is cardiac muscle and makes its own electricity, so unconscious does not mean the heart stopped. Blood comes deoxygenated into the right atrium, right ventricle, lungs, then oxygenated left atrium, left ventricle, body. Left wall is thicker. Weak left backs up into the lungs. Valves in order: tricuspid, pulmonic, mitral (bicuspid), aortic. Heart sounds are valves slamming. SA node in the right atrium is the primary pacemaker. AV node waits a beat so the ventricles fill. Arteries go away. Pulmonary arteries and fetal umbilical arteries are the deoxygenated exceptions. Coronaries off the aorta feed the heart muscle. Chamber blood does not.</p>
-<h2>Numbers and bleeds <span class="tag">NREMT</span></h2>
-<p>Resting adult rate 60–100, average 70. Fast is tachycardia, slow is bradycardia. Athletes can live in the 40s. Stroke volume is one squeeze. Cardiac output is that times rate. Example 80 mL times 70 is 5.6 liters a minute, about the whole tank. You cannot measure stroke volume on scene so you use blood pressure, skin, and how they think. Preload is return fill. Bleed the floor and preload drops and they can faint. Brain wants oxygen, sugar, and temperature. Afterload is how tight the pipes are. Squeeze raises pressure. Open pipes drop it. Anaphylaxis opens them. Epi’s job here is a hard squeeze. Arterial blood is bright and spurts. Venous is darker and oozes. Pulse sites: neck, wrist, groin, brachial on the humerus, top of the foot, behind the ankle bump. Three reasons: dead or not, rate, and past an injury.</p>
-<h2>Belly and airway <span class="tag">NREMT</span></h2>
-<p>Solid organs bleed. Hollow organs spill infection. Quadrants cross at the navel. Spleen is left upper and handles old red cells, about 120 days. Liver detoxes and can bleed a lot. Scene still first. Adult: patient first. Child: parent first if present. Airway that morning: tongue is the usual block. Medical open is head-tilt chin-lift. Trauma is jaw thrust. OPA if no gag. NPA if gag, measure nose to earlobe. SpO2 at least 94%. Cannula 2–6, non-rebreather 10–15, bag at 15 if they cannot breathe enough. Suction only while coming out; that morning the clock was 15/10/5. Unconscious and breathing goes on the side. Distress still moves air. Arrest does not.</p>
-<section class="prac">
-<h2>Practice</h2>
-<ul>
-<li>Do this: Draw pump, pipes, fluid on a napkin and X one out. You did it right if you said any one fail kills circulation.</li>
-<li>Do this: Feel your radial pulse and say the three uses. You did it right if you named dead-or-CPR, rate, and distal to injury.</li>
-<li>Do this: Trace blood with a finger: right atrium, right ventricle, lungs, left atrium, left ventricle, body. You did it right if you did not skip the lungs.</li>
-<li>Do this: On a partner, show head-tilt chin-lift then jaw thrust. You did it right if jaw thrust did not tilt the head.</li>
-<li>Do this: Point LUQ and say spleen, solid, bleed. You did it right if left is the patient’s left and solid equals bleed.</li>
-<li>Do this: Say adult vs child first contact. You did it right if adult is the patient and child is the parent if present.</li>
-<li>Do this: Recite Saturday device flows: 2–6, 10–15, bag 15. You did it right if cannula, non-rebreather, then bag for inadequate.</li>
-</ul>
-</section>
-</article>
-<hr>
-<article id="endo">
-<h1>Saturday — Endocrine, gut, nerves</h1>
-<h2>Epi package <span class="tag">NREMT</span></h2>
-<p>Afternoon was glands, nerves, then gut. Adrenal glands sit on the kidneys. Adrenaline is epinephrine. Alpha receptors squeeze vessels. Beta-1 is the heart, faster and harder. Beta-2 is the lungs, tubes open. Epi binds both families. Albuterol is a beta-2 drug. Beta blockers sit on beta-1 and block it. Baroreceptors live in two spots only: the aorta and the carotids. Chemoreceptors taste oxygen, carbon dioxide, sugar, and pH. The fight-or-flight look is non-specific — bleed, weak pump, or wide-open anaphylaxis all fire the same package.</p>
-<h2>Brain and cord <span class="tag">NREMT</span></h2>
-<p>Sympathetic steals blood from gut and sex to survive now. Parasympathetic is rest, digest, feed and breed. Central nervous system is brain and cord. Peripheral is everything else. Motor goes out, sensory comes in. Somatic is you moving on purpose. Autonomic is automatic. Brainstem (leave midbrain, pons, medulla lumped) runs blood pressure and breathing. Cerebrum is personality, seizures, strokes. Cerebellum is coordination. Broca’s in left frontal makes speech. Occipital sees. Temporal understands words. You recognize a stroke. You do not treat until a CT. Hypothalamus is temperature. RAS is the wake gate. CSF cushions. Fat neck veins mean backup. Flat veins mean empty. Phrenic nerves C3, 4, and 5 keep the diaphragm alive.</p>
-<h2>Gut and skin <span class="tag">NREMT</span></h2>
-<p>Homeostasis numbers: heart 60–100, breaths 12–20, sugar 80–120, SpO2 94–99. Burns: first superficial, second into dermis, third through all layers. Small bowel absorbs. Peristalsis is waves. Appendix is hollow off the large bowel. Pain: onset, better or worse, their word, where, radiation, patient’s sides. Pancreas sits mid-upper and can hurt the back. Insulin drops sugar. Glucagon raises it. Liver is solid in the right upper: detox, bile, clotting factors. That is where the 10:48 talk stopped.</p>
-<section class="prac">
-<h2>Practice</h2>
-<ul>
-<li>Do this: Point over each kidney and say adrenal, then alpha, beta-1, beta-2. You did it right if alpha is vessels, one heart, two lungs.</li>
-<li>Do this: Tap aorta and both carotids as the only baroreceptor homes. You did it right if you named exactly those two.</li>
-<li>Do this: Recite C3-4-5 keep the diaphragm alive. You did it right if high neck can stop breathing.</li>
-<li>Do this: Ask a partner the pain five: start, better/worse, word, where, move. You did it right if you never planted left arm.</li>
-<li>Do this: Show first, second, third degree on your forearm with words only. You did it right if first is epidermis, second into dermis, third all layers.</li>
-<li>Do this: Say insulin down, glucagon up, while pointing mid-upper belly to the back. You did it right if pancreas location and both hormones match.</li>
-<li>Do this: Recite 60–100, 12–20, 80–120, 94–99. You did it right if those are heart, breathing, sugar, SpO2.</li>
-</ul>
-</section>
-</article>
-<hr>
-<article id="rev">
-<h1>Saturday 11:27 review</h1>
-<h2>The review hour <span class="tag">NREMT</span></h2>
-<p>This was a recap of gut, glands, and shock. Clotting needs about a dozen factors. Miss one and there is no clot. Hemophilia patients do not clot. Pressure holds; you let go and they bleed again. Treatment is giving the missing factors. Liver makes bile for fat, stores extra sugar as glycogen, and can pull it back in an emergency, or extra sugar leaves in urine. Gallbladder is the green storage sac. Remove it and they still make bile but cannot store it, so fatty meals sit badly. Small bowel meets large bowel in the right lower quadrant. The appendix hangs off the start of the large bowel, so appendicitis hurts right lower. Large bowel climbs the right, crosses, drops the left, and exits midline. It pulls water. No large bowel means diarrhea.</p>
-<h2>Lymph to shock <span class="tag">NREMT</span></h2>
-<p>Lymph is a sewer with no heart. Movement and breathing push it. Plague was the only disease name in that recap. Hypothalamus bridges electricity to hormone and talks to the pituitary, the master gland. The two hormones you will live with are epinephrine and insulin. Insulin lets cells use glucose. Type 1 means the pancreas stops making it. Thyroid is metabolism. Parathyroid is calcium. Kidneys have three pipes: blood in, blood kept, urine out. They handle fluid, pH, and blood pressure by volume. Stones are usually calcium. After you fix life threats, check hands, feet, face, genitals. Cells burn oxygen and sugar into energy, carbon dioxide, water, and heat (98.6). Shock is hypoperfusion. They feel cold in a warm room. Blankets no matter why. Without oxygen they make lactic acid. That is anaerobic.</p>
-<section class="prac">
-<h2>Practice</h2>
-<ul>
-<li>Do this: Press on a partner’s forearm, hold, let go, and say the hemophilia lesson. You did it right if pressure holds and release bleeds again.</li>
-<li>Do this: Trace large bowel on your own belly: up right, across, down left, out. You did it right if appendix pain landed right lower.</li>
-<li>Do this: Point RUQ liver solid, LUQ spleen solid. You did it right if sides were the patient’s.</li>
-<li>Do this: Wrap a blanket around a sitting person and say shock equals hypoperfusion. You did it right if you said blankets no matter the cause.</li>
-<li>Do this: Name insulin’s job and type 1 in one breath. You did it right if insulin lets cells use sugar and type 1 is pancreas stopped.</li>
-<li>Do this: Three kidney pipes with three fingers. You did it right if blood in, blood kept, urine out.</li>
-<li>Do this: Say anaerobic means without oxygen and name lactic acid. You did it right if an- was without.</li>
-</ul>
-</section>
-</article>
-<hr>
-<article id="ch8">
-<h1>Chapter 8 — Moving patients</h1>
-<h2>Gear <span class="tag">NREMT</span></h2>
-<p>Afternoon was how you move people. Learn when each tool is right, not every brand name. The gurney is every transport. It is not for stairs or dirt. Head first because the head is heavier. Lock it to the floor. Everybody rides on it, not a bench if you can help it. Powered stretchers weigh 40–145 pounds empty. Two hands, front and back. Take a curb straight. A backboard is a full-body splint. Strap chest, hips, and legs. Use it for neck or back pain, numb or weak or paralyzed, unconscious trauma, or someone who cannot tell you the story. If they are too wide, the board can make things worse — justify it or call medical control. Log roll needs four, head runs the count, collar first, never lift by the head. Legs do the lift. Palms up about ten inches. Lift assist is more humans, not a second truck. A common two-person limit is about 250 pounds. Bariatric trouble is width. Keep the load low. Use a lift-gate or a ramp and a winch. Diamond carry is four sides. Stair chair is for the awake person with no spine worry when there is no elevator. Unconscious on stairs goes on a board, feet first down.</p>
-<h2>When to rush and how to lie <span class="tag">NREMT</span></h2>
-<p>Emergency move is seconds: fire, pulseless in a wreck, CPR. You may skip spine. Urgent is about a minute and the board will still be incomplete. Non-urgent is stable and you lift the least. Vest devices are rare sitting-car tools for the stable awake with a collar. Vacuum mattress for a very bent spine. Stokes for water and rope. Scoop for a hip. Isolette is the newborn box and usually not your patient. No medical reason means let them pick a comfortable position. Shock is lots of oxygen, warm, flat, leave now — not feet in the air. Pregnant past twenty weeks lies on the left so the uterus does not crush the big vessels. Unresponsive and breathing without a spine worry goes on the side. Hard breathing sits up. Restraints: five people, on the back, after you thought about oxygen, sugar, and head, and you write it. Gloves every time. Ask if the crew is strong enough. Stronger person takes the head.</p>
-<section class="prac">
-<h2>Practice</h2>
-<ul>
-<li>Do this: Power-grip a backpack palms up about 10 inches and lift with legs. You did it right if your back stayed tall and shoulders sat over your hips.</li>
-<li>Do this: Four people log-roll a willing partner. Head counts. Collar words first. You did it right if nobody lifted by the head.</li>
-<li>Do this: Say emergency vs urgent vs non-urgent with one example each. You did it right if emergency is seconds and may skip spine.</li>
-<li>Do this: Place a pillow person left-side and say why after 20 weeks. You did it right if you named the big-vessel sandwich.</li>
-<li>Do this: Recite shock four while tucking a blanket. You did it right if oxygen, warm, flat, rapid ride — no feet up.</li>
-<li>Do this: Point at stairs and pick chair vs board. You did it right if chair is awake no-spine and board is unconscious feet first.</li>
-<li>Do this: Ask out loud are we strong enough? before a fake lift. You did it right if taller/stronger took the head.</li>
-<li>Do this: Five-count a supine restraint and say never prone. You did it right if you also said write it and watch ABCs.</li>
-</ul>
-</section>
-</article>
-<hr>
-<article id="ch9">
-<h1>Chapter 9 — Patient assessment</h1>
-<h2>The flow <span class="tag">NREMT</span></h2>
-<p>Chapter 9 is the whole job in five pieces: scene, primary, history, secondary, reassess. Primary is the biggest test slice, about 35–45 percent. It starts when you get eyes on. Seven steps: impression, how awake, airway, breathing, circulation, a fast trauma scan, then go or stay. Rule: find a life threat, treat that life threat. First impression question is could they be dead. If maybe, find a pulse and start CPR. A mute stroke can fool you. Bright spurting blood is now, not later on the sheet.</p>
-<h2>Safety and AVPU <span class="tag">NREMT</span></h2>
-<p>Safety order is you, crew, bystanders, patient. BSI then scene. Skip either and the skill sheet dies. Park 100 feet. First truck makes a wall before the wreck. Second parks past it. MOI is the crash story. NOI is the illness. Many people with the same complaint is hazmat — stay out. More than one patient is an MCI, but this block is one patient. Six lines every time: BSI, safety, MOI or NOI, count, extra help, think C-spine. AVPU: A is looking around. V answers your hello. P only if they need pain. U is nothing. Then A&amp;O times 4 if they are A. Miss a piece and you lean implied consent unless the miss is just I am not from here.</p>
-<h2>Airway through priority <span class="tag">NREMT</span></h2>
-<p>Talking or crying means the airway is good. Unconscious means assume the tongue. Open medical with a head tilt. Open trauma with a jaw thrust. Four steps: open, assess, clear, maintain. Gurgling is suction. Adult slow under 8 almost always needs a bag. Fast over 28 is a maybe. Pulse: wrist if awake, neck if an adult or child is out, brachial if an infant is out. Cap refill under two seconds is good and matters on kids. Pressure first on a bleed. Tourniquet toward the body on a limb that will not stop. Never on a neck. Sixty seconds of trauma-naked only on critical trauma. Priority is high or low. High rides now. Golden hour is injury to the operating room. Platinum 10 is your on-scene clock.</p>
-<h2>History and Sunday exam <span class="tag">NREMT</span></h2>
-<p>History is OPQRST for today and SAMPLE for the wider past. Open questions first. No historians means skip to the exam. Sunday added how you ask about drugs (twice, then drop it), how you report abuse without accusing, and pregnancy questions on lower belly pain. Secondary is look, listen, feel. Focused if they can point to one part. Full head-to-toe if they are out or the mechanism is big. DCAP-BTLS is the injury alphabet. Breath sounds split upper (you hear them in the room) and lower (stethoscope). First blood pressure is manual. Cuff size lies if wrong. GCS example: eyes to sound, confused, localizes is 12. Sugar 80–120. Pulse ox 94–99 and carbon monoxide can fake 100. After the impression come meds, but oxygen and breathing still go first. Reassess every five if they are crashing, every fifteen if they are stable. A huge change sends you back to primary. On the test, call for permission before a drug unless the stem already gave the order.</p>
-<section class="prac">
-<h2>Practice</h2>
-<ul>
-<li>Do this: Say the six scene lines while putting on gloves. You did it right if BSI and safety were first and C-spine was last of the six.</li>
-<li>Do this: Walk AVPU on a willing person. Stop at V. Do not cause pain. You did it right if you never did a sternal rub on an answering person.</li>
-<li>Do this: Ask A&amp;O times 4: name, where, year, president. You did it right if a miss made you say implied consent unless the miss was circumstantial.</li>
-<li>Do this: Show jaw thrust vs head tilt on a pillow. You did it right if trauma did not tilt the neck.</li>
-<li>Do this: Press a fingernail for cap refill and say under two vs over two. You did it right if over two was delayed and a kid shock clue.</li>
-<li>Do this: Mime direct pressure, then a proximal tourniquet on a thigh. You did it right if neck was never an option.</li>
-<li>Do this: Recite OPQRST then SAMPLE out loud without notes. You did it right if Quality was their word and Time was when it started.</li>
-<li>Do this: Time a 60-second rapid scan on a clothed partner without stripping them. You did it right if you said trauma-naked is only for critical trauma.</li>
-<li>Do this: Score GCS: eyes to sound, confused, localizes. You did it right if you said 3+4+5=12.</li>
-<li>Do this: Set a phone timer and say critical reassess every 5, stable every 15. You did it right if a fake collapse sent you back to primary.</li>
-<li>Do this: Ask drugs twice, then chart denies. You did it right if the second ask was no judgment and you dropped it.</li>
-<li>Do this: Size an imaginary cuff on an upper arm (about two-thirds). You did it right if too big meant a falsely low number.</li>
-</ul>
-</section>
-</article>
-<hr>
-<article id="air">
-<h1>Airway and oxygen</h1>
-<h2>How air works <span class="tag">NREMT</span></h2>
-<p>Sunday started with why breathing matters. After you are safe and they are alive, airway is first unless a huge bleed is already spraying in your face. Upper airway sits above the voice box and warms, filters, and humidifies. The epiglottis is the lid. Lower airway is the gas-exchange tree down to grape-sac alveoli. The phrenic nerve at C3, 4, and 5 runs the diaphragm. High neck injuries can steal the breath. Ventilation is the bellows. Respiration is the swap. Oxygenation is seats on hemoglobin. Then the pump. Inhale makes a vacuum. We cannot, so we push, and some air can hit the stomach. Watch chest rise for volume. Bag only until it rises. The brain mostly drives on high carbon dioxide. Adequate adult air is 12–20 with real rise and quiet equal lungs — they can still look blue. Inadequate means you take over. Pattern names: agonal with CPR, Cheyne–Stokes with a wave and a pause, ataxic with no pattern, Kussmaul deep and fast for acid — do not crush that on purpose. Oxygen if the number is under 94, they say they cannot breathe, or they look like shock. The probe can take a minute and it can lie.</p>
-<h2>Open and suction <span class="tag">NREMT</span></h2>
-<p>Talking or a screaming kid means the path is open. Unconscious means the tongue. You work from the crown with them on their back. Head tilt only when the story has no spine. Unknown means jaw thrust and you are stuck holding it. Look and listen before you count breaths. Gurgling or visible junk is suction. If the machine is not up, roll them and use gravity. Aspiration is ugly math on top of the first problem. Rigid tube for the mouth. Measure like an oral airway. Suction off on the way in, circles out, until clear up to ten seconds for every age. Then give them oxygen. If they are still dirty, bag two minutes and suction ten again. Pushing a little junk is bad. No air at all is death. Sunday retired the old 15/10/5 clock.</p>
-<h2>Tubes, tanks, masks, choke <span class="tag">NREMT</span></h2>
-<p>Maintain means keep the tongue up when you let go. Oral airway if they are fully out and have no gag. Measure mouth to ear or jaw. Twist 180 or 90. Gag means out and get ready to suction. Nasal airway if they still gag and the face and head are not smashed. Bevel to the middle wall, flush to the nostril. Head trauma plus a gag means hold the jaw and wait for ALS. Tanks stay in a hand or on their side. D is portable, H is the house tank, about 2,000 psi full. Any face mask is 10–15 liters. Non-rebreather is the test favorite for someone who still breathes enough. Cannula is 1–6. Bag is a tight seal and 100 percent. Adult every six seconds. Kids every two to three. Unconscious plus good rate and rise is not an automatic bag. CPAP is a tight blowing mask for lung water in a talking, sitting person with a blood pressure of at least 90. Trauma and vomit take it off the table. Mild choke: they still move air, hands off. Severe: five backs and five abdominals for adult and child, infant backs and chests, unresponsive goes to CPR.</p>
-<section class="prac">
-<h2>Practice</h2>
-<ul>
-<li>Do this: Watch a chest and say ventilation, respiration, oxygenation, circulation in order. You did it right if good rise plus blue made you blame swap or pump, not the bellows.</li>
-<li>Do this: Bag a pillow: squeeze only until it rises, then stop. You did it right if you did not chase half a bag.</li>
-<li>Do this: Pick head tilt vs jaw thrust for bed vs sidewalk. You did it right if sidewalk was jaw thrust and you did not let go.</li>
-<li>Do this: Measure a straw from mouth corner to earlobe, mime suction off in, circles out, ten seconds. You did it right if all ages were ten seconds and you said bag two minutes if still dirty.</li>
-<li>Do this: Size an OPA on a manikin or your own face landmarks, then an NPA nose to ear. You did it right if OPA was no-gag only and NPA skipped any head or face trauma.</li>
-<li>Do this: Say no OPA and no NPA for gag plus face trauma, hold the jaw. You did it right if you asked for a paramedic airway.</li>
-<li>Do this: Lay a water bottle on its side and call it a tank that must not stand free. You did it right if you named missile and pin index oxygen-only.</li>
-<li>Do this: Count adult bagging out loud: one every 6 seconds for a minute. You did it right if you landed about 10 breaths and each squeeze was about one second.</li>
-<li>Do this: Recite CPAP yes (talking, sitting, fluid, pressure at least 90) and three nos. You did it right if vomit, trauma, or wanting to lie down were nos.</li>
-<li>Do this: On a standing partner, mime 5 back blows and 5 abdominal thrusts, then infant 5 and 5 chest on a doll. You did it right if mild choke stayed hands-off and unresponsive became CPR.</li>
-</ul>
-</section>
-</article>
-<hr>
-</main></body></html>
+</article></main></body></html>
