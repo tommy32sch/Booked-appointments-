@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sunday 1:46 — O2 devices / BVM / CPAP / choke (from recap)</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sunday 1:46 — O2 devices / BVM / CPAP</h1>
+  <div class="sub">Recap only · you/your · 28 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":"two","q":"Before you pick a mask or a bag, which two questions does this recap want first?","opts":[{"t":"What color is the tank, and is the pin index green","ok":false,"why":"First: is the path open and clear. Second: is rate, rhythm, and quality adequate. Devices come after those answers."},{"t":"Is the path open and clear, and are they moving air well enough","ok":true,"why":"First: is the path open and clear. Second: is rate, rhythm, and quality adequate. Devices come after those answers."},{"t":"Do they have home oxygen, and what is their favorite mask","ok":false,"why":"First: is the path open and clear. Second: is rate, rhythm, and quality adequate. Devices come after those answers."},{"t":"Only whether the sat is exactly 100%","ok":false,"why":"First: is the path open and clear. Second: is rate, rhythm, and quality adequate. Devices come after those answers."}]},{"ch":"split","q":"Path is open. They are breathing well but look short of breath. Path is open. They are not breathing well. What pair matches this recap?","opts":[{"t":"Cannula both times because they still have a pulse","ok":false,"why":"Adequate + need for O\u2082 \u2192 supplemental, usually NRB. Inadequate or apneic \u2192 bag. Wet lungs, still breathing, may be CPAP if they qualify."},{"t":"High-flow mask for the first; positive-pressure bag for the second","ok":true,"why":"Adequate + need for O\u2082 \u2192 supplemental, usually NRB. Inadequate or apneic \u2192 bag. Wet lungs, still breathing, may be CPAP if they qualify."},{"t":"CPAP for both, even if they are apneic","ok":false,"why":"Adequate + need for O\u2082 \u2192 supplemental, usually NRB. Inadequate or apneic \u2192 bag. Wet lungs, still breathing, may be CPAP if they qualify."},{"t":"No oxygen until they ask for it","ok":false,"why":"Adequate + need for O\u2082 \u2192 supplemental, usually NRB. Inadequate or apneic \u2192 bag. Wet lungs, still breathing, may be CPAP if they qualify."}]},{"ch":"nrb","q":"Test-world default when they breathe well enough but are hypoxic or in distress?","opts":[{"t":"Prongs at 1 L/min because they can still talk","ok":false,"why":"Registry almost always wants the reservoir mask at 10\u201315 L/min over prongs. About 90\u201395% from the bag, flaps keep exhaled air from coming back."},{"t":"Reservoir mask at 10\u201315 L/min","ok":true,"why":"Registry almost always wants the reservoir mask at 10\u201315 L/min over prongs. About 90\u201395% from the bag, flaps keep exhaled air from coming back."},{"t":"Bag them at 2 L/min with no seal","ok":false,"why":"Registry almost always wants the reservoir mask at 10\u201315 L/min over prongs. About 90\u201395% from the bag, flaps keep exhaled air from coming back."},{"t":"Venturi only, because EMS always carries it","ok":false,"why":"Registry almost always wants the reservoir mask at 10\u201315 L/min over prongs. About 90\u201395% from the bag, flaps keep exhaled air from coming back."}]},{"ch":"nrbwho","q":"Who can wear a non-rebreather in this recap?","opts":[{"t":"Only people who are fully alert","ok":false,"why":"Awake or out is fine. The gate is adequate spontaneous breathing, not AVPU."},{"t":"Awake or out \u2014 as long as they are still taking adequate breaths on their own","ok":true,"why":"Awake or out is fine. The gate is adequate spontaneous breathing, not AVPU."},{"t":"Only apneic patients","ok":false,"why":"Awake or out is fine. The gate is adequate spontaneous breathing, not AVPU."},{"t":"Nobody with a sat under 94%","ok":false,"why":"Awake or out is fine. The gate is adequate spontaneous breathing, not AVPU."}]},{"ch":"nrbind","q":"Adequate rate, rhythm, and quality. Which extra finding still gets the high-flow mask?","opts":[{"t":"Sat 99%, looks comfortable, no shock","ok":false,"why":"Still put the NRB on for difficulty breathing, sat under 94%, or shock signs \u2014 even though they are ventilating well."},{"t":"Hard work of breathing, sat 91%, or they look shocked","ok":true,"why":"Still put the NRB on for difficulty breathing, sat under 94%, or shock signs \u2014 even though they are ventilating well."},{"t":"Only if they already own a Venturi at home","ok":false,"why":"Still put the NRB on for difficulty breathing, sat under 94%, or shock signs \u2014 even though they are ventilating well."},{"t":"Only if they are apneic","ok":false,"why":"Still put the NRB on for difficulty breathing, sat under 94%, or shock signs \u2014 even though they are ventilating well."}]},{"ch":"high","q":"Why does this recap start oxygen high instead of creeping up from 1 L?","opts":[{"t":"Toxicity kills in the first 10 seconds","ok":false,"why":"Too little oxygen is the immediate killer. Toxicity is the longer-term problem, so you start high."},{"t":"Starving them of oxygen is the now-problem; extra oxygen trouble shows up later","ok":true,"why":"Too little oxygen is the immediate killer. Toxicity is the longer-term problem, so you start high."},{"t":"The tank only works at 1 L/min","ok":false,"why":"Too little oxygen is the immediate killer. Toxicity is the longer-term problem, so you start high."},{"t":"National Registry forbids anything over 6 L","ok":false,"why":"Too little oxygen is the immediate killer. Toxicity is the longer-term problem, so you start high."}]},{"ch":"nc","q":"Cannula numbers from this recap?","opts":[{"t":"10\u201315 L/min and about 90\u201395%","ok":false,"why":"Prongs are 1\u20136 L/min, about 24\u201344%. One liter is about 24% (room air 21%). Six liters is about 44%."},{"t":"1\u20136 L/min and about 24\u201344%","ok":true,"why":"Prongs are 1\u20136 L/min, about 24\u201344%. One liter is about 24% (room air 21%). Six liters is about 44%."},{"t":"2\u20133 seconds per breath for every adult","ok":false,"why":"Prongs are 1\u20136 L/min, about 24\u201344%. One liter is about 24% (room air 21%). Six liters is about 44%."},{"t":"Always 15 L because the nose can take it","ok":false,"why":"Prongs are 1\u20136 L/min, about 24\u201344%. One liter is about 24% (room air 21%). Six liters is about 44%."}]},{"ch":"ncburn","q":"What happens if you push prongs past 6 L/min?","opts":[{"t":"You automatically hit 100% oxygen","ok":false,"why":"Above 6 L dries and burns the nose. Street settings are usually 2\u20134 L/min."},{"t":"The nose gets very dry and irritated","ok":true,"why":"Above 6 L dries and burns the nose. Street settings are usually 2\u20134 L/min."},{"t":"You convert it into a bag-valve device","ok":false,"why":"Above 6 L dries and burns the nose. Street settings are usually 2\u20134 L/min."},{"t":"National Registry requires that setting on every call","ok":false,"why":"Above 6 L dries and burns the nose. Street settings are usually 2\u20134 L/min."}]},{"ch":"ncwhen","q":"When does this recap actually like a cannula?","opts":[{"t":"Apnea, or sat 70% and gasping \u2014 test default","ok":false,"why":"Mostly street: mild hypoxia (example 92% and comfortable), minor shortness of breath, or home-O\u2082 users who do not need high flow. Test rarely picks it."},{"t":"Mild hypoxia or a small bump \u2014 more street than test","ok":true,"why":"Mostly street: mild hypoxia (example 92% and comfortable), minor shortness of breath, or home-O\u2082 users who do not need high flow. Test rarely picks it."},{"t":"Every shock patient instead of an NRB","ok":false,"why":"Mostly street: mild hypoxia (example 92% and comfortable), minor shortness of breath, or home-O\u2082 users who do not need high flow. Test rarely picks it."},{"t":"Fluid in the lungs with a BP of 70","ok":false,"why":"Mostly street: mild hypoxia (example 92% and comfortable), minor shortness of breath, or home-O\u2082 users who do not need high flow. Test rarely picks it."}]},{"ch":"prb","q":"Partial rebreather vs non-rebreather in this recap?","opts":[{"t":"Same flaps, but you run it at 1 L/min","ok":false,"why":"It is an NRB with the side flaps gone. Face mask still means 10\u201315 L/min. About 80\u201390% because more room air gets in. Rare; sometimes panic/hyperventilation talk."},{"t":"Flaps off, still 10\u201315 L/min, a bit more room air, about 80\u201390%","ok":true,"why":"It is an NRB with the side flaps gone. Face mask still means 10\u201315 L/min. About 80\u201390% because more room air gets in. Rare; sometimes panic/hyperventilation talk."},{"t":"It is the only legal infant bag","ok":false,"why":"It is an NRB with the side flaps gone. Face mask still means 10\u201315 L/min. About 80\u201390% because more room air gets in. Rare; sometimes panic/hyperventilation talk."},{"t":"You use it for every wet-lung CPAP candidate","ok":false,"why":"It is an NRB with the side flaps gone. Face mask still means 10\u201315 L/min. About 80\u201390% because more room air gets in. Rare; sometimes panic/hyperventilation talk."}]},{"ch":"vent","q":"Venturi mask from this recap \u2014 what is it for, and do you carry it?","opts":[{"t":"Random high flow on every trauma; every truck has one","ok":false,"why":"Color adapters lock a flow and a precise percent (24, 28, 32\u2026). Long-term controlled O\u2082. Rarely on the ambulance; you may find one already on in a facility."},{"t":"Color adapters for a set percent; long-term control; rarely on the truck","ok":true,"why":"Color adapters lock a flow and a precise percent (24, 28, 32\u2026). Long-term controlled O\u2082. Rarely on the ambulance; you may find one already on in a facility."},{"t":"It replaces the bag when they are apneic","ok":false,"why":"Color adapters lock a flow and a precise percent (24, 28, 32\u2026). Long-term controlled O\u2082. Rarely on the ambulance; you may find one already on in a facility."},{"t":"It is the same as 5 back blows","ok":false,"why":"Color adapters lock a flow and a precise percent (24, 28, 32\u2026). Long-term controlled O\u2082. Rarely on the ambulance; you may find one already on in a facility."}]},{"ch":"trach","q":"Trach mask and humidified oxygen \u2014 which is true here?","opts":[{"t":"Trach mask is 1 L/min only; every portable tank is humidified","ok":false,"why":"Treat a trach mask like a face mask \u2014 10\u201315 L/min if you run it high-flow. Humidified (bubble through sterile water) is mostly long-term; portable tanks often do not have it."},{"t":"Treat the trach mask like a face mask at 10\u201315 if high-flow; humidified is mostly long-term and often missing on portables","ok":true,"why":"Treat a trach mask like a face mask \u2014 10\u201315 L/min if you run it high-flow. Humidified (bubble through sterile water) is mostly long-term; portable tanks often do not have it."},{"t":"Humidified oxygen is required before every NRB","ok":false,"why":"Treat a trach mask like a face mask \u2014 10\u201315 L/min if you run it high-flow. Humidified (bubble through sterile water) is mostly long-term; portable tanks often do not have it."},{"t":"A trach mask is the same as CPAP","ok":false,"why":"Treat a trach mask like a face mask \u2014 10\u201315 L/min if you run it high-flow. Humidified (bubble through sterile water) is mostly long-term; portable tanks often do not have it."}]},{"ch":"bvmwho","q":"Who gets the bag in this recap?","opts":[{"t":"Anyone talking in full sentences with a sat of 96%","ok":false,"why":"Bag for apnea or inadequate breathing \u2014 too slow, too fast, shallow, poor chest rise. Rate/rhythm/quality not enough."},{"t":"Not breathing at all, or rate/rhythm/quality is not enough","ok":true,"why":"Bag for apnea or inadequate breathing \u2014 too slow, too fast, shallow, poor chest rise. Rate/rhythm/quality not enough."},{"t":"Only mild coughers you are encouraging","ok":false,"why":"Bag for apnea or inadequate breathing \u2014 too slow, too fast, shallow, poor chest rise. Rate/rhythm/quality not enough."},{"t":"Only home-oxygen users who look comfortable","ok":false,"why":"Bag for apnea or inadequate breathing \u2014 too slow, too fast, shallow, poor chest rise. Rate/rhythm/quality not enough."}]},{"ch":"bvmflow","q":"Bag sizes and tank flow from this recap?","opts":[{"t":"Infant bags stay at 2 L/min; adults get 15 only","ok":false,"why":"Adult, child, and infant bags all get 10\u201315 L/min. A tight seal is close to 100%. Only how often you squeeze changes."},{"t":"Adult, child, and infant bags \u2014 same 10\u201315 L/min on the tank","ok":true,"why":"Adult, child, and infant bags all get 10\u201315 L/min. A tight seal is close to 100%. Only how often you squeeze changes."},{"t":"Flow is 1\u20136 L on every bag","ok":false,"why":"Adult, child, and infant bags all get 10\u201315 L/min. A tight seal is close to 100%. Only how often you squeeze changes."},{"t":"You never attach oxygen to a bag","ok":false,"why":"Adult, child, and infant bags all get 10\u201315 L/min. A tight seal is close to 100%. Only how often you squeeze changes."}]},{"ch":"bvmrate","q":"How often do you squeeze the bag?","opts":[{"t":"Adult every 2 seconds; infant once a minute","ok":false,"why":"Adult: every 6 seconds (10/min). Child and infant: every 2\u20133 seconds (20\u201330/min). About a 1-second squeeze until you see rise."},{"t":"Adult every 6 seconds (10/min); child and infant every 2\u20133 seconds (20\u201330/min)","ok":true,"why":"Adult: every 6 seconds (10/min). Child and infant: every 2\u20133 seconds (20\u201330/min). About a 1-second squeeze until you see rise."},{"t":"Same 60 squeezes a minute for every age","ok":false,"why":"Adult: every 6 seconds (10/min). Child and infant: every 2\u20133 seconds (20\u201330/min). About a 1-second squeeze until you see rise."},{"t":"Only when the sat reads 100%","ok":false,"why":"Adult: every 6 seconds (10/min). Child and infant: every 2\u20133 seconds (20\u201330/min). About a 1-second squeeze until you see rise."}]},{"ch":"bvmbad","q":"You empty the bag hard and fast. What can you cause?","opts":[{"t":"A perfect seal and a higher blood pressure","ok":false,"why":"Air in the stomach \u2192 vomit and aspiration. Extra chest pressure squeezes the heart and great vessels \u2192 pressure drops. Too fast and too hard can drive hypotension or arrest."},{"t":"Stomach air (then vomit) and a drop in blood pressure from extra chest pressure","ok":true,"why":"Air in the stomach \u2192 vomit and aspiration. Extra chest pressure squeezes the heart and great vessels \u2192 pressure drops. Too fast and too hard can drive hypotension or arrest."},{"t":"It converts the bag into CPAP automatically","ok":false,"why":"Air in the stomach \u2192 vomit and aspiration. Extra chest pressure squeezes the heart and great vessels \u2192 pressure drops. Too fast and too hard can drive hypotension or arrest."},{"t":"Nothing \u2014 harder is always better","ok":false,"why":"Air in the stomach \u2192 vomit and aspiration. Extra chest pressure squeezes the heart and great vessels \u2192 pressure drops. Too fast and too hard can drive hypotension or arrest."}]},{"ch":"cpap","q":"What is CPAP doing in the lungs in this recap?","opts":[{"t":"Sucking fluid in so they can drown faster","ok":false,"why":"Constant high-pressure air they breathe against. Back-pressure in the alveoli shoves fluid aside \u2014 useful in pulmonary edema. Car-window-at-70 picture."},{"t":"Steady pressure they exhale against, pushing fluid out of the way in the air sacs","ok":true,"why":"Constant high-pressure air they breathe against. Back-pressure in the alveoli shoves fluid aside \u2014 useful in pulmonary edema. Car-window-at-70 picture."},{"t":"Replacing compressions in arrest","ok":false,"why":"Constant high-pressure air they breathe against. Back-pressure in the alveoli shoves fluid aside \u2014 useful in pulmonary edema. Car-window-at-70 picture."},{"t":"Delivering 1 L/min through prongs","ok":false,"why":"Constant high-pressure air they breathe against. Back-pressure in the alveoli shoves fluid aside \u2014 useful in pulmonary edema. Car-window-at-70 picture."}]},{"ch":"cpapyes","q":"Who is an EMT-level CPAP candidate here?","opts":[{"t":"Unconscious, apneic, BP 70, wrecked face","ok":false,"why":"Alert, follows commands, protects the airway. Severe distress, typically wet lungs, still breathing. Often when NRB is not enough and they are still working."},{"t":"Alert, follows commands, wet-lung distress, still breathing on their own","ok":true,"why":"Alert, follows commands, protects the airway. Severe distress, typically wet lungs, still breathing. Often when NRB is not enough and they are still working."},{"t":"Any mild cough you are coaching","ok":false,"why":"Alert, follows commands, protects the airway. Severe distress, typically wet lungs, still breathing. Often when NRB is not enough and they are still working."},{"t":"Every trauma with a suspected pneumothorax","ok":false,"why":"Alert, follows commands, protects the airway. Severe distress, typically wet lungs, still breathing. Often when NRB is not enough and they are still working."}]},{"ch":"cpapno","q":"Hard no for CPAP from this recap?","opts":[{"t":"Sat 90% but they follow commands, sit up, BP 140, no vomit, medical wet lungs","ok":false,"why":"Skip CPAP if apneic/hypoventilating, cannot follow commands, cannot protect the airway, SBP under 90, trauma/pneumo, cannot tolerate the mask, vomit/GI bleed/nausea, or shock with low pressure."},{"t":"Apneic, cannot follow commands, SBP 82, trauma, or they are vomiting","ok":true,"why":"Skip CPAP if apneic/hypoventilating, cannot follow commands, cannot protect the airway, SBP under 90, trauma/pneumo, cannot tolerate the mask, vomit/GI bleed/nausea, or shock with low pressure."},{"t":"They look tired on an NRB but still talk and have a high pressure","ok":false,"why":"Skip CPAP if apneic/hypoventilating, cannot follow commands, cannot protect the airway, SBP under 90, trauma/pneumo, cannot tolerate the mask, vomit/GI bleed/nausea, or shock with low pressure."},{"t":"Only if the tank is green","ok":false,"why":"Skip CPAP if apneic/hypoventilating, cannot follow commands, cannot protect the airway, SBP under 90, trauma/pneumo, cannot tolerate the mask, vomit/GI bleed/nausea, or shock with low pressure."}]},{"ch":"cpapbp","q":"Why is a systolic under 90 a CPAP stop?","opts":[{"t":"CPAP always raises blood pressure","ok":false,"why":"CPAP raises pressure in the chest, which can drop blood pressure. Helpful for fluid-overloaded lungs. Harmful if they are already hypotensive."},{"t":"Extra pressure in the chest can drop their pressure further","ok":true,"why":"CPAP raises pressure in the chest, which can drop blood pressure. Helpful for fluid-overloaded lungs. Harmful if they are already hypotensive."},{"t":"It converts them to a mild choke","ok":false,"why":"CPAP raises pressure in the chest, which can drop blood pressure. Helpful for fluid-overloaded lungs. Harmful if they are already hypotensive."},{"t":"The flaps on an NRB fail under 90","ok":false,"why":"CPAP raises pressure in the chest, which can drop blood pressure. Helpful for fluid-overloaded lungs. Harmful if they are already hypotensive."}]},{"ch":"mild","q":"They are coughing, talking, moving air, grabbing at the throat a little. You do what?","opts":[{"t":"Immediate 5 abdominals because any grab is severe","ok":false,"why":"Mild: cough, speak, noise, air moving. Hands off. Encourage cough. You may add an NRB so the air they move is richer. Buy time."},{"t":"Stay off the belly, coach the cough, maybe add a high-flow mask","ok":true,"why":"Mild: cough, speak, noise, air moving. Hands off. Encourage cough. You may add an NRB so the air they move is richer. Buy time."},{"t":"Start CPR while they are still standing","ok":false,"why":"Mild: cough, speak, noise, air moving. Hands off. Encourage cough. You may add an NRB so the air they move is richer. Buy time."},{"t":"Put them on CPAP for the cough","ok":false,"why":"Mild: cough, speak, noise, air moving. Hands off. Encourage cough. You may add an NRB so the air they move is richer. Buy time."}]},{"ch":"sev","q":"Silent, blue, universal choking sign, still up. Adult or child. Updated sequence?","opts":[{"t":"Encourage cough only and walk away","ok":false,"why":"Cannot cough or speak, turning blue. Adults and children: 5 back blows, 5 abdominal thrusts, repeat until the object is out or they go down."},{"t":"Five backs, five abdominals, repeat","ok":true,"why":"Cannot cough or speak, turning blue. Adults and children: 5 back blows, 5 abdominal thrusts, repeat until the object is out or they go down."},{"t":"Five chest thrusts only, like an infant, forever","ok":false,"why":"Cannot cough or speak, turning blue. Adults and children: 5 back blows, 5 abdominal thrusts, repeat until the object is out or they go down."},{"t":"NRB at 1 L and wait","ok":false,"why":"Cannot cough or speak, turning blue. Adults and children: 5 back blows, 5 abdominal thrusts, repeat until the object is out or they go down."}]},{"ch":"inf","q":"Conscious infant, severe obstruction. Book sequence that did not change?","opts":[{"t":"Abdominal thrusts standing, same as an adult","ok":false,"why":"Face-down on your forearm, head supported: 5 back blows. Then 5 chest thrusts in the infant-CPR spot. Alternate 5 and 5 until out or limp."},{"t":"Five backs on the forearm, five chest thrusts, keep alternating","ok":true,"why":"Face-down on your forearm, head supported: 5 back blows. Then 5 chest thrusts in the infant-CPR spot. Alternate 5 and 5 until out or limp."},{"t":"CPAP on a trach mask","ok":false,"why":"Face-down on your forearm, head supported: 5 back blows. Then 5 chest thrusts in the infant-CPR spot. Alternate 5 and 5 until out or limp."},{"t":"Hands-off because infants always clear it","ok":false,"why":"Face-down on your forearm, head supported: 5 back blows. Then 5 chest thrusts in the infant-CPR spot. Alternate 5 and 5 until out or limp."}]},{"ch":"down","q":"They were choking and now they collapse. Next?","opts":[{"t":"Keep them standing for more abdominals","ok":false,"why":"Supine and start CPR. Compressions move blood and can help pop the object. Pulse or not \u2014 down from choking means compressions."},{"t":"On the back, start compressions","ok":true,"why":"Supine and start CPR. Compressions move blood and can help pop the object. Pulse or not \u2014 down from choking means compressions."},{"t":"CPAP because they might have wet lungs","ok":false,"why":"Supine and start CPR. Compressions move blood and can help pop the object. Pulse or not \u2014 down from choking means compressions."},{"t":"Nasal cannula at 6 L while you wait","ok":false,"why":"Supine and start CPR. Compressions move blood and can help pop the object. Pulse or not \u2014 down from choking means compressions."}]},{"ch":"dent","q":"Dentures while you are trying to seal a mask?","opts":[{"t":"Pull every set, even if they are glued-stable","ok":false,"why":"Stable stay \u2014 they help face shape and seal. Loose plates come out so they do not fall back and block. Braces stay if they are not in the way."},{"t":"Stable stay for the seal; loose come out so they do not fall back","ok":true,"why":"Stable stay \u2014 they help face shape and seal. Loose plates come out so they do not fall back and block. Braces stay if they are not in the way."},{"t":"Leave loose plates in so you have something to bag against","ok":false,"why":"Stable stay \u2014 they help face shape and seal. Loose plates come out so they do not fall back and block. Braces stay if they are not in the way."},{"t":"Dentures mean you must use CPAP","ok":false,"why":"Stable stay \u2014 they help face shape and seal. Loose plates come out so they do not fall back and block. Braces stay if they are not in the way."}]},{"ch":"face","q":"Smashed, bleeding face. Which pair is true here?","opts":[{"t":"NPA plus CPAP, skip suction","ok":false,"why":"Face bleeds and swells. Suction often. No NPA if you suspect facial trauma. No CPAP in trauma. Outside bleed: direct pressure first."},{"t":"Suction a lot, no nose adjunct, no CPAP, pressure on what you can see","ok":true,"why":"Face bleeds and swells. Suction often. No NPA if you suspect facial trauma. No CPAP in trauma. Outside bleed: direct pressure first."},{"t":"Ignore swelling because the mouth always stays open","ok":false,"why":"Face bleeds and swells. Suction often. No NPA if you suspect facial trauma. No CPAP in trauma. Outside bleed: direct pressure first."},{"t":"Encourage cough and walk away","ok":false,"why":"Face bleeds and swells. Suction often. No NPA if you suspect facial trauma. No CPAP in trauma. Outside bleed: direct pressure first."}]},{"ch":"give","q":"Adequately breathing. When do you still put oxygen on?","opts":[{"t":"Only if they demand a cannula","ok":false,"why":"Sat under 94, any difficulty or labored breathing (even a \u201cfine\u201d sat), or shock. No difficulty, no shock, normal sat \u2192 you probably skip O\u2082."},{"t":"Sat under 94, they look like they are fighting to breathe, or they look shocked","ok":true,"why":"Sat under 94, any difficulty or labored breathing (even a \u201cfine\u201d sat), or shock. No difficulty, no shock, normal sat \u2192 you probably skip O\u2082."},{"t":"Never if the sat is 96% and they are gasping","ok":false,"why":"Sat under 94, any difficulty or labored breathing (even a \u201cfine\u201d sat), or shock. No difficulty, no shock, normal sat \u2192 you probably skip O\u2082."},{"t":"Only after 10 seconds of suction, every time","ok":false,"why":"Sat under 94, any difficulty or labored breathing (even a \u201cfine\u201d sat), or shock. No difficulty, no shock, normal sat \u2192 you probably skip O\u2082."}]},{"ch":"flow","q":"Airway is dirty, then you have opened it. Suction rule in the checklist?","opts":[{"t":"Suction for a full minute, then never give oxygen","ok":false,"why":"Suction up to 10 seconds, then re-oxygenate. Tilt-chin if no trauma, jaw thrust if possible spine."},{"t":"Up to 10 seconds, then put oxygen back on","ok":true,"why":"Suction up to 10 seconds, then re-oxygenate. Tilt-chin if no trauma, jaw thrust if possible spine."},{"t":"Jaw thrust on every medical bed-found patient","ok":false,"why":"Suction up to 10 seconds, then re-oxygenate. Tilt-chin if no trauma, jaw thrust if possible spine."},{"t":"Skip looking in the mouth","ok":false,"why":"Suction up to 10 seconds, then re-oxygenate. Tilt-chin if no trauma, jaw thrust if possible spine."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"two":"Two decisions","split":"Device split","nrb":"NRB test","nrbwho":"NRB who","nrbind":"NRB when","high":"Start high","nc":"Cannula #","ncburn":"Cannula burn","ncwhen":"Cannula when","prb":"Partial","vent":"Venturi","trach":"Trach / humid","bvmwho":"BVM who","bvmflow":"BVM flow","bvmrate":"BVM rate","bvmbad":"Overbag","cpap":"CPAP what","cpapyes":"CPAP who","cpapno":"CPAP stop","cpapbp":"CPAP BP","mild":"Mild choke","sev":"Severe choke","inf":"Infant choke","down":"They drop","dent":"Dentures","face":"Face trauma","give":"Give O2","flow":"Suction 10"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the 13:46 oxygen-device recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · oxygen-device recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
