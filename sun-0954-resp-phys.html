@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sunday 9:54 — Respiratory physiology (from recap)</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sunday 9:54 — Respiratory physiology</h1>
+  <div class="sub">Recap only · you/your · 26 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":"pri","q":"Scene is safe, the big bleed is handled, they have a pulse. What is next?","opts":[{"t":"Full SAMPLE before you look at the mouth","ok":false,"why":"After safety, massive bleed, and they are alive, airway is next. A catastrophic airway is still see-it, treat-it."},{"t":"Airway — and if it is wrecked, treat it now","ok":true,"why":"After safety, massive bleed, and they are alive, airway is next. A catastrophic airway is still see-it, treat-it."},{"t":"Pulse ox only; skip the airway if they look pink","ok":false,"why":"After safety, massive bleed, and they are alive, airway is next. A catastrophic airway is still see-it, treat-it."},{"t":"Capnography waveform before any opening move","ok":false,"why":"After safety, massive bleed, and they are alive, airway is next. A catastrophic airway is still see-it, treat-it."}]},{"ch":"vent","q":"What does ventilation mean in this recap?","opts":[{"t":"O₂ sitting on hemoglobin, read by the probe","ok":false,"why":"Ventilation is the mechanical question: is air moving? You judge rate, rhythm, quality, and rise."},{"t":"Air actually moving in and out — rate, rhythm, quality, chest rise","ok":true,"why":"Ventilation is the mechanical question: is air moving? You judge rate, rhythm, quality, and rise."},{"t":"Gas swap only at the alveoli","ok":false,"why":"Ventilation is the mechanical question: is air moving? You judge rate, rhythm, quality, and rise."},{"t":"Shark-fin shape on the ETCO₂ strip","ok":false,"why":"Ventilation is the mechanical question: is air moving? You judge rate, rhythm, quality, and rise."}]},{"ch":"resp","q":"What does respiration mean here?","opts":[{"t":"Whether the chest goes up and down","ok":false,"why":"Respiration is gas exchange, not chest motion and not the sat number."},{"t":"O₂ and CO₂ swapping — alveoli to lung capillaries, later blood to cells","ok":true,"why":"Respiration is gas exchange, not chest motion and not the sat number."},{"t":"How full the hemoglobin seats look on pulse ox","ok":false,"why":"Respiration is gas exchange, not chest motion and not the sat number."},{"t":"Only the bag squeeze you give them","ok":false,"why":"Respiration is gas exchange, not chest motion and not the sat number."}]},{"ch":"ox","q":"Oxygenation, in this talk, is which job?","opts":[{"t":"Making the chest cavity bigger so air is sucked in","ok":false,"why":"Oxygenation is oxygen on red-cell hemoglobin. Pulse ox is an indirect look at that."},{"t":"O₂ parking on hemoglobin — you estimate it with pulse ox","ok":true,"why":"Oxygenation is oxygen on red-cell hemoglobin. Pulse ox is an indirect look at that."},{"t":"Blowing off acid with deep-fast breaths","ok":false,"why":"Oxygenation is oxygen on red-cell hemoglobin. Pulse ox is an indirect look at that."},{"t":"Keeping leftover air in the alveoli after a full exhale","ok":false,"why":"Oxygenation is oxygen on red-cell hemoglobin. Pulse ox is an indirect look at that."}]},{"ch":"deep","q":"They look terrible but chest rise is good. First place you work?","opts":[{"t":"Squeeze the bag harder because they look sick","ok":false,"why":"Ventilation is already okay. Go deeper: respiration, then oxygenation, then circulation — not “bag harder.”"},{"t":"Gas exchange first (fluid, pneumonia, COPD), then sat/hemoglobin, then shock/heart","ok":true,"why":"Ventilation is already okay. Go deeper: respiration, then oxygenation, then circulation — not “bag harder.”"},{"t":"Assume residual volume is gone and they need an NPA","ok":false,"why":"Ventilation is already okay. Go deeper: respiration, then oxygenation, then circulation — not “bag harder.”"},{"t":"Treat it as agonal and start CPR on the spot","ok":false,"why":"Ventilation is already okay. Go deeper: respiration, then oxygenation, then circulation — not “bag harder.”"}]},{"ch":"up","q":"Which stretch is upper airway in this recap?","opts":[{"t":"Trachea through alveoli, where gas trades","ok":false,"why":"Upper is everything above the larynx. Lower starts at the trachea and ends at the alveoli."},{"t":"Above the larynx — nose, nasopharynx, oropharynx, epiglottis, larynx/cords","ok":true,"why":"Upper is everything above the larynx. Lower starts at the trachea and ends at the alveoli."},{"t":"Only the bronchioles","ok":false,"why":"Upper is everything above the larynx. Lower starts at the trachea and ends at the alveoli."},{"t":"The phrenic nerve from C3–5","ok":false,"why":"Upper is everything above the larynx. Lower starts at the trachea and ends at the alveoli."}]},{"ch":"c345","q":"“C3, 4, 5 keeps the diaphragm alive.” Injury above that level means what?","opts":[{"t":"They are paralyzed but the phrenic nerve still works, so they can breathe","ok":false,"why":"High cervical (above C3–5) knocks out the phrenic path. Below C5 they may still breathe even if the body is paralyzed."},{"t":"Diaphragm is out — they cannot breathe","ok":true,"why":"High cervical (above C3–5) knocks out the phrenic path. Below C5 they may still breathe even if the body is paralyzed."},{"t":"Only residual volume is lost","ok":false,"why":"High cervical (above C3–5) knocks out the phrenic path. Below C5 they may still breathe even if the body is paralyzed."},{"t":"They will show Kussmaul from acidosis","ok":false,"why":"High cervical (above C3–5) knocks out the phrenic path. Below C5 they may still breathe even if the body is paralyzed."}]},{"ch":"neg","q":"A normal inhale versus a bag squeeze — what is the pressure difference?","opts":[{"t":"Inhale is passive positive pressure; the bag creates negative pressure","ok":false,"why":"Diaphragm/intercostals contract → cavity grows → negative chest pressure → air is sucked in. You bag with positive pressure."},{"t":"Inhale is active negative pressure (cavity bigger, air pulled in); a bag is you pushing air in","ok":true,"why":"Diaphragm/intercostals contract → cavity grows → negative chest pressure → air is sucked in. You bag with positive pressure."},{"t":"Both are residual-volume jobs only","ok":false,"why":"Diaphragm/intercostals contract → cavity grows → negative chest pressure → air is sucked in. You bag with positive pressure."},{"t":"Exhale is the only active step; the bag does nothing to pressure","ok":false,"why":"Diaphragm/intercostals contract → cavity grows → negative chest pressure → air is sucked in. You bag with positive pressure."}]},{"ch":"bvmr","q":"You over-squeeze the bag. Which pair of problems does this recap name?","opts":[{"t":"Pin-index mismatch and a lying Bourdon gauge","ok":false,"why":"Positive pressure can fill the stomach (vomit) and overinflate a lung (pneumothorax)."},{"t":"Air in the stomach with vomit, and a popped lung","ok":true,"why":"Positive pressure can fill the stomach (vomit) and overinflate a lung (pneumothorax)."},{"t":"Shark-fin waveform from too little squeeze","ok":false,"why":"Positive pressure can fill the stomach (vomit) and overinflate a lung (pneumothorax)."},{"t":"Hypoxic drive turning off residual volume","ok":false,"why":"Positive pressure can fill the stomach (vomit) and overinflate a lung (pneumothorax)."}]},{"ch":"tv","q":"How do you judge tidal volume at EMT level?","opts":[{"t":"A milliliter number on the monitor","ok":false,"why":"Tidal volume is one normal breath. You do not need a number; you watch the chest."},{"t":"Visible chest rise and fall — one ordinary breath","ok":true,"why":"Tidal volume is one normal breath. You do not need a number; you watch the chest."},{"t":"Whether ETCO₂ shows a shark fin","ok":false,"why":"Tidal volume is one normal breath. You do not need a number; you watch the chest."},{"t":"Whether sat reads 100% in a fire","ok":false,"why":"Tidal volume is one normal breath. You do not need a number; you watch the chest."}]},{"ch":"rv","q":"What is residual volume for?","opts":[{"t":"The extra you can force in after a normal inhale","ok":false,"why":"Leftover alveolar air keeps the sacs open between breaths. Reserve volumes are the extra you could force."},{"t":"Air left in the alveoli after a full exhale so the sacs do not collapse","ok":true,"why":"Leftover alveolar air keeps the sacs open between breaths. Reserve volumes are the extra you could force."},{"t":"The air you push with a bag","ok":false,"why":"Leftover alveolar air keeps the sacs open between breaths. Reserve volumes are the extra you could force."},{"t":"The primary CO₂ signal to the brainstem","ok":false,"why":"Leftover alveolar air keeps the sacs open between breaths. Reserve volumes are the extra you could force."}]},{"ch":"drive","q":"What is the primary drive to breathe in this recap?","opts":[{"t":"Low O₂ first, always","ok":false,"why":"Main signal is CO₂ buildup. Low O₂ (hypoxic drive) is the backup."},{"t":"High CO₂ — central sensors, brainstem, phrenic, diaphragm","ok":true,"why":"Main signal is CO₂ buildup. Low O₂ (hypoxic drive) is the backup."},{"t":"Pulse ox dropping below 99%","ok":false,"why":"Main signal is CO₂ buildup. Low O₂ (hypoxic drive) is the backup."},{"t":"Residual volume getting too large","ok":false,"why":"Main signal is CO₂ buildup. Low O₂ (hypoxic drive) is the backup."}]},{"ch":"copd","q":"Why does hypoxic drive matter later in severe COPD?","opts":[{"t":"COPD patients never have high CO₂","ok":false,"why":"If CO₂ is always high, the primary drive is unreliable. Low oxygen becomes the backup trigger."},{"t":"CO₂ lives high all the time, so it stops being a useful breathe-now signal","ok":true,"why":"If CO₂ is always high, the primary drive is unreliable. Low oxygen becomes the backup trigger."},{"t":"Their residual volume becomes zero","ok":false,"why":"If CO₂ is always high, the primary drive is unreliable. Low oxygen becomes the backup trigger."},{"t":"C3–5 is automatically cut","ok":false,"why":"If CO₂ is always high, the primary drive is unreliable. Low oxygen becomes the backup trigger."}]},{"ch":"adeq","q":"Adult breathing that this recap calls adequate?","opts":[{"t":"Rate 6 with almost no rise and blue lips","ok":false,"why":"Adequate box: 12–20, regular rhythm, good tidal volume, clear equal breath sounds."},{"t":"12–20, regular, good rise, clear equal sounds","ok":true,"why":"Adequate box: 12–20, regular rhythm, good tidal volume, clear equal breath sounds."},{"t":"Agonal gasps that look deep","ok":false,"why":"Adequate box: 12–20, regular rhythm, good tidal volume, clear equal breath sounds."},{"t":"Chaotic Biot’s if sat is 98%","ok":false,"why":"Adequate box: 12–20, regular rhythm, good tidal volume, clear equal breath sounds."}]},{"ch":"22","q":"Adult at 22/min, good volume, clear sounds, alert. Adequate or not?","opts":[{"t":"Always inadequate because any rate over 20 means you bag","ok":false,"why":"This recap’s example: 22 with good volume, clear sounds, and an alert patient can still be adequate."},{"t":"Can still be adequate — a little fast is not enough by itself","ok":true,"why":"This recap’s example: 22 with good volume, clear sounds, and an alert patient can still be adequate."},{"t":"This is Kussmaul; slam the rate down with the bag","ok":false,"why":"This recap’s example: 22 with good volume, clear sounds, and an alert patient can still be adequate."},{"t":"This is Cheyne–Stokes because 22 is “deeper/faster”","ok":false,"why":"This recap’s example: 22 with good volume, clear sounds, and an alert patient can still be adequate."}]},{"ch":"inad","q":"Which set is inadequate breathing?","opts":[{"t":"18/min, good rise, talking in sentences, pink","ok":false,"why":"Rate extremes plus poor volume, no rise, severe work, agonal/apnea/chaos, cyanosis, bad mind, bad sat."},{"t":"Under 12 or over 20 with poor volume, little rise, heavy retractions, or agonal/apnea","ok":true,"why":"Rate extremes plus poor volume, no rise, severe work, agonal/apnea/chaos, cyanosis, bad mind, bad sat."},{"t":"22/min, good rise, clear sounds, alert","ok":false,"why":"Rate extremes plus poor volume, no rise, severe work, agonal/apnea/chaos, cyanosis, bad mind, bad sat."},{"t":"Regular 16 with equal clear sounds","ok":false,"why":"Rate extremes plus poor volume, no rise, severe work, agonal/apnea/chaos, cyanosis, bad mind, bad sat."}]},{"ch":"agon","q":"Rare gasping, spastic breaths in a pulseless patient. What are they, and what do you do?","opts":[{"t":"Kussmaul — do not bag, the body is compensating","ok":false,"why":"Agonal gasps are arrest breathing. They do not count. CPR plus a bag."},{"t":"Agonal — not real breathing; CPR and ventilations","ok":true,"why":"Agonal gasps are arrest breathing. They do not count. CPR plus a bag."},{"t":"Cheyne–Stokes — wait for the pause to finish","ok":false,"why":"Agonal gasps are arrest breathing. They do not count. CPR plus a bag."},{"t":"Adequate if you can hear any air","ok":false,"why":"Agonal gasps are arrest breathing. They do not count. CPR plus a bag."}]},{"ch":"cs","q":"Slow/shallow, then deeper/faster, then slow, then a pause, then it repeats. Name it.","opts":[{"t":"Biot’s — no pattern at all","ok":false,"why":"Wax–wane–apnea cycle is Cheyne–Stokes. Biot’s is chaos. Kussmaul is steadily deep-fast."},{"t":"Cheyne–Stokes — often brain injury, a bad sign","ok":true,"why":"Wax–wane–apnea cycle is Cheyne–Stokes. Biot’s is chaos. Kussmaul is steadily deep-fast."},{"t":"Kussmaul — deep and rapid the whole time","ok":false,"why":"Wax–wane–apnea cycle is Cheyne–Stokes. Biot’s is chaos. Kussmaul is steadily deep-fast."},{"t":"Agonal — one gasp in arrest","ok":false,"why":"Wax–wane–apnea cycle is Cheyne–Stokes. Biot’s is chaos. Kussmaul is steadily deep-fast."}]},{"ch":"biot","q":"Completely chaotic breaths with no pattern. Which pattern, and what does it point to?","opts":[{"t":"Cheyne–Stokes from a mild fever","ok":false,"why":"No pattern at all is Biot’s/ataxic. This recap ties it to severe brainstem involvement."},{"t":"Biot’s / ataxic — severe brainstem trouble","ok":true,"why":"No pattern at all is Biot’s/ataxic. This recap ties it to severe brainstem involvement."},{"t":"Kussmaul from DKA","ok":false,"why":"No pattern at all is Biot’s/ataxic. This recap ties it to severe brainstem involvement."},{"t":"Normal residual-volume cycling","ok":false,"why":"No pattern at all is Biot’s/ataxic. This recap ties it to severe brainstem involvement."}]},{"ch":"kuss","q":"Deep, rapid breathing in suspected DKA. What do you not do?","opts":[{"t":"Call it Kussmaul and treat it as the body blowing off acid","ok":false,"why":"Kussmaul is compensation for metabolic acidosis. Do not reflexively crush it with the bag."},{"t":"Slam the rate down by over-bagging just because it looks fast","ok":true,"why":"Kussmaul is compensation for metabolic acidosis. Do not reflexively crush it with the bag."},{"t":"Flag it as a reason to move / get ALS with poisoning or DKA signs","ok":false,"why":"Kussmaul is compensation for metabolic acidosis. Do not reflexively crush it with the bag."},{"t":"Name aspirin OD as another acidosis example from this talk","ok":false,"why":"Kussmaul is compensation for metabolic acidosis. Do not reflexively crush it with the bag."}]},{"ch":"ptx","q":"Air in the chest but not inside the lung. What is that, and what can cause it here?","opts":[{"t":"Hemothorax from leftover residual volume","ok":false,"why":"Pneumothorax is collapsed lung: air in the thorax outside the lung. Blood in the chest is hemothorax; both is hemopneumothorax."},{"t":"Pneumothorax — trauma, broken rib, puncture, or you bagged too hard","ok":true,"why":"Pneumothorax is collapsed lung: air in the thorax outside the lung. Blood in the chest is hemothorax; both is hemopneumothorax."},{"t":"Upper-airway swelling only","ok":false,"why":"Pneumothorax is collapsed lung: air in the thorax outside the lung. Blood in the chest is hemothorax; both is hemopneumothorax."},{"t":"Shark-fin asthma with equal sounds","ok":false,"why":"Pneumothorax is collapsed lung: air in the thorax outside the lung. Blood in the chest is hemothorax; both is hemopneumothorax."}]},{"ch":"spo","q":"Pulse ox job, target, and when this recap says give oxygen?","opts":[{"t":"It measures residual volume; target 80%; give O₂ only if they are apneic","ok":false,"why":"SpO₂ is saturation percent. Target 94–99%. Reasons: sat under 94, trouble breathing, or shock."},{"t":"Percent of hemoglobin that is saturated; aim 94–99%; give O₂ if sat <94, distress, or shock","ok":true,"why":"SpO₂ is saturation percent. Target 94–99%. Reasons: sat under 94, trouble breathing, or shock."},{"t":"It proves the seats are full of oxygen even in a house fire","ok":false,"why":"SpO₂ is saturation percent. Target 94–99%. Reasons: sat under 94, trouble breathing, or shock."},{"t":"It replaces the need to watch chest rise","ok":false,"why":"SpO₂ is saturation percent. Target 94–99%. Reasons: sat under 94, trouble breathing, or shock."}]},{"ch":"co","q":"House-fire patient, sat reads 100%. What do you believe?","opts":[{"t":"They are fully oxygenated — 100% closes the case","ok":false,"why":"The probe sees occupied hemoglobin. Carbon monoxide occupies it. The number can look perfect while they are not carrying O₂."},{"t":"Do not trust it as proof of oxygen — CO can fill the seats","ok":true,"why":"The probe sees occupied hemoglobin. Carbon monoxide occupies it. The number can look perfect while they are not carrying O₂."},{"t":"This is a shark-fin problem only","ok":false,"why":"The probe sees occupied hemoglobin. Carbon monoxide occupies it. The number can look perfect while they are not carrying O₂."},{"t":"C3–5 must be injured","ok":false,"why":"The probe sees occupied hemoglobin. Carbon monoxide occupies it. The number can look perfect while they are not carrying O₂."}]},{"ch":"open","q":"Airway is not open. Which opening move matches this recap?","opts":[{"t":"Always tilt-chin, even with a wrecked neck","ok":false,"why":"Trauma worry → jaw thrust. No trauma → head-tilt chin-lift. Gurgling/fluids get suction. Talking clearly usually means the path is already open."},{"t":"Jaw thrust if you worry about trauma; tilt-chin if you do not; suction gurgling","ok":true,"why":"Trauma worry → jaw thrust. No trauma → head-tilt chin-lift. Gurgling/fluids get suction. Talking clearly usually means the path is already open."},{"t":"Bag first, open later","ok":false,"why":"Trauma worry → jaw thrust. No trauma → head-tilt chin-lift. Gurgling/fluids get suction. Talking clearly usually means the path is already open."},{"t":"Nasal tube through a smashed face","ok":false,"why":"Trauma worry → jaw thrust. No trauma → head-tilt chin-lift. Gurgling/fluids get suction. Talking clearly usually means the path is already open."}]},{"ch":"fork","q":"Not breathing, or only agonal. Breathing but tiny volume. Breathing well but sat 90% and shocked. Match the fork.","opts":[{"t":"All three get a nasal cannula only","ok":false,"why":"No air / agonal / no pulse → CPR + bag. Inadequate mechanics → BVM. Adequate mechanics but sick/hypoxic → supplemental oxygen, device per protocol."},{"t":"No breath/agonal: help/AED, CPR if no pulse, bag with O₂. Poor volume: assist with BVM. Adequate but hypoxic/shock: keep the airway and give supplemental O₂","ok":true,"why":"No air / agonal / no pulse → CPR + bag. Inadequate mechanics → BVM. Adequate mechanics but sick/hypoxic → supplemental oxygen, device per protocol."},{"t":"All three wait for ETCO₂ before you touch them","ok":false,"why":"No air / agonal / no pulse → CPR + bag. Inadequate mechanics → BVM. Adequate mechanics but sick/hypoxic → supplemental oxygen, device per protocol."},{"t":"Bag the hypoxic-but-adequate one and withhold O₂ from the apneic one","ok":false,"why":"No air / agonal / no pulse → CPR + bag. Inadequate mechanics → BVM. Adequate mechanics but sick/hypoxic → supplemental oxygen, device per protocol."}]},{"ch":"bag","q":"You bag an adult who still has a pulse. How, from this recap?","opts":[{"t":"Crush the bag as hard as you can at 30/min","ok":false,"why":"Just enough squeeze to see rise. Over-squeeze → stomach air and popped lung. Rate follows protocol; this talk’s common adult-with-a-pulse number is ~10–12."},{"t":"Good seal, slow gentle squeezes — just visible rise; common rate about 10–12/min","ok":true,"why":"Just enough squeeze to see rise. Over-squeeze → stomach air and popped lung. Rate follows protocol; this talk’s common adult-with-a-pulse number is ~10–12."},{"t":"Stop if you see any chest move; that means residual volume is enough","ok":false,"why":"Just enough squeeze to see rise. Over-squeeze → stomach air and popped lung. Rate follows protocol; this talk’s common adult-with-a-pulse number is ~10–12."},{"t":"Aim for a sat of 100% even in a fire","ok":false,"why":"Just enough squeeze to see rise. Over-squeeze → stomach air and popped lung. Rate follows protocol; this talk’s common adult-with-a-pulse number is ~10–12."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"pri": "Primary", "words": "Three words", "resp": "Respiration", "ox": "Oxygenation", "deeper": "Looks sick", "upper": "Upper", "lower": "Lower", "c345": "C3–4–5", "neg": "Inhale", "pos": "Bag risk", "tv": "Tidal volume", "resv": "Residual", "drive": "Drive", "ok": "Adequate", "bad": "Inadequate", "agonal": "Agonal", "cs": "Cheyne–Stokes", "biot": "Biot’s", "kuss": "Kussmaul", "ptx": "Pneumothorax", "spo": "Pulse ox", "co": "CO trap", "etco": "ETCO₂", "aw": "Airway", "fork": "Arrest fork", "bvm": "How to bag", "o2ok": "Extra O₂", "red": "Red flags"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the 9:54 respiratory physiology recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · Respiratory physiology recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
