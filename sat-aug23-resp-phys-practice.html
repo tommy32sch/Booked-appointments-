@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat/Sun Aug 23 — respiratory phys</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat/Sun Aug 23 · respiratory phys</h1>
+  <div class="sub">Sunday 9:54 · lecture only · no device LPM</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch": "cspine", "q": "High C-spine at C3–4–5 versus a cut below C5 — what did he pair with the diaphragm?", "opts": [{"t": "At/above C3–4–5: paralyzed and cannot breathe; below C5: paralyzed but can breathe", "ok": true, "why": "Phrenic nerve. C3, 4, and 5 keep the diaphragm alive. Below C5 they can still breathe."}, {"t": "At/above C3–4–5: paralyzed but can breathe; below C5: paralyzed and cannot breathe", "ok": false, "why": "Phrenic nerve. C3, 4, and 5 keep the diaphragm alive. Below C5 they can still breathe."}, {"t": "At/above C3–4–5: only the heart stops; below C5: only the tongue blocks", "ok": false, "why": "Phrenic nerve. C3, 4, and 5 keep the diaphragm alive. Below C5 they can still breathe."}, {"t": "At/above C3–4–5: they still breathe; below C5: they never breathe", "ok": false, "why": "Phrenic nerve. C3, 4, and 5 keep the diaphragm alive. Below C5 they can still breathe."}]}, {"ch": "chain", "q": "He wanted this order when you judge the breathing problem.", "opts": [{"t": "Ventilation, then respiration, then oxygenation, then circulation", "ok": true, "why": "Mechanical air in/out, then gas exchange, then O2 on hemoglobin, then the pump."}, {"t": "Oxygenation, then ventilation, then respiration, then circulation", "ok": false, "why": "Mechanical air in/out, then gas exchange, then O2 on hemoglobin, then the pump."}, {"t": "Circulation, then oxygenation, then respiration, then ventilation", "ok": false, "why": "Mechanical air in/out, then gas exchange, then O2 on hemoglobin, then the pump."}, {"t": "Respiration, then ventilation, then oxygenation, then circulation", "ok": false, "why": "Mechanical air in/out, then gas exchange, then O2 on hemoglobin, then the pump."}]}, {"ch": "chain", "q": "Rate 18 with good chest rise, but they are blue. What is it not?", "opts": [{"t": "Not a ventilation fail; next think respiration, then pulse ox, then circulation", "ok": true, "why": "Vent is air in and out. Blue with 18 + rise means listen for fluid, then SpO2, then the pump."}, {"t": "A ventilation fail first; skip listening and go straight to a bag", "ok": false, "why": "Vent is air in and out. Blue with 18 + rise means listen for fluid, then SpO2, then the pump."}, {"t": "Not a respiration fail; next think only the tongue and stop", "ok": false, "why": "Vent is air in and out. Blue with 18 + rise means listen for fluid, then SpO2, then the pump."}, {"t": "A circulation fail only; skip the lungs because the rate is 18", "ok": false, "why": "Vent is air in and out. Blue with 18 + rise means listen for fluid, then SpO2, then the pump."}]}, {"ch": "defs", "q": "Ventilation versus respiration versus oxygenation, as he defined them?", "opts": [{"t": "Vent = air in and out; resp = gas exchange; ox = O2 on hemoglobin", "ok": true, "why": "Those three words are not synonyms in this lecture."}, {"t": "Vent = O2 on hemoglobin; resp = air in and out; ox = gas exchange", "ok": false, "why": "Those three words are not synonyms in this lecture."}, {"t": "Vent = gas exchange; resp = O2 on hemoglobin; ox = air in and out", "ok": false, "why": "Those three words are not synonyms in this lecture."}, {"t": "Vent = pulse ox number; resp = chest rise; ox = talking", "ok": false, "why": "Those three words are not synonyms in this lecture."}]}, {"ch": "press", "q": "Normal inhalation versus what we do with a bag?", "opts": [{"t": "Body uses negative pressure; we push with positive pressure", "ok": true, "why": "Diaphragm drops, cage expands, air is pulled in. We cannot make that vacuum."}, {"t": "Body uses positive pressure; we pull with negative pressure", "ok": false, "why": "Diaphragm drops, cage expands, air is pulled in. We cannot make that vacuum."}, {"t": "Both are negative pressure; the bag only humidifies", "ok": false, "why": "Diaphragm drops, cage expands, air is pulled in. We cannot make that vacuum."}, {"t": "Both are positive pressure; the bag only filters", "ok": false, "why": "Diaphragm drops, cage expands, air is pulled in. We cannot make that vacuum."}]}, {"ch": "ppv", "q": "You are bagging. When do you stop the squeeze?", "opts": [{"t": "Gentle squeeze just until chest rise, then stop; do not chase half a bag", "ok": true, "why": "Nothing stops overinflation except your hand when you ventilate. Be the calm person."}, {"t": "Hard squeeze well past chest rise so you fill half a bag every time", "ok": false, "why": "Nothing stops overinflation except your hand when you ventilate. Be the calm person."}, {"t": "Gentle squeeze until the stomach rises, then keep going for half a bag", "ok": false, "why": "Nothing stops overinflation except your hand when you ventilate. Be the calm person."}, {"t": "Hard squeeze to a set mmHg he named; half a bag is the rule", "ok": false, "why": "He did not name a squeeze-mmHg. Stop at chest rise only."}]}, {"ch": "ppv", "q": "Why is PPV the opposite of the body, in his words?", "opts": [{"t": "Pushed air also goes down the esophagus and later can mean vomit", "ok": true, "why": "We push; the body pulls. Stomach air is the later problem he named."}, {"t": "Pushed air never reaches the esophagus so vomit cannot happen", "ok": false, "why": "We push; the body pulls. Stomach air is the later problem he named."}, {"t": "Pushed air only fills residual volume so alveoli stay closed", "ok": false, "why": "We push; the body pulls. Stomach air is the later problem he named."}, {"t": "Pushed air replaces the phrenic nerve so C3–4–5 no longer matter", "ok": false, "why": "We push; the body pulls. Stomach air is the later problem he named."}]}, {"ch": "tv", "q": "How do you judge tidal volume in this class?", "opts": [{"t": "Chest rise and fall; you do not measure mL", "ok": true, "why": "One breath. Too small and air may never reach alveoli."}, {"t": "A numbered mL he listed for every adult", "ok": false, "why": "He said we do not measure mL. Proxy is chest rise."}, {"t": "Pulse ox only; rise does not count", "ok": false, "why": "He said we do not measure mL. Proxy is chest rise."}, {"t": "Residual volume on the bag markings", "ok": false, "why": "He said we do not measure mL. Proxy is chest rise."}]}, {"ch": "drive", "q": "Primary breathing trigger versus the backup he named?", "opts": [{"t": "Primary is CO2 too high; backup is hypoxic drive when O2 is low", "ok": true, "why": "Chemoreceptors in blood + CSF. COPD next week; disease Rx not in these notes."}, {"t": "Primary is O2 too high; backup is CO2 drop only", "ok": false, "why": "Chemoreceptors in blood + CSF. COPD next week; disease Rx not in these notes."}, {"t": "Primary is lactic acid; backup is residual volume", "ok": false, "why": "Chemoreceptors in blood + CSF. COPD next week; disease Rx not in these notes."}, {"t": "Primary is hypoxic drive; backup is CO2 too high", "ok": false, "why": "Chemoreceptors in blood + CSF. COPD next week; disease Rx not in these notes."}]}, {"ch": "gas", "q": "Pulmonary edema and diffusion — what brick-wall line did he use?", "opts": [{"t": "Gases do not diffuse well through fluid; O2 in and CO2 out both fail", "ok": true, "why": "Alveoli meet capillaries. Fluid is the wall."}, {"t": "Gases diffuse better through fluid; only O2 in fails", "ok": false, "why": "Alveoli meet capillaries. Fluid is the wall."}, {"t": "Gases ignore fluid if the rate is 18; only CO2 out fails", "ok": false, "why": "Alveoli meet capillaries. Fluid is the wall."}, {"t": "Gases skip the alveoli and exchange in the mediastinum", "ok": false, "why": "Alveoli meet capillaries. Fluid is the wall."}]}, {"ch": "alt", "q": "Room air at altitude versus sea level, as he said it?", "opts": [{"t": "Still about 21% O2; the quantity / pressure drops, not the percent", "ok": true, "why": "Everest example. Extrinsic respiration problem is low partial pressure."}, {"t": "Drops to about 10% O2; the percent falls, pressure stays the same", "ok": false, "why": "Everest example. Extrinsic respiration problem is low partial pressure."}, {"t": "Rises above 21% O2; quantity stays the same at altitude", "ok": false, "why": "Everest example. Extrinsic respiration problem is low partial pressure."}, {"t": "Stays 100% O2; only the pulse ox changes at altitude", "ok": false, "why": "Everest example. Extrinsic respiration problem is low partial pressure."}]}, {"ch": "adeq", "q": "Adult adequate breathing numbers he used?", "opts": [{"t": "12–20/min, equal rise, regular, clear equal sounds, depth = chest rise", "ok": true, "why": "Adequate = enough air × enough times. They can still have SOB or SpO2 91%."}, {"t": "8–10/min, unequal rise, irregular, absent sounds, depth = pulse ox", "ok": false, "why": "Adequate = enough air × enough times. They can still have SOB or SpO2 91%."}, {"t": "22–28/min only, no need for rise or sounds", "ok": false, "why": "Adequate = enough air × enough times. They can still have SOB or SpO2 91%."}, {"t": "Any rate if SpO2 is 100%; sounds do not matter", "ok": false, "why": "Adequate = enough air × enough times. They can still have SOB or SpO2 91%."}]}, {"ch": "adeq", "q": "Adult at 22, good rise, regular, clear. What bucket?", "opts": [{"t": "Abnormal-fast but may still be adequate; change % O2, do not take over", "ok": true, "why": "Abnormal rate is <12 or >20. Slow usually means ventilate. 22 can still be adequate."}, {"t": "Inadequate by rate alone; you must breathe for them now", "ok": false, "why": "Abnormal rate is <12 or >20. Slow usually means ventilate. 22 can still be adequate."}, {"t": "Adequate only if you invent a device LPM he deferred", "ok": false, "why": "Device names/LPM this hour: not in his notes."}, {"t": "Respiratory arrest; 22 means they stopped", "ok": false, "why": "Abnormal rate is <12 or >20. Slow usually means ventilate. 22 can still be adequate."}]}, {"ch": "adeq", "q": "Inadequate breathing, as he used the word?", "opts": [{"t": "Not moving enough air, so you breathe for them (too slow or too shallow)", "ok": true, "why": "Test split is almost always adequate vs inadequate if you read R/R/Q."}, {"t": "Any SOB complaint even with good rise and a regular 16/min", "ok": false, "why": "SOB can still be adequate. Inadequate = you take over ventilation."}, {"t": "SpO2 91% with 14 and good rise, so you take over the bag", "ok": false, "why": "They can be adequate and still hypoxic. Device choice waits on adequate vs inadequate."}, {"t": "Kussmaul deep-rapid, so you always slow that pattern down", "ok": false, "why": "Do not slow Kussmaul. Fast is a maybe."}]}, {"ch": "patt", "q": "Cheyne–Stokes versus Biot / ataxic?", "opts": [{"t": "Cheyne: slow/shallow → deeper/faster → slow → apnea, a pattern; Biot: no pattern, chaos", "ok": true, "why": "Both in brainstem / severe head trauma context. Follow Cheyne; Biot has none."}, {"t": "Cheyne: no pattern, chaos; Biot: slow/shallow → deeper/faster → apnea", "ok": false, "why": "Both in brainstem / severe head trauma context. Follow Cheyne; Biot has none."}, {"t": "Cheyne: deep rapid acidosis; Biot: couch gasp while looking at you", "ok": false, "why": "Both in brainstem / severe head trauma context. Follow Cheyne; Biot has none."}, {"t": "Cheyne: not breathing at all; Biot: 12–20 with clear sounds", "ok": false, "why": "Both in brainstem / severe head trauma context. Follow Cheyne; Biot has none."}]}, {"ch": "patt", "q": "Kussmaul — pattern and what you do not do?", "opts": [{"t": "Deep and rapid; acidosis compensation; do not take over just because it is fast", "ok": true, "why": "DKA later, aspirin OD, tricyclics. Yesterday’s >28 PPV is a maybe; body may be helping."}, {"t": "Slow and shallow then apnea; always bag because it is fast", "ok": false, "why": "DKA later, aspirin OD, tricyclics. Yesterday’s >28 PPV is a maybe; body may be helping."}, {"t": "No pattern at all; always bag because it is fast", "ok": false, "why": "DKA later, aspirin OD, tricyclics. Yesterday’s >28 PPV is a maybe; body may be helping."}, {"t": "Couch gasp while looking at you; link it to CPR only", "ok": false, "why": "DKA later, aspirin OD, tricyclics. Yesterday’s >28 PPV is a maybe; body may be helping."}]}, {"ch": "patt", "q": "Agonal gasps in this lecture?", "opts": [{"t": "Link to heart stopped / CPR; not a true sign of life; not functional air", "ok": true, "why": "Couch-gasp while looking at you is not that phrase."}, {"t": "Link to DKA only; it is functional air and a sign of life", "ok": false, "why": "Couch-gasp while looking at you is not that phrase."}, {"t": "Link to Cheyne–Stokes only; skip CPR if you hear a gasp", "ok": false, "why": "Couch-gasp while looking at you is not that phrase."}, {"t": "Link to a talking patient on the couch; it proves a pulse", "ok": false, "why": "Couch-gasp while looking at you is not that phrase."}]}, {"ch": "words", "q": "Apnea versus dyspnea, as he said?", "opts": [{"t": "Apnea = not breathing = respiratory arrest; dyspnea = difficulty breathing", "ok": true, "why": "Those are the two words he defined."}, {"t": "Apnea = difficulty breathing; dyspnea = not breathing = arrest", "ok": false, "why": "Those are the two words he defined."}, {"t": "Apnea = 22 and adequate; dyspnea = Kussmaul only", "ok": false, "why": "Those are the two words he defined."}, {"t": "Apnea = blue with good rise; dyspnea = residual volume", "ok": false, "why": "Those are the two words he defined."}]}, {"ch": "o2", "q": "O2 indications he named this hour (no device LPM)?", "opts": [{"t": "SpO2 <94%; complaint of difficulty breathing even at 99%; signs of shock", "ok": true, "why": "How you give O2 is adequate vs inadequate. Device names/LPM: not in his notes."}, {"t": "SpO2 <88% only; never for SOB if the number is 99%; never for shock", "ok": false, "why": "How you give O2 is adequate vs inadequate. Device names/LPM: not in his notes."}, {"t": "Any number if you pick a named LPM he deferred this hour", "ok": false, "why": "Device names/LPM this hour: not in his notes / don’t invent."}, {"t": "Only when ETCO2 is 35–45, which he said you must memorize", "ok": false, "why": "He said 35–45 do not need to remember. ETCO2 is more medic."}]}, {"ch": "spo2", "q": "Pulse ox target and lag he read?", "opts": [{"t": "94–99%; can take up to about 60 seconds to show a change", "ok": true, "why": "Full circuit about a minute. 100% is uncommon unless overloading or hyperventilating."}, {"t": "80–88%; it updates in under one second every time", "ok": false, "why": "Full circuit about a minute. 100% is uncommon unless overloading or hyperventilating."}, {"t": "100% always; it never lags", "ok": false, "why": "Full circuit about a minute. 100% is uncommon unless overloading or hyperventilating."}, {"t": "35–45; memorize that as the SpO2 goal", "ok": false, "why": "35–45 was ETCO2 and he said do not need to remember it."}]}, {"ch": "spo2", "q": "Why can SpO2 lie in carbon monoxide?", "opts": [{"t": "True % sat of the wrong gas; CO binds about 250–300× better and stays ~6 hours", "ok": true, "why": "High O2 shortens it; hospital hyperbaric. EMT: bad gas in, lots of good gas."}, {"t": "False % sat of leftover oxygen; CO binds worse and clears in 6 seconds", "ok": false, "why": "High O2 shortens it; hospital hyperbaric. EMT: bad gas in, lots of good gas."}, {"t": "The probe only fails from nail polish in CO, never from the gas", "ok": false, "why": "High O2 shortens it; hospital hyperbaric. EMT: bad gas in, lots of good gas."}, {"t": "CO never fools SpO2; 100% always means good oxygen", "ok": false, "why": "High O2 shortens it; hospital hyperbaric. EMT: bad gas in, lots of good gas."}]}, {"ch": "spo2", "q": "Nail polish, cold, anemia — his SpO2 caveats?", "opts": [{"t": "Polish: try toe/ear/side; cold: shunt, no fingertip blood; anemia: not enough RBCs", "ok": true, "why": "Also hypovolemia: one RBC 100% sat is not enough blood. Ambient light too."}, {"t": "Polish: ignore it; cold: more fingertip blood; anemia: extra RBCs", "ok": false, "why": "Also hypovolemia: one RBC 100% sat is not enough blood. Ambient light too."}, {"t": "Polish proves 100% O2; cold proves good sat; anemia never fools the probe", "ok": false, "why": "Also hypovolemia: one RBC 100% sat is not enough blood. Ambient light too."}, {"t": "Only CO fools the probe; polish, cold, and anemia do not", "ok": false, "why": "Also hypovolemia: one RBC 100% sat is not enough blood. Ambient light too."}]}, {"ch": "anat", "q": "Upper versus lower airway jobs he named?", "opts": [{"t": "Upper (above larynx): warm, filter, humidify; lower: gas exchange", "ok": true, "why": "Epiglottis covers the larynx. Path goes to carina, bronchi, alveoli."}, {"t": "Upper (below larynx): gas exchange; lower: warm, filter, humidify", "ok": false, "why": "Epiglottis covers the larynx. Path goes to carina, bronchi, alveoli."}, {"t": "Both only move blood; neither warms or exchanges", "ok": false, "why": "Epiglottis covers the larynx. Path goes to carina, bronchi, alveoli."}, {"t": "Upper is alveoli only; lower is the epiglottis only", "ok": false, "why": "Epiglottis covers the larynx. Path goes to carina, bronchi, alveoli."}]}, {"ch": "anat", "q": "Who needs a brain/nerve shock besides the heart?", "opts": [{"t": "Every other muscle, including diaphragm; heart makes its own electricity", "ok": true, "why": "That is why a high cord injury can stop breathing."}, {"t": "Only the heart; the diaphragm never needs a nerve or a brain shock", "ok": false, "why": "That is why a high cord injury can stop breathing."}, {"t": "Only skin; the lungs breathe even if the diaphragm cannot move", "ok": false, "why": "Lungs do nothing if diaphragm/intercostals cannot contract."}, {"t": "Only residual volume; no nerve is involved in any muscle at all", "ok": false, "why": "That is why a high cord injury can stop breathing."}]}, {"ch": "exhale", "q": "Exhalation should be what, and who works extra to get air out?", "opts": [{"t": "Passive; asthma / COPD work extra to get air out and then fatigue", "ok": true, "why": "Relax, container smaller, air out. Shark-fin later = hard to get air out."}, {"t": "Always active; asthma / COPD rest because air falls out", "ok": false, "why": "Relax, container smaller, air out. Shark-fin later = hard to get air out."}, {"t": "Passive only in Kussmaul; COPD never fatigues", "ok": false, "why": "Relax, container smaller, air out. Shark-fin later = hard to get air out."}, {"t": "Active squeeze of the bag by the patient", "ok": false, "why": "Relax, container smaller, air out. Shark-fin later = hard to get air out."}]}, {"ch": "chest", "q": "Pneumothorax versus hemothorax, as he said?", "opts": [{"t": "Pneumo = air outside the lung; hemo = blood in the chest; EMT cannot decompress", "ok": true, "why": "Usually trauma. Medic big needle is short-term; hole still leaks → surgery."}, {"t": "Pneumo = blood in the chest; hemo = air outside the lung; EMT decompresses", "ok": false, "why": "Usually trauma. Medic big needle is short-term; hole still leaks → surgery."}, {"t": "Both are fluid inside alveoli only; EMT decompresses in the field", "ok": false, "why": "Field decompression skill: not in his notes / don’t invent."}, {"t": "Both are always medical, never trauma; no surgery later", "ok": false, "why": "Usually trauma. Medic big needle is short-term; hole still leaks → surgery."}]}, {"ch": "cell", "q": "Aerobic versus anaerobic waste, in his wording?", "opts": [{"t": "Aerobic: lots of ATP plus CO2, water, heat; anaerobic: less energy plus lactic acid", "ok": true, "why": "ATP = weird way to spell energy. Supply vs demand preview."}, {"t": "Aerobic: lactic acid only; anaerobic: lots of ATP plus water", "ok": false, "why": "ATP = weird way to spell energy. Supply vs demand preview."}, {"t": "Aerobic: no energy; anaerobic: CO2 and heat only", "ok": false, "why": "ATP = weird way to spell energy. Supply vs demand preview."}, {"t": "Both make the same energy; only residual volume changes", "ok": false, "why": "ATP = weird way to spell energy. Supply vs demand preview."}]}, {"ch": "resp", "q": "External / pulmonary versus internal / systemic respiration?", "opts": [{"t": "External: O2 into blood at the lungs; internal: O2 off hemoglobin into the cell", "ok": true, "why": "Diffusion is high to low and seeks balance."}, {"t": "External: O2 off hemoglobin into the cell; internal: O2 into blood at the lungs", "ok": false, "why": "Diffusion is high to low and seeks balance."}, {"t": "External: ventilation only; internal: residual volume only", "ok": false, "why": "Diffusion is high to low and seeks balance."}, {"t": "Both happen only in the mediastinum, never at cells", "ok": false, "why": "Diffusion is high to low and seeks balance."}]}, {"ch": "fluid", "q": "Fluid in the lung versus fluid outside the lung?", "opts": [{"t": "In = edema (brick wall); outside drain = thoracentesis, medic, not EMT", "ok": true, "why": "He split those two places. Do not invent an EMT drain."}, {"t": "In = thoracentesis you do; outside = edema you suction from alveoli", "ok": false, "why": "He split those two places. Do not invent an EMT drain."}, {"t": "Both are the same; EMT needles both", "ok": false, "why": "He split those two places. Do not invent an EMT drain."}, {"t": "Neither needs blood in the capillaries to exchange", "ok": false, "why": "Gas exchange needs air in alveoli AND blood in pulmonary capillaries."}]}, {"ch": "airway", "q": "End of this talk, the airway goal word?", "opts": [{"t": "Patent = clear and open upper path; next talk manages it", "ok": true, "why": "That is where 9:54 handed off."}, {"t": "Patent = a named OPA/NPA size he taught this hour", "ok": false, "why": "Adjuncts not this hour. Do not invent."}, {"t": "Patent = ETCO2 35–45 you must memorize", "ok": false, "why": "He said do not need to remember 35–45."}, {"t": "Patent = 15 LPM on a device he named this hour", "ok": false, "why": "Device LPM this hour: not in his notes."}]}, {"ch": "scene", "q": "What can beat airway after you are safe and they are alive?", "opts": [{"t": "A major life-threatening bleed seen on general impression", "ok": true, "why": "Find a life threat, treat a life threat. Then airway."}, {"t": "A month of belly pain before you look at A or B", "ok": false, "why": "Find a life threat, treat a life threat. Then airway."}, {"t": "Dispatch ‘difficulty breathing,’ which is already the diagnosis", "ok": false, "why": "Dispatch ≠ diagnosis. After ABCs you may land cardiac."}, {"t": "A pulse ox of 99% even if they are spurting", "ok": false, "why": "Find a life threat, treat a life threat. Then airway."}]}, {"ch": "etco2", "q": "Capnometry versus capnography, and the number?", "opts": [{"t": "Number vs waveform; 35–45 he said you do not need to remember; more medic", "ok": true, "why": "Shark-fin = asthma, hard to get air out. Good exhaled CO2 means the whole chain is working."}, {"t": "Waveform vs number; 35–45 you must memorize as an EMT skill", "ok": false, "why": "Shark-fin = asthma, hard to get air out. Good exhaled CO2 means the whole chain is working."}, {"t": "Both are pulse ox; 94–99 is exhaled CO2", "ok": false, "why": "Shark-fin = asthma, hard to get air out. Good exhaled CO2 means the whole chain is working."}, {"t": "Both prove only residual volume; never circulation", "ok": false, "why": "Shark-fin = asthma, hard to get air out. Good exhaled CO2 means the whole chain is working."}]}, {"ch": "clot", "q": "Gas exchange needs both of these, clot example?", "opts": [{"t": "Air in alveoli and blood in the capillaries; clot = no blood to exchange", "ok": true, "why": "He said both sides have to show up."}, {"t": "Air in the mediastinum only; a clot in the lung does not matter here", "ok": false, "why": "He said both sides have to show up."}, {"t": "Blood in the esophagus and air in the stomach, not the capillaries", "ok": false, "why": "He said both sides have to show up."}, {"t": "Only residual volume; pulmonary capillaries are optional for exchange", "ok": false, "why": "He said both sides have to show up."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"cspine": "C-spine / phrenic", "chain": "Vent → resp → ox", "defs": "Definitions", "press": "Pressure", "ppv": "PPV", "tv": "Tidal volume", "drive": "Drive", "gas": "Diffusion", "alt": "Altitude", "adeq": "Adequate vs not", "patt": "Patterns", "words": "Words", "o2": "O2 indications", "spo2": "Pulse ox", "anat": "Anatomy", "exhale": "Exhalation", "chest": "Chest", "cell": "Cells", "resp": "Respiration types", "fluid": "Fluid", "airway": "Patent", "scene": "Priority", "etco2": "ETCO2", "clot": "Exchange"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Sunday 9:54 respiratory phys only. Device LPM / adjuncts: not in his notes this hour.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · 9:54 respiratory phys only</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
