@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat 8:02 — circulatory intro (from recap)</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat 8:02 — circulatory intro</h1>
+  <div class="sub">Recap only · you/your · 26 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":"sys","q":"What three pieces must work together so perfusion holds?","opts":[{"t":"Only the lungs, the diaphragm, and tidal volume","ok":false,"why":"This recap\u2019s system is pump (heart), pipes (vessels), and fluid (blood). Any one failing drops perfusion."},{"t":"Pump, pipes, and fluid \u2014 heart, vessels, and blood","ok":true,"why":"This recap\u2019s system is pump (heart), pipes (vessels), and fluid (blood). Any one failing drops perfusion."},{"t":"Only SAMPLE, OPQRST, and a secondary exam","ok":false,"why":"This recap\u2019s system is pump (heart), pipes (vessels), and fluid (blood). Any one failing drops perfusion."},{"t":"Only the tricuspid valve, the gag reflex, and SpO\u2082","ok":false,"why":"This recap\u2019s system is pump (heart), pipes (vessels), and fluid (blood). Any one failing drops perfusion."}]},{"ch":"fail","q":"Pump or pipes or fluid drops out. What happens next in this recap?","opts":[{"t":"Perfusion still holds if the other two are fine","ok":false,"why":"Any one of the three failing means perfusion fails \u2014 shock and possible death."},{"t":"Perfusion fails \u2014 that is shock, and it can kill","ok":true,"why":"Any one of the three failing means perfusion fails \u2014 shock and possible death."},{"t":"You automatically get right-sided JVD only","ok":false,"why":"Any one of the three failing means perfusion fails \u2014 shock and possible death."},{"t":"Cardiac output stays the same because HR is 80","ok":false,"why":"Any one of the three failing means perfusion fails \u2014 shock and possible death."}]},{"ch":"pulm","q":"Pulmonary loop \u2014 start, end, and job?","opts":[{"t":"Left ventricle \u2192 body \u2192 right atrium; feed every cell","ok":false,"why":"Pulmonary is right ventricle \u2192 lungs \u2192 left atrium. Job is lung gas exchange: pick up O\u2082, drop off CO\u2082."},{"t":"Right ventricle \u2192 lungs \u2192 left atrium; swap gases in the lungs","ok":true,"why":"Pulmonary is right ventricle \u2192 lungs \u2192 left atrium. Job is lung gas exchange: pick up O\u2082, drop off CO\u2082."},{"t":"Left atrium \u2192 mitral valve \u2192 aorta; skip the lungs","ok":false,"why":"Pulmonary is right ventricle \u2192 lungs \u2192 left atrium. Job is lung gas exchange: pick up O\u2082, drop off CO\u2082."},{"t":"SVC only \u2192 left ventricle \u2192 pulmonary veins; drop off O\u2082","ok":false,"why":"Pulmonary is right ventricle \u2192 lungs \u2192 left atrium. Job is lung gas exchange: pick up O\u2082, drop off CO\u2082."}]},{"ch":"sysl","q":"Systemic loop \u2014 start, end, and job?","opts":[{"t":"Right ventricle \u2192 lungs \u2192 left atrium; only CO\u2082 pickup","ok":false,"why":"Systemic is left ventricle \u2192 body \u2192 right atrium. Deliver O\u2082 and nutrients; pick up CO\u2082 and waste."},{"t":"Left ventricle \u2192 body \u2192 right atrium; feed cells and haul waste","ok":true,"why":"Systemic is left ventricle \u2192 body \u2192 right atrium. Deliver O\u2082 and nutrients; pick up CO\u2082 and waste."},{"t":"Pulmonary veins \u2192 right ventricle \u2192 IVC; lungs only","ok":false,"why":"Systemic is left ventricle \u2192 body \u2192 right atrium. Deliver O\u2082 and nutrients; pick up CO\u2082 and waste."},{"t":"Aorta \u2192 pulmonic valve \u2192 alveoli; skip the body","ok":false,"why":"Systemic is left ventricle \u2192 body \u2192 right atrium. Deliver O\u2082 and nutrients; pick up CO\u2082 and waste."}]},{"ch":"chamb","q":"Which pairing is true for the four chambers?","opts":[{"t":"Right atrium takes oxygenated blood from the lungs","ok":false,"why":"RA: deoxygenated from the body. RV: to the lungs. LA: oxygenated from the lungs. LV: oxygenated to the body."},{"t":"Right atrium takes deoxygenated blood from the body; left ventricle sends oxygenated blood to the body","ok":true,"why":"RA: deoxygenated from the body. RV: to the lungs. LA: oxygenated from the lungs. LV: oxygenated to the body."},{"t":"Left atrium takes deoxygenated blood from the IVC","ok":false,"why":"RA: deoxygenated from the body. RV: to the lungs. LA: oxygenated from the lungs. LV: oxygenated to the body."},{"t":"Right ventricle sends oxygenated blood into the aorta","ok":false,"why":"RA: deoxygenated from the body. RV: to the lungs. LA: oxygenated from the lungs. LV: oxygenated to the body."}]},{"ch":"wall","q":"Why is the left ventricle wall thicker and stronger?","opts":[{"t":"It only has to reach the nearby lungs","ok":false,"why":"Left wall is thicker because it pumps to the entire body. Right is thinner \u2014 lungs only."},{"t":"It has to push blood through the whole body","ok":true,"why":"Left wall is thicker because it pumps to the entire body. Right is thinner \u2014 lungs only."},{"t":"It receives blood from the SVC and IVC","ok":false,"why":"Left wall is thicker because it pumps to the entire body. Right is thinner \u2014 lungs only."},{"t":"It sits after the tricuspid valve","ok":false,"why":"Left wall is thicker because it pumps to the entire body. Right is thinner \u2014 lungs only."}]},{"ch":"lfail","q":"Left-sided pump is failing. Where does blood back up, and what do you see?","opts":[{"t":"Into the body \u2014 JVD and ankle swelling first","ok":false,"why":"Left fail: cannot go forward to the body, so it backs into the lungs \u2014 SOB, crackles, CHF picture."},{"t":"Into the lungs \u2014 shortness of breath, crackles, a CHF picture","ok":true,"why":"Left fail: cannot go forward to the body, so it backs into the lungs \u2014 SOB, crackles, CHF picture."},{"t":"Only into the right atrium through the tricuspid","ok":false,"why":"Left fail: cannot go forward to the body, so it backs into the lungs \u2014 SOB, crackles, CHF picture."},{"t":"Nowhere \u2014 stroke volume always rises","ok":false,"why":"Left fail: cannot go forward to the body, so it backs into the lungs \u2014 SOB, crackles, CHF picture."}]},{"ch":"rfail","q":"Right-sided pump is failing (logic this recap wants you to use now). Backup where?","opts":[{"t":"Into the lungs \u2014 crackles and a CHF picture","ok":false,"why":"Right fail: backup into the body \u2014 JVD and peripheral edema (weight gain shows up in later chapters)."},{"t":"Into the body \u2014 JVD and peripheral edema","ok":true,"why":"Right fail: backup into the body \u2014 JVD and peripheral edema (weight gain shows up in later chapters)."},{"t":"Into the aorta through the aortic valve","ok":false,"why":"Right fail: backup into the body \u2014 JVD and peripheral edema (weight gain shows up in later chapters)."},{"t":"Nowhere \u2014 the right wall is thicker so it never fails","ok":false,"why":"Right fail: backup into the body \u2014 JVD and peripheral edema (weight gain shows up in later chapters)."}]},{"ch":"cava","q":"Blood is coming back to the right atrium. Which vessel pairing is right?","opts":[{"t":"Pulmonary veins from the head; aorta from the legs","ok":false,"why":"SVC returns head and upper body. IVC returns lower body. Both empty into the right atrium."},{"t":"SVC from head and upper body; IVC from the lower body","ok":true,"why":"SVC returns head and upper body. IVC returns lower body. Both empty into the right atrium."},{"t":"Pulmonary arteries from the alveoli; mitral from the gut","ok":false,"why":"SVC returns head and upper body. IVC returns lower body. Both empty into the right atrium."},{"t":"Aortic valve from the arms; pulmonic from the feet","ok":false,"why":"SVC returns head and upper body. IVC returns lower body. Both empty into the right atrium."}]},{"ch":"pa","q":"What do the pulmonary arteries carry, and where?","opts":[{"t":"Oxygenated blood from the left atrium to the body","ok":false,"why":"Pulmonary arteries carry deoxygenated blood from the right ventricle to the lungs \u2014 the test exception."},{"t":"Deoxygenated blood from the right ventricle to the lungs","ok":true,"why":"Pulmonary arteries carry deoxygenated blood from the right ventricle to the lungs \u2014 the test exception."},{"t":"Oxygenated blood from the alveoli to the left atrium","ok":false,"why":"Pulmonary arteries carry deoxygenated blood from the right ventricle to the lungs \u2014 the test exception."},{"t":"Mixed waste only through the mitral valve","ok":false,"why":"Pulmonary arteries carry deoxygenated blood from the right ventricle to the lungs \u2014 the test exception."}]},{"ch":"pv","q":"What do the pulmonary veins do after alveolar exchange?","opts":[{"t":"Take deoxygenated blood to the right atrium","ok":false,"why":"Pulmonary veins bring oxygenated blood to the left atrium after O\u2082 in / CO\u2082 out at the alveoli."},{"t":"Bring oxygenated blood to the left atrium","ok":true,"why":"Pulmonary veins bring oxygenated blood to the left atrium after O\u2082 in / CO\u2082 out at the alveoli."},{"t":"Dump into the SVC with the head return","ok":false,"why":"Pulmonary veins bring oxygenated blood to the left atrium after O\u2082 in / CO\u2082 out at the alveoli."},{"t":"Cross the pulmonic valve into the aorta","ok":false,"why":"Pulmonary veins bring oxygenated blood to the left atrium after O\u2082 in / CO\u2082 out at the alveoli."}]},{"ch":"tpma","q":"Valve order on the path \u2014 T\u2013P\u2013M\u2013A means what?","opts":[{"t":"Tracheal, pleural, mediastinal, alveolar","ok":false,"why":"T\u2013P\u2013M\u2013A is tricuspid, then pulmonic, then mitral (bicuspid), then aortic."},{"t":"Tricuspid, pulmonic, mitral, aortic","ok":true,"why":"T\u2013P\u2013M\u2013A is tricuspid, then pulmonic, then mitral (bicuspid), then aortic."},{"t":"Tachycardia, perfusion, minute volume, afterload","ok":false,"why":"T\u2013P\u2013M\u2013A is tricuspid, then pulmonic, then mitral (bicuspid), then aortic."},{"t":"Tricuspid, mitral, pulmonic, aortic","ok":false,"why":"T\u2013P\u2013M\u2013A is tricuspid, then pulmonic, then mitral (bicuspid), then aortic."}]},{"ch":"av","q":"Which pair are the AV valves, and on which side?","opts":[{"t":"Pulmonic on the left; aortic on the right","ok":false,"why":"AV valves: tricuspid on the right, mitral/bicuspid on the left. Pulmonic and aortic are semilunar."},{"t":"Tricuspid on the right; mitral (bicuspid) on the left","ok":true,"why":"AV valves: tricuspid on the right, mitral/bicuspid on the left. Pulmonic and aortic are semilunar."},{"t":"Both semilunar valves sit between atria and ventricles","ok":false,"why":"AV valves: tricuspid on the right, mitral/bicuspid on the left. Pulmonic and aortic are semilunar."},{"t":"Mitral on the right; tricuspid on the left","ok":false,"why":"AV valves: tricuspid on the right, mitral/bicuspid on the left. Pulmonic and aortic are semilunar."}]},{"ch":"sl","q":"Semilunar valves \u2014 which door is which?","opts":[{"t":"Tricuspid is RV to lungs; mitral is LV to body","ok":false,"why":"Semilunar: pulmonic is RV \u2192 lungs; aortic is LV \u2192 body. They close to stop backflow."},{"t":"Pulmonic is RV to lungs; aortic is LV to body","ok":true,"why":"Semilunar: pulmonic is RV \u2192 lungs; aortic is LV \u2192 body. They close to stop backflow."},{"t":"Aortic is RA to RV; pulmonic is LA to LV","ok":false,"why":"Semilunar: pulmonic is RV \u2192 lungs; aortic is LV \u2192 body. They close to stop backflow."},{"t":"Both sit in the vena cava before the atria","ok":false,"why":"Semilunar: pulmonic is RV \u2192 lungs; aortic is LV \u2192 body. They close to stop backflow."}]},{"ch":"sound","q":"The lub-dub you hear is what, in this recap?","opts":[{"t":"The ventricles squeezing, not the valves","ok":false,"why":"Lub-dub is valves snapping shut each cycle. They open for forward flow and close to stop backflow."},{"t":"Valves snapping shut each cycle","ok":true,"why":"Lub-dub is valves snapping shut each cycle. They open for forward flow and close to stop backflow."},{"t":"Air moving at the alveoli only","ok":false,"why":"Lub-dub is valves snapping shut each cycle. They open for forward flow and close to stop backflow."},{"t":"The brain firing every single beat","ok":false,"why":"Lub-dub is valves snapping shut each cycle. They open for forward flow and close to stop backflow."}]},{"ch":"mvp","q":"Mitral valve prolapse as this recap named it?","opts":[{"t":"The aortic valve never opens toward the body","ok":false,"why":"The mitral valve does not close correctly and can let some blood backflow during contraction."},{"t":"The valve does not close right and can leak backward during squeeze","ok":true,"why":"The mitral valve does not close correctly and can let some blood backflow during contraction."},{"t":"The tricuspid is missing so SVC blood pools in the legs","ok":false,"why":"The mitral valve does not close correctly and can let some blood backflow during contraction."},{"t":"Pulmonary arteries start carrying oxygenated blood","ok":false,"why":"The mitral valve does not close correctly and can let some blood backflow during contraction."}]},{"ch":"elec","q":"Unconscious on the floor. Why is that not automatically cardiac arrest?","opts":[{"t":"Every beat still needs a brain signal or the heart stops","ok":false,"why":"Cardiac muscle can fire its own impulses. The brain can speed or slow the rate, but each beat does not require the brain."},{"t":"The heart can keep beating on its own \u2014 the brain only speeds or slows it","ok":true,"why":"Cardiac muscle can fire its own impulses. The brain can speed or slow the rate, but each beat does not require the brain."},{"t":"Unconscious always means the left ventricle has failed","ok":false,"why":"Cardiac muscle can fire its own impulses. The brain can speed or slow the rate, but each beat does not require the brain."},{"t":"You must assume no stroke volume until they speak","ok":false,"why":"Cardiac muscle can fire its own impulses. The brain can speed or slow the rate, but each beat does not require the brain."}]},{"ch":"gas","q":"Two places you have to think about gas exchange?","opts":[{"t":"Only inside the right atrium and the aorta","ok":false,"why":"Lungs: blood \u2194 alveoli (O\u2082 in, CO\u2082 out). Tissues: blood \u2194 cells (O\u2082 in, CO\u2082 out as waste)."},{"t":"Lungs (blood \u2194 alveoli) and tissues (blood \u2194 cells)","ok":true,"why":"Lungs: blood \u2194 alveoli (O\u2082 in, CO\u2082 out). Tissues: blood \u2194 cells (O\u2082 in, CO\u2082 out as waste)."},{"t":"Only at the tricuspid and mitral doors","ok":false,"why":"Lungs: blood \u2194 alveoli (O\u2082 in, CO\u2082 out). Tissues: blood \u2194 cells (O\u2082 in, CO\u2082 out as waste)."},{"t":"SVC and IVC before they reach the heart","ok":false,"why":"Lungs: blood \u2194 alveoli (O\u2082 in, CO\u2082 out). Tissues: blood \u2194 cells (O\u2082 in, CO\u2082 out as waste)."}]},{"ch":"hr","q":"Adult resting rate from this recap, and the two labels?","opts":[{"t":"40\u201350; over 50 is tachy, under 40 is brady","ok":false,"why":"Adult resting HR is 60\u2013100. Tachycardia is over 100. Bradycardia is under 60."},{"t":"60\u2013100; over 100 is tachy, under 60 is brady","ok":true,"why":"Adult resting HR is 60\u2013100. Tachycardia is over 100. Bradycardia is under 60."},{"t":"100\u2013140; under 100 is always shock","ok":false,"why":"Adult resting HR is 60\u2013100. Tachycardia is over 100. Bradycardia is under 60."},{"t":"Stroke volume 60\u2013100 mL is the field pulse","ok":false,"why":"Adult resting HR is 60\u2013100. Tachycardia is over 100. Bradycardia is under 60."}]},{"ch":"co","q":"Cardiac output in this recap \u2014 what is it, and the formula?","opts":[{"t":"Air per minute; tidal volume \u00d7 respiratory rate only","ok":false,"why":"CO is blood pumped in one minute: stroke volume \u00d7 heart rate. You do not measure SV in the field."},{"t":"Blood in one minute; stroke volume \u00d7 heart rate","ok":true,"why":"CO is blood pumped in one minute: stroke volume \u00d7 heart rate. You do not measure SV in the field."},{"t":"Pressure in the aorta; HR minus stroke volume","ok":false,"why":"CO is blood pumped in one minute: stroke volume \u00d7 heart rate. You do not measure SV in the field."},{"t":"Blood per beat only; you read it on the pulse ox","ok":false,"why":"CO is blood pumped in one minute: stroke volume \u00d7 heart rate. You do not measure SV in the field."}]},{"ch":"twin","q":"This recap twins cardiac output to breathing how?","opts":[{"t":"Heart rate is like residual volume; SV is dead space","ok":false,"why":"Tidal volume is air per breath; minute volume is tidal volume \u00d7 rate \u2014 same shape as SV and CO."},{"t":"Tidal volume is air per breath; minute volume is that times the rate","ok":true,"why":"Tidal volume is air per breath; minute volume is tidal volume \u00d7 rate \u2014 same shape as SV and CO."},{"t":"Crackles equal minute volume; wheezes equal stroke volume","ok":false,"why":"Tidal volume is air per breath; minute volume is that times the rate \u2014 same shape as SV and CO."},{"t":"There is no breathing comparison in this recap","ok":false,"why":"Tidal volume is air per breath; minute volume is that times the rate \u2014 same shape as SV and CO."}]},{"ch":"fast","q":"Rate is very high. What can happen to filling and output?","opts":[{"t":"Stroke volume always rises, so output is safer","ok":false,"why":"A very high HR can drop SV because there is less filling time \u2014 cardiac output can still fall."},{"t":"Stroke volume can fall (less fill time) and output can drop","ok":true,"why":"A very high HR can drop SV because there is less filling time \u2014 cardiac output can still fall."},{"t":"Only the right ventricle thickens in that minute","ok":false,"why":"A very high HR can drop SV because there is less filling time \u2014 cardiac output can still fall."},{"t":"Pulmonary veins reverse and feed the IVC","ok":false,"why":"A very high HR can drop SV because there is less filling time \u2014 cardiac output can still fall."}]},{"ch":"poor","q":"You think cardiac output is poor. Which cluster matches this recap?","opts":[{"t":"Warm dry skin, strong pulses, normal mental status","ok":false,"why":"Poor CO: altered mental status, weak or absent peripheral pulses, cool pale clammy skin, low BP \u2014 especially with tachycardia."},{"t":"Altered mind, weak pulses, cool pale clammy skin, low BP","ok":true,"why":"Poor CO: altered mental status, weak or absent peripheral pulses, cool pale clammy skin, low BP \u2014 especially with tachycardia."},{"t":"Only JVD with no lung or skin change","ok":false,"why":"Poor CO: altered mental status, weak or absent peripheral pulses, cool pale clammy skin, low BP \u2014 especially with tachycardia."},{"t":"Sat 99% and they look fine, so output is proven","ok":false,"why":"Poor CO: altered mental status, weak or absent peripheral pulses, cool pale clammy skin, low BP \u2014 especially with tachycardia."}]},{"ch":"fluid","q":"History of bleeding or vomiting or diarrhea. Which signs fit low fluid here?","opts":[{"t":"Slow rate, hot flushed skin, bounding pulses","ok":false,"why":"Hypovolemia clues: tachycardia, low BP, cool pale clammy, thirst, weakness, dizziness."},{"t":"Fast rate, low BP, cool pale clammy, thirst and dizziness","ok":true,"why":"Hypovolemia clues: tachycardia, low BP, cool pale clammy, thirst, weakness, dizziness."},{"t":"Crackles and a left-fail CHF picture only","ok":false,"why":"Hypovolemia clues: tachycardia, low BP, cool pale clammy, thirst, weakness, dizziness."},{"t":"JVD and weight gain as the first fluid-loss signs","ok":false,"why":"Hypovolemia clues: tachycardia, low BP, cool pale clammy, thirst, weakness, dizziness."}]},{"ch":"lungs","q":"You are checking the lung side of this recap. Left heart fail makes you think what?","opts":[{"t":"Empty dry lungs and a strong left wall","ok":false,"why":"Left heart failure \u2192 fluid in the lungs \u2192 crackles, SOB, possible CHF. Check rate, effort, sounds, SpO\u2082 if you have it."},{"t":"Fluid in the lungs \u2014 crackles, SOB, possible CHF","ok":true,"why":"Left heart failure \u2192 fluid in the lungs \u2192 crackles, SOB, possible CHF. Check rate, effort, sounds, SpO\u2082 if you have it."},{"t":"Only right-sided JVD with clear bases","ok":false,"why":"Left heart failure \u2192 fluid in the lungs \u2192 crackles, SOB, possible CHF. Check rate, effort, sounds, SpO\u2082 if you have it."},{"t":"Pulmonary arteries now carry oxygenated blood","ok":false,"why":"Left heart failure \u2192 fluid in the lungs \u2192 crackles, SOB, possible CHF. Check rate, effort, sounds, SpO\u2082 if you have it."}]},{"ch":"tissue","q":"Cells may not be getting O\u2082. Which tissue clues does this recap list?","opts":[{"t":"Warm pink skin and a normal mental status","ok":false,"why":"Tissue hypoxia clues: altered mental status, cyanosis (late), cool pale skin, signs of shock."},{"t":"Altered mental status, cyanosis (late), cool pale skin, shock","ok":true,"why":"Tissue hypoxia clues: altered mental status, cyanosis (late), cool pale skin, signs of shock."},{"t":"Only a missing tricuspid sound","ok":false,"why":"Tissue hypoxia clues: altered mental status, cyanosis (late), cool pale skin, signs of shock."},{"t":"Bradycardia in an athlete as the only sign","ok":false,"why":"Tissue hypoxia clues: altered mental status, cyanosis (late), cool pale skin, signs of shock."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"sys":"Three parts","fail":"Perfusion","pulm":"Pulmonary","sysl":"Systemic","chamb":"Chambers","wall":"LV wall","lfail":"Left fail","rfail":"Right fail","cava":"SVC / IVC","pa":"Pulm arteries","pv":"Pulm veins","tpma":"T\u2013P\u2013M\u2013A","av":"AV valves","sl":"Semilunar","sound":"Lub-dub","mvp":"Prolapse","elec":"Own beat","gas":"Two sites","hr":"Rate","co":"Cardiac output","twin":"Minute volume","fast":"Fill time","poor":"Poor CO","fluid":"Low fluid","lungs":"Lung backup","tissue":"Tissues"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the Sat 8:02 circulatory-intro recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · circulatory-intro recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
