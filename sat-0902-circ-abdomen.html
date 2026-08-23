@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat 9:02 — circ + abdomen (from recap)</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat 9:02 — circ + abdomen</h1>
+  <div class="sub">Recap only · you/your · 27 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":"hep","q":"Hepatic arteries feed which organ, and why does trauma there scare you?","opts":[{"t":"Kidneys — they only make urine, so bleed risk is low","ok":false,"why":"Hepatic arteries → liver. Liver detoxifies and holds ≈40% of blood volume — trauma is a major internal bleed."},{"t":"Liver — it detoxifies blood and holds a huge share of volume (≈40%), so trauma is a major internal bleed","ok":true,"why":"Hepatic arteries → liver. Liver detoxifies and holds ≈40% of blood volume — trauma is a major internal bleed."},{"t":"Spleen only — hepatic means LUQ pulse","ok":false,"why":"Hepatic arteries → liver. Liver detoxifies and holds ≈40% of blood volume — trauma is a major internal bleed."},{"t":"Gallbladder — it is the solid organ that stores RBCs","ok":false,"why":"Hepatic arteries → liver. Liver detoxifies and holds ≈40% of blood volume — trauma is a major internal bleed."}]},{"ch":"ren","q":"A test stem says the organ that “filters the blood.” What do you pick from this recap?","opts":[{"t":"Spleen, because it always means waste filtration","ok":false,"why":"Renal arteries → kidneys. Kidneys filter blood and make urine. On a test, “filters the blood” = kidneys."},{"t":"Kidneys — renal arteries feed them; they keep some blood contents and excrete the rest as urine","ok":true,"why":"Renal arteries → kidneys. Kidneys filter blood and make urine. On a test, “filters the blood” = kidneys."},{"t":"Liver, because hepatic means urine","ok":false,"why":"Renal arteries → kidneys. Kidneys filter blood and make urine. On a test, “filters the blood” = kidneys."},{"t":"Bone marrow, because it filters old plasma","ok":false,"why":"Renal arteries → kidneys. Kidneys filter blood and make urine. On a test, “filters the blood” = kidneys."}]},{"ch":"mes","q":"What do mesenteric arteries reach, and what is the mesentery?","opts":[{"t":"Kidneys; a valve between the aorta and the IVC","ok":false,"why":"Mesenteric arteries reach intestines through the mesentery, which suspends bowel and carries its vessels."},{"t":"Intestines via the mesentery — the membrane that suspends bowel and carries its vessels","ok":true,"why":"Mesenteric arteries reach intestines through the mesentery, which suspends bowel and carries its vessels."},{"t":"The spleen only; mesentery is another name for LUQ","ok":false,"why":"Mesenteric arteries reach intestines through the mesentery, which suspends bowel and carries its vessels."},{"t":"The liver; mesentery is the capsule around RBCs","ok":false,"why":"Mesenteric arteries reach intestines through the mesentery, which suspends bowel and carries its vessels."}]},{"ch":"rbc","q":"RBC lifespan and where they are made, this recap?","opts":[{"t":"About 40 days in the spleen","ok":false,"why":"RBCs last ≈120 days and are produced in bone marrow."},{"t":"About 120 days; produced in bone marrow inside bone","ok":true,"why":"RBCs last ≈120 days and are produced in bone marrow."},{"t":"They last forever once the liver detoxifies them","ok":false,"why":"RBCs last ≈120 days and are produced in bone marrow."},{"t":"Made only in the LUQ and last one heartbeat","ok":false,"why":"RBCs last ≈120 days and are produced in bone marrow."}]},{"ch":"spl","q":"What does your spleen do, and where does it sit?","opts":[{"t":"Makes all new RBCs in the RUQ","ok":false,"why":"Spleen removes old/damaged RBCs. It is solid, vascular, LUQ — injury bleeds a lot."},{"t":"Removes old/damaged RBCs; solid, very vascular, LUQ — injury is a major internal bleed","ok":true,"why":"Spleen removes old/damaged RBCs. It is solid, vascular, LUQ — injury bleeds a lot."},{"t":"Filters waste into urine in the RLQ","ok":false,"why":"Spleen removes old/damaged RBCs. It is solid, vascular, LUQ — injury bleeds a lot."},{"t":"Stores bile and leaks first after trauma","ok":false,"why":"Spleen removes old/damaged RBCs. It is solid, vascular, LUQ — injury bleeds a lot."}]},{"ch":"filt","q":"Stem says “filters blood.” How does this recap want you to split spleen vs kidneys?","opts":[{"t":"Both always mean the same thing — pick either","ok":false,"why":"Waste filtration = kidneys. Old RBC removal = spleen. Do not treat those stems as the same."},{"t":"Waste filtration = kidneys; old RBC removal = spleen","ok":true,"why":"Waste filtration = kidneys. Old RBC removal = spleen. Do not treat those stems as the same."},{"t":"Spleen always wins because it is solid","ok":false,"why":"Waste filtration = kidneys. Old RBC removal = spleen. Do not treat those stems as the same."},{"t":"Liver wins any filtration stem","ok":false,"why":"Waste filtration = kidneys. Old RBC removal = spleen. Do not treat those stems as the same."}]},{"ch":"path","q":"Leave the left ventricle. What is the path this recap recites before you are back in the left ventricle?","opts":[{"t":"Pulmonary veins → right atrium → aorta → capillaries only","ok":false,"why":"LV → aorta → arteries → arterioles → capillaries → venules → veins → vena cavae → RA → RV → pulmonary arteries → lungs → pulmonary veins → LA → LV."},{"t":"Aorta → arteries → arterioles → capillaries → venules → veins → vena cavae → RA → RV → pulmonary arteries → lungs → pulmonary veins → LA → LV","ok":true,"why":"LV → aorta → arteries → arterioles → capillaries → venules → veins → vena cavae → RA → RV → pulmonary arteries → lungs → pulmonary veins → LA → LV."},{"t":"IVC → left atrium → pulmonic valve → body","ok":false,"why":"LV → aorta → arteries → arterioles → capillaries → venules → veins → vena cavae → RA → RV → pulmonary arteries → lungs → pulmonary veins → LA → LV."},{"t":"Carotid → spleen → hepatic vein → left ventricle","ok":false,"why":"LV → aorta → arteries → arterioles → capillaries → venules → veins → vena cavae → RA → RV → pulmonary arteries → lungs → pulmonary veins → LA → LV."}]},{"ch":"cap","q":"Where in the circulatory system does gas exchange occur, this recap?","opts":[{"t":"In every artery, because you feel a pulse there","ok":false,"why":"Capillaries are the only circulatory site of gas exchange: O₂ blood→cells, CO₂ cells→blood."},{"t":"Only in capillaries — O₂ blood → cells, CO₂ cells → blood","ok":true,"why":"Capillaries are the only circulatory site of gas exchange: O₂ blood→cells, CO₂ cells→blood."},{"t":"Only inside the left ventricle during systole","ok":false,"why":"Capillaries are the only circulatory site of gas exchange: O₂ blood→cells, CO₂ cells→blood."},{"t":"Only in the vena cavae before the right atrium","ok":false,"why":"Capillaries are the only circulatory site of gas exchange: O₂ blood→cells, CO₂ cells→blood."}]},{"ch":"alv","q":"Alveoli plus lung capillaries — what moves, and how?","opts":[{"t":"Plasma only, pushed by systolic squeeze","ok":false,"why":"Alveoli + lung capillaries: O₂ in / CO₂ out by diffusion (high → low)."},{"t":"O₂ in / CO₂ out by diffusion, high concentration toward low","ok":true,"why":"Alveoli + lung capillaries: O₂ in / CO₂ out by diffusion (high → low)."},{"t":"Whole RBCs jump from artery to vein without a gradient","ok":false,"why":"Alveoli + lung capillaries: O₂ in / CO₂ out by diffusion (high → low)."},{"t":"Urine forms there because kidneys sit in the chest","ok":false,"why":"Alveoli + lung capillaries: O₂ in / CO₂ out by diffusion (high → low)."}]},{"ch":"pa","q":"Pulmonary arteries — the exception this recap wants you to lock?","opts":[{"t":"They carry oxygenated blood from the left atrium to the body","ok":false,"why":"Pulmonary arteries carry deoxygenated blood from the right ventricle to the lungs — the exception."},{"t":"They carry deoxygenated blood from the right ventricle to the lungs","ok":true,"why":"Pulmonary arteries carry deoxygenated blood from the right ventricle to the lungs — the exception."},{"t":"They are veins, so you start IVs in them","ok":false,"why":"Pulmonary arteries carry deoxygenated blood from the right ventricle to the lungs — the exception."},{"t":"They return the head to the right atrium","ok":false,"why":"Pulmonary arteries carry deoxygenated blood from the right ventricle to the lungs — the exception."}]},{"ch":"cava","q":"Blood is coming home to the right atrium. Which pairing is right?","opts":[{"t":"Pulmonary veins from the legs; aorta from the head","ok":false,"why":"SVC returns head/upper body. IVC returns lower body. Both empty into the right atrium."},{"t":"SVC from head and upper body; IVC from the lower body","ok":true,"why":"SVC returns head/upper body. IVC returns lower body. Both empty into the right atrium."},{"t":"Both vena cavae empty into the left ventricle","ok":false,"why":"SVC returns head/upper body. IVC returns lower body. Both empty into the right atrium."},{"t":"Hepatic arteries return all venous blood","ok":false,"why":"SVC returns head/upper body. IVC returns lower body. Both empty into the right atrium."}]},{"ch":"art","q":"Arteries in this recap — pressure, blood, and what you feel?","opts":[{"t":"Low pressure, no pulse, you start every IV here","ok":false,"why":"Arteries are high pressure, usually oxygenated (except pulmonary arteries), and that is where you feel a pulse."},{"t":"High pressure, usually oxygenated (except pulmonary arteries), and you feel pulses here","ok":true,"why":"Arteries are high pressure, usually oxygenated (except pulmonary arteries), and that is where you feel a pulse."},{"t":"They only carry deoxygenated blood from the spleen","ok":false,"why":"Arteries are high pressure, usually oxygenated (except pulmonary arteries), and that is where you feel a pulse."},{"t":"They oozed dark blood and never spurts","ok":false,"why":"Arteries are high pressure, usually oxygenated (except pulmonary arteries), and that is where you feel a pulse."}]},{"ch":"vein","q":"Why do you start IVs in veins, this recap?","opts":[{"t":"Veins are high pressure so the fluid shoots in faster","ok":false,"why":"Veins are low pressure, so IVs go there. They usually carry deoxygenated blood (except pulmonary veins)."},{"t":"Veins are low pressure — safer than an arterial stick","ok":true,"why":"Veins are low pressure, so IVs go there. They usually carry deoxygenated blood (except pulmonary veins)."},{"t":"Veins are the only place you can feel a pulse","ok":false,"why":"Veins are low pressure, so IVs go there. They usually carry deoxygenated blood (except pulmonary veins)."},{"t":"Pulmonary veins are the only IV site on an adult","ok":false,"why":"Veins are low pressure, so IVs go there. They usually carry deoxygenated blood (except pulmonary veins)."}]},{"ch":"abl","q":"Arterial bleeding — what do you expect?","opts":[{"t":"Dark red, slow ooze, rarely urgent","ok":false,"why":"Arterial bleed: bright red, spurts with the heartbeat, rapidly life-threatening."},{"t":"Bright red, spurts with the heartbeat, rapidly life-threatening","ok":true,"why":"Arterial bleed: bright red, spurts with the heartbeat, rapidly life-threatening."},{"t":"Clear fluid from a hollow organ only","ok":false,"why":"Arterial bleed: bright red, spurts with the heartbeat, rapidly life-threatening."},{"t":"No color change because arteries have no pressure","ok":false,"why":"Arterial bleed: bright red, spurts with the heartbeat, rapidly life-threatening."}]},{"ch":"vbl","q":"Venous bleeding — picture from this recap?","opts":[{"t":"Bright red spurts timed to each systole","ok":false,"why":"Venous bleed: darker red, flows or oozes rather than spurts."},{"t":"Darker red, flows or oozes rather than spurts","ok":true,"why":"Venous bleed: darker red, flows or oozes rather than spurts."},{"t":"Always from the carotid on a responsive adult","ok":false,"why":"Venous bleed: darker red, flows or oozes rather than spurts."},{"t":"It only happens after a solid-organ hit","ok":false,"why":"Venous bleed: darker red, flows or oozes rather than spurts."}]},{"ch":"pulse","q":"What is a pulse, and how do you feel it?","opts":[{"t":"Air moving at the alveoli; you listen with a thumb on the vein","ok":false,"why":"Pulse = pressure wave from LV contraction. Press an artery against bone/cartilage; too hard stops it."},{"t":"The pressure wave when the left ventricle contracts — press an artery against a firm structure","ok":true,"why":"Pulse = pressure wave from LV contraction. Press an artery against bone/cartilage; too hard stops it."},{"t":"Diastolic refill only; press as hard as you can until it stops","ok":false,"why":"Pulse = pressure wave from LV contraction. Press an artery against bone/cartilage; too hard stops it."},{"t":"A venous wave you feel in the IVC","ok":false,"why":"Pulse = pressure wave from LV contraction. Press an artery against bone/cartilage; too hard stops it."}]},{"ch":"sites","q":"Unresponsive adult vs responsive adult — which pulse sites does this recap assign?","opts":[{"t":"Dorsalis pedis for both, because the neck is never used","ok":false,"why":"Carotid = unresponsive adult life check. Radial (thumb-side wrist) = responsive adult."},{"t":"Carotid for the unresponsive adult; radial (thumb-side wrist) for the responsive adult","ok":true,"why":"Carotid = unresponsive adult life check. Radial (thumb-side wrist) = responsive adult."},{"t":"Brachial for every adult; carotid only on infants","ok":false,"why":"Carotid = unresponsive adult life check. Radial (thumb-side wrist) = responsive adult."},{"t":"Femoral only if they can talk to you","ok":false,"why":"Carotid = unresponsive adult life check. Radial (thumb-side wrist) = responsive adult."}]},{"ch":"brac","q":"Brachial pulse — where, and who needs it most here?","opts":[{"t":"Top of the foot; only for distal checks after a splint","ok":false,"why":"Brachial is inside the upper arm — crucial for infants and used for BP."},{"t":"Inside of the upper arm — crucial for infants, and a BP site","ok":true,"why":"Brachial is inside the upper arm — crucial for infants and used for BP."},{"t":"Behind the medial ankle; main adult life check","ok":false,"why":"Brachial is inside the upper arm — crucial for infants and used for BP."},{"t":"Thumb-side wrist; never used for blood pressure","ok":false,"why":"Brachial is inside the upper arm — crucial for infants and used for BP."}]},{"ch":"dist","q":"You need distal circulation after a leg injury. Which pair?","opts":[{"t":"Carotid and radial","ok":false,"why":"Dorsalis pedis (top of foot) and posterior tibial (behind medial ankle) check distal circulation."},{"t":"Dorsalis pedis (top of foot) and posterior tibial (behind the medial ankle)","ok":true,"why":"Dorsalis pedis (top of foot) and posterior tibial (behind medial ankle) check distal circulation."},{"t":"Hepatic and mesenteric only","ok":false,"why":"Dorsalis pedis (top of foot) and posterior tibial (behind medial ankle) check distal circulation."},{"t":"Brachial and carotid, because they are closest to the foot","ok":false,"why":"Dorsalis pedis (top of foot) and posterior tibial (behind medial ankle) check distal circulation."}]},{"ch":"why","q":"Why do pulses matter on your patient, this recap?","opts":[{"t":"Only to decide left versus right quadrant","ok":false,"why":"Pulses tell you dead vs alive/CPR, rate and quality, and distal flow beyond injury or splint."},{"t":"Dead vs alive / CPR, rate and quality, and distal flow beyond an injury or splint","ok":true,"why":"Pulses tell you dead vs alive/CPR, rate and quality, and distal flow beyond injury or splint."},{"t":"They prove gas exchange in the aorta","ok":false,"why":"Pulses tell you dead vs alive/CPR, rate and quality, and distal flow beyond injury or splint."},{"t":"You must always pick the left side or the reading is false","ok":false,"why":"Pulses tell you dead vs alive/CPR, rate and quality, and distal flow beyond injury or splint."}]},{"ch":"side","q":"Left vs right pulse — does the side matter?","opts":[{"t":"Always use the left; the right never counts","ok":false,"why":"Left vs right usually does not matter unless local injury or a specific concern."},{"t":"Usually it does not matter unless there is a local injury or a specific concern","ok":true,"why":"Left vs right usually does not matter unless local injury or a specific concern."},{"t":"You must alternate sides every 15 seconds","ok":false,"why":"Left vs right usually does not matter unless local injury or a specific concern."},{"t":"Right side only, because the LV is on the right","ok":false,"why":"Left vs right usually does not matter unless local injury or a specific concern."}]},{"ch":"bp","q":"Systolic vs diastolic in this recap?","opts":[{"t":"Systolic is relax/refill; diastolic is LV squeeze","ok":false,"why":"Systolic = LV contracts and ejects. Diastolic = heart relaxes and refills."},{"t":"Systolic (top) is LV contraction and ejection; diastolic (bottom) is relax and refill","ok":true,"why":"Systolic = LV contracts and ejects. Diastolic = heart relaxes and refills."},{"t":"Both numbers are venous pressure in the IVC","ok":false,"why":"Systolic = LV contracts and ejects. Diastolic = heart relaxes and refills."},{"t":"Diastolic is the only number you feel as a pulse","ok":false,"why":"Systolic = LV contracts and ejects. Diastolic = heart relaxes and refills."}]},{"ch":"hose","q":"Is arterial flow a steady garden hose in this recap?","opts":[{"t":"Yes — pressure never changes between beats","ok":false,"why":"Blood flow is pulsatile, not a continuous garden hose."},{"t":"No — flow is pulsatile, not continuous like a hose","ok":true,"why":"Blood flow is pulsatile, not a continuous garden hose."},{"t":"Only veins are pulsatile","ok":false,"why":"Blood flow is pulsatile, not a continuous garden hose."},{"t":"Only after a hollow-organ leak","ok":false,"why":"Blood flow is pulsatile, not a continuous garden hose."}]},{"ch":"solid","q":"Solid organs this recap lists, and the injury risk?","opts":[{"t":"Stomach and bladder — they leak bile first","ok":false,"why":"Solid: liver, spleen, kidneys, pancreas. Injury risk is severe internal bleeding."},{"t":"Liver, spleen, kidneys, pancreas — high blood content, so severe internal bleeding","ok":true,"why":"Solid: liver, spleen, kidneys, pancreas. Injury risk is severe internal bleeding."},{"t":"Only hollow organs bleed; solid organs only infect","ok":false,"why":"Solid: liver, spleen, kidneys, pancreas. Injury risk is severe internal bleeding."},{"t":"Gallbladder and intestines — they hold 40% of blood volume","ok":false,"why":"Solid: liver, spleen, kidneys, pancreas. Injury risk is severe internal bleeding."}]},{"ch":"holl","q":"Hollow-organ injury — main risk this recap wants?","opts":[{"t":"Instant arterial spurting from the aorta","ok":false,"why":"Hollow: stomach, intestines, bladder, gallbladder. Injury risk is leak → peritonitis/infection."},{"t":"Leakage of contents → peritonitis / severe infection","ok":true,"why":"Hollow: stomach, intestines, bladder, gallbladder. Injury risk is leak → peritonitis/infection."},{"t":"Old RBC removal stops in the LUQ","ok":false,"why":"Hollow: stomach, intestines, bladder, gallbladder. Injury risk is leak → peritonitis/infection."},{"t":"Bone marrow stops making urine","ok":false,"why":"Hollow: stomach, intestines, bladder, gallbladder. Injury risk is leak → peritonitis/infection."}]},{"ch":"quad","q":"Quadrants — whose view, and where is the spleen?","opts":[{"t":"Your view as you stand at the feet; spleen is RLQ","ok":false,"why":"Quadrants are from the patient’s view, centered on the navel. Spleen = LUQ."},{"t":"The patient’s perspective, centered on the navel; spleen is LUQ","ok":true,"why":"Quadrants are from the patient’s view, centered on the navel. Spleen = LUQ."},{"t":"Always the liver’s view; spleen is RUQ","ok":false,"why":"Quadrants are from the patient’s view, centered on the navel. Spleen = LUQ."},{"t":"There are only two boxes, both on the right","ok":false,"why":"Quadrants are from the patient’s view, centered on the navel. Spleen = LUQ."}]},{"ch":"livq","q":"Liver location you should carry from this lecture plus general EMT knowledge?","opts":[{"t":"Only LLQ, so RUQ pain is never liver","ok":false,"why":"Liver is mostly RUQ and remains a high-yield trauma bleed."},{"t":"Mostly RUQ (and still a high-yield trauma bleed)","ok":true,"why":"Liver is mostly RUQ and remains a high-yield trauma bleed."},{"t":"Only behind the medial ankle","ok":false,"why":"Liver is mostly RUQ and remains a high-yield trauma bleed."},{"t":"It sits in the mesentery of the LLQ","ok":false,"why":"Liver is mostly RUQ and remains a high-yield trauma bleed."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"hep":"Liver","ren":"Kidneys","mes":"Mesentery","rbc":"RBCs","spl":"Spleen","filt":"Filter split","path":"Flow path","cap":"Capillaries","alv":"Alveoli","pa":"Pulm arteries","cava":"SVC / IVC","art":"Arteries","vein":"Veins / IV","abl":"Arterial bleed","vbl":"Venous bleed","pulse":"What a pulse is","sites":"Carotid / radial","brac":"Brachial","dist":"Distal foot","why":"Why pulses","side":"Which side","bp":"Systolic / diastolic","hose":"Pulsatile","solid":"Solid organs","holl":"Hollow organs","quad":"Quadrants","livq":"Liver RUQ"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the Sat 9:02 circ-abdomen recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · circ-abdomen recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
