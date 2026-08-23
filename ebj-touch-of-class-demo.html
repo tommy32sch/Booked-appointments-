@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>EBJ Touch of Class · Mesa</title>
+<style>
+:root {
+  --bg: #111418; --card: #1b2026; --ink: #f4efe6; --muted: #b7b0a4;
+  --gold: #d4a017; --line: #2c333c; --safe: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.4; }
+.banner { background: #3a2a0a; color: #f0d48a; text-align: center;
+  font-size: .78rem; letter-spacing: .03em; padding: 8px 12px calc(8px + var(--safe)); }
+header { padding: 22px 18px 8px; }
+header h1 { margin: 0; font-size: 1.55rem; letter-spacing: .01em; }
+header p { margin: 6px 0 0; color: var(--muted); font-size: .95rem; }
+.hero { margin: 12px 16px 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
+.hero img { display: block; width: 100%; height: auto; }
+main { padding: 16px 16px 40px; max-width: 640px; margin: 0 auto; }
+.call { display: block; text-align: center; text-decoration: none; color: #111;
+  background: var(--gold); font-weight: 800; font-size: 1.15rem;
+  padding: 16px 18px; border-radius: 12px; margin: 16px 0 10px; }
+.call small { display: block; font-weight: 600; font-size: .78rem; opacity: .8; margin-top: 2px; }
+.deal { color: var(--gold); font-size: .9rem; margin: 0 0 18px; }
+h2 { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 22px 0 10px; }
+.services { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
+.services li { background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+  padding: 8px 12px; font-size: .88rem; }
+.hours { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
+.hours p { margin: 0; }
+.hours strong { display: block; font-size: 1.05rem; margin-top: 4px; }
+.addr { color: var(--muted); font-size: .92rem; margin: 10px 0 0; }
+.social { display: flex; gap: 10px; flex-wrap: wrap; }
+.social a { color: var(--ink); text-decoration: none; background: var(--card);
+  border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-size: .9rem; }
+footer { color: var(--muted); font-size: .75rem; margin-top: 28px; }
+</style>
+</head>
+<body>
+<div class="banner">Sample page · not their live site yet</div>
+<header>
+  <h1>EBJ Touch of Class</h1>
+  <p>Auto detailing, glass, and tint in Mesa. One shop for cars, trucks, SUVs, motorcycles, and Razor.</p>
+</header>
+<figure class="hero">
+  <img src="https://img1.wsimg.com/isteam/ip/ee2372c3-3d7a-4b21-9291-d646d26005d6/IMG_3928_29_30.jpg" alt="Work from EBJ Touch of Class" width="1200" height="800">
+</figure>
+<main>
+  <a class="call" href="tel:+14802667993">Call (480) 266-7993<small>Tap to call · main way to reach them</small></a>
+  <p class="deal">20% off this month when you try their services. That’s the offer on their current page.</p>
+
+  <h2>What they do</h2>
+  <ul class="services">
+    <li>Auto detailing</li>
+    <li>Auto glass</li>
+    <li>Auto tint</li>
+    <li>Ceramic coating</li>
+    <li>Full car wraps</li>
+    <li>Clear bra</li>
+  </ul>
+
+  <h2>Hours</h2>
+  <div class="hours">
+    <p>Open today</p>
+    <strong>9:00 am – 5:00 pm</strong>
+    <p class="addr">624 W Broadway Rd, Ste 214<br>Mesa, AZ 85210<br>From their BBB listing.</p>
+  </div>
+
+  <h2>Social</h2>
+  <div class="social">
+    <a href="https://www.facebook.com/921783707899731">Facebook</a>
+    <a href="https://www.instagram.com/ebjauto/">Instagram</a>
+    <a href="https://www.tiktok.com/@ebjtouchofclass">TikTok</a>
+  </div>
+
+  <footer>Demo for the owner. Facts from ebjtouchofclass.com and BBB. Nothing on this page sends a message.</footer>
+</main>
+</body>
+</html>
