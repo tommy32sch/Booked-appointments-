@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat/Sun Aug 23 — airway / suction</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat/Sun Aug 23 · airway / suction</h1>
+  <div class="sub">Sunday 11:22 · lecture only · no OPA/NPA</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch": "open", "q": "Talking adult or a wailing kid — airway next step?", "opts": [{"t": "Airway check is done; move to breathing", "ok": true, "why": "Path is open. Unconscious is the tongue problem."}, {"t": "Assume the tongue and jaw-thrust every talking patient", "ok": false, "why": "Path is open. Unconscious is the tongue problem."}, {"t": "Suction first even if you see and hear nothing", "ok": false, "why": "Indication is see it or hear it."}, {"t": "Place an OPA because this hour taught adjuncts", "ok": false, "why": "OPA/NPA/maintain: not in his notes this hour."}]}, {"ch": "tongue", "q": "Unconscious, you have not opened the path. Breathing first?", "opts": [{"t": "Do not judge breathing until the tongue is off; they may breathe once it is", "ok": true, "why": "Tongue is #1 obstruction. Muscles relax."}, {"t": "Score zero breaths first, then never open the mouth", "ok": false, "why": "Tongue is #1 obstruction. Muscles relax."}, {"t": "Skip to maintain with an NPA he sized this hour", "ok": false, "why": "OPA/NPA/maintain: after lunch. Not taught."}, {"t": "Sit them up only if they are already unconscious and floppy", "ok": false, "why": "Unconscious work: supine, you at the top of the head."}]}, {"ch": "pos", "q": "Unconscious airway work — your place and theirs?", "opts": [{"t": "Patient supine; you at the top of the head", "ok": true, "why": "Awake patients already sit up and protect themselves."}, {"t": "Patient prone; you at the feet", "ok": false, "why": "Awake patients already sit up and protect themselves."}, {"t": "Patient sitting; you at the side with no hands on the jaw", "ok": false, "why": "Need to open/manage: supine, operator at the crown."}, {"t": "Patient standing; you walk them to the truck first", "ok": false, "why": "Need to open/manage: supine, operator at the crown."}]}, {"ch": "htcl", "q": "When is head-tilt chin-lift the open he wanted?", "opts": [{"t": "Confidence there is no spinal injury — found in bed, seen slump on the couch", "ok": true, "why": "Easier to hold. One hand on top, one under chin, tilt back."}, {"t": "Unknown sidewalk, maybe hit by a car — still tilt first", "ok": false, "why": "Don’t know → err caution → jaw thrust."}, {"t": "Every trauma; never use a jaw thrust", "ok": false, "why": "Unknown / possible spine: jaw thrust."}, {"t": "Only after you place an OPA this hour", "ok": false, "why": "OPA not taught. HTCL is tongue off the throat with no-spine story."}]}, {"ch": "jt", "q": "Jaw thrust — hands and what happens if you let go?", "opts": [{"t": "Thumbs on cheekbones, fingers behind the jaw angle, push up; let go and tongue drops", "ok": true, "why": "Head/C-spine stay still. You are stuck holding it."}, {"t": "Thumbs on the chin, crank the neck back; let go and the spine is safer", "ok": false, "why": "Head/C-spine stay still. You are stuck holding it."}, {"t": "Fingers in the mouth to hold the tongue; let go and it stays up", "ok": false, "why": "He avoids fingers in the mouth. Jaw up makes an underbite."}, {"t": "One hand on the forehead only; the jaw holds itself", "ok": false, "why": "Head/C-spine stay still. You are stuck holding it."}]}, {"ch": "jt", "q": "Unconscious on a sidewalk, maybe a car. Which open?", "opts": [{"t": "Err caution and jaw thrust", "ok": true, "why": "Unknown / possible spine. Do not let go."}, {"t": "Head-tilt because sidewalks never hide trauma", "ok": false, "why": "Unknown / possible spine. Do not let go."}, {"t": "Skip open and count breaths first", "ok": false, "why": "Four steps: open → assess → clear → maintain."}, {"t": "NPA first because maintain was taught before lunch", "ok": false, "why": "Maintain is after lunch. Not in his notes."}]}, {"ch": "steps", "q": "Four airway steps in order?", "opts": [{"t": "Open, assess, clear, maintain — only then the airway check, then breathing R/R/Q", "ok": true, "why": "Maintain (keep the tongue out) is after lunch / 1:00."}, {"t": "Maintain, clear, assess, open — then skip breathing", "ok": false, "why": "Open, assess, clear, maintain."}, {"t": "Assess breaths first, then open if the rate is 22", "ok": false, "why": "Do not judge breathing until the path is open."}, {"t": "Clear with an OPA, then open, then maintain, then assess", "ok": false, "why": "OPA not taught. Order is open → assess → clear → maintain."}]}, {"ch": "assess", "q": "Assess the mouth means what, and when do you suction?", "opts": [{"t": "Look inside and listen; see junk or hear gurgling → suction", "ok": true, "why": "Do not add gurgling the stem lacks; do not skip suction if the stem has it."}, {"t": "Count only; never look; suction every unresponsive patient", "ok": false, "why": "Indication = see it or hear it. Nothing seen/heard → do not pick suction."}, {"t": "Look only if they talk; ignore gurgling in the stem", "ok": false, "why": "Do not skip suction if the stem says gurgling."}, {"t": "Suction the lower-lung edema you cannot see", "ok": false, "why": "You only suction what you see/hear in the upper airway."}]}, {"ch": "roll", "q": "Suction not ready and the mouth is dirty. Fastest move?", "opts": [{"t": "Immediately roll to the side for gravity, then set up gear", "ok": true, "why": "Hands / position first. Then back supine for the rest of care."}, {"t": "Stay supine and wait until the wall unit charges", "ok": false, "why": "Hands / position first. Then back supine for the rest of care."}, {"t": "Place an NPA so junk cannot fall", "ok": false, "why": "NPA not taught. Roll now."}, {"t": "Ventilate 2 minutes before you ever roll", "ok": false, "why": "If the unit is not up, roll them now. The 2 min clock is after a 10 s dirty pass."}]}, {"ch": "cath", "q": "Rigid versus flexible / non-rigid on the registry wording?", "opts": [{"t": "Rigid = mouth junk, bigger hole; flexible = smaller, clogs, trach or ET", "ok": true, "why": "Not Yankauer / French / whistle-tip brand names on the test."}, {"t": "Flexible = mouth junk, bigger hole; rigid = only down a trach or ET", "ok": false, "why": "Rigid hard plastic is the mouth go-to."}, {"t": "Both have a full French size menu he taught today for gag reflex", "ok": false, "why": "No real size menu for gag. French sizes: not in his notes."}, {"t": "Neither is sterile; reuse yesterday’s tubing on today’s throat", "ok": false, "why": "Catheter + tubing = sterile wrap, single-patient, trash."}]}, {"ch": "vac", "q": "Start-of-shift vacuum number from the book, as he said?", "opts": [{"t": "More than 300 mmHg; gage, light, or test on your glove if no gage", "ok": true, "why": "Attachments on; test vacuum. Dead battery → hand pump."}, {"t": "Less than 30 mmHg; never test on a glove", "ok": false, "why": "Book: more than 300 mmHg."}, {"t": "Exactly 15/10/5 mmHg by age", "ok": false, "why": "Those old numbers were times, and he retired them. Vacuum is >300 mmHg."}, {"t": "No test; wall units never fail", "ok": false, "why": "Check charge at start of shift. Test vacuum."}]}, {"ch": "meas", "q": "How far does the catheter go?", "opts": [{"t": "Mouth-corner to earlobe or jaw angle; only that far / only as far as you see", "ok": true, "why": "Not into the trachea."}, {"t": "Nose to xiphoid; push the tip into the trachea on purpose each pass", "ok": false, "why": "Mouth-corner to earlobe or angle of jaw."}, {"t": "No measure; insert until it meets resistance deep in the bronchus", "ok": false, "why": "Mouth-corner to earlobe or angle of jaw."}, {"t": "Same measure as an NPA he sized in this hour before lunch", "ok": false, "why": "NPA not taught. Mouth-ear or mouth-jaw."}]}, {"ch": "off", "q": "Suction on insert versus on the way out?", "opts": [{"t": "Insert with suction OFF (side hole open); cover the hole; circular motions out", "ok": true, "why": "Then flush water and repeat as needed."}, {"t": "Insert with suction ON; uncover the hole; straight yank out", "ok": false, "why": "Insert OFF so vacuum is not at the tip."}, {"t": "Insert OFF and leave the hole uncovered the whole way out", "ok": false, "why": "Cover the hole to suction on the way out."}, {"t": "Insert ON for 15 seconds in adults only", "ok": false, "why": "Old 15/10/5 is retired. Insert OFF. ≤10 s all ages."}]}, {"ch": "time", "q": "Suction time now, all ages?", "opts": [{"t": "Until clear, up to 10 seconds, then stop and get them oxygen", "ok": true, "why": "Old adult 15 / child 10 / infant 5 — they don’t do that anymore. Infant may clear in ~2 s."}, {"t": "Adult 15, child 10, infant 5 — he kept that phrase today", "ok": false, "why": "He retired 15/10/5 today. Do not use it."}, {"t": "Until clear, up to 2 minutes, then never oxygenate", "ok": false, "why": "10 s then oxygen. 2 min is the ventilate gap between suction passes."}, {"t": "No time limit if you keep the hole covered", "ok": false, "why": "Up to 10 seconds, all ages."}]}, {"ch": "old", "q": "Partner recites adult 15 / child 10 / infant 5. What did he say today?", "opts": [{"t": "They don’t do that anymore; one 10-second cap for all ages", "ok": true, "why": "He liked the old phrase; he retired it."}, {"t": "Keep 15/10/5; ignore the new 10-second rule", "ok": false, "why": "He liked the old phrase; he retired it."}, {"t": "Use 15 for infants and 5 for adults", "ok": false, "why": "He liked the old phrase; he retired it."}, {"t": "Use 15/10/5 only after you place an OPA", "ok": false, "why": "OPA not taught. Old times are retired."}]}, {"ch": "loop", "q": "Still dirty at 10 seconds. Clock?", "opts": [{"t": "Ventilate 2 minutes, suction up to 10 s, ventilate 2 min…", "ok": true, "why": "You may push junk down (+30–70% mortality). No oxygen = 100% dead. Least-bad choice."}, {"t": "Suction 2 minutes, ventilate 10 s, repeat", "ok": false, "why": "10 s suction / 2 min ventilate."}, {"t": "Suction 15/10/5, never ventilate", "ok": false, "why": "Old times retired. They need positive pressure depth, not just a cannula idea he shut down."}, {"t": "Stop forever because aspiration risk is 100% dead", "ok": false, "why": "Aspiration +30–70%. No oxygen is 100% dead."}]}, {"ch": "clog", "q": "Chunks keep clogging the catheter. After a retry?", "opts": [{"t": "Stop, log roll, gravity; scoop with the catheter, not a finger safari", "ok": true, "why": "Book gloved-finger sweep — he is not fishing with a finger."}, {"t": "Keep jamming the same clogged line and never roll them to the side", "ok": false, "why": "Stop, log roll, gravity."}, {"t": "Finger-sweep deep past what you can see to grab every chunk", "ok": false, "why": "He would scoop with the catheter. Avoid fingers (bite)."}, {"t": "Place an NPA so chunks cannot clog, then keep suctioning supine", "ok": false, "why": "NPA not taught. Roll + gravity."}]}, {"ch": "edema", "q": "Pulmonary edema versus what you suction?", "opts": [{"t": "Edema is lower-airway fluid; you only suction what you see/hear in the upper airway", "ok": true, "why": "Lower-lung fluid = different intervention later. Not in his notes / don’t invent."}, {"t": "Edema is upper junk only; suction the alveoli with a flexible catheter", "ok": false, "why": "You only suction what you see/hear up top."}, {"t": "Edema means skip the four steps and go to NPA", "ok": false, "why": "Maintain after lunch. Do not invent the later intervention."}, {"t": "Edema is cleared by 15/10/5 suction times", "ok": false, "why": "Those times are retired. Lower fluid is not this suction."}]}, {"ch": "units", "q": "Three suction units he named, and the scene one?", "opts": [{"t": "Hand-pump backup; battery portable on scene (charge at shift start); wall in the box", "ok": true, "why": "Hand-pump cramps; stuff drains back if you stop."}, {"t": "Wall only on scene; never a battery; hand-pump is first line", "ok": false, "why": "Battery portable is what they take on scene."}, {"t": "Only a hospital wall; no portable exists", "ok": false, "why": "Battery portable is what they take on scene."}, {"t": "Only a mouth syringe he sized like an NPA", "ok": false, "why": "Hand-pump, battery, wall. NPA not taught."}]}, {"ch": "asp", "q": "Aspiration into the lungs — the add-on he quoted?", "opts": [{"t": "Mortality +30–70% on top of the original problem", "ok": true, "why": "Still better than 100% dead from no oxygen if you must ventilate a dirty airway."}, {"t": "Mortality −30–70%; aspiration helps oxygen", "ok": false, "why": "Still better than 100% dead from no oxygen if you must ventilate a dirty airway."}, {"t": "Mortality 100% always, so never ventilate after 10 s", "ok": false, "why": "No oxygen = 100% dead. Least-bad is 10 s / 2 min."}, {"t": "Mortality 0% if you use old 15/10/5 times", "ok": false, "why": "Old times retired. Aspiration is +30–70%."}]}, {"ch": "trap", "q": "Trapped in a car, not breathing well, FD cutting. A/B versus spine?", "opts": [{"t": "Urgent move out; someone tries to ventilate in the seat; may sacrifice spine to keep them alive", "ok": true, "why": "Spine = quality of life; A/B = life."}, {"t": "Wait for a full board package before any air; never ventilate in the seat", "ok": false, "why": "Spine = quality of life; A/B = life."}, {"t": "NPA in the seat because maintain was taught", "ok": false, "why": "Maintain after lunch. Not invented."}, {"t": "Leave them; cutting time means no airway work", "ok": false, "why": "Someone tries to ventilate in the seat."}]}, {"ch": "mouth", "q": "Book cross-finger / scissor to open the mouth — his habit?", "opts": [{"t": "Book answer; he never uses it and avoids fingers in the mouth", "ok": true, "why": "Muscles are loose — just open it."}, {"t": "His only method; always put fingers in the mouth to scissor", "ok": false, "why": "He avoids fingers in the mouth."}, {"t": "Required before every jaw thrust he taught for unknown spine", "ok": false, "why": "Book answer; he never uses it."}, {"t": "How you measure mouth-to-ear before you insert the catheter", "ok": false, "why": "Measure is corner of mouth to earlobe or jaw angle."}]}, {"ch": "water", "q": "Sterile water jug is for what?", "opts": [{"t": "Suction water between passes so blood/vomit does not clot the line", "ok": true, "why": "Then repeat as needed."}, {"t": "A drink for the patient while you keep suctioning the mouth", "ok": false, "why": "Flush the line, not a drink."}, {"t": "Prime an NPA he sized in this hour before the lunch break", "ok": false, "why": "NPA not taught."}, {"t": "Replace the more-than-300 mmHg vacuum test at start of shift", "ok": false, "why": "You still test vacuum. Water is between passes."}]}, {"ch": "gear", "q": "What is trash versus what you spray?", "opts": [{"t": "Catheter + tubing trash; canister to biohazard; machine you spray-disinfect", "ok": true, "why": "Keep a packaged set with the unit so you are not hunting."}, {"t": "Reuse tubing; trash the machine; never biohazard the fluid canister", "ok": false, "why": "Sterile single-use path. Machine you keep and disinfect."}, {"t": "Trash only the wall unit; save yesterday’s catheter for the next call", "ok": false, "why": "Single-patient catheter and tubing."}, {"t": "Nothing is biohazard if you still use the old 15/10/5 suction times", "ok": false, "why": "Fluid path is biohazard. Old times are retired."}]}, {"ch": "ppv", "q": "After suction they still cannot clear themselves. Depth of air?", "opts": [{"t": "Positive pressure depth — not the cannula / simple-mask idea he shut down", "ok": true, "why": "Probably not breathing adequately. He shut that low-flow idea down."}, {"t": "Nose cannula only; never give positive pressure after you suction", "ok": false, "why": "He shut that idea down."}, {"t": "An OPA plus a named LPM carried over from the 9:54 physiology hour", "ok": false, "why": "9:54 deferred devices. This hour deferred OPA/NPA."}, {"t": "No air for 2 minutes after every 10 s, even if they have no oxygen", "ok": false, "why": "The 2 minutes are ventilate time, not a hold."}]}, {"ch": "noadj", "q": "OPA / NPA / maintain in this 11:22 talk?", "opts": [{"t": "After lunch / 1:00; not in his notes this hour — do not invent", "ok": true, "why": "Four steps named; step 4 waits."}, {"t": "Taught with sizes and you should pick one on this quiz", "ok": false, "why": "Not taught. Do not invent."}, {"t": "Required before every 10-second suction", "ok": false, "why": "Not taught. Do not invent."}, {"t": "The same as Saturday’s 15/10/5 rule", "ok": false, "why": "15/10/5 retired. Adjuncts after lunch."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"open": "Patent check", "tongue": "Tongue", "pos": "Position", "htcl": "Head-tilt", "jt": "Jaw thrust", "steps": "Four steps", "assess": "Assess / clear", "roll": "Roll", "cath": "Catheters", "vac": "Vacuum", "meas": "Measure", "off": "Insert off", "time": "10 seconds", "old": "Old 15/10/5", "loop": "10s / 2min", "clog": "Clog / roll", "edema": "Edema vs suction", "units": "Units", "asp": "Aspiration", "trap": "Trapped", "mouth": "Mouth open", "water": "Flush", "gear": "Trash / clean", "ppv": "After suction", "noadj": "Not taught"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Sunday 11:22 airway and suction only. OPA/NPA/maintain after lunch. Old 15/10/5 retired.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · 11:22 airway / suction only</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
