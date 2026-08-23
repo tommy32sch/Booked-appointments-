@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sun 1122 — airway and suction</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sun · airway and suction</h1>
+  <div class="sub">Recap only · you/your · 20 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":"first","q":"They are conscious and talking. What do you do with the airway?","opts":[{"t":"Assume it is fully obstructed and jaw-thrust","ok":false,"why":"Talking or crying means the airway is patent. Airway check, then breathing."},{"t":"Treat it as patent, say \u201cairway check,\u201d and move to breathing","ok":true,"why":"Talking or crying means the airway is patent. Airway check, then breathing."},{"t":"Suction for 10 seconds even if the mouth is dry","ok":false,"why":"Talking or crying means the airway is patent. Airway check, then breathing."},{"t":"Skip breathing forever","ok":false,"why":"Talking or crying means the airway is patent. Airway check, then breathing."}]},{"ch":"unc","q":"Unconscious \u2014 what do you assume about the airway?","opts":[{"t":"They are protecting it because they look peaceful","ok":false,"why":"Unconscious: assume not protecting. Fix airway first or you miss a simple obstruction."},{"t":"They are not protecting it. The tongue can fall back and fully obstruct. Open and clear before you judge breathing","ok":true,"why":"Unconscious: assume not protecting. Fix airway first or you miss a simple obstruction."},{"t":"Breathing assessment always comes first","ok":false,"why":"Unconscious: assume not protecting. Fix airway first or you miss a simple obstruction."},{"t":"Only check the airway after a full SAMPLE","ok":false,"why":"Unconscious: assume not protecting. Fix airway first or you miss a simple obstruction."}]},{"ch":"pos","q":"Preferred positions for airway work?","opts":[{"t":"Patient prone, you at the feet","ok":false,"why":"Supine patient, EMT at the head. Conscious people often sit up on their own."},{"t":"Patient supine, you at the top of the head","ok":true,"why":"Supine patient, EMT at the head. Conscious people often sit up on their own."},{"t":"Patient standing, you at the side only","ok":false,"why":"Supine patient, EMT at the head. Conscious people often sit up on their own."},{"t":"Patient sitting only if they are unresponsive","ok":false,"why":"Supine patient, EMT at the head. Conscious people often sit up on their own."}]},{"ch":"trap","q":"Trapped in a car, you cannot lay them supine, airway is a life threat. What can you do?","opts":[{"t":"Wait for a perfect long-board package no matter what","ok":false,"why":"Immediate airway/breathing can outrank ideal spinal protection."},{"t":"Urgent/extrication move \u2014 you may give up ideal spine protection to treat the airway/breathing threat","ok":true,"why":"Immediate airway/breathing can outrank ideal spinal protection."},{"t":"Walk away until the wreck is towed","ok":false,"why":"Immediate airway/breathing can outrank ideal spinal protection."},{"t":"Suction without opening the mouth","ok":false,"why":"Immediate airway/breathing can outrank ideal spinal protection."}]},{"ch":"open","q":"No spinal concern \u2014 elderly found unconscious in bed. Which opener?","opts":[{"t":"Jaw thrust only","ok":false,"why":"No spine suspicion: head-tilt\u2013chin-lift. Easier, more effective, easier to maintain. Couch collapse with no fall is the same idea."},{"t":"Head-tilt\u2013chin-lift (forehead and bony chin) to pull the tongue off the back of the throat","ok":true,"why":"No spine suspicion: head-tilt\u2013chin-lift. Easier, more effective, easier to maintain. Couch collapse with no fall is the same idea."},{"t":"No opener; just bag","ok":false,"why":"No spine suspicion: head-tilt\u2013chin-lift. Easier, more effective, easier to maintain. Couch collapse with no fall is the same idea."},{"t":"Flexible catheter down the nose first","ok":false,"why":"No spine suspicion: head-tilt\u2013chin-lift. Easier, more effective, easier to maintain. Couch collapse with no fall is the same idea."}]},{"ch":"jt","q":"Possible spine or you are not sure. Which opener and why is it fussy?","opts":[{"t":"Head-tilt\u2013chin-lift because it is easier","ok":false,"why":"Unsure = err cautious = jaw thrust. Harder to hold; letting go brings the obstruction back."},{"t":"Jaw thrust: fingers at the angle of the jaw, jaw forward, head and neck in line. If you let go, the tongue falls back","ok":true,"why":"Unsure = err cautious = jaw thrust. Harder to hold; letting go brings the obstruction back."},{"t":"No opener until the hospital","ok":false,"why":"Unsure = err cautious = jaw thrust. Harder to hold; letting go brings the obstruction back."},{"t":"Sit them high Fowler to protect C-spine","ok":false,"why":"Unsure = err cautious = jaw thrust. Harder to hold; letting go brings the obstruction back."}]},{"ch":"steps","q":"Four basic airway steps in this lesson?","opts":[{"t":"Meds, history, secondary, bill","ok":false,"why":"Open \u2192 assess (look/listen) \u2192 suction only if indicated \u2192 maintain so the tongue stays out of the way."},{"t":"Open, assess, clear (suction if indicated), maintain","ok":true,"why":"Open \u2192 assess (look/listen) \u2192 suction only if indicated \u2192 maintain so the tongue stays out of the way."},{"t":"Suction everyone, then open","ok":false,"why":"Open \u2192 assess (look/listen) \u2192 suction only if indicated \u2192 maintain so the tongue stays out of the way."},{"t":"GCS, pupils, glucose, then maybe the mouth","ok":false,"why":"Open \u2192 assess (look/listen) \u2192 suction only if indicated \u2192 maintain so the tongue stays out of the way."}]},{"ch":"when","q":"When do you suction?","opts":[{"t":"Every unresponsive patient, even with a dry quiet mouth","ok":false,"why":"See it or hear gurgling. Do not add details the stem did not give."},{"t":"Only if you see fluid/blood/vomit/secretions or you hear gurgling. If the stem never says that, do not pick suction","ok":true,"why":"See it or hear gurgling. Do not add details the stem did not give."},{"t":"Only after 2 minutes of ventilation","ok":false,"why":"See it or hear gurgling. Do not add details the stem did not give."},{"t":"Only with a flexible catheter in the mouth","ok":false,"why":"See it or hear gurgling. Do not add details the stem did not give."}]},{"ch":"gear","q":"On-scene unit versus backup versus hospital?","opts":[{"t":"Wall unit on scene, battery only in the ER, no backup","ok":false,"why":"Portable battery preferred on scene. Hand unit can let stuff fall back if you pause."},{"t":"Battery portable on scene (most common), wall unit in the ambulance/hospital, hand-powered as a tiring backup","ok":true,"why":"Portable battery preferred on scene. Hand unit can let stuff fall back if you pause."},{"t":"Hand-powered first every time","ok":false,"why":"Portable battery preferred on scene. Hand unit can let stuff fall back if you pause."},{"t":"You never check suction at the start of shift","ok":false,"why":"Portable battery preferred on scene. Hand unit can let stuff fall back if you pause."}]},{"ch":"cath","q":"Mouth full of vomit versus a trach/ET tube \u2014 which catheter?","opts":[{"t":"Flexible French for vomit; rigid for a trach","ok":false,"why":"Rigid = oral go-to, larger opening. Flexible clogs and is for trach/ET, not a mouth full of vomit."},{"t":"Rigid Yankauer for oral vomit/blood/chunks; flexible French/whistle-tip for trach or down an ET tube","ok":true,"why":"Rigid = oral go-to, larger opening. Flexible clogs and is for trach/ET, not a mouth full of vomit."},{"t":"Finger only for both","ok":false,"why":"Rigid = oral go-to, larger opening. Flexible clogs and is for trach/ET, not a mouth full of vomit."},{"t":"Neither \u2014 always log roll and never suction","ok":false,"why":"Rigid = oral go-to, larger opening. Flexible clogs and is for trach/ET, not a mouth full of vomit."}]},{"ch":"vac","q":"Start-of-shift vacuum number from this recap?","opts":[{"t":"Greater than 300 mmHg is adequate. Also check power/battery and that tubing and canister are on","ok":true,"why":"Book: >300 mmHg. Gauge, indicator, or occlude tubing with a gloved finger."},{"t":"30 mmHg is plenty","ok":false,"why":"Book: >300 mmHg. Gauge, indicator, or occlude tubing with a gloved finger."},{"t":"Vacuum does not matter if the unit is pretty","ok":false,"why":"Book: >300 mmHg. Gauge, indicator, or occlude tubing with a gloved finger."},{"t":"Only check vacuum after the call","ok":false,"why":"Book: >300 mmHg. Gauge, indicator, or occlude tubing with a gloved finger."}]},{"ch":"trash","q":"After the call, what is disposable?","opts":[{"t":"The whole machine goes in regular trash","ok":false,"why":"Disposable path + disinfect the body + recharge/restock."},{"t":"Tubing, catheter, and canister are single-patient disposable in biohazard trash; you disinfect the machine body and restock","ok":true,"why":"Disposable path + disinfect the body + recharge/restock."},{"t":"Reuse the canister on the next patient to save money","ok":false,"why":"Disposable path + disinfect the body + recharge/restock."},{"t":"Leave the unit empty and unplugged","ok":false,"why":"Disposable path + disinfect the body + recharge/restock."}]},{"ch":"meas","q":"How far does the rigid catheter go?","opts":[{"t":"As deep as you can push into the trachea","ok":false,"why":"Measure mouth-corner to earlobe or angle of jaw. Not down the trachea."},{"t":"Corner of mouth to earlobe, or corner of mouth to angle of the jaw \u2014 that is max depth, only as far as you can see","ok":true,"why":"Measure mouth-corner to earlobe or angle of jaw. Not down the trachea."},{"t":"Tip of the nose to the xiphoid","ok":false,"why":"Measure mouth-corner to earlobe or angle of jaw. Not down the trachea."},{"t":"No measurement; bury it","ok":false,"why":"Measure mouth-corner to earlobe or angle of jaw. Not down the trachea."}]},{"ch":"tech","q":"When is suction applied?","opts":[{"t":"While advancing, vent hole covered the whole time","ok":false,"why":"Do not suction while advancing. Circular withdraw. Time until clear, max 10 seconds."},{"t":"Insert with the vent uncovered (no suction). Cover the vent and use gentle circles only while withdrawing","ok":true,"why":"Do not suction while advancing. Circular withdraw. Time until clear, max 10 seconds."},{"t":"Suction for 60 seconds without looking","ok":false,"why":"Do not suction while advancing. Circular withdraw. Time until clear, max 10 seconds."},{"t":"Never cover the vent","ok":false,"why":"Do not suction while advancing. Circular withdraw. Time until clear, max 10 seconds."}]},{"ch":"time","q":"Suction time limit from this recap?","opts":[{"t":"5 seconds adults, 15 seconds infants","ok":false,"why":"Max 10 seconds all ages now."},{"t":"Until the airway is clear, up to 10 seconds \u2014 same limit for adults, children, and infants","ok":true,"why":"Max 10 seconds all ages now."},{"t":"No limit if you hear gurgling","ok":false,"why":"Max 10 seconds all ages now."},{"t":"2 minutes of continuous suction","ok":false,"why":"Max 10 seconds all ages now."}]},{"ch":"flush","q":"Between passes you do what to the tubing?","opts":[{"t":"Nothing","ok":false,"why":"Flush sterile water if you expect another pass."},{"t":"Suction sterile water through it to clear clots/debris","ok":true,"why":"Flush sterile water if you expect another pass."},{"t":"Blow into the tubing with your mouth","ok":false,"why":"Flush sterile water if you expect another pass."},{"t":"Change the entire ambulance","ok":false,"why":"Flush sterile water if you expect another pass."}]},{"ch":"asp","q":"Aspiration mortality add-on from this recap?","opts":[{"t":"Aspiration is harmless","ok":false,"why":"Aspiration increases mortality ~30\u201370%, independent of the original problem."},{"t":"Blood/vomit/secretions in the lungs raise mortality about 30\u201370% on top of the original problem","ok":true,"why":"Aspiration increases mortality ~30\u201370%, independent of the original problem."},{"t":"Aspiration lowers mortality by 30\u201370%","ok":false,"why":"Aspiration increases mortality ~30\u201370%, independent of the original problem."},{"t":"Only a 1% change","ok":false,"why":"Aspiration increases mortality ~30\u201370%, independent of the original problem."}]},{"ch":"grav","q":"Vomit in the airway and suction is not in your hand. First move?","opts":[{"t":"Wait supine until the unit arrives","ok":false,"why":"No suction ready \u2192 side. Dyspnea without vomit: sitting up is often the fastest first move."},{"t":"Log roll to the side so gravity drains while a partner gets suction","ok":true,"why":"No suction ready \u2192 side. Dyspnea without vomit: sitting up is often the fastest first move."},{"t":"Sit them flat and bag hard","ok":false,"why":"No suction ready \u2192 side. Dyspnea without vomit: sitting up is often the fastest first move."},{"t":"Start a detailed head-to-toe","ok":false,"why":"No suction ready \u2192 side. Dyspnea without vomit: sitting up is often the fastest first move."}]},{"ch":"clog","q":"Catheter keeps clogging on thick chunks. What do you stop doing?","opts":[{"t":"Stop the same failed pass. Roll to the side, drain, suction, scoop with the catheter \u2014 not your finger","ok":true,"why":"Do not repeat a failed approach. Gravity plus catheter, not a finger."},{"t":"Keep stabbing the same way faster","ok":false,"why":"Do not repeat a failed approach. Gravity plus catheter, not a finger."},{"t":"Switch to a flexible catheter in the mouth full of vomit","ok":false,"why":"Do not repeat a failed approach. Gravity plus catheter, not a finger."},{"t":"Give a medication instead of clearing the airway","ok":false,"why":"Do not repeat a failed approach. Gravity plus catheter, not a finger."}]},{"ch":"cycle","q":"Still not clear after a maxed suction pass. What cycle?","opts":[{"t":"Suction 10 more minutes, never bag","ok":false,"why":"Least-bad: oxygenate after you used the 10-second window. You may push leftover material down; no O2 still kills more."},{"t":"Suction up to 10 seconds, then ventilate about 2 minutes, then repeat. No oxygen is 100% mortality \u2014 worse than a 30\u201370% aspiration bump","ok":true,"why":"Least-bad: oxygenate after you used the 10-second window. You may push leftover material down; no O2 still kills more."},{"t":"Stop all oxygen forever","ok":false,"why":"Least-bad: oxygenate after you used the 10-second window. You may push leftover material down; no O2 still kills more."},{"t":"Only jaw thrust with no ventilation","ok":false,"why":"Least-bad: oxygenate after you used the 10-second window. You may push leftover material down; no O2 still kills more."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"first":"Patent","unc":"Unconscious","pos":"Position","trap":"Trapped","open":"Tilt-chin","jt":"Jaw thrust","steps":"Four steps","when":"When to suction","gear":"Units","cath":"Catheters","vac":"Vacuum","trash":"Cleanup","meas":"Measure","tech":"Technique","time":"Time","flush":"Flush","asp":"Aspiration","grav":"Gravity","clog":"Clogged","cycle":"10 then 2"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the 11:22 suction recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · airway and suction recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
