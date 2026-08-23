@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat 8:33 — circulatory fundamentals (from recap)</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat 8:33 — circulatory fundamentals</h1>
+  <div class="sub">Recap only · you/your · 28 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":"sys","q":"What three pieces have to work together so you still have perfusion?","opts":[{"t":"Only the alveoli, the diaphragm, and minute volume","ok":false,"why":"This recap’s system is pump (heart), pipes (vessels), and fluid (blood). You use that to read shock, vitals, BP, and LOC."},{"t":"Pump, pipes, and fluid — heart, vessels, and blood","ok":true,"why":"This recap’s system is pump (heart), pipes (vessels), and fluid (blood). You use that to read shock, vitals, BP, and LOC."},{"t":"Only SAMPLE, OPQRST, and a 12-lead","ok":false,"why":"This recap’s system is pump (heart), pipes (vessels), and fluid (blood). You use that to read shock, vitals, BP, and LOC."},{"t":"Only the SA node, the gag reflex, and SpO₂","ok":false,"why":"This recap’s system is pump (heart), pipes (vessels), and fluid (blood). You use that to read shock, vitals, BP, and LOC."}]},{"ch":"co","q":"Cardiac output in this recap — formula and the worked example?","opts":[{"t":"CO = tidal volume × rate; 500 mL × 12 = 6 L/min","ok":false,"why":"CO = SV × HR. Example: 80 mL × 70 bpm = 5.6 L/min. Adult volume is about 5–6 L, so you turn over essentially the whole volume each minute at rest."},{"t":"CO = SV × HR; 80 mL × 70 bpm = 5.6 L/min","ok":true,"why":"CO = SV × HR. Example: 80 mL × 70 bpm = 5.6 L/min. Adult volume is about 5–6 L, so you turn over essentially the whole volume each minute at rest."},{"t":"CO is BP minus afterload; you read it on the pulse ox","ok":false,"why":"CO = SV × HR. Example: 80 mL × 70 bpm = 5.6 L/min. Adult volume is about 5–6 L, so you turn over essentially the whole volume each minute at rest."},{"t":"CO is blood per beat only; HR is not in the formula","ok":false,"why":"CO = SV × HR. Example: 80 mL × 70 bpm = 5.6 L/min. Adult volume is about 5–6 L, so you turn over essentially the whole volume each minute at rest."}]},{"ch":"vol","q":"Adult blood volume here, and what rest-CO means for it?","opts":[{"t":"About 1–2 L; you never circulate the full volume","ok":false,"why":"Average adult volume is about 5–6 L. At rest a normal adult circulates essentially the entire blood volume every minute."},{"t":"About 5–6 L; at rest you circulate essentially the whole volume every minute","ok":true,"why":"Average adult volume is about 5–6 L. At rest a normal adult circulates essentially the entire blood volume every minute."},{"t":"About 12 L; stroke volume is the total volume","ok":false,"why":"Average adult volume is about 5–6 L. At rest a normal adult circulates essentially the entire blood volume every minute."},{"t":"Volume is not given; only afterload numbers matter","ok":false,"why":"Average adult volume is about 5–6 L. At rest a normal adult circulates essentially the entire blood volume every minute."}]},{"ch":"codrop","q":"SV drops (bleed, poor squeeze) or HR is too low. What chain does this recap want?","opts":[{"t":"CO rises, BP rises, they get flushed and talkative","ok":false,"why":"Low SV or too-low HR drops CO → BP falls → poor perfusion → altered LOC."},{"t":"CO drops → BP drops → poor perfusion → altered LOC","ok":true,"why":"Low SV or too-low HR drops CO → BP falls → poor perfusion → altered LOC."},{"t":"Only afterload rises; the brain is spared","ok":false,"why":"Low SV or too-low HR drops CO → BP falls → poor perfusion → altered LOC."},{"t":"You automatically get a left-fail crackle picture","ok":false,"why":"Low SV or too-low HR drops CO → BP falls → poor perfusion → altered LOC."}]},{"ch":"aorta","q":"Aorta ruptures or is badly torn. What can happen in about a minute?","opts":[{"t":"Only a slow GI bleed; you can wait for a full secondary","ok":false,"why":"All LV output hits the aorta first. Rupture can dump most or all blood volume in about a minute — massive internal bleed, BP crash, they pass out, then arrest."},{"t":"Most or all of the blood volume can leave — crash BP, they pass out, then arrest","ok":true,"why":"All LV output hits the aorta first. Rupture can dump most or all blood volume in about a minute — massive internal bleed, BP crash, they pass out, then arrest."},{"t":"Pulmonary arteries reverse and fill the IVC","ok":false,"why":"All LV output hits the aorta first. Rupture can dump most or all blood volume in about a minute — massive internal bleed, BP crash, they pass out, then arrest."},{"t":"Stroke volume always doubles to compensate","ok":false,"why":"All LV output hits the aorta first. Rupture can dump most or all blood volume in about a minute — massive internal bleed, BP crash, they pass out, then arrest."}]},{"ch":"aaa","q":"Who do you treat as possible aortic catastrophe, and what is the move?","opts":[{"t":"Isolated ankle sprain with a normal mental status — stay and ice","ok":false,"why":"High suspicion in severe trauma or aneurysm rupture: sudden severe pain, shock, rapid deterioration. They can die fast — prioritize rapid transport."},{"t":"Severe trauma or aneurysm rupture — sudden severe pain, shock, fast crash; rapid transport","ok":true,"why":"High suspicion in severe trauma or aneurysm rupture: sudden severe pain, shock, rapid deterioration. They can die fast — prioritize rapid transport."},{"t":"Only a missed SA-node beat with no pain","ok":false,"why":"High suspicion in severe trauma or aneurysm rupture: sudden severe pain, shock, rapid deterioration. They can die fast — prioritize rapid transport."},{"t":"Any flushed skin after epi — wait it out","ok":false,"why":"High suspicion in severe trauma or aneurysm rupture: sudden severe pain, shock, rapid deterioration. They can die fast — prioritize rapid transport."}]},{"ch":"thin","q":"What do blood thinners / anticoagulants do in this recap?","opts":[{"t":"They dissolve the aorta so preload rises","ok":false,"why":"Anticoagulants (warfarin, DOACs) prevent clots from forming or getting bigger. Used for a known clot or high clot risk."},{"t":"They prevent clots from forming or getting bigger","ok":true,"why":"Anticoagulants (warfarin, DOACs) prevent clots from forming or getting bigger. Used for a known clot or high clot risk."},{"t":"They vasoconstrict so afterload always rises","ok":false,"why":"Anticoagulants (warfarin, DOACs) prevent clots from forming or getting bigger. Used for a known clot or high clot risk."},{"t":"They speed the SA node so CO doubles","ok":false,"why":"Anticoagulants (warfarin, DOACs) prevent clots from forming or getting bigger. Used for a known clot or high clot risk."}]},{"ch":"thin2","q":"Trauma or internal bleed on anticoagulants. Why do you care?","opts":[{"t":"Clotting is better, so you can ignore the injury","ok":false,"why":"They block normal clotting, so bleeding can be much worse and harder to control. Ask “Are you on blood thinners?” Minor injury can still be high risk."},{"t":"They block normal clotting — bleed can be much worse and harder to control","ok":true,"why":"They block normal clotting, so bleeding can be much worse and harder to control. Ask “Are you on blood thinners?” Minor injury can still be high risk."},{"t":"They only matter if the SA node fails","ok":false,"why":"They block normal clotting, so bleeding can be much worse and harder to control. Ask “Are you on blood thinners?” Minor injury can still be high risk."},{"t":"They raise afterload so BP cannot fall","ok":false,"why":"They block normal clotting, so bleeding can be much worse and harder to control. Ask “Are you on blood thinners?” Minor injury can still be high risk."}]},{"ch":"pre","q":"Preload in this recap is what?","opts":[{"t":"How tight the arteries are (SVR)","ok":false,"why":"Preload is the amount of blood returning to the heart — venous return."},{"t":"The amount of blood returning to the heart (venous return)","ok":true,"why":"Preload is the amount of blood returning to the heart — venous return."},{"t":"Oxygen content in the pulmonary veins only","ok":false,"why":"Preload is the amount of blood returning to the heart — venous return."},{"t":"The delay at the AV node","ok":false,"why":"Preload is the amount of blood returning to the heart — venous return."}]},{"ch":"star","q":"Frank-Starling / rubber-band idea here?","opts":[{"t":"Less blood in always makes a stronger squeeze","ok":false,"why":"More stretch (more blood in) → stronger contraction → more out. Less stretch → weaker contraction → less out."},{"t":"More stretch (more blood in) → stronger squeeze → more blood out","ok":true,"why":"More stretch (more blood in) → stronger contraction → more out. Less stretch → weaker contraction → less out."},{"t":"Afterload and preload are the same number","ok":false,"why":"More stretch (more blood in) → stronger contraction → more out. Less stretch → weaker contraction → less out."},{"t":"The SA node stretches the aorta each minute","ok":false,"why":"More stretch (more blood in) → stronger contraction → more out. Less stretch → weaker contraction → less out."}]},{"ch":"lowpre","q":"What drops preload here, and what do you see?","opts":[{"t":"Massive vasoconstriction only — flushed hot skin, high BP","ok":false,"why":"Bleed (blood on the floor, not in the veins), severe dehydration, third-spacing. Less pumped, lower BP, less brain blood → syncope/AMS. Cluster: tachy, weak pulses, cool/clammy, low BP, AMS."},{"t":"Hemorrhage, severe dehydration, third-spacing — low BP, syncope/AMS","ok":true,"why":"Bleed (blood on the floor, not in the veins), severe dehydration, third-spacing. Less pumped, lower BP, less brain blood → syncope/AMS. Cluster: tachy, weak pulses, cool/clammy, low BP, AMS."},{"t":"Only a clogged coronary with no volume change","ok":false,"why":"Bleed (blood on the floor, not in the veins), severe dehydration, third-spacing. Less pumped, lower BP, less brain blood → syncope/AMS. Cluster: tachy, weak pulses, cool/clammy, low BP, AMS."},{"t":"AV delay getting longer so ventricles overfill forever","ok":false,"why":"Bleed (blood on the floor, not in the veins), severe dehydration, third-spacing. Less pumped, lower BP, less brain blood → syncope/AMS. Cluster: tachy, weak pulses, cool/clammy, low BP, AMS."}]},{"ch":"after","q":"Afterload in this recap is what?","opts":[{"t":"Venous return into the right atrium","ok":false,"why":"Afterload is systemic vascular resistance — how tight or relaxed the arteries are."},{"t":"Systemic vascular resistance — how tight or relaxed the arteries are","ok":true,"why":"Afterload is systemic vascular resistance — how tight or relaxed the arteries are."},{"t":"Stroke volume times heart rate","ok":false,"why":"Afterload is systemic vascular resistance — how tight or relaxed the arteries are."},{"t":"The SA node firing rate only","ok":false,"why":"Afterload is systemic vascular resistance — how tight or relaxed the arteries are."}]},{"ch":"vaso","q":"Straw vs fire hose — which way does BP go?","opts":[{"t":"Vasoconstriction (tiny straw) drops BP; vasodilation (fire hose) raises it","ok":false,"why":"Vasoconstriction (small pipes / tiny straw + high flow) raises BP. Vasodilation (big pipes / fire hose + same flow) lowers BP."},{"t":"Vasoconstriction (tiny straw) raises BP; vasodilation (fire hose) lowers it","ok":true,"why":"Vasoconstriction (small pipes / tiny straw + high flow) raises BP. Vasodilation (big pipes / fire hose + same flow) lowers BP."},{"t":"Neither changes BP; only HR can","ok":false,"why":"Vasoconstriction (small pipes / tiny straw + high flow) raises BP. Vasodilation (big pipes / fire hose + same flow) lowers BP."},{"t":"Both raise preload and never touch afterload","ok":false,"why":"Vasoconstriction (small pipes / tiny straw + high flow) raises BP. Vasodilation (big pipes / fire hose + same flow) lowers BP."}]},{"ch":"comp","q":"Body is compensating for low BP. What pipe picture do you expect?","opts":[{"t":"Massive vasodilation — flushed, warm, bounding","ok":false,"why":"The body compensates with vasoconstriction. You see cool, pale, clammy skin."},{"t":"Vasoconstriction — cool, pale, clammy skin","ok":true,"why":"The body compensates with vasoconstriction. You see cool, pale, clammy skin."},{"t":"Pulmonary arteries start carrying oxygenated blood","ok":false,"why":"The body compensates with vasoconstriction. You see cool, pale, clammy skin."},{"t":"The AV node stops delaying so filling is instant","ok":false,"why":"The body compensates with vasoconstriction. You see cool, pale, clammy skin."}]},{"ch":"ana","q":"Anaphylaxis in this recap — pipes and pressure?","opts":[{"t":"Massive vasoconstriction; afterload and BP both rise","ok":false,"why":"Widespread vasodilation drops afterload and BP crashes."},{"t":"Massive vasodilation; afterload drops and BP crashes","ok":true,"why":"Widespread vasodilation drops afterload and BP crashes."},{"t":"Only a right-ventricle wall tear","ok":false,"why":"Widespread vasodilation drops afterload and BP crashes."},{"t":"Preload doubles because veins empty into the aorta","ok":false,"why":"Widespread vasodilation drops afterload and BP crashes."}]},{"ch":"epi","q":"What does an EpiPen do to the pipes here, and why do you give it?","opts":[{"t":"It vasodilates so afterload falls further","ok":false,"why":"Epinephrine causes strong vasoconstriction, which raises BP and supports perfusion. It also bronchodilates; this recap’s point is reversing dangerous vasodilation."},{"t":"Strong vasoconstriction — raises BP and supports perfusion","ok":true,"why":"Epinephrine causes strong vasoconstriction, which raises BP and supports perfusion. It also bronchodilates; this recap’s point is reversing dangerous vasodilation."},{"t":"It only speeds the SA node; pipes do not change","ok":false,"why":"Epinephrine causes strong vasoconstriction, which raises BP and supports perfusion. It also bronchodilates; this recap’s point is reversing dangerous vasodilation."},{"t":"It dissolves coronary plaque in one minute","ok":false,"why":"Epinephrine causes strong vasoconstriction, which raises BP and supports perfusion. It also bronchodilates; this recap’s point is reversing dangerous vasodilation."}]},{"ch":"auto","q":"Automaticity means what?","opts":[{"t":"Every beat must wait on a brain signal or the heart stops","ok":false,"why":"Heart cells can generate their own electrical impulses automatically."},{"t":"Heart cells can generate their own electrical impulses automatically","ok":true,"why":"Heart cells can generate their own electrical impulses automatically."},{"t":"Only the aorta can start a beat","ok":false,"why":"Heart cells can generate their own electrical impulses automatically."},{"t":"Veins fire first, then arteries","ok":false,"why":"Heart cells can generate their own electrical impulses automatically."}]},{"ch":"sa","q":"SA node role in this recap?","opts":[{"t":"It only delays so the ventricles can fill","ok":false,"why":"SA node is the primary pacemaker — the normal start of each beat (normal sinus rhythm)."},{"t":"Primary pacemaker — normal start of each beat (normal sinus)","ok":true,"why":"SA node is the primary pacemaker — the normal start of each beat (normal sinus rhythm)."},{"t":"It is the only coronary artery on the left wall","ok":false,"why":"SA node is the primary pacemaker — the normal start of each beat (normal sinus rhythm)."},{"t":"It carries deoxygenated blood to the lungs","ok":false,"why":"SA node is the primary pacemaker — the normal start of each beat (normal sinus rhythm)."}]},{"ch":"av","q":"Why does the AV node delay the impulse?","opts":[{"t":"So the atria never contract","ok":false,"why":"The brief AV delay gives the ventricles time to fill with blood before they contract."},{"t":"So the ventricles have time to fill before they squeeze","ok":true,"why":"The brief AV delay gives the ventricles time to fill with blood before they contract."},{"t":"So afterload can fall to zero each beat","ok":false,"why":"The brief AV delay gives the ventricles time to fill with blood before they contract."},{"t":"So pulmonary arteries can carry oxygenated blood","ok":false,"why":"The brief AV delay gives the ventricles time to fill with blood before they contract."}]},{"ch":"pulse","q":"What generates the mechanical pump you feel as a pulse?","opts":[{"t":"Only blood-thinner levels in the aorta","ok":false,"why":"Electrical activity generates the mechanical pump you feel as a pulse. If the electrical system fails, the pump fails."},{"t":"Electrical activity — that is what makes the squeeze","ok":true,"why":"Electrical activity generates the mechanical pump you feel as a pulse. If the electrical system fails, the pump fails."},{"t":"Only temperature sensors in the brain","ok":false,"why":"Electrical activity generates the mechanical pump you feel as a pulse. If the electrical system fails, the pump fails."},{"t":"Umbilical veins in every adult","ok":false,"why":"Electrical activity generates the mechanical pump you feel as a pulse. If the electrical system fails, the pump fails."}]},{"ch":"brain","q":"The brain is very sensitive to which three in this recap?","opts":[{"t":"Sodium, potassium, and afterload only","ok":false,"why":"Oxygen, sugar (glucose), and temperature. Low preload/CO → less blood/O₂ to the brain → they black out."},{"t":"Oxygen, sugar (glucose), and temperature","ok":true,"why":"Oxygen, sugar (glucose), and temperature. Low preload/CO → less blood/O₂ to the brain → they black out."},{"t":"Only stroke volume and the mitral valve","ok":false,"why":"Oxygen, sugar (glucose), and temperature. Low preload/CO → less blood/O₂ to the brain → they black out."},{"t":"Only warfarin level and heart sounds","ok":false,"why":"Oxygen, sugar (glucose), and temperature. Low preload/CO → less blood/O₂ to the brain → they black out."}]},{"ch":"sync","q":"They passed out. What three brain-loss questions does this recap want?","opts":[{"t":"Did they lose a valve sound, a 12-lead, or a pacer?","ok":false,"why":"Did the brain lose oxygen, sugar, or perfusion (blood flow)? Tie that to vitals and history. Carotid compression is the same O₂-to-brain idea."},{"t":"Did the brain lose oxygen, sugar, or perfusion (blood flow)?","ok":true,"why":"Did the brain lose oxygen, sugar, or perfusion (blood flow)? Tie that to vitals and history. Carotid compression is the same O₂-to-brain idea."},{"t":"Did afterload rise, did SV rise, did HR hit 40?","ok":false,"why":"Did the brain lose oxygen, sugar, or perfusion (blood flow)? Tie that to vitals and history. Carotid compression is the same O₂-to-brain idea."},{"t":"Did the umbilical vein reverse in an adult?","ok":false,"why":"Did the brain lose oxygen, sugar, or perfusion (blood flow)? Tie that to vitals and history. Carotid compression is the same O₂-to-brain idea."}]},{"ch":"dir","q":"Artery vs vein — the rule this recap wants?","opts":[{"t":"Arteries always carry oxygenated blood; veins never do","ok":false,"why":"Arteries = away from the heart. Veins = back to the heart. Direction, not oxygen content."},{"t":"Arteries go away from the heart; veins come back — direction, not oxygen","ok":true,"why":"Arteries = away from the heart. Veins = back to the heart. Direction, not oxygen content."},{"t":"Veins always leave the left ventricle","ok":false,"why":"Arteries = away from the heart. Veins = back to the heart. Direction, not oxygen content."},{"t":"Names switch every time afterload changes","ok":false,"why":"Arteries = away from the heart. Veins = back to the heart. Direction, not oxygen content."}]},{"ch":"pa","q":"Pulmonary arteries — what do they carry, and where?","opts":[{"t":"Oxygenated blood from the left atrium to the body","ok":false,"why":"Pulmonary arteries carry deoxygenated blood from the right ventricle to the lungs so it can pick up oxygen — a test exception."},{"t":"Deoxygenated blood from the right ventricle to the lungs","ok":true,"why":"Pulmonary arteries carry deoxygenated blood from the right ventricle to the lungs so it can pick up oxygen — a test exception."},{"t":"Oxygenated blood from the placenta to the baby","ok":false,"why":"Pulmonary arteries carry deoxygenated blood from the right ventricle to the lungs so it can pick up oxygen — a test exception."},{"t":"Only waste through the coronary arteries","ok":false,"why":"Pulmonary arteries carry deoxygenated blood from the right ventricle to the lungs so it can pick up oxygen — a test exception."}]},{"ch":"umb","q":"Fetal / umbilical exception in this recap?","opts":[{"t":"Umbilical arteries carry oxygenated blood to the baby","ok":false,"why":"Umbilical arteries: deoxygenated baby → placenta. Umbilical vein: oxygenated placenta → baby."},{"t":"Umbilical arteries: deoxygenated baby → placenta; umbilical vein: oxygenated placenta → baby","ok":true,"why":"Umbilical arteries: deoxygenated baby → placenta. Umbilical vein: oxygenated placenta → baby."},{"t":"Both umbilical vessels carry only oxygenated blood","ok":false,"why":"Umbilical arteries: deoxygenated baby → placenta. Umbilical vein: oxygenated placenta → baby."},{"t":"There is no fetal exception — artery always means oxygenated","ok":false,"why":"Umbilical arteries: deoxygenated baby → placenta. Umbilical vein: oxygenated placenta → baby."}]},{"ch":"cor","q":"Coronary arteries — where do they run, and what do they feed?","opts":[{"t":"Deep inside the lungs; they feed alveoli only","ok":false,"why":"They run on the surface of the heart and supply oxygenated blood to the myocardium (heart muscle). RCA → right side; LCA → left side."},{"t":"On the surface of the heart; they feed the myocardium","ok":true,"why":"They run on the surface of the heart and supply oxygenated blood to the myocardium (heart muscle). RCA → right side; LCA → left side."},{"t":"Only in the placenta; they feed the umbilical vein","ok":false,"why":"They run on the surface of the heart and supply oxygenated blood to the myocardium (heart muscle). RCA → right side; LCA → left side."},{"t":"Inside the SA node only; they set the rate","ok":false,"why":"They run on the surface of the heart and supply oxygenated blood to the myocardium (heart muscle). RCA → right side; LCA → left side."}]},{"ch":"mi","q":"Myocardial infarction in this recap — what actually happens?","opts":[{"t":"The aorta dumps the whole volume in one minute","ok":false,"why":"Coronaries clog with plaque/clot. Muscle cells lack O₂ (and sugar), cannot make enough energy, and begin to die. Chest pain, SOB, diaphoresis, nausea. Time is muscle."},{"t":"A coronary clogs; muscle lacks O₂/sugar, cannot make energy, cells start to die","ok":true,"why":"Coronaries clog with plaque/clot. Muscle cells lack O₂ (and sugar), cannot make enough energy, and begin to die. Chest pain, SOB, diaphoresis, nausea. Time is muscle."},{"t":"Massive vasodilation is the only mechanism","ok":false,"why":"Coronaries clog with plaque/clot. Muscle cells lack O₂ (and sugar), cannot make enough energy, and begin to die. Chest pain, SOB, diaphoresis, nausea. Time is muscle."},{"t":"The AV node delay is gone so filling never happens","ok":false,"why":"Coronaries clog with plaque/clot. Muscle cells lack O₂ (and sugar), cannot make enough energy, and begin to die. Chest pain, SOB, diaphoresis, nausea. Time is muscle."}]},{"ch":"car","q":"Carotid arteries in the checklist — job, and if they are compressed?","opts":[{"t":"They feed the left ventricle; compression raises preload","ok":false,"why":"Carotids supply the brain. Compression or blockage → syncope or stroke-like symptoms (same O₂-to-brain idea as a choke-out)."},{"t":"They supply the brain; compression or blockage → syncope / stroke-like signs","ok":true,"why":"Carotids supply the brain. Compression or blockage → syncope or stroke-like symptoms (same O₂-to-brain idea as a choke-out)."},{"t":"They are pulmonary arteries under another name","ok":false,"why":"Carotids supply the brain. Compression or blockage → syncope or stroke-like symptoms (same O₂-to-brain idea as a choke-out)."},{"t":"They only matter if the patient is on warfarin","ok":false,"why":"Carotids supply the brain. Compression or blockage → syncope or stroke-like symptoms (same O₂-to-brain idea as a choke-out)."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"sys":"Three parts","co":"Cardiac output","vol":"Blood volume","codrop":"CO drop","aorta":"Aorta","aaa":"Aortic crash","thin":"Thinners","thin2":"Bleed risk","pre":"Preload","star":"Starling","lowpre":"Low preload","after":"Afterload","vaso":"Straw / hose","comp":"Compensate","ana":"Anaphylaxis","epi":"EpiPen","auto":"Automaticity","sa":"SA node","av":"AV delay","pulse":"Pulse","brain":"Brain","sync":"Syncope","dir":"Artery / vein","pa":"Pulm arteries","umb":"Umbilical","cor":"Coronaries","mi":"Heart attack","car":"Carotids"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the Sat 8:33 circulatory-fundamentals recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · circulatory-fundamentals recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
