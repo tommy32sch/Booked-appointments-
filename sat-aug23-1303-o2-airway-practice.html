@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sun Aug 23 1:03 O2 / adjuncts</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sun Aug 23 · 1:03 O2 / adjuncts</h1>
+  <div class="sub">Sunday 1:03 · 42 min · lecture only · OPA/NPA + NRB start</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":"step","q":"You opened, looked, and suctioned. What is step 4 this hour?","opts":[{"t":"Maintain the path \u2014 OPA, NPA, or recovery \u2014 so the tongue stays off","ok":true,"why":"Four steps: open, assess, clear, maintain. Venturi numbers and old suction times are not this hour."},{"t":"Skip maintain; start SAMPLE on the unconscious patient first","ok":false,"why":"Four steps: open, assess, clear, maintain. Venturi numbers and old suction times are not this hour."},{"t":"Place a Venturi he sized with orange 24% this hour","ok":false,"why":"Four steps: open, assess, clear, maintain. Venturi numbers and old suction times are not this hour."},{"t":"Use Saturday\u2019s 15/10/5 suction times again","ok":false,"why":"Four steps: open, assess, clear, maintain. Venturi numbers and old suction times are not this hour."}]},{"ch":"hist","q":"Unconscious, no family, no bracelet, no med list. History?","opts":[{"t":"Skip SAMPLE/OPQRST from the patient and go to the secondary physical exam","ok":true,"why":"He said history is out the window if nobody can answer."},{"t":"Invent a SAMPLE from the dispatcher note","ok":false,"why":"He said history is out the window if nobody can answer."},{"t":"Hold the whole assessment until a relative arrives","ok":false,"why":"He said history is out the window if nobody can answer."},{"t":"OPA first only if they can answer OPQRST","ok":false,"why":"He said history is out the window if nobody can answer."}]},{"ch":"opa","q":"OPA \u2014 who gets it as the preferred adjunct?","opts":[{"t":"Fully unresponsive on AVPU and no gag when it goes in","ok":true,"why":"Preferred go-to. V/P still have a gag. Gag \u2192 out now, expect vomit."},{"t":"Verbal or pain response \u2014 they still need the big plastic path","ok":false,"why":"Preferred go-to. V/P still have a gag. Gag \u2192 out now, expect vomit."},{"t":"Alert and talking so they can hold it","ok":false,"why":"Preferred go-to. V/P still have a gag. Gag \u2192 out now, expect vomit."},{"t":"Any unresponsive, even if they gag, leave it in","ok":false,"why":"Preferred go-to. V/P still have a gag. Gag \u2192 out now, expect vomit."}]},{"ch":"gag","q":"Unresponsive, you seat the OPA, they gag. Next?","opts":[{"t":"Pull it immediately and get ready for vomit","ok":true,"why":"That is how you learn they still have a gag."},{"t":"Push it deeper past the gag","ok":false,"why":"That is how you learn they still have a gag."},{"t":"Leave it and add an NPA in the other nare","ok":false,"why":"That is how you learn they still have a gag."},{"t":"Rotate 180 a second time to settle the gag","ok":false,"why":"That is how you learn they still have a gag."}]},{"ch":"meas","q":"OPA sizing landmark he used?","opts":[{"t":"Corner of the mouth to the earlobe or to the angle of the jaw","ok":true,"why":"Same as the suction catheter. Exact mm: not in his notes."},{"t":"Nose to the earlobe only","ok":false,"why":"Same as the suction catheter. Exact mm: not in his notes."},{"t":"Lips to the xiphoid","ok":false,"why":"Same as the suction catheter. Exact mm: not in his notes."},{"t":"A printed 90 mm adult rule he posted","ok":false,"why":"Same as the suction catheter. Exact mm: not in his notes."}]},{"ch":"ins","q":"National-registry OPA insert this year?","opts":[{"t":"Upside down and 180, or sideways and 90 \u2014 both acceptable","ok":true,"why":"Book flipped twice. They will not pit 180 vs 90 as the only two choices. Straight in worsens the tongue."},{"t":"Only 180; 90 is retired forever","ok":false,"why":"Book flipped twice. They will not pit 180 vs 90 as the only two choices. Straight in worsens the tongue."},{"t":"Only 90; 180 is always wrong now","ok":false,"why":"Book flipped twice. They will not pit 180 vs 90 as the only two choices. Straight in worsens the tongue."},{"t":"Straight in along the tongue so you drive it down","ok":false,"why":"Book flipped twice. They will not pit 180 vs 90 as the only two choices. Straight in worsens the tongue."}]},{"ch":"cpr","q":"Pulse present, fully out, floppy tongue, no gag. OPA?","opts":[{"t":"Yes \u2014 it is a tongue tool, not only a CPR tool","ok":true,"why":"Arrest or pulse-plus-unconscious both get tongue help."},{"t":"No \u2014 OPA is only for chest compressions","ok":false,"why":"Arrest or pulse-plus-unconscious both get tongue help."},{"t":"No \u2014 use NPA because they have a pulse","ok":false,"why":"Arrest or pulse-plus-unconscious both get tongue help."},{"t":"Yes, but only after you invent a 28-French size","ok":false,"why":"Arrest or pulse-plus-unconscious both get tongue help."}]},{"ch":"npa","q":"Best NPA candidate he named?","opts":[{"t":"Semi-conscious or unresponsive with a gag, and no head or face trauma","ok":true,"why":"He does not wait for blood in the nose. Any head/face trauma = nothing through the nose."},{"t":"Alert walker you meet at the door","ok":false,"why":"He does not wait for blood in the nose. Any head/face trauma = nothing through the nose."},{"t":"Facial smash with blood in the nose \u2014 book said blood is required","ok":false,"why":"He does not wait for blood in the nose. Any head/face trauma = nothing through the nose."},{"t":"Gag plus obvious skull trauma as your first-line nose tube","ok":false,"why":"He does not wait for blood in the nose. Any head/face trauma = nothing through the nose."}]},{"ch":"face","q":"Unresponsive, gag on OPA, obvious face trauma. Adjunct?","opts":[{"t":"Neither OPA nor NPA \u2014 hold the tongue and wait for a paramedic airway","ok":true,"why":"Gag blocks OPA; trauma blocks NPA."},{"t":"Force the OPA anyway","ok":false,"why":"Gag blocks OPA; trauma blocks NPA."},{"t":"NPA because gag blocks the mouth piece","ok":false,"why":"Gag blocks OPA; trauma blocks NPA."},{"t":"Recovery position even if you must bag them","ok":false,"why":"Gag blocks OPA; trauma blocks NPA."}]},{"ch":"nmeas","q":"NPA measure and insert?","opts":[{"t":"Nose to earlobe or jaw angle; water lube; bevel to the septum; straight in until flush","ok":true,"why":"Through the nose this time. Single use."},{"t":"Mouth corner to ear; no lube; bevel to the cheek; corkscrew","ok":false,"why":"Through the nose this time. Single use."},{"t":"Nose to xiphoid; oil lube; bevel out; stop halfway","ok":false,"why":"Through the nose this time. Single use."},{"t":"Same mouth measure as the OPA","ok":false,"why":"Through the nose this time. Single use."}]},{"ch":"rec","q":"Recovery position as maintain \u2014 his limits?","opts":[{"t":"Unconscious, not injured / no spine, and still breathing adequately","ok":true,"why":"Usually they need supine so you can ventilate. Rare."},{"t":"Every unconscious patient so you can bag easier","ok":false,"why":"Usually they need supine so you can ventilate. Rare."},{"t":"Spine-unknown sidewalk dump","ok":false,"why":"Usually they need supine so you can ventilate. Rare."},{"t":"Inadequate breathing so gravity ventilates","ok":false,"why":"Usually they need supine so you can ventilate. Rare."}]},{"ch":"spo","q":"Emergency oxygen percent range he wants you to run?","opts":[{"t":"94 to 99; treat if less than 94","ok":true,"why":"AHA post-ROSC above 90 exists; class/test is 94\u201399. SOB at 97% still gets O2."},{"t":"90 to 99 for every EMT call this hour","ok":false,"why":"AHA post-ROSC above 90 exists; class/test is 94\u201399. SOB at 97% still gets O2."},{"t":"Only treat if less than 80","ok":false,"why":"AHA post-ROSC above 90 exists; class/test is 94\u201399. SOB at 97% still gets O2."},{"t":"Never treat a 97% who is huffing","ok":false,"why":"AHA post-ROSC above 90 exists; class/test is 94\u201399. SOB at 97% still gets O2."}]},{"ch":"shock","q":"They look like shock. Oxygen?","opts":[{"t":"Give a lot of oxygen when you recognize shock","ok":true,"why":"He named shock as an O2 reason. Toxicity talk is for people who do not need it."},{"t":"Withhold until a later shock chapter numbers the LPM","ok":false,"why":"He named shock as an O2 reason. Toxicity talk is for people who do not need it."},{"t":"Cannula at 1 L only","ok":false,"why":"He named shock as an O2 reason. Toxicity talk is for people who do not need it."},{"t":"Never with shock because of vasoconstriction","ok":false,"why":"He named shock as an O2 reason. Toxicity talk is for people who do not need it."}]},{"ch":"tank","q":"D versus H as he used them?","opts":[{"t":"D is the little portable (ready on gurney/bag plus spares); H is the tall ~5-foot mounted transport tank","ok":true,"why":"Switch to H for the ride. Exact liters in the cylinder: not in his notes."},{"t":"H is the pocket tank; D is five feet","ok":false,"why":"Switch to H for the ride. Exact liters in the cylinder: not in his notes."},{"t":"Both are the same letter size","ok":false,"why":"Switch to H for the ride. Exact liters in the cylinder: not in his notes."},{"t":"D is only a hospital wall meter","ok":false,"why":"Switch to H for the ride. Exact liters in the cylinder: not in his notes."}]},{"ch":"psi","q":"Full tank and what the regulator does?","opts":[{"t":"About 2,000 psi in a full tank; regulator brings delivery to about 40\u201370 psi","ok":true,"why":"2,000 in the face would blow it off. 300 mmHg was suction, not this tank."},{"t":"30 psi in the tank like a car tire; regulator boosts to 2,000","ok":false,"why":"2,000 in the face would blow it off. 300 mmHg was suction, not this tank."},{"t":"300 mmHg in the tank like last hour\u2019s suction book number","ok":false,"why":"2,000 in the face would blow it off. 300 mmHg was suction, not this tank."},{"t":"2,000 LPM out the nipple","ok":false,"why":"2,000 in the face would blow it off. 300 mmHg was suction, not this tank."}]},{"ch":"flow","q":"Bourdon versus pressure-compensated?","opts":[{"t":"Bourdon works laid down on the gurney; pressure-compensated must stay upright on a wall","ok":true,"why":"That is why wall meters stand and portable tanks can lie down."},{"t":"Bourdon must stay vertical; compensated works on its side","ok":false,"why":"That is why wall meters stand and portable tanks can lie down."},{"t":"Both only work upside down","ok":false,"why":"That is why wall meters stand and portable tanks can lie down."},{"t":"Neither has a liters-per-minute dial","ok":false,"why":"That is why wall meters stand and portable tanks can lie down."}]},{"ch":"pin","q":"Pin-index idea he wanted?","opts":[{"t":"Each gas has its own holes so an oxygen regulator only fits an oxygen tank (silver and/or green; two holes side by side)","ok":true,"why":"Concept, not a pin-trivia test."},{"t":"Memorize every gas\u2019s hole map for the registry picture item","ok":false,"why":"Concept, not a pin-trivia test."},{"t":"Any regulator fits any tank if you crank the screw","ok":false,"why":"Concept, not a pin-trivia test."},{"t":"Oxygen tanks are always brown","ok":false,"why":"Concept, not a pin-trivia test."}]},{"ch":"safe","q":"Tank not in your hand during skills?","opts":[{"t":"Lay it down \u2014 habit now \u2014 a broken valve turns it into a missile","ok":true,"why":"Practice as if full."},{"t":"Stand it on the valve for easy flow","ok":false,"why":"Practice as if full."},{"t":"Kick it upright in the aisle","ok":false,"why":"Practice as if full."},{"t":"School empties cannot fall so skip the habit","ok":false,"why":"Practice as if full."}]},{"ch":"tox","q":"Who did he say not to bury in extra oxygen?","opts":[{"t":"Stroke or heart-attack picture with good saturations and no trouble breathing \u2014 extra O2 can constrict vessels","ok":true,"why":"Too much takes a while; too little is now. Stadium/hemoglobin seats."},{"t":"Every shock patient","ok":false,"why":"Too much takes a while; too little is now. Stadium/hemoglobin seats."},{"t":"Every SOB complaint","ok":false,"why":"Too much takes a while; too little is now. Stadium/hemoglobin seats."},{"t":"Anyone under 94%","ok":false,"why":"Too much takes a while; too little is now. Stadium/hemoglobin seats."}]},{"ch":"nrb","q":"NRB start he reached at 40:32?","opts":[{"t":"10 to 15 LPM; preferred book prehospital device; adequate breathing but they still need oxygen (~90\u201395% because the seal leaks)","ok":true,"why":"Adequate means enough volume and rate \u2014 they can still be blue or SOB. 1\u20136 is the other device preview."},{"t":"1 to 6 LPM as the book NRB range","ok":false,"why":"Adequate means enough volume and rate \u2014 they can still be blue or SOB. 1\u20136 is the other device preview."},{"t":"15 to 25 LPM because the tank is 2,000 psi","ok":false,"why":"Adequate means enough volume and rate \u2014 they can still be blue or SOB. 1\u20136 is the other device preview."},{"t":"Only if they are apneic","ok":false,"why":"Adequate means enough volume and rate \u2014 they can still be blue or SOB. 1\u20136 is the other device preview."}]},{"ch":"adeq","q":"Adequate breathing on an NRB means?","opts":[{"t":"They move enough air per breath, enough times per minute \u2014 they can still be cyanotic, hypoxic, or short of breath","ok":true,"why":"You are changing 21% into ~90\u201395%."},{"t":"They do not need any oxygen","ok":false,"why":"You are changing 21% into ~90\u201395%."},{"t":"They are apneic so the mask will breathe for them","ok":false,"why":"You are changing 21% into ~90\u201395%."},{"t":"Mental status is A&O\u00d74 or you cannot use it","ok":false,"why":"You are changing 21% into ~90\u201395%."}]},{"ch":"ask","q":"They ask for oxygen and look pretty well. His lean?","opts":[{"t":"Low risk to give some; you may pick a smaller device if they do not really need much","ok":true,"why":"Takes a long time to get too much."},{"t":"Refuse because toxicity hits in seconds","ok":false,"why":"Takes a long time to get too much."},{"t":"Always 15 LPM NRB no matter what they look like if they asked","ok":false,"why":"Takes a long time to get too much."},{"t":"Only after a Venturi color he specified","ok":false,"why":"Takes a long time to get too much."}]},{"ch":"whyopa","q":"No head trauma \u2014 why start OPA not NPA?","opts":[{"t":"OPA does a better job holding the tongue (bigger path than the little tube)","ok":true,"why":"Worst case NPA is just a straw; OPA makes a bigger space."},{"t":"NPA is illegal if there is no trauma","ok":false,"why":"Worst case NPA is just a straw; OPA makes a bigger space."},{"t":"OPA never stimulates a gag even when they are awake","ok":false,"why":"Worst case NPA is just a straw; OPA makes a bigger space."},{"t":"NPA cannot pass the tongue","ok":false,"why":"Worst case NPA is just a straw; OPA makes a bigger space."}]},{"ch":"dom","q":"Airway / CPR / the bleed you see walking up \u2014 exam bucket he named?","opts":[{"t":"Primary assessment \u2014 a huge slice, about 35\u201345% of the test","ok":true,"why":"Treatment/transport is next; together about two thirds."},{"t":"Operations only","ok":false,"why":"Treatment/transport is next; together about two thirds."},{"t":"Secondary assessment 5\u20139% only","ok":false,"why":"Treatment/transport is next; together about two thirds."},{"t":"Scene size-up because tanks are green","ok":false,"why":"Treatment/transport is next; together about two thirds."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"step":"Four steps","hist":"History","opa":"OPA","gag":"Gag","meas":"Measure","ins":"Insert","cpr":"CPR/tongue","npa":"NPA","face":"Trauma","nmeas":"NPA insert","rec":"Recovery","spo":"SpO2","shock":"Shock O2","tank":"Tanks","psi":"Pressure","flow":"Flow meters","pin":"Pin index","safe":"Tank safety","tox":"Toxicity","nrb":"NRB","adeq":"Adequate","ask":"They ask","whyopa":"Why OPA","dom":"Test domain"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Sunday 1:03 talk only. Device finish is the 1:46 quiz.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · 1:03 adjuncts / NRB start only</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
