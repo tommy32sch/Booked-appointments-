@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sun 1303 — OPA, NPA, oxygen</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sun · OPA, NPA, oxygen</h1>
+  <div class="sub">Recap only · you/your · 24 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch": "pri", "q": "Which block is this recap treating as most of the exam weight?", "opts": [{"t": "Only SAMPLE and a detailed head-to-toe", "ok": false, "why": "Immediate life-threat work (airway, CPR need, major bleed) plus treat/transport is about two-thirds of the test."}, {"t": "Life-threat scan plus treat and go — roughly two-thirds of the test", "ok": true, "why": "Immediate life-threat work (airway, CPR need, major bleed) plus treat/transport is about two-thirds of the test."}, {"t": "Pin-index math only", "ok": false, "why": "Immediate life-threat work (airway, CPR need, major bleed) plus treat/transport is about two-thirds of the test."}, {"t": "COPD chapter only", "ok": false, "why": "Immediate life-threat work (airway, CPR need, major bleed) plus treat/transport is about two-thirds of the test."}]}, {"ch": "hist", "q": "Down, no family, no bracelet, no pill bottles. History next?", "opts": [{"t": "Invent a SAMPLE from the house", "ok": false, "why": "No sources of history: skip SAMPLE/OPQRST and move to the physical exam."}, {"t": "Skip OPQRST/SAMPLE and start the hands-on exam", "ok": true, "why": "No sources of history: skip SAMPLE/OPQRST and move to the physical exam."}, {"t": "Wait on scene until someone arrives with a list", "ok": false, "why": "No sources of history: skip SAMPLE/OPQRST and move to the physical exam."}, {"t": "Place an NPA first because you lack a history", "ok": false, "why": "No sources of history: skip SAMPLE/OPQRST and move to the physical exam."}]}, {"ch": "goal", "q": "What job do both oral and nasal airways share?", "opts": [{"t": "Replace the need to open the mouth or suction", "ok": false, "why": "Both park just past the tongue base so a floppy tongue cannot seal the path."}, {"t": "Hold a path past a relaxed tongue so air can still move", "ok": true, "why": "Both park just past the tongue base so a floppy tongue cannot seal the path."}, {"t": "Deliver 100% oxygen by themselves", "ok": false, "why": "Both park just past the tongue base so a floppy tongue cannot seal the path."}, {"t": "Fix a basilar skull fracture", "ok": false, "why": "Both park just past the tongue base so a floppy tongue cannot seal the path."}]}, {"ch": "opa", "q": "Who is an oral airway for?", "opts": [{"t": "Anyone who is talking but tired", "ok": false, "why": "OPA only if fully unresponsive with no gag. Gag on placement means pull it and expect vomit."}, {"t": "Fully out on AVPU, no response to voice or pain, no gag", "ok": true, "why": "OPA only if fully unresponsive with no gag. Gag on placement means pull it and expect vomit."}, {"t": "Alert with a strong gag so they will spit it", "ok": false, "why": "OPA only if fully unresponsive with no gag. Gag on placement means pull it and expect vomit."}, {"t": "Every head-injury patient, gag or not", "ok": false, "why": "OPA only if fully unresponsive with no gag. Gag on placement means pull it and expect vomit."}]}, {"ch": "gag", "q": "The oral airway goes in and they gag. What now?", "opts": [{"t": "Push it deeper until the gag stops", "ok": false, "why": "Gag means the reflex is still there. Out now. Be ready to suction vomit."}, {"t": "Come out immediately and get ready for vomit", "ok": true, "why": "Gag means the reflex is still there. Out now. Be ready to suction vomit."}, {"t": "Rotate another 180° and leave it", "ok": false, "why": "Gag means the reflex is still there. Out now. Be ready to suction vomit."}, {"t": "Switch to an NPA even with a crushed midface", "ok": false, "why": "Gag means the reflex is still there. Out now. Be ready to suction vomit."}]}, {"ch": "pref", "q": "Truly out, no gag. Why start with the oral device?", "opts": [{"t": "It is the only legal adjunct in every trauma", "ok": false, "why": "When allowed, OPA holds the tongue off the pharynx better than NPA."}, {"t": "It keeps the tongue off the back of the throat better than the nasal tube", "ok": true, "why": "When allowed, OPA holds the tongue off the pharynx better than NPA."}, {"t": "It always delivers 15 L/min by itself", "ok": false, "why": "When allowed, OPA holds the tongue off the pharynx better than NPA."}, {"t": "You never open the airway if you have one", "ok": false, "why": "When allowed, OPA holds the tongue off the pharynx better than NPA."}]}, {"ch": "osize", "q": "How do you size the oral airway?", "opts": [{"t": "Tip of the nose to the xiphoid", "ok": false, "why": "Mouth corner to earlobe, or mouth corner to the jaw angle."}, {"t": "Mouth corner to the earlobe, or mouth corner to the jaw angle", "ok": true, "why": "Mouth corner to earlobe, or mouth corner to the jaw angle."}, {"t": "Nostril to the opposite shoulder", "ok": false, "why": "Mouth corner to earlobe, or mouth corner to the jaw angle."}, {"t": "Guess from shoe size", "ok": false, "why": "Mouth corner to earlobe, or mouth corner to the jaw angle."}]}, {"ch": "oins", "q": "Which insert for an oral airway is acceptable on the test?", "opts": [{"t": "Straight in from the front so you pin the tongue down", "ok": false, "why": "Open first. Either invert then 180°, or start on the side then 90°. Straight shove rams the tongue down."}, {"t": "Open first, then invert and turn 180°, or start on the side and turn 90°", "ok": true, "why": "Open first. Either invert then 180°, or start on the side then 90°. Straight shove rams the tongue down."}, {"t": "Through the nose with the bevel to the cheek", "ok": false, "why": "Open first. Either invert then 180°, or start on the side then 90°. Straight shove rams the tongue down."}, {"t": "Only after you skip opening the mouth", "ok": false, "why": "Open first. Either invert then 180°, or start on the side then 90°. Straight shove rams the tongue down."}]}, {"ch": "cpr", "q": "Which is true in arrest while you do compressions?", "opts": [{"t": "An oral airway is forbidden because they are too floppy", "ok": false, "why": "Arrest = very relaxed tongue. OPA is appropriate if they are out and have no gag."}, {"t": "A floppy tongue is expected — an oral airway is fine if they are out and have no gag", "ok": true, "why": "Arrest = very relaxed tongue. OPA is appropriate if they are out and have no gag."}, {"t": "You must use a nasal airway even with a crushed face", "ok": false, "why": "Arrest = very relaxed tongue. OPA is appropriate if they are out and have no gag."}, {"t": "Adjuncts wait until ROSC", "ok": false, "why": "Arrest = very relaxed tongue. OPA is appropriate if they are out and have no gag."}]}, {"ch": "npa", "q": "Semi-awake, still gags, needs a path, face is uninjured. Which adjunct?", "opts": [{"t": "Oral airway because they can still talk a little", "ok": false, "why": "Gag present → NPA (if no head/face trauma). OPA is for no-gag unresponsive."}, {"t": "Nasal airway — gag is allowed and they can even be alert", "ok": true, "why": "Gag present → NPA (if no head/face trauma). OPA is for no-gag unresponsive."}, {"t": "Neither; adjuncts are only for arrest", "ok": false, "why": "Gag present → NPA (if no head/face trauma). OPA is for no-gag unresponsive."}, {"t": "Oral airway plus force it past the gag", "ok": false, "why": "Gag present → NPA (if no head/face trauma). OPA is for no-gag unresponsive."}]}, {"ch": "ncon", "q": "Hard no for a nasal airway?", "opts": [{"t": "They still have a gag but the face is intact", "ok": false, "why": "Any head or facial trauma, especially suspected basilar skull, is the hard stop — risk of intracranial path and bagged air in the vault."}, {"t": "Head or face trauma, especially a suspected break at the skull base", "ok": true, "why": "Any head or facial trauma, especially suspected basilar skull, is the hard stop — risk of intracranial path and bagged air in the vault."}, {"t": "SpO₂ of 92% with good breathing", "ok": false, "why": "Any head or facial trauma, especially suspected basilar skull, is the hard stop — risk of intracranial path and bagged air in the vault."}, {"t": "They are in arrest with no gag", "ok": false, "why": "Any head or facial trauma, especially suspected basilar skull, is the hard stop — risk of intracranial path and bagged air in the vault."}]}, {"ch": "head", "q": "Unresponsive, no gag, obvious facial smash. Which statement is true?", "opts": [{"t": "Nasal tube is safer because the mouth is bloody", "ok": false, "why": "Mouth OPA is allowed if no gag. Nose NPA is not allowed with head/face trauma."}, {"t": "Mouth adjunct is allowed; the nose adjunct is not", "ok": true, "why": "Mouth OPA is allowed if no gag. Nose NPA is not allowed with head/face trauma."}, {"t": "Both adjuncts are banned because of blood", "ok": false, "why": "Mouth OPA is allowed if no gag. Nose NPA is not allowed with head/face trauma."}, {"t": "Skip opening and go straight to a mask at 2 L/min", "ok": false, "why": "Mouth OPA is allowed if no gag. Nose NPA is not allowed with head/face trauma."}]}, {"ch": "both", "q": "They gag on the oral airway and the face is smashed. What do you have left?", "opts": [{"t": "Force the oral piece anyway", "ok": false, "why": "Gag blocks OPA. Face trauma blocks NPA. Manual airway until ALS can place a higher device."}, {"t": "Neither tube — hold the jaw and fight the tongue until a higher airway arrives", "ok": true, "why": "Gag blocks OPA. Face trauma blocks NPA. Manual airway until ALS can place a higher device."}, {"t": "Nasal tube because they gagged", "ok": false, "why": "Gag blocks OPA. Face trauma blocks NPA. Manual airway until ALS can place a higher device."}, {"t": "Recovery position even if they need a bag", "ok": false, "why": "Gag blocks OPA. Face trauma blocks NPA. Manual airway until ALS can place a higher device."}]}, {"ch": "nsize", "q": "How do you size the nasal airway?", "opts": [{"t": "Mouth corner to the opposite hip", "ok": false, "why": "Nose to earlobe, or nose to the jaw angle. Bevel to the septum, water-based lube, gentle straight in."}, {"t": "Nose to the earlobe, or nose to the jaw angle", "ok": true, "why": "Nose to earlobe, or nose to the jaw angle. Bevel to the septum, water-based lube, gentle straight in."}, {"t": "Same as a Yankauer: bury it in the trachea", "ok": false, "why": "Nose to earlobe, or nose to the jaw angle. Bevel to the septum, water-based lube, gentle straight in."}, {"t": "Whatever fits the green tank pin", "ok": false, "why": "Nose to earlobe, or nose to the jaw angle. Bevel to the septum, water-based lube, gentle straight in."}]}, {"ch": "nins", "q": "Which is true about placing a nasal airway?", "opts": [{"t": "Oil-based lube, bevel toward the cheek, jam it", "ok": false, "why": "Water-based lube, bevel to the septum, gentle straight path along the curve, then discard."}, {"t": "Water-based lube, bevel to the middle wall, ease it in along the curve, then trash it", "ok": true, "why": "Water-based lube, bevel to the septum, gentle straight path along the curve, then discard."}, {"t": "Invert 180° like an oral piece", "ok": false, "why": "Water-based lube, bevel to the septum, gentle straight path along the curve, then discard."}, {"t": "Reuse it on the next patient if it looks clean", "ok": false, "why": "Water-based lube, bevel to the septum, gentle straight path along the curve, then discard."}]}, {"ch": "rec", "q": "When do you roll them onto their side?", "opts": [{"t": "Every arrest so you can bag easier", "ok": false, "why": "Recovery position: unconscious, no suspected spine, breathing well on their own. Deeply out and needing a bag stays supine."}, {"t": "Unconscious, no spine worry, breathing well enough on their own", "ok": true, "why": "Recovery position: unconscious, no suspected spine, breathing well on their own. Deeply out and needing a bag stays supine."}, {"t": "Head trauma so the nasal tube can drain", "ok": false, "why": "Recovery position: unconscious, no suspected spine, breathing well on their own. Deeply out and needing a bag stays supine."}, {"t": "Anytime SpO₂ is 99%", "ok": false, "why": "Recovery position: unconscious, no suspected spine, breathing well on their own. Deeply out and needing a bag stays supine."}]}, {"ch": "o2", "q": "Which finding by itself is a reason to put oxygen on?", "opts": [{"t": "Sat 98% and they look comfortable", "ok": false, "why": "Give O₂ for sat under 94, distress (even if the number looks fine), or shock. Aim 94–99% for most emergencies."}, {"t": "Sat 91%, or they look like they are fighting to breathe, or they look shocked", "ok": true, "why": "Give O₂ for sat under 94, distress (even if the number looks fine), or shock. Aim 94–99% for most emergencies."}, {"t": "Only if the tank is an H cylinder", "ok": false, "why": "Give O₂ for sat under 94, distress (even if the number looks fine), or shock. Aim 94–99% for most emergencies."}, {"t": "Only after COPD class is finished", "ok": false, "why": "Give O₂ for sat under 94, distress (even if the number looks fine), or shock. Aim 94–99% for most emergencies."}]}, {"ch": "num", "q": "Sat reads 96% but they are gasping and using accessory muscles. What do you treat?", "opts": [{"t": "The number — withhold oxygen because 96 is in range", "ok": false, "why": "Treat the patient, not the probe. Distress with a “normal” sat still gets oxygen."}, {"t": "The person — distress still gets oxygen", "ok": true, "why": "Treat the patient, not the probe. Distress with a “normal” sat still gets oxygen."}, {"t": "Neither — wait for a second probe forever", "ok": false, "why": "Treat the patient, not the probe. Distress with a “normal” sat still gets oxygen."}, {"t": "An NPA because gasping means they have no gag", "ok": false, "why": "Treat the patient, not the probe. Distress with a “normal” sat still gets oxygen."}]}, {"ch": "caut", "q": "Why can leftover oxygen after the blood is already full be a problem over time?", "opts": [{"t": "It always raises sat above 200%", "ok": false, "why": "Unbound O₂ irritates tissue and can tighten vessels — a worry in stroke/MI; COPD is extra sensitive. Still do not withhold if they look compromised."}, {"t": "Unbound O₂ can irritate tissue and tighten vessels — a worry in stroke or a heart attack", "ok": true, "why": "Unbound O₂ irritates tissue and can tighten vessels — a worry in stroke/MI; COPD is extra sensitive. Still do not withhold if they look compromised."}, {"t": "It melts the pin index", "ok": false, "why": "Unbound O₂ irritates tissue and can tighten vessels — a worry in stroke/MI; COPD is extra sensitive. Still do not withhold if they look compromised."}, {"t": "You must withhold it from anyone who is blue", "ok": false, "why": "Unbound O₂ irritates tissue and can tighten vessels — a worry in stroke/MI; COPD is extra sensitive. Still do not withhold if they look compromised."}]}, {"ch": "tank", "q": "D cylinder versus H cylinder from this recap?", "opts": [{"t": "D is the five-foot wall tank; H rides on the gurney", "ok": false, "why": "D is the small portable. H is the tall mounted ambulance tank."}, {"t": "D is the small grab-and-go; H is the tall one bolted in the ambulance", "ok": true, "why": "D is the small portable. H is the tall mounted ambulance tank."}, {"t": "Both are 30 psi like a car tire", "ok": false, "why": "D is the small portable. H is the tall mounted ambulance tank."}, {"t": "Neither needs a strap", "ok": false, "why": "D is the small portable. H is the tall mounted ambulance tank."}]}, {"ch": "safe", "q": "Why must a cylinder stay strapped, laid down, or mounted?", "opts": [{"t": "It is only 30 psi, but it looks messy on the floor", "ok": false, "why": "~2,000 psi. A sheared valve turns the tank into a missile that can go through a wall."}, {"t": "Around 2,000 psi — a broken valve can send it through a wall", "ok": true, "why": "~2,000 psi. A sheared valve turns the tank into a missile that can go through a wall."}, {"t": "Pin index fails if it is upright", "ok": false, "why": "~2,000 psi. A sheared valve turns the tank into a missile that can go through a wall."}, {"t": "Bourdon gauges only work if it is falling", "ok": false, "why": "~2,000 psi. A sheared valve turns the tank into a missile that can go through a wall."}]}, {"ch": "pin", "q": "What does pin indexing actually stop?", "opts": [{"t": "A full tank from reading 2,000 psi", "ok": false, "why": "Unique pin holes so only the matching gas regulator (green/silver O₂) will mate — not nitrous, CO₂, helium."}, {"t": "Clamping the wrong gas regulator or filling the bottle with the wrong gas", "ok": true, "why": "Unique pin holes so only the matching gas regulator (green/silver O₂) will mate — not nitrous, CO₂, helium."}, {"t": "Using a Bourdon gauge on a portable", "ok": false, "why": "Unique pin holes so only the matching gas regulator (green/silver O₂) will mate — not nitrous, CO₂, helium."}, {"t": "Titrating toward 94–99%", "ok": false, "why": "Unique pin holes so only the matching gas regulator (green/silver O₂) will mate — not nitrous, CO₂, helium."}]}, {"ch": "flow", "q": "Regulator job, then which meter can lie on its side?", "opts": [{"t": "Raise tank pressure to 10,000 psi; only the vertical tube can lie down", "ok": false, "why": "Regulator drops ~2,000 to about 40–70 psi. Bourdon works in any position. Compensated vertical tube must stay upright."}, {"t": "Drop ~2,000 psi to about 40–70; Bourdon works in any position, the upright tube must stay vertical", "ok": true, "why": "Regulator drops ~2,000 to about 40–70 psi. Bourdon works in any position. Compensated vertical tube must stay upright."}, {"t": "Set FiO₂ to exactly 21%; neither meter needs a position", "ok": false, "why": "Regulator drops ~2,000 to about 40–70 psi. Bourdon works in any position. Compensated vertical tube must stay upright."}, {"t": "Skip the flow meter if the pins match", "ok": false, "why": "Regulator drops ~2,000 to about 40–70 psi. Bourdon works in any position. Compensated vertical tube must stay upright."}]}, {"ch": "nrb", "q": "Breathing well, sat 88%, look short of breath. Test default device and flow?", "opts": [{"t": "Nasal cannula at 1 L/min because they can talk", "ok": false, "why": "Adequate ventilation + hypoxia/distress → NRB at 10–15 L/min. They get ~90–95%, not a perfect 100%, because of leak."}, {"t": "Non-rebreather at 10–15 L/min", "ok": true, "why": "Adequate ventilation + hypoxia/distress → NRB at 10–15 L/min. They get ~90–95%, not a perfect 100%, because of leak."}, {"t": "Withhold oxygen until COPD class", "ok": false, "why": "Adequate ventilation + hypoxia/distress → NRB at 10–15 L/min. They get ~90–95%, not a perfect 100%, because of leak."}, {"t": "BVM at 2 L/min with no seal", "ok": false, "why": "Adequate ventilation + hypoxia/distress → NRB at 10–15 L/min. They get ~90–95%, not a perfect 100%, because of leak."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"pri": "Primary", "hist": "History skip", "goal": "Adjuncts", "opa": "OPA who", "gag": "Gag", "pref": "OPA first", "osize": "OPA size", "oins": "OPA insert", "cpr": "Arrest", "npa": "NPA who", "ncon": "NPA stop", "head": "Face trauma", "both": "Neither", "nsize": "NPA size", "nins": "NPA insert", "rec": "Recovery", "o2": "Give O2", "num": "Treat patient", "caut": "Too much", "tank": "Tanks", "safe": "Missile", "pin": "Pins", "flow": "Regulator", "nrb": "NRB"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the 13:03 OPA/NPA/oxygen recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · OPA / NPA / oxygen recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
