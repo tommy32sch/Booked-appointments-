@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat 1:32 EMS Patient Moving and Equipment Guide</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat 1:32 EMS Patient Moving and Equipment Guide</h1>
+  <div class="sub">Recap only · you/your · 24 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":"prios","q":"Your two constant jobs on every move in this recap?","opts":[{"t":"Protect the patient (ABC, spine when it fits) and protect your crew","ok":true,"why":"Protect the patient \u2014 airway, breathing, circulation, spinal precautions when appropriate \u2014 and protect yourself and your crew. Avoid back injuries. Use extra help and tools."},{"t":"Only get a blood pressure before you lift","ok":false,"why":"Protect the patient \u2014 airway, breathing, circulation, spinal precautions when appropriate \u2014 and protect yourself and your crew. Avoid back injuries. Use extra help and tools."},{"t":"Wait for a bariatric unit on every 911 call","ok":false,"why":"Protect the patient \u2014 airway, breathing, circulation, spinal precautions when appropriate \u2014 and protect yourself and your crew. Avoid back injuries. Use extra help and tools."},{"t":"Always use a stair chair, even if they are unconscious","ok":false,"why":"Protect the patient \u2014 airway, breathing, circulation, spinal precautions when appropriate \u2014 and protect yourself and your crew. Avoid back injuries. Use extra help and tools."}]},{"ch":"help","q":"You need more hands at a nursing home. What does a lift assist from dispatch get you?","opts":[{"t":"A second ambulance with a full extra crew and gurney","ok":false,"why":"A lift assist is extra personnel, not a second ambulance. Ask facility staff too. Above about 250 lb at the example agency, call fire, extra unit, or staff."},{"t":"Extra personnel \u2014 not a second ambulance","ok":true,"why":"A lift assist is extra personnel, not a second ambulance. Ask facility staff too. Above about 250 lb at the example agency, call fire, extra unit, or staff."},{"t":"Only a helicopter and isolette","ok":false,"why":"A lift assist is extra personnel, not a second ambulance. Ask facility staff too. Above about 250 lb at the example agency, call fire, extra unit, or staff."},{"t":"Permission to skip a team leader","ok":false,"why":"A lift assist is extra personnel, not a second ambulance. Ask facility staff too. Above about 250 lb at the example agency, call fire, extra unit, or staff."}]},{"ch":"250","q":"Example agency: two of you are expected to handle about how much, and what then?","opts":[{"t":"About 750 lb \u2014 never call anyone else","ok":false,"why":"Two crew members handle up to about 250 lb. Above that it is reasonable to call for help. Do not be a hero."},{"t":"About 1200 lb \u2014 that is the two-person limit","ok":false,"why":"Two crew members handle up to about 250 lb. Above that it is reasonable to call for help. Do not be a hero."},{"t":"About 250 lb \u2014 above that you call for help","ok":true,"why":"Two crew members handle up to about 250 lb. Above that it is reasonable to call for help. Do not be a hero."},{"t":"About 50 lb \u2014 you always wait for a scoop","ok":false,"why":"Two crew members handle up to about 250 lb. Above that it is reasonable to call for help. Do not be a hero."}]},{"ch":"wide","q":"Main difference of a bariatric gurney versus a standard one in this recap?","opts":[{"t":"It is mainly wider \u2014 standard may already hold about 750 lb","ok":true,"why":"Width is the problem for very large patients. Standard gurneys may already handle about 750 lb. Bariatric gurneys may go to about 1200 lb."},{"t":"It is only stronger \u2014 width never matters","ok":false,"why":"Width is the problem for very large patients. Standard gurneys may already handle about 750 lb. Bariatric gurneys may go to about 1200 lb."},{"t":"It only works as a stair chair","ok":false,"why":"Width is the problem for very large patients. Standard gurneys may already handle about 750 lb. Bariatric gurneys may go to about 1200 lb."},{"t":"It splits in half like a scoop","ok":false,"why":"Width is the problem for very large patients. Standard gurneys may already handle about 750 lb. Bariatric gurneys may go to about 1200 lb."}]},{"ch":"low","q":"Why do you keep a loaded gurney as low as you can?","opts":[{"t":"Gurneys are top-heavy \u2014 lower height is more stable","ok":true,"why":"Gurneys are top-heavy, especially with a large patient. Lower height means better stability."},{"t":"High is safer because the winch only works at eye level","ok":false,"why":"Gurneys are top-heavy, especially with a large patient. Lower height means better stability."},{"t":"Low is only for vacuum mattresses","ok":false,"why":"Gurneys are top-heavy, especially with a large patient. Lower height means better stability."},{"t":"You raise it for kyphosis so they sit up","ok":false,"why":"Gurneys are top-heavy, especially with a large patient. Lower height means better stability."}]},{"ch":"load","q":"Ramp-plus-winch loading \u2014 what do you and the winch each do?","opts":[{"t":"You deadlift the gurney; the winch only holds the ramp","ok":false,"why":"A ramp slides out. A powered winch cable attaches to the gurney and pulls it up. You stabilize and guide. Lift-tray style lifts a metal tray like a truck gate so you do not heavy-lift either."},{"t":"Winch pulls the gurney up the ramp; you stabilize and guide","ok":true,"why":"A ramp slides out. A powered winch cable attaches to the gurney and pulls it up. You stabilize and guide. Lift-tray style lifts a metal tray like a truck gate so you do not heavy-lift either."},{"t":"You hoist them in a Stokes basket only","ok":false,"why":"A ramp slides out. A powered winch cable attaches to the gurney and pulls it up. You stabilize and guide. Lift-tray style lifts a metal tray like a truck gate so you do not heavy-lift either."},{"t":"The winch is only for neonate isolettes on the tarmac","ok":false,"why":"A ramp slides out. A powered winch cable attaches to the gurney and pulls it up. You stabilize and guide. Lift-tray style lifts a metal tray like a truck gate so you do not heavy-lift either."}]},{"ch":"bari911","q":"Time-critical 911 and a bariatric unit that is 30+ minutes out. What do you balance?","opts":[{"t":"Always wait \u2014 planned interfacility rules apply on 911 too","ok":false,"why":"Bariatric units are common on planned interfacility jobs. They are rare on time-critical 911 because they may take 30+ minutes. You weigh wait-for-safer-gear versus move-now with standard gear."},{"t":"Is it safer to wait for bariatric gear, or move now with standard gear?","ok":true,"why":"Bariatric units are common on planned interfacility jobs. They are rare on time-critical 911 because they may take 30+ minutes. You weigh wait-for-safer-gear versus move-now with standard gear."},{"t":"Cancel the call and have them drive themselves","ok":false,"why":"Bariatric units are common on planned interfacility jobs. They are rare on time-critical 911 because they may take 30+ minutes. You weigh wait-for-safer-gear versus move-now with standard gear."},{"t":"Use a stair chair because it is always faster","ok":false,"why":"Bariatric units are common on planned interfacility jobs. They are rare on time-critical 911 because they may take 30+ minutes. You weigh wait-for-safer-gear versus move-now with standard gear."}]},{"ch":"diam","q":"Diamond carry on a backboard \u2014 who stands where, and why four people?","opts":[{"t":"Two people only \u2014 head and one side","ok":false,"why":"Four people: head, feet, one each side. If one slips, three still support. Safer than a two-person carry. Two-person is riskier \u2014 short distance and few resources only."},{"t":"Head, feet, one each side \u2014 if one slips, three still hold","ok":true,"why":"Four people: head, feet, one each side. If one slips, three still support. Safer than a two-person carry. Two-person is riskier \u2014 short distance and few resources only."},{"t":"All four at the head so the feet drag","ok":false,"why":"Four people: head, feet, one each side. If one slips, three still support. Safer than a two-person carry. Two-person is riskier \u2014 short distance and few resources only."},{"t":"Four people on a stair chair for an unconscious patient","ok":false,"why":"Four people: head, feet, one each side. If one slips, three still support. Safer than a two-person carry. Two-person is riskier \u2014 short distance and few resources only."}]},{"ch":"chair","q":"When is a stair chair yours?","opts":[{"t":"Unconscious with a possible spine injury on stairs","ok":false,"why":"Stair chair: conscious, awake, no suspected spinal injury, cannot walk the stairs, no usable elevator. Not for unconscious or spine-concern patients."},{"t":"Conscious, awake, no spine concern, stairs, no usable elevator","ok":true,"why":"Stair chair: conscious, awake, no suspected spinal injury, cannot walk the stairs, no usable elevator. Not for unconscious or spine-concern patients."},{"t":"Any 911 bariatric load up the ramp","ok":false,"why":"Stair chair: conscious, awake, no suspected spinal injury, cannot walk the stairs, no usable elevator. Not for unconscious or spine-concern patients."},{"t":"Hip fracture you do not want to roll","ok":false,"why":"Stair chair: conscious, awake, no suspected spinal injury, cannot walk the stairs, no usable elevator. Not for unconscious or spine-concern patients."}]},{"ch":"stairs","q":"Unconscious patient down a stairwell. Your move from this recap?","opts":[{"t":"Stair chair, head first, weakest at the head","ok":false,"why":"Use a backboard. Strongest at head and feet. Feet first down the stairs. A backboard can be just a carry tool even without a spine injury."},{"t":"Backboard, strongest at head and feet, feet first down","ok":true,"why":"Use a backboard. Strongest at head and feet. Feet first down the stairs. A backboard can be just a carry tool even without a spine injury."},{"t":"Flexible Reeves hoist from the landing only","ok":false,"why":"Use a backboard. Strongest at head and feet. Feet first down the stairs. A backboard can be just a carry tool even without a spine injury."},{"t":"Wait for an isolette because they are unconscious","ok":false,"why":"Use a backboard. Strongest at head and feet. Feet first down the stairs. A backboard can be just a carry tool even without a spine injury."}]},{"ch":"lead","q":"You are backboarding. Who is the team leader and what do they do?","opts":[{"t":"The person at the feet calls all moves","ok":false,"why":"On a backboard the person holding the head is the team leader and calls all moves. One leader, a ready check, then a count of three so nobody lifts or lowers alone."},{"t":"The person holding the head calls all moves","ok":true,"why":"On a backboard the person holding the head is the team leader and calls all moves. One leader, a ready check, then a count of three so nobody lifts or lowers alone."},{"t":"Whoever is strongest skips the count","ok":false,"why":"On a backboard the person holding the head is the team leader and calls all moves. One leader, a ready check, then a count of three so nobody lifts or lowers alone."},{"t":"Dispatch is the leader by radio only","ok":false,"why":"On a backboard the person holding the head is the team leader and calls all moves. One leader, a ready check, then a count of three so nobody lifts or lowers alone."}]},{"ch":"emov","q":"Car on fire, patient still inside. Which move category, and what can you skip?","opts":[{"t":"Non-urgent \u2014 full spinal immobilization first","ok":false,"why":"Emergency: seconds matter. Get them out now even if spinal motion is not fully protected. Worsening a spine injury is justified because they may otherwise die."},{"t":"Emergency \u2014 out now, even if the spine is not fully protected","ok":true,"why":"Emergency: seconds matter. Get them out now even if spinal motion is not fully protected. Worsening a spine injury is justified because they may otherwise die."},{"t":"Urgent \u2014 you have about one extra hour","ok":false,"why":"Emergency: seconds matter. Get them out now even if spinal motion is not fully protected. Worsening a spine injury is justified because they may otherwise die."},{"t":"Seated vest first because the scene is on fire","ok":false,"why":"Emergency: seconds matter. Get them out now even if spinal motion is not fully protected. Worsening a spine injury is justified because they may otherwise die."}]},{"ch":"urg","q":"Urgent move in this recap \u2014 time and spine work?","opts":[{"t":"About one minute; usually skip full scene immobilization","ok":true,"why":"Urgent is serious but not seconds. Move within about one minute. Still generally skip full spinal immobilization. More controlled than an emergency drag."},{"t":"Seconds only \u2014 same as a burning-car drag","ok":false,"why":"Urgent is serious but not seconds. Move within about one minute. Still generally skip full spinal immobilization. More controlled than an emergency drag."},{"t":"Unlimited time for a perfect board and vest","ok":false,"why":"Urgent is serious but not seconds. Move within about one minute. Still generally skip full spinal immobilization. More controlled than an emergency drag."},{"t":"Only used for scheduled isolette pickups","ok":false,"why":"Urgent is serious but not seconds. Move within about one minute. Still generally skip full spinal immobilization. More controlled than an emergency drag."}]},{"ch":"nonu","q":"Non-urgent move \u2014 what do you optimize?","opts":[{"t":"Speed only \u2014 drag them like a fire","ok":false,"why":"Scene and patient are stable: breathing adequately, not in shock, no immediate threat. Plan. Least lifting and carrying. Fewest moves. Crew safety and patient comfort."},{"t":"Least lifting, fewest moves, crew safety and comfort","ok":true,"why":"Scene and patient are stable: breathing adequately, not in shock, no immediate threat. Plan. Least lifting and carrying. Fewest moves. Crew safety and patient comfort."},{"t":"Always a seated vest even if they can walk to the elevator","ok":false,"why":"Scene and patient are stable: breathing adequately, not in shock, no immediate threat. Plan. Least lifting and carrying. Fewest moves. Crew safety and patient comfort."},{"t":"Skip a team leader because you have time","ok":false,"why":"Scene and patient are stable: breathing adequately, not in shock, no immediate threat. Plan. Least lifting and carrying. Fewest moves. Crew safety and patient comfort."}]},{"ch":"flex","q":"Flexible (Reeves-type) stretcher \u2014 where does this recap put it?","opts":[{"t":"Confined space, trench, or crevice \u2014 you can hoist them supported","ok":true,"why":"Bendy plastic for confined spaces, trench, or crevice rescues. Patient can be hoisted out while supported. Portable folding stretchers are the wilderness / hard-to-reach cousins, often special rescue."},{"t":"Only for planned bariatric ramp loads","ok":false,"why":"Bendy plastic for confined spaces, trench, or crevice rescues. Patient can be hoisted out while supported. Portable folding stretchers are the wilderness / hard-to-reach cousins, often special rescue."},{"t":"Only for neonate isolettes on a gurney","ok":false,"why":"Bendy plastic for confined spaces, trench, or crevice rescues. Patient can be hoisted out while supported. Portable folding stretchers are the wilderness / hard-to-reach cousins, often special rescue."},{"t":"First-line for every stair chair patient","ok":false,"why":"Bendy plastic for confined spaces, trench, or crevice rescues. Patient can be hoisted out while supported. Portable folding stretchers are the wilderness / hard-to-reach cousins, often special rescue."}]},{"ch":"ked","q":"Seated extrication device (short backboard/vest) \u2014 when, and why is it rare?","opts":[{"t":"Every unconscious stair patient; it replaces the diamond carry","ok":false,"why":"For a conscious, adequately breathing, seated patient still in a vehicle with a possible spine injury and a stable scene. Rarely used. A crash bad enough for spine damage is often urgent \u2014 skip it and go rapid extrication and backboard."},{"t":"Seated in a car, conscious, scene stable \u2014 but a bad crash is often urgent so you skip it","ok":true,"why":"For a conscious, adequately breathing, seated patient still in a vehicle with a possible spine injury and a stable scene. Rarely used. A crash bad enough for spine damage is often urgent \u2014 skip it and go rapid extrication and backboard."},{"t":"Only on fire scenes so you can take extra minutes","ok":false,"why":"For a conscious, adequately breathing, seated patient still in a vehicle with a possible spine injury and a stable scene. Rarely used. A crash bad enough for spine damage is often urgent \u2014 skip it and go rapid extrication and backboard."},{"t":"It is the same as a vacuum mattress for kyphosis","ok":false,"why":"For a conscious, adequately breathing, seated patient still in a vehicle with a possible spine injury and a stable scene. Rarely used. A crash bad enough for spine damage is often urgent \u2014 skip it and go rapid extrication and backboard."}]},{"ch":"vac","q":"Vacuum mattress \u2014 picture and who it helps?","opts":[{"t":"Giant beanbag you vacuum down \u2014 elderly kyphosis when a flat board may harm","ok":true,"why":"It conforms to their shape. Excellent for elderly kyphosis (severe spinal curve) when lying flat on a rigid board may worsen their baseline. Often not standard. If unsure, pad head/neck and call medical control."},{"t":"Split scoop for hip fractures only","ok":false,"why":"It conforms to their shape. Excellent for elderly kyphosis (severe spinal curve) when lying flat on a rigid board may worsen their baseline. Often not standard. If unsure, pad head/neck and call medical control."},{"t":"Raised-side basket for water rescue","ok":false,"why":"It conforms to their shape. Excellent for elderly kyphosis (severe spinal curve) when lying flat on a rigid board may worsen their baseline. Often not standard. If unsure, pad head/neck and call medical control."},{"t":"Heated box for a neonate on a gurney","ok":false,"why":"It conforms to their shape. Excellent for elderly kyphosis (severe spinal curve) when lying flat on a rigid board may worsen their baseline. Often not standard. If unsure, pad head/neck and call medical control."}]},{"ch":"stokes","q":"Basket (Stokes) stretcher \u2014 what is it and when?","opts":[{"t":"A stair chair with wheels for elevators only","ok":false,"why":"A backboard with raised sides for technical rope and water rescues and mountain or trail extractions (hoisting off a peak). Raised sides give extra lateral support when carried or hoisted."},{"t":"Backboard with raised sides \u2014 rope, water, mountain or trail hoist","ok":true,"why":"A backboard with raised sides for technical rope and water rescues and mountain or trail extractions (hoisting off a peak). Raised sides give extra lateral support when carried or hoisted."},{"t":"Bendy plastic for a trench only","ok":false,"why":"A backboard with raised sides for technical rope and water rescues and mountain or trail extractions (hoisting off a peak). Raised sides give extra lateral support when carried or hoisted."},{"t":"The metal tray on a bariatric lift gate","ok":false,"why":"A backboard with raised sides for technical rope and water rescues and mountain or trail extractions (hoisting off a peak). Raised sides give extra lateral support when carried or hoisted."}]},{"ch":"scoop","q":"Elderly patient, suspected hip fracture. Why a scoop stretcher?","opts":[{"t":"It splits, slides under, reconnects \u2014 little hip movement, then to board or gurney","ok":true,"why":"Ideal when rolling would cause severe pain or further injury. Without a scoop you may have to roll and pull the injured side \u2014 painful but sometimes unavoidable."},{"t":"It is the same as a stair chair for spine injuries","ok":false,"why":"Ideal when rolling would cause severe pain or further injury. Without a scoop you may have to roll and pull the injured side \u2014 painful but sometimes unavoidable."},{"t":"You vacuum it down around a curved spine","ok":false,"why":"Ideal when rolling would cause severe pain or further injury. Without a scoop you may have to roll and pull the injured side \u2014 painful but sometimes unavoidable."},{"t":"You hoist it off a peak on a rope","ok":false,"why":"Ideal when rolling would cause severe pain or further injury. Without a scoop you may have to roll and pull the injured side \u2014 painful but sometimes unavoidable."}]},{"ch":"hip","q":"Elderly hip fracture \u2014 what 12-month number and why does this recap care?","opts":[{"t":"About 50% mortality at 12 months \u2014 immobility (clots, strokes, infections, deconditioning)","ok":true,"why":"Not just the fracture itself. Immobility leads to clots, strokes, infections, and deconditioning. That is why you move the hip as little as you can."},{"t":"About 5% \u2014 the break heals itself on a stair chair","ok":false,"why":"Not just the fracture itself. Immobility leads to clots, strokes, infections, and deconditioning. That is why you move the hip as little as you can."},{"t":"Zero \u2014 hip breaks are never serious","ok":false,"why":"Not just the fracture itself. Immobility leads to clots, strokes, infections, and deconditioning. That is why you move the hip as little as you can."},{"t":"100% in the first hour from the scoop itself","ok":false,"why":"Not just the fracture itself. Immobility leads to clots, strokes, infections, and deconditioning. That is why you move the hip as little as you can."}]},{"ch":"neo","q":"Neonate in this recap \u2014 age, and what is an isolette?","opts":[{"t":"Birth to 1 year; a Reeves stretcher for trenches","ok":false,"why":"Neonate is birth to 1 month. An isolette is a heated protective box that mounts on a standard gurney with the mattress removed. It keeps the newborn warm and protected."},{"t":"Birth to 1 month; heated protective box on a standard gurney (mattress off)","ok":true,"why":"Neonate is birth to 1 month. An isolette is a heated protective box that mounts on a standard gurney with the mattress removed. It keeps the newborn warm and protected."},{"t":"Age 1 to 8 years; a vacuum mattress","ok":false,"why":"Neonate is birth to 1 month. An isolette is a heated protective box that mounts on a standard gurney with the mattress removed. It keeps the newborn warm and protected."},{"t":"Any child; a Stokes basket with raised sides","ok":false,"why":"Neonate is birth to 1 month. An isolette is a heated protective box that mounts on a standard gurney with the mattress removed. It keeps the newborn warm and protected."}]},{"ch":"uber","q":"You meet the airplane on the tarmac with an isolette. Your job?","opts":[{"t":"You take over neonatal care; the flight team leaves on the tarmac","ok":false,"why":"You provide the vehicle and gurney \u2014 glorified Uber. Load the isolette, take team plus baby to a children\u2019s hospital or NICU. You still write a PCR. Clinical decisions stay with the specialty team."},{"t":"Vehicle and gurney \u2014 specialty team owns care; you still write a PCR","ok":true,"why":"You provide the vehicle and gurney \u2014 glorified Uber. Load the isolette, take team plus baby to a children\u2019s hospital or NICU. You still write a PCR. Clinical decisions stay with the specialty team."},{"t":"You skip the PCR because you did not treat","ok":false,"why":"You provide the vehicle and gurney \u2014 glorified Uber. Load the isolette, take team plus baby to a children\u2019s hospital or NICU. You still write a PCR. Clinical decisions stay with the specialty team."},{"t":"You put the baby in a stair chair for the tarmac walk","ok":false,"why":"You provide the vehicle and gurney \u2014 glorified Uber. Load the isolette, take team plus baby to a children\u2019s hospital or NICU. You still write a PCR. Clinical decisions stay with the specialty team."}]},{"ch":"match","q":"Match the tool: conscious, no spine, stairs only \u2014 what do you grab?","opts":[{"t":"Stair chair","ok":true,"why":"Stair chair: conscious, no spine concern, stair-only access. Backboard: unconscious, spine concern, stairs, rapid extrication. Scoop: hip / do not roll. Basket / flexible / portable: technical, confined, or wilderness. Vacuum mattress: curved spines if available."},{"t":"Scoop stretcher first every time","ok":false,"why":"Stair chair: conscious, no spine concern, stair-only access. Backboard: unconscious, spine concern, stairs, rapid extrication. Scoop: hip / do not roll. Basket / flexible / portable: technical, confined, or wilderness. Vacuum mattress: curved spines if available."},{"t":"Stokes basket for the hallway","ok":false,"why":"Stair chair: conscious, no spine concern, stair-only access. Backboard: unconscious, spine concern, stairs, rapid extrication. Scoop: hip / do not roll. Basket / flexible / portable: technical, confined, or wilderness. Vacuum mattress: curved spines if available."},{"t":"Isolette with the mattress still on","ok":false,"why":"Stair chair: conscious, no spine concern, stair-only access. Backboard: unconscious, spine concern, stairs, rapid extrication. Scoop: hip / do not roll. Basket / flexible / portable: technical, confined, or wilderness. Vacuum mattress: curved spines if available."}]},{"ch":"pad","q":"You are unsure whether a hard board will help or harm a curved spine. This recap\u2019s next step?","opts":[{"t":"Force them flat and skip medical control","ok":false,"why":"Ask if laying them flat on a backboard will help or harm. If uncertain, pad around the head and neck with towels or blankets and call medical control. Vacuum mattress if you have one."},{"t":"Pad head and neck with towels or blankets and call medical control","ok":true,"why":"Ask if laying them flat on a backboard will help or harm. If uncertain, pad around the head and neck with towels or blankets and call medical control. Vacuum mattress if you have one."},{"t":"Put them in a stair chair because they have kyphosis","ok":false,"why":"Ask if laying them flat on a backboard will help or harm. If uncertain, pad around the head and neck with towels or blankets and call medical control. Vacuum mattress if you have one."},{"t":"Use the seated vest in the living room","ok":false,"why":"Ask if laying them flat on a backboard will help or harm. If uncertain, pad around the head and neck with towels or blankets and call medical control. Vacuum mattress if you have one."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"prios":"Priorities","help":"Lift assist","250":"Weight limit","wide":"Bariatric gurney","low":"Gurney height","load":"Loading","bari911":"Bariatric 911","diam":"Diamond carry","chair":"Stair chair","stairs":"Stairs / board","lead":"Team leader","emov":"Emergency move","urg":"Urgent move","nonu":"Non-urgent","flex":"Flexible stretcher","ked":"Seated vest","vac":"Vacuum mattress","stokes":"Stokes basket","scoop":"Scoop","hip":"Hip fracture","neo":"Neonate","uber":"Tarmac / isolette","match":"Match the tool","pad":"Pad / med control"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the Sat 1:32 moving-and-equipment recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · Sat 1:32 moving-and-equipment recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
