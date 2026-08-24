@@ -1,0 +1,860 @@
+[
+  {
+    "ch": 8,
+    "q": "When is the wheeled stretcher the wrong tool?",
+    "opts": [
+      {
+        "t": "Stairs or off-road",
+        "ok": true,
+        "why": "Do not take the gurney down stairs or off-road. It is top-heavy with tiny wheels."
+      },
+      {
+        "t": "A flat driveway curb",
+        "ok": false,
+        "why": "A curb is fine if you take it straight with two hands."
+      },
+      {
+        "t": "Loading into the ambulance",
+        "ok": false,
+        "why": "The gurney is the everyday ambulance tool."
+      },
+      {
+        "t": "A hospital hallway",
+        "ok": false,
+        "why": "Hallways are what it is built for."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "How is the gurney loaded, and which end is heavier?",
+    "opts": [
+      {
+        "t": "Head first; the head end is heavier",
+        "ok": true,
+        "why": "Load headfirst. Head side is heavier. Lock it to the floor."
+      },
+      {
+        "t": "Feet first; the feet end is heavier",
+        "ok": false,
+        "why": "Head first, and the head is heavier."
+      },
+      {
+        "t": "Head first; the feet end is heavier",
+        "ok": false,
+        "why": "Head first is right, but the head is heavier."
+      },
+      {
+        "t": "Feet first; the head end is heavier",
+        "ok": false,
+        "why": "Head end is heavier, but they still load head first."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "They say they can sit in a captain's chair. Where do they ride?",
+    "opts": [
+      {
+        "t": "On the gurney, belted",
+        "ok": true,
+        "why": "Everyone goes on the gurney. If they worsen, they are already on it."
+      },
+      {
+        "t": "In the captain's chair, unbelted",
+        "ok": false,
+        "why": "They still ride the gurney."
+      },
+      {
+        "t": "On a backboard in the front seat",
+        "ok": false,
+        "why": "The gurney is the ride, locked to the floor."
+      },
+      {
+        "t": "Walking beside the gurney",
+        "ok": false,
+        "why": "They ride on it."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "A driveway curb is coming. How do two people take the gurney over it?",
+    "opts": [
+      {
+        "t": "One front, one back, curb straight",
+        "ok": true,
+        "why": "Two hands, front and back. Straight, or it tilts."
+      },
+      {
+        "t": "One front, one back, curb at an angle",
+        "ok": false,
+        "why": "An angle tilts it."
+      },
+      {
+        "t": "One person only, curb straight",
+        "ok": false,
+        "why": "One person lets it swing."
+      },
+      {
+        "t": "Four people in a diamond, curb at an angle",
+        "ok": false,
+        "why": "Diamond is a carry. The curb still goes straight."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "No medical need for a set position. How do they ride?",
+    "opts": [
+      {
+        "t": "Position of comfort",
+        "ok": true,
+        "why": "If no medical preference, ask them."
+      },
+      {
+        "t": "Always flat shock position",
+        "ok": false,
+        "why": "Shock is the set that needs flat supine."
+      },
+      {
+        "t": "Always left side",
+        "ok": false,
+        "why": "Left side is late pregnancy."
+      },
+      {
+        "t": "Always recovery on the side",
+        "ok": false,
+        "why": "Recovery is unresponsive, breathing, no spine."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "What is the four-part shock treatment?",
+    "opts": [
+      {
+        "t": "Lots of oxygen, keep warm, lay flat, rapid transport",
+        "ok": true,
+        "why": "Universal shock four: extra O2, warm, supine, go."
+      },
+      {
+        "t": "Lots of oxygen, keep cool, sit up, slow transport",
+        "ok": false,
+        "why": "Warm, flat, and rapid, not cool, sit, slow."
+      },
+      {
+        "t": "Room air, keep warm, feet up, stay on scene",
+        "ok": false,
+        "why": "They get lots of oxygen, stay flat, and go."
+      },
+      {
+        "t": "Lots of oxygen, keep warm, left side, no transport",
+        "ok": false,
+        "why": "Left side is late pregnancy, not the shock four."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Shock position now, versus the old feet-up habit?",
+    "opts": [
+      {
+        "t": "Flat on the back; feet stay down",
+        "ok": true,
+        "why": "They used to raise the feet. Now just flat."
+      },
+      {
+        "t": "Feet up, head down",
+        "ok": false,
+        "why": "That old raise is retired."
+      },
+      {
+        "t": "Sitting high Fowler",
+        "ok": false,
+        "why": "Sitting up is for dyspnea."
+      },
+      {
+        "t": "Left side for the bench",
+        "ok": false,
+        "why": "Left side is late pregnancy."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "What is a backboard in this chapter?",
+    "opts": [
+      {
+        "t": "A 6 to 7 foot plastic full-body splint",
+        "ok": true,
+        "why": "Backboard = full-body splint. About 6-7 ft plastic."
+      },
+      {
+        "t": "A sitting vest for a wreck",
+        "ok": false,
+        "why": "That is a KED-type vest."
+      },
+      {
+        "t": "A split scoop for a hip",
+        "ok": false,
+        "why": "That is a scoop stretcher."
+      },
+      {
+        "t": "A beanbag that goes rigid",
+        "ok": false,
+        "why": "That is a vacuum mattress."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Neck or back pain after a crash, or numbness, tingling, weakness, or paralysis. What is that cluster?",
+    "opts": [
+      {
+        "t": "Reasons to board a conscious trauma patient",
+        "ok": true,
+        "why": "Board for neck/back pain or those nerve signs."
+      },
+      {
+        "t": "Reasons to use a stair chair",
+        "ok": false,
+        "why": "Stair chair is conscious, no spine worry."
+      },
+      {
+        "t": "Reasons to leave them prone",
+        "ok": false,
+        "why": "Unconscious never rides prone."
+      },
+      {
+        "t": "Reasons to skip the collar",
+        "ok": false,
+        "why": "The collar goes on before the log roll."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Intoxicated, says no neck pain, then says ow when the mid-back is pressed. What are they?",
+    "opts": [
+      {
+        "t": "A poor historian; board",
+        "ok": true,
+        "why": "Alcohol can dull the report. Poor historian gets boarded."
+      },
+      {
+        "t": "A reliable historian; skip the board",
+        "ok": false,
+        "why": "The wince plus 'no' is not reliable."
+      },
+      {
+        "t": "A stair-chair patient",
+        "ok": false,
+        "why": "Stair chair is no-spine and conscious on stairs."
+      },
+      {
+        "t": "A scoop-only hip patient",
+        "ok": false,
+        "why": "This is a spine-history problem, not a hip tool pick."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "By the book, who runs a log roll?",
+    "opts": [
+      {
+        "t": "Four people; the head holds the neck and counts",
+        "ok": true,
+        "why": "Head is in charge. Collar first. Three roll the body."
+      },
+      {
+        "t": "Two people; the feet count",
+        "ok": false,
+        "why": "Four people, and the head counts."
+      },
+      {
+        "t": "Four people; the hip person counts",
+        "ok": false,
+        "why": "The head counts."
+      },
+      {
+        "t": "One person at the head lifts by the head",
+        "ok": false,
+        "why": "The head holds in line and does not lift by the head."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "What is the power grip?",
+    "opts": [
+      {
+        "t": "Palms up, hands about 10 inches apart",
+        "ok": true,
+        "why": "Power grip: palms up, about 10 in, fingers the same angle."
+      },
+      {
+        "t": "Palms down, hands about 2 inches apart",
+        "ok": false,
+        "why": "Palms up, about 10 inches."
+      },
+      {
+        "t": "Palms up, hands about 30 inches apart",
+        "ok": false,
+        "why": "About 10 inches, not 30."
+      },
+      {
+        "t": "Palms down, one hand only",
+        "ok": false,
+        "why": "Both hands, palms up."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "What does a lift assist from dispatch get?",
+    "opts": [
+      {
+        "t": "Extra people, not a second ambulance",
+        "ok": true,
+        "why": "Lift assist = more hands on scene."
+      },
+      {
+        "t": "A second ambulance by default",
+        "ok": false,
+        "why": "It is people, not another rig."
+      },
+      {
+        "t": "A flight isolette",
+        "ok": false,
+        "why": "An isolette is a newborn box."
+      },
+      {
+        "t": "A winch-only bariatric truck",
+        "ok": false,
+        "why": "That is a different request."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Two-person lift number before calling help?",
+    "opts": [
+      {
+        "t": "About 250 pounds",
+        "ok": true,
+        "why": "About 250 lb for two people, then call."
+      },
+      {
+        "t": "About 750 pounds",
+        "ok": false,
+        "why": "About 750 lb is a regular gurney rating."
+      },
+      {
+        "t": "About 1200 pounds",
+        "ok": false,
+        "why": "About 1200 lb is the wide bariatric figure was named."
+      },
+      {
+        "t": "About 40 to 145 pounds",
+        "ok": false,
+        "why": "That range is empty powered-gurney weight."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Why is bariatric mostly a width problem?",
+    "opts": [
+      {
+        "t": "A regular gurney already holds about 750 pounds; the wide one is about 1200",
+        "ok": true,
+        "why": "Biggest difference is width, not the weight stamp."
+      },
+      {
+        "t": "A regular gurney holds about 250 pounds; the wide one holds 40 to 145",
+        "ok": false,
+        "why": "250 is the two-person lift talk. 40-145 is empty motor weight."
+      },
+      {
+        "t": "A regular gurney holds about 1200 pounds; the wide one holds 750",
+        "ok": false,
+        "why": "Those numbers are swapped."
+      },
+      {
+        "t": "Width does not matter; only the motor weight matters",
+        "ok": false,
+        "why": "Width is the problem he named."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Four people carrying on flat ground. Preferred shape?",
+    "opts": [
+      {
+        "t": "Diamond: one on each of the four sides",
+        "ok": true,
+        "why": "If one slips, three still hold."
+      },
+      {
+        "t": "Two people only, head and feet",
+        "ok": false,
+        "why": "Two-person is possible but more dangerous."
+      },
+      {
+        "t": "One person at the head, three stacked at the feet",
+        "ok": false,
+        "why": "One each side, plus head and feet."
+      },
+      {
+        "t": "All four on the same side",
+        "ok": false,
+        "why": "That is not a diamond."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Awake, no spine worry, stairs, no elevator. Which device?",
+    "opts": [
+      {
+        "t": "Stair chair",
+        "ok": true,
+        "why": "Stair chair: conscious, no spine, stairs."
+      },
+      {
+        "t": "Backboard, feet first",
+        "ok": false,
+        "why": "Board down the stairs is the unconscious path."
+      },
+      {
+        "t": "Scoop only",
+        "ok": false,
+        "why": "Scoop is the hip-split tool."
+      },
+      {
+        "t": "Wheeled gurney down the stairs",
+        "ok": false,
+        "why": "The gurney does not do stairs."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Unconscious on a stairwell. How do they come down?",
+    "opts": [
+      {
+        "t": "On a board, feet first",
+        "ok": true,
+        "why": "Unconscious stairs: board, strong hands at head and feet, feet first."
+      },
+      {
+        "t": "In a stair chair, head first",
+        "ok": false,
+        "why": "Stair chair is not for unconscious."
+      },
+      {
+        "t": "On the wheeled gurney, feet first",
+        "ok": false,
+        "why": "The gurney does not do stairs."
+      },
+      {
+        "t": "In a scoop, sitting up",
+        "ok": false,
+        "why": "Scoop is a split stretcher, not a sit-down stair tool."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Car on fire, still in the seat. Which move?",
+    "opts": [
+      {
+        "t": "Emergency: seconds, grab and go, spine may wait",
+        "ok": true,
+        "why": "Emergency = seconds. Fire or pulseless in a wreck. They would die."
+      },
+      {
+        "t": "Urgent: about one minute, full board first",
+        "ok": false,
+        "why": "Urgent is about a minute and still incomplete. Fire is emergency."
+      },
+      {
+        "t": "Non-urgent: plan the least lift",
+        "ok": false,
+        "why": "Non-urgent is a stable scene."
+      },
+      {
+        "t": "KED vest, then wait for the fire to die",
+        "ok": false,
+        "why": "A vest takes minutes. Fire is grab and go."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Urgent move. About how long, and is the spine fully done?",
+    "opts": [
+      {
+        "t": "About one minute; immobilization is still incomplete",
+        "ok": true,
+        "why": "Urgent is about one minute. Full board work takes a couple of minutes."
+      },
+      {
+        "t": "Seconds; no time even to grab them",
+        "ok": false,
+        "why": "Seconds is emergency."
+      },
+      {
+        "t": "About one minute; full board is already finished",
+        "ok": false,
+        "why": "Full work is not done in that minute."
+      },
+      {
+        "t": "When the scene is stable and you plan the least lift",
+        "ok": false,
+        "why": "That is non-urgent."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Scene and patient are stable. Which move?",
+    "opts": [
+      {
+        "t": "Non-urgent: slow down and use the least lifting",
+        "ok": true,
+        "why": "Non-urgent = stable. Safest for you, most comfortable for them."
+      },
+      {
+        "t": "Emergency: seconds, skip the spine",
+        "ok": false,
+        "why": "Emergency is fire or pulseless."
+      },
+      {
+        "t": "Urgent: about one minute, incomplete spine",
+        "ok": false,
+        "why": "Urgent is the one-minute clock."
+      },
+      {
+        "t": "No move; wait on scene",
+        "ok": false,
+        "why": "You still move them, just planned."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Sitting in a wreck, stable and awake, possible spine. Rare device?",
+    "opts": [
+      {
+        "t": "Vest / KED-type seated extrication",
+        "ok": true,
+        "why": "Sitting, conscious, C-collar, rare. Takes a couple of minutes."
+      },
+      {
+        "t": "Stair chair",
+        "ok": false,
+        "why": "Stair chair is stairs, no spine worry."
+      },
+      {
+        "t": "Isolette",
+        "ok": false,
+        "why": "Isolette is a newborn box."
+      },
+      {
+        "t": "Scoop stretcher",
+        "ok": false,
+        "why": "Scoop splits for a hip on the ground."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Elderly, very curved thoracic spine. Which mattress idea?",
+    "opts": [
+      {
+        "t": "Vacuum mattress: beanbag, then suck the air out",
+        "ok": true,
+        "why": "Vacuum mattress for kyphosis. Rare locally. Unsure, call medical control."
+      },
+      {
+        "t": "Hard board with no pad",
+        "ok": false,
+        "why": "A flat board can harm a curved spine."
+      },
+      {
+        "t": "Stair chair sitting straight up",
+        "ok": false,
+        "why": "This is a spine-shape tool question, not stairs."
+      },
+      {
+        "t": "Isolette on a regular gurney",
+        "ok": false,
+        "why": "Isolette is for a neonate."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Raised sides, water or rope work, board can ride inside. What is that?",
+    "opts": [
+      {
+        "t": "Stokes / basket",
+        "ok": true,
+        "why": "Stokes is a backboard with raised sides. Water, rope, Camelback hoist."
+      },
+      {
+        "t": "Scoop stretcher",
+        "ok": false,
+        "why": "Scoop splits; it is not the basket."
+      },
+      {
+        "t": "Vacuum mattress",
+        "ok": false,
+        "why": "Vacuum is the beanbag."
+      },
+      {
+        "t": "Stair chair",
+        "ok": false,
+        "why": "Stair chair is indoor stairs."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Elderly fall, suspected hip fracture. Which tool?",
+    "opts": [
+      {
+        "t": "Scoop stretcher: it splits so the hip is not rolled",
+        "ok": true,
+        "why": "Scoop splits, slides under, reconnects. Hip stays still."
+      },
+      {
+        "t": "Stair chair",
+        "ok": false,
+        "why": "Stair chair is sitting stairs, no spine."
+      },
+      {
+        "t": "KED vest in a wreck",
+        "ok": false,
+        "why": "A vest is seated car extrication."
+      },
+      {
+        "t": "Isolette",
+        "ok": false,
+        "why": "Isolette is a newborn box."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Neonate age for an isolette?",
+    "opts": [
+      {
+        "t": "Birth to one month",
+        "ok": true,
+        "why": "Neonate = 0-1 month. Heated box on a regular gurney."
+      },
+      {
+        "t": "One month to one year",
+        "ok": false,
+        "why": "That is older than neonate here."
+      },
+      {
+        "t": "Any child under eight",
+        "ok": false,
+        "why": "Isolette is the newborn box."
+      },
+      {
+        "t": "Twenty weeks of pregnancy",
+        "ok": false,
+        "why": "Twenty weeks is the late-pregnancy left-side cut."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Pregnancy past 20 weeks on the gurney. Which side, and why?",
+    "opts": [
+      {
+        "t": "Left side; uterus off the aorta and IVC",
+        "ok": true,
+        "why": "After 20 weeks, not flat. Left relieves supine hypotensive syndrome and faces the bench."
+      },
+      {
+        "t": "Right side; uterus onto the aorta and IVC",
+        "ok": false,
+        "why": "Left side, off the vessels, not onto them."
+      },
+      {
+        "t": "Flat on the back; feet up",
+        "ok": false,
+        "why": "Flat is the problem after 20 weeks."
+      },
+      {
+        "t": "Prone, face down",
+        "ok": false,
+        "why": "Prone is not the pregnancy position."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Uterus, fluid, and baby sandwich the aorta and IVC when flat. What is that name?",
+    "opts": [
+      {
+        "t": "Supine hypotensive syndrome",
+        "ok": true,
+        "why": "Flat after 20 weeks drops blood pressure. Left side is the fix."
+      },
+      {
+        "t": "Positional asphyxia",
+        "ok": false,
+        "why": "That is the prone-restraint fear."
+      },
+      {
+        "t": "Kyphosis",
+        "ok": false,
+        "why": "Kyphosis is a curved spine."
+      },
+      {
+        "t": "Trendelenburg",
+        "ok": false,
+        "why": "Feet-up shock is the retired habit, not this name."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Unresponsive, breathing well, no spine worry. Which position?",
+    "opts": [
+      {
+        "t": "Recovery on the side",
+        "ok": true,
+        "why": "Side so the tongue is less likely to block."
+      },
+      {
+        "t": "Flat shock position",
+        "ok": false,
+        "why": "Flat is shock, or airway work if they cannot breathe."
+      },
+      {
+        "t": "High Fowler sitting up",
+        "ok": false,
+        "why": "Sitting up is for dyspnea."
+      },
+      {
+        "t": "Prone, face down",
+        "ok": false,
+        "why": "Unconscious never rides prone."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Short of breath and they can sit. Which default sit?",
+    "opts": [
+      {
+        "t": "Fowler or high Fowler, sitting up",
+        "ok": true,
+        "why": "Dyspnea likes up. High Fowler is upright. Semi-Fowler is leaning back."
+      },
+      {
+        "t": "Flat on the back",
+        "ok": false,
+        "why": "Flat is the shock default."
+      },
+      {
+        "t": "Left side for the IVC",
+        "ok": false,
+        "why": "Left side is late pregnancy."
+      },
+      {
+        "t": "Prone, face down",
+        "ok": false,
+        "why": "Prone is not the dyspnea sit."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Truly combative. Restraint package?",
+    "opts": [
+      {
+        "t": "About five people, stay supine, never prone",
+        "ok": true,
+        "why": "Last resort. One per limb plus the head. Watch ABCs."
+      },
+      {
+        "t": "Two people, roll them prone",
+        "ok": false,
+        "why": "Five people, and prone is out."
+      },
+      {
+        "t": "One person, sit them in a stair chair",
+        "ok": false,
+        "why": "This is a restraint team, not a stair move."
+      },
+      {
+        "t": "Four people, leave them prone if they ask",
+        "ok": false,
+        "why": "Unconscious never prone; even awake, prone is not the plan."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "Before a lift, which question?",
+    "opts": [
+      {
+        "t": "Are we strong enough?",
+        "ok": true,
+        "why": "Ask we, not I. Pride drops people."
+      },
+      {
+        "t": "Are you strong enough?",
+        "ok": false,
+        "why": "The word is we."
+      },
+      {
+        "t": "Are they strong enough to walk?",
+        "ok": false,
+        "why": "The question is about the crew lift."
+      },
+      {
+        "t": "Is the isolette strong enough?",
+        "ok": false,
+        "why": "Isolette is the newborn box."
+      }
+    ]
+  },
+  {
+    "ch": 8,
+    "q": "On a manual gurney, who takes the head?",
+    "opts": [
+      {
+        "t": "The stronger, often taller, person",
+        "ok": true,
+        "why": "Head end is heavier and must come higher."
+      },
+      {
+        "t": "The weaker, shorter person",
+        "ok": false,
+        "why": "Head needs the stronger lift."
+      },
+      {
+        "t": "Whoever is driving",
+        "ok": false,
+        "why": "Driving is not the head-end rule."
+      },
+      {
+        "t": "The patient",
+        "ok": false,
+        "why": "The crew lifts the head end."
+      }
+    ]
+  }
+]
