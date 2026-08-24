@@ -1,0 +1,1718 @@
+[
+  {
+    "ch": 9,
+    "q": "Wreck, bystanders still in the roadway. Crew, bystanders, and the patient are already on your safety list. Which leftover person sits first?",
+    "opts": [
+      {
+        "t": "You first, then crew, then bystanders, then the patient",
+        "ok": true,
+        "why": "Safety order: you, crew, bystanders, patient."
+      },
+      {
+        "t": "Crew first, then you, then bystanders, then the patient",
+        "ok": false,
+        "why": "You sit first, not crew."
+      },
+      {
+        "t": "Patient first, then crew, then bystanders, then you",
+        "ok": false,
+        "why": "Patient is last."
+      },
+      {
+        "t": "Bystanders first, then you, then crew, then the patient",
+        "ok": false,
+        "why": "Bystanders are third."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Skill-sheet start. Field impression, rapid exam, transport decision, and A&O questions are later boxes. Which leftover pair is an auto-fail if you skip it?",
+    "opts": [
+      {
+        "t": "Gloves / BSI, then saying the scene is safe",
+        "ok": true,
+        "why": "BSI then scene safety. Skip either and you auto-fail."
+      },
+      {
+        "t": "Field impression, then the two chest-pain drugs",
+        "ok": false,
+        "why": "Those are later, not the auto-fail openers."
+      },
+      {
+        "t": "Rapid exam, then the transport decision",
+        "ok": false,
+        "why": "Those are later."
+      },
+      {
+        "t": "A&O x4 questions, then the pulse-ox goal",
+        "ok": false,
+        "why": "Those are later."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "First ambulance at a highway wreck. You want the rig to be a wall. Later units will park past the wreck. Which leftover park matches the first unit?",
+    "opts": [
+      {
+        "t": "About 100 ft, before the wreck, so the rig is a wall",
+        "ok": true,
+        "why": "About 100 ft. First unit barricades before the wreck."
+      },
+      {
+        "t": "About 100 ft, past the wreck, so the rig is a wall",
+        "ok": false,
+        "why": "Past the wreck is the second unit."
+      },
+      {
+        "t": "About 20 ft, before the wreck, so the rig is a wall",
+        "ok": false,
+        "why": "Distance is about 100 ft."
+      },
+      {
+        "t": "About 100 ft, before the wreck, then pull the wall",
+        "ok": false,
+        "why": "The first unit stays as the wall."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Fire is already barricading the wreck. You need to leave later without taking the wall. Which leftover park is yours?",
+    "opts": [
+      {
+        "t": "Past the wreck so you leave without taking the wall",
+        "ok": true,
+        "why": "Second parks past so you leave without pulling the wall."
+      },
+      {
+        "t": "Before the wreck so you become the new wall",
+        "ok": false,
+        "why": "Before is the first unit."
+      },
+      {
+        "t": "Past the wreck so you leave after you take the wall",
+        "ok": false,
+        "why": "You leave without taking the wall."
+      },
+      {
+        "t": "Beside the wreck so you leave without taking the wall",
+        "ok": false,
+        "why": "Past, not beside."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Testing wants a clean split. Surgery-ASAP hidden injury is already on the trauma side. Which leftover pair matches MOI versus NOI?",
+    "opts": [
+      {
+        "t": "MOI is crash force plus hidden injury; NOI is illness type",
+        "ok": true,
+        "why": "MOI = mechanism + hidden injury + surgery ASAP. NOI = illness type."
+      },
+      {
+        "t": "MOI is illness type; NOI is crash force plus hidden injury",
+        "ok": false,
+        "why": "Those are swapped."
+      },
+      {
+        "t": "MOI is illness type; NOI is who parks first on the highway",
+        "ok": false,
+        "why": "NOI is illness type, not parking."
+      },
+      {
+        "t": "MOI is crash force plus hidden injury; NOI is always both at once",
+        "ok": false,
+        "why": "Testing is a clean split."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Eight people in one building, all short of breath. Walking in for eight medical assessments is already off the table. Which leftover move matches that picture?",
+    "opts": [
+      {
+        "t": "Stay out and treat it as a possible hazmat problem",
+        "ok": true,
+        "why": "Many similar patients = hazmat \u2014 stay out."
+      },
+      {
+        "t": "Walk in and start eight medical assessments",
+        "ok": false,
+        "why": "Stay out."
+      },
+      {
+        "t": "Walk in and treat it as eight separate asthma attacks",
+        "ok": false,
+        "why": "Stay out."
+      },
+      {
+        "t": "Stay out and treat it as a one-patient practice call",
+        "ok": false,
+        "why": "This is a multi-patient similar-illness picture, not a one-patient drill."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "More than one patient shows up in this course block. Docs and abandonment still matter. Which leftover rule is true now versus later MCI?",
+    "opts": [
+      {
+        "t": "This block stays one-patient; MCI later flips the first weeks",
+        "ok": true,
+        "why": "This course block = one patient. MCI later flips the first five weeks."
+      },
+      {
+        "t": "This block starts multi-patient; MCI later keeps the first weeks",
+        "ok": false,
+        "why": "This block is one-patient."
+      },
+      {
+        "t": "This block stays one-patient; MCI later keeps the same rules",
+        "ok": false,
+        "why": "MCI later flips those early rules."
+      },
+      {
+        "t": "This block starts multi-patient; docs and abandonment never change",
+        "ok": false,
+        "why": "This block is still one-patient."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "A stem does not name your partner's level. You will still request extra help if needed. Which leftover assumption is true?",
+    "opts": [
+      {
+        "t": "EMT on an ambulance; request medics unless the stem names a medic",
+        "ok": true,
+        "why": "Assume EMT on an ambulance; request medics unless the stem says the partner is a medic."
+      },
+      {
+        "t": "Medic on a rescue; skip extra help unless the stem names an EMT",
+        "ok": false,
+        "why": "Do not assume you are the medic."
+      },
+      {
+        "t": "EMT on an ambulance; never request medics unless the stem names fire",
+        "ok": false,
+        "why": "You still request medics unless the partner is already a medic."
+      },
+      {
+        "t": "Medic on an ambulance; request help only after the secondary exam",
+        "ok": false,
+        "why": "Do not assume medic."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Medical and trauma skill sheets share six scene lines. Safety, MOI/NOI, count, extra help, and consider C-spine are already in the set. Which leftover first step and order is right?",
+    "opts": [
+      {
+        "t": "BSI then safety then MOI/NOI then count then extra help then consider C-spine",
+        "ok": true,
+        "why": "Six lines: BSI, safety, MOI/NOI, number of patients, extra resources, consider C-spine."
+      },
+      {
+        "t": "Safety then BSI then extra help then C-spine then count then MOI/NOI",
+        "ok": false,
+        "why": "BSI is first; C-spine is last of the six."
+      },
+      {
+        "t": "BSI then safety then extra help then count then MOI/NOI then skip C-spine",
+        "ok": false,
+        "why": "MOI/NOI comes before count; C-spine stays."
+      },
+      {
+        "t": "MOI/NOI then BSI then safety then count then extra help then consider C-spine",
+        "ok": false,
+        "why": "BSI and safety come first."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Primary, history, secondary, and reassess are already on the run. Which leftover first bucket completes the five-part test split?",
+    "opts": [
+      {
+        "t": "Scene, then primary, then history, then secondary, then reassess",
+        "ok": true,
+        "why": "Five pieces: scene, primary, history, secondary, reassess."
+      },
+      {
+        "t": "Primary, then scene, then history, then secondary, then reassess",
+        "ok": false,
+        "why": "Scene is first."
+      },
+      {
+        "t": "Scene, then secondary, then history, then primary, then reassess",
+        "ok": false,
+        "why": "Primary comes before history and secondary."
+      },
+      {
+        "t": "Scene, then primary, then secondary, then history, then skip reassess",
+        "ok": false,
+        "why": "History is before secondary; reassess stays."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "The primary-assessment slice is the biggest NREMT bucket. 10 to 15 percent and 70 to 80 percent are already off. Which leftover size is listed?",
+    "opts": [
+      {
+        "t": "About 35 to 45 percent, the biggest slice",
+        "ok": true,
+        "why": "Primary is about 35 to 45 percent of the test."
+      },
+      {
+        "t": "About 10 to 15 percent, the smallest slice",
+        "ok": false,
+        "why": "That is too small."
+      },
+      {
+        "t": "About 70 to 80 percent, the only slice",
+        "ok": false,
+        "why": "That is too large."
+      },
+      {
+        "t": "About 35 to 45 percent, the smallest slice",
+        "ok": false,
+        "why": "It is the biggest slice, not the smallest."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "You get eyes on a still, blue, unresponsive person. A&O questions and history are later. Which leftover first GI question is true?",
+    "opts": [
+      {
+        "t": "Could they be dead? If maybe, check a pulse and start CPR now",
+        "ok": true,
+        "why": "First GI question: could they be dead? If maybe, pulse and CPR now."
+      },
+      {
+        "t": "Could they be dead? If maybe, finish A&O x4 then start CPR",
+        "ok": false,
+        "why": "Do not finish A&O first."
+      },
+      {
+        "t": "Could they be hungry? If maybe, check a pulse and start CPR now",
+        "ok": false,
+        "why": "The question is death, not hunger."
+      },
+      {
+        "t": "Could they be dead? If maybe, skip the pulse and start history",
+        "ok": false,
+        "why": "Check a pulse."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Mute on the couch, looking around, family says this is new. A calm GI can sit on a time-sensitive brain problem. Which leftover statement is true?",
+    "opts": [
+      {
+        "t": "Calm GI can be wrong; a time-sensitive brain problem can still sit there",
+        "ok": true,
+        "why": "GI can be wrong (mute stroke; out was asleep). Looks-fine stroke is still time-sensitive \u2014 get going."
+      },
+      {
+        "t": "Calm GI proves they are fine; a mute stroke is off the list",
+        "ok": false,
+        "why": "Mute stroke is the trap."
+      },
+      {
+        "t": "Calm GI can be wrong; only a trauma problem can still sit there",
+        "ok": false,
+        "why": "Stroke is the example."
+      },
+      {
+        "t": "Calm GI proves they are fine; stay put until speech comes back",
+        "ok": false,
+        "why": "Get going."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Bright-red spurting from an arm as you walk up. Airway and later boxes are still on the sheet. Which leftover move is now?",
+    "opts": [
+      {
+        "t": "Treat the bleed now; a life threat does not wait for its later box",
+        "ok": true,
+        "why": "Find a life threat, treat that life threat. Bright-red spurting: treat now."
+      },
+      {
+        "t": "Save the bleed for circulation on the sheet; finish airway first",
+        "ok": false,
+        "why": "Treat the life threat now."
+      },
+      {
+        "t": "Treat the bleed now; only after you finish the full secondary",
+        "ok": false,
+        "why": "Do not wait for the secondary."
+      },
+      {
+        "t": "Save the bleed for history; a life threat waits for its later box",
+        "ok": false,
+        "why": "It does not wait."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Slumped on the couch, eyes shut, no look when you walk in. Sitting up on furniture is already a trap. Which leftover AVPU letter is true?",
+    "opts": [
+      {
+        "t": "Not A; sitting up does not make them awake and looking",
+        "ok": true,
+        "why": "A = awake/alert, looking around. Slumped couch is not awake."
+      },
+      {
+        "t": "A, because they are sitting up on furniture",
+        "ok": false,
+        "why": "Sitting is not A."
+      },
+      {
+        "t": "U already; you skip voice and pain entirely",
+        "ok": false,
+        "why": "You still check voice then pain."
+      },
+      {
+        "t": "V already; slumped means they answered your name",
+        "ok": false,
+        "why": "They have not answered."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "You say your name. They mutter hey or the eyes flicker. A sternal rub is already unnecessary if you have a level. Which leftover next move is true?",
+    "opts": [
+      {
+        "t": "Call them V and stop; do not add a pain check",
+        "ok": true,
+        "why": "V = any response to voice. Stop when you get a level. No pain if already A or V."
+      },
+      {
+        "t": "Call them A and stop; do not add a pain check",
+        "ok": false,
+        "why": "A is awake and looking around."
+      },
+      {
+        "t": "Call them V and keep going; add a sternal rub anyway",
+        "ok": false,
+        "why": "Do not add pain if already V."
+      },
+      {
+        "t": "Call them U and stop; a mutter does not count as voice",
+        "ok": false,
+        "why": "A mutter counts as voice."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "No response to voice. Sternal knuckles, trap pinch, and nail squeeze are already on the pain list. Which leftover response still counts as P?",
+    "opts": [
+      {
+        "t": "Any moan, swat, or turn-away",
+        "ok": true,
+        "why": "P = those pain checks. Any moan, swat, or turn-away = pain."
+      },
+      {
+        "t": "Only a full sentence",
+        "ok": false,
+        "why": "A sentence is more than required."
+      },
+      {
+        "t": "Light tap on the hair, or a wave only",
+        "ok": false,
+        "why": "Those are not the listed pain checks."
+      },
+      {
+        "t": "A pain check only after they already answer to your voice",
+        "ok": false,
+        "why": "If they already answer to voice they are V; you stop."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "No response to a real pain check. A&O x4 is already off. Which leftover AVPU letter is left?",
+    "opts": [
+      {
+        "t": "Call them U and stop; there are no further LOC checks",
+        "ok": true,
+        "why": "U = no response to pain. No further checks."
+      },
+      {
+        "t": "Keep going to A&O x4 because U still has more checks",
+        "ok": false,
+        "why": "U has no further LOC checks."
+      },
+      {
+        "t": "Call them P and stop; no response still means pain",
+        "ok": false,
+        "why": "No response is U, not P."
+      },
+      {
+        "t": "Call them V and stop; pain failure upgrades them to voice",
+        "ok": false,
+        "why": "Pain failure does not upgrade them."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Awake, misses the year, no good excuse. Expressed consent is already off unless a miss is reasonable. Which leftover consent path is true?",
+    "opts": [
+      {
+        "t": "Implied, unless a circumstantial miss makes that miss reasonable",
+        "ok": true,
+        "why": "Miss one means implied consent unless circumstantial. Unsure: treat or medical control."
+      },
+      {
+        "t": "Expressed, because one miss still proves full capacity",
+        "ok": false,
+        "why": "One miss does not prove full capacity."
+      },
+      {
+        "t": "Implied, even when a circumstantial miss makes that miss reasonable",
+        "ok": false,
+        "why": "A circumstantial miss can keep it from being implied."
+      },
+      {
+        "t": "Expressed, unless they also miss their own name on the same pass",
+        "ok": false,
+        "why": "Any one miss can flip it."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "They nail name, place, year, and president. Always/never/guarantee words are already traps. Which leftover capacity statement is true?",
+    "opts": [
+      {
+        "t": "Strong case, not a guarantee; always/never words are traps",
+        "ok": true,
+        "why": "A&O x4 is about capacity, not a guarantee."
+      },
+      {
+        "t": "Guaranteed; x4 always means they can refuse anything",
+        "ok": false,
+        "why": "Guarantee is a trap."
+      },
+      {
+        "t": "No case at all; x4 is only used for infants on this sheet",
+        "ok": false,
+        "why": "x4 is for this awake adult."
+      },
+      {
+        "t": "Strong case, and a guarantee; always/never words are required",
+        "ok": false,
+        "why": "Not a guarantee."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Not at their baseline and nobody who knows them is there. Hoping for the best later is already allowed. Which leftover move is now?",
+    "opts": [
+      {
+        "t": "Assume the worst and move; hope it later turns out to be baseline",
+        "ok": true,
+        "why": "Not A&O x4 or not baseline = altered. Nobody present: assume worst, hope best."
+      },
+      {
+        "t": "Assume the best and stay; hope they are newly altered",
+        "ok": false,
+        "why": "Assume worst and move."
+      },
+      {
+        "t": "Assume the worst and stay; never ask what is normal",
+        "ok": false,
+        "why": "You move; you still want baseline if someone can tell you."
+      },
+      {
+        "t": "Assume the best and move; only trauma counts as altered",
+        "ok": false,
+        "why": "Altered is not trauma-only."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Arrest is not breathing. Distress is plenty of air and they just dislike the work \u2014 and distress is not on the immediate-threat list. Which leftover breathing word is an immediate life threat?",
+    "opts": [
+      {
+        "t": "Failure: still breathing, but not enough (six and shallow)",
+        "ok": true,
+        "why": "Failure = still breathing but not enough (6/min shallow OD). Arrest = not breathing."
+      },
+      {
+        "t": "Distress: plenty of air, they just dislike the work",
+        "ok": false,
+        "why": "Distress is not on the immediate-threat list."
+      },
+      {
+        "t": "Distress: still breathing, but not enough (six and shallow)",
+        "ok": false,
+        "why": "That definition is failure."
+      },
+      {
+        "t": "Failure: plenty of air, they just dislike the work",
+        "ok": false,
+        "why": "That definition is distress."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Unconscious, no vomit seen yet. Food and later chapters are already off as first guesses. Which leftover blocker should you assume?",
+    "opts": [
+      {
+        "t": "The tongue first; it is the usual obstruction",
+        "ok": true,
+        "why": "Tongue is number 1 airway obstruction. Unconscious: assume the tongue."
+      },
+      {
+        "t": "Food first; the tongue is a later chapter only",
+        "ok": false,
+        "why": "Tongue first."
+      },
+      {
+        "t": "The tongue first; skip opening and go straight to history",
+        "ok": false,
+        "why": "You still open the path."
+      },
+      {
+        "t": "Nothing; talking is not required to prove the path is open",
+        "ok": false,
+        "why": "They are unconscious and not talking."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Unconscious after a wreck. Head-tilt that cranks the neck is already off. Which leftover open-the-path pair is right?",
+    "opts": [
+      {
+        "t": "Jaw thrust: cheeks, angle of jaw, push the jaw up; do not crank the neck",
+        "ok": true,
+        "why": "Jaw-thrust if trauma/spine: cheeks, angle of jaw, push jaw up, do not crank the neck."
+      },
+      {
+        "t": "Head-tilt chin-lift: cheeks, angle of jaw, push the jaw up; crank the neck",
+        "ok": false,
+        "why": "That mixes the wrong open with a cranked neck."
+      },
+      {
+        "t": "Jaw thrust: tilt the head back hard; crank the neck on purpose",
+        "ok": false,
+        "why": "Do not crank the neck."
+      },
+      {
+        "t": "Head-tilt chin-lift: cheeks, angle of jaw, push the jaw up; no neck worry",
+        "ok": false,
+        "why": "This is a wreck \u2014 spine worry."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "No trauma, just an overdose on the floor. Jaw thrust for a spine worry is already off. Which leftover open is right?",
+    "opts": [
+      {
+        "t": "Head-tilt chin-lift, because there is no spine worry here",
+        "ok": true,
+        "why": "Head-tilt chin-lift if no spine worry."
+      },
+      {
+        "t": "Jaw thrust, because there is never a spine worry here",
+        "ok": false,
+        "why": "Jaw thrust is for trauma/spine."
+      },
+      {
+        "t": "Head-tilt chin-lift, because every overdose is a spine case",
+        "ok": false,
+        "why": "This overdose has no spine worry."
+      },
+      {
+        "t": "Jaw thrust, because talking already proved the path is open",
+        "ok": false,
+        "why": "They are not talking."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "A toddler is crying hard and a grown-up is arguing with you. Full jaw thrust is already unnecessary. Which leftover airway call is true?",
+    "opts": [
+      {
+        "t": "Both paths are open; talking or crying lets you move on",
+        "ok": true,
+        "why": "Talking or crying = airway good, move on."
+      },
+      {
+        "t": "Both paths are blocked; talking or crying means start suction",
+        "ok": false,
+        "why": "Talking/crying means the path is open."
+      },
+      {
+        "t": "Only the toddler is open; arguing never proves an adult path",
+        "ok": false,
+        "why": "Arguing is talking."
+      },
+      {
+        "t": "Both paths are open; still stop and do a full jaw thrust first",
+        "ok": false,
+        "why": "Move on."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Maintain (adjunct later) is already the last airway step. Which leftover four-step order comes before that?",
+    "opts": [
+      {
+        "t": "Open, then assess, then clear, then maintain later",
+        "ok": true,
+        "why": "Four airway steps: open, assess, clear, maintain."
+      },
+      {
+        "t": "Clear, then open, then assess, then maintain later",
+        "ok": false,
+        "why": "Open is first."
+      },
+      {
+        "t": "Open, then maintain, then assess, then clear later",
+        "ok": false,
+        "why": "Maintain is last."
+      },
+      {
+        "t": "Assess, then history, then open, then maintain later",
+        "ok": false,
+        "why": "History is not an airway step."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Unconscious and you hear wet gurgling. Quiet air is already the normal picture. Which leftover pair is true?",
+    "opts": [
+      {
+        "t": "Normal air is quiet; gurgling means get the stuff out",
+        "ok": true,
+        "why": "Normal breathing is quiet. Gurgling means suction."
+      },
+      {
+        "t": "Normal air is loud; gurgling means the path is already fine",
+        "ok": false,
+        "why": "Gurgling is not fine."
+      },
+      {
+        "t": "Normal air is quiet; gurgling means skip suction and start history",
+        "ok": false,
+        "why": "Suction the gurgle."
+      },
+      {
+        "t": "Normal air is loud; gurgling means only a head-tilt is enough",
+        "ok": false,
+        "why": "You still need to clear."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Adult: consider PPV if faster than 28 or slower than 8. The fast side is a maybe. Which leftover side is almost always yes?",
+    "opts": [
+      {
+        "t": "The slow side is almost always yes",
+        "ok": true,
+        "why": "Slow almost always ventilate; fast is a maybe."
+      },
+      {
+        "t": "Faster than 8 or slower than 28; the fast side is almost always yes",
+        "ok": false,
+        "why": "The cutoffs are flipped and the fast side is not almost-always."
+      },
+      {
+        "t": "Faster than 28 or slower than 8; the fast side is almost always yes",
+        "ok": false,
+        "why": "Fast is a maybe."
+      },
+      {
+        "t": "Faster than 40 or slower than 2; the slow side is almost always no",
+        "ok": false,
+        "why": "Wrong numbers."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Pulse ox can be falsely skewed. Plasma water is already the wrong thing being measured. Which leftover goal-and-meaning pair is listed?",
+    "opts": [
+      {
+        "t": "About 94 to 99 percent; share of hemoglobin seats",
+        "ok": true,
+        "why": "SpO2 goal about 94 to 99 percent. Pulse ox = percent of hemoglobin seats."
+      },
+      {
+        "t": "About 80 to 85 percent; share of plasma water, never skewed",
+        "ok": false,
+        "why": "Wrong goal and wrong meaning."
+      },
+      {
+        "t": "About 94 to 99 percent; share of plasma water, never skewed",
+        "ok": false,
+        "why": "It is hemoglobin seats and it can be skewed."
+      },
+      {
+        "t": "About 70 to 75 percent; share of hemoglobin seats, can be skewed",
+        "ok": false,
+        "why": "Wrong goal."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Awake and talking. Neck and arm sites are already off as first checks. Which leftover pulse site and meaning is true?",
+    "opts": [
+      {
+        "t": "Radial at the wrist; a missing wrist pulse in a talker hints at low pressure",
+        "ok": true,
+        "why": "Conscious: radial. No radial but talking = low BP. Strong = BP likely good."
+      },
+      {
+        "t": "Carotid at the neck; a missing neck pulse in a talker hints at high pressure",
+        "ok": false,
+        "why": "Conscious first site is radial."
+      },
+      {
+        "t": "Brachial at the arm; a missing arm pulse in a talker proves arrest",
+        "ok": false,
+        "why": "Brachial is the unconscious infant site."
+      },
+      {
+        "t": "Radial at the wrist; a strong wrist pulse in a talker proves they need CPR",
+        "ok": false,
+        "why": "Strong radial suggests BP is likely good."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Unresponsive adult or child older than one. Wrist and infant-arm sites are already off. Which leftover pulse site is true?",
+    "opts": [
+      {
+        "t": "Carotid, because the neck is used once they are unresponsive",
+        "ok": true,
+        "why": "Unresponsive child/adult: carotid."
+      },
+      {
+        "t": "Radial, because the neck is reserved for infants",
+        "ok": false,
+        "why": "Infants get brachial, not a reserved neck."
+      },
+      {
+        "t": "Brachial, because the arm is used for every unresponsive adult",
+        "ok": false,
+        "why": "Brachial is the unconscious infant."
+      },
+      {
+        "t": "Carotid, because the neck is used only if they are chatting",
+        "ok": false,
+        "why": "Chatting patients get radial."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Unconscious infant under one year. After one year the parts hold. Which leftover reason is why you use brachial, not neck?",
+    "opts": [
+      {
+        "t": "Neck pressure can collapse a floppy infant path; after one year the parts hold",
+        "ok": true,
+        "why": "Infant unconscious: brachial. Carotid pressure could collapse an infant airway."
+      },
+      {
+        "t": "Wrist pressure can collapse a floppy infant path; after one year skip pulses",
+        "ok": false,
+        "why": "You still check a pulse."
+      },
+      {
+        "t": "Neck pressure never matters in an infant; after one year use only the foot",
+        "ok": false,
+        "why": "Neck pressure is the reason you avoid carotid."
+      },
+      {
+        "t": "Arm pressure can collapse a floppy infant path; after one year use only the wrist",
+        "ok": false,
+        "why": "The collapse worry is neck pressure."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Overdose maps to Narcan. Anaphylaxis maps to their EpiPen. Those meds unlock after a field impression. Which leftover timing is listed?",
+    "opts": [
+      {
+        "t": "After secondary",
+        "ok": true,
+        "why": "After secondary = field impression, then meds."
+      },
+      {
+        "t": "After scene size-up; overdose maps to EpiPen, anaphylaxis maps to Narcan",
+        "ok": false,
+        "why": "Wrong timing and swapped drugs."
+      },
+      {
+        "t": "After secondary; overdose maps to an unnamed chest pair, anaphylaxis maps to Narcan",
+        "ok": false,
+        "why": "Wrong drugs."
+      },
+      {
+        "t": "After greeting only; overdose maps to Narcan, anaphylaxis skips all meds",
+        "ok": false,
+        "why": "Wrong timing."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "They rate pain an 8. Cyanosis you can see and a counted pulse are already signs. Which leftover label is that 8?",
+    "opts": [
+      {
+        "t": "Symptom, because you still have to take their word for it",
+        "ok": true,
+        "why": "Signs = proveable. Symptoms = their word. Pain 0 to 10 is still a symptom."
+      },
+      {
+        "t": "Sign, because any number you can write down is proveable",
+        "ok": false,
+        "why": "A pain number is still their word."
+      },
+      {
+        "t": "Sign, because pain is cyanosis you can both see on them",
+        "ok": false,
+        "why": "Pain is not cyanosis."
+      },
+      {
+        "t": "Symptom, because an 8 is the same as a counted pulse rate",
+        "ok": false,
+        "why": "A counted pulse is a sign."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Kid, you check nail-bed color return. Ten seconds is already the wrong number. Which leftover pair is listed?",
+    "opts": [
+      {
+        "t": "Under two seconds is good; over two is delayed and a kid shock sign",
+        "ok": true,
+        "why": "Two seconds is the number. Under 2 good, over 2 delayed. Sign of shock in a kid."
+      },
+      {
+        "t": "Under two seconds is delayed; over two is good and a kid shock sign",
+        "ok": false,
+        "why": "Those labels are swapped."
+      },
+      {
+        "t": "Under ten seconds is good; over ten is delayed and a kid shock sign",
+        "ok": false,
+        "why": "The number is two seconds."
+      },
+      {
+        "t": "Under two seconds is good; over two is delayed and only an adult stroke sign",
+        "ok": false,
+        "why": "It is a kid shock sign."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Vein blood already delivered its oxygen. Left-ventricle pressure sits on the bright side. Which leftover bleed pair matches color and motion?",
+    "opts": [
+      {
+        "t": "Arterial is bright and spurting; venous is darker and flowing",
+        "ok": true,
+        "why": "Vein = darker flow. Artery = bright red spurting."
+      },
+      {
+        "t": "Arterial is darker and flowing; venous is bright and spurting",
+        "ok": false,
+        "why": "Swapped."
+      },
+      {
+        "t": "Arterial is bright and flowing; venous is darker and spurting",
+        "ok": false,
+        "why": "Motion is swapped."
+      },
+      {
+        "t": "Arterial is darker and spurting; venous is bright and flowing",
+        "ok": false,
+        "why": "Color is swapped."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Arm still pouring after you put a hand on it. A 60-second medical strip and a neck tourniquet are already off. Which leftover next move is listed?",
+    "opts": [
+      {
+        "t": "Tourniquet closer to the core than the wound",
+        "ok": true,
+        "why": "Direct pressure first. Arm/leg not controlled: tourniquet proximal (closer to the core)."
+      },
+      {
+        "t": "Tourniquet farther from the core than the wound",
+        "ok": false,
+        "why": "Proximal is closer to the core."
+      },
+      {
+        "t": "Leave the hand there and start a 60-second medical strip",
+        "ok": false,
+        "why": "Control the limb bleed."
+      },
+      {
+        "t": "Skip the limb and put a tourniquet around the neck",
+        "ok": false,
+        "why": "You cannot tourniquet a neck."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Hand pressure actually stopped the arm bleed. A tourniquet is already unnecessary. Which leftover reason do you add gauze and a dressing?",
+    "opts": [
+      {
+        "t": "So you get your hand back and can do other work",
+        "ok": true,
+        "why": "If pressure controls it: gauze plus pressure dressing to free the hand."
+      },
+      {
+        "t": "So you can take the dressing off and put a tourniquet on anyway",
+        "ok": false,
+        "why": "The bleed is controlled."
+      },
+      {
+        "t": "So you can skip circulation and start a home chest-pain strip",
+        "ok": false,
+        "why": "You still do circulation work; this just frees a hand."
+      },
+      {
+        "t": "So you prove the bleed was arterial even though it already stopped",
+        "ok": false,
+        "why": "Dressing is not a proof of artery."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Major bleed high in the shoulder or on the neck. A different option exists but the tool is not named. Which leftover statement is true?",
+    "opts": [
+      {
+        "t": "A tourniquet will not sit above that wound",
+        "ok": true,
+        "why": "You cannot tourniquet a neck or a high shoulder bleed. Different option \u2014 device not named."
+      },
+      {
+        "t": "A neck tourniquet is the first-line tool named for core bleeds",
+        "ok": false,
+        "why": "Neck tourniquet is not first-line."
+      },
+      {
+        "t": "A distal ankle tourniquet will shut off a neck bleed from below",
+        "ok": false,
+        "why": "That will not control a neck bleed."
+      },
+      {
+        "t": "A tourniquet will not sit above that wound, so leave the bleed for history",
+        "ok": false,
+        "why": "You still treat the life threat; you just cannot use a tourniquet there."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Critical wreck versus a talking chest-pain call at home. Ten minutes is already the wrong sweep. Which leftover rapid-scan pair is true?",
+    "opts": [
+      {
+        "t": "About 60 seconds and shears on the wreck; do not strip the home medical",
+        "ok": true,
+        "why": "Rapid scan about 60-sec head-to-toe. Trauma naked plus shears on critical trauma only. Not a conscious chest-pain medical at home."
+      },
+      {
+        "t": "About 60 seconds and shears on both; strip the home medical too",
+        "ok": false,
+        "why": "Do not strip the home medical."
+      },
+      {
+        "t": "About 10 minutes and shears on the wreck; do not strip the home medical",
+        "ok": false,
+        "why": "About 60 seconds, not 10 minutes."
+      },
+      {
+        "t": "About 60 seconds and shears on the home medical; skip the wreck",
+        "ok": false,
+        "why": "Shears are for critical trauma."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "You are still hunting life threats in the 60-second sweep. SAMPLE is already the wrong box. Which leftover slot is the detailed or focused head-to-toe?",
+    "opts": [
+      {
+        "t": "Later, in the secondary \u2014 not during the 60-second life-threat sweep",
+        "ok": true,
+        "why": "Detailed / focused physical = secondary later. Rapid scan is still hunting life threats."
+      },
+      {
+        "t": "Now, in the 60-second sweep \u2014 not later in the secondary",
+        "ok": false,
+        "why": "That is the rapid scan, not the detailed exam."
+      },
+      {
+        "t": "Later, in scene size-up \u2014 not during the 60-second life-threat sweep",
+        "ok": false,
+        "why": "Scene size-up is already over."
+      },
+      {
+        "t": "Now, in SAMPLE \u2014 not later in the secondary",
+        "ok": false,
+        "why": "SAMPLE is history."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "You opened the airway and you are breathing for them. Low-medium is already shut down. Which leftover priority word is true?",
+    "opts": [
+      {
+        "t": "High only \u2014 load and go; there is no low-medium box",
+        "ok": true,
+        "why": "High or low only. Opened/suctioned airway or ventilating = high."
+      },
+      {
+        "t": "Low-medium \u2014 stay and play; three priority boxes",
+        "ok": false,
+        "why": "There is no low-medium box."
+      },
+      {
+        "t": "Low only \u2014 stay and play; airway work is not on the high list",
+        "ok": false,
+        "why": "Airway work is high."
+      },
+      {
+        "t": "High only \u2014 load and go; but only after a full secondary at the house",
+        "ok": false,
+        "why": "High means get going; more work en route."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Month of belly pain they are just tired of, versus new altered. Lights-and-sirens on the month-long belly is already off. Which leftover pair is true?",
+    "opts": [
+      {
+        "t": "Month of belly is low (still go, no rush); new altered is high",
+        "ok": true,
+        "why": "Month of abdominal pain = low priority, still transport, not lights-and-sirens. Altered not their normal = high."
+      },
+      {
+        "t": "Month of belly is high (lights now); new altered is low",
+        "ok": false,
+        "why": "Opposite."
+      },
+      {
+        "t": "Month of belly is low (still go, no rush); new altered is also low",
+        "ok": false,
+        "why": "New altered is high."
+      },
+      {
+        "t": "Month of belly is high (lights now); new altered is also high",
+        "ok": false,
+        "why": "Month of belly is the low example."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "911 time and your arrival time are already the wrong start. Which leftover golden-hour clock is listed for critical trauma?",
+    "opts": [
+      {
+        "t": "From the injury to surgery; keep it under about one hour",
+        "ok": true,
+        "why": "Injury to definitive care = surgery, under one hour. Not from 911 or your arrival."
+      },
+      {
+        "t": "From your arrival to surgery; keep it under about one hour",
+        "ok": false,
+        "why": "Clock starts at the injury."
+      },
+      {
+        "t": "From the injury to your greeting; keep it under about ten hours",
+        "ok": false,
+        "why": "Injury to surgery, under one hour."
+      },
+      {
+        "t": "From the 911 call to your greeting; keep it under about one hour",
+        "ok": false,
+        "why": "Not from the call."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "ABC plus board, rest en route. Sixty minutes on scene is already the wrong window. Which leftover clock is platinum 10?",
+    "opts": [
+      {
+        "t": "You pull up until you start driving \u2014 about ten minutes on scene",
+        "ok": true,
+        "why": "Platinum 10: pull up to start driving away."
+      },
+      {
+        "t": "They get hurt until they reach surgery \u2014 about ten minutes total",
+        "ok": false,
+        "why": "Injury to surgery is the golden hour."
+      },
+      {
+        "t": "You pull up until you start driving \u2014 about sixty minutes on scene",
+        "ok": false,
+        "why": "Ten minutes, not sixty."
+      },
+      {
+        "t": "They get hurt until you greet them \u2014 about ten minutes in the yard",
+        "ok": false,
+        "why": "Pull up to drive away."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "People blur O and T. Severity is already the 0 to 10 number. Which leftover pair keeps onset and timing from collapsing?",
+    "opts": [
+      {
+        "t": "Onset is what you were doing; timing is when it started",
+        "ok": true,
+        "why": "Onset = what were you doing. Timing = when did it start."
+      },
+      {
+        "t": "Onset is when it started; timing is what you were doing",
+        "ok": false,
+        "why": "Those are swapped."
+      },
+      {
+        "t": "Onset is the 0 to 10 number; timing is what you were doing",
+        "ok": false,
+        "why": "0 to 10 is severity."
+      },
+      {
+        "t": "Onset is what you were doing; timing is the 0 to 10 number",
+        "ok": false,
+        "why": "Timing is when it started."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Pain word. Planting left arm and a single leading label are already banned. Which leftover quality ask is listed?",
+    "opts": [
+      {
+        "t": "Let them pick a word; do not plant left arm or a single leading label",
+        "ok": true,
+        "why": "No leading questions. Their word. Too many options if they stall. Do not ask if it radiates down the left arm."
+      },
+      {
+        "t": "Plant left arm first; then force a single leading label",
+        "ok": false,
+        "why": "Do not plant left-arm radiation."
+      },
+      {
+        "t": "Let them pick a word; then plant left arm before they answer where",
+        "ok": false,
+        "why": "Do not plant left arm."
+      },
+      {
+        "t": "Skip quality; SAMPLE already covers the pain word",
+        "ok": false,
+        "why": "Q is OPQRST. SAMPLE is the broader PMH set."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Nobody knows the unresponsive park patient. No family, jewelry, wallet, or phone data. Inventing SAMPLE is already off. Which leftover history next is true?",
+    "opts": [
+      {
+        "t": "Empty history is allowed; move to the secondary exam",
+        "ok": true,
+        "why": "No data means history is out the window, then secondary."
+      },
+      {
+        "t": "Empty history is not allowed; invent SAMPLE before you move",
+        "ok": false,
+        "why": "You can have nothing and still move."
+      },
+      {
+        "t": "Empty history is allowed; move back to scene size-up only",
+        "ok": false,
+        "why": "Next is secondary."
+      },
+      {
+        "t": "Empty history is not allowed; strip them for a home medical scan",
+        "ok": false,
+        "why": "Unresponsive park is not a home chest-pain strip."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "They deny drugs. You still think they used. EMT meds are not directly impacted. Which leftover second-ask move is listed?",
+    "opts": [
+      {
+        "t": "Ask once more with no judgment; second deny, drop it and chart they deny",
+        "ok": true,
+        "why": "You may ask a second time, no judgment, not the cops. Deny again: drop it. Chart patient denies."
+      },
+      {
+        "t": "Ask once more with no judgment; second deny, keep pressing until they confess",
+        "ok": false,
+        "why": "Second deny: drop it."
+      },
+      {
+        "t": "Skip the second ask; EMT meds change if they have alcohol",
+        "ok": false,
+        "why": "EMT meds are not directly impacted. You may ask twice."
+      },
+      {
+        "t": "Call them a liar in the PCR so law enforcement has a quote",
+        "ok": false,
+        "why": "Chart denies or what they state."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "You suspect abuse. Walking the hallway naming them an abuser is already defamation. Which leftover report rule is true?",
+    "opts": [
+      {
+        "t": "Report the suspicion and what you saw; that is not defamation if later false",
+        "ok": true,
+        "why": "Mandatory report of suspicion. Not defamation if untrue. Public accusation is defamation."
+      },
+      {
+        "t": "Stay quiet; a false suspicion is automatically defamation",
+        "ok": false,
+        "why": "Reporting a suspicion is not a defamation problem."
+      },
+      {
+        "t": "Walk the hallway saying they are a child abuser so staff hears",
+        "ok": false,
+        "why": "That public accusation is defamation."
+      },
+      {
+        "t": "Write in the PCR who did it and skip law enforcement",
+        "ok": false,
+        "why": "Objective observations plus quoted statements. Get LE if needed. Do not accuse."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Childbearing-age woman, lower belly pain. Any abdominal pain also gets N/V/D and bowel/bladder. Headache is already the STD counter-example. Which leftover Sunday questions are listed?",
+    "opts": [
+      {
+        "t": "Any chance you are pregnant, and when was your last period",
+        "ok": true,
+        "why": "Consider all childbearing-age females with lower abdominal pain possibly pregnant. Ask pregnancy chance plus LMP."
+      },
+      {
+        "t": "Skip pregnancy; only ask if dispatch said OB",
+        "ok": false,
+        "why": "Consider them possibly pregnant on that complaint."
+      },
+      {
+        "t": "Any chance you are pregnant, and skip bowel and bladder on all belly pain",
+        "ok": false,
+        "why": "Any abdominal pain also gets bowel/bladder."
+      },
+      {
+        "t": "Ask STD questions on every headache so you do not miss one",
+        "ok": false,
+        "why": "STDs only if the call fits. Headache is the counter-example."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Awake, medical chest pain. They can point to the part. Ejected wreck is already the detailed example. Which leftover exam is true?",
+    "opts": [
+      {
+        "t": "Focused on the chest; a talking medical can point to the part",
+        "ok": true,
+        "why": "Focused if you know the part \u2014 conscious medical. Detailed if unconscious or significant MOI."
+      },
+      {
+        "t": "Detailed head-to-toe; every medical gets a full strip",
+        "ok": false,
+        "why": "Talking medical chest pain: focus the chest."
+      },
+      {
+        "t": "Focused on the chest; also used for the ejected wreck with arm pain",
+        "ok": false,
+        "why": "Ejected / significant MOI = detailed even if they are awake."
+      },
+      {
+        "t": "Skip the exam; vitals already happened in the primary",
+        "ok": false,
+        "why": "Full vitals and the physical sit in the secondary."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Stepped-on-leg snap, no fall, versus ejected and talking. Rapid scan is already the primary trauma sweep. Which leftover secondary exam pair is true?",
+    "opts": [
+      {
+        "t": "Isolated step = focused leg; ejected = full detailed even if they talk",
+        "ok": true,
+        "why": "Low-MOI isolated complaint can focus. Significant MOI (ejected) = head-to-toe."
+      },
+      {
+        "t": "Isolated step = full detailed; ejected = focused arm only",
+        "ok": false,
+        "why": "Opposite."
+      },
+      {
+        "t": "Both get a 60-second primary rapid scan only and no secondary",
+        "ok": false,
+        "why": "This is the secondary focused vs detailed choice."
+      },
+      {
+        "t": "Both skip exam if they can still talk",
+        "ok": false,
+        "why": "Talking only lets you focus when the MOI is isolated."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Joint deformity: assume broken. Cyanosis, AVPU, pulse, SAMPLE, and vitals are already the wrong letters. Which leftover DCAP-BTLS set is listed?",
+    "opts": [
+      {
+        "t": "Deformity, contusions, abrasions, punctures, burns, tenderness, lacerations, swelling",
+        "ok": true,
+        "why": "DCAP-BTLS = those eight injury signs."
+      },
+      {
+        "t": "Deformity, cyanosis, AVPU, pulse, burns, tenderness, lacerations, SAMPLE",
+        "ok": false,
+        "why": "Those mix primary/history letters."
+      },
+      {
+        "t": "Deformity, contusions, airway, pupils, blood pressure, GCS, lungs, sugar",
+        "ok": false,
+        "why": "Vitals are not DCAP-BTLS."
+      },
+      {
+        "t": "Only lacerations and swelling; the rest wait for X-ray",
+        "ok": false,
+        "why": "All eight are listed."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Snore, gurgle, and stridor are heard standing in front of you. EMTs still auscultate. Which leftover trio is lower-airway (scope on the chest)?",
+    "opts": [
+      {
+        "t": "Wheeze, crackles, rhonchi",
+        "ok": true,
+        "why": "Upper heard in front of you. Lower need a stethoscope on the chest."
+      },
+      {
+        "t": "Snore, gurgle, stridor as the lower set",
+        "ok": false,
+        "why": "Those three are upper."
+      },
+      {
+        "t": "All six are upper; EMTs do not auscultate",
+        "ok": false,
+        "why": "EMTs still auscultate."
+      },
+      {
+        "t": "Crackles are upper tongue; snore is pulmonary edema",
+        "ok": false,
+        "why": "Snore = tongue. Crackles = fluid in the lower airway / pulmonary edema."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Snore is tongue. Asthma wheeze is high-pitched mostly on exhalation. Stridor is upper. Which leftover crackles versus rhonchi pair is listed?",
+    "opts": [
+      {
+        "t": "Crackles = fluid / pulmonary edema (straw bubbles); rhonchi = mucus / pneumonia (low rattle)",
+        "ok": true,
+        "why": "Crackles = edema or drown fluid. Rhonchi = junky mucus, classic pneumonia. EMT does not treat the infection."
+      },
+      {
+        "t": "Crackles = mucus / pneumonia; rhonchi = tongue in the throat",
+        "ok": false,
+        "why": "Tongue is snoring. Pneumonia was the rhonchi example."
+      },
+      {
+        "t": "Crackles = high-pitched exhalation asthma; rhonchi = upper stridor",
+        "ok": false,
+        "why": "Those are wheeze and stridor."
+      },
+      {
+        "t": "Both are upper sounds you hear without a stethoscope",
+        "ok": false,
+        "why": "Both are lower-airway, stethoscope sounds."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "First blood pressure is by hand, then machines if they still make sense. Cuff about two-thirds of the upper arm. Too small reads falsely high. Which leftover first-BP and too-big pair is listed?",
+    "opts": [
+      {
+        "t": "First one manual; a cuff that is too big reads falsely low",
+        "ok": true,
+        "why": "First BP by hand. Too big: falsely low; too small: falsely high."
+      },
+      {
+        "t": "First one machine-only; a cuff that is too big reads falsely high",
+        "ok": false,
+        "why": "First is manual. Too big is falsely low."
+      },
+      {
+        "t": "First one manual; a cuff that is too big reads falsely high",
+        "ok": false,
+        "why": "Too big is falsely low."
+      },
+      {
+        "t": "Skip BP under age ten because 90 is only for adults",
+        "ok": false,
+        "why": "Under ten use (2 x age) + 70. Under three is usually no cuff small enough, not a hard medical ban."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Kid line: (2 x age) + 70 until age 10, then 90 like adults. 60 to 100 was the adult pulse range. Which leftover four-year-old systolic cutoff is listed?",
+    "opts": [
+      {
+        "t": "Double the age and add 70 \u2192 78; below that is hypotension",
+        "ok": true,
+        "why": "Four-year-old = 8 + 70 = 78."
+      },
+      {
+        "t": "Double the age and add 70 \u2192 90; below that is hypotension",
+        "ok": false,
+        "why": "90 is the adult / age-10 number."
+      },
+      {
+        "t": "Use adult 90 for every kid; the equation starts at age ten",
+        "ok": false,
+        "why": "The equation is for under ten."
+      },
+      {
+        "t": "Use 60 to 100; that was the kid blood-pressure range",
+        "ok": false,
+        "why": "60 to 100 was the adult pulse range."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Eyes open to sound, confused, localizes pain. 15 is best and 3 is worst. A normal 15 is already off. Which leftover GCS walk is listed?",
+    "opts": [
+      {
+        "t": "3 + 4 + 5 = 12",
+        "ok": true,
+        "why": "Eyes to sound = 3, confused = 4, localizes = 5 \u2192 GCS 12."
+      },
+      {
+        "t": "4 + 5 + 6 = 15",
+        "ok": false,
+        "why": "That is a normal 15, not this picture."
+      },
+      {
+        "t": "2 + 3 + 4 = 9",
+        "ok": false,
+        "why": "Sound is 3 not 2. Confused is 4 not 3. Localize is 5 not 4."
+      },
+      {
+        "t": "3 + 3 + 5 = 11",
+        "ok": false,
+        "why": "Confused (wrong year) is 4. Inappropriate words (purple) would be 3."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Year is 1945 versus year is purple. Oriented is answering right. Moans are incomprehensible sounds. Which leftover verbal pair is listed?",
+    "opts": [
+      {
+        "t": "1945 is confused (4); purple is inappropriate words (3)",
+        "ok": true,
+        "why": "Confused = a year, just the wrong year. Inappropriate = not an answer to the question (purple)."
+      },
+      {
+        "t": "1945 is inappropriate (3); purple is confused (4)",
+        "ok": false,
+        "why": "Those examples are swapped."
+      },
+      {
+        "t": "Both are oriented (5) because they made a sound",
+        "ok": false,
+        "why": "Oriented is answering the questions right."
+      },
+      {
+        "t": "Both are moans (2) because the year is wrong",
+        "ok": false,
+        "why": "Moans are not words."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Sternal rub. Flexion/decorticate is motor 3. Extension/decerebrate is 2. Obeys is thumbs-up / hold the arm out. Which leftover localizes versus withdraws split is listed?",
+    "opts": [
+      {
+        "t": "Localize = they know the spot and actively try to stop it; withdraw = passive pull-away",
+        "ok": true,
+        "why": "Localizes (5): brain knows where; active effort. Withdraws (4): pain somewhere; shrink/turn away."
+      },
+      {
+        "t": "Localize = passive pull-away; withdraw = they know the spot and stop it",
+        "ok": false,
+        "why": "Those are flipped."
+      },
+      {
+        "t": "Both are decorticate flexion to the core",
+        "ok": false,
+        "why": "Flexion is motor 3."
+      },
+      {
+        "t": "Both score 6 because any movement is obeys commands",
+        "ok": false,
+        "why": "Obeys is a requested movement."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Light in one should make both constrict. Book Pearl / charted PERRL. Capnography is the medic CO2 tool. Which leftover pupil set is listed?",
+    "opts": [
+      {
+        "t": "Light in one makes both constrict; chart PERRL / PEARL. Pinpoint classic opiate; dilated many stimulants",
+        "ok": true,
+        "why": "Conjoined innervation: one light, both constrict. Unequal can be baseline for a few \u2014 assume a problem if they cannot tell you."
+      },
+      {
+        "t": "Light in one should leave the other dilated; chart anisocoria as always normal",
+        "ok": false,
+        "why": "Both should constrict."
+      },
+      {
+        "t": "Pinpoint pupils mean cocaine; dilated pupils mean fentanyl",
+        "ok": false,
+        "why": "Opiates \u2192 pinpoint. Stimulants \u2192 often dilated."
+      },
+      {
+        "t": "Skip pupils; they are only for the medic capnography adapter",
+        "ok": false,
+        "why": "Pupils are a standard vital."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Looks like an OD and they are not breathing well. People jump at Narcan. Epi is anaphylaxis. Which leftover test order is true?",
+    "opts": [
+      {
+        "t": "Open and breathe for them first; Narcan sits after the field impression",
+        "ok": true,
+        "why": "ABC / oxygen before the condition med (Narcan or Epi). Meds are the bottom of the sheet."
+      },
+      {
+        "t": "Give Narcan first; breathing waits for the reversal to work",
+        "ok": false,
+        "why": "Do not jump at Narcan and miss open/ventilate."
+      },
+      {
+        "t": "Give the EpiPen first; OD and anaphylaxis share one drug",
+        "ok": false,
+        "why": "Epi is anaphylaxis. Still after ABCs / oxygen."
+      },
+      {
+        "t": "Skip ABCs; field impression always unlocks meds in the primary",
+        "ok": false,
+        "why": "Impression and meds come after secondary on the skill sheet."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Unstable is almost nonstop. One set of vitals is a snapshot. Pulse back is not breathing back. Which leftover reassess clocks and major-change rule are listed?",
+    "opts": [
+      {
+        "t": "Critical every 5 minutes; stable every 15; major change, restart primary",
+        "ok": true,
+        "why": "Unstable q5. Stable q15. Collapse or ROSC: back to LOC / A / B / C. Recheck TQ, splint, pain, BGL, SpO2, restraints until handoff."
+      },
+      {
+        "t": "Critical every 15 minutes; stable every 5; major change, start SAMPLE",
+        "ok": false,
+        "why": "5 for critical and 15 for stable. Major change returns to primary, not history."
+      },
+      {
+        "t": "Critical every 5 minutes; skip vitals the second time; one set is a trend",
+        "ok": false,
+        "why": "Another full set shows trend."
+      },
+      {
+        "t": "Only reassess after hospital handoff; the ride is nap time",
+        "ok": false,
+        "why": "Do not nap on the ride."
+      }
+    ]
+  },
+  {
+    "ch": 9,
+    "q": "Book/NREMT world. Stem already saying you have orders for aspirin is the exception. Real world often offline. Which leftover medication-permission rule is listed?",
+    "opts": [
+      {
+        "t": "Treat them as online orders; call medical control before you give the drug",
+        "ok": true,
+        "why": "Call for permission first unless the stem already grants orders. Order: contact, give, reassess."
+      },
+      {
+        "t": "Treat them as offline standing orders; never call on a test",
+        "ok": false,
+        "why": "The test world reinforces the call first."
+      },
+      {
+        "t": "Give the drug, then call, then reassess \u2014 pieces in that order",
+        "ok": false,
+        "why": "Call before you give."
+      },
+      {
+        "t": "Only glucose needs a phone call; Narcan never does",
+        "ok": false,
+        "why": "All book meds run as online unless the stem already grants orders."
+      }
+    ]
+  }
+]
