@@ -1,0 +1,1016 @@
+[
+  {
+    "ch": 12,
+    "q": "The state says an EMT may give a drug. The medical director says no. Who is final?",
+    "opts": [
+      {
+        "t": "The medical director; both state scope and their protocols must allow it",
+        "ok": true,
+        "why": "The director can say no even if the state says yes."
+      },
+      {
+        "t": "The state list alone",
+        "ok": false,
+        "why": "Protocols can still shut it down."
+      },
+      {
+        "t": "The patient, if they ask for it",
+        "ok": false,
+        "why": "Asking is not a protocol."
+      },
+      {
+        "t": "Any nurse on scene",
+        "ok": false,
+        "why": "The medical director owns the yes or no."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "What is pharmacodynamics?",
+    "opts": [
+      {
+        "t": "What the drug does to the body: receptors to a treatment effect",
+        "ok": true,
+        "why": "Pharmacodynamics = what the drug does to the body."
+      },
+      {
+        "t": "The life cycle: onset, peak, duration, elimination",
+        "ok": false,
+        "why": "That is pharmacokinetics."
+      },
+      {
+        "t": "The five rights only",
+        "ok": false,
+        "why": "The five rights are a safety check, not this word."
+      },
+      {
+        "t": "The brand name on the box",
+        "ok": false,
+        "why": "A name is not pharmacodynamics."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Epinephrine as an agonist. Which pairing?",
+    "opts": [
+      {
+        "t": "Alpha squeezes vessels; beta-1 raises heart rate and squeeze; beta-2 opens airways",
+        "ok": true,
+        "why": "Alpha = vasoconstriction. Beta-1 = 1 heart. Beta-2 = 2 lungs."
+      },
+      {
+        "t": "Alpha opens airways; beta-1 squeezes vessels; beta-2 slows the heart",
+        "ok": false,
+        "why": "Those jobs are mixed up."
+      },
+      {
+        "t": "All three only block narcotic receptors",
+        "ok": false,
+        "why": "That block is naloxone."
+      },
+      {
+        "t": "Alpha dissolves clots; beta-1 and beta-2 do nothing",
+        "ok": false,
+        "why": "Aspirin is the platelet drug, and it does not dissolve clots."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Naloxone job?",
+    "opts": [
+      {
+        "t": "Narcotic receptor antagonist; reverses opioid overdose",
+        "ok": true,
+        "why": "Same-shape bind, blocks instead of firing."
+      },
+      {
+        "t": "Alpha agonist that raises blood pressure only",
+        "ok": false,
+        "why": "That squeeze is epinephrine's alpha job."
+      },
+      {
+        "t": "Beta-2 agonist for simple asthma",
+        "ok": false,
+        "why": "That is albuterol."
+      },
+      {
+        "t": "Platelet blocker for chest pain",
+        "ok": false,
+        "why": "That is aspirin."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Pharmacokinetics life cycle, and why onset matters?",
+    "opts": [
+      {
+        "t": "Onset, peak, duration, elimination; onset says when to reassess",
+        "ok": true,
+        "why": "Onset is admin to starts-working. That clock drives the recheck."
+      },
+      {
+        "t": "Indication, contraindication, side effect, brand; onset is ignored",
+        "ok": false,
+        "why": "Those are other words. Onset is when to reassess."
+      },
+      {
+        "t": "Patient, medication, dose, route; onset is the brand name",
+        "ok": false,
+        "why": "Those are rights, not the life cycle."
+      },
+      {
+        "t": "IV, IO, IM, IN; onset is always 20 to 30 minutes",
+        "ok": false,
+        "why": "IV is immediate. 20-30 minutes is a swallowed pill."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Route and timing pair?",
+    "opts": [
+      {
+        "t": "IV is immediate; a swallowed pill is about 20 to 30 minutes",
+        "ok": true,
+        "why": "Route changes the clock."
+      },
+      {
+        "t": "A swallowed pill is immediate; IV is 20 to 30 minutes",
+        "ok": false,
+        "why": "Those are swapped."
+      },
+      {
+        "t": "Both take 6 hours",
+        "ok": false,
+        "why": "About 6 hours is how long carbon monoxide can stay bound, not these routes."
+      },
+      {
+        "t": "Both take 10 seconds",
+        "ok": false,
+        "why": "10 seconds is a suction cap."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Indication versus contraindication?",
+    "opts": [
+      {
+        "t": "Indication is a reason to give it; contraindication is a reason not to",
+        "ok": true,
+        "why": "For EMT meds, treat contraindications as absolute unless a doctor overrides."
+      },
+      {
+        "t": "Indication is a reason not to; contraindication is a reason to give it",
+        "ok": false,
+        "why": "Those are swapped."
+      },
+      {
+        "t": "Both mean side effects after the drug is in",
+        "ok": false,
+        "why": "Side effects are unintended results, not the yes/no gate."
+      },
+      {
+        "t": "Both mean the brand name",
+        "ok": false,
+        "why": "A name is not a reason."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "What naming does the National Registry want?",
+    "opts": [
+      {
+        "t": "Generic names, usually lowercase: naloxone, epinephrine",
+        "ok": true,
+        "why": "Brand is owned and capitalized: Narcan, EpiPen."
+      },
+      {
+        "t": "Brand names only: Narcan, EpiPen",
+        "ok": false,
+        "why": "The registry wants generic."
+      },
+      {
+        "t": "Only the store brand on the shelf",
+        "ok": false,
+        "why": "Generic is the test name."
+      },
+      {
+        "t": "Either name, as long as the dose is skipped",
+        "ok": false,
+        "why": "Dose still matters, and the name they want is generic."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Nitroglycerin route, and why it is fast?",
+    "opts": [
+      {
+        "t": "Under the tongue; that tissue is very vascular",
+        "ok": true,
+        "why": "Sublingual. Do not swallow it right away."
+      },
+      {
+        "t": "Swallowed pill; 20 to 30 minutes",
+        "ok": false,
+        "why": "Swallowing it wastes the fast route."
+      },
+      {
+        "t": "Intranasal, like naloxone",
+        "ok": false,
+        "why": "Nitro is under the tongue."
+      },
+      {
+        "t": "Intramuscular lateral thigh",
+        "ok": false,
+        "why": "That is the EpiPen route."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "What are the original five rights?",
+    "opts": [
+      {
+        "t": "Right patient, medication, dose, route, and time",
+        "ok": true,
+        "why": "Time includes expiration, hold time, and how often a repeat is allowed."
+      },
+      {
+        "t": "Right brand, color, box, truck, and city",
+        "ok": false,
+        "why": "Those are not the five rights."
+      },
+      {
+        "t": "Right onset, peak, duration, elimination, and brand",
+        "ok": false,
+        "why": "That mix is pharmacokinetics plus a name."
+      },
+      {
+        "t": "Right indication only",
+        "ok": false,
+        "why": "Indication is why. The five rights are the check."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "What must be documented after a med is given?",
+    "opts": [
+      {
+        "t": "Name, dose, route, time, and how they responded",
+        "ok": true,
+        "why": "Write what went in and what it did."
+      },
+      {
+        "t": "Brand color only",
+        "ok": false,
+        "why": "Color is not the record."
+      },
+      {
+        "t": "Only the generic name, no dose",
+        "ok": false,
+        "why": "Dose, route, time, and response stay."
+      },
+      {
+        "t": "Nothing if they got better",
+        "ok": false,
+        "why": "Still document."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Sugar 68, follows commands, can swallow. Oral glucose?",
+    "opts": [
+      {
+        "t": "Yes: under 80, awake, airway protected; one tube",
+        "ok": true,
+        "why": "Tubes often 15 g (range 15-25 g). Say one tube. Recheck sugar. Test answer is oral glucose, not juice."
+      },
+      {
+        "t": "No: under 80 is not low enough",
+        "ok": false,
+        "why": "Under 80 is the hypoglycemia cut."
+      },
+      {
+        "t": "No: they are awake, so wait for IV dextrose",
+        "ok": false,
+        "why": "Awake and swallowing is when the gel is allowed."
+      },
+      {
+        "t": "Yes, but only if they are unresponsive",
+        "ok": false,
+        "why": "Unresponsive is the hold."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Low sugar, only responds to pain, gurgling. Why hold oral glucose?",
+    "opts": [
+      {
+        "t": "Cannot protect the airway; gel in the lungs is aspiration",
+        "ok": true,
+        "why": "Unconscious or cannot swallow = no oral glucose. Paramedics and the ED use IV dextrose."
+      },
+      {
+        "t": "Sugar 68 is too high for any sugar",
+        "ok": false,
+        "why": "The hold is the airway, not a 68."
+      },
+      {
+        "t": "Glucose only comes as a swallowed aspirin tablet",
+        "ok": false,
+        "why": "Glucose is a gel. Aspirin is the chest-pain tablet."
+      },
+      {
+        "t": "Hold it only if systolic pressure is over 100",
+        "ok": false,
+        "why": "That pressure rule is nitro, not glucose."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Aspirin on suspected heart-attack chest. What does it do, and what does it not do?",
+    "opts": [
+      {
+        "t": "Makes platelets slippery so a clot does not grow; it does not dissolve clots",
+        "ok": true,
+        "why": "Stops platelets from clumping. Not a clot-buster."
+      },
+      {
+        "t": "Dissolves the clot on contact",
+        "ok": false,
+        "why": "It does not dissolve clots."
+      },
+      {
+        "t": "Opens airways as a beta-2 agonist",
+        "ok": false,
+        "why": "That is albuterol or epi's beta-2 job."
+      },
+      {
+        "t": "Blocks narcotic receptors",
+        "ok": false,
+        "why": "That is naloxone."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Aspirin test dose and how it is given?",
+    "opts": [
+      {
+        "t": "160 to 325 mg by mouth, chewed",
+        "ok": true,
+        "why": "Tablets are 81 mg. Adult 162-324 mg from 2-4 tablets. Test: 160-325 chewed, then swallowed."
+      },
+      {
+        "t": "0.4 mg under the tongue",
+        "ok": false,
+        "why": "That is nitro."
+      },
+      {
+        "t": "0.3 mg in the lateral thigh",
+        "ok": false,
+        "why": "That is adult epinephrine."
+      },
+      {
+        "t": "One tube of gel in the cheek",
+        "ok": false,
+        "why": "That is oral glucose."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Nitroglycerin dose, route, and repeat rule?",
+    "opts": [
+      {
+        "t": "0.4 mg under the tongue, up to 3 doses, 5 minutes apart",
+        "ok": true,
+        "why": "Check blood pressure before every dose. Stop if systolic is under 100 or pain is gone."
+      },
+      {
+        "t": "160 to 325 mg chewed, one dose only",
+        "ok": false,
+        "why": "That is aspirin."
+      },
+      {
+        "t": "0.3 mg in the thigh every 5 minutes, no max",
+        "ok": false,
+        "why": "0.3 mg IM is adult epi, and nitro has a max of 3."
+      },
+      {
+        "t": "One tube of gel every 20 to 30 minutes",
+        "ok": false,
+        "why": "That mix is glucose plus a pill clock."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Which cluster kills nitro?",
+    "opts": [
+      {
+        "t": "Systolic pressure under 100, a -fil sex drug in 24 hours, or a head injury",
+        "ok": true,
+        "why": "Need triple-digit systolic. Combined vasodilators crash pressure. Head injury is a no."
+      },
+      {
+        "t": "Pulse ox 96 percent and no chest pain",
+        "ok": false,
+        "why": "No pain is a reason to stop or not start, but the named kill cluster is pressure, -fil, head."
+      },
+      {
+        "t": "Sugar under 80 and they can swallow",
+        "ok": false,
+        "why": "That picture is oral glucose, not a nitro kill."
+      },
+      {
+        "t": "Hives plus wheeze",
+        "ok": false,
+        "why": "That is anaphylaxis, an epi picture."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Nitro side effects and handling?",
+    "opts": [
+      {
+        "t": "Headache is common; low blood pressure is the dangerous one; wear gloves",
+        "ok": true,
+        "why": "Nitro absorbs through skin. Also burn under the tongue and nausea."
+      },
+      {
+        "t": "No side effects; bare hands are required",
+        "ok": false,
+        "why": "Gloves on. Pressure drop is the danger."
+      },
+      {
+        "t": "Only a dry nose; no pressure check",
+        "ok": false,
+        "why": "Check pressure before every dose."
+      },
+      {
+        "t": "Only pinpoint pupils",
+        "ok": false,
+        "why": "Pinpoints are an opioid clue, not a nitro effect."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "One nitro is already in. When may the next one be given?",
+    "opts": [
+      {
+        "t": "Systolic still at least 100, pain still there, wait 5 minutes, max 3 total",
+        "ok": true,
+        "why": "Give one, then move. Do not sit on scene for all three."
+      },
+      {
+        "t": "Any pressure, even 80, if they still hurt",
+        "ok": false,
+        "why": "Stop if systolic is under 100."
+      },
+      {
+        "t": "Right away, no wait, no max",
+        "ok": false,
+        "why": "Wait 5 minutes. Max 3."
+      },
+      {
+        "t": "Only after 20 to 30 minutes, like a swallowed pill",
+        "ok": false,
+        "why": "The repeat clock is 5 minutes, not 20-30."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Hives plus wheezing. Anaphylaxis or not?",
+    "opts": [
+      {
+        "t": "Anaphylaxis: two systems, skin plus breathing",
+        "ok": true,
+        "why": "Allergic reaction in two or more systems. Hives only is not."
+      },
+      {
+        "t": "Not anaphylaxis, because hives only never counts with wheeze",
+        "ok": false,
+        "why": "Hives plus wheeze is two systems."
+      },
+      {
+        "t": "Not anaphylaxis, because that word needs a heart-attack story",
+        "ok": false,
+        "why": "Heart attack is an aspirin / nitro story."
+      },
+      {
+        "t": "Anaphylaxis only if they also took a -fil drug",
+        "ok": false,
+        "why": "A -fil drug is a nitro hold, not an anaphylaxis rule."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Hives only, no breathing or shock trouble. Epi?",
+    "opts": [
+      {
+        "t": "No. That is not anaphylaxis",
+        "ok": true,
+        "why": "Hives only is not two systems. Do not hunt epi orders."
+      },
+      {
+        "t": "Yes. Any rash gets 0.3 mg",
+        "ok": false,
+        "why": "Epi is for anaphylaxis, not a mild allergy."
+      },
+      {
+        "t": "Yes, because simple asthma also gets epi",
+        "ok": false,
+        "why": "Simple asthma gets albuterol, not epi."
+      },
+      {
+        "t": "Yes, if systolic pressure is under 100",
+        "ok": false,
+        "why": "Low pressure can be shock, but hives only is still not the two-system call."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Adult versus junior epinephrine auto-injector?",
+    "opts": [
+      {
+        "t": "Adult 0.3 mg IM lateral thigh; junior 0.15 mg IM",
+        "ok": true,
+        "why": "Lateral thigh. Can go through one layer of clothes."
+      },
+      {
+        "t": "Adult 0.15 mg under the tongue; junior 0.3 mg chewed",
+        "ok": false,
+        "why": "Those numbers and routes are mixed with nitro and aspirin."
+      },
+      {
+        "t": "Adult 0.4 mg IM; junior one tube of gel",
+        "ok": false,
+        "why": "0.4 mg is nitro. Gel is glucose."
+      },
+      {
+        "t": "Both are 160 to 325 mg chewed",
+        "ok": false,
+        "why": "That is aspirin."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "How is an adult EpiPen fired?",
+    "opts": [
+      {
+        "t": "Safety off, blue to the sky, orange to the lateral thigh, click, hold about 3 seconds",
+        "ok": true,
+        "why": "One clothing layer is okay."
+      },
+      {
+        "t": "Orange to the sky, blue to the neck, no hold",
+        "ok": false,
+        "why": "Orange to the thigh. Hold about 3 seconds."
+      },
+      {
+        "t": "Spray it under the tongue like nitro",
+        "ok": false,
+        "why": "Epi is intramuscular."
+      },
+      {
+        "t": "Chew 81 mg, then hold 3 seconds",
+        "ok": false,
+        "why": "81 mg is an aspirin tablet."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Very high blood pressure on an 'allergy' patient. Why hold epi?",
+    "opts": [
+      {
+        "t": "Epi raises pressure; high plus higher can burst pipes",
+        "ok": true,
+        "why": "Stroke / bleed risk. True anaphylaxis is usually low, not high."
+      },
+      {
+        "t": "Epi always drops pressure, so high pressure is required first",
+        "ok": false,
+        "why": "Epi raises pressure."
+      },
+      {
+        "t": "High pressure is a nitro start, so give nitro instead",
+        "ok": false,
+        "why": "Nitro is a chest-pain drug with a low-pressure hold."
+      },
+      {
+        "t": "High pressure means they need oral glucose",
+        "ok": false,
+        "why": "Glucose is a sugar-and-airway drug."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Severe hypothermia. Why is epi extra dangerous?",
+    "opts": [
+      {
+        "t": "That heart is extra sensitive; even rough movement can arrest, and epi can push them into arrest",
+        "ok": true,
+        "why": "Hold or be very careful in hypothermia."
+      },
+      {
+        "t": "Hypothermia always needs more epi, no caution",
+        "ok": false,
+        "why": "The caution is the sensitive heart."
+      },
+      {
+        "t": "Hypothermia is treated with aspirin only",
+        "ok": false,
+        "why": "Aspirin is the platelet chest-pain drug."
+      },
+      {
+        "t": "Hypothermia is a reason to skip all airway work",
+        "ok": false,
+        "why": "Airway still matters. This question is the epi caution."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Known heart attack. Why be careful with epi?",
+    "opts": [
+      {
+        "t": "Epi makes the heart work harder and can worsen the damage",
+        "ok": true,
+        "why": "MI / known heart attack is a named caution."
+      },
+      {
+        "t": "Epi dissolves the clot, so it replaces aspirin",
+        "ok": false,
+        "why": "Epi does not dissolve clots, and aspirin does not either."
+      },
+      {
+        "t": "Epi is required for every chest pain",
+        "ok": false,
+        "why": "Chest pain is aspirin / nitro, not a default epi."
+      },
+      {
+        "t": "Epi is the same as a 0.4 mg nitro spray",
+        "ok": false,
+        "why": "Different drug, different job."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Straightforward asthma attack. Epi or not?",
+    "opts": [
+      {
+        "t": "Do not use epi; use albuterol",
+        "ok": true,
+        "why": "Epi is for anaphylaxis, not simple asthma."
+      },
+      {
+        "t": "Fire epi first, skip albuterol",
+        "ok": false,
+        "why": "Simple asthma is an albuterol job."
+      },
+      {
+        "t": "Give nitro because airways are vessels",
+        "ok": false,
+        "why": "Nitro is a chest-pain vasodilator."
+      },
+      {
+        "t": "Give oral glucose to open the bronchi",
+        "ok": false,
+        "why": "Glucose is sugar, not a bronchodilator."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Naloxone reverses which family?",
+    "opts": [
+      {
+        "t": "Opioids only: heroin, fentanyl, morphine, oxycodone, Vicodin",
+        "ok": true,
+        "why": "It will not reverse alcohol, benzodiazepines, or other non-opioid sedatives."
+      },
+      {
+        "t": "Alcohol, Valium, and Xanax",
+        "ok": false,
+        "why": "Those are not opioids."
+      },
+      {
+        "t": "Any allergy, including hives only",
+        "ok": false,
+        "why": "Allergy / anaphylaxis is an epi story."
+      },
+      {
+        "t": "Any chest pain",
+        "ok": false,
+        "why": "Chest pain is aspirin / nitro."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Intranasal naloxone. Why can it still work if they are not breathing?",
+    "opts": [
+      {
+        "t": "It absorbs through nasal mucosa into blood; it is not a lung drug",
+        "ok": true,
+        "why": "IN is most common. It does not need them to inhale it."
+      },
+      {
+        "t": "They must inhale it into the alveoli first",
+        "ok": false,
+        "why": "It is not a lung inhale drug."
+      },
+      {
+        "t": "It only works after a 20 to 30 minute pill clock",
+        "ok": false,
+        "why": "IN is rapid."
+      },
+      {
+        "t": "It only works if they can swallow gel",
+        "ok": false,
+        "why": "Swallowing is a glucose rule, not naloxone."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "EMT naloxone dose to memorize?",
+    "opts": [
+      {
+        "t": "None; it varies by route and packaging. Follow the device and protocol",
+        "ok": true,
+        "why": "No single standard EMT dose was given to lock."
+      },
+      {
+        "t": "0.4 mg under the tongue, max 3",
+        "ok": false,
+        "why": "That is nitro."
+      },
+      {
+        "t": "0.3 mg IM for every adult, no protocol",
+        "ok": false,
+        "why": "0.3 mg IM is adult epi."
+      },
+      {
+        "t": "160 to 325 mg chewed",
+        "ok": false,
+        "why": "That is aspirin."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Opioid-overdose look?",
+    "opts": [
+      {
+        "t": "Low blood pressure, low heart rate, slow or no breaths, down mental status; pinpoint pupils classic but not required",
+        "ok": true,
+        "why": "A trial that works points to opioid. No change means other cause or a heavy load."
+      },
+      {
+        "t": "High pressure, fast deep Kussmaul, hives only",
+        "ok": false,
+        "why": "That mix is not the opioid picture."
+      },
+      {
+        "t": "Chest pain that improves after one nitro, no breathing trouble",
+        "ok": false,
+        "why": "That is a cardiac-pain story."
+      },
+      {
+        "t": "Sugar 68, talking, no breathing trouble",
+        "ok": false,
+        "why": "That is a glucose picture."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "After naloxone, what should improve first, and what side effects?",
+    "opts": [
+      {
+        "t": "Breathing rate and depth, then mental status; they can wake nauseated, vomiting, or combative",
+        "ok": true,
+        "why": "Scene safety as they come up. Prefer IN around IV drug users to skip needles."
+      },
+      {
+        "t": "Chest pain first; no side effects",
+        "ok": false,
+        "why": "Naloxone is not a chest-pain drug."
+      },
+      {
+        "t": "Sugar first; they always stay asleep",
+        "ok": false,
+        "why": "The goal is air, then mind. They can wake fighting."
+      },
+      {
+        "t": "Platelets first; they always seize",
+        "ok": false,
+        "why": "Platelets are an aspirin story."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Albuterol class and job?",
+    "opts": [
+      {
+        "t": "Beta-2 agonist: bronchodilation for asthma / bronchospasm",
+        "ok": true,
+        "why": "Less whole-body punch than epi, and the right tool for asthma."
+      },
+      {
+        "t": "Narcotic antagonist",
+        "ok": false,
+        "why": "That is naloxone."
+      },
+      {
+        "t": "Platelet blocker",
+        "ok": false,
+        "why": "That is aspirin."
+      },
+      {
+        "t": "Vasodilator under the tongue",
+        "ok": false,
+        "why": "That is nitro."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Metered-dose inhaler assist. What is the timing point?",
+    "opts": [
+      {
+        "t": "Spray as they inhale so it reaches lung",
+        "ok": true,
+        "why": "Spray off-time coats the mouth and does nothing. Kids may need a spacer."
+      },
+      {
+        "t": "Spray while they hold a full exhale only",
+        "ok": false,
+        "why": "It has to ride an inhale."
+      },
+      {
+        "t": "Spray under the tongue like nitro",
+        "ok": false,
+        "why": "MDI is inhaled."
+      },
+      {
+        "t": "Spray into the lateral thigh",
+        "ok": false,
+        "why": "Thigh is the EpiPen."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Small-volume nebulizer setup?",
+    "opts": [
+      {
+        "t": "6 liters per minute oxygen through liquid albuterol; continuous mist",
+        "ok": true,
+        "why": "They breathe again and again. Deeper dose than one MDI puff."
+      },
+      {
+        "t": "1 liter per minute through nitro spray",
+        "ok": false,
+        "why": "Nitro is not a neb drug, and 1 L is a cannula play."
+      },
+      {
+        "t": "10 to 15 liters through an empty cup, no drug",
+        "ok": false,
+        "why": "The cup holds liquid albuterol. 10-15 is a mask/bag flow."
+      },
+      {
+        "t": "No oxygen; just shake a gel tube into the cup",
+        "ok": false,
+        "why": "Gel is glucose. The neb needs oxygen flow and albuterol."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "EMT medication list?",
+    "opts": [
+      {
+        "t": "Aspirin, nitroglycerin, oral glucose, epinephrine, naloxone, albuterol",
+        "ok": true,
+        "why": "Limited to that list. Tylenol or Benadryl are not yours unless written into protocol."
+      },
+      {
+        "t": "Tylenol, Benadryl, fentanyl, and any nurse med",
+        "ok": false,
+        "why": "OTC is not default EMT. Fentanyl is not on this EMT list."
+      },
+      {
+        "t": "Only aspirin and nothing else",
+        "ok": false,
+        "why": "Six were named."
+      },
+      {
+        "t": "Only paramedic intubation drugs",
+        "ok": false,
+        "why": "Intubation is a medic skill contrast, not the EMT list."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Wrong med is already in. First four moves?",
+    "opts": [
+      {
+        "t": "Take care of the patient, call medical control honest, document facts, then agency follow-up",
+        "ok": true,
+        "why": "Cannot un-give a drug. Patient first. Factual, objective, honest."
+      },
+      {
+        "t": "Hide it, then wait for the next shift",
+        "ok": false,
+        "why": "Call medical control now."
+      },
+      {
+        "t": "Document a different drug, then leave the scene",
+        "ok": false,
+        "why": "Document what actually happened."
+      },
+      {
+        "t": "Give a second outside-scope drug to cancel the first",
+        "ok": false,
+        "why": "Do not stack a scope break."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Big legal red line?",
+    "opts": [
+      {
+        "t": "Giving a drug outside EMT scope, or something state and protocol forbid",
+        "ok": true,
+        "why": "Discipline, state report, card at risk, legal action if they are hurt."
+      },
+      {
+        "t": "Documenting name, dose, route, time, and response",
+        "ok": false,
+        "why": "That record is required, not a red line."
+      },
+      {
+        "t": "Calling medical control after a real error",
+        "ok": false,
+        "why": "That call is the right move."
+      },
+      {
+        "t": "Holding oral glucose when they cannot swallow",
+        "ok": false,
+        "why": "That hold is correct."
+      }
+    ]
+  },
+  {
+    "ch": 12,
+    "q": "Enteral versus parenteral?",
+    "opts": [
+      {
+        "t": "Enteral goes through the gut; parenteral is anything not through the gut",
+        "ok": true,
+        "why": "PO swallow is slow. SL nitro is still enteral but fast. IV, IO, IM, IN, inhaled are parenteral."
+      },
+      {
+        "t": "Enteral is IV only; parenteral is a swallowed pill only",
+        "ok": false,
+        "why": "Those are swapped ideas."
+      },
+      {
+        "t": "Both mean brand names",
+        "ok": false,
+        "why": "These words are routes, not names."
+      },
+      {
+        "t": "Both mean the five rights",
+        "ok": false,
+        "why": "Rights are a safety check."
+      }
+    ]
+  }
+]
