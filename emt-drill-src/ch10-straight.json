@@ -807,25 +807,25 @@
   },
   {
     "ch": 10,
-    "q": "Three suction units, and which one goes on scene?",
+    "q": "Which suction unit goes on scene?",
     "opts": [
       {
-        "t": "Hand-pump is backup; battery portable goes on scene; wall is in the ambulance",
+        "t": "The battery-powered portable unit",
         "ok": true,
-        "why": "Check charge at the start of shift. Dead battery means the hand pump."
+        "why": "Battery portable goes on scene. Hand-pump is backup. Wall is in the ambulance. Check charge at the start of shift."
       },
       {
-        "t": "Wall unit goes on scene; hand-pump stays in the hospital; battery is backup only",
+        "t": "The wall unit in the ambulance",
         "ok": false,
-        "why": "Battery portable is the scene unit."
+        "why": "Wall stays in the ambulance. Battery portable is the scene unit."
       },
       {
-        "t": "Only the wall unit exists",
+        "t": "The hand-pump as the only scene unit",
         "ok": false,
-        "why": "Three were named: hand-pump, battery, wall."
+        "why": "Hand-pump is backup. Battery portable goes on scene."
       },
       {
-        "t": "Only a finger sweep is used on scene",
+        "t": "Only a finger sweep — no suction unit",
         "ok": false,
         "why": "The scene unit is battery portable."
       }
