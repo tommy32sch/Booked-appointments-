@@ -1,0 +1,1042 @@
+[
+  {
+    "ch": 7,
+    "q": "What is the job of the upper airway?",
+    "opts": [
+      {
+        "t": "Warm, filter, and humidify air",
+        "ok": true,
+        "why": "Upper airway is above the larynx. It warms, filters, and humidifies."
+      },
+      {
+        "t": "Swap oxygen and carbon dioxide",
+        "ok": false,
+        "why": "That is the lower-airway job."
+      },
+      {
+        "t": "Park oxygen on hemoglobin",
+        "ok": false,
+        "why": "That is oxygenation."
+      },
+      {
+        "t": "Make the heart's electricity",
+        "ok": false,
+        "why": "The heart makes its own electricity."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "Where does the upper airway sit?",
+    "opts": [
+      {
+        "t": "Above the larynx and vocal cords",
+        "ok": true,
+        "why": "Upper airway = above the larynx / vocal cords."
+      },
+      {
+        "t": "Below the larynx, starting at the carina",
+        "ok": false,
+        "why": "Below the larynx is lower airway."
+      },
+      {
+        "t": "Only inside the alveoli",
+        "ok": false,
+        "why": "Alveoli are the gas-exchange sacs."
+      },
+      {
+        "t": "Only in the mediastinum",
+        "ok": false,
+        "why": "Mediastinum is the middle chest space."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "What is the job of the lower airway?",
+    "opts": [
+      {
+        "t": "Gas exchange",
+        "ok": true,
+        "why": "Lower airway is below the larynx. Job is gas exchange."
+      },
+      {
+        "t": "Warm, filter, and humidify air",
+        "ok": false,
+        "why": "That is the upper-airway job."
+      },
+      {
+        "t": "Cover the larynx so food stays out",
+        "ok": false,
+        "why": "That is the epiglottis."
+      },
+      {
+        "t": "Park oxygen on hemoglobin",
+        "ok": false,
+        "why": "That is oxygenation, not the lower-airway job name."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "What does the epiglottis do?",
+    "opts": [
+      {
+        "t": "Covers the larynx so food does not go to the lungs",
+        "ok": true,
+        "why": "Epiglottis covers the larynx so food does not go to the lungs."
+      },
+      {
+        "t": "Splits the trachea into the two bronchi",
+        "ok": false,
+        "why": "That split is the carina."
+      },
+      {
+        "t": "Keeps residual air in the alveoli",
+        "ok": false,
+        "why": "That is residual volume."
+      },
+      {
+        "t": "Carries the shock that fires the diaphragm",
+        "ok": false,
+        "why": "That is the phrenic nerve."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "C3, 4, and 5 keep the diaphragm alive. Injury at or above that exit means what?",
+    "opts": [
+      {
+        "t": "Paralyzed and cannot breathe",
+        "ok": true,
+        "why": "High C-spine at or above C3-4-5: paralyzed and cannot breathe."
+      },
+      {
+        "t": "Paralyzed but can still breathe",
+        "ok": false,
+        "why": "That is a cut below C5."
+      },
+      {
+        "t": "The heart stops making electricity",
+        "ok": false,
+        "why": "The heart makes its own electricity."
+      },
+      {
+        "t": "Only residual volume is lost",
+        "ok": false,
+        "why": "The problem is the diaphragm, not leftover air."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "A spinal cut below C5. What happens to breathing?",
+    "opts": [
+      {
+        "t": "Still paralyzed but can breathe",
+        "ok": true,
+        "why": "Below C5: paralyzed but the diaphragm still works."
+      },
+      {
+        "t": "Paralyzed and cannot breathe",
+        "ok": false,
+        "why": "That is at or above C3-4-5."
+      },
+      {
+        "t": "Breathing flips to hypoxic drive only",
+        "ok": false,
+        "why": "Hypoxic drive is the backup CO2 story, not this cut."
+      },
+      {
+        "t": "The heart stops making electricity",
+        "ok": false,
+        "why": "The heart still makes its own electricity."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "What is ventilation?",
+    "opts": [
+      {
+        "t": "Mechanical air in and out",
+        "ok": true,
+        "why": "Ventilation = air moving in and out."
+      },
+      {
+        "t": "Gas exchange",
+        "ok": false,
+        "why": "That is respiration."
+      },
+      {
+        "t": "Oxygen parking on hemoglobin",
+        "ok": false,
+        "why": "That is oxygenation."
+      },
+      {
+        "t": "Blood moving through the body",
+        "ok": false,
+        "why": "That is circulation."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "What is respiration?",
+    "opts": [
+      {
+        "t": "Gas exchange",
+        "ok": true,
+        "why": "Respiration = gas exchange."
+      },
+      {
+        "t": "Mechanical air in and out",
+        "ok": false,
+        "why": "That is ventilation."
+      },
+      {
+        "t": "Oxygen parking on hemoglobin",
+        "ok": false,
+        "why": "That is oxygenation."
+      },
+      {
+        "t": "The squeeze that fires the diaphragm",
+        "ok": false,
+        "why": "That is a nerve shock, not respiration."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "What is oxygenation?",
+    "opts": [
+      {
+        "t": "Oxygen parking on hemoglobin",
+        "ok": true,
+        "why": "Oxygenation = O2 on hemoglobin."
+      },
+      {
+        "t": "Mechanical air in and out",
+        "ok": false,
+        "why": "That is ventilation."
+      },
+      {
+        "t": "Gas exchange",
+        "ok": false,
+        "why": "That is respiration."
+      },
+      {
+        "t": "A leftover volume that keeps sacs open",
+        "ok": false,
+        "why": "That is residual volume."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "What order is used to judge a breathing problem?",
+    "opts": [
+      {
+        "t": "Ventilation, then respiration, then oxygenation, then circulation",
+        "ok": true,
+        "why": "Work that chain: vent, then gas exchange, then sat, then pump."
+      },
+      {
+        "t": "Oxygenation, then ventilation, then respiration, then circulation",
+        "ok": false,
+        "why": "Ventilation is first."
+      },
+      {
+        "t": "Circulation, then ventilation, then respiration, then oxygenation",
+        "ok": false,
+        "why": "Circulation is last in this chain."
+      },
+      {
+        "t": "Respiration, then ventilation, then oxygenation, then circulation",
+        "ok": false,
+        "why": "Ventilation comes before respiration."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "Rate is 18 with good chest rise, but they are blue. Where is the problem not?",
+    "opts": [
+      {
+        "t": "Ventilation",
+        "ok": true,
+        "why": "Good rate and rise means air is moving. Look next at gas exchange, then pulse ox, then the pump."
+      },
+      {
+        "t": "Respiration",
+        "ok": false,
+        "why": "Fluid or edema can still block gas exchange."
+      },
+      {
+        "t": "Oxygenation",
+        "ok": false,
+        "why": "Pulse ox can still be bad."
+      },
+      {
+        "t": "Circulation",
+        "ok": false,
+        "why": "The pump can still fail after the others look fine."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "How does a normal inhale pull air in?",
+    "opts": [
+      {
+        "t": "Diaphragm drops, the chest gets bigger, negative pressure pulls air in",
+        "ok": true,
+        "why": "Normal breathing is active negative pressure."
+      },
+      {
+        "t": "A bag pushes air in with positive pressure",
+        "ok": false,
+        "why": "That is what we do, not what the body does."
+      },
+      {
+        "t": "The chest squeezes smaller and air is forced in",
+        "ok": false,
+        "why": "Smaller chest is exhale."
+      },
+      {
+        "t": "Residual volume sucks the next breath in",
+        "ok": false,
+        "why": "Residual volume just keeps the sacs open."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "How should exhalation work?",
+    "opts": [
+      {
+        "t": "Passive: muscles relax, the chest gets smaller, air goes out",
+        "ok": true,
+        "why": "Exhalation should be passive."
+      },
+      {
+        "t": "Active: the diaphragm drops and pulls air out",
+        "ok": false,
+        "why": "Diaphragm drop is inhale."
+      },
+      {
+        "t": "A bag push forces the air out",
+        "ok": false,
+        "why": "A bag push is inhale for them."
+      },
+      {
+        "t": "Hypoxic drive empties the chest",
+        "ok": false,
+        "why": "Hypoxic drive is the backup breathe-now signal."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "How is tidal volume judged?",
+    "opts": [
+      {
+        "t": "Chest rise and fall",
+        "ok": true,
+        "why": "Tidal volume is one breath. The proxy is visible chest rise. Milliliters are not measured."
+      },
+      {
+        "t": "Milliliters on a gauge",
+        "ok": false,
+        "why": "Milliliters are not measured at this level."
+      },
+      {
+        "t": "The pulse-ox number",
+        "ok": false,
+        "why": "Pulse ox is oxygenation, not tidal volume."
+      },
+      {
+        "t": "Air left after a full exhale",
+        "ok": false,
+        "why": "That leftover air is residual volume."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "What is residual volume for?",
+    "opts": [
+      {
+        "t": "Air left after a full exhale so the sacs do not collapse",
+        "ok": true,
+        "why": "Residual volume keeps alveoli open."
+      },
+      {
+        "t": "The size of one ordinary breath",
+        "ok": false,
+        "why": "That is tidal volume."
+      },
+      {
+        "t": "The extra air you can force in",
+        "ok": false,
+        "why": "That is inspiratory reserve."
+      },
+      {
+        "t": "The oxygen parked on hemoglobin",
+        "ok": false,
+        "why": "That is oxygenation."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "What is the primary drive to breathe?",
+    "opts": [
+      {
+        "t": "Carbon dioxide too high",
+        "ok": true,
+        "why": "Primary trigger is high CO2."
+      },
+      {
+        "t": "Oxygen too low",
+        "ok": false,
+        "why": "That is the backup hypoxic drive."
+      },
+      {
+        "t": "Residual volume too high",
+        "ok": false,
+        "why": "Residual volume is leftover air, not the drive."
+      },
+      {
+        "t": "Pulse ox under 94 percent",
+        "ok": false,
+        "why": "That is an oxygen-treatment cutoff, not the brain's drive."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "What is the backup drive to breathe?",
+    "opts": [
+      {
+        "t": "Hypoxic drive: wait for oxygen to get low",
+        "ok": true,
+        "why": "Backup is hypoxic drive when O2 is low."
+      },
+      {
+        "t": "Carbon dioxide too high",
+        "ok": false,
+        "why": "High CO2 is the primary drive."
+      },
+      {
+        "t": "Residual volume emptying",
+        "ok": false,
+        "why": "Residual volume is leftover air."
+      },
+      {
+        "t": "A pulse-ox lag of about 60 seconds",
+        "ok": false,
+        "why": "That lag is how long the number can take to move."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "What adult rate range is called adequate?",
+    "opts": [
+      {
+        "t": "12 to 20 per minute",
+        "ok": true,
+        "why": "Adult adequate rate is 12-20, plus equal rise, regular pattern, and clear equal sounds."
+      },
+      {
+        "t": "10 per minute",
+        "ok": false,
+        "why": "10 per minute is the adult bag rate, not the adequate-breathing range."
+      },
+      {
+        "t": "20 to 30 per minute",
+        "ok": false,
+        "why": "That is the child and infant bag range."
+      },
+      {
+        "t": "Under 12 per minute",
+        "ok": false,
+        "why": "Under 12 is too slow."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "Adult at 22 per minute, good rise, regular, clear sounds. What bucket?",
+    "opts": [
+      {
+        "t": "Abnormal-fast but may still be adequate",
+        "ok": true,
+        "why": "A little fast is not enough by itself. Change percent oxygen. Do not take over."
+      },
+      {
+        "t": "Inadequate, so take over breathing",
+        "ok": false,
+        "why": "Good rise, regular, and clear can still be adequate."
+      },
+      {
+        "t": "Respiratory arrest",
+        "ok": false,
+        "why": "They are still breathing."
+      },
+      {
+        "t": "Agonal gasps",
+        "ok": false,
+        "why": "Agonal is rare gasping with no real air."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "What does inadequate breathing mean?",
+    "opts": [
+      {
+        "t": "Not moving air well enough, so you breathe for them",
+        "ok": true,
+        "why": "Inadequate = too slow or too shallow. You take over."
+      },
+      {
+        "t": "Short of breath but still moving enough air",
+        "ok": false,
+        "why": "That can still be adequate. Change percent oxygen."
+      },
+      {
+        "t": "Rate 18 with good chest rise",
+        "ok": false,
+        "why": "That looks like ventilation is working."
+      },
+      {
+        "t": "Pulse ox of 99 percent with no distress",
+        "ok": false,
+        "why": "That is not a reason to bag."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "Rare gasping, not real air, heart stopped. What is that?",
+    "opts": [
+      {
+        "t": "Agonal gasps",
+        "ok": true,
+        "why": "Agonal = not a true sign of life. Link it to CPR."
+      },
+      {
+        "t": "Cheyne-Stokes",
+        "ok": false,
+        "why": "Cheyne-Stokes is a repeating pattern with a pause."
+      },
+      {
+        "t": "Kussmaul",
+        "ok": false,
+        "why": "Kussmaul is deep and rapid."
+      },
+      {
+        "t": "Biot / ataxic",
+        "ok": false,
+        "why": "Biot is chaos with no pattern."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "Slow and shallow, then deeper and faster, then slow, then a pause, then it repeats. What is that?",
+    "opts": [
+      {
+        "t": "Cheyne-Stokes",
+        "ok": true,
+        "why": "Cheyne-Stokes is a pattern you can follow, then apnea, then it repeats."
+      },
+      {
+        "t": "Biot / ataxic",
+        "ok": false,
+        "why": "Biot has no pattern."
+      },
+      {
+        "t": "Kussmaul",
+        "ok": false,
+        "why": "Kussmaul is deep and rapid, no pause cycle."
+      },
+      {
+        "t": "Agonal gasps",
+        "ok": false,
+        "why": "Agonal is rare gasping with a stopped heart."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "Breaths with no pattern, just chaos. What is that?",
+    "opts": [
+      {
+        "t": "Biot / ataxic",
+        "ok": true,
+        "why": "Biot / ataxic = no pattern. Same bad brainstem context."
+      },
+      {
+        "t": "Cheyne-Stokes",
+        "ok": false,
+        "why": "Cheyne-Stokes has a pattern plus a pause."
+      },
+      {
+        "t": "Kussmaul",
+        "ok": false,
+        "why": "Kussmaul is deep and rapid."
+      },
+      {
+        "t": "Agonal gasps",
+        "ok": false,
+        "why": "Agonal is rare gasping with a stopped heart."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "Deep, rapid breathing that is compensating for acidosis. What is that?",
+    "opts": [
+      {
+        "t": "Kussmaul",
+        "ok": true,
+        "why": "Kussmaul = deep and rapid. Do not take over just because it is fast."
+      },
+      {
+        "t": "Cheyne-Stokes",
+        "ok": false,
+        "why": "Cheyne-Stokes is a slow-fast-pause loop."
+      },
+      {
+        "t": "Biot / ataxic",
+        "ok": false,
+        "why": "Biot has no pattern."
+      },
+      {
+        "t": "Agonal gasps",
+        "ok": false,
+        "why": "Agonal is rare gasping, not deep rapid work."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "What is apnea?",
+    "opts": [
+      {
+        "t": "Not breathing; respiratory arrest",
+        "ok": true,
+        "why": "Apnea = not breathing = respiratory arrest."
+      },
+      {
+        "t": "Difficulty breathing",
+        "ok": false,
+        "why": "That is dyspnea."
+      },
+      {
+        "t": "Deep, rapid breathing",
+        "ok": false,
+        "why": "That is Kussmaul."
+      },
+      {
+        "t": "A pause inside a repeating pattern",
+        "ok": false,
+        "why": "A pause can sit inside Cheyne-Stokes, but apnea itself means not breathing."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "What is dyspnea?",
+    "opts": [
+      {
+        "t": "Difficulty breathing",
+        "ok": true,
+        "why": "Dyspnea = difficulty breathing."
+      },
+      {
+        "t": "Not breathing",
+        "ok": false,
+        "why": "That is apnea."
+      },
+      {
+        "t": "Rare gasping with no pulse",
+        "ok": false,
+        "why": "That is agonal."
+      },
+      {
+        "t": "Chaos breaths with no pattern",
+        "ok": false,
+        "why": "That is Biot / ataxic."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "What pulse-ox range is the target?",
+    "opts": [
+      {
+        "t": "94 to 99 percent",
+        "ok": true,
+        "why": "Target range is 94-99%."
+      },
+      {
+        "t": "90 to 99 percent",
+        "ok": false,
+        "why": "Class target is 94-99, not 90-99."
+      },
+      {
+        "t": "Always 100 percent",
+        "ok": false,
+        "why": "100% is uncommon and can be misleading."
+      },
+      {
+        "t": "Under 88 percent",
+        "ok": false,
+        "why": "Under 94 is already an oxygen indication."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "How long can a pulse ox take to show a change?",
+    "opts": [
+      {
+        "t": "Up to about 60 seconds",
+        "ok": true,
+        "why": "A full circuit can take about a minute."
+      },
+      {
+        "t": "About 6 seconds",
+        "ok": false,
+        "why": "Six seconds is an adult bag interval, not the ox lag."
+      },
+      {
+        "t": "About 6 hours",
+        "ok": false,
+        "why": "About 6 hours is how long carbon monoxide can stay bound."
+      },
+      {
+        "t": "About 10 seconds",
+        "ok": false,
+        "why": "Ten seconds is a suction cap."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "Pulse ox is 99 percent, but they say they cannot breathe. Is that an oxygen indication?",
+    "opts": [
+      {
+        "t": "Yes. Difficulty breathing still gets oxygen",
+        "ok": true,
+        "why": "Complaint of difficulty breathing is an indication even if the number looks fine."
+      },
+      {
+        "t": "No. A number of 99 means withhold oxygen",
+        "ok": false,
+        "why": "Treat the person, not only the number."
+      },
+      {
+        "t": "Yes, but only after the number drops under 90",
+        "ok": false,
+        "why": "The named cutoff is under 94, and distress already counts."
+      },
+      {
+        "t": "No. Wait the 60-second lag first",
+        "ok": false,
+        "why": "Distress is already an indication."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "House fire, pulse ox reads 100 percent. What does that number prove?",
+    "opts": [
+      {
+        "t": "Nothing about oxygen. Carbon monoxide can fill the seats",
+        "ok": true,
+        "why": "True percent sat of the wrong gas. CO binds far better than oxygen."
+      },
+      {
+        "t": "100 percent proves the blood is full of oxygen",
+        "ok": false,
+        "why": "The meter cannot tell oxygen from carbon monoxide."
+      },
+      {
+        "t": "100 percent means residual volume is gone",
+        "ok": false,
+        "why": "Residual volume is leftover air in the sacs."
+      },
+      {
+        "t": "100 percent means they are on hypoxic drive",
+        "ok": false,
+        "why": "Hypoxic drive is the low-oxygen backup, not this reading."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "How much better does carbon monoxide bind than oxygen?",
+    "opts": [
+      {
+        "t": "About 250 to 300 times",
+        "ok": true,
+        "why": "CO binds about 250-300 times better and can stay about 6 hours."
+      },
+      {
+        "t": "About 2 times",
+        "ok": false,
+        "why": "Far stronger than that."
+      },
+      {
+        "t": "About 10 times",
+        "ok": false,
+        "why": "Far stronger than that."
+      },
+      {
+        "t": "About 21 times",
+        "ok": false,
+        "why": "21 percent is room-air oxygen, not the bind ratio."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "Air in the chest but not inside the lung. What is that?",
+    "opts": [
+      {
+        "t": "Pneumothorax",
+        "ok": true,
+        "why": "Pneumothorax = air outside the lung. Collapsed lung."
+      },
+      {
+        "t": "Hemothorax",
+        "ok": false,
+        "why": "Hemothorax is blood in the chest."
+      },
+      {
+        "t": "Pulmonary edema",
+        "ok": false,
+        "why": "Edema is fluid in the lung."
+      },
+      {
+        "t": "Anemia",
+        "ok": false,
+        "why": "Anemia is not enough red blood cells."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "Blood in the chest. What is that?",
+    "opts": [
+      {
+        "t": "Hemothorax",
+        "ok": true,
+        "why": "Hemothorax = blood in the chest."
+      },
+      {
+        "t": "Pneumothorax",
+        "ok": false,
+        "why": "Pneumothorax is air outside the lung."
+      },
+      {
+        "t": "Pulmonary edema",
+        "ok": false,
+        "why": "Edema is fluid in the lung."
+      },
+      {
+        "t": "Residual volume",
+        "ok": false,
+        "why": "Residual volume is leftover air in the sacs."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "Room air at altitude versus sea level. What stays the same?",
+    "opts": [
+      {
+        "t": "Still about 21 percent oxygen; quantity and pressure drop, not the percent",
+        "ok": true,
+        "why": "Percent stays about 21%. The amount of gas drops."
+      },
+      {
+        "t": "The percent drops to about 10 percent",
+        "ok": false,
+        "why": "The percent stays about 21%."
+      },
+      {
+        "t": "The percent rises to 100 percent",
+        "ok": false,
+        "why": "Room air is not 100%."
+      },
+      {
+        "t": "The percent becomes residual volume",
+        "ok": false,
+        "why": "Residual volume is leftover air in the sacs."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "Why does fluid in the lung block gas exchange?",
+    "opts": [
+      {
+        "t": "Gases do not diffuse well through fluid",
+        "ok": true,
+        "why": "Pulmonary edema is a brick wall. Oxygen in and carbon dioxide out both fail."
+      },
+      {
+        "t": "The tongue falls back and closes the mouth",
+        "ok": false,
+        "why": "That is an upper-airway obstruction, not lung fluid."
+      },
+      {
+        "t": "Residual volume rises to 100 percent",
+        "ok": false,
+        "why": "Residual volume is leftover air, not this wall."
+      },
+      {
+        "t": "The phrenic nerve is cut at C6",
+        "ok": false,
+        "why": "A cut below C5 still lets them breathe."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "Aerobic work: enough oxygen. What comes out?",
+    "opts": [
+      {
+        "t": "Lots of energy plus carbon dioxide, water, and heat",
+        "ok": true,
+        "why": "Aerobic = lots of ATP plus CO2, water, and heat."
+      },
+      {
+        "t": "Less energy plus lactic acid",
+        "ok": false,
+        "why": "That is anaerobic."
+      },
+      {
+        "t": "Only residual volume",
+        "ok": false,
+        "why": "Residual volume is leftover air."
+      },
+      {
+        "t": "Only a hemothorax",
+        "ok": false,
+        "why": "Hemothorax is blood in the chest."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "Not enough oxygen at the cell. What waste shows up?",
+    "opts": [
+      {
+        "t": "Less energy plus lactic acid",
+        "ok": true,
+        "why": "Anaerobic = less energy plus lactic acid."
+      },
+      {
+        "t": "Lots of energy plus carbon dioxide, water, and heat",
+        "ok": false,
+        "why": "That is aerobic."
+      },
+      {
+        "t": "Only residual volume",
+        "ok": false,
+        "why": "Residual volume is leftover air."
+      },
+      {
+        "t": "Only a pneumothorax",
+        "ok": false,
+        "why": "Pneumothorax is air outside the lung."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "External respiration versus internal respiration. Which pair is right?",
+    "opts": [
+      {
+        "t": "External is oxygen into blood at the lungs; internal is oxygen off hemoglobin into the cell",
+        "ok": true,
+        "why": "External / pulmonary = lungs. Internal / systemic = cells."
+      },
+      {
+        "t": "External is oxygen into the cell; internal is oxygen into blood at the lungs",
+        "ok": false,
+        "why": "Those are swapped."
+      },
+      {
+        "t": "External is air in and out; internal is residual volume",
+        "ok": false,
+        "why": "Air in and out is ventilation."
+      },
+      {
+        "t": "External is hypoxic drive; internal is high carbon dioxide",
+        "ok": false,
+        "why": "Those are breathing drives, not the two respirations."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "When bagging, when do you stop the squeeze?",
+    "opts": [
+      {
+        "t": "Just until chest rise, then stop",
+        "ok": true,
+        "why": "Gentle squeeze to rise only. Do not chase half a bag."
+      },
+      {
+        "t": "When half the bag is gone",
+        "ok": false,
+        "why": "Half a bag is not a known size for their lungs."
+      },
+      {
+        "t": "After 15 seconds of squeeze",
+        "ok": false,
+        "why": "That is an old suction number, not a squeeze."
+      },
+      {
+        "t": "After residual volume fills",
+        "ok": false,
+        "why": "Residual volume is leftover air after a full exhale."
+      }
+    ]
+  },
+  {
+    "ch": 7,
+    "q": "Scene is safe and they have a pulse. What can beat airway?",
+    "opts": [
+      {
+        "t": "A major life-threatening bleed seen on the walk-up",
+        "ok": true,
+        "why": "Treat a seen major bleed first. Otherwise airway is top of patient care."
+      },
+      {
+        "t": "A pulse-ox lag of about 60 seconds",
+        "ok": false,
+        "why": "That lag is how long a number can take to move."
+      },
+      {
+        "t": "Residual volume still in the sacs",
+        "ok": false,
+        "why": "Residual volume keeps sacs open. It does not beat airway."
+      },
+      {
+        "t": "Hypoxic drive in later COPD",
+        "ok": false,
+        "why": "That is a later drive story, not the walk-up exception."
+      }
+    ]
+  }
+]
