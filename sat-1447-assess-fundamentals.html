@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat 2:47 EMT Patient Assessment Fundamentals</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat 2:47 EMT Patient Assessment Fundamentals</h1>
+  <div class="sub">Recap only · you/your · 28 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":"five","q":"Your five-part assessment order on every call?","opts":[{"t":"Primary first, then scene size-up after you touch them","ok":false,"why":"Order is scene size-up → primary → history → secondary (physical exam) → ongoing reassessment. Primary is the largest National Registry piece."},{"t":"Scene size-up → primary → history → secondary → ongoing reassessment","ok":true,"why":"Order is scene size-up → primary → history → secondary (physical exam) → ongoing reassessment. Primary is the largest National Registry piece."},{"t":"History only, then you skip primary if they look okay","ok":false,"why":"Order is scene size-up → primary → history → secondary (physical exam) → ongoing reassessment. Primary is the largest National Registry piece."},{"t":"Triage tags before BSI on a one-patient medical call","ok":false,"why":"Order is scene size-up → primary → history → secondary (physical exam) → ongoing reassessment. Primary is the largest National Registry piece."}]},{"ch":"bsi","q":"You walk into a skills station and skip BSI / scene safety. What happens?","opts":[{"t":"You lose a point but still pass if ABCs are perfect","ok":false,"why":"BSI/PPE (gloves at least) and scene safety sit at the top of the skill sheet. Skipping either is an automatic fail."},{"t":"Automatic fail — BSI and scene safety are non-negotiable","ok":true,"why":"BSI/PPE (gloves at least) and scene safety sit at the top of the skill sheet. Skipping either is an automatic fail."},{"t":"You can add gloves after the secondary exam","ok":false,"why":"BSI/PPE (gloves at least) and scene safety sit at the top of the skill sheet. Skipping either is an automatic fail."},{"t":"Only MCI scenes require BSI","ok":false,"why":"BSI/PPE (gloves at least) and scene safety sit at the top of the skill sheet. Skipping either is an automatic fail."}]},{"ch":"safe","q":"Your scene starts safe, then a crowd and traffic close in. What does this recap want?","opts":[{"t":"Rush the patient out before you call anyone","ok":false,"why":"Keep situational awareness. Call resources (police, fire, utility, hazmat) to make it safe. Do not rush into an unsafe scene."},{"t":"Call people who can make it safe — do not just rush in","ok":true,"why":"Keep situational awareness. Call resources (police, fire, utility, hazmat) to make it safe. Do not rush into an unsafe scene."},{"t":"Safety only matters for you, not bystanders","ok":false,"why":"Keep situational awareness. Call resources (police, fire, utility, hazmat) to make it safe. Do not rush into an unsafe scene."},{"t":"Scene size-up ends once you touch the patient","ok":false,"why":"Keep situational awareness. Call resources (police, fire, utility, hazmat) to make it safe. Do not rush into an unsafe scene."}]},{"ch":"moi","q":"MOI versus NOI on your size-up?","opts":[{"t":"MOI is the medical complaint; NOI is only the fall height","ok":false,"why":"MOI (mechanism of injury) is trauma — what physically happened. NOI (nature of illness) is the medical problem. Calls can be both (MI then crash; seizure then fall)."},{"t":"MOI is what hit the body (trauma); NOI is the illness","ok":true,"why":"MOI (mechanism of injury) is trauma — what physically happened. NOI (nature of illness) is the medical problem. Calls can be both (MI then crash; seizure then fall)."},{"t":"They are the same thing as A&O x4","ok":false,"why":"MOI (mechanism of injury) is trauma — what physically happened. NOI (nature of illness) is the medical problem. Calls can be both (MI then crash; seizure then fall)."},{"t":"MOI is only used after the secondary exam","ok":false,"why":"MOI (mechanism of injury) is trauma — what physically happened. NOI (nature of illness) is the medical problem. Calls can be both (MI then crash; seizure then fall)."}]},{"ch":"hid","q":"Why does this recap care about MOI on a fall or crash?","opts":[{"t":"It only decides which hospital gift shop you use","ok":false,"why":"MOI helps you predict injury patterns, especially hidden internal injuries in the brain, chest, and abdomen."},{"t":"It helps you predict injury patterns, including hidden internal injuries","ok":true,"why":"MOI helps you predict injury patterns, especially hidden internal injuries in the brain, chest, and abdomen."},{"t":"It replaces the need for a primary assessment","ok":false,"why":"MOI helps you predict injury patterns, especially hidden internal injuries in the brain, chest, and abdomen."},{"t":"It tells you they cannot have a medical problem too","ok":false,"why":"MOI helps you predict injury patterns, especially hidden internal injuries in the brain, chest, and abdomen."}]},{"ch":"mci","q":"Several patients share the same complaint at one address. Your first thought?","opts":[{"t":"Walk inside alone so you can start IVs","ok":false,"why":"Multiple similar complaints should make you think environment or hazmat (gas, CO, chemicals). Do not rush in and become another patient."},{"t":"Environment / hazmat — do not rush in and become patient #9","ok":true,"why":"Multiple similar complaints should make you think environment or hazmat (gas, CO, chemicals). Do not rush in and become another patient."},{"t":"It cannot be CO or a gas leak if they can still talk","ok":false,"why":"Multiple similar complaints should make you think environment or hazmat (gas, CO, chemicals). Do not rush in and become another patient."},{"t":"Skip counting patients; start a full secondary on the first person","ok":false,"why":"Multiple similar complaints should make you think environment or hazmat (gas, CO, chemicals). Do not rush in and become another patient."}]},{"ch":"als","q":"On a test, unless told otherwise, how do you treat ALS / paramedics?","opts":[{"t":"Assume they are already on scene with you","ok":false,"why":"Assume you are a basic EMT on an ambulance. ALS must be requested. Specialty resources take time — ask early."},{"t":"You request ALS — you do not assume they are already there","ok":true,"why":"Assume you are a basic EMT on an ambulance. ALS must be requested. Specialty resources take time — ask early."},{"t":"Never request extra ambulances or air medical","ok":false,"why":"Assume you are a basic EMT on an ambulance. ALS must be requested. Specialty resources take time — ask early."},{"t":"Wait until the hospital to ask for help","ok":false,"why":"Assume you are a basic EMT on an ambulance. ALS must be requested. Specialty resources take time — ask early."}]},{"ch":"csp","q":"When do you consider c-spine on size-up?","opts":[{"t":"Only after the hospital CT is back","ok":false,"why":"Consider c-spine from MOI and suspicion for spine injury. Think ahead about bringing a backboard in with the gurney."},{"t":"From MOI and spine suspicion — think backboard with the gurney","ok":true,"why":"Consider c-spine from MOI and suspicion for spine injury. Think ahead about bringing a backboard in with the gurney."},{"t":"Never on trauma — jaw thrust is enough forever","ok":false,"why":"Consider c-spine from MOI and suspicion for spine injury. Think ahead about bringing a backboard in with the gurney."},{"t":"Only if they are A&O x4 and walking","ok":false,"why":"Consider c-spine from MOI and suspicion for spine injury. Think ahead about bringing a backboard in with the gurney."}]},{"ch":"fi","q":"Field impression — what is it, and who diagnoses?","opts":[{"t":"A legal diagnosis you write instead of the doctor","ok":false,"why":"Field impression is your best professional guess from history, signs, symptoms, vitals, and exam. You do not diagnose — doctors do."},{"t":"Your unofficial guess from clues — you do not diagnose","ok":true,"why":"Field impression is your best professional guess from history, signs, symptoms, vitals, and exam. You do not diagnose — doctors do."},{"t":"A scene-safety slogan only","ok":false,"why":"Field impression is your best professional guess from history, signs, symptoms, vitals, and exam. You do not diagnose — doctors do."},{"t":"Something you form before scene size-up","ok":false,"why":"Field impression is your best professional guess from history, signs, symptoms, vitals, and exam. You do not diagnose — doctors do."}]},{"ch":"univ","q":"Universal versus specific treatment in this recap?","opts":[{"t":"Aspirin before you open an unresponsive airway","ok":false,"why":"Universal care (not breathing → ventilate; massive bleed → control it) comes before the impression. Specific care (aspirin/nitro, Narcan, EpiPen) comes after."},{"t":"Ventilate or stop massive bleeding first; meds after the impression","ok":true,"why":"Universal care (not breathing → ventilate; massive bleed → control it) comes before the impression. Specific care (aspirin/nitro, Narcan, EpiPen) comes after."},{"t":"Narcan is universal for every chest-pain call","ok":false,"why":"Universal care (not breathing → ventilate; massive bleed → control it) comes before the impression. Specific care (aspirin/nitro, Narcan, EpiPen) comes after."},{"t":"You never give any meds after a field impression","ok":false,"why":"Universal care (not breathing → ventilate; massive bleed → control it) comes before the impression. Specific care (aspirin/nitro, Narcan, EpiPen) comes after."}]},{"ch":"sign","q":"Your patient says the pain is 8/10. Sign or symptom here?","opts":[{"t":"Sign — any number you write is objective","ok":false,"why":"Symptoms are subjective and patient-reported. Even 8/10 pain is still a symptom. Signs are things you and a partner can both see or measure."},{"t":"Symptom — it is still what they report, even as a number","ok":true,"why":"Symptoms are subjective and patient-reported. Even 8/10 pain is still a symptom. Signs are things you and a partner can both see or measure."},{"t":"Neither — pain is only a field impression","ok":false,"why":"Symptoms are subjective and patient-reported. Even 8/10 pain is still a symptom. Signs are things you and a partner can both see or measure."},{"t":"Sign, because SpO₂ is also a symptom","ok":false,"why":"Symptoms are subjective and patient-reported. Even 8/10 pain is still a symptom. Signs are things you and a partner can both see or measure."}]},{"ch":"pat","q":"Low BP, fast HR, and fast RR together — which recap pattern?","opts":[{"t":"Major head-injury pattern (high BP, low HR, irregular breathing)","ok":false,"why":"Low BP + fast HR + fast RR is the shock pattern. Head injury here is high BP, low HR, irregular respirations."},{"t":"Shock pattern","ok":true,"why":"Low BP + fast HR + fast RR is the shock pattern. Head injury here is high BP, low HR, irregular respirations."},{"t":"Tension pneumothorax only (you do not need lung or JVD clues)","ok":false,"why":"Low BP + fast HR + fast RR is the shock pattern. Head injury here is high BP, low HR, irregular respirations."},{"t":"TB (fever, night sweats, coughing blood)","ok":false,"why":"Low BP + fast HR + fast RR is the shock pattern. Head injury here is high BP, low HR, irregular respirations."}]},{"ch":"tptx","q":"Dyspnea, absent breath sounds on one side, and JVD — your recap pattern?","opts":[{"t":"Simple anxiety with a strong radial pulse only","ok":false,"why":"Dyspnea + one-sided absent breath sounds + JVD is the tension pneumothorax pattern in this recap."},{"t":"Tension pneumothorax","ok":true,"why":"Dyspnea + one-sided absent breath sounds + JVD is the tension pneumothorax pattern in this recap."},{"t":"Crushing pain that slowly worsens — that is TB here","ok":false,"why":"Dyspnea + one-sided absent breath sounds + JVD is the tension pneumothorax pattern in this recap."},{"t":"Always a patent airway with no other problem","ok":false,"why":"Dyspnea + one-sided absent breath sounds + JVD is the tension pneumothorax pattern in this recap."}]},{"ch":"pri","q":"Primary assessment — your job and the rule?","opts":[{"t":"Collect a 20-minute history before any treatment","ok":false,"why":"Primary assessment finds and treats life threats now. Find a life threat, treat a life threat, before you do anything else."},{"t":"Find and treat life threats now — treat before you move on","ok":true,"why":"Primary assessment finds and treats life threats now. Find a life threat, treat a life threat, before you do anything else."},{"t":"Only form a field impression, never treat bleeding","ok":false,"why":"Primary assessment finds and treats life threats now. Find a life threat, treat a life threat, before you do anything else."},{"t":"Skip ABCs if the scene was safe","ok":false,"why":"Primary assessment finds and treats life threats now. Find a life threat, treat a life threat, before you do anything else."}]},{"ch":"gi","q":"They look maybe dead as you walk up. What does general impression tell you to do?","opts":[{"t":"Finish SAMPLE history, then feel for a pulse","ok":false,"why":"If there is a chance they are dead, check a pulse immediately. Sick-or-not-sick is only a starting guess and can be wrong."},{"t":"Check a pulse immediately","ok":true,"why":"If there is a chance they are dead, check a pulse immediately. Sick-or-not-sick is only a starting guess and can be wrong."},{"t":"Call them not sick if they are sitting quietly","ok":false,"why":"If there is a chance they are dead, check a pulse immediately. Sick-or-not-sick is only a starting guess and can be wrong."},{"t":"Wait for the secondary exam to look for cyanosis or bleeding","ok":false,"why":"If there is a chance they are dead, check a pulse immediately. Sick-or-not-sick is only a starting guess and can be wrong."}]},{"ch":"avpu","q":"AVPU — they only move when you do a sternal rub. Your letter?","opts":[{"t":"A — Alert, because any movement counts as oriented","ok":false,"why":"Pain (P) means they only respond to a painful stimulus (sternal rub, trapezius pinch, nail-bed pressure). Alert people are awake and tracking you."},{"t":"P — Pain only","ok":true,"why":"Pain (P) means they only respond to a painful stimulus (sternal rub, trapezius pinch, nail-bed pressure). Alert people are awake and tracking you."},{"t":"U — Unresponsive, because they did not talk","ok":false,"why":"Pain (P) means they only respond to a painful stimulus (sternal rub, trapezius pinch, nail-bed pressure). Alert people are awake and tracking you."},{"t":"V — Verbal, because a rub is a voice cue","ok":false,"why":"Pain (P) means they only respond to a painful stimulus (sternal rub, trapezius pinch, nail-bed pressure). Alert people are awake and tracking you."}]},{"ch":"ao","q":"They are Alert. What four orientation checks are A&O x4 here?","opts":[{"t":"Pulse, skin, cap refill, and SpO₂ only","ok":false,"why":"A&O x4 is person, place, time, and event. That plus reasonable behavior usually means capacity; not fully oriented or confused is altered and often implied consent."},{"t":"Person, place, time, event","ok":true,"why":"A&O x4 is person, place, time, and event. That plus reasonable behavior usually means capacity; not fully oriented or confused is altered and often implied consent."},{"t":"MOI, NOI, BSI, and triage color","ok":false,"why":"A&O x4 is person, place, time, and event. That plus reasonable behavior usually means capacity; not fully oriented or confused is altered and often implied consent."},{"t":"Only their name — skip place, time, and event","ok":false,"why":"A&O x4 is person, place, time, and event. That plus reasonable behavior usually means capacity; not fully oriented or confused is altered and often implied consent."}]},{"ch":"cons","q":"Not fully oriented and clearly confused. Consent picture in this recap?","opts":[{"t":"They still have capacity if they can say a name","ok":false,"why":"Not fully oriented or clearly confused is altered mental status and likely implied consent. Always compare to their baseline with family or caregivers."},{"t":"Altered — likely implied consent (check their baseline)","ok":true,"why":"Not fully oriented or clearly confused is altered mental status and likely implied consent. Always compare to their baseline with family or caregivers."},{"t":"You must get written refusal before you touch them","ok":false,"why":"Not fully oriented or clearly confused is altered mental status and likely implied consent. Always compare to their baseline with family or caregivers."},{"t":"AVPU does not matter for consent","ok":false,"why":"Not fully oriented or clearly confused is altered mental status and likely implied consent. Always compare to their baseline with family or caregivers."}]},{"ch":"air","q":"They are awake and talking. Airway?","opts":[{"t":"Not patent until you place an OPA","ok":false,"why":"Awake and talking or crying means the airway is patent. Any airway problem still means stop and fix the airway first."},{"t":"Patent — open and clear enough to talk","ok":true,"why":"Awake and talking or crying means the airway is patent. Any airway problem still means stop and fix the airway first."},{"t":"You must jaw-thrust every talking trauma patient first","ok":false,"why":"Awake and talking or crying means the airway is patent. Any airway problem still means stop and fix the airway first."},{"t":"Patent only if SpO₂ is 100%","ok":false,"why":"Awake and talking or crying means the airway is patent. Any airway problem still means stop and fix the airway first."}]},{"ch":"open","q":"Unresponsive trauma patient — how do you open the airway here?","opts":[{"t":"Head-tilt chin-lift, because trauma never needs the jaw","ok":false,"why":"Jaw thrust if suspected trauma or spinal injury. Head-tilt chin-lift if no suspected spine trauma."},{"t":"Jaw thrust — suspected trauma or spine injury","ok":true,"why":"Jaw thrust if suspected trauma or spinal injury. Head-tilt chin-lift if no suspected spine trauma."},{"t":"Skip opening; start a full secondary exam","ok":false,"why":"Jaw thrust if suspected trauma or spinal injury. Head-tilt chin-lift if no suspected spine trauma."},{"t":"Sternal rub opens the airway by itself","ok":false,"why":"Jaw thrust if suspected trauma or spinal injury. Head-tilt chin-lift if no suspected spine trauma."}]},{"ch":"gurg","q":"You hear gurgling in the airway. Next move?","opts":[{"t":"Leave it — gurgling means the tongue only","ok":false,"why":"Gurgling means fluid and needs suction. Snoring is tongue. High-pitched noises are partial obstruction or narrowing."},{"t":"Suction — fluid in the airway","ok":true,"why":"Gurgling means fluid and needs suction. Snoring is tongue. High-pitched noises are partial obstruction or narrowing."},{"t":"High-flow oxygen only, no clearing","ok":false,"why":"Gurgling means fluid and needs suction. Snoring is tongue. High-pitched noises are partial obstruction or narrowing."},{"t":"That sound means a patent airway","ok":false,"why":"Gurgling means fluid and needs suction. Snoring is tongue. High-pitched noises are partial obstruction or narrowing."}]},{"ch":"rr","q":"Adult breathing rate that this recap flags as concerning?","opts":[{"t":"Only a rate of exactly 16","ok":false,"why":"Adult concerning values: > 28 (tachypnea) or < 8 (bradypnea). Slow, especially < 8, usually means ventilate. Fast needs more evaluation."},{"t":"> 28 or < 8 breaths/min","ok":true,"why":"Adult concerning values: > 28 (tachypnea) or < 8 (bradypnea). Slow, especially < 8, usually means ventilate. Fast needs more evaluation."},{"t":"< 8 is fine if they are anxious","ok":false,"why":"Adult concerning values: > 28 (tachypnea) or < 8 (bradypnea). Slow, especially < 8, usually means ventilate. Fast needs more evaluation."},{"t":"> 28 always means you skip oxygen forever","ok":false,"why":"Adult concerning values: > 28 (tachypnea) or < 8 (bradypnea). Slow, especially < 8, usually means ventilate. Fast needs more evaluation."}]},{"ch":"vent","q":"They are hypoventilating or in respiratory arrest. Your move?","opts":[{"t":"Keep assessing history and do not breathe for them","ok":false,"why":"Hypoventilation (respiratory failure) or respiratory arrest → ventilate (positive pressure). Distressed but still ventilating → oxygen per protocol. SpO₂ goal 94–99% in context."},{"t":"Ventilate — you breathe for them","ok":true,"why":"Hypoventilation (respiratory failure) or respiratory arrest → ventilate (positive pressure). Distressed but still ventilating → oxygen per protocol. SpO₂ goal 94–99% in context."},{"t":"Only a nasal cannula, never positive pressure","ok":false,"why":"Hypoventilation (respiratory failure) or respiratory arrest → ventilate (positive pressure). Distressed but still ventilating → oxygen per protocol. SpO₂ goal 94–99% in context."},{"t":"Wait for a field impression of TB first","ok":false,"why":"Hypoventilation (respiratory failure) or respiratory arrest → ventilate (positive pressure). Distressed but still ventilating → oxygen per protocol. SpO₂ goal 94–99% in context."}]},{"ch":"wob","q":"Work-of-breathing clues this recap lists (besides cyanosis)?","opts":[{"t":"Only a strong radial pulse","ok":false,"why":"Distress clues: accessory muscles, retractions, nasal flaring, two- to three-word dyspnea, tripod plus sniffing. Cyanosis is late and bad. SpO₂ goal 94–99% in context."},{"t":"Accessory muscles, retractions, flaring, 2–3 word dyspnea, tripod/sniffing","ok":true,"why":"Distress clues: accessory muscles, retractions, nasal flaring, two- to three-word dyspnea, tripod plus sniffing. Cyanosis is late and bad. SpO₂ goal 94–99% in context."},{"t":"Irregular chaotic breathing always means anxiety only","ok":false,"why":"Distress clues: accessory muscles, retractions, nasal flaring, two- to three-word dyspnea, tripod plus sniffing. Cyanosis is late and bad. SpO₂ goal 94–99% in context."},{"t":"You assess breathing before the airway is open","ok":false,"why":"Distress clues: accessory muscles, retractions, nasal flaring, two- to three-word dyspnea, tripod plus sniffing. Cyanosis is late and bad. SpO₂ goal 94–99% in context."}]},{"ch":"pulse","q":"Pulse site this recap wants: unconscious adult, then an infant?","opts":[{"t":"Radial for both","ok":false,"why":"Conscious adult/child → radial. Unconscious adult/child → carotid. Infant (<1 year) → brachial so you do not collapse the airway on the neck."},{"t":"Carotid on the unresponsive adult; brachial on the infant","ok":true,"why":"Conscious adult/child → radial. Unconscious adult/child → carotid. Infant (<1 year) → brachial so you do not collapse the airway on the neck."},{"t":"Carotid on every infant","ok":false,"why":"Conscious adult/child → radial. Unconscious adult/child → carotid. Infant (<1 year) → brachial so you do not collapse the airway on the neck."},{"t":"Brachial on the walking adult","ok":false,"why":"Conscious adult/child → radial. Unconscious adult/child → carotid. Infant (<1 year) → brachial so you do not collapse the airway on the neck."}]},{"ch":"shock","q":"Weak radial pulse, they are clearly alive, skin pale/cool/clammy. Your read?","opts":[{"t":"Strong radial always — skip shock","ok":false,"why":"Weak or absent radial while they are alive often means low BP. Pale, cool, clammy often means shock. Treat shock, severe bleeding, and no pulse now."},{"t":"Think low BP and shock — treat that life threat now","ok":true,"why":"Weak or absent radial while they are alive often means low BP. Pale, cool, clammy often means shock. Treat shock, severe bleeding, and no pulse now."},{"t":"Only a sign of good perfusion","ok":false,"why":"Weak or absent radial while they are alive often means low BP. Pale, cool, clammy often means shock. Treat shock, severe bleeding, and no pulse now."},{"t":"Cap refill over 2 seconds is required before you care","ok":false,"why":"Weak or absent radial while they are alive often means low BP. Pale, cool, clammy often means shock. Treat shock, severe bleeding, and no pulse now."}]},{"ch":"tri","q":"More patients than resources (MCI). Triage goal here?","opts":[{"t":"Stay with the first person you see until the hospital, no matter the count","ok":false,"why":"Triage: count patients, sort by severity, prioritize critical people who can still survive. Limited resources for maximum overall survival. Notes get shorter."},{"t":"Count, sort by severity, treat critical people who can still survive","ok":true,"why":"Triage: count patients, sort by severity, prioritize critical people who can still survive. Limited resources for maximum overall survival. Notes get shorter."},{"t":"Write a full PCR on everyone before you touch anyone","ok":false,"why":"Triage: count patients, sort by severity, prioritize critical people who can still survive. Limited resources for maximum overall survival. Notes get shorter."},{"t":"Abandonment rules never change, even when you cannot reach everyone","ok":false,"why":"Triage: count patients, sort by severity, prioritize critical people who can still survive. Limited resources for maximum overall survival. Notes get shorter."}]},{"ch":"nre","q":"A question describes no breathing, massive bleeding, or shock signs. Registry move?","opts":[{"t":"Keep assessing and save treatment for the hospital","ok":false,"why":"Treat that life threat immediately. Do not “keep assessing.” Primary assessment is a huge Registry chunk."},{"t":"Treat the life threat immediately — do not just keep assessing","ok":true,"why":"Treat that life threat immediately. Do not “keep assessing.” Primary assessment is a huge Registry chunk."},{"t":"Start with a 15-minute secondary exam","ok":false,"why":"Treat that life threat immediately. Do not “keep assessing.” Primary assessment is a huge Registry chunk."},{"t":"Assume ALS is already treating it","ok":false,"why":"Treat that life threat immediately. Do not “keep assessing.” Primary assessment is a huge Registry chunk."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"five":"Five parts","bsi":"BSI / fail","safe":"Scene safety","moi":"MOI / NOI","hid":"Hidden injury","mci":"Multi-patient","als":"Request ALS","csp":"C-spine","fi":"Field impression","univ":"Universal vs specific","sign":"Sign vs symptom","pat":"Shock pattern","tptx":"Tension pattern","pri":"Primary","gi":"General impression","avpu":"AVPU","ao":"A&O x4","cons":"Consent","air":"Patent airway","open":"Open airway","gurg":"Gurgling","rr":"Breathing rate","vent":"Ventilate","wob":"Work of breathing","pulse":"Pulse sites","shock":"Shock look","tri":"Triage","nre":"Registry"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the Sat 2:47 patient-assessment fundamentals recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · patient-assessment fundamentals recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
