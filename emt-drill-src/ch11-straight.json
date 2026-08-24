@@ -183,25 +183,25 @@
   },
   {
     "ch": 11,
-    "q": "Venturi mask on the ambulance?",
+    "q": "Do EMTs carry a Venturi as a first-line mask?",
     "opts": [
       {
-        "t": "Not an EMS carry; long-term percent control; read the adapter that is already on",
+        "t": "No — it is not an EMS first-line mask",
         "ok": true,
-        "why": "Do not invent color liters. Interfacility: match what is already on."
+        "why": "Not an EMS carry. Long-term percent control. Interfacility: match the adapter that is already on. Do not invent color liters."
       },
       {
-        "t": "Everyday first-line mask at 1 to 6 liters",
+        "t": "Yes — everyday first-line mask at 1 to 6 liters",
         "ok": false,
         "why": "It is not stocked as a first-line EMS mask."
       },
       {
-        "t": "The test default for any hypoxia",
+        "t": "Yes — it is the test default for any hypoxia",
         "ok": false,
         "why": "The test default is a non-rebreather."
       },
       {
-        "t": "Required on every D tank",
+        "t": "Yes — it is required on every D tank",
         "ok": false,
         "why": "They do not carry it."
       }
@@ -443,25 +443,25 @@
   },
   {
     "ch": 11,
-    "q": "Main CPAP patient on a question?",
+    "q": "Which patient is the usual CPAP pick?",
     "opts": [
       {
-        "t": "Pulmonary edema: blast fluid off the alveoli; alert and follows commands",
+        "t": "Alert pulmonary-edema patient who follows commands",
         "ok": true,
-        "why": "Test = fluid in the lungs. Not a bag and not a ventilator."
+        "why": "Main use is pulmonary edema. They must be alert and follow commands. Test = fluid in the lungs."
       },
       {
-        "t": "Respiratory arrest",
+        "t": "Respiratory-arrest patient who needs a bag",
         "ok": false,
         "why": "Arrest gets a bag."
       },
       {
-        "t": "Any trauma chest",
+        "t": "Any trauma-chest patient with a hole",
         "ok": false,
         "why": "Trauma takes CPAP off the table."
       },
       {
-        "t": "Unconscious with a gag",
+        "t": "Unconscious patient who still has a gag",
         "ok": false,
         "why": "They must follow commands."
       }
