@@ -27,25 +27,25 @@
   },
   {
     "ch": 9,
-    "q": "Skill-sheet start. Field impression, rapid exam, transport decision, and A&O questions are later boxes. Which leftover pair is an auto-fail if you skip it?",
+    "q": "Skill-sheet start. Field impression, rapid exam, transport decision, and A&O questions are later boxes. Gloves / BSI, then saying the scene is safe, are already the openers. What named fail is that pair if you skip it?",
     "opts": [
       {
-        "t": "Gloves / BSI, then saying the scene is safe",
+        "t": "Auto-fail",
         "ok": true,
         "why": "BSI then scene safety. Skip either and you auto-fail."
       },
       {
-        "t": "Field impression, then the two chest-pain drugs",
+        "t": "A later-box miss on field impression, then the two chest-pain drugs",
         "ok": false,
         "why": "Those are later, not the auto-fail openers."
       },
       {
-        "t": "Rapid exam, then the transport decision",
+        "t": "A later-box miss on rapid exam, then the transport decision",
         "ok": false,
         "why": "Those are later."
       },
       {
-        "t": "A&O x4 questions, then the pulse-ox goal",
+        "t": "A later-box miss on A&O x4 questions, then the pulse-ox goal",
         "ok": false,
         "why": "Those are later."
       }
@@ -136,7 +136,7 @@
       {
         "t": "Stay out and treat it as a possible hazmat problem",
         "ok": true,
-        "why": "Many similar patients = hazmat \u2014 stay out."
+        "why": "Many similar patients = hazmat — stay out."
       },
       {
         "t": "Walk in and start eight medical assessments",
@@ -318,7 +318,7 @@
       {
         "t": "Calm GI can be wrong; a time-sensitive brain problem can still sit there",
         "ok": true,
-        "why": "GI can be wrong (mute stroke; out was asleep). Looks-fine stroke is still time-sensitive \u2014 get going."
+        "why": "GI can be wrong (mute stroke; out was asleep). Looks-fine stroke is still time-sensitive — get going."
       },
       {
         "t": "Calm GI proves they are fine; a mute stroke is off the list",
@@ -417,25 +417,25 @@
   },
   {
     "ch": 9,
-    "q": "No response to voice. Sternal knuckles, trap pinch, and nail squeeze are already on the pain list. Which leftover response still counts as P?",
+    "q": "No response to voice. Sternal knuckles, trap pinch, and nail squeeze are already on the pain list. They moan, swat, or turn away. What AVPU letter is that?",
     "opts": [
       {
-        "t": "Any moan, swat, or turn-away",
+        "t": "P",
         "ok": true,
         "why": "P = those pain checks. Any moan, swat, or turn-away = pain."
       },
       {
-        "t": "Only a full sentence",
+        "t": "A, because only a full sentence counts",
         "ok": false,
         "why": "A sentence is more than required."
       },
       {
-        "t": "Light tap on the hair, or a wave only",
+        "t": "V, because a light tap on the hair or a wave only is enough",
         "ok": false,
         "why": "Those are not the listed pain checks."
       },
       {
-        "t": "A pain check only after they already answer to your voice",
+        "t": "U, because a pain check only counts after they already answer to your voice",
         "ok": false,
         "why": "If they already answer to voice they are V; you stop."
       }
@@ -547,7 +547,7 @@
   },
   {
     "ch": 9,
-    "q": "Arrest is not breathing. Distress is plenty of air and they just dislike the work \u2014 and distress is not on the immediate-threat list. Which leftover breathing word is an immediate life threat?",
+    "q": "Arrest is not breathing. Distress is plenty of air and they just dislike the work — and distress is not on the immediate-threat list. Which leftover breathing word is an immediate life threat?",
     "opts": [
       {
         "t": "Failure: still breathing, but not enough (six and shallow)",
@@ -599,27 +599,27 @@
   },
   {
     "ch": 9,
-    "q": "Unconscious after a wreck. Head-tilt that cranks the neck is already off. Which leftover open-the-path pair is right?",
+    "q": "Unconscious after a wreck. Head-tilt that cranks the neck is already off. Cheeks, angle of jaw, push the jaw up, and do not crank the neck are already the moves. What named open is that?",
     "opts": [
       {
-        "t": "Jaw thrust: cheeks, angle of jaw, push the jaw up; do not crank the neck",
+        "t": "Jaw thrust",
         "ok": true,
         "why": "Jaw-thrust if trauma/spine: cheeks, angle of jaw, push jaw up, do not crank the neck."
       },
       {
-        "t": "Head-tilt chin-lift: cheeks, angle of jaw, push the jaw up; crank the neck",
+        "t": "Head-tilt chin-lift that cranks the neck",
         "ok": false,
         "why": "That mixes the wrong open with a cranked neck."
       },
       {
-        "t": "Jaw thrust: tilt the head back hard; crank the neck on purpose",
+        "t": "Jaw thrust that tilts the head back hard and cranks the neck on purpose",
         "ok": false,
         "why": "Do not crank the neck."
       },
       {
-        "t": "Head-tilt chin-lift: cheeks, angle of jaw, push the jaw up; no neck worry",
+        "t": "Head-tilt chin-lift with no neck worry",
         "ok": false,
-        "why": "This is a wreck \u2014 spine worry."
+        "why": "This is a wreck — spine worry."
       }
     ]
   },
@@ -1020,7 +1020,7 @@
       {
         "t": "A tourniquet will not sit above that wound",
         "ok": true,
-        "why": "You cannot tourniquet a neck or a high shoulder bleed. Different option \u2014 device not named."
+        "why": "You cannot tourniquet a neck or a high shoulder bleed. Different option — device not named."
       },
       {
         "t": "A neck tourniquet is the first-line tool named for core bleeds",
@@ -1041,25 +1041,25 @@
   },
   {
     "ch": 9,
-    "q": "Critical wreck versus a talking chest-pain call at home. Ten minutes is already the wrong sweep. Which leftover rapid-scan pair is true?",
+    "q": "Critical wreck versus a talking chest-pain call at home. Ten minutes is already the wrong sweep. About 60 seconds and shears on the wreck; do not strip the home medical. What named sweep is that?",
     "opts": [
       {
-        "t": "About 60 seconds and shears on the wreck; do not strip the home medical",
+        "t": "Rapid scan",
         "ok": true,
         "why": "Rapid scan about 60-sec head-to-toe. Trauma naked plus shears on critical trauma only. Not a conscious chest-pain medical at home."
       },
       {
-        "t": "About 60 seconds and shears on both; strip the home medical too",
+        "t": "A 60-second strip of both, including the home medical",
         "ok": false,
         "why": "Do not strip the home medical."
       },
       {
-        "t": "About 10 minutes and shears on the wreck; do not strip the home medical",
+        "t": "A 10-minute wreck sweep with shears",
         "ok": false,
         "why": "About 60 seconds, not 10 minutes."
       },
       {
-        "t": "About 60 seconds and shears on the home medical; skip the wreck",
+        "t": "A 60-second shear sweep of the home medical that skips the wreck",
         "ok": false,
         "why": "Shears are for critical trauma."
       }
@@ -1070,22 +1070,22 @@
     "q": "You are still hunting life threats in the 60-second sweep. SAMPLE is already the wrong box. Which leftover slot is the detailed or focused head-to-toe?",
     "opts": [
       {
-        "t": "Later, in the secondary \u2014 not during the 60-second life-threat sweep",
+        "t": "Later, in the secondary — not during the 60-second life-threat sweep",
         "ok": true,
         "why": "Detailed / focused physical = secondary later. Rapid scan is still hunting life threats."
       },
       {
-        "t": "Now, in the 60-second sweep \u2014 not later in the secondary",
+        "t": "Now, in the 60-second sweep — not later in the secondary",
         "ok": false,
         "why": "That is the rapid scan, not the detailed exam."
       },
       {
-        "t": "Later, in scene size-up \u2014 not during the 60-second life-threat sweep",
+        "t": "Later, in scene size-up — not during the 60-second life-threat sweep",
         "ok": false,
         "why": "Scene size-up is already over."
       },
       {
-        "t": "Now, in SAMPLE \u2014 not later in the secondary",
+        "t": "Now, in SAMPLE — not later in the secondary",
         "ok": false,
         "why": "SAMPLE is history."
       }
@@ -1096,22 +1096,22 @@
     "q": "You opened the airway and you are breathing for them. Low-medium is already shut down. Which leftover priority word is true?",
     "opts": [
       {
-        "t": "High only \u2014 load and go; there is no low-medium box",
+        "t": "High only — load and go; there is no low-medium box",
         "ok": true,
         "why": "High or low only. Opened/suctioned airway or ventilating = high."
       },
       {
-        "t": "Low-medium \u2014 stay and play; three priority boxes",
+        "t": "Low-medium — stay and play; three priority boxes",
         "ok": false,
         "why": "There is no low-medium box."
       },
       {
-        "t": "Low only \u2014 stay and play; airway work is not on the high list",
+        "t": "Low only — stay and play; airway work is not on the high list",
         "ok": false,
         "why": "Airway work is high."
       },
       {
-        "t": "High only \u2014 load and go; but only after a full secondary at the house",
+        "t": "High only — load and go; but only after a full secondary at the house",
         "ok": false,
         "why": "High means get going; more work en route."
       }
@@ -1145,25 +1145,25 @@
   },
   {
     "ch": 9,
-    "q": "911 time and your arrival time are already the wrong start. Which leftover golden-hour clock is listed for critical trauma?",
+    "q": "911 time and your arrival time are already the wrong start. Critical trauma: from the injury to surgery, keep it under about one hour. What named clock is that?",
     "opts": [
       {
-        "t": "From the injury to surgery; keep it under about one hour",
+        "t": "The golden hour",
         "ok": true,
         "why": "Injury to definitive care = surgery, under one hour. Not from 911 or your arrival."
       },
       {
-        "t": "From your arrival to surgery; keep it under about one hour",
+        "t": "A clock that starts at your arrival and runs to surgery under about one hour",
         "ok": false,
         "why": "Clock starts at the injury."
       },
       {
-        "t": "From the injury to your greeting; keep it under about ten hours",
+        "t": "A clock from the injury to your greeting under about ten hours",
         "ok": false,
         "why": "Injury to surgery, under one hour."
       },
       {
-        "t": "From the 911 call to your greeting; keep it under about one hour",
+        "t": "A clock from the 911 call to your greeting under about one hour",
         "ok": false,
         "why": "Not from the call."
       }
@@ -1171,25 +1171,25 @@
   },
   {
     "ch": 9,
-    "q": "ABC plus board, rest en route. Sixty minutes on scene is already the wrong window. Which leftover clock is platinum 10?",
+    "q": "ABC plus board, rest en route. Sixty minutes on scene is already the wrong window. You pull up until you start driving — about ten minutes on scene. What named clock is that?",
     "opts": [
       {
-        "t": "You pull up until you start driving \u2014 about ten minutes on scene",
+        "t": "Platinum 10",
         "ok": true,
         "why": "Platinum 10: pull up to start driving away."
       },
       {
-        "t": "They get hurt until they reach surgery \u2014 about ten minutes total",
+        "t": "The golden hour cut to about ten minutes from injury to surgery",
         "ok": false,
         "why": "Injury to surgery is the golden hour."
       },
       {
-        "t": "You pull up until you start driving \u2014 about sixty minutes on scene",
+        "t": "A sixty-minute on-scene clock from pull-up to driving",
         "ok": false,
         "why": "Ten minutes, not sixty."
       },
       {
-        "t": "They get hurt until you greet them \u2014 about ten minutes in the yard",
+        "t": "A ten-minute yard clock from when they get hurt until you greet them",
         "ok": false,
         "why": "Pull up to drive away."
       }
@@ -1358,7 +1358,7 @@
       {
         "t": "Focused on the chest; a talking medical can point to the part",
         "ok": true,
-        "why": "Focused if you know the part \u2014 conscious medical. Detailed if unconscious or significant MOI."
+        "why": "Focused if you know the part — conscious medical. Detailed if unconscious or significant MOI."
       },
       {
         "t": "Detailed head-to-toe; every medical gets a full strip",
@@ -1405,25 +1405,25 @@
   },
   {
     "ch": 9,
-    "q": "Joint deformity: assume broken. Cyanosis, AVPU, pulse, SAMPLE, and vitals are already the wrong letters. Which leftover DCAP-BTLS set is listed?",
+    "q": "Joint deformity: assume broken. Cyanosis, AVPU, pulse, SAMPLE, and vitals are already the wrong letters. Deformity, contusions, abrasions, punctures, burns, tenderness, lacerations, and swelling are already the eight signs. What named set is that?",
     "opts": [
       {
-        "t": "Deformity, contusions, abrasions, punctures, burns, tenderness, lacerations, swelling",
+        "t": "DCAP-BTLS",
         "ok": true,
         "why": "DCAP-BTLS = those eight injury signs."
       },
       {
-        "t": "Deformity, cyanosis, AVPU, pulse, burns, tenderness, lacerations, SAMPLE",
+        "t": "A primary/history mix of deformity, cyanosis, AVPU, pulse, burns, tenderness, lacerations, SAMPLE",
         "ok": false,
         "why": "Those mix primary/history letters."
       },
       {
-        "t": "Deformity, contusions, airway, pupils, blood pressure, GCS, lungs, sugar",
+        "t": "A vital mix of deformity, contusions, airway, pupils, blood pressure, GCS, lungs, sugar",
         "ok": false,
         "why": "Vitals are not DCAP-BTLS."
       },
       {
-        "t": "Only lacerations and swelling; the rest wait for X-ray",
+        "t": "Lacerations and swelling only, with the rest waiting for X-ray",
         "ok": false,
         "why": "All eight are listed."
       }
@@ -1512,12 +1512,12 @@
     "q": "Kid line: (2 x age) + 70 until age 10, then 90 like adults. 60 to 100 was the adult pulse range. Which leftover four-year-old systolic cutoff is listed?",
     "opts": [
       {
-        "t": "Double the age and add 70 \u2192 78; below that is hypotension",
+        "t": "Double the age and add 70 → 78; below that is hypotension",
         "ok": true,
         "why": "Four-year-old = 8 + 70 = 78."
       },
       {
-        "t": "Double the age and add 70 \u2192 90; below that is hypotension",
+        "t": "Double the age and add 70 → 90; below that is hypotension",
         "ok": false,
         "why": "90 is the adult / age-10 number."
       },
@@ -1540,7 +1540,7 @@
       {
         "t": "3 + 4 + 5 = 12",
         "ok": true,
-        "why": "Eyes to sound = 3, confused = 4, localizes = 5 \u2192 GCS 12."
+        "why": "Eyes to sound = 3, confused = 4, localizes = 5 → GCS 12."
       },
       {
         "t": "4 + 5 + 6 = 15",
@@ -1613,25 +1613,25 @@
   },
   {
     "ch": 9,
-    "q": "Light in one should make both constrict. Book Pearl / charted PERRL. Capnography is the medic CO2 tool. Which leftover pupil set is listed?",
+    "q": "Light in one should make both constrict. Book Pearl / charted PERRL. Capnography is the medic CO2 tool. Pinpoint is classic opiate; dilated is many stimulants. What named pupil set is that?",
     "opts": [
       {
-        "t": "Light in one makes both constrict; chart PERRL / PEARL. Pinpoint classic opiate; dilated many stimulants",
+        "t": "PERRL / PEARL",
         "ok": true,
-        "why": "Conjoined innervation: one light, both constrict. Unequal can be baseline for a few \u2014 assume a problem if they cannot tell you."
+        "why": "Conjoined innervation: one light, both constrict. Unequal can be baseline for a few — assume a problem if they cannot tell you."
       },
       {
-        "t": "Light in one should leave the other dilated; chart anisocoria as always normal",
+        "t": "Anisocoria-as-always-normal, with the other pupil left dilated",
         "ok": false,
         "why": "Both should constrict."
       },
       {
-        "t": "Pinpoint pupils mean cocaine; dilated pupils mean fentanyl",
+        "t": "Cocaine pinpoint and fentanyl dilated",
         "ok": false,
-        "why": "Opiates \u2192 pinpoint. Stimulants \u2192 often dilated."
+        "why": "Opiates → pinpoint. Stimulants → often dilated."
       },
       {
-        "t": "Skip pupils; they are only for the medic capnography adapter",
+        "t": "A medic-only capnography adapter check that skips pupils",
         "ok": false,
         "why": "Pupils are a standard vital."
       }
@@ -1704,7 +1704,7 @@
         "why": "The test world reinforces the call first."
       },
       {
-        "t": "Give the drug, then call, then reassess \u2014 pieces in that order",
+        "t": "Give the drug, then call, then reassess — pieces in that order",
         "ok": false,
         "why": "Call before you give."
       },

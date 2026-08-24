@@ -336,7 +336,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "You give care as an EMT on scene. Which leftover person is legally responsible because you work under that physician's license?",
     "opts": [
       {
-        "t": "The Medical Director \u2014 you work under that physician's license",
+        "t": "The Medical Director — you work under that physician's license",
         "ok": true,
         "why": "Every EMT and paramedic works under the Medical Director's license; that physician is legally responsible for the care you provide."
       },
@@ -411,15 +411,15 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 1,
-    "q": "You use pre-approved protocols for time-critical standard care on most routine emergencies. Which leftover trio is listed as offline standing orders?",
+    "q": "You use pre-approved protocols for time-critical standard care on most routine emergencies. CPR/AED, oxygen, and epinephrine for anaphylaxis are already on that list. What named order type is that?",
     "opts": [
       {
-        "t": "CPR/AED, oxygen, and epinephrine for anaphylaxis",
+        "t": "Offline standing orders",
         "ok": true,
         "why": "Offline standing orders: CPR/AED, oxygen, epinephrine for anaphylaxis."
       },
       {
-        "t": "Certain pain medications, advanced procedures, and protocol deviations",
+        "t": "Online orders for pain meds, advanced procedures, and protocol deviations",
         "ok": false,
         "why": "Those need extra authorization / online orders."
       },
@@ -440,7 +440,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "You called because the situation is unusual or you need extra authorization. Which leftover rule is true of that online order?",
     "opts": [
       {
-        "t": "It applies to that one situation only \u2014 make another call for each new situation",
+        "t": "It applies to that one situation only — make another call for each new situation",
         "ok": true,
         "why": "An online order is one situation only; call again for the next one."
       },
@@ -492,22 +492,22 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "You applied a known protocol. Which leftover error type is treating a stroke as low blood sugar?",
     "opts": [
       {
-        "t": "Rules-based failure \u2014 a known protocol applied to the wrong situation",
+        "t": "Rules-based failure — a known protocol applied to the wrong situation",
         "ok": true,
         "why": "Rules-based: known rule/protocol used on the wrong situation (misjudgment/misdiagnosis)."
       },
       {
-        "t": "Skills-based failure \u2014 you knew it was stroke but turned a dial wrong",
+        "t": "Skills-based failure — you knew it was stroke but turned a dial wrong",
         "ok": false,
         "why": "Skills-based is a slip, like the 2 LPM oxygen example."
       },
       {
-        "t": "Knowledge-based failure \u2014 rare overdose and the wrong antidote",
+        "t": "Knowledge-based failure — rare overdose and the wrong antidote",
         "ok": false,
         "why": "Knowledge-based is an unfamiliar situation and a wrong plan."
       },
       {
-        "t": "Primary prevention \u2014 stopping the problem before it starts",
+        "t": "Primary prevention — stopping the problem before it starts",
         "ok": false,
         "why": "That is not an error type for misapplied protocol."
       }
@@ -541,10 +541,10 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 2,
-    "q": "Scene safety, PPE, body-substance isolation, safe lifting, and awareness are already on your list. Which leftover personal-safety idea ties those pieces together?",
+    "q": "Scene safety, PPE, body-substance isolation, safe lifting, and awareness are already on your list. You cannot help anyone if you become a patient. What named idea is that?",
     "opts": [
       {
-        "t": "Protect yourself first so you can help the patient \u2014 you cannot help anyone if you become a patient",
+        "t": "Protect yourself first so you can help the patient",
         "ok": true,
         "why": "Protect yourself first. You cannot help anyone if you become a patient."
       },
@@ -570,7 +570,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "You pause at the doorway before you enter. Look, listen, and smell are already done. Which leftover check completes that front-door survey?",
     "opts": [
       {
-        "t": "Assess the mood, then keep scanning the whole scene \u2014 not just the patient",
+        "t": "Assess the mood, then keep scanning the whole scene — not just the patient",
         "ok": true,
         "why": "Front-door survey: look, listen, smell, assess the mood. Then scan the whole scene."
       },
@@ -619,25 +619,25 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 2,
-    "q": "Faster HR and BP, faster breathing, dilated pupils, blood to muscles/heart/lungs/brain, and slower digestion are already listed. Which leftover physical cluster still belongs in fight-or-flight?",
+    "q": "Faster HR and BP, faster breathing, dilated pupils, blood to muscles/heart/lungs/brain, slower digestion, tense muscles, more sweat, less pain, and heightened senses are already on the patient. What named response is that?",
     "opts": [
       {
-        "t": "Tense muscles, more sweat, less pain, and heightened senses",
+        "t": "Fight-or-flight",
         "ok": true,
         "why": "Those complete the sympathetic/stress-hormone list."
       },
       {
-        "t": "Slower HR, constricted pupils, blood pooled in the skin and gut",
+        "t": "The opposite of stress — slower HR, constricted pupils, blood pooled in the skin and gut",
         "ok": false,
         "why": "That is the opposite of fight-or-flight."
       },
       {
-        "t": "Only emotional numbness and nightmares during the call",
+        "t": "Delayed stress — emotional numbness and nightmares during the call",
         "ok": false,
         "why": "Those sit with delayed stress, not the immediate physical list."
       },
       {
-        "t": "Burnout, cynicism, and reduced performance in the first minute",
+        "t": "Cumulative stress — burnout, cynicism, and reduced performance in the first minute",
         "ok": false,
         "why": "Those are cumulative stress."
       }
@@ -726,22 +726,22 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "Droplet is large respiratory droplets over a short distance. Vector-borne is mosquitoes and ticks. Indirect contact is touching a contaminated object. Which leftover route is paired with TB and measles?",
     "opts": [
       {
-        "t": "Airborne \u2014 tiny particles that stay in the air",
+        "t": "Airborne — tiny particles that stay in the air",
         "ok": true,
         "why": "Airborne: tiny particles that stay in the air (TB, measles)."
       },
       {
-        "t": "Droplet \u2014 large droplets, short distance only",
+        "t": "Droplet — large droplets, short distance only",
         "ok": false,
         "why": "That is droplet, not TB/measles."
       },
       {
-        "t": "Vector-borne \u2014 mosquitoes and ticks",
+        "t": "Vector-borne — mosquitoes and ticks",
         "ok": false,
         "why": "That is vector-borne."
       },
       {
-        "t": "Indirect contact \u2014 touching a contaminated object only",
+        "t": "Indirect contact — touching a contaminated object only",
         "ok": false,
         "why": "That is indirect contact."
       }
@@ -749,25 +749,25 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 2,
-    "q": "You assume every patient may be infectious. Eyes, mask, gown, and N95 are add-ons as needed. Which leftover pair is used every time under standard (universal) precautions?",
+    "q": "You assume every patient may be infectious. Eyes, mask, gown, and N95 are add-ons as needed. Hand hygiene and gloves for patient contact are already used every time. What named precaution set is that?",
     "opts": [
       {
-        "t": "Hand hygiene and gloves for patient contact",
+        "t": "Standard (universal) precautions",
         "ok": true,
         "why": "Every time: hand hygiene; gloves for patient contact."
       },
       {
-        "t": "N95 on every medical call, even without airborne risk",
+        "t": "Airborne-only precautions that require an N95 on every medical call",
         "ok": false,
         "why": "N95 is added when needed, not every call."
       },
       {
-        "t": "Gown and face shield as the minimum on every call",
+        "t": "Contact-only precautions that make gown and face shield the minimum on every call",
         "ok": false,
         "why": "Those are add-ons."
       },
       {
-        "t": "Mouth-to-mouth is preferred over a pocket mask",
+        "t": "A mouth-to-mouth-first rule instead of a pocket mask",
         "ok": false,
         "why": "That is not a standard-precaution minimum."
       }
@@ -934,12 +934,12 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "Denial, anger, bargaining, and depression are already on the list. Which leftover stage completes Kubler-Ross, and what is true about order?",
     "opts": [
       {
-        "t": "Acceptance \u2014 people may skip stages or move back and forth; they do not always go in order",
+        "t": "Acceptance — people may skip stages or move back and forth; they do not always go in order",
         "ok": true,
         "why": "Five stages: denial, anger, bargaining, depression, acceptance. Order is not fixed. Your role: respect, empathy, honest compassion; allow family when possible; avoid false hope or Everything will be fine."
       },
       {
-        "t": "Acceptance, then denial only \u2014 always in that fixed order",
+        "t": "Acceptance, then denial only — always in that fixed order",
         "ok": false,
         "why": "They do not always go in order."
       },
@@ -986,7 +986,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "They are alert, oriented, and have decision-making capacity. They say yes or hold out an arm after you ask to check a BP. Which leftover consent type still requires you to inform them of plan, risks, and benefits?",
     "opts": [
       {
-        "t": "Expressed consent \u2014 verbal or non-verbal agreement that should be informed",
+        "t": "Expressed consent — verbal or non-verbal agreement that should be informed",
         "ok": true,
         "why": "Expressed: capacity plus verbal or non-verbal agreement; must be informed."
       },
@@ -1038,7 +1038,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "They are unresponsive after a crash. Which leftover consent path assumes a reasonable person would want emergency care?",
     "opts": [
       {
-        "t": "Implied consent \u2014 unresponsive, severely altered, or unable to consent; true emergencies only",
+        "t": "Implied consent — unresponsive, severely altered, or unable to consent; true emergencies only",
         "ok": true,
         "why": "Lack of capacity plus emergency means implied consent; treat and transport."
       },
@@ -1064,7 +1064,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "They are suicidal, severely altered, and refuse. Law enforcement places a hold. Which leftover consent type is that?",
     "opts": [
       {
-        "t": "Involuntary consent \u2014 against their will under legal authority (hold, court order, or danger to self/others without capacity)",
+        "t": "Involuntary consent — against their will under legal authority (hold, court order, or danger to self/others without capacity)",
         "ok": true,
         "why": "Involuntary: legal authority against the patient's will."
       },
@@ -1095,7 +1095,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
         "why": "A competent adult may refuse assessment, treatment, or transport. If they lack capacity and it is an emergency, treat under implied consent."
       },
       {
-        "t": "Nothing \u2014 serious injury always forces transport",
+        "t": "Nothing — serious injury always forces transport",
         "ok": false,
         "why": "Capacity still allows refusal."
       },
@@ -1272,7 +1272,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "Name, address, and phone are already protected. Which leftover cluster is also protected patient information?",
     "opts": [
       {
-        "t": "History, findings, vitals, treatment and responses \u2014 anything that identifies the patient and their condition",
+        "t": "History, findings, vitals, treatment and responses — anything that identifies the patient and their condition",
         "ok": true,
         "why": "Share only with a legitimate need to know for care, or when required by law."
       },
@@ -1376,7 +1376,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "A living will is on the fridge. There is no DNR or POLST. They are in cardiac arrest. Which leftover EMS rule is true?",
     "opts": [
       {
-        "t": "A living will alone is often not enough to withhold emergency care \u2014 usually need a specific DNR or POLST. When in doubt, begin treatment and contact medical control",
+        "t": "A living will alone is often not enough to withhold emergency care — usually need a specific DNR or POLST. When in doubt, begin treatment and contact medical control",
         "ok": true,
         "why": "Follow a valid DNR or POLST if present and legitimate. If any question, resuscitate and let the hospital sort it out."
       },
@@ -1430,7 +1430,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
       {
         "t": "Fixed, dilated pupils",
         "ok": true,
-        "why": "Presumptive: unresponsiveness, no breathing, no pulse, fixed dilated pupils \u2014 not enough by themselves to withhold resuscitation."
+        "why": "Presumptive: unresponsiveness, no breathing, no pulse, fixed dilated pupils — not enough by themselves to withhold resuscitation."
       },
       {
         "t": "Dependent lividity, rigor mortis, putrefaction, decapitation",
@@ -1529,10 +1529,10 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 3,
-    "q": "Training, experience, and the same or similar situation are already in the sentence. Which leftover definition is the standard of care?",
+    "q": "Training, experience, and the same or similar situation are already in the sentence. A reasonably prudent EMT would do this. What named rule is that?",
     "opts": [
       {
-        "t": "What a reasonably prudent EMT with similar training and experience would do in the same or similar situation",
+        "t": "The standard of care",
         "ok": true,
         "why": "That is the standard-of-care definition."
       },
@@ -1563,7 +1563,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
         "why": "Negligence needs all four: duty, breach, damages, causation."
       },
       {
-        "t": "Duty and breach only \u2014 harm is optional",
+        "t": "Duty and breach only — harm is optional",
         "ok": false,
         "why": "Harm/damages are required."
       },
@@ -1581,10 +1581,10 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 3,
-    "q": "They still need care. You did not get consent to stop. Which leftover definition is abandonment?",
+    "q": "They still need care. You did not get consent to stop. You ended care on your own without transfer to an equal or higher level. What named problem is that?",
     "opts": [
       {
-        "t": "Unilateral termination of care without transfer to equal or higher level",
+        "t": "Abandonment",
         "ok": true,
         "why": "Avoid it with continuous care until a proper handoff."
       },
@@ -1685,25 +1685,25 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 4,
-    "q": "You already use eye contact, speak clearly, listen, show respect, and adjust for age, culture, hearing/vision, or anxiety. Which leftover question order is therapeutic communication?",
+    "q": "You already use eye contact, speak clearly, listen, show respect, and adjust for age, culture, hearing/vision, or anxiety. Open-ended first (What happened?), then closed-ended for specifics. What named skill is that?",
     "opts": [
       {
-        "t": "Open-ended first (What happened?), then closed-ended for specifics",
+        "t": "Therapeutic communication",
         "ok": true,
         "why": "Open-ended first, then closed-ended."
       },
       {
-        "t": "Closed-ended only, never let them tell the story",
+        "t": "Closed-ended-only interviewing that never lets them tell the story",
         "ok": false,
         "why": "Start open-ended."
       },
       {
-        "t": "Start with a leading question about chest pain",
+        "t": "Leading-question interviewing that starts with chest pain",
         "ok": false,
         "why": "Leading questions are avoided."
       },
       {
-        "t": "Use medical jargon first to sound professional",
+        "t": "Jargon-first interviewing to sound professional",
         "ok": false,
         "why": "Jargon is avoided."
       }
@@ -1714,22 +1714,22 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "Interpretation restates what you think they mean. Explanation tells them what is happening. Summary repeats main points. Which leftover type is You said you don't drink, but I smell alcohol, said calmly?",
     "opts": [
       {
-        "t": "Confrontation \u2014 point out an inconsistency calmly",
+        "t": "Confrontation — point out an inconsistency calmly",
         "ok": true,
         "why": "That line is confrontation."
       },
       {
-        "t": "Interpretation \u2014 restate what you think they mean",
+        "t": "Interpretation — restate what you think they mean",
         "ok": false,
         "why": "Interpretation is the heart-attack-worry example."
       },
       {
-        "t": "Explanation \u2014 tell them what is happening",
+        "t": "Explanation — tell them what is happening",
         "ok": false,
         "why": "Explanation is the oxygen-mask line."
       },
       {
-        "t": "Summary \u2014 repeat main points",
+        "t": "Summary — repeat main points",
         "ok": false,
         "why": "Summary recaps the story."
       }
@@ -1740,22 +1740,22 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "Confrontation points out inconsistency. Explanation tells them what you are doing. Summary recaps. Which leftover type is It sounds like you're worried this is a heart attack?",
     "opts": [
       {
-        "t": "Interpretation \u2014 restate what you think they mean",
+        "t": "Interpretation — restate what you think they mean",
         "ok": true,
         "why": "That line is interpretation."
       },
       {
-        "t": "Confrontation \u2014 inconsistency",
+        "t": "Confrontation — inconsistency",
         "ok": false,
         "why": "Confrontation is the alcohol-smell line."
       },
       {
-        "t": "Explanation \u2014 what you are doing",
+        "t": "Explanation — what you are doing",
         "ok": false,
         "why": "Explanation is the oxygen-mask line."
       },
       {
-        "t": "Summary \u2014 recap the story",
+        "t": "Summary — recap the story",
         "ok": false,
         "why": "Summary is the two-hour walking-pain recap."
       }
@@ -1766,22 +1766,22 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "Summary repeats history. Confrontation points out inconsistency. False reassurance is something to avoid. Which leftover type is I'm putting this oxygen mask on to help you breathe?",
     "opts": [
       {
-        "t": "Explanation \u2014 tell them what is happening",
+        "t": "Explanation — tell them what is happening",
         "ok": true,
         "why": "That line is explanation."
       },
       {
-        "t": "Summary \u2014 repeat the history",
+        "t": "Summary — repeat the history",
         "ok": false,
         "why": "Summary recaps their story."
       },
       {
-        "t": "Confrontation \u2014 point out inconsistency",
+        "t": "Confrontation — point out inconsistency",
         "ok": false,
         "why": "Not an inconsistency."
       },
       {
-        "t": "False reassurance \u2014 a listed thing to avoid",
+        "t": "False reassurance — a listed thing to avoid",
         "ok": false,
         "why": "You are explaining a real action."
       }
@@ -1789,15 +1789,15 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 4,
-    "q": "Leading questions, giving advice, and judgmental statements are already on the avoid list. Which leftover type is Pain for two hours, started while walking, worse with deep breaths \u2014 correct?",
+    "q": "Leading questions, giving advice, and judgmental statements are already on the avoid list. Which leftover type is Pain for two hours, started while walking, worse with deep breaths — correct?",
     "opts": [
       {
-        "t": "Summary \u2014 briefly repeat the main points",
+        "t": "Summary — briefly repeat the main points",
         "ok": true,
         "why": "That line is a summary."
       },
       {
-        "t": "Leading question \u2014 listed as something to avoid",
+        "t": "Leading question — listed as something to avoid",
         "ok": false,
         "why": "You are confirming their story, not planting the answer."
       },
@@ -1815,10 +1815,10 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 4,
-    "q": "Don't worry you're going to be completely fine, The pain is in your chest right, You should really quit smoking, You have tachycardia and dyspnea, and Why did you wait so long are already examples. Which leftover cluster is the full avoid list those examples sit on?",
+    "q": "Don't worry you're going to be completely fine, The pain is in your chest right, You should really quit smoking, You have tachycardia and dyspnea, and Why did you wait so long are already examples. False reassurance, leading questions, giving advice, interrupting, medical jargon, judgmental statements, and talking over the patient with your partner sit with those lines. What named list is that?",
     "opts": [
       {
-        "t": "False reassurance, leading questions, giving advice, interrupting, medical jargon, judgmental statements, talking over the patient with your partner",
+        "t": "The communication avoid list",
         "ok": true,
         "why": "Those are the listed things to avoid."
       },
@@ -1828,12 +1828,12 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
         "why": "Open-ended questions are wanted."
       },
       {
-        "t": "Making eye contact and using the patient's proper name",
+        "t": "The golden-rule items: eye contact and the patient's proper name",
         "ok": false,
         "why": "Those are golden-rule items."
       },
       {
-        "t": "Facing a hearing-impaired patient so they can read your lips",
+        "t": "The hearing-impaired golden rule: face them so they can read your lips",
         "ok": false,
         "why": "That is a golden rule."
       }
@@ -1885,7 +1885,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
         "why": "Do not say the name on the radio."
       },
       {
-        "t": "Never repeat a physician order \u2014 just guess if you missed it",
+        "t": "Never repeat a physician order — just guess if you missed it",
         "ok": false,
         "why": "Repeat orders back."
       }
@@ -1911,7 +1911,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
         "why": "That is not SBAR."
       },
       {
-        "t": "SOAP only \u2014 SBAR is not used",
+        "t": "SOAP only — SBAR is not used",
         "ok": false,
         "why": "SBAR is the hospital-notification format given. CHART/SOAP are not that format."
       }
@@ -1922,7 +1922,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "Demographics, chief complaint, history, vital signs, assessment findings, treatments, response to treatment, and times are already on the PCR. Which leftover pair is true of that document?",
     "opts": [
       {
-        "t": "It is a legal document / permanent medical record. Facts only \u2014 no opinions or judgments",
+        "t": "It is a legal document / permanent medical record. Facts only — no opinions or judgments",
         "ok": true,
         "why": "If it isn't documented, it didn't happen."
       },
@@ -2062,7 +2062,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
         "why": "It is for pronunciation, not meaning."
       },
       {
-        "t": "Only a root \u2014 prefixes and suffixes are not listed",
+        "t": "Only a root — prefixes and suffixes are not listed",
         "ok": false,
         "why": "Prefix and suffix are listed."
       },
@@ -2910,7 +2910,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "Cells need oxygen, glucose (sugar), water, and nutrients. Which leftover energy equation is listed?",
     "opts": [
       {
-        "t": "Oxygen + glucose \u2192 energy (ATP) + waste (CO2 and water) + heat",
+        "t": "Oxygen + glucose → energy (ATP) + waste (CO2 and water) + heat",
         "ok": true,
         "why": "That is the listed energy equation."
       },
@@ -2920,7 +2920,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
         "why": "Glucose is required."
       },
       {
-        "t": "Glucose + heat \u2192 oxygen only",
+        "t": "Glucose + heat → oxygen only",
         "ok": false,
         "why": "That is not the equation."
       },
@@ -2993,7 +2993,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
         "why": "Adult skeleton = 206 bones."
       },
       {
-        "t": "33 \u2014 that is the whole skeleton",
+        "t": "33 — that is the whole skeleton",
         "ok": false,
         "why": "33 is vertebrae."
       },
@@ -3003,7 +3003,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
         "why": "The cranium is listed as 4 named bones; 14 is the face."
       },
       {
-        "t": "12 \u2014 one for each rib pair only",
+        "t": "12 — one for each rib pair only",
         "ok": false,
         "why": "12 is rib pairs (24 ribs) plus a sternum."
       }
@@ -3063,25 +3063,25 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 6,
-    "q": "Shoulder girdle is clavicle and scapula. Upper limb: humerus, radius, ulna, carpals, metacarpals, phalanges. Lower limb: femur, patella, tibia, fibula, tarsals, metatarsals, phalanges. Thorax: 12 rib pairs (24) and sternum. Which leftover region is listed as the highest potential to bleed, and which bones sit there?",
+    "q": "Shoulder girdle is clavicle and scapula. Upper limb: humerus, radius, ulna, carpals, metacarpals, phalanges. Lower limb: femur, patella, tibia, fibula, tarsals, metatarsals, phalanges. Thorax: 12 rib pairs (24) and sternum. Ilium, ischium, and pubis (fused on each side) already sit with the highest potential to bleed. What named region is that?",
     "opts": [
       {
-        "t": "Pelvis \u2014 ilium, ischium, pubis (fused on each side) \u2014 highest potential to bleed (most blood)",
+        "t": "Pelvis",
         "ok": true,
         "why": "Pelvis has the highest bleed potential."
       },
       {
-        "t": "Cranium \u2014 frontal and occipital bleed the most",
+        "t": "Cranium — frontal and occipital bleed the most",
         "ok": false,
         "why": "Highest bleed is pelvis."
       },
       {
-        "t": "Patella only \u2014 listed as most blood",
+        "t": "Patella only — listed as most blood",
         "ok": false,
         "why": "Patella is in the lower-limb list, not the highest-bleed region."
       },
       {
-        "t": "Clavicle and scapula \u2014 the shoulder is the highest bleed",
+        "t": "Clavicle and scapula — the shoulder is the highest bleed",
         "ok": false,
         "why": "Shoulder girdle is listed, but pelvis is the highest bleed."
       }
@@ -3118,25 +3118,25 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 9,
-    "q": "Skill-sheet start. Field impression, rapid exam, transport decision, and A&O questions are later boxes. Which leftover pair is an auto-fail if you skip it?",
+    "q": "Skill-sheet start. Field impression, rapid exam, transport decision, and A&O questions are later boxes. Gloves / BSI, then saying the scene is safe, are already the openers. What named fail is that pair if you skip it?",
     "opts": [
       {
-        "t": "Gloves / BSI, then saying the scene is safe",
+        "t": "Auto-fail",
         "ok": true,
         "why": "BSI then scene safety. Skip either and you auto-fail."
       },
       {
-        "t": "Field impression, then the two chest-pain drugs",
+        "t": "A later-box miss on field impression, then the two chest-pain drugs",
         "ok": false,
         "why": "Those are later, not the auto-fail openers."
       },
       {
-        "t": "Rapid exam, then the transport decision",
+        "t": "A later-box miss on rapid exam, then the transport decision",
         "ok": false,
         "why": "Those are later."
       },
       {
-        "t": "A&O x4 questions, then the pulse-ox goal",
+        "t": "A later-box miss on A&O x4 questions, then the pulse-ox goal",
         "ok": false,
         "why": "Those are later."
       }
@@ -3227,7 +3227,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
       {
         "t": "Stay out and treat it as a possible hazmat problem",
         "ok": true,
-        "why": "Many similar patients = hazmat \u2014 stay out."
+        "why": "Many similar patients = hazmat — stay out."
       },
       {
         "t": "Walk in and start eight medical assessments",
@@ -3409,7 +3409,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
       {
         "t": "Calm GI can be wrong; a time-sensitive brain problem can still sit there",
         "ok": true,
-        "why": "GI can be wrong (mute stroke; out was asleep). Looks-fine stroke is still time-sensitive \u2014 get going."
+        "why": "GI can be wrong (mute stroke; out was asleep). Looks-fine stroke is still time-sensitive — get going."
       },
       {
         "t": "Calm GI proves they are fine; a mute stroke is off the list",
@@ -3508,25 +3508,25 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 9,
-    "q": "No response to voice. Sternal knuckles, trap pinch, and nail squeeze are already on the pain list. Which leftover response still counts as P?",
+    "q": "No response to voice. Sternal knuckles, trap pinch, and nail squeeze are already on the pain list. They moan, swat, or turn away. What AVPU letter is that?",
     "opts": [
       {
-        "t": "Any moan, swat, or turn-away",
+        "t": "P",
         "ok": true,
         "why": "P = those pain checks. Any moan, swat, or turn-away = pain."
       },
       {
-        "t": "Only a full sentence",
+        "t": "A, because only a full sentence counts",
         "ok": false,
         "why": "A sentence is more than required."
       },
       {
-        "t": "Light tap on the hair, or a wave only",
+        "t": "V, because a light tap on the hair or a wave only is enough",
         "ok": false,
         "why": "Those are not the listed pain checks."
       },
       {
-        "t": "A pain check only after they already answer to your voice",
+        "t": "U, because a pain check only counts after they already answer to your voice",
         "ok": false,
         "why": "If they already answer to voice they are V; you stop."
       }
@@ -3638,7 +3638,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 9,
-    "q": "Arrest is not breathing. Distress is plenty of air and they just dislike the work \u2014 and distress is not on the immediate-threat list. Which leftover breathing word is an immediate life threat?",
+    "q": "Arrest is not breathing. Distress is plenty of air and they just dislike the work — and distress is not on the immediate-threat list. Which leftover breathing word is an immediate life threat?",
     "opts": [
       {
         "t": "Failure: still breathing, but not enough (six and shallow)",
@@ -3690,27 +3690,27 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 9,
-    "q": "Unconscious after a wreck. Head-tilt that cranks the neck is already off. Which leftover open-the-path pair is right?",
+    "q": "Unconscious after a wreck. Head-tilt that cranks the neck is already off. Cheeks, angle of jaw, push the jaw up, and do not crank the neck are already the moves. What named open is that?",
     "opts": [
       {
-        "t": "Jaw thrust: cheeks, angle of jaw, push the jaw up; do not crank the neck",
+        "t": "Jaw thrust",
         "ok": true,
         "why": "Jaw-thrust if trauma/spine: cheeks, angle of jaw, push jaw up, do not crank the neck."
       },
       {
-        "t": "Head-tilt chin-lift: cheeks, angle of jaw, push the jaw up; crank the neck",
+        "t": "Head-tilt chin-lift that cranks the neck",
         "ok": false,
         "why": "That mixes the wrong open with a cranked neck."
       },
       {
-        "t": "Jaw thrust: tilt the head back hard; crank the neck on purpose",
+        "t": "Jaw thrust that tilts the head back hard and cranks the neck on purpose",
         "ok": false,
         "why": "Do not crank the neck."
       },
       {
-        "t": "Head-tilt chin-lift: cheeks, angle of jaw, push the jaw up; no neck worry",
+        "t": "Head-tilt chin-lift with no neck worry",
         "ok": false,
-        "why": "This is a wreck \u2014 spine worry."
+        "why": "This is a wreck — spine worry."
       }
     ]
   },
@@ -4111,7 +4111,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
       {
         "t": "A tourniquet will not sit above that wound",
         "ok": true,
-        "why": "You cannot tourniquet a neck or a high shoulder bleed. Different option \u2014 device not named."
+        "why": "You cannot tourniquet a neck or a high shoulder bleed. Different option — device not named."
       },
       {
         "t": "A neck tourniquet is the first-line tool named for core bleeds",
@@ -4132,25 +4132,25 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 9,
-    "q": "Critical wreck versus a talking chest-pain call at home. Ten minutes is already the wrong sweep. Which leftover rapid-scan pair is true?",
+    "q": "Critical wreck versus a talking chest-pain call at home. Ten minutes is already the wrong sweep. About 60 seconds and shears on the wreck; do not strip the home medical. What named sweep is that?",
     "opts": [
       {
-        "t": "About 60 seconds and shears on the wreck; do not strip the home medical",
+        "t": "Rapid scan",
         "ok": true,
         "why": "Rapid scan about 60-sec head-to-toe. Trauma naked plus shears on critical trauma only. Not a conscious chest-pain medical at home."
       },
       {
-        "t": "About 60 seconds and shears on both; strip the home medical too",
+        "t": "A 60-second strip of both, including the home medical",
         "ok": false,
         "why": "Do not strip the home medical."
       },
       {
-        "t": "About 10 minutes and shears on the wreck; do not strip the home medical",
+        "t": "A 10-minute wreck sweep with shears",
         "ok": false,
         "why": "About 60 seconds, not 10 minutes."
       },
       {
-        "t": "About 60 seconds and shears on the home medical; skip the wreck",
+        "t": "A 60-second shear sweep of the home medical that skips the wreck",
         "ok": false,
         "why": "Shears are for critical trauma."
       }
@@ -4161,22 +4161,22 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "You are still hunting life threats in the 60-second sweep. SAMPLE is already the wrong box. Which leftover slot is the detailed or focused head-to-toe?",
     "opts": [
       {
-        "t": "Later, in the secondary \u2014 not during the 60-second life-threat sweep",
+        "t": "Later, in the secondary — not during the 60-second life-threat sweep",
         "ok": true,
         "why": "Detailed / focused physical = secondary later. Rapid scan is still hunting life threats."
       },
       {
-        "t": "Now, in the 60-second sweep \u2014 not later in the secondary",
+        "t": "Now, in the 60-second sweep — not later in the secondary",
         "ok": false,
         "why": "That is the rapid scan, not the detailed exam."
       },
       {
-        "t": "Later, in scene size-up \u2014 not during the 60-second life-threat sweep",
+        "t": "Later, in scene size-up — not during the 60-second life-threat sweep",
         "ok": false,
         "why": "Scene size-up is already over."
       },
       {
-        "t": "Now, in SAMPLE \u2014 not later in the secondary",
+        "t": "Now, in SAMPLE — not later in the secondary",
         "ok": false,
         "why": "SAMPLE is history."
       }
@@ -4187,22 +4187,22 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "You opened the airway and you are breathing for them. Low-medium is already shut down. Which leftover priority word is true?",
     "opts": [
       {
-        "t": "High only \u2014 load and go; there is no low-medium box",
+        "t": "High only — load and go; there is no low-medium box",
         "ok": true,
         "why": "High or low only. Opened/suctioned airway or ventilating = high."
       },
       {
-        "t": "Low-medium \u2014 stay and play; three priority boxes",
+        "t": "Low-medium — stay and play; three priority boxes",
         "ok": false,
         "why": "There is no low-medium box."
       },
       {
-        "t": "Low only \u2014 stay and play; airway work is not on the high list",
+        "t": "Low only — stay and play; airway work is not on the high list",
         "ok": false,
         "why": "Airway work is high."
       },
       {
-        "t": "High only \u2014 load and go; but only after a full secondary at the house",
+        "t": "High only — load and go; but only after a full secondary at the house",
         "ok": false,
         "why": "High means get going; more work en route."
       }
@@ -4236,25 +4236,25 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 9,
-    "q": "911 time and your arrival time are already the wrong start. Which leftover golden-hour clock is listed for critical trauma?",
+    "q": "911 time and your arrival time are already the wrong start. Critical trauma: from the injury to surgery, keep it under about one hour. What named clock is that?",
     "opts": [
       {
-        "t": "From the injury to surgery; keep it under about one hour",
+        "t": "The golden hour",
         "ok": true,
         "why": "Injury to definitive care = surgery, under one hour. Not from 911 or your arrival."
       },
       {
-        "t": "From your arrival to surgery; keep it under about one hour",
+        "t": "A clock that starts at your arrival and runs to surgery under about one hour",
         "ok": false,
         "why": "Clock starts at the injury."
       },
       {
-        "t": "From the injury to your greeting; keep it under about ten hours",
+        "t": "A clock from the injury to your greeting under about ten hours",
         "ok": false,
         "why": "Injury to surgery, under one hour."
       },
       {
-        "t": "From the 911 call to your greeting; keep it under about one hour",
+        "t": "A clock from the 911 call to your greeting under about one hour",
         "ok": false,
         "why": "Not from the call."
       }
@@ -4262,25 +4262,25 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 9,
-    "q": "ABC plus board, rest en route. Sixty minutes on scene is already the wrong window. Which leftover clock is platinum 10?",
+    "q": "ABC plus board, rest en route. Sixty minutes on scene is already the wrong window. You pull up until you start driving — about ten minutes on scene. What named clock is that?",
     "opts": [
       {
-        "t": "You pull up until you start driving \u2014 about ten minutes on scene",
+        "t": "Platinum 10",
         "ok": true,
         "why": "Platinum 10: pull up to start driving away."
       },
       {
-        "t": "They get hurt until they reach surgery \u2014 about ten minutes total",
+        "t": "The golden hour cut to about ten minutes from injury to surgery",
         "ok": false,
         "why": "Injury to surgery is the golden hour."
       },
       {
-        "t": "You pull up until you start driving \u2014 about sixty minutes on scene",
+        "t": "A sixty-minute on-scene clock from pull-up to driving",
         "ok": false,
         "why": "Ten minutes, not sixty."
       },
       {
-        "t": "They get hurt until you greet them \u2014 about ten minutes in the yard",
+        "t": "A ten-minute yard clock from when they get hurt until you greet them",
         "ok": false,
         "why": "Pull up to drive away."
       }
@@ -4449,7 +4449,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
       {
         "t": "Focused on the chest; a talking medical can point to the part",
         "ok": true,
-        "why": "Focused if you know the part \u2014 conscious medical. Detailed if unconscious or significant MOI."
+        "why": "Focused if you know the part — conscious medical. Detailed if unconscious or significant MOI."
       },
       {
         "t": "Detailed head-to-toe; every medical gets a full strip",
@@ -4496,25 +4496,25 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 9,
-    "q": "Joint deformity: assume broken. Cyanosis, AVPU, pulse, SAMPLE, and vitals are already the wrong letters. Which leftover DCAP-BTLS set is listed?",
+    "q": "Joint deformity: assume broken. Cyanosis, AVPU, pulse, SAMPLE, and vitals are already the wrong letters. Deformity, contusions, abrasions, punctures, burns, tenderness, lacerations, and swelling are already the eight signs. What named set is that?",
     "opts": [
       {
-        "t": "Deformity, contusions, abrasions, punctures, burns, tenderness, lacerations, swelling",
+        "t": "DCAP-BTLS",
         "ok": true,
         "why": "DCAP-BTLS = those eight injury signs."
       },
       {
-        "t": "Deformity, cyanosis, AVPU, pulse, burns, tenderness, lacerations, SAMPLE",
+        "t": "A primary/history mix of deformity, cyanosis, AVPU, pulse, burns, tenderness, lacerations, SAMPLE",
         "ok": false,
         "why": "Those mix primary/history letters."
       },
       {
-        "t": "Deformity, contusions, airway, pupils, blood pressure, GCS, lungs, sugar",
+        "t": "A vital mix of deformity, contusions, airway, pupils, blood pressure, GCS, lungs, sugar",
         "ok": false,
         "why": "Vitals are not DCAP-BTLS."
       },
       {
-        "t": "Only lacerations and swelling; the rest wait for X-ray",
+        "t": "Lacerations and swelling only, with the rest waiting for X-ray",
         "ok": false,
         "why": "All eight are listed."
       }
@@ -4603,12 +4603,12 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
     "q": "Kid line: (2 x age) + 70 until age 10, then 90 like adults. 60 to 100 was the adult pulse range. Which leftover four-year-old systolic cutoff is listed?",
     "opts": [
       {
-        "t": "Double the age and add 70 \u2192 78; below that is hypotension",
+        "t": "Double the age and add 70 → 78; below that is hypotension",
         "ok": true,
         "why": "Four-year-old = 8 + 70 = 78."
       },
       {
-        "t": "Double the age and add 70 \u2192 90; below that is hypotension",
+        "t": "Double the age and add 70 → 90; below that is hypotension",
         "ok": false,
         "why": "90 is the adult / age-10 number."
       },
@@ -4631,7 +4631,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
       {
         "t": "3 + 4 + 5 = 12",
         "ok": true,
-        "why": "Eyes to sound = 3, confused = 4, localizes = 5 \u2192 GCS 12."
+        "why": "Eyes to sound = 3, confused = 4, localizes = 5 → GCS 12."
       },
       {
         "t": "4 + 5 + 6 = 15",
@@ -4704,25 +4704,25 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
   },
   {
     "ch": 9,
-    "q": "Light in one should make both constrict. Book Pearl / charted PERRL. Capnography is the medic CO2 tool. Which leftover pupil set is listed?",
+    "q": "Light in one should make both constrict. Book Pearl / charted PERRL. Capnography is the medic CO2 tool. Pinpoint is classic opiate; dilated is many stimulants. What named pupil set is that?",
     "opts": [
       {
-        "t": "Light in one makes both constrict; chart PERRL / PEARL. Pinpoint classic opiate; dilated many stimulants",
+        "t": "PERRL / PEARL",
         "ok": true,
-        "why": "Conjoined innervation: one light, both constrict. Unequal can be baseline for a few \u2014 assume a problem if they cannot tell you."
+        "why": "Conjoined innervation: one light, both constrict. Unequal can be baseline for a few — assume a problem if they cannot tell you."
       },
       {
-        "t": "Light in one should leave the other dilated; chart anisocoria as always normal",
+        "t": "Anisocoria-as-always-normal, with the other pupil left dilated",
         "ok": false,
         "why": "Both should constrict."
       },
       {
-        "t": "Pinpoint pupils mean cocaine; dilated pupils mean fentanyl",
+        "t": "Cocaine pinpoint and fentanyl dilated",
         "ok": false,
-        "why": "Opiates \u2192 pinpoint. Stimulants \u2192 often dilated."
+        "why": "Opiates → pinpoint. Stimulants → often dilated."
       },
       {
-        "t": "Skip pupils; they are only for the medic capnography adapter",
+        "t": "A medic-only capnography adapter check that skips pupils",
         "ok": false,
         "why": "Pupils are a standard vital."
       }
@@ -4795,7 +4795,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidde
         "why": "The test world reinforces the call first."
       },
       {
-        "t": "Give the drug, then call, then reassess \u2014 pieces in that order",
+        "t": "Give the drug, then call, then reassess — pieces in that order",
         "ok": false,
         "why": "Call before you give."
       },
