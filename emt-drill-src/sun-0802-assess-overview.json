@@ -1,0 +1,522 @@
+[
+  {
+    "ch": "flow",
+    "q": "What is the six-step assessment order from this recap?",
+    "opts": [
+      {
+        "t": "Primary, scene, history, secondary, reassess, impression",
+        "ok": false,
+        "why": "Order: scene size-up, primary, history (OPQRST and SAMPLE), secondary, field impression and interventions, reassessment."
+      },
+      {
+        "t": "Scene, history, primary, secondary, impression, reassess",
+        "ok": false,
+        "why": "Order: scene size-up, primary, history (OPQRST and SAMPLE), secondary, field impression and interventions, reassessment."
+      },
+      {
+        "t": "Scene, primary, history, secondary, field impression and interventions, reassessment",
+        "ok": true,
+        "why": "Order: scene size-up, primary, history (OPQRST and SAMPLE), secondary, field impression and interventions, reassessment."
+      },
+      {
+        "t": "History, scene, secondary, primary, impression, reassess",
+        "ok": false,
+        "why": "Order: scene size-up, primary, history (OPQRST and SAMPLE), secondary, field impression and interventions, reassessment."
+      }
+    ]
+  },
+  {
+    "ch": "scene",
+    "q": "You have not touched the patient yet. Which scene pack matches this recap?",
+    "opts": [
+      {
+        "t": "BSI, scene safety, MOI/NOI, number of patients, extra resources",
+        "ok": true,
+        "why": "Scene before contact: BSI/PPE, safety for you/partner/patient/bystanders, MOI vs NOI, number of patients, extra resources."
+      },
+      {
+        "t": "AVPU, OPQRST, SAMPLE, then BSI",
+        "ok": false,
+        "why": "Scene before contact: BSI/PPE, safety for you/partner/patient/bystanders, MOI vs NOI, number of patients, extra resources."
+      },
+      {
+        "t": "Full vitals, GCS, then decide if the scene is safe",
+        "ok": false,
+        "why": "Scene before contact: BSI/PPE, safety for you/partner/patient/bystanders, MOI vs NOI, number of patients, extra resources."
+      },
+      {
+        "t": "DCAP-BTLS on every region before you look at safety",
+        "ok": false,
+        "why": "Scene before contact: BSI/PPE, safety for you/partner/patient/bystanders, MOI vs NOI, number of patients, extra resources."
+      }
+    ]
+  },
+  {
+    "ch": "scene",
+    "q": "When do you consider early law enforcement from this recap?",
+    "opts": [
+      {
+        "t": "Only after you finish a detailed head-to-toe",
+        "ok": false,
+        "why": "Call law early if you suspect abuse/violence or the scene is unsafe or heating up."
+      },
+      {
+        "t": "Abuse or violence suspected, or the scene feels unsafe or escalating",
+        "ok": true,
+        "why": "Call law early if you suspect abuse/violence or the scene is unsafe or heating up."
+      },
+      {
+        "t": "Every medical call so you have a witness",
+        "ok": false,
+        "why": "Call law early if you suspect abuse/violence or the scene is unsafe or heating up."
+      },
+      {
+        "t": "Only if the patient asks you to call police",
+        "ok": false,
+        "why": "Call law early if you suspect abuse/violence or the scene is unsafe or heating up."
+      }
+    ]
+  },
+  {
+    "ch": "consent",
+    "q": "Alert and oriented \u00d74 versus confused / V / P / U \u2014 which consent pair?",
+    "opts": [
+      {
+        "t": "AOx4 is implied; V/P/U is expressed",
+        "ok": false,
+        "why": "Alert and oriented \u00d74 \u2192 likely decision-making capacity \u2192 expressed consent. Confused / V / P / U \u2192 implied consent."
+      },
+      {
+        "t": "Both are expressed if a family member is present",
+        "ok": false,
+        "why": "Alert and oriented \u00d74 \u2192 likely decision-making capacity \u2192 expressed consent. Confused / V / P / U \u2192 implied consent."
+      },
+      {
+        "t": "AOx4 is likely capacity and expressed consent; confused / V / P / U is implied consent",
+        "ok": true,
+        "why": "Alert and oriented \u00d74 \u2192 likely decision-making capacity \u2192 expressed consent. Confused / V / P / U \u2192 implied consent."
+      },
+      {
+        "t": "Consent waits until after the secondary exam",
+        "ok": false,
+        "why": "Alert and oriented \u00d74 \u2192 likely decision-making capacity \u2192 expressed consent. Confused / V / P / U \u2192 implied consent."
+      }
+    ]
+  },
+  {
+    "ch": "airway",
+    "q": "Snoring, gurgling, and stridor without a stethoscope \u2014 what do they mean?",
+    "opts": [
+      {
+        "t": "Snoring is fluid, gurgling is tongue, stridor is wheeze in the chest",
+        "ok": false,
+        "why": "Upper airway, no stethoscope: snoring = tongue; gurgling = fluid \u2192 suction; stridor = upper swelling/constriction."
+      },
+      {
+        "t": "Snoring is tongue, gurgling is fluid so you suction, stridor is upper swelling",
+        "ok": true,
+        "why": "Upper airway, no stethoscope: snoring = tongue; gurgling = fluid \u2192 suction; stridor = upper swelling/constriction."
+      },
+      {
+        "t": "All three are lower-airway sounds you need a stethoscope for",
+        "ok": false,
+        "why": "Upper airway, no stethoscope: snoring = tongue; gurgling = fluid \u2192 suction; stridor = upper swelling/constriction."
+      },
+      {
+        "t": "Snoring is anaphylaxis, gurgling is asthma, stridor is pneumonia",
+        "ok": false,
+        "why": "Upper airway, no stethoscope: snoring = tongue; gurgling = fluid \u2192 suction; stridor = upper swelling/constriction."
+      }
+    ]
+  },
+  {
+    "ch": "breath",
+    "q": "Adult breathing rate and the three lower-airway sounds from this recap?",
+    "opts": [
+      {
+        "t": "8\u201312. Wheeze is fluid, crackles are mucus, rhonchi are bronchoconstriction",
+        "ok": false,
+        "why": "Adult normal 12\u201320. Stethoscope on the chest: wheeze = bronchoconstriction; crackles = fluid in alveoli; rhonchi = mucus/congestion."
+      },
+      {
+        "t": "12\u201320. Wheeze is bronchoconstriction (often exhalation), crackles are alveolar fluid, rhonchi are mucus/congestion",
+        "ok": true,
+        "why": "Adult normal 12\u201320. Stethoscope on the chest: wheeze = bronchoconstriction; crackles = fluid in alveoli; rhonchi = mucus/congestion."
+      },
+      {
+        "t": "20\u201330. All three are heard without a stethoscope at the mouth",
+        "ok": false,
+        "why": "Adult normal 12\u201320. Stethoscope on the chest: wheeze = bronchoconstriction; crackles = fluid in alveoli; rhonchi = mucus/congestion."
+      },
+      {
+        "t": "12\u201320. Wheeze is tongue, crackles are stridor, rhonchi are gurgling",
+        "ok": false,
+        "why": "Adult normal 12\u201320. Stethoscope on the chest: wheeze = bronchoconstriction; crackles = fluid in alveoli; rhonchi = mucus/congestion."
+      }
+    ]
+  },
+  {
+    "ch": "circ",
+    "q": "Adult pulse and what you do the moment you see major bleeding?",
+    "opts": [
+      {
+        "t": "40\u201360. Finish SAMPLE first, then dress the bleed",
+        "ok": false,
+        "why": "Adult pulse 60\u2013100. Major bleeding is a life threat \u2014 stop and treat it when you see it."
+      },
+      {
+        "t": "100\u2013140. Wait for the rapid scan",
+        "ok": false,
+        "why": "Adult pulse 60\u2013100. Major bleeding is a life threat \u2014 stop and treat it when you see it."
+      },
+      {
+        "t": "60\u2013100. Stop and treat the life threat as soon as you see it",
+        "ok": true,
+        "why": "Adult pulse 60\u2013100. Major bleeding is a life threat \u2014 stop and treat it when you see it."
+      },
+      {
+        "t": "60\u2013100. Document it and treat after the hospital handoff",
+        "ok": false,
+        "why": "Adult pulse 60\u2013100. Major bleeding is a life threat \u2014 stop and treat it when you see it."
+      }
+    ]
+  },
+  {
+    "ch": "hx",
+    "q": "Which pair is OPQRST versus SAMPLE from this recap?",
+    "opts": [
+      {
+        "t": "OPQRST is allergies and meds; SAMPLE is onset and severity",
+        "ok": false,
+        "why": "OPQRST = present illness, especially pain or breathing. SAMPLE = broader history (signs, allergies, meds, past hx, last oral, events)."
+      },
+      {
+        "t": "OPQRST is present illness (pain/breathing); SAMPLE is the broader medical history",
+        "ok": true,
+        "why": "OPQRST = present illness, especially pain or breathing. SAMPLE = broader history (signs, allergies, meds, past hx, last oral, events)."
+      },
+      {
+        "t": "Both are only for trauma",
+        "ok": false,
+        "why": "OPQRST = present illness, especially pain or breathing. SAMPLE = broader history (signs, allergies, meds, past hx, last oral, events)."
+      },
+      {
+        "t": "SAMPLE replaces AVPU on medical calls",
+        "ok": false,
+        "why": "OPQRST = present illness, especially pain or breathing. SAMPLE = broader history (signs, allergies, meds, past hx, last oral, events)."
+      }
+    ]
+  },
+  {
+    "ch": "legal",
+    "q": "They deny alcohol. You still suspect it. What does this recap want?",
+    "opts": [
+      {
+        "t": "Keep asking until they confess or you refuse transport",
+        "ok": false,
+        "why": "Ask calmly. You may re-ask once, then drop it and write that they deny use. Reasonable decisions with the facts you had."
+      },
+      {
+        "t": "You may re-ask once, then drop it and document that the patient denies alcohol or drug use",
+        "ok": true,
+        "why": "Ask calmly. You may re-ask once, then drop it and write that they deny use. Reasonable decisions with the facts you had."
+      },
+      {
+        "t": "Write that they are intoxicated as a fact",
+        "ok": false,
+        "why": "Ask calmly. You may re-ask once, then drop it and write that they deny use. Reasonable decisions with the facts you had."
+      },
+      {
+        "t": "Skip documentation so you are not liable",
+        "ok": false,
+        "why": "Ask calmly. You may re-ask once, then drop it and write that they deny use. Reasonable decisions with the facts you had."
+      }
+    ]
+  },
+  {
+    "ch": "legal",
+    "q": "Suspected abuse \u2014 report and chart from this recap?",
+    "opts": [
+      {
+        "t": "Wait for proof. Writing a suspicion is defamation",
+        "ok": false,
+        "why": "Mandatory report on suspicion. Reporting suspicion is not defamation. Defamation is stating false guilt as fact. Write what you see and quoted speech."
+      },
+      {
+        "t": "Mandatory report of the suspicion. Chart observations and quotes, not \u201cthat person IS an abuser\u201d",
+        "ok": true,
+        "why": "Mandatory report on suspicion. Reporting suspicion is not defamation. Defamation is stating false guilt as fact. Write what you see and quoted speech."
+      },
+      {
+        "t": "Only report if the patient asks you to",
+        "ok": false,
+        "why": "Mandatory report on suspicion. Reporting suspicion is not defamation. Defamation is stating false guilt as fact. Write what you see and quoted speech."
+      },
+      {
+        "t": "Call medical control instead of authorities",
+        "ok": false,
+        "why": "Mandatory report on suspicion. Reporting suspicion is not defamation. Defamation is stating false guilt as fact. Write what you see and quoted speech."
+      }
+    ]
+  },
+  {
+    "ch": "ob",
+    "q": "Childbearing-age female with lower abdominal pain. What do you ask?",
+    "opts": [
+      {
+        "t": "Nothing about pregnancy unless they volunteer it",
+        "ok": false,
+        "why": "Treat them as possibly pregnant. Ask chance of pregnancy and last menstrual period. Document the answer they give."
+      },
+      {
+        "t": "Any chance of pregnancy, and when was the last menstrual period",
+        "ok": true,
+        "why": "Treat them as possibly pregnant. Ask chance of pregnancy and last menstrual period. Document the answer they give."
+      },
+      {
+        "t": "Only STI history, never LMP",
+        "ok": false,
+        "why": "Treat them as possibly pregnant. Ask chance of pregnancy and last menstrual period. Document the answer they give."
+      },
+      {
+        "t": "Only if they are over 40",
+        "ok": false,
+        "why": "Treat them as possibly pregnant. Ask chance of pregnancy and last menstrual period. Document the answer they give."
+      }
+    ]
+  },
+  {
+    "ch": "exam",
+    "q": "Focused exam versus detailed head-to-toe \u2014 who gets which?",
+    "opts": [
+      {
+        "t": "Focused for the unresponsive; detailed for every talking medical patient",
+        "ok": false,
+        "why": "Focused = responsive medical who can point at the problem. Detailed = unresponsive, significant MOI (ejection, high speed, big fall), or suspected hidden/multiple injuries."
+      },
+      {
+        "t": "Focused for a responsive medical patient who can localize; detailed for unresponsive, significant MOI, or hidden/multiple injuries",
+        "ok": true,
+        "why": "Focused = responsive medical who can point at the problem. Detailed = unresponsive, significant MOI (ejection, high speed, big fall), or suspected hidden/multiple injuries."
+      },
+      {
+        "t": "Always detailed so you never miss anything",
+        "ok": false,
+        "why": "Focused = responsive medical who can point at the problem. Detailed = unresponsive, significant MOI (ejection, high speed, big fall), or suspected hidden/multiple injuries."
+      },
+      {
+        "t": "Focused only after you give medications",
+        "ok": false,
+        "why": "Focused = responsive medical who can point at the problem. Detailed = unresponsive, significant MOI (ejection, high speed, big fall), or suspected hidden/multiple injuries."
+      }
+    ]
+  },
+  {
+    "ch": "exam",
+    "q": "DCAP-BTLS letters from this recap?",
+    "opts": [
+      {
+        "t": "Deformities, contusions, abrasions, punctures/penetrations, burns, tenderness, lacerations, swelling",
+        "ok": true,
+        "why": "Deformities, Contusions, Abrasions, Punctures/penetrations, Burns, Tenderness, Lacerations, Swelling. Compare sides."
+      },
+      {
+        "t": "Distal, capillary, airway, pulse, blood, temperature, lungs, skin",
+        "ok": false,
+        "why": "Deformities, Contusions, Abrasions, Punctures/penetrations, Burns, Tenderness, Lacerations, Swelling. Compare sides."
+      },
+      {
+        "t": "Drugs, circulation, AVPU, pupils, blood sugar, tidal, lungs, SpO2",
+        "ok": false,
+        "why": "Deformities, Contusions, Abrasions, Punctures/penetrations, Burns, Tenderness, Lacerations, Swelling. Compare sides."
+      },
+      {
+        "t": "Deformities, cyanosis, apnea, pulse, breathing, tremor, limp, shock",
+        "ok": false,
+        "why": "Deformities, Contusions, Abrasions, Punctures/penetrations, Burns, Tenderness, Lacerations, Swelling. Compare sides."
+      }
+    ]
+  },
+  {
+    "ch": "vitals",
+    "q": "Adult systolic band and the pediatric minimum under age 10?",
+    "opts": [
+      {
+        "t": "80\u2013140 adult. Ped min is age \u00d7 10",
+        "ok": false,
+        "why": "Adult systolic 90\u2013120; <90 hypotension/shock; 120\u2013130 hypertension range. Under 10: 2\u00d7age+70. Age 10 hits 90, then adult cutoff."
+      },
+      {
+        "t": "90\u2013120 adult. Under 90 is hypotension. Ped min = 2 \u00d7 age + 70. At 10 years you use the adult 90 cutoff",
+        "ok": true,
+        "why": "Adult systolic 90\u2013120; <90 hypotension/shock; 120\u2013130 hypertension range. Under 10: 2\u00d7age+70. Age 10 hits 90, then adult cutoff."
+      },
+      {
+        "t": "100\u2013160 adult. Ped min is always 90",
+        "ok": false,
+        "why": "Adult systolic 90\u2013120; <90 hypotension/shock; 120\u2013130 hypertension range. Under 10: 2\u00d7age+70. Age 10 hits 90, then adult cutoff."
+      },
+      {
+        "t": "90\u2013120 adult. Ped min = age + 90",
+        "ok": false,
+        "why": "Adult systolic 90\u2013120; <90 hypotension/shock; 120\u2013130 hypertension range. Under 10: 2\u00d7age+70. Age 10 hits 90, then adult cutoff."
+      }
+    ]
+  },
+  {
+    "ch": "gcs",
+    "q": "GCS ranges from this recap?",
+    "opts": [
+      {
+        "t": "Eyes 1\u20136, verbal 1\u20134, motor 1\u20135. Total 0\u201315",
+        "ok": false,
+        "why": "E 1\u20134, V 1\u20135, M 1\u20136. Total 3\u201315. Memorize the table."
+      },
+      {
+        "t": "Eyes 1\u20134, verbal 1\u20135, motor 1\u20136. Total 3\u201315. 15 is fully alert. 3 is no response",
+        "ok": true,
+        "why": "E 1\u20134, V 1\u20135, M 1\u20136. Total 3\u201315. Memorize the table."
+      },
+      {
+        "t": "One number 1\u201310 only",
+        "ok": false,
+        "why": "E 1\u20134, V 1\u20135, M 1\u20136. Total 3\u201315. Memorize the table."
+      },
+      {
+        "t": "Eyes 0\u20134, verbal 0\u20135, motor 0\u20136. Total 0\u201315",
+        "ok": false,
+        "why": "E 1\u20134, V 1\u20135, M 1\u20136. Total 3\u201315. Memorize the table."
+      }
+    ]
+  },
+  {
+    "ch": "pupils",
+    "q": "PERRL and the pinpoint versus dilated hint from this recap?",
+    "opts": [
+      {
+        "t": "PERRL is pulse equal. Pinpoint is stimulants. Dilated is opioids",
+        "ok": false,
+        "why": "PERRL. Both constrict together. Note unequal, blown, sluggish. Pinpoint often opioids. Dilated often stimulants or brain injury."
+      },
+      {
+        "t": "Pupils equal, round, reactive to light. Pinpoint often opioids/downers. Dilated often stimulants or brain injury",
+        "ok": true,
+        "why": "PERRL. Both constrict together. Note unequal, blown, sluggish. Pinpoint often opioids. Dilated often stimulants or brain injury."
+      },
+      {
+        "t": "Only the left pupil matters",
+        "ok": false,
+        "why": "PERRL. Both constrict together. Note unequal, blown, sluggish. Pinpoint often opioids. Dilated often stimulants or brain injury."
+      },
+      {
+        "t": "Fixed and dilated is a normal finding after oxygen",
+        "ok": false,
+        "why": "PERRL. Both constrict together. Note unequal, blown, sluggish. Pinpoint often opioids. Dilated often stimulants or brain injury."
+      }
+    ]
+  },
+  {
+    "ch": "spo2",
+    "q": "SpO2 target and the carbon monoxide trap?",
+    "opts": [
+      {
+        "t": "80\u201385%. CO makes the number falsely low",
+        "ok": false,
+        "why": "Desired 94\u201399%. CO can look falsely high. Saturation is percent occupied, not red-cell count."
+      },
+      {
+        "t": "100% only. CO is not mentioned",
+        "ok": false,
+        "why": "Desired 94\u201399%. CO can look falsely high. Saturation is percent occupied, not red-cell count."
+      },
+      {
+        "t": "94\u201399%. CO can read falsely high because the machine treats CO as occupied hemoglobin. It does not count how many red cells you have",
+        "ok": true,
+        "why": "Desired 94\u201399%. CO can look falsely high. Saturation is percent occupied, not red-cell count."
+      },
+      {
+        "t": "70\u201380%. You ignore the number if they are talking",
+        "ok": false,
+        "why": "Desired 94\u201399%. CO can look falsely high. Saturation is percent occupied, not red-cell count."
+      }
+    ]
+  },
+  {
+    "ch": "bgl",
+    "q": "Glucose numbers and when you check from this recap?",
+    "opts": [
+      {
+        "t": "40\u201360 normal. Check only known trauma",
+        "ok": false,
+        "why": "Normal 80\u2013120 mg/dL. <80 hypoglycemia. Those three looks can mimic each other."
+      },
+      {
+        "t": "80\u2013120. Under 80 is low. Check altered/unconscious, known diabetics, and stroke vs intoxication vs hypoglycemia",
+        "ok": true,
+        "why": "Normal 80\u2013120 mg/dL. <80 hypoglycemia. Those three looks can mimic each other."
+      },
+      {
+        "t": "150\u2013200 normal. Never check if they look drunk",
+        "ok": false,
+        "why": "Normal 80\u2013120 mg/dL. <80 hypoglycemia. Those three looks can mimic each other."
+      },
+      {
+        "t": "80\u2013120. Over 80 is always shock",
+        "ok": false,
+        "why": "Normal 80\u2013120 mg/dL. <80 hypoglycemia. Those three looks can mimic each other."
+      }
+    ]
+  },
+  {
+    "ch": "rx",
+    "q": "Breathing is inadequate. One option is assist ventilations. One is give a drug. What first?",
+    "opts": [
+      {
+        "t": "Give the drug. ABCs wait for medications",
+        "ok": false,
+        "why": "Priority rule: ABCs and life threats BEFORE medications. Inadequate breathing \u2192 ventilate first."
+      },
+      {
+        "t": "Ventilate first. ABCs and life threats before medications",
+        "ok": true,
+        "why": "Priority rule: ABCs and life threats BEFORE medications. Inadequate breathing \u2192 ventilate first."
+      },
+      {
+        "t": "Skip both and start SAMPLE",
+        "ok": false,
+        "why": "Priority rule: ABCs and life threats BEFORE medications. Inadequate breathing \u2192 ventilate first."
+      },
+      {
+        "t": "Call for a detailed head-to-toe first",
+        "ok": false,
+        "why": "Priority rule: ABCs and life threats BEFORE medications. Inadequate breathing \u2192 ventilate first."
+      }
+    ]
+  },
+  {
+    "ch": "re",
+    "q": "Reassessment clocks from this recap?",
+    "opts": [
+      {
+        "t": "Unstable about every 5 minutes. Stable about every 15. Recheck MS/GCS, ABCs, vitals, response to treatment",
+        "ok": true,
+        "why": "Unstable/critical ~5 min. Stable ~15. Recheck mental status/GCS, ABCs, vitals, treatment response. Then a structured handoff."
+      },
+      {
+        "t": "Everyone every 30 minutes",
+        "ok": false,
+        "why": "Unstable/critical ~5 min. Stable ~15. Recheck mental status/GCS, ABCs, vitals, treatment response. Then a structured handoff."
+      },
+      {
+        "t": "Unstable every 15. Stable every 5",
+        "ok": false,
+        "why": "Unstable/critical ~5 min. Stable ~15. Recheck mental status/GCS, ABCs, vitals, treatment response. Then a structured handoff."
+      },
+      {
+        "t": "Only once at the hospital door",
+        "ok": false,
+        "why": "Unstable/critical ~5 min. Stable ~15. Recheck mental status/GCS, ABCs, vitals, treatment response. Then a structured handoff."
+      }
+    ]
+  }
+]
