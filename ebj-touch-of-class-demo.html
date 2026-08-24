@@ -3,81 +3,677 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>EBJ Touch of Class · Mesa</title>
+<title>EBJ Touch of Class — Auto Detailing, Auto Glass &amp; Window Tint in Mesa, AZ (Demo Page)</title>
+<meta name="description" content="Demo one-page site for EBJ Touch of Class in Mesa, AZ. Auto detailing, auto glass, window tint, ceramic coating, full wraps and clear bra. Call (480) 266-7993.">
+<meta name="theme-color" content="#0b0d10">
+<link rel="icon" href="https://img1.wsimg.com/isteam/ip/ee2372c3-3d7a-4b21-9291-d646d26005d6/blob.png">
+<link rel="apple-touch-icon" href="https://img1.wsimg.com/isteam/ip/ee2372c3-3d7a-4b21-9291-d646d26005d6/blob.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://img1.wsimg.com">
+<link rel="preload" as="image" href="https://img1.wsimg.com/isteam/ip/ee2372c3-3d7a-4b21-9291-d646d26005d6/IMG_3928_29_30.jpg/:/rs=w:1400,m" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Cabin:wght@500;600;700&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg: #111418; --card: #1b2026; --ink: #f4efe6; --muted: #b7b0a4;
-  --gold: #d4a017; --line: #2c333c; --safe: env(safe-area-inset-top, 0px);
+:root{
+  --ink:#0b0d10;          /* near-black */
+  --ink-2:#14181d;
+  --red:#d0121a;          /* EBJ bright red */
+  --red-dark:#a90e15;
+  --navy:#182848;         /* deep flag navy */
+  --navy-2:#1f3158;
+  --paper:#ffffff;
+  --paper-2:#f4f5f7;
+  --line:#e3e6ea;
+  --line-dark:#262c34;
+  --muted:#5a6472;
+  --muted-dark:#a7b0bc;
+  --maxw:1120px;
+  --radius:14px;
+  --sat:env(safe-area-inset-top,0px);
+  --sab:env(safe-area-inset-bottom,0px);
+  --sal:env(safe-area-inset-left,0px);
+  --sar:env(safe-area-inset-right,0px);
 }
-* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 17px; line-height: 1.4; }
-.banner { background: #3a2a0a; color: #f0d48a; text-align: center;
-  font-size: .78rem; letter-spacing: .03em; padding: 8px 12px calc(8px + var(--safe)); }
-header { padding: 22px 18px 8px; }
-header h1 { margin: 0; font-size: 1.55rem; letter-spacing: .01em; }
-header p { margin: 6px 0 0; color: var(--muted); font-size: .95rem; }
-.hero { margin: 12px 16px 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); }
-.hero img { display: block; width: 100%; height: auto; }
-main { padding: 16px 16px 40px; max-width: 640px; margin: 0 auto; }
-.call { display: block; text-align: center; text-decoration: none; color: #111;
-  background: var(--gold); font-weight: 800; font-size: 1.15rem;
-  padding: 16px 18px; border-radius: 12px; margin: 16px 0 10px; }
-.call small { display: block; font-weight: 600; font-size: .78rem; opacity: .8; margin-top: 2px; }
-.deal { color: var(--gold); font-size: .9rem; margin: 0 0 18px; }
-h2 { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin: 22px 0 10px; }
-.services { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0; list-style: none; }
-.services li { background: var(--card); border: 1px solid var(--line); border-radius: 999px;
-  padding: 8px 12px; font-size: .88rem; }
-.hours { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
-.hours p { margin: 0; }
-.hours strong { display: block; font-size: 1.05rem; margin-top: 4px; }
-.addr { color: var(--muted); font-size: .92rem; margin: 10px 0 0; }
-.social { display: flex; gap: 10px; flex-wrap: wrap; }
-.social a { color: var(--ink); text-decoration: none; background: var(--card);
-  border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-size: .9rem; }
-footer { color: var(--muted); font-size: .75rem; margin-top: 28px; }
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+html:focus-within{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Lato",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:17px;line-height:1.55;
+  padding-bottom:calc(72px + var(--sab)); /* room for sticky call bar */
+}
+h1,h2,h3{font-family:"Cabin","Lato",-apple-system,sans-serif;line-height:1.15;margin:0}
+img{max-width:100%;display:block}
+a{color:var(--red)}
+a:focus-visible,button:focus-visible,.btn:focus-visible{
+  outline:3px solid var(--red);outline-offset:3px;border-radius:6px;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:max(20px,var(--sal));padding-right:max(20px,var(--sar))}
+
+/* ---------- skip link ---------- */
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:200;background:var(--red);color:#fff;
+  padding:12px 18px;font-weight:700;text-decoration:none;border-radius:0 0 8px 0;
+}
+.skip:focus{left:0}
+
+/* ---------- demo ribbon ---------- */
+.ribbon{
+  background:var(--navy);color:#dbe4f5;text-align:center;
+  font-size:.8rem;letter-spacing:.02em;line-height:1.4;
+  padding:8px 14px;padding-top:calc(8px + var(--sat));
+}
+.ribbon a{color:#fff;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+
+/* ---------- sticky header ---------- */
+.site-head{
+  position:sticky;top:0;z-index:100;background:var(--ink);
+  border-bottom:1px solid var(--line-dark);
+  transition:box-shadow .2s ease;
+}
+.site-head.scrolled{box-shadow:0 6px 22px rgba(0,0,0,.45)}
+.head-inner{
+  display:flex;align-items:center;gap:12px;
+  max-width:var(--maxw);margin:0 auto;
+  padding:8px max(16px,var(--sar)) 8px max(16px,var(--sal));
+  min-height:60px;
+}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;min-width:0;flex:1}
+.brand img{width:52px;height:52px;object-fit:contain;flex:none;background:#000;border-radius:8px}
+.brand-name{display:flex;flex-direction:column;min-width:0}
+.brand-name strong{
+  font-family:"Cabin",sans-serif;font-weight:700;font-size:1.02rem;letter-spacing:.01em;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.brand-name span{font-size:.72rem;color:var(--muted-dark);letter-spacing:.06em;text-transform:uppercase}
+.head-call{
+  flex:none;display:inline-flex;align-items:center;gap:8px;
+  background:var(--red);color:#fff;text-decoration:none;font-weight:900;
+  font-size:.95rem;padding:12px 16px;border-radius:10px;min-height:44px;
+  box-shadow:0 2px 10px rgba(208,18,26,.4);
+}
+.head-call:active{background:var(--red-dark)}
+.head-call svg{flex:none}
+.head-call .num{display:none}
+@media (min-width:640px){.head-call .num{display:inline}}
+
+/* in-page nav strip */
+.subnav{background:var(--ink-2);border-bottom:1px solid var(--line-dark)}
+.subnav ul{
+  list-style:none;margin:0;display:flex;gap:4px;
+  max-width:var(--maxw);margin-inline:auto;
+  padding:0 max(12px,var(--sal));
+  overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+}
+.subnav ul::-webkit-scrollbar{display:none}
+.subnav a{
+  display:inline-flex;align-items:center;min-height:44px;padding:0 14px;
+  color:#cfd6df;text-decoration:none;font-size:.88rem;font-weight:700;
+  letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;
+  border-bottom:3px solid transparent;
+}
+.subnav a:hover,.subnav a:focus-visible{color:#fff;border-bottom-color:var(--red)}
+
+/* ---------- hero ---------- */
+.hero{position:relative;background:var(--ink);color:#fff;overflow:hidden}
+.hero-img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center 60%;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(11,13,16,.55) 0%,rgba(11,13,16,.35) 40%,rgba(11,13,16,.88) 100%);
+}
+.hero-inner{
+  position:relative;z-index:2;max-width:var(--maxw);margin:0 auto;
+  padding:96px max(20px,var(--sar)) 44px max(20px,var(--sal));
+  display:flex;flex-direction:column;justify-content:flex-end;min-height:76vh;
+}
+.hero-kicker{
+  display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+  background:rgba(208,18,26,.92);color:#fff;font-weight:900;font-size:.74rem;
+  letter-spacing:.14em;text-transform:uppercase;padding:7px 12px;border-radius:6px;
+  margin-bottom:16px;
+}
+.hero h1{
+  font-size:clamp(2rem,7.2vw,3.4rem);font-weight:700;letter-spacing:-.01em;
+  max-width:15ch;text-shadow:0 2px 18px rgba(0,0,0,.55);
+}
+.hero h1 em{font-style:normal;color:#ff6b71}
+.hero-sub{
+  margin:14px 0 0;font-size:clamp(1rem,3.6vw,1.2rem);color:#e6e9ee;max-width:46ch;
+  text-shadow:0 1px 10px rgba(0,0,0,.6);
+}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:52px;padding:14px 24px;border-radius:12px;
+  font-family:"Cabin",sans-serif;font-weight:700;font-size:1.06rem;
+  text-decoration:none;letter-spacing:.01em;
+}
+.btn-red{background:var(--red);color:#fff;box-shadow:0 4px 18px rgba(208,18,26,.45)}
+.btn-red:active{background:var(--red-dark)}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1.5px solid rgba(255,255,255,.55);backdrop-filter:blur(3px)}
+.btn-ghost:active{background:rgba(255,255,255,.22)}
+.hero-note{margin:16px 0 0;font-size:.85rem;color:#b9c1cc}
+.hero-note strong{color:#fff}
+
+/* stripe accent under hero — flag nod: navy / white / red */
+.flag-stripe{display:flex;height:6px}
+.flag-stripe span:nth-child(1){flex:1;background:var(--navy)}
+.flag-stripe span:nth-child(2){flex:1;background:#fff}
+.flag-stripe span:nth-child(3){flex:1;background:var(--red)}
+
+/* ---------- promo ---------- */
+.promo{background:var(--red);color:#fff}
+.promo .wrap{
+  display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;
+  padding-top:14px;padding-bottom:14px;
+}
+.promo p{margin:0;font-weight:700;font-size:1rem}
+.promo small{font-weight:400;font-size:.78rem;opacity:.92}
+
+/* ---------- section scaffolding ---------- */
+section{scroll-margin-top:118px}
+.sec{padding:56px 0}
+.sec-alt{background:var(--paper-2)}
+.eyebrow{
+  color:var(--red);font-family:"Cabin",sans-serif;font-weight:700;font-size:.8rem;
+  letter-spacing:.16em;text-transform:uppercase;margin:0 0 8px;
+}
+.sec h2{font-size:clamp(1.55rem,5vw,2.2rem);font-weight:700;letter-spacing:-.01em}
+.lede{color:var(--muted);max-width:62ch;margin:12px 0 0;font-size:1.02rem}
+
+/* ---------- services ---------- */
+.svc-grid{
+  display:grid;grid-template-columns:1fr;gap:14px;margin-top:28px;
+}
+@media (min-width:640px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:960px){.svc-grid{grid-template-columns:repeat(3,1fr)}}
+.svc{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px 20px 20px;position:relative;overflow:hidden;
+  box-shadow:0 1px 3px rgba(11,13,16,.05);
+}
+.svc::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:4px;
+  background:linear-gradient(90deg,var(--red) 0 60%,var(--navy) 60% 100%);
+}
+.svc-icon{
+  width:46px;height:46px;border-radius:10px;background:var(--ink);
+  display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+}
+.svc-icon svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.svc h3{font-size:1.15rem;font-weight:700;margin-bottom:6px}
+.svc p{margin:0;color:var(--muted);font-size:.94rem}
+.svc .new-tag{
+  position:absolute;top:14px;right:14px;background:var(--navy);color:#fff;
+  font-size:.66rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 8px;border-radius:5px;
+}
+
+/* ---------- vehicles ---------- */
+.veh{margin-top:34px;border-top:1px solid var(--line);padding-top:26px}
+.veh h3{font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.veh ul{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
+.veh li{
+  background:var(--ink);color:#fff;font-family:"Cabin",sans-serif;font-weight:600;
+  font-size:.92rem;padding:11px 18px;border-radius:999px;
+}
+
+/* ---------- how to book ---------- */
+.book-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:28px}
+@media (min-width:820px){.book-grid{grid-template-columns:1fr 1fr 1fr}}
+.step{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 20px;box-shadow:0 1px 3px rgba(11,13,16,.05);
+}
+.step-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:38px;height:38px;border-radius:50%;background:var(--red);color:#fff;
+  font-family:"Cabin",sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:12px;
+}
+.step h3{font-size:1.1rem;margin-bottom:6px}
+.step p{margin:0;color:var(--muted);font-size:.94rem}
+.step a{font-weight:700}
+.book-cta{margin-top:26px;display:flex;flex-wrap:wrap;gap:12px}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:active{background:#000}
+.hours-note{
+  margin-top:22px;display:flex;gap:12px;align-items:flex-start;
+  background:#fff;border:1px solid var(--line);border-left:4px solid var(--navy);
+  border-radius:10px;padding:16px 18px;font-size:.93rem;color:var(--muted);max-width:640px;
+}
+.hours-note svg{flex:none;width:22px;height:22px;stroke:var(--navy);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+.hours-note strong{color:var(--ink)}
+
+/* ---------- area ---------- */
+.area{background:var(--navy);color:#fff}
+.area .eyebrow{color:#ff8d92}
+.area .lede{color:#c6d1e6}
+.area-inner{display:grid;grid-template-columns:1fr;gap:30px;align-items:center}
+@media (min-width:880px){.area-inner{grid-template-columns:1.1fr .9fr}}
+.area-card{
+  background:var(--navy-2);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);
+  padding:26px 24px;
+}
+.area-card h3{font-size:1.05rem;margin-bottom:8px;color:#fff}
+.area-card p{margin:0 0 16px;color:#c6d1e6;font-size:.95rem}
+.area-card p:last-child{margin-bottom:0}
+.area-pin{display:flex;align-items:center;gap:10px;font-family:"Cabin",sans-serif;font-weight:700;font-size:1.25rem;margin-bottom:14px}
+.area-pin svg{width:26px;height:26px;stroke:var(--red);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.area .btn-ghost{border-color:rgba(255,255,255,.5)}
+
+/* ---------- photos ---------- */
+.gallery{display:grid;grid-template-columns:1fr;gap:16px;margin-top:28px}
+@media (min-width:720px){
+  .gallery{grid-template-columns:repeat(3,1fr);align-items:start}
+}
+.gallery figure{margin:0;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 1px 3px rgba(11,13,16,.05)}
+.gallery img{width:100%;height:280px;object-fit:cover}
+@media (min-width:720px){.gallery img{height:240px}}
+.gallery figcaption{padding:12px 16px;font-size:.86rem;color:var(--muted)}
+.gallery figcaption strong{color:var(--ink);font-family:"Cabin",sans-serif}
+
+/* ---------- contact ---------- */
+.contact-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:28px}
+@media (min-width:880px){.contact-grid{grid-template-columns:1.15fr .85fr}}
+.card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 22px;box-shadow:0 1px 3px rgba(11,13,16,.05);
+}
+.card h3{font-size:1.1rem;margin-bottom:14px}
+.c-row{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-top:1px solid var(--line)}
+.c-row:first-of-type{border-top:0;padding-top:0}
+.c-ico{
+  flex:none;width:40px;height:40px;border-radius:10px;background:var(--paper-2);
+  display:flex;align-items:center;justify-content:center;
+}
+.c-ico svg{width:20px;height:20px;stroke:var(--red);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.c-row h4{margin:0 0 2px;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-family:"Cabin",sans-serif}
+.c-row p{margin:0;font-size:.98rem}
+.c-row a{font-weight:700;text-decoration:none}
+.c-row a:hover,.c-row a:focus-visible{text-decoration:underline}
+.social-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.social-list a{
+  display:flex;align-items:center;gap:12px;min-height:52px;padding:10px 16px;
+  background:var(--paper-2);border:1px solid var(--line);border-radius:10px;
+  color:var(--ink);text-decoration:none;font-weight:700;font-size:.96rem;
+}
+.social-list a:hover,.social-list a:focus-visible{border-color:var(--red)}
+.social-list svg{width:22px;height:22px;flex:none;fill:var(--ink)}
+.social-list small{margin-left:auto;color:var(--muted);font-weight:400;font-size:.8rem}
+
+/* ---------- footer ---------- */
+footer{background:var(--ink);color:var(--muted-dark);font-size:.84rem}
+footer .wrap{padding-top:38px;padding-bottom:calc(38px + var(--sab))}
+footer h3{color:#fff;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+footer p{margin:0 0 12px;max-width:72ch}
+footer a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+footer ul{list-style:none;margin:0 0 20px;padding:0;display:flex;flex-direction:column;gap:6px}
+.foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid var(--line-dark)}
+.foot-brand img{width:64px;height:64px;object-fit:contain;background:#000;border-radius:10px}
+.foot-brand strong{color:#fff;font-family:"Cabin",sans-serif;font-size:1.05rem;display:block}
+.foot-brand span{font-size:.78rem}
+.foot-legal{border-top:1px solid var(--line-dark);margin-top:22px;padding-top:18px;font-size:.76rem}
+
+/* ---------- sticky call bar (small screens) ---------- */
+.callbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:110;
+  background:rgba(11,13,16,.96);backdrop-filter:blur(6px);
+  border-top:1px solid var(--line-dark);
+  padding:10px max(14px,var(--sar)) calc(10px + var(--sab)) max(14px,var(--sal));
+  display:flex;gap:10px;
+  transform:translateY(0);transition:transform .25s ease;
+}
+.callbar.hidden{transform:translateY(110%)}
+.callbar a{
+  flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:50px;border-radius:11px;text-decoration:none;
+  font-family:"Cabin",sans-serif;font-weight:700;font-size:1rem;
+}
+.callbar .cb-call{background:var(--red);color:#fff;flex:1.4}
+.callbar .cb-map{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.45)}
+.callbar svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+@media (min-width:820px){
+  .callbar{display:none}
+  body{padding-bottom:0}
+}
 </style>
 </head>
 <body>
-<div class="banner">Sample page · not their live site yet</div>
-<header>
-  <h1>EBJ Touch of Class</h1>
-  <p>Auto detailing, glass, and tint in Mesa. One shop for cars, trucks, SUVs, motorcycles, and Razor.</p>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- 1. Demo ribbon -->
+<div class="ribbon" role="note">
+  Sample demo page — not the shop's live website. Visit the official site at
+  <a href="https://ebjtouchofclass.com/" rel="noopener">ebjtouchofclass.com</a>.
+</div>
+
+<!-- 2. Sticky header -->
+<header class="site-head" id="siteHead">
+  <div class="head-inner">
+    <a class="brand" href="#top" aria-label="EBJ Touch of Class — back to top">
+      <img src="https://img1.wsimg.com/isteam/ip/ee2372c3-3d7a-4b21-9291-d646d26005d6/blob.png" alt="EBJ Touch of Class logo: red EBJ letters with American-flag wings" width="52" height="52">
+      <span class="brand-name">
+        <strong>EBJ Touch of Class</strong>
+        <span>Mesa · East Valley, AZ</span>
+      </span>
+    </a>
+    <a class="head-call" href="tel:+14802667993">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>Call</span><span class="num">&nbsp;(480) 266-7993</span>
+    </a>
+  </div>
+  <nav class="subnav" aria-label="Page sections">
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#book">Book</a></li>
+      <li><a href="#area">Area</a></li>
+      <li><a href="#photos">Photos</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 </header>
-<figure class="hero">
-  <img src="https://img1.wsimg.com/isteam/ip/ee2372c3-3d7a-4b21-9291-d646d26005d6/IMG_3928_29_30.jpg" alt="Work from EBJ Touch of Class" width="1200" height="800">
-</figure>
-<main>
-  <a class="call" href="tel:+14802667993">Call (480) 266-7993<small>Tap to call · main way to reach them</small></a>
-  <p class="deal">20% off this month when you try their services. That’s the offer on their current page.</p>
 
-  <h2>What they do</h2>
-  <ul class="services">
-    <li>Auto detailing</li>
-    <li>Auto glass</li>
-    <li>Auto tint</li>
-    <li>Ceramic coating</li>
-    <li>Full car wraps</li>
-    <li>Clear bra</li>
-  </ul>
+<main id="main">
 
-  <h2>Hours</h2>
-  <div class="hours">
-    <p>Open today</p>
-    <strong>9:00 am – 5:00 pm</strong>
-    <p class="addr">624 W Broadway Rd, Ste 214<br>Mesa, AZ 85210<br>From their BBB listing.</p>
+<!-- 3. Hero -->
+<section class="hero" id="top" aria-label="Welcome">
+  <img class="hero-img" src="https://img1.wsimg.com/isteam/ip/ee2372c3-3d7a-4b21-9291-d646d26005d6/IMG_3928_29_30.jpg/:/rs=w:1400,m" alt="EBJ Touch of Class shop storefront in Mesa, Arizona" fetchpriority="high">
+  <div class="hero-inner">
+    <span class="hero-kicker">Detail · Glass · Tint</span>
+    <h1>Auto detailing, auto glass &amp; window tint <em>in Mesa, AZ</em></h1>
+    <p class="hero-sub">EBJ Touch of Class is a one-stop shop for your vehicle — so you don't have to run it around to different shops. Individualized attention, a stress-free experience, and parts from reputable brands.</p>
+    <div class="hero-cta">
+      <a class="btn btn-red" href="tel:+14802667993">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call (480) 266-7993
+      </a>
+      <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=EBJ+Touch+of+Class+624+W+Broadway+Rd+Ste+214+Mesa+AZ+85210" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Directions
+      </a>
+    </div>
+    <p class="hero-note">624 W Broadway Rd Ste 214, Mesa, AZ 85210 · <strong>They say they provide a lifetime warranty on their products.</strong></p>
   </div>
+</section>
+<div class="flag-stripe" aria-hidden="true"><span></span><span></span><span></span></div>
 
-  <h2>Social</h2>
-  <div class="social">
-    <a href="https://www.facebook.com/921783707899731">Facebook</a>
-    <a href="https://www.instagram.com/ebjauto/">Instagram</a>
-    <a href="https://www.tiktok.com/@ebjtouchofclass">TikTok</a>
+<!-- 4. Promo -->
+<div class="promo">
+  <div class="wrap">
+    <p>From their site: "Get 20% off this month when you try our services."</p>
+    <small>Copied from ebjtouchofclass.com — call the shop to confirm current offers.</small>
   </div>
+</div>
 
-  <footer>Demo for the owner. Facts from ebjtouchofclass.com and BBB. Nothing on this page sends a message.</footer>
+<!-- 5. Services -->
+<section class="sec" id="services">
+  <div class="wrap">
+    <p class="eyebrow">What they do</p>
+    <h2>One shop for detail, glass &amp; tint</h2>
+    <p class="lede">Their goal is a one-stop shop so you don't take your vehicle to different places for different jobs — and they say they're after lifetime customers, with monthly coupons and individualized attention.</p>
+
+    <div class="svc-grid">
+      <article class="svc">
+        <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9L18 10.5 15.7 6.4A2 2 0 0 0 14 5.5H8.3a2 2 0 0 0-1.8 1.1L4.6 10.5l-2.1.6C1.7 11.3 1 12.1 1 13v3c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></div>
+        <h3>Auto Detailing</h3>
+        <p>Full detailing service for your vehicle, done with the individualized attention their site promises.</p>
+      </article>
+      <article class="svc">
+        <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 9 5 5"/><path d="m6 5 8 8"/></svg></div>
+        <h3>Auto Glass</h3>
+        <p>Auto glass work including windshield replacement, using parts from reputable brands.</p>
+      </article>
+      <article class="svc">
+        <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 12h9V5"/></svg></div>
+        <h3>Window Tint</h3>
+        <p>Auto tint for Arizona sun — one of the core services named on their official site.</p>
+      </article>
+      <article class="svc">
+        <span class="new-tag">Now offering</span>
+        <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7a5 5 0 1 0 5 5"/><path d="m17 3 1 2 2 1-2 1-1 2-1-2-2-1 2-1z"/></svg></div>
+        <h3>Ceramic Coating</h3>
+        <p>A newer addition — their site says they're now offering ceramic coating.</p>
+      </article>
+      <article class="svc">
+        <span class="new-tag">Now offering</span>
+        <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20 20 4"/><path d="M4 12c4-4 4 4 8 0s4 4 8 0"/><path d="M4 20c4-4 4 4 8 0"/></svg></div>
+        <h3>Full Car Wraps</h3>
+        <p>Full vehicle wraps, also listed on their site as a new offering.</p>
+      </article>
+      <article class="svc">
+        <span class="new-tag">Now offering</span>
+        <div class="svc-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s8-3 8-10V5l-8-3-8 3v7c0 7 8 10 8 10z"/></svg></div>
+        <h3>Clear Bra</h3>
+        <p>Protective clear film for paint (listed on their site as "clear broad" — clear bra).</p>
+      </article>
+    </div>
+
+    <!-- 6. Vehicles -->
+    <div class="veh">
+      <h3>Vehicles they service</h3>
+      <ul>
+        <li>Cars</li>
+        <li>Trucks</li>
+        <li>SUVs</li>
+        <li>Motorcycles</li>
+        <li>Razor</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 7. How to book -->
+<section class="sec sec-alt" id="book">
+  <div class="wrap">
+    <p class="eyebrow">How to book</p>
+    <h2>Booking is a phone call away</h2>
+    <p class="lede">No online forms here — the way to book with EBJ Touch of Class is to call the shop or stop by.</p>
+
+    <div class="book-grid">
+      <div class="step">
+        <span class="step-num" aria-hidden="true">1</span>
+        <h3>Call the shop</h3>
+        <p><a href="tel:+14802667993">(480) 266-7993</a> — tell them your vehicle and what you need: detail, glass, tint, coating, wrap or clear bra.</p>
+      </div>
+      <div class="step">
+        <span class="step-num" aria-hidden="true">2</span>
+        <h3>Ask about this month</h3>
+        <p>Their site mentions monthly coupons and a 20%-off offer this month — ask what's current when you call.</p>
+      </div>
+      <div class="step">
+        <span class="step-num" aria-hidden="true">3</span>
+        <h3>Visit the shop</h3>
+        <p>624 W Broadway Rd Ste 214, Mesa, AZ 85210. Their site invites visits during normal business hours.</p>
+      </div>
+    </div>
+
+    <div class="book-cta">
+      <a class="btn btn-red" href="tel:+14802667993">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call to book
+      </a>
+      <a class="btn btn-dark" href="https://www.google.com/maps/search/?api=1&amp;query=EBJ+Touch+of+Class+624+W+Broadway+Rd+Ste+214+Mesa+AZ+85210" rel="noopener">Get directions</a>
+    </div>
+
+    <p class="hours-note">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+      <span><strong>Hours:</strong> directory listings disagree, so please <a href="tel:+14802667993">call ahead to confirm</a> before heading over.</span>
+    </p>
+  </div>
+</section>
+
+<!-- 8. Area served -->
+<section class="sec area" id="area">
+  <div class="wrap area-inner">
+    <div>
+      <p class="eyebrow">Where they work</p>
+      <h2>Based in Mesa, serving the East Valley</h2>
+      <p class="lede">The shop sits on West Broadway Road in Mesa, Arizona. Their BBB listing says they serve Mesa, and the East Valley is home turf. If you're nearby, a quick call is the fastest way to find out if they can take care of you.</p>
+    </div>
+    <div class="area-card">
+      <p class="area-pin">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        Mesa, AZ 85210
+      </p>
+      <h3>EBJ Touch of Class</h3>
+      <p>624 W Broadway Rd Ste 214<br>Mesa, AZ 85210</p>
+      <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&amp;query=EBJ+Touch+of+Class+624+W+Broadway+Rd+Ste+214+Mesa+AZ+85210" rel="noopener">Open in Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Photos -->
+<section class="sec" id="photos">
+  <div class="wrap">
+    <p class="eyebrow">The shop</p>
+    <h2>Around EBJ Touch of Class</h2>
+    <p class="lede">Photos from the shop itself — the storefront on Broadway Road and inside the bays.</p>
+    <div class="gallery">
+      <figure>
+        <img src="https://img1.wsimg.com/isteam/ip/ee2372c3-3d7a-4b21-9291-d646d26005d6/IMG_3931_2_3.jpg/:/rs=w:800,m" alt="Front of the EBJ Touch of Class shop building" loading="lazy" width="800" height="1000">
+        <figcaption><strong>Storefront</strong> — the shop at 624 W Broadway Rd in Mesa.</figcaption>
+      </figure>
+      <figure>
+        <img src="https://img1.wsimg.com/isteam/ip/ee2372c3-3d7a-4b21-9291-d646d26005d6/IMG_3934_5_6.jpg/:/rs=w:1000,m" alt="Inside the EBJ Touch of Class shop" loading="lazy" width="1000" height="750">
+        <figcaption><strong>Inside the shop</strong> — where the detail, glass and tint work happens.</figcaption>
+      </figure>
+      <figure>
+        <img src="https://img1.wsimg.com/isteam/ip/ee2372c3-3d7a-4b21-9291-d646d26005d6/IMG_3937_8_9.jpg/:/rs=w:800,m" alt="EBJ Touch of Class sign on the shop wall" loading="lazy" width="800" height="1000">
+        <figcaption><strong>The sign</strong> — EBJ Touch of Class on the wall.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 10. Contact -->
+<section class="sec sec-alt" id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Get in touch</p>
+    <h2>Contact the shop</h2>
+    <p class="lede">Call or stop by — nothing on this demo page sends a message.</p>
+
+    <div class="contact-grid">
+      <div class="card">
+        <h3>Shop details</h3>
+        <div class="c-row">
+          <span class="c-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+          <div>
+            <h4>Phone</h4>
+            <p><a href="tel:+14802667993">(480) 266-7993</a></p>
+          </div>
+        </div>
+        <div class="c-row">
+          <span class="c-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <div>
+            <h4>Address</h4>
+            <p><a href="https://www.google.com/maps/search/?api=1&amp;query=EBJ+Touch+of+Class+624+W+Broadway+Rd+Ste+214+Mesa+AZ+85210" rel="noopener">624 W Broadway Rd Ste 214, Mesa, AZ 85210</a></p>
+          </div>
+        </div>
+        <div class="c-row">
+          <span class="c-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6 8-6s8 2 8 6"/></svg></span>
+          <div>
+            <h4>Owner</h4>
+            <p>Oscar Saavedra</p>
+          </div>
+        </div>
+        <div class="c-row">
+          <span class="c-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3a14 14 0 0 1 0 18 14 14 0 0 1 0-18z"/></svg></span>
+          <div>
+            <h4>Official website</h4>
+            <p><a href="https://ebjtouchofclass.com/" rel="noopener">ebjtouchofclass.com</a></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Follow the shop</h3>
+        <ul class="social-list">
+          <li>
+            <a href="https://www.facebook.com/921783707899731" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7h2.5l.5-3h-3V9.2c0-.9.3-1.5 1.6-1.5H16.6V5.1c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9V11H8v3h2.5v7h3z"/></svg>
+              Facebook <small>facebook.com</small>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.instagram.com/ebjauto/" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.3c2.5 0 2.8 0 3.8.05 2.4.1 3.7 1.4 3.85 3.85.05 1 .05 1.3.05 3.8s0 2.8-.05 3.8c-.1 2.4-1.4 3.7-3.85 3.85-1 .05-1.3.05-3.8.05s-2.8 0-3.8-.05c-2.4-.1-3.7-1.4-3.85-3.85C4.3 14.8 4.3 14.5 4.3 12s0-2.8.05-3.8C4.5 5.8 5.8 4.5 8.2 4.35c1-.05 1.3-.05 3.8-.05zM12 2.5c-2.6 0-2.9 0-3.9.05C4.8 2.7 2.7 4.8 2.55 8.1c-.05 1-.05 1.3-.05 3.9s0 2.9.05 3.9c.15 3.3 2.25 5.4 5.55 5.55 1 .05 1.3.05 3.9.05s2.9 0 3.9-.05c3.3-.15 5.4-2.25 5.55-5.55.05-1 .05-1.3.05-3.9s0-2.9-.05-3.9c-.15-3.3-2.25-5.4-5.55-5.55-1-.05-1.3-.05-3.9-.05zm0 4.6a4.9 4.9 0 1 0 0 9.8 4.9 4.9 0 0 0 0-9.8zm0 8.1a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zm5.1-9.4a1.15 1.15 0 1 0 0 2.3 1.15 1.15 0 0 0 0-2.3z"/></svg>
+              Instagram <small>@ebjauto</small>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.tiktok.com/@ebjtouchofclass" rel="noopener">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 3c.4 2.2 1.8 3.6 4 3.8v2.9c-1.5 0-2.9-.5-4-1.3v6.2a5.9 5.9 0 1 1-5.9-5.9c.3 0 .7 0 1 .1v3a2.9 2.9 0 1 0 2 2.8V3h2.9z"/></svg>
+              TikTok <small>@ebjtouchofclass</small>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 </main>
+
+<!-- 11. Footer -->
+<footer>
+  <div class="wrap">
+    <div class="foot-brand">
+      <img src="https://img1.wsimg.com/isteam/ip/ee2372c3-3d7a-4b21-9291-d646d26005d6/blob.png" alt="" width="64" height="64" loading="lazy">
+      <div>
+        <strong>EBJ Touch of Class</strong>
+        <span>Listed as EBJ Touch of Class Mobile Detailing LLC · Mesa, AZ</span>
+      </div>
+    </div>
+    <h3>Sources</h3>
+    <ul>
+      <li>Official site: <a href="https://ebjtouchofclass.com/" rel="noopener">ebjtouchofclass.com</a> (services, one-stop-shop wording, lifetime-warranty claim, 20%-off promo)</li>
+      <li>BBB Mesa listing (address, phone, owner, business categories)</li>
+    </ul>
+    <p class="foot-legal">
+      This is a sample demo page built from public information; it is not affiliated with or approved by EBJ Touch of Class, and it is not their live website — that's at <a href="https://ebjtouchofclass.com/" rel="noopener">ebjtouchofclass.com</a>. Nothing on this page sends a message or form. Photos and logo belong to the shop. Call <a href="tel:+14802667993">(480) 266-7993</a> to confirm services, offers and hours.
+    </p>
+  </div>
+</footer>
+
+<!-- Sticky call bar (small screens) -->
+<div class="callbar" id="callbar">
+  <a class="cb-call" href="tel:+14802667993">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    Call (480) 266-7993
+  </a>
+  <a class="cb-map" href="https://www.google.com/maps/search/?api=1&amp;query=EBJ+Touch+of+Class+624+W+Broadway+Rd+Ste+214+Mesa+AZ+85210" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+    Map
+  </a>
+</div>
+
+<script>
+(function(){
+  var head=document.getElementById('siteHead');
+  var bar=document.getElementById('callbar');
+  var footer=document.querySelector('footer');
+
+  window.addEventListener('scroll',function(){
+    head.classList.toggle('scrolled',window.scrollY>8);
+  },{passive:true});
+
+  // Hide the sticky call bar while the footer is on screen so it never covers the sources.
+  if('IntersectionObserver' in window && footer && bar){
+    new IntersectionObserver(function(entries){
+      bar.classList.toggle('hidden',entries[0].isIntersecting);
+    },{rootMargin:'0px 0px -40px 0px'}).observe(footer);
+  }
+})();
+</script>
+
 </body>
 </html>
