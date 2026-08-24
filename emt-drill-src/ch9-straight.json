@@ -781,27 +781,27 @@
   },
   {
     "ch": 9,
-    "q": "The patient is awake and talking. Which pulse site do you check first, and what does a missing wrist pulse mean?",
+    "q": "The patient is awake and talking. Which pulse site do you check first?",
     "opts": [
       {
-        "t": "Radial at the wrist; a missing wrist pulse in a talker hints at low pressure",
+        "t": "Radial at the wrist",
         "ok": true,
         "why": "Conscious: radial. No radial but talking = low BP. Strong = BP likely good."
       },
       {
-        "t": "Carotid at the neck; a missing neck pulse in a talker hints at high pressure",
+        "t": "Carotid at the neck",
         "ok": false,
-        "why": "Conscious first site is radial."
+        "why": "Conscious first site is radial. Carotid is for unresponsive child/adult."
       },
       {
-        "t": "Brachial at the arm; a missing arm pulse in a talker proves arrest",
+        "t": "Brachial at the arm",
         "ok": false,
         "why": "Brachial is the unconscious infant site."
       },
       {
-        "t": "Radial at the wrist; a strong wrist pulse in a talker proves they need CPR",
+        "t": "Radial only after you check the neck",
         "ok": false,
-        "why": "Strong radial suggests BP is likely good."
+        "why": "Conscious first site is radial."
       }
     ]
   },
