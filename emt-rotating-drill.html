@@ -29,17 +29,22 @@
 html, body {
   margin: 0; padding: 0; background: var(--bg); color: var(--ink);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  font-size: 17px; line-height: 1.45; overflow-x: hidden;
+  font-size: 17px; line-height: 1.45;
 }
 body { min-height: 100dvh; padding-bottom: calc(24px + var(--safe-b)); }
 header {
-  position: sticky; top: 0; z-index: 20;
   background: var(--navy); color: #fff;
-  padding: calc(10px + var(--safe-t)) 14px 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+  padding: calc(10px + var(--safe-t)) 14px 8px;
 }
 header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
 header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.sticky-bar {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: 8px 14px 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+.sticky-bar .bar { margin-top: 0; }
 .bar {
   display: flex; justify-content: space-between; align-items: center;
   gap: 12px; margin-top: 10px; flex-wrap: wrap;
@@ -52,8 +57,16 @@ header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400
 .prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
 .prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
 .prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+.seed-box { margin-top: 8px; }
+.seed-box summary {
+  list-style: none; cursor: pointer; font-size: .82rem; font-weight: 650;
+  min-height: 36px; display: flex; align-items: center; gap: 8px;
+}
+.seed-box summary::-webkit-details-marker { display: none; }
+.seed-box summary::after { content: "▾"; opacity: .7; }
+.seed-box[open] summary::after { content: "▴"; }
 .seed-row {
-  display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-top: 10px;
+  display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 6px 0 4px;
 }
 .seed-row label { font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; opacity: .85; }
 .seed-row input {
@@ -67,7 +80,7 @@ header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400
 }
 .seed-row button.primary { background: #f0c14b; color: var(--navy-2); }
 .jump {
-  display: flex; gap: 6px; overflow-x: auto; margin-top: 10px;
+  display: flex; gap: 6px; overflow-x: auto; margin-top: 8px;
   -webkit-overflow-scrolling: touch; scrollbar-width: none;
 }
 .jump::-webkit-scrollbar { display: none; }
@@ -76,9 +89,9 @@ header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400
   flex: 0 0 auto; min-width: 40px; text-decoration: none; color: #fff;
   background: rgba(255,255,255,.14); font-size: .8rem;
 }
-html { scroll-padding-top: 210px; }
-main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
-.sec { margin: 0 0 22px; scroll-margin-top: 210px; }
+html { scroll-padding-top: 110px; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; overflow-x: hidden; }
+.sec { margin: 0 0 22px; }
 .sec h2 {
   margin: 0 0 10px; font-size: .78rem; letter-spacing: .05em; text-transform: uppercase;
   color: var(--navy); font-weight: 800;
@@ -138,23 +151,28 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
 <header>
   <h1>Rotating EMT drill</h1>
   <div class="sub">5 unique from each of Ch 1–6 and Ch 9 · plus Sunday 8:02</div>
-  <div class="bar">
-    <div class="score" id="score">0 / 0</div>
-    <div class="prog-wrap">
-      <div class="prog-label" id="progLabel">Tap an answer</div>
-      <div class="prog"><span id="progBar"></span></div>
+  <details class="seed-box" id="seedBox">
+    <summary>Seed <span id="seedSummary"></span></summary>
+    <div class="seed-row">
+      <label for="seedInput">Seed</label>
+      <input id="seedInput" name="seed" type="text" inputmode="text" spellcheck="false" autocomplete="off" autocapitalize="off" enterkeyhint="go">
+      <button type="button" class="primary" id="loadBtn">Load</button>
+      <button type="button" id="hourBtn">This hour</button>
+      <button type="button" id="mixBtn">New mix</button>
+      <button type="button" id="copyBtn">Copy link</button>
     </div>
-  </div>
-  <div class="seed-row">
-    <label for="seedInput">Seed</label>
-    <input id="seedInput" name="seed" type="text" inputmode="text" spellcheck="false" autocomplete="off" autocapitalize="off" enterkeyhint="go">
-    <button type="button" class="primary" id="loadBtn">Load</button>
-    <button type="button" id="hourBtn">This hour</button>
-    <button type="button" id="mixBtn">New mix</button>
-    <button type="button" id="copyBtn">Copy link</button>
-  </div>
-  <nav class="jump" id="jump" aria-label="Chapters"></nav>
+  </details>
 </header>
+<div class="sticky-bar">
+    <div class="bar">
+      <div class="score" id="score">0 / 0</div>
+      <div class="prog-wrap">
+        <div class="prog-label" id="progLabel">Tap an answer</div>
+        <div class="prog"><span id="progBar"></span></div>
+      </div>
+    </div>
+    <nav class="jump" id="jump" aria-label="Chapters"></nav>
+</div>
 <main id="main"></main>
 <script type="application/json" id="bank-ch16">[
   {
@@ -3721,6 +3739,7 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
         }
         whyBox.classList.add("visible");
         updateScore();
+        whyBox.scrollIntoView({ block: "nearest", behavior: "smooth" });
       });
       optsWrap.appendChild(btn);
     });
@@ -3764,6 +3783,8 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
     sections.forEach(function (s) { total += s.items.length; });
 
     $("seedInput").value = seed;
+    $("seedSummary").textContent = seed;
+    $("seedBox").open = false;
     var jump = $("jump");
     jump.textContent = "";
     var main = $("main");
@@ -3798,12 +3819,9 @@ main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
     end.appendChild(actions);
     main.appendChild(end);
     updateScore();
-    var header = document.querySelector("header");
-    var pad = (header ? header.offsetHeight : 200) + 8;
+    var bar = document.querySelector(".sticky-bar");
+    var pad = (bar ? bar.offsetHeight : 96) + 8;
     document.documentElement.style.scrollPaddingTop = pad + "px";
-    Array.prototype.forEach.call(document.querySelectorAll(".sec"), function (s) {
-      s.style.scrollMarginTop = pad + "px";
-    });
     window.scrollTo(0, 0);
   }
 
