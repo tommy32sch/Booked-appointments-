@@ -1,0 +1,2914 @@
+[
+  {
+    "ch": 1,
+    "q": "You already lined up 1970 NHTSA under DOT and 1971 AAOS first EMT textbook. Which leftover 1966 fact belongs with that EMS-history set?",
+    "opts": [
+      {
+        "t": "It exposed high trauma death rates and started modern EMS",
+        "ok": true,
+        "why": "1966 is the White Paper: high trauma death rates and the start of modern EMS. 1970 is NHTSA under DOT. 1971 is the AAOS textbook."
+      },
+      {
+        "t": "It created NHTSA under the Department of Transportation",
+        "ok": false,
+        "why": "That is 1970, not 1966."
+      },
+      {
+        "t": "It was the year AAOS published the first EMT textbook",
+        "ok": false,
+        "why": "That is 1971."
+      },
+      {
+        "t": "It required every state to recognize EMR and AEMT",
+        "ok": false,
+        "why": "1966 is the White Paper on trauma deaths. Arizona historically recognized EMT and paramedic."
+      }
+    ]
+  },
+  {
+    "ch": 1,
+    "q": "You already placed 1966 (White Paper, trauma deaths) and 1971 (AAOS first textbook). Which leftover year-and-department pair completes the set for NHTSA?",
+    "opts": [
+      {
+        "t": "1970, under the Department of Transportation",
+        "ok": true,
+        "why": "NHTSA was created in 1970 under DOT."
+      },
+      {
+        "t": "1966, under the Department of Health",
+        "ok": false,
+        "why": "1966 is the White Paper, not NHTSA."
+      },
+      {
+        "t": "1971, under AAOS",
+        "ok": false,
+        "why": "1971 is the first EMT textbook."
+      },
+      {
+        "t": "1970, as an independent medical board",
+        "ok": false,
+        "why": "1970 is correct but NHTSA sits under DOT, not as an independent medical board."
+      }
+    ]
+  },
+  {
+    "ch": 1,
+    "q": "You already have 1966 White Paper and 1970 NHTSA under DOT. Which leftover publisher-and-year pair is the first EMT textbook?",
+    "opts": [
+      {
+        "t": "AAOS in 1971",
+        "ok": true,
+        "why": "AAOS published the first EMT textbook in 1971."
+      },
+      {
+        "t": "NHTSA in 1970",
+        "ok": false,
+        "why": "1970 is NHTSA under DOT."
+      },
+      {
+        "t": "The White Paper authors in 1966",
+        "ok": false,
+        "why": "1966 is the White Paper on trauma deaths."
+      },
+      {
+        "t": "The Medical Director in 1971",
+        "ok": false,
+        "why": "The textbook credit is AAOS, not a Medical Director."
+      }
+    ]
+  },
+  {
+    "ch": 1,
+    "q": "You still work under a Medical Director on every call. Which leftover system shift matches that healthcare-oversight picture?",
+    "opts": [
+      {
+        "t": "From pure transportation to a healthcare system with medical oversight",
+        "ok": true,
+        "why": "EMS moved from transportation-only to healthcare with medical oversight."
+      },
+      {
+        "t": "From hospital-based care to transportation only",
+        "ok": false,
+        "why": "That is the opposite shift."
+      },
+      {
+        "t": "From paramedic-only crews to EMR-only crews",
+        "ok": false,
+        "why": "That crew swap is not the system change."
+      },
+      {
+        "t": "From online orders only to no medical director",
+        "ok": false,
+        "why": "You still work under a Medical Director."
+      }
+    ]
+  },
+  {
+    "ch": 1,
+    "q": "You already know paramedic is ALS, at least 1,000 hours, advanced airways, EKG, 55 to 60 meds, and AEMT is intermediate IVs plus expanded meds. Which leftover hour-and-role pair matches EMR versus EMT?",
+    "opts": [
+      {
+        "t": "EMR about 50 hours, basic CPR and first aid; EMT about 130 to 150 hours, BLS foundation and limited meds",
+        "ok": true,
+        "why": "EMR is about 50 hours (CPR/first aid). EMT is about 130 to 150 hours (BLS, limited meds). AEMT hours are not given."
+      },
+      {
+        "t": "EMT about 50 hours, basic CPR; EMR about 130 to 150 hours, BLS",
+        "ok": false,
+        "why": "Those hours are swapped."
+      },
+      {
+        "t": "EMT at least 1,000 hours with 55 to 60 medications",
+        "ok": false,
+        "why": "That is the paramedic line."
+      },
+      {
+        "t": "AEMT about 50 hours and no IVs",
+        "ok": false,
+        "why": "EMR is about 50 hours. AEMT starts IVs and uses expanded meds."
+      }
+    ]
+  },
+  {
+    "ch": 1,
+    "q": "You already have EMR about 50 hours (CPR/first aid) and EMT about 130 to 150 hours (BLS, limited meds). Which leftover package is the paramedic level?",
+    "opts": [
+      {
+        "t": "ALS, at least 1,000 hours; advanced airways, EKG, and 55 to 60 medications",
+        "ok": true,
+        "why": "Paramedic is ALS: at least 1,000 hours, advanced airways, EKG, 55 to 60 meds."
+      },
+      {
+        "t": "BLS foundation, about 130 to 150 hours, limited meds",
+        "ok": false,
+        "why": "That is EMT."
+      },
+      {
+        "t": "Intermediate IVs only, hours listed as about 50",
+        "ok": false,
+        "why": "AEMT is intermediate; EMR is about 50 hours."
+      },
+      {
+        "t": "Works independently without a Medical Director",
+        "ok": false,
+        "why": "Every EMT and paramedic works under a Medical Director."
+      }
+    ]
+  },
+  {
+    "ch": 1,
+    "q": "You give care as an EMT on scene. Which leftover person is legally responsible because you work under that physician's license?",
+    "opts": [
+      {
+        "t": "The Medical Director \u2014 you work under that physician's license",
+        "ok": true,
+        "why": "Every EMT and paramedic works under the Medical Director's license; that physician is legally responsible for the care you provide."
+      },
+      {
+        "t": "Only you on scene; the physician is not involved",
+        "ok": false,
+        "why": "You still work under a Medical Director."
+      },
+      {
+        "t": "NHTSA, because it was created under DOT in 1970",
+        "ok": false,
+        "why": "NHTSA is a 1970 DOT agency, not your license holder."
+      },
+      {
+        "t": "The receiving hospital's charge nurse",
+        "ok": false,
+        "why": "Legal responsibility sits with the Medical Director."
+      }
+    ]
+  },
+  {
+    "ch": 1,
+    "q": "You already know EMR and AEMT were added recently in Arizona with limited job availability. Which leftover historical pair is what Arizona recognized first?",
+    "opts": [
+      {
+        "t": "Historically only EMT and Paramedic; EMR and AEMT were added recently, with limited job availability",
+        "ok": true,
+        "why": "Arizona historically recognized EMT and paramedic only."
+      },
+      {
+        "t": "Arizona has always recognized EMR, EMT, AEMT, and paramedic equally",
+        "ok": false,
+        "why": "EMR and AEMT were added recently."
+      },
+      {
+        "t": "EMR is the most common paid job in Arizona urban systems",
+        "ok": false,
+        "why": "Job availability for those newer levels is limited."
+      },
+      {
+        "t": "AEMT hours in Arizona are listed as 400",
+        "ok": false,
+        "why": "AEMT hours are not given."
+      }
+    ]
+  },
+  {
+    "ch": 1,
+    "q": "Urban systems usually restrict advanced skills to paramedics. Which leftover who-and-approval pair may start IVs in some rural Arizona agencies?",
+    "opts": [
+      {
+        "t": "Trained EMTs, with medical director approval",
+        "ok": true,
+        "why": "Some rural agencies allow trained EMTs to start IVs with Medical Director approval."
+      },
+      {
+        "t": "Any EMR, without approval",
+        "ok": false,
+        "why": "That is not the rural-IV rule."
+      },
+      {
+        "t": "Only the Medical Director in person on scene",
+        "ok": false,
+        "why": "Approval is from the Medical Director; they do not have to start the IV themselves."
+      },
+      {
+        "t": "Urban EMTs as a standing statewide rule",
+        "ok": false,
+        "why": "Urban systems usually keep advanced skills with paramedics."
+      }
+    ]
+  },
+  {
+    "ch": 1,
+    "q": "You use pre-approved protocols for time-critical standard care on most routine emergencies. Which leftover trio is listed as offline standing orders?",
+    "opts": [
+      {
+        "t": "CPR/AED, oxygen, and epinephrine for anaphylaxis",
+        "ok": true,
+        "why": "Offline standing orders: CPR/AED, oxygen, epinephrine for anaphylaxis."
+      },
+      {
+        "t": "Certain pain medications, advanced procedures, and protocol deviations",
+        "ok": false,
+        "why": "Those need extra authorization / online orders."
+      },
+      {
+        "t": "Any new or unusual overdose antidote you invent on scene",
+        "ok": false,
+        "why": "You do not invent antidotes."
+      },
+      {
+        "t": "Only care after you call and get a one-time order",
+        "ok": false,
+        "why": "That is online, not standing orders."
+      }
+    ]
+  },
+  {
+    "ch": 1,
+    "q": "You called because the situation is unusual or you need extra authorization. Which leftover rule is true of that online order?",
+    "opts": [
+      {
+        "t": "It applies to that one situation only \u2014 make another call for each new situation",
+        "ok": true,
+        "why": "An online order is one situation only; call again for the next one."
+      },
+      {
+        "t": "Once given, you may reuse it all shift as a standing order",
+        "ok": false,
+        "why": "Online orders do not become standing orders for the shift."
+      },
+      {
+        "t": "It replaces the Medical Director for the rest of the patient's hospital stay",
+        "ok": false,
+        "why": "It does not replace the Medical Director."
+      },
+      {
+        "t": "You should call online before every routine oxygen or CPR call",
+        "ok": false,
+        "why": "CPR, oxygen, and anaphylaxis epinephrine are offline examples."
+      }
+    ]
+  },
+  {
+    "ch": 1,
+    "q": "You know oxygen should be 15 LPM. Which leftover error type is setting the regulator to 2 LPM?",
+    "opts": [
+      {
+        "t": "Skills-based failure (slip/lapse): you know the action but execute it wrong",
+        "ok": true,
+        "why": "Skills-based: you know the action but execute it wrong (2 LPM instead of 15)."
+      },
+      {
+        "t": "Rules-based failure: you applied a protocol to the wrong problem",
+        "ok": false,
+        "why": "Rules-based is a known protocol on the wrong situation (stroke treated as low sugar)."
+      },
+      {
+        "t": "Knowledge-based failure: unfamiliar situation and a wrong plan",
+        "ok": false,
+        "why": "That is an unfamiliar-situation wrong plan, not a dial slip."
+      },
+      {
+        "t": "Secondary prevention failure",
+        "ok": false,
+        "why": "That is not the error type for a wrong oxygen setting."
+      }
+    ]
+  },
+  {
+    "ch": 1,
+    "q": "You applied a known protocol. Which leftover error type is treating a stroke as low blood sugar?",
+    "opts": [
+      {
+        "t": "Rules-based failure \u2014 a known protocol applied to the wrong situation",
+        "ok": true,
+        "why": "Rules-based: known rule/protocol used on the wrong situation (misjudgment/misdiagnosis)."
+      },
+      {
+        "t": "Skills-based failure \u2014 you knew it was stroke but turned a dial wrong",
+        "ok": false,
+        "why": "Skills-based is a slip, like the 2 LPM oxygen example."
+      },
+      {
+        "t": "Knowledge-based failure \u2014 rare overdose and the wrong antidote",
+        "ok": false,
+        "why": "Knowledge-based is an unfamiliar situation and a wrong plan."
+      },
+      {
+        "t": "Primary prevention \u2014 stopping the problem before it starts",
+        "ok": false,
+        "why": "That is not an error type for misapplied protocol."
+      }
+    ]
+  },
+  {
+    "ch": 1,
+    "q": "They have decision-making capacity after a partial leg amputation. Which leftover rule about refusal is true?",
+    "opts": [
+      {
+        "t": "They can refuse treatment and transport; assess capacity carefully and document everything",
+        "ok": true,
+        "why": "Capacity lets them refuse even if seriously injured. If they later lose capacity, implied consent applies."
+      },
+      {
+        "t": "You must transport anyway because the injury is too serious",
+        "ok": false,
+        "why": "Serious injury does not cancel capacity."
+      },
+      {
+        "t": "Implied consent already applies because the injury is a true emergency",
+        "ok": false,
+        "why": "Implied consent waits until they lose capacity."
+      },
+      {
+        "t": "Honor a DNR only; refusal of transport is not allowed",
+        "ok": false,
+        "why": "A competent adult may refuse treatment and transport."
+      }
+    ]
+  },
+  {
+    "ch": 2,
+    "q": "Scene safety, PPE, body-substance isolation, safe lifting, and awareness are already on your list. Which leftover personal-safety idea ties those pieces together?",
+    "opts": [
+      {
+        "t": "Protect yourself first so you can help the patient \u2014 you cannot help anyone if you become a patient",
+        "ok": true,
+        "why": "Protect yourself first. You cannot help anyone if you become a patient."
+      },
+      {
+        "t": "Patient care comes before your own gloves or scene size-up",
+        "ok": false,
+        "why": "Your safety comes first."
+      },
+      {
+        "t": "Only use PPE after the patient is loaded",
+        "ok": false,
+        "why": "PPE is part of protecting yourself first."
+      },
+      {
+        "t": "Situational awareness is optional if dispatch sounded calm",
+        "ok": false,
+        "why": "Awareness stays on the list."
+      }
+    ]
+  },
+  {
+    "ch": 2,
+    "q": "You pause at the doorway before you enter. Look, listen, and smell are already done. Which leftover check completes that front-door survey?",
+    "opts": [
+      {
+        "t": "Assess the mood, then keep scanning the whole scene \u2014 not just the patient",
+        "ok": true,
+        "why": "Front-door survey: look, listen, smell, assess the mood. Then scan the whole scene."
+      },
+      {
+        "t": "After the call: restock and write the PCR only",
+        "ok": false,
+        "why": "That is after the call, not the doorway survey."
+      },
+      {
+        "t": "Only check the patient's pupils at the doorway",
+        "ok": false,
+        "why": "Pupils are not the front-door survey."
+      },
+      {
+        "t": "Call hazmat for every doorway, even without fumes",
+        "ok": false,
+        "why": "Hazmat is for spills, unknown substances, strong chemical fumes, toxic exposure, industrial hazmat."
+      }
+    ]
+  },
+  {
+    "ch": 2,
+    "q": "Violence, weapons, threats, crime scenes, aggressive people, and suspected abuse already send you to police. Which leftover cluster is when you call hazmat instead?",
+    "opts": [
+      {
+        "t": "Spills, unknown substances, strong chemical fumes, toxic exposure, industrial hazardous materials",
+        "ok": true,
+        "why": "Police: violence/weapons/threats/crime/aggression/abuse. Hazmat: spills, unknown substances, strong fumes, toxic exposure, industrial hazmat."
+      },
+      {
+        "t": "Police for chemical fumes; hazmat for suspected abuse",
+        "ok": false,
+        "why": "Those agencies are swapped."
+      },
+      {
+        "t": "Always call both before every medical call",
+        "ok": false,
+        "why": "You call the matching resource."
+      },
+      {
+        "t": "Hazmat first for weapons; police only after patient care",
+        "ok": false,
+        "why": "Weapons go to police first."
+      }
+    ]
+  },
+  {
+    "ch": 2,
+    "q": "Faster HR and BP, faster breathing, dilated pupils, blood to muscles/heart/lungs/brain, and slower digestion are already listed. Which leftover physical cluster still belongs in fight-or-flight?",
+    "opts": [
+      {
+        "t": "Tense muscles, more sweat, less pain, and heightened senses",
+        "ok": true,
+        "why": "Those complete the sympathetic/stress-hormone list."
+      },
+      {
+        "t": "Slower HR, constricted pupils, blood pooled in the skin and gut",
+        "ok": false,
+        "why": "That is the opposite of fight-or-flight."
+      },
+      {
+        "t": "Only emotional numbness and nightmares during the call",
+        "ok": false,
+        "why": "Those sit with delayed stress, not the immediate physical list."
+      },
+      {
+        "t": "Burnout, cynicism, and reduced performance in the first minute",
+        "ok": false,
+        "why": "Those are cumulative stress."
+      }
+    ]
+  },
+  {
+    "ch": 2,
+    "q": "Your own stress can impair decisions. Fast HR, pale/cool/sweaty skin, nausea, and anxiety are already on the patient. Which leftover point is why fight-or-flight matters on the call?",
+    "opts": [
+      {
+        "t": "Those signs may be stress, not injury; the picture can look like shock",
+        "ok": true,
+        "why": "Fight-or-flight can mimic shock. Separate normal stress from true shock or critical illness."
+      },
+      {
+        "t": "It proves the patient is in true shock and needs immediate blood products",
+        "ok": false,
+        "why": "Stress can look like shock; it does not prove shock."
+      },
+      {
+        "t": "It only happens to EMTs, never to patients",
+        "ok": false,
+        "why": "Patients show it too."
+      },
+      {
+        "t": "It replaces the need to reassess the scene",
+        "ok": false,
+        "why": "It does not replace scene reassessment."
+      }
+    ]
+  },
+  {
+    "ch": 2,
+    "q": "Acute is during or right after (anxiety, fast HR, shaking, nausea, overwhelmed). Delayed is days/weeks/months (nightmares, flashbacks, irritability, numbness). Which leftover timing-and-sign pair is cumulative stress?",
+    "opts": [
+      {
+        "t": "Repeated calls: burnout, fatigue, cynicism, reduced performance",
+        "ok": true,
+        "why": "Cumulative = repeated calls: burnout, fatigue, cynicism, reduced performance."
+      },
+      {
+        "t": "Delayed happens only during the incident; acute happens years later",
+        "ok": false,
+        "why": "Those timings are swapped."
+      },
+      {
+        "t": "Cumulative is a single call's first 60 seconds only",
+        "ok": false,
+        "why": "Cumulative is repeated calls."
+      },
+      {
+        "t": "All three are treated with a named defusing-team script spelled out here",
+        "ok": false,
+        "why": "No named defusing-team script is given."
+      }
+    ]
+  },
+  {
+    "ch": 2,
+    "q": "Pathogen is a disease-causing organism (HIV, MRSA, influenza). Contamination is it sitting on a person, object, or surface. Exposure is contact that can infect. Which leftover definition is transmission?",
+    "opts": [
+      {
+        "t": "How the organism moves from one place to another",
+        "ok": true,
+        "why": "Transmission is how it moves. Exposure examples: needlestick, blood splash in the eye, inhaling droplets."
+      },
+      {
+        "t": "Contamination means the pathogen has already infected you",
+        "ok": false,
+        "why": "Contamination is on a surface or person, not infection yet."
+      },
+      {
+        "t": "Exposure means blood is only on the stretcher, not on you",
+        "ok": false,
+        "why": "Blood on the stretcher is contamination."
+      },
+      {
+        "t": "A pathogen is only a chemical fume, not an organism",
+        "ok": false,
+        "why": "A pathogen is an organism (bacteria, virus, fungus, parasite)."
+      }
+    ]
+  },
+  {
+    "ch": 2,
+    "q": "Droplet is large respiratory droplets over a short distance. Vector-borne is mosquitoes and ticks. Indirect contact is touching a contaminated object. Which leftover route is paired with TB and measles?",
+    "opts": [
+      {
+        "t": "Airborne \u2014 tiny particles that stay in the air",
+        "ok": true,
+        "why": "Airborne: tiny particles that stay in the air (TB, measles)."
+      },
+      {
+        "t": "Droplet \u2014 large droplets, short distance only",
+        "ok": false,
+        "why": "That is droplet, not TB/measles."
+      },
+      {
+        "t": "Vector-borne \u2014 mosquitoes and ticks",
+        "ok": false,
+        "why": "That is vector-borne."
+      },
+      {
+        "t": "Indirect contact \u2014 touching a contaminated object only",
+        "ok": false,
+        "why": "That is indirect contact."
+      }
+    ]
+  },
+  {
+    "ch": 2,
+    "q": "You assume every patient may be infectious. Eyes, mask, gown, and N95 are add-ons as needed. Which leftover pair is used every time under standard (universal) precautions?",
+    "opts": [
+      {
+        "t": "Hand hygiene and gloves for patient contact",
+        "ok": true,
+        "why": "Every time: hand hygiene; gloves for patient contact."
+      },
+      {
+        "t": "N95 on every medical call, even without airborne risk",
+        "ok": false,
+        "why": "N95 is added when needed, not every call."
+      },
+      {
+        "t": "Gown and face shield as the minimum on every call",
+        "ok": false,
+        "why": "Those are add-ons."
+      },
+      {
+        "t": "Mouth-to-mouth is preferred over a pocket mask",
+        "ok": false,
+        "why": "That is not a standard-precaution minimum."
+      }
+    ]
+  },
+  {
+    "ch": 2,
+    "q": "You clean hands before and after every patient, after gloves, and after contaminated items. Alcohol sanitizer at least 60 percent is already allowed when hands are not visibly dirty. Which leftover situation still needs soap and water?",
+    "opts": [
+      {
+        "t": "Hands are soiled, or after diarrhea cases (norovirus, C. diff)",
+        "ok": true,
+        "why": "Soap and water when soiled or after norovirus/C. diff."
+      },
+      {
+        "t": "Sanitizer is required after C. diff; soap is only for clean hands",
+        "ok": false,
+        "why": "C. diff needs soap and water."
+      },
+      {
+        "t": "Never wash with soap once you have sanitizer on the truck",
+        "ok": false,
+        "why": "Soap is required when soiled or after those diarrhea illnesses."
+      },
+      {
+        "t": "Use bleach on your skin if soap is not nearby",
+        "ok": false,
+        "why": "Do not put bleach on skin."
+      }
+    ]
+  },
+  {
+    "ch": 2,
+    "q": "You already plan gown, then mask/respirator, then eye protection, then gloves. Which leftover first step completes donning order?",
+    "opts": [
+      {
+        "t": "Hand hygiene first",
+        "ok": true,
+        "why": "Don: 1 hand hygiene 2 gown 3 mask/respirator 4 eye protection 5 gloves."
+      },
+      {
+        "t": "Gloves first, then gown",
+        "ok": false,
+        "why": "Gloves are last when donning."
+      },
+      {
+        "t": "Mask first, then hygiene last",
+        "ok": false,
+        "why": "Hygiene is first when donning."
+      },
+      {
+        "t": "Eyes first, then everything else in any order",
+        "ok": false,
+        "why": "The order is fixed."
+      }
+    ]
+  },
+  {
+    "ch": 2,
+    "q": "You already plan to drop gloves, then gown, then eye protection, then mask/respirator. Which leftover last step completes doffing (dirtiest first, mask last)?",
+    "opts": [
+      {
+        "t": "Hand hygiene last",
+        "ok": true,
+        "why": "Doff: 1 gloves 2 gown 3 eye protection 4 mask/respirator 5 hand hygiene."
+      },
+      {
+        "t": "Hygiene first, gloves last",
+        "ok": false,
+        "why": "That is backwards."
+      },
+      {
+        "t": "Pull the mask off first so you can breathe, then gloves",
+        "ok": false,
+        "why": "Mask comes off after eyes; hygiene last."
+      },
+      {
+        "t": "Skip hygiene if the gloves looked clean",
+        "ok": false,
+        "why": "Hygiene is the last required step."
+      }
+    ]
+  },
+  {
+    "ch": 2,
+    "q": "Needlestick just happened. You will wash with soap and water, not squeeze/suck/bleach, report immediately, and seek evaluation ideally within hours. Which leftover first move completes that sequence?",
+    "opts": [
+      {
+        "t": "Turn care over to another EMS provider",
+        "ok": true,
+        "why": "Immediate: hand off care, wash soap and water (flush eyes/mucous membranes with water or saline), do not squeeze/suck/bleach, report, get evaluated quickly. PEP works best when started fast; evaluation/treatment at no cost to you."
+      },
+      {
+        "t": "Finish the call first, then squeeze the wound and apply bleach",
+        "ok": false,
+        "why": "Do not finish first, squeeze, or use bleach."
+      },
+      {
+        "t": "Force the source patient to give a new blood sample yourself",
+        "ok": false,
+        "why": "You do not force a sample."
+      },
+      {
+        "t": "Wait until end of shift to tell anyone; PEP can start next week",
+        "ok": false,
+        "why": "Report immediately; evaluation ideally within hours."
+      }
+    ]
+  },
+  {
+    "ch": 2,
+    "q": "You already plan at least 100 feet from fires, crashes, and hazmat, first unit upstream (before the crash), later units downstream (past), and NREMT use of the ERG. Which leftover parking pair completes hazmat placement?",
+    "opts": [
+      {
+        "t": "Uphill and upwind",
+        "ok": true,
+        "why": "Hazmat: uphill and upwind. First unit before the crash; later units past it."
+      },
+      {
+        "t": "Park 10 feet away and downhill/downwind",
+        "ok": false,
+        "why": "Distance is at least 100 feet; downhill/downwind is wrong."
+      },
+      {
+        "t": "First unit parks past the crash (downstream) to leave room",
+        "ok": false,
+        "why": "First unit parks before the crash."
+      },
+      {
+        "t": "Enter the fire to locate the patient before fire personnel arrive",
+        "ok": false,
+        "why": "Do not enter the fire first."
+      }
+    ]
+  },
+  {
+    "ch": 2,
+    "q": "You already introduce yourself, orient them, allow hope but not false hope, and notify family as soon as practical. Which leftover tone completes communication with a critically injured patient?",
+    "opts": [
+      {
+        "t": "Be honest without being blunt or cruel; avoid looking sad or grim; address initial refusal calmly",
+        "ok": true,
+        "why": "Honest, not cruel. Example tone: you are seriously hurt, but you are doing everything you can and getting them to the hospital quickly."
+      },
+      {
+        "t": "Look grim, give false hope, and skip your name",
+        "ok": false,
+        "why": "Opposite of the list."
+      },
+      {
+        "t": "Take away all hope so they understand how bad it is",
+        "ok": false,
+        "why": "Allow hope, not false hope."
+      },
+      {
+        "t": "Wait to notify family until after hospital discharge",
+        "ok": false,
+        "why": "Notify family as soon as practical."
+      }
+    ]
+  },
+  {
+    "ch": 2,
+    "q": "Denial, anger, bargaining, and depression are already on the list. Which leftover stage completes Kubler-Ross, and what is true about order?",
+    "opts": [
+      {
+        "t": "Acceptance \u2014 people may skip stages or move back and forth; they do not always go in order",
+        "ok": true,
+        "why": "Five stages: denial, anger, bargaining, depression, acceptance. Order is not fixed. Your role: respect, empathy, honest compassion; allow family when possible; avoid false hope or Everything will be fine."
+      },
+      {
+        "t": "Acceptance, then denial only \u2014 always in that fixed order",
+        "ok": false,
+        "why": "They do not always go in order."
+      },
+      {
+        "t": "Bargaining is not one of the five stages",
+        "ok": false,
+        "why": "Bargaining is on the list."
+      },
+      {
+        "t": "Tell the family Everything will be fine as the required script",
+        "ok": false,
+        "why": "Empty platitudes are avoided."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "You followed an appropriate standard of care. Which leftover condition usually keeps you out of legal exposure?",
+    "opts": [
+      {
+        "t": "You also acted in good faith",
+        "ok": true,
+        "why": "Good faith plus an appropriate standard of care usually avoids legal exposure."
+      },
+      {
+        "t": "You never touched the patient",
+        "ok": false,
+        "why": "Avoiding contact is not the rule."
+      },
+      {
+        "t": "You followed social media advice instead of protocols",
+        "ok": false,
+        "why": "That is not the standard of care."
+      },
+      {
+        "t": "You left after a verbal goodbye with no handoff",
+        "ok": false,
+        "why": "That risks abandonment."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "They are alert, oriented, and have decision-making capacity. They say yes or hold out an arm after you ask to check a BP. Which leftover consent type still requires you to inform them of plan, risks, and benefits?",
+    "opts": [
+      {
+        "t": "Expressed consent \u2014 verbal or non-verbal agreement that should be informed",
+        "ok": true,
+        "why": "Expressed: capacity plus verbal or non-verbal agreement; must be informed."
+      },
+      {
+        "t": "Implied consent for an unresponsive crash patient",
+        "ok": false,
+        "why": "That is implied, not expressed."
+      },
+      {
+        "t": "Involuntary consent from a court order or mental health hold",
+        "ok": false,
+        "why": "That is against the patient's will under legal authority."
+      },
+      {
+        "t": "A living will alone that lists a ventilator preference",
+        "ok": false,
+        "why": "That is an advanced directive, not expressed consent."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "You explained nature, risks, benefits, and alternatives, and they still agree. Which leftover relationship is true of informed versus expressed consent?",
+    "opts": [
+      {
+        "t": "Informed is a more complete expressed consent; all informed consent is expressed, not all expressed consent is fully informed",
+        "ok": true,
+        "why": "Informed is fuller expressed consent. Example: they hear the risks of refusing chest-pain transport and still agree to go."
+      },
+      {
+        "t": "All expressed consent is fully informed, but informed consent is never expressed",
+        "ok": false,
+        "why": "That flips the relationship."
+      },
+      {
+        "t": "Informed consent is only for unresponsive patients",
+        "ok": false,
+        "why": "Unresponsive patients fall under implied consent."
+      },
+      {
+        "t": "Informed consent replaces the need for capacity",
+        "ok": false,
+        "why": "Capacity is still required."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "They are unresponsive after a crash. Which leftover consent path assumes a reasonable person would want emergency care?",
+    "opts": [
+      {
+        "t": "Implied consent \u2014 unresponsive, severely altered, or unable to consent; true emergencies only",
+        "ok": true,
+        "why": "Lack of capacity plus emergency means implied consent; treat and transport."
+      },
+      {
+        "t": "Expressed consent from any alert adult who says yes",
+        "ok": false,
+        "why": "That is expressed."
+      },
+      {
+        "t": "Only after a signed living will is on the clipboard",
+        "ok": false,
+        "why": "A living will alone is often not enough to withhold care."
+      },
+      {
+        "t": "Whenever a family member says treat, even if the patient has capacity and refuses",
+        "ok": false,
+        "why": "A capable patient's refusal stands."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "They are suicidal, severely altered, and refuse. Law enforcement places a hold. Which leftover consent type is that?",
+    "opts": [
+      {
+        "t": "Involuntary consent \u2014 against their will under legal authority (hold, court order, or danger to self/others without capacity)",
+        "ok": true,
+        "why": "Involuntary: legal authority against the patient's will."
+      },
+      {
+        "t": "Expressed consent from an alert adult with capacity who refuses a bandage",
+        "ok": false,
+        "why": "That capable adult may refuse."
+      },
+      {
+        "t": "Implied consent for an unconscious crash patient with no family",
+        "ok": false,
+        "why": "Unconscious crash is implied, not involuntary."
+      },
+      {
+        "t": "Expressed consent when they hold out an arm for a cuff",
+        "ok": false,
+        "why": "That is expressed."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "They have capacity. Which leftover set may they refuse even if refusal may cause serious harm or death?",
+    "opts": [
+      {
+        "t": "Assessment, treatment, or transport",
+        "ok": true,
+        "why": "A competent adult may refuse assessment, treatment, or transport. If they lack capacity and it is an emergency, treat under implied consent."
+      },
+      {
+        "t": "Nothing \u2014 serious injury always forces transport",
+        "ok": false,
+        "why": "Capacity still allows refusal."
+      },
+      {
+        "t": "Only transport, never assessment",
+        "ok": false,
+        "why": "They may refuse assessment too."
+      },
+      {
+        "t": "They may refuse only after a POLST is signed on scene",
+        "ok": false,
+        "why": "Capacity does not wait for a POLST."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "They already understand the information, appreciate the consequences, and reason through the decision. Which leftover fourth piece completes a capacity check?",
+    "opts": [
+      {
+        "t": "Communicate a clear choice",
+        "ok": true,
+        "why": "Capacity: understand, appreciate consequences, reason, communicate a clear choice."
+      },
+      {
+        "t": "Recite all 33 vertebrae and name every facial bone",
+        "ok": false,
+        "why": "That is not a capacity test."
+      },
+      {
+        "t": "Only say their name; no need to appreciate consequences",
+        "ok": false,
+        "why": "Appreciating consequences is already required."
+      },
+      {
+        "t": "Have a family member decide even though they are alert and capable",
+        "ok": false,
+        "why": "A capable patient decides."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "They have capacity, the refusal is voluntary, and they will sign when possible. Which leftover piece still belongs on a valid refusal?",
+    "opts": [
+      {
+        "t": "Informed of condition, recommended care, and risks of refusing",
+        "ok": true,
+        "why": "Valid refusal: capacity; informed of condition, recommended care, and refusal risks; voluntary; sign when possible. Also explain risks, offer alternatives, call medical control for high-risk refusals, and document."
+      },
+      {
+        "t": "Capacity is optional if they are angry",
+        "ok": false,
+        "why": "Capacity is required."
+      },
+      {
+        "t": "You can skip explaining risks if they already look informed",
+        "ok": false,
+        "why": "They must be informed of the risks."
+      },
+      {
+        "t": "A coerced yes from a family member counts as the patient's refusal",
+        "ok": false,
+        "why": "Refusal must be voluntary and the patient's."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "You will confirm they still understand, encourage calling 911 if worse, leave with a responsible person if possible, get a signed refusal or document refusal to sign, and notify medical control if protocol requires. Which leftover step still happens before you leave a refusal scene?",
+    "opts": [
+      {
+        "t": "Reassess once more",
+        "ok": true,
+        "why": "Before leaving: reassess, confirm the refusal, encourage 911 if worse, leave with a responsible person if possible, signature or document refusal to sign, notify medical control if required."
+      },
+      {
+        "t": "Leave immediately once they shake their head, with no recheck",
+        "ok": false,
+        "why": "You reassess first."
+      },
+      {
+        "t": "Take them anyway if they will not sign",
+        "ok": false,
+        "why": "Document refusal to sign; do not force transport."
+      },
+      {
+        "t": "Tell them never to call 911 again",
+        "ok": false,
+        "why": "You encourage calling if they worsen."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "Less restrictive options have failed. Which leftover cluster still allows forcible/physical restraint?",
+    "opts": [
+      {
+        "t": "Danger to self or others; needed to protect patient, crew, or public; needed to allow assessment/treatment",
+        "ok": true,
+        "why": "Restraint is a last resort when those conditions are met. Safety, monitoring, and documentation are critical."
+      },
+      {
+        "t": "Whenever a patient is annoying or refuses a non-emergency bandage",
+        "ok": false,
+        "why": "Annoyance is not enough."
+      },
+      {
+        "t": "To punish someone for yelling at the crew",
+        "ok": false,
+        "why": "Restraint is not punishment."
+      },
+      {
+        "t": "As the first step before talking to the patient",
+        "ok": false,
+        "why": "Less restrictive options come first."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "You already use the least restrictive method, consult medical control if possible, monitor ABCs and mental status, document, and involve law enforcement when possible. Which leftover restraint practices are forbidden?",
+    "opts": [
+      {
+        "t": "Never prone (face-down); never hog-tie; do not interfere with breathing or circulation",
+        "ok": true,
+        "why": "No prone, no hog-tie, no blocked breathing or circulation."
+      },
+      {
+        "t": "Prone and hog-tie are the preferred EMS methods",
+        "ok": false,
+        "why": "Those are forbidden."
+      },
+      {
+        "t": "You may ignore ABCs once straps are on",
+        "ok": false,
+        "why": "You continuously monitor ABCs."
+      },
+      {
+        "t": "Skip documentation if law enforcement is present",
+        "ok": false,
+        "why": "You still document."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "Soft padded/Velcro restraints are preferred for EMS. Which leftover pair matches hard versus chemical restraint?",
+    "opts": [
+      {
+        "t": "Hard (handcuffs) usually law enforcement only; chemical sedation is an ALS/paramedic skill, not normal EMT scope",
+        "ok": true,
+        "why": "Soft preferred for EMS; handcuffs usually LE; chemical is ALS/paramedic."
+      },
+      {
+        "t": "Handcuffs are the preferred EMT tool",
+        "ok": false,
+        "why": "Soft restraints are preferred for EMS."
+      },
+      {
+        "t": "Chemical restraint is a routine EMT standing order",
+        "ok": false,
+        "why": "Chemical is not normal EMT scope."
+      },
+      {
+        "t": "Any provider may hog-tie if the patient is strong",
+        "ok": false,
+        "why": "Hog-tie is forbidden."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "Name, address, and phone are already protected. Which leftover cluster is also protected patient information?",
+    "opts": [
+      {
+        "t": "History, findings, vitals, treatment and responses \u2014 anything that identifies the patient and their condition",
+        "ok": true,
+        "why": "Share only with a legitimate need to know for care, or when required by law."
+      },
+      {
+        "t": "Only the patient's name; vitals are public",
+        "ok": false,
+        "why": "Vitals are protected too."
+      },
+      {
+        "t": "Nothing is protected once they call 911",
+        "ok": false,
+        "why": "Calling 911 does not make the record public."
+      },
+      {
+        "t": "Social media posts are fine if you omit the last name only",
+        "ok": false,
+        "why": "Social media sharing is not allowed."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "You may share with the care team, when required by law (certain crimes, GSW, abuse, public health), and with a valid court order or subpoena. Which leftover permission still lets you share?",
+    "opts": [
+      {
+        "t": "The patient's written permission",
+        "ok": true,
+        "why": "Those are the may-share paths."
+      },
+      {
+        "t": "With the media if the story is newsworthy",
+        "ok": false,
+        "why": "Do not share with the media."
+      },
+      {
+        "t": "With friends or family automatically on every call",
+        "ok": false,
+        "why": "Not automatic."
+      },
+      {
+        "t": "In casual talk with people not involved in care",
+        "ok": false,
+        "why": "Casual talk is not allowed."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "A reporter asks what happened. Friends, family without permission, social media, and casual talk are already off limits. Which leftover media rule is true?",
+    "opts": [
+      {
+        "t": "Do not share with the media. If in doubt, do not share",
+        "ok": true,
+        "why": "Breaking confidentiality can mean legal action, loss of certification, and termination."
+      },
+      {
+        "t": "Give the name and vitals so the public is informed",
+        "ok": false,
+        "why": "Media does not get that."
+      },
+      {
+        "t": "Post a scene photo with the face cropped",
+        "ok": false,
+        "why": "Social media is not allowed."
+      },
+      {
+        "t": "Tell bystanders the diagnosis because they already saw the ambulance",
+        "ok": false,
+        "why": "Bystanders are not the care team."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "A durable power of attorney names a proxy. POLST/MOLST is a medical order with specific EMS/hospital instructions, often more detailed than a basic DNR. Which leftover pair splits living will versus DNR?",
+    "opts": [
+      {
+        "t": "Living will: which life-sustaining treatments they do or do not want (ventilator, feeding tube). DNR: no CPR/advanced resuscitation if heart or breathing stops",
+        "ok": true,
+        "why": "Living will lists treatments they want or refuse. DNR means no CPR if they arrest."
+      },
+      {
+        "t": "A living will is the same as a DNR and always stops EMS care",
+        "ok": false,
+        "why": "A living will alone is often not enough to withhold emergency care."
+      },
+      {
+        "t": "A DNR names a health-care proxy to make all decisions",
+        "ok": false,
+        "why": "The proxy is the durable power of attorney."
+      },
+      {
+        "t": "POLST is only a diary of the patient's feelings",
+        "ok": false,
+        "why": "POLST is a medical order."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "A living will is on the fridge. There is no DNR or POLST. They are in cardiac arrest. Which leftover EMS rule is true?",
+    "opts": [
+      {
+        "t": "A living will alone is often not enough to withhold emergency care \u2014 usually need a specific DNR or POLST. When in doubt, begin treatment and contact medical control",
+        "ok": true,
+        "why": "Follow a valid DNR or POLST if present and legitimate. If any question, resuscitate and let the hospital sort it out."
+      },
+      {
+        "t": "Always withhold CPR based on a living will alone",
+        "ok": false,
+        "why": "Living will alone is often not enough."
+      },
+      {
+        "t": "Wait for the durable power of attorney to arrive before any care",
+        "ok": false,
+        "why": "Doubt means treat now."
+      },
+      {
+        "t": "Tear up the living will; advanced directives never apply to EMS",
+        "ok": false,
+        "why": "Valid DNR/POLST does apply."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "They are conscious with capacity. A paper DNR is in the chart. Which leftover wish wins?",
+    "opts": [
+      {
+        "t": "Current wishes override the written directive",
+        "ok": true,
+        "why": "Conscious with capacity: what they want now overrides the paper."
+      },
+      {
+        "t": "The paper DNR always wins, even if they ask for care now",
+        "ok": false,
+        "why": "Current wishes win."
+      },
+      {
+        "t": "The media's request for an interview",
+        "ok": false,
+        "why": "Media has no say."
+      },
+      {
+        "t": "A bystander's opinion if they speak louder",
+        "ok": false,
+        "why": "Bystanders do not override the patient."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "Unresponsiveness, no breathing, and no pulse are already on the list. Which leftover finding is still only a presumptive sign of death (not enough alone)?",
+    "opts": [
+      {
+        "t": "Fixed, dilated pupils",
+        "ok": true,
+        "why": "Presumptive: unresponsiveness, no breathing, no pulse, fixed dilated pupils \u2014 not enough by themselves to withhold resuscitation."
+      },
+      {
+        "t": "Dependent lividity, rigor mortis, putrefaction, decapitation",
+        "ok": false,
+        "why": "Those are definitive signs."
+      },
+      {
+        "t": "Only a signed living will with no DNR",
+        "ok": false,
+        "why": "That is not a sign of death."
+      },
+      {
+        "t": "Cynicism and burnout after many calls",
+        "ok": false,
+        "why": "That is cumulative stress, not a death sign."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "Dependent lividity, rigor mortis, and putrefaction/decomposition are already listed. Which leftover cluster still counts as a definitive sign of death?",
+    "opts": [
+      {
+        "t": "Injuries incompatible with life (decapitation, massive trauma, and similar)",
+        "ok": true,
+        "why": "Need a definitive sign or a valid DNR/POLST before withholding. When in doubt, start CPR."
+      },
+      {
+        "t": "Unresponsiveness and no pulse only",
+        "ok": false,
+        "why": "Those are only presumptive."
+      },
+      {
+        "t": "Fixed, dilated pupils by themselves",
+        "ok": false,
+        "why": "Presumptive only."
+      },
+      {
+        "t": "Anger at the crew during bargaining",
+        "ok": false,
+        "why": "That is a grief stage, not a death sign."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "You find no pulse, no breathing, and fixed dilated pupils. No definitive signs. No valid DNR/POLST. Which leftover action is required?",
+    "opts": [
+      {
+        "t": "Presumptive signs alone are not enough. When in doubt, start CPR",
+        "ok": true,
+        "why": "You need a definitive sign or a valid DNR/POLST to withhold. Doubt means CPR and medical control."
+      },
+      {
+        "t": "Withhold CPR because four presumptive signs equal death",
+        "ok": false,
+        "why": "Presumptive signs are not enough."
+      },
+      {
+        "t": "Wait for the medical examiner before any CPR",
+        "ok": false,
+        "why": "Start CPR first when in doubt."
+      },
+      {
+        "t": "Call the media before starting care",
+        "ok": false,
+        "why": "Do not share with the media."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "Unexpected death, trauma/violence/accident/suicide, suspicious/unusual death, and no recent attending physician already trigger the medical examiner. Which leftover first step and body rule complete that process?",
+    "opts": [
+      {
+        "t": "Notify law enforcement first. Do not move the body until the ME/coroner clears it",
+        "ok": true,
+        "why": "LE first. Do not move the body until cleared."
+      },
+      {
+        "t": "Move the body to the ambulance first, then call",
+        "ok": false,
+        "why": "Do not move the body first."
+      },
+      {
+        "t": "Every expected hospice death with a valid DNR is the only trigger listed",
+        "ok": false,
+        "why": "The listed triggers are unexpected, trauma/violence, suspicious, no recent physician."
+      },
+      {
+        "t": "Call a reporter first so the scene is documented",
+        "ok": false,
+        "why": "Do not call the media."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "Training, experience, and the same or similar situation are already in the sentence. Which leftover definition is the standard of care?",
+    "opts": [
+      {
+        "t": "What a reasonably prudent EMT with similar training and experience would do in the same or similar situation",
+        "ok": true,
+        "why": "That is the standard-of-care definition."
+      },
+      {
+        "t": "Whatever the loudest family member demands",
+        "ok": false,
+        "why": "Family volume is not the standard."
+      },
+      {
+        "t": "Whatever you saw once on social media",
+        "ok": false,
+        "why": "Social media is not the standard."
+      },
+      {
+        "t": "The maximum ALS skill, even if you are an EMT without that scope",
+        "ok": false,
+        "why": "Stay in scope."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "Duty to act, breach of duty, and damages (harm) are already listed. Which leftover fourth element is still required for negligence?",
+    "opts": [
+      {
+        "t": "Causation",
+        "ok": true,
+        "why": "Negligence needs all four: duty, breach, damages, causation."
+      },
+      {
+        "t": "Duty and breach only \u2014 harm is optional",
+        "ok": false,
+        "why": "Harm/damages are required."
+      },
+      {
+        "t": "A news story, without duty",
+        "ok": false,
+        "why": "Duty is required."
+      },
+      {
+        "t": "Abandonment plus a living will",
+        "ok": false,
+        "why": "Those are different topics."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "They still need care. You did not get consent to stop. Which leftover definition is abandonment?",
+    "opts": [
+      {
+        "t": "Unilateral termination of care without transfer to equal or higher level",
+        "ok": true,
+        "why": "Avoid it with continuous care until a proper handoff."
+      },
+      {
+        "t": "A proper verbal handoff to a higher-level provider plus a completed PCR",
+        "ok": false,
+        "why": "That is a correct transfer."
+      },
+      {
+        "t": "A valid informed refusal with capacity and a signature",
+        "ok": false,
+        "why": "That is a legal stop."
+      },
+      {
+        "t": "Waiting for police on an unsafe scene before entering",
+        "ok": false,
+        "why": "Scene safety is not abandonment."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "You follow protocols, stay in scope, document informed refusals, and assess/document. Which leftover pair still avoids both negligence and abandonment?",
+    "opts": [
+      {
+        "t": "Continuous care until proper handoff; never leave a patient who still requires care",
+        "ok": true,
+        "why": "Meet the standard, never leave someone who still needs you, document everything."
+      },
+      {
+        "t": "Leave as soon as the ambulance doors close, PCR later if you remember",
+        "ok": false,
+        "why": "That risks abandonment and poor documentation."
+      },
+      {
+        "t": "Try skills outside your scope if they seem helpful",
+        "ok": false,
+        "why": "Stay in scope."
+      },
+      {
+        "t": "Skip the refusal form if they seem sure",
+        "ok": false,
+        "why": "Document the refusal."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "No valid present DNR/POLST. Only presumptive signs. Which leftover repeated rule applies when you are in doubt about death or an advanced directive?",
+    "opts": [
+      {
+        "t": "Begin treatment / start CPR and contact medical control; if any question, resuscitate and let the hospital sort it out",
+        "ok": true,
+        "why": "Doubt means treat. Follow only a valid, present, applicable DNR/POLST."
+      },
+      {
+        "t": "Withhold care until a living will is interpreted by the media",
+        "ok": false,
+        "why": "Media does not interpret directives."
+      },
+      {
+        "t": "Assume any unsigned note on the fridge is a valid DNR",
+        "ok": false,
+        "why": "You need a valid DNR/POLST."
+      },
+      {
+        "t": "Wait for the ME before starting CPR on a pulseless patient with only presumptive signs",
+        "ok": false,
+        "why": "Presumptive signs mean start CPR when in doubt."
+      }
+    ]
+  },
+  {
+    "ch": 3,
+    "q": "High-risk refusal. You already explained risks. Which leftover trio still belongs?",
+    "opts": [
+      {
+        "t": "Offer alternatives when appropriate, contact medical control, and document thoroughly (what you told them, responses, capacity, witnesses, signature)",
+        "ok": true,
+        "why": "Valid refusal still needs capacity, informed, voluntary, and a signature when possible."
+      },
+      {
+        "t": "Force them into the ambulance because the risk is high",
+        "ok": false,
+        "why": "Capacity still allows refusal."
+      },
+      {
+        "t": "Ask the media to help persuade them",
+        "ok": false,
+        "why": "Do not share with the media."
+      },
+      {
+        "t": "Skip medical control because online orders are only for pain meds",
+        "ok": false,
+        "why": "Call medical control for high-risk refusals."
+      }
+    ]
+  },
+  {
+    "ch": 4,
+    "q": "You already use eye contact, speak clearly, listen, show respect, and adjust for age, culture, hearing/vision, or anxiety. Which leftover question order is therapeutic communication?",
+    "opts": [
+      {
+        "t": "Open-ended first (What happened?), then closed-ended for specifics",
+        "ok": true,
+        "why": "Open-ended first, then closed-ended."
+      },
+      {
+        "t": "Closed-ended only, never let them tell the story",
+        "ok": false,
+        "why": "Start open-ended."
+      },
+      {
+        "t": "Start with a leading question about chest pain",
+        "ok": false,
+        "why": "Leading questions are avoided."
+      },
+      {
+        "t": "Use medical jargon first to sound professional",
+        "ok": false,
+        "why": "Jargon is avoided."
+      }
+    ]
+  },
+  {
+    "ch": 4,
+    "q": "Interpretation restates what you think they mean. Explanation tells them what is happening. Summary repeats main points. Which leftover type is You said you don't drink, but I smell alcohol, said calmly?",
+    "opts": [
+      {
+        "t": "Confrontation \u2014 point out an inconsistency calmly",
+        "ok": true,
+        "why": "That line is confrontation."
+      },
+      {
+        "t": "Interpretation \u2014 restate what you think they mean",
+        "ok": false,
+        "why": "Interpretation is the heart-attack-worry example."
+      },
+      {
+        "t": "Explanation \u2014 tell them what is happening",
+        "ok": false,
+        "why": "Explanation is the oxygen-mask line."
+      },
+      {
+        "t": "Summary \u2014 repeat main points",
+        "ok": false,
+        "why": "Summary recaps the story."
+      }
+    ]
+  },
+  {
+    "ch": 4,
+    "q": "Confrontation points out inconsistency. Explanation tells them what you are doing. Summary recaps. Which leftover type is It sounds like you're worried this is a heart attack?",
+    "opts": [
+      {
+        "t": "Interpretation \u2014 restate what you think they mean",
+        "ok": true,
+        "why": "That line is interpretation."
+      },
+      {
+        "t": "Confrontation \u2014 inconsistency",
+        "ok": false,
+        "why": "Confrontation is the alcohol-smell line."
+      },
+      {
+        "t": "Explanation \u2014 what you are doing",
+        "ok": false,
+        "why": "Explanation is the oxygen-mask line."
+      },
+      {
+        "t": "Summary \u2014 recap the story",
+        "ok": false,
+        "why": "Summary is the two-hour walking-pain recap."
+      }
+    ]
+  },
+  {
+    "ch": 4,
+    "q": "Summary repeats history. Confrontation points out inconsistency. False reassurance is something to avoid. Which leftover type is I'm putting this oxygen mask on to help you breathe?",
+    "opts": [
+      {
+        "t": "Explanation \u2014 tell them what is happening",
+        "ok": true,
+        "why": "That line is explanation."
+      },
+      {
+        "t": "Summary \u2014 repeat the history",
+        "ok": false,
+        "why": "Summary recaps their story."
+      },
+      {
+        "t": "Confrontation \u2014 point out inconsistency",
+        "ok": false,
+        "why": "Not an inconsistency."
+      },
+      {
+        "t": "False reassurance \u2014 a listed thing to avoid",
+        "ok": false,
+        "why": "You are explaining a real action."
+      }
+    ]
+  },
+  {
+    "ch": 4,
+    "q": "Leading questions, giving advice, and judgmental statements are already on the avoid list. Which leftover type is Pain for two hours, started while walking, worse with deep breaths \u2014 correct?",
+    "opts": [
+      {
+        "t": "Summary \u2014 briefly repeat the main points",
+        "ok": true,
+        "why": "That line is a summary."
+      },
+      {
+        "t": "Leading question \u2014 listed as something to avoid",
+        "ok": false,
+        "why": "You are confirming their story, not planting the answer."
+      },
+      {
+        "t": "Giving advice",
+        "ok": false,
+        "why": "You are not telling them what to do."
+      },
+      {
+        "t": "Judgmental statement",
+        "ok": false,
+        "why": "You are not judging."
+      }
+    ]
+  },
+  {
+    "ch": 4,
+    "q": "Don't worry you're going to be completely fine, The pain is in your chest right, You should really quit smoking, You have tachycardia and dyspnea, and Why did you wait so long are already examples. Which leftover cluster is the full avoid list those examples sit on?",
+    "opts": [
+      {
+        "t": "False reassurance, leading questions, giving advice, interrupting, medical jargon, judgmental statements, talking over the patient with your partner",
+        "ok": true,
+        "why": "Those are the listed things to avoid."
+      },
+      {
+        "t": "Open-ended questions like What happened?",
+        "ok": false,
+        "why": "Open-ended questions are wanted."
+      },
+      {
+        "t": "Making eye contact and using the patient's proper name",
+        "ok": false,
+        "why": "Those are golden-rule items."
+      },
+      {
+        "t": "Facing a hearing-impaired patient so they can read your lips",
+        "ok": false,
+        "why": "That is a golden rule."
+      }
+    ]
+  },
+  {
+    "ch": 4,
+    "q": "Eye contact, your name and their proper name, tell the truth, language they understand, careful talk about them, body language, slow/clear/distinct, and face hearing-impaired patients are already on the list. Which leftover pair completes the 10 golden rules?",
+    "opts": [
+      {
+        "t": "Give them time to answer; use a calm confident manner",
+        "ok": true,
+        "why": "Those finish the 10 golden rules for calming and reassuring."
+      },
+      {
+        "t": "Talk over them with your partner and use jargon",
+        "ok": false,
+        "why": "Those are on the avoid list."
+      },
+      {
+        "t": "Give advice and leading questions first",
+        "ok": false,
+        "why": "Those are avoided."
+      },
+      {
+        "t": "Say their full name over the radio as a courtesy",
+        "ok": false,
+        "why": "Do not say the patient's name over the radio."
+      }
+    ]
+  },
+  {
+    "ch": 4,
+    "q": "Brief, clear, professional, and plain English (avoid codes unless required) are already on the radio list. Which leftover pair still belongs?",
+    "opts": [
+      {
+        "t": "Do not say the patient's name over the radio; repeat orders back to confirm",
+        "ok": true,
+        "why": "No names on the radio. Repeat orders back."
+      },
+      {
+        "t": "Always use 10-codes; they are listed in full",
+        "ok": false,
+        "why": "10-codes and local templates are not listed; use plain English unless required."
+      },
+      {
+        "t": "Say the patient's name twice so the hospital can chart it",
+        "ok": false,
+        "why": "Do not say the name on the radio."
+      },
+      {
+        "t": "Never repeat a physician order \u2014 just guess if you missed it",
+        "ok": false,
+        "why": "Repeat orders back."
+      }
+    ]
+  },
+  {
+    "ch": 4,
+    "q": "Situation, Background, and Assessment are already filled. Which leftover last letter completes SBAR for hospital notification?",
+    "opts": [
+      {
+        "t": "Recommendation / ETA",
+        "ok": true,
+        "why": "SBAR: Situation, Background, Assessment, Recommendation/ETA."
+      },
+      {
+        "t": "Subjective, Breath sounds, Allergies, Rx as the whole set",
+        "ok": false,
+        "why": "That is not SBAR."
+      },
+      {
+        "t": "Scene, Blood pressure, Airway, Response as the whole set",
+        "ok": false,
+        "why": "That is not SBAR."
+      },
+      {
+        "t": "SOAP only \u2014 SBAR is not used",
+        "ok": false,
+        "why": "SBAR is the hospital-notification format given. CHART/SOAP are not that format."
+      }
+    ]
+  },
+  {
+    "ch": 4,
+    "q": "Demographics, chief complaint, history, vital signs, assessment findings, treatments, response to treatment, and times are already on the PCR. Which leftover pair is true of that document?",
+    "opts": [
+      {
+        "t": "It is a legal document / permanent medical record. Facts only \u2014 no opinions or judgments",
+        "ok": true,
+        "why": "If it isn't documented, it didn't happen."
+      },
+      {
+        "t": "An informal scratch pad you may throw away",
+        "ok": false,
+        "why": "It is a permanent legal record."
+      },
+      {
+        "t": "Opinions and judgments are preferred over facts",
+        "ok": false,
+        "why": "Facts only."
+      },
+      {
+        "t": "Treatments and times are optional",
+        "ok": false,
+        "why": "Treatments and times are required."
+      }
+    ]
+  },
+  {
+    "ch": 4,
+    "q": "Clear communication and accurate documentation protect the patient, protect you legally, and ensure continuity of care. Which leftover phrase sits with the PCR?",
+    "opts": [
+      {
+        "t": "If it isn't documented, it didn't happen",
+        "ok": true,
+        "why": "That phrase belongs with the PCR."
+      },
+      {
+        "t": "You may skip the PCR if the verbal handoff was friendly",
+        "ok": false,
+        "why": "You still complete the PCR."
+      },
+      {
+        "t": "Radio names replace written facts",
+        "ok": false,
+        "why": "You do not say the name on the radio, and writing still matters."
+      },
+      {
+        "t": "Only document if something went wrong",
+        "ok": false,
+        "why": "Document the whole call."
+      }
+    ]
+  },
+  {
+    "ch": 4,
+    "q": "You already gave a clear oral report and completed the PCR. Which leftover handoff still makes transfer of care official?",
+    "opts": [
+      {
+        "t": "A verbal handoff to a provider of equal or higher level",
+        "ok": true,
+        "why": "Official only after verbal handoff to equal or higher, plus oral report and completed PCR. Leaving without that is abandonment territory."
+      },
+      {
+        "t": "When you park at the dock, even if no one takes report",
+        "ok": false,
+        "why": "Parking is not a handoff."
+      },
+      {
+        "t": "After you wave at a receptionist of lower training and leave",
+        "ok": false,
+        "why": "Equal or higher level is required."
+      },
+      {
+        "t": "The PCR can wait until next shift if you already spoke",
+        "ok": false,
+        "why": "The PCR is part of official transfer."
+      }
+    ]
+  },
+  {
+    "ch": 4,
+    "q": "You will initial, date, and write the correct information. Which leftover PCR-error move is required, and what do you never do?",
+    "opts": [
+      {
+        "t": "Single line through the error. Never erase or cover up",
+        "ok": true,
+        "why": "Line through, initial, date, correct. Never erase or cover up."
+      },
+      {
+        "t": "Erase it completely so no one sees the mistake",
+        "ok": false,
+        "why": "Never erase."
+      },
+      {
+        "t": "Black out the line with marker",
+        "ok": false,
+        "why": "Never cover up."
+      },
+      {
+        "t": "Start a new PCR and shred the old one quietly",
+        "ok": false,
+        "why": "Do not hide the original."
+      }
+    ]
+  },
+  {
+    "ch": 4,
+    "q": "For children or special needs you speak at their level, involve caregivers, and use simple language. Which leftover cluster must refusal documentation on the PCR include?",
+    "opts": [
+      {
+        "t": "Capacity, risks explained, patient understanding, and signature (or refusal to sign)",
+        "ok": true,
+        "why": "Same refusal documentation theme: capacity, risks, understanding, signature or refusal to sign."
+      },
+      {
+        "t": "Only the patient's nickname",
+        "ok": false,
+        "why": "That is not enough."
+      },
+      {
+        "t": "A social-media summary for the family",
+        "ok": false,
+        "why": "No social media."
+      },
+      {
+        "t": "Your opinion that they were stupid to refuse",
+        "ok": false,
+        "why": "Facts only, no judgments."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "Prefix is the beginning, word root is the core meaning, and suffix is the ending. Which leftover part is usually o and is for pronunciation only?",
+    "opts": [
+      {
+        "t": "Combining vowel",
+        "ok": true,
+        "why": "Parts: prefix, root, combining vowel (usually o, pronunciation only), suffix."
+      },
+      {
+        "t": "A combining vowel that changes the meaning",
+        "ok": false,
+        "why": "It is for pronunciation, not meaning."
+      },
+      {
+        "t": "Only a root \u2014 prefixes and suffixes are not listed",
+        "ok": false,
+        "why": "Prefix and suffix are listed."
+      },
+      {
+        "t": "A number prefix as the only allowed part",
+        "ok": false,
+        "why": "Number prefixes are one kind of prefix, not the only part."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "tachy- is fast and brady- is slow. Which leftover pair is hyper- versus hypo-?",
+    "opts": [
+      {
+        "t": "hyper- high/excessive; hypo- low/under",
+        "ok": true,
+        "why": "hyper- high; hypo- low."
+      },
+      {
+        "t": "hyper- low; hypo- high",
+        "ok": false,
+        "why": "Swapped."
+      },
+      {
+        "t": "hyper- fast; hypo- slow",
+        "ok": false,
+        "why": "Fast/slow is tachy/brady."
+      },
+      {
+        "t": "hyper- without; hypo- after",
+        "ok": false,
+        "why": "Without is a-/an-; after is post-."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "hyper- is high and hypo- is low. Which leftover pair is tachy- versus brady-?",
+    "opts": [
+      {
+        "t": "tachy- fast; brady- slow",
+        "ok": true,
+        "why": "tachy- fast; brady- slow."
+      },
+      {
+        "t": "tachy- slow; brady- fast",
+        "ok": false,
+        "why": "Swapped."
+      },
+      {
+        "t": "tachy- high amount; brady- low amount",
+        "ok": false,
+        "why": "High/low is hyper/hypo."
+      },
+      {
+        "t": "tachy- before; brady- after",
+        "ok": false,
+        "why": "Before/after is pre/post."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "pre- is before and post- is after. Which leftover pair is a-/an- versus dys-?",
+    "opts": [
+      {
+        "t": "a-/an- without; dys- difficult/painful/abnormal",
+        "ok": true,
+        "why": "a-/an- without; dys- difficult/painful/abnormal."
+      },
+      {
+        "t": "a-/an- many; dys- none",
+        "ok": false,
+        "why": "Many is multi-/poly-; none is nulli-."
+      },
+      {
+        "t": "a-/an- around; dys- across",
+        "ok": false,
+        "why": "Around is peri-/circum-."
+      },
+      {
+        "t": "a-/an- same; dys- opposite",
+        "ok": false,
+        "why": "Same/opposite is ipsi-/contra-."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "ante- is also before/in front. Which leftover pair is pre- versus post-?",
+    "opts": [
+      {
+        "t": "pre- before; post- after",
+        "ok": true,
+        "why": "pre- before; post- after."
+      },
+      {
+        "t": "pre- after; post- before",
+        "ok": false,
+        "why": "Swapped."
+      },
+      {
+        "t": "pre- under; post- above",
+        "ok": false,
+        "why": "Under/above is not this pair."
+      },
+      {
+        "t": "pre- within; post- outside",
+        "ok": false,
+        "why": "Within/outside is intra-/endo- vs ecto-/exo-/extra-."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "neur is nerve, psych is mind, thorac is chest. Which leftover trio matches cardi, hepat, nephr?",
+    "opts": [
+      {
+        "t": "cardi = heart; hepat = liver; nephr = kidney",
+        "ok": true,
+        "why": "Those are the listed roots."
+      },
+      {
+        "t": "cardi = liver; hepat = kidney; nephr = heart",
+        "ok": false,
+        "why": "Rotated wrong."
+      },
+      {
+        "t": "cardi = chest; hepat = mind; nephr = nerve",
+        "ok": false,
+        "why": "Chest/mind/nerve are thorac/psych/neur."
+      },
+      {
+        "t": "cardi = kidney; hepat = heart; nephr = liver",
+        "ok": false,
+        "why": "Swapped."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "cardi is heart, hepat is liver, nephr is kidney. Which leftover trio matches neur, psych, thorac?",
+    "opts": [
+      {
+        "t": "neur = nerve; psych = mind; thorac = chest",
+        "ok": true,
+        "why": "The six roots are cardi, hepat, nephr, neur, psych, thorac."
+      },
+      {
+        "t": "neur = mind; psych = chest; thorac = nerve",
+        "ok": false,
+        "why": "Rotated wrong."
+      },
+      {
+        "t": "neur = kidney; psych = liver; thorac = heart",
+        "ok": false,
+        "why": "Those are nephr, hepat, cardi."
+      },
+      {
+        "t": "neur = blue; psych = red; thorac = white",
+        "ok": false,
+        "why": "Colors are cyan/o, erythr/o, leuk/o."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "-ectomy is removal, -megaly is enlargement, -ology is study of. Which leftover trio matches -itis, -pathy, -algia?",
+    "opts": [
+      {
+        "t": "-itis inflammation; -pathy disease; -algia pain",
+        "ok": true,
+        "why": "Those suffixes are listed."
+      },
+      {
+        "t": "-itis pain; -pathy removal; -algia inflammation",
+        "ok": false,
+        "why": "Mixed up."
+      },
+      {
+        "t": "-itis blood; -pathy breathing; -algia swallow",
+        "ok": false,
+        "why": "Those are -emia, -pnea, -phagia."
+      },
+      {
+        "t": "-itis study of; -pathy enlargement; -algia abnormal condition",
+        "ok": false,
+        "why": "Those are -ology, -megaly, -osis."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "-itis is inflammation, -pathy is disease, -algia is pain. Which leftover trio matches -ectomy, -megaly, -ology?",
+    "opts": [
+      {
+        "t": "-ectomy surgical removal; -megaly enlargement; -ology study of",
+        "ok": true,
+        "why": "Those suffixes are listed."
+      },
+      {
+        "t": "-ectomy enlargement; -megaly study of; -ology removal",
+        "ok": false,
+        "why": "Rotated wrong."
+      },
+      {
+        "t": "-ectomy inflammation; -megaly pain; -ology disease",
+        "ok": false,
+        "why": "Those are -itis, -algia, -pathy."
+      },
+      {
+        "t": "-ectomy breathing; -megaly blood; -ology swallow",
+        "ok": false,
+        "why": "Those are -pnea, -emia, -phagia."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "You already use -itis, -pathy, and -algia. Which leftover quartet matches -osis, -emia, -pnea, -phagia?",
+    "opts": [
+      {
+        "t": "-osis abnormal condition; -emia blood condition; -pnea breathing; -phagia eating/swallowing",
+        "ok": true,
+        "why": "Those suffixes are listed."
+      },
+      {
+        "t": "-osis removal; -emia study of; -pnea pain; -phagia heart",
+        "ok": false,
+        "why": "Wrong mappings."
+      },
+      {
+        "t": "-osis high; -emia low; -pnea fast; -phagia slow",
+        "ok": false,
+        "why": "Those are prefixes, not these suffixes."
+      },
+      {
+        "t": "-osis blue; -emia red; -pnea white; -phagia black",
+        "ok": false,
+        "why": "Those are color roots."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "brady- plus -pnea is slow breathing. hepat plus -itis is liver inflammation. Which leftover build is tachycardia using only listed parts?",
+    "opts": [
+      {
+        "t": "Fast + heart",
+        "ok": true,
+        "why": "tachy- (fast) + cardi (heart)."
+      },
+      {
+        "t": "Slow + breathing",
+        "ok": false,
+        "why": "That is bradypnea."
+      },
+      {
+        "t": "Liver + inflammation",
+        "ok": false,
+        "why": "That is hepatitis."
+      },
+      {
+        "t": "Low + blood condition",
+        "ok": false,
+        "why": "That is the hypo- + -emia idea."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "tachy- plus cardi is fast heart. hepat plus -itis is liver inflammation. Which leftover build is bradypnea?",
+    "opts": [
+      {
+        "t": "Slow + breathing",
+        "ok": true,
+        "why": "brady- (slow) + -pnea (breathing)."
+      },
+      {
+        "t": "Fast + heart",
+        "ok": false,
+        "why": "That is tachycardia."
+      },
+      {
+        "t": "Without + eating/swallowing",
+        "ok": false,
+        "why": "That would be a- + -phagia."
+      },
+      {
+        "t": "Difficult + heart",
+        "ok": false,
+        "why": "dys- + cardi is not the bradypnea build."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "tachy- plus cardi is fast heart. brady- plus -pnea is slow breathing. Which leftover build is hepatitis?",
+    "opts": [
+      {
+        "t": "Liver + inflammation",
+        "ok": true,
+        "why": "hepat + -itis."
+      },
+      {
+        "t": "Kidney + disease",
+        "ok": false,
+        "why": "That would be nephr + -pathy."
+      },
+      {
+        "t": "Nerve + pain",
+        "ok": false,
+        "why": "That would be neur + -algia."
+      },
+      {
+        "t": "Heart + enlargement",
+        "ok": false,
+        "why": "That would be cardi + -megaly."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "cyan/o plus -osis is blue abnormal condition. Which leftover build is hypoglycemia as explained with listed parts?",
+    "opts": [
+      {
+        "t": "Low + blood sugar condition (-emia = blood condition)",
+        "ok": true,
+        "why": "hypo- + blood sugar condition; -emia is blood condition."
+      },
+      {
+        "t": "High + breathing",
+        "ok": false,
+        "why": "hyper- + -pnea is not this word."
+      },
+      {
+        "t": "Blue + abnormal condition",
+        "ok": false,
+        "why": "That is cyanosis."
+      },
+      {
+        "t": "Two + sides (not a blood condition)",
+        "ok": false,
+        "why": "That is bilateral."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "hypo- plus -emia is the low blood-condition idea. Which leftover build is cyanosis?",
+    "opts": [
+      {
+        "t": "Blue + abnormal condition",
+        "ok": true,
+        "why": "cyan/o (blue) + -osis (abnormal condition)."
+      },
+      {
+        "t": "White + blood condition",
+        "ok": false,
+        "why": "leuk/o is white; -emia is blood."
+      },
+      {
+        "t": "Red + inflammation",
+        "ok": false,
+        "why": "erythr/o is red; -itis is inflammation."
+      },
+      {
+        "t": "Gray + enlargement",
+        "ok": false,
+        "why": "poli/o is gray; -megaly is enlargement."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "uni- is one, tri- is three, quadri- is four. Which leftover meaning is bilateral using listed parts?",
+    "opts": [
+      {
+        "t": "Two sides (bi- = two)",
+        "ok": true,
+        "why": "bilateral = two sides."
+      },
+      {
+        "t": "One side (uni-)",
+        "ok": false,
+        "why": "uni- is one."
+      },
+      {
+        "t": "Four (quadri-)",
+        "ok": false,
+        "why": "quadri- is four."
+      },
+      {
+        "t": "None (nulli-)",
+        "ok": false,
+        "why": "nulli- is none."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "multi-/poly- is many. Which leftover quartet matches uni-, bi-, tri-, quadri-?",
+    "opts": [
+      {
+        "t": "uni- one; bi- two; tri- three; quadri- four",
+        "ok": true,
+        "why": "Those number prefixes are listed."
+      },
+      {
+        "t": "uni- four; bi- three; tri- two; quadri- one",
+        "ok": false,
+        "why": "Reversed."
+      },
+      {
+        "t": "uni- many; bi- none; tri- half; quadri- same",
+        "ok": false,
+        "why": "Many/none/half are multi-/nulli-/hemi-."
+      },
+      {
+        "t": "uni- around; bi- through; tri- behind; quadri- within",
+        "ok": false,
+        "why": "Those are position prefixes."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "uni-/bi-/tri-/quadri- are 1 through 4. Which leftover trio matches multi-/poly-, nulli-, hemi-/semi-?",
+    "opts": [
+      {
+        "t": "multi-/poly- many; nulli- none; hemi-/semi- half",
+        "ok": true,
+        "why": "Those number parts are listed."
+      },
+      {
+        "t": "multi-/poly- none; nulli- many; hemi-/semi- four",
+        "ok": false,
+        "why": "Swapped."
+      },
+      {
+        "t": "multi-/poly- one; nulli- two; hemi-/semi- three",
+        "ok": false,
+        "why": "Those are uni-/bi-/tri-."
+      },
+      {
+        "t": "multi-/poly- yellow; nulli- black; hemi-/semi- gray",
+        "ok": false,
+        "why": "Those are colors."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "melan/o is black, poli/o is gray. Which leftover trio matches cyan/o, erythr/o, leuk/o?",
+    "opts": [
+      {
+        "t": "cyan/o blue; erythr/o red; leuk/o white",
+        "ok": true,
+        "why": "Those color parts are listed."
+      },
+      {
+        "t": "cyan/o red; erythr/o white; leuk/o blue",
+        "ok": false,
+        "why": "Rotated wrong."
+      },
+      {
+        "t": "cyan/o black; erythr/o gray; leuk/o yellow",
+        "ok": false,
+        "why": "Black/gray/yellow are melan/o, poli/o, and the yellow group."
+      },
+      {
+        "t": "cyan/o heart; erythr/o liver; leuk/o kidney",
+        "ok": false,
+        "why": "Those are organ roots."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "cyan/o is blue, erythr/o is red, leuk/o is white. Which leftover trio matches melan/o, poli/o, and the yellow group?",
+    "opts": [
+      {
+        "t": "melan/o black; poli/o gray; cirrh/o, jaund/o, and xanth/o yellow",
+        "ok": true,
+        "why": "All three yellow combining forms are listed."
+      },
+      {
+        "t": "melan/o white; poli/o blue; yellow is only leuk/o",
+        "ok": false,
+        "why": "leuk/o is white."
+      },
+      {
+        "t": "melan/o gray; poli/o black; no yellow forms are listed",
+        "ok": false,
+        "why": "Yellow forms are listed."
+      },
+      {
+        "t": "melan/o red; poli/o yellow; cyan/o black",
+        "ok": false,
+        "why": "Wrong colors."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "Abduction is away from midline; adduction is toward midline. Which leftover pair is ab- versus ad-?",
+    "opts": [
+      {
+        "t": "ab- away from; ad- toward",
+        "ok": true,
+        "why": "Same idea as those movements."
+      },
+      {
+        "t": "ab- toward; ad- away",
+        "ok": false,
+        "why": "Swapped."
+      },
+      {
+        "t": "ab- within; ad- outside",
+        "ok": false,
+        "why": "Within/outside is intra-/endo- vs ecto-/exo-."
+      },
+      {
+        "t": "ab- same; ad- opposite",
+        "ok": false,
+        "why": "Same/opposite is ipsi-/contra-."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "extra- is also outside. Which leftover set is intra- versus inter-, and endo- versus ecto-/exo-?",
+    "opts": [
+      {
+        "t": "intra- within; inter- between; endo- within; ecto-/exo- outside",
+        "ok": true,
+        "why": "Those pairs are listed."
+      },
+      {
+        "t": "intra- between; inter- within; endo- outside; ecto- within",
+        "ok": false,
+        "why": "Each pair is swapped."
+      },
+      {
+        "t": "intra- against; inter- same; endo- half; ecto- many",
+        "ok": false,
+        "why": "Wrong prefixes."
+      },
+      {
+        "t": "intra- before; inter- after; endo- above; ecto- below",
+        "ok": false,
+        "why": "Before/after is pre/post."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "Which leftover set is ipsi- versus contra-, and peri- versus circum-?",
+    "opts": [
+      {
+        "t": "ipsi- same; contra- against/opposite; peri- around; circum- around (outside/full circle)",
+        "ok": true,
+        "why": "Both peri- and circum- mean around; circum- is specified as outside/full circle."
+      },
+      {
+        "t": "ipsi- opposite; contra- same; peri- through; circum- behind",
+        "ok": false,
+        "why": "ipsi/contra are swapped."
+      },
+      {
+        "t": "ipsi- under; contra- upon; peri- beside; circum- within",
+        "ok": false,
+        "why": "Wrong mappings."
+      },
+      {
+        "t": "ipsi- one; contra- two; peri- three; circum- four",
+        "ok": false,
+        "why": "Those are number prefixes."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "Anatomical position is standing facing you, arms at sides, palms forward. Always the patient's right and left. Which leftover directional set is correct?",
+    "opts": [
+      {
+        "t": "Superior = toward the head/above; inferior = toward the feet/below; anterior (ventral) = front; posterior (dorsal) = back",
+        "ok": true,
+        "why": "Those directional terms are listed."
+      },
+      {
+        "t": "Superior = feet; inferior = head; anterior = back; posterior = front",
+        "ok": false,
+        "why": "Each pair is swapped."
+      },
+      {
+        "t": "Anterior means the patient's left only",
+        "ok": false,
+        "why": "Anterior is front."
+      },
+      {
+        "t": "Dorsal is the front of the body",
+        "ok": false,
+        "why": "Dorsal is posterior/back."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "Superior/inferior and anterior/posterior are already set. Which leftover set matches medial, lateral, proximal, distal, superficial, and deep?",
+    "opts": [
+      {
+        "t": "Medial toward midline; lateral away; proximal closer to trunk/attachment; distal farther; superficial closer to surface; deep farther from surface",
+        "ok": true,
+        "why": "Always on the patient's body in anatomical position."
+      },
+      {
+        "t": "Medial away from midline; distal closer to the trunk",
+        "ok": false,
+        "why": "Those two are backwards."
+      },
+      {
+        "t": "Proximal means closer to the skin surface",
+        "ok": false,
+        "why": "Closer to the surface is superficial."
+      },
+      {
+        "t": "Lateral means the patient's midline",
+        "ok": false,
+        "why": "Midline is medial."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "Rotation turns around an axis (head left/right). Circumduction is circular (arm circles). Which leftover set matches flexion, extension, abduction, and adduction?",
+    "opts": [
+      {
+        "t": "Flexion = bend / decrease angle (elbow or knee); extension = straighten / increase angle; abduction = away from midline (arm out); adduction = toward midline (arm back to side)",
+        "ok": true,
+        "why": "Those movement terms are listed."
+      },
+      {
+        "t": "Flexion straightens the joint; abduction is toward the midline",
+        "ok": false,
+        "why": "Those are extension and adduction."
+      },
+      {
+        "t": "Adduction is arm circles; extension is toes down",
+        "ok": false,
+        "why": "Arm circles are circumduction; toes down is plantar flexion."
+      },
+      {
+        "t": "Abduction is palm up; flexion is head turning",
+        "ok": false,
+        "why": "Palm up is supination; head turning is rotation."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "Rotation is head left/right. Circumduction is arm circles. Which leftover set matches supination, pronation, plantar flexion, and dorsiflexion?",
+    "opts": [
+      {
+        "t": "Supination = palm up; pronation = palm down; plantar flexion = toes down; dorsiflexion = toes up toward the shin",
+        "ok": true,
+        "why": "Those four are listed."
+      },
+      {
+        "t": "Supination = palm down; dorsiflexion = toes down",
+        "ok": false,
+        "why": "Those are pronation and plantar flexion."
+      },
+      {
+        "t": "Pronation = toes up; plantar flexion = palm up",
+        "ok": false,
+        "why": "Mixed foot and palm terms."
+      },
+      {
+        "t": "These four terms are not listed",
+        "ok": false,
+        "why": "They are listed."
+      }
+    ]
+  },
+  {
+    "ch": 5,
+    "q": "Anatomical position is standing upright, facing forward, arms at sides, palms forward. Which leftover patient-position set is correct?",
+    "opts": [
+      {
+        "t": "Supine: back, face up. Prone: stomach, face down. Lateral recumbent (recovery): on the side. Fowler: sitting upright about 45 to 90 degrees. Semi-Fowler: about 30 to 45 degrees",
+        "ok": true,
+        "why": "Document the position clearly."
+      },
+      {
+        "t": "Supine is face down; prone is face up",
+        "ok": false,
+        "why": "Swapped."
+      },
+      {
+        "t": "Fowler is 30 to 45 degrees and semi-Fowler is 45 to 90 degrees",
+        "ok": false,
+        "why": "Those angles are swapped."
+      },
+      {
+        "t": "Recovery position is Trendelenburg (feet higher than head)",
+        "ok": false,
+        "why": "Recovery is lateral recumbent."
+      }
+    ]
+  },
+  {
+    "ch": 6,
+    "q": "Anatomical position is standing upright, facing forward, arms at sides, palms forward. Later body systems after the skeleton are not in this chapter. Which leftover trio splits anatomy, physiology, and topographic anatomy?",
+    "opts": [
+      {
+        "t": "Anatomy = structure (what it looks like and where); physiology = function (how it works); topographic = external landmarks/surface features used to locate deeper structures",
+        "ok": true,
+        "why": "Learn directional terms and surface landmarks first."
+      },
+      {
+        "t": "Anatomy is function; physiology is only surface landmarks",
+        "ok": false,
+        "why": "Those definitions are swapped/wrong."
+      },
+      {
+        "t": "Topographic anatomy means listing skull bones beyond the four named",
+        "ok": false,
+        "why": "Topographic means surface landmarks."
+      },
+      {
+        "t": "Physiology is the 206-bone count only",
+        "ok": false,
+        "why": "206 is the adult skeleton count, not the definition of physiology."
+      }
+    ]
+  },
+  {
+    "ch": 6,
+    "q": "Topographic anatomy and directional terms always reference this stance. Which leftover description is anatomical position?",
+    "opts": [
+      {
+        "t": "Standing upright, facing forward, arms at sides, palms facing forward",
+        "ok": true,
+        "why": "That is anatomical position."
+      },
+      {
+        "t": "Prone, palms down, facing the stretcher",
+        "ok": false,
+        "why": "Prone is face down."
+      },
+      {
+        "t": "Semi-Fowler at 30 to 45 degrees",
+        "ok": false,
+        "why": "That is a transport position."
+      },
+      {
+        "t": "Supine with feet higher than the head",
+        "ok": false,
+        "why": "That is not anatomical position."
+      }
+    ]
+  },
+  {
+    "ch": 6,
+    "q": "Coronal splits front and back. Transverse splits upper and lower (cross-section). Which leftover pair is sagittal versus midsagittal?",
+    "opts": [
+      {
+        "t": "Sagittal: left and right. Midsagittal (median): equal left and right halves",
+        "ok": true,
+        "why": "Sagittal = left/right; midsagittal = equal halves."
+      },
+      {
+        "t": "Sagittal: front and back",
+        "ok": false,
+        "why": "Front/back is coronal."
+      },
+      {
+        "t": "Sagittal: upper and lower (cross-section)",
+        "ok": false,
+        "why": "That is transverse."
+      },
+      {
+        "t": "Midsagittal means unequal left/right slices",
+        "ok": false,
+        "why": "Midsagittal is equal halves."
+      }
+    ]
+  },
+  {
+    "ch": 6,
+    "q": "Sagittal is left and right. Midsagittal is equal halves. Which leftover pair is coronal versus transverse?",
+    "opts": [
+      {
+        "t": "Coronal: front (anterior) and back (posterior). Transverse: upper (superior) and lower (inferior); also called a cross-section",
+        "ok": true,
+        "why": "Those are the other two planes."
+      },
+      {
+        "t": "Coronal: left and right; transverse: front and back",
+        "ok": false,
+        "why": "Those mappings are wrong."
+      },
+      {
+        "t": "Both words mean equal left and right halves only",
+        "ok": false,
+        "why": "Equal left/right is midsagittal."
+      },
+      {
+        "t": "Transverse is the same as midsagittal",
+        "ok": false,
+        "why": "Transverse is a cross-section."
+      }
+    ]
+  },
+  {
+    "ch": 6,
+    "q": "Cells are the basic unit of life. Tissues are similar cells. Organs are different tissues with a specific function. Which leftover two levels complete the cells-to-systems order?",
+    "opts": [
+      {
+        "t": "4 organ systems, then 5 organism (complete human body)",
+        "ok": true,
+        "why": "Order: cells, tissues, organs, organ systems, organism."
+      },
+      {
+        "t": "Organs, then cells, then tissues as the whole order",
+        "ok": false,
+        "why": "That order is scrambled."
+      },
+      {
+        "t": "Organism first, then a single cell last",
+        "ok": false,
+        "why": "Organism is last."
+      },
+      {
+        "t": "Tissues skip cells and become systems directly",
+        "ok": false,
+        "why": "Cells come first."
+      }
+    ]
+  },
+  {
+    "ch": 6,
+    "q": "Cells need oxygen, glucose (sugar), water, and nutrients. Which leftover energy equation is listed?",
+    "opts": [
+      {
+        "t": "Oxygen + glucose \u2192 energy (ATP) + waste (CO2 and water) + heat",
+        "ok": true,
+        "why": "That is the listed energy equation."
+      },
+      {
+        "t": "Cells need only calcium from bone; no glucose",
+        "ok": false,
+        "why": "Glucose is required."
+      },
+      {
+        "t": "Glucose + heat \u2192 oxygen only",
+        "ok": false,
+        "why": "That is not the equation."
+      },
+      {
+        "t": "ATP is listed as something cells do not use",
+        "ok": false,
+        "why": "ATP is the energy product."
+      }
+    ]
+  },
+  {
+    "ch": 6,
+    "q": "Lower-energy cells (skin) survive longer. Cells fail and die without supply. Which leftover reason is why airway, breathing, and circulation are the top priorities?",
+    "opts": [
+      {
+        "t": "High-energy cells (brain) die quickly without oxygen or glucose",
+        "ok": true,
+        "why": "Cells need a constant oxygen and glucose supply to make energy. That is why ABC is first."
+      },
+      {
+        "t": "Skin dies first; the brain can wait",
+        "ok": false,
+        "why": "Brain dies quickly; skin lasts longer."
+      },
+      {
+        "t": "Because this chapter already covers the full respiratory and circulatory systems",
+        "ok": false,
+        "why": "Those later systems are not in this chapter."
+      },
+      {
+        "t": "Because an unlisted later body-system chapter in this set requires it",
+        "ok": false,
+        "why": "Stay with the cell-energy reason."
+      }
+    ]
+  },
+  {
+    "ch": 6,
+    "q": "Shape and support, protect vital organs, and movement with muscles are already listed. Which leftover pair completes skeletal-system functions?",
+    "opts": [
+      {
+        "t": "Store minerals (especially calcium); produce blood cells (bone marrow)",
+        "ok": true,
+        "why": "Five functions: support, protect, movement, store minerals (calcium), produce blood cells."
+      },
+      {
+        "t": "Only store fat; no role in blood cells",
+        "ok": false,
+        "why": "Marrow produces blood cells."
+      },
+      {
+        "t": "Think and pump blood as primary functions in this chapter",
+        "ok": false,
+        "why": "Those are not skeletal functions here."
+      },
+      {
+        "t": "Digest glucose into ATP inside the marrow as the only function",
+        "ok": false,
+        "why": "ATP is the cell energy equation, not the only skeletal function."
+      }
+    ]
+  },
+  {
+    "ch": 6,
+    "q": "33 is vertebrae. 14 is listed facial bones. 12 is rib pairs. Which leftover number is the adult skeleton?",
+    "opts": [
+      {
+        "t": "206",
+        "ok": true,
+        "why": "Adult skeleton = 206 bones."
+      },
+      {
+        "t": "33 \u2014 that is the whole skeleton",
+        "ok": false,
+        "why": "33 is vertebrae."
+      },
+      {
+        "t": "14 cranial bones as listed",
+        "ok": false,
+        "why": "The cranium is listed as 4 named bones; 14 is the face."
+      },
+      {
+        "t": "12 \u2014 one for each rib pair only",
+        "ok": false,
+        "why": "12 is rib pairs (24 ribs) plus a sternum."
+      }
+    ]
+  },
+  {
+    "ch": 6,
+    "q": "Cervical 7, thoracic 12, and lumbar 5 are already set. Which leftover fused pair completes the 33-vertebra count?",
+    "opts": [
+      {
+        "t": "Sacrum 5 fused, coccyx 4 fused",
+        "ok": true,
+        "why": "Memorize 7 / 12 / 5 / 5 fused / 4 fused."
+      },
+      {
+        "t": "26 vertebrae: 12 cervical, 7 lumbar",
+        "ok": false,
+        "why": "Cervical is 7; lumbar is 5; total is 33."
+      },
+      {
+        "t": "Sacrum 4 fused and coccyx 5 fused",
+        "ok": false,
+        "why": "Those fused counts are swapped."
+      },
+      {
+        "t": "Thoracic 5 and lumbar 12",
+        "ok": false,
+        "why": "Thoracic is 12; lumbar is 5."
+      }
+    ]
+  },
+  {
+    "ch": 6,
+    "q": "Cranium listed as 4: frontal, parietal (2), occipital. Face is 14. Which leftover named facial set is actually listed (plus others not named)?",
+    "opts": [
+      {
+        "t": "Nasal, zygomatic (cheek), maxilla (upper jaw), mandible (lower jaw)",
+        "ok": true,
+        "why": "Those facial bones are named. Do not add extra cranial bones beyond the four listed."
+      },
+      {
+        "t": "More than four cranial bones named here",
+        "ok": false,
+        "why": "Only four cranial bones are named."
+      },
+      {
+        "t": "Mandible is the upper jaw and maxilla is the lower jaw",
+        "ok": false,
+        "why": "Maxilla is upper; mandible is lower."
+      },
+      {
+        "t": "Zygomatic is a vertebra in the neck",
+        "ok": false,
+        "why": "Zygomatic is the cheek."
+      }
+    ]
+  },
+  {
+    "ch": 6,
+    "q": "Shoulder girdle is clavicle and scapula. Upper limb: humerus, radius, ulna, carpals, metacarpals, phalanges. Lower limb: femur, patella, tibia, fibula, tarsals, metatarsals, phalanges. Thorax: 12 rib pairs (24) and sternum. Which leftover region is listed as the highest potential to bleed, and which bones sit there?",
+    "opts": [
+      {
+        "t": "Pelvis \u2014 ilium, ischium, pubis (fused on each side) \u2014 highest potential to bleed (most blood)",
+        "ok": true,
+        "why": "Pelvis has the highest bleed potential."
+      },
+      {
+        "t": "Cranium \u2014 frontal and occipital bleed the most",
+        "ok": false,
+        "why": "Highest bleed is pelvis."
+      },
+      {
+        "t": "Patella only \u2014 listed as most blood",
+        "ok": false,
+        "why": "Patella is in the lower-limb list, not the highest-bleed region."
+      },
+      {
+        "t": "Clavicle and scapula \u2014 the shoulder is the highest bleed",
+        "ok": false,
+        "why": "Shoulder girdle is listed, but pelvis is the highest bleed."
+      }
+    ]
+  }
+]
