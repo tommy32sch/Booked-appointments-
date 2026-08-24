@@ -365,27 +365,27 @@
   },
   {
     "ch": 2,
-    "q": "You cannot help anyone if you become a patient. What is the first safety idea?",
+    "q": "Who comes first in the safety order?",
     "opts": [
       {
-        "t": "Protect yourself first so you can help the patient",
+        "t": "You",
         "ok": true,
-        "why": "Protect yourself first. You cannot help anyone if you become a patient."
+        "why": "Safety order: you, then crew, then the patient. You cannot help anyone if you become a patient."
       },
       {
-        "t": "Patient care comes before your own gloves or scene size-up",
+        "t": "The crew",
         "ok": false,
-        "why": "Your safety comes first."
+        "why": "Crew is after you."
       },
       {
-        "t": "Only use PPE after the patient is loaded",
+        "t": "The patient",
         "ok": false,
-        "why": "PPE is part of protecting yourself first."
+        "why": "The patient is last."
       },
       {
-        "t": "Situational awareness is optional if dispatch sounded calm",
+        "t": "Bystanders",
         "ok": false,
-        "why": "Awareness stays on the list."
+        "why": "You sit first."
       }
     ]
   },
@@ -732,22 +732,22 @@
     "q": "How should you talk to a critically injured patient?",
     "opts": [
       {
-        "t": "Be honest without being blunt or cruel; avoid looking sad or grim; address initial refusal calmly",
+        "t": "Be honest without being blunt or cruel",
         "ok": true,
         "why": "Honest, not cruel. Example tone: you are seriously hurt, but you are doing everything you can and getting them to the hospital quickly."
       },
       {
-        "t": "Look grim, give false hope, and skip your name",
+        "t": "Look grim so they know it is serious",
         "ok": false,
-        "why": "Opposite of the list."
+        "why": "Avoid looking sad or grim."
       },
       {
-        "t": "Take away all hope so they understand how bad it is",
+        "t": "Take away all hope so they understand",
         "ok": false,
         "why": "Allow hope, not false hope."
       },
       {
-        "t": "Wait to notify family until after hospital discharge",
+        "t": "Wait to notify family until discharge",
         "ok": false,
         "why": "Notify family as soon as practical."
       }
@@ -755,27 +755,27 @@
   },
   {
     "ch": 2,
-    "q": "Denial, anger, bargaining, and depression are four of the five grief stages. What is the fifth, and must they go in order?",
+    "q": "What are the five grief stages?",
     "opts": [
       {
-        "t": "Acceptance — people may skip stages or move back and forth; they do not always go in order",
+        "t": "Denial, anger, bargaining, depression, acceptance",
         "ok": true,
-        "why": "Five stages: denial, anger, bargaining, depression, acceptance. Order is not fixed. Your role: respect, empathy, honest compassion; allow family when possible; avoid false hope or Everything will be fine."
+        "why": "Five stages: denial, anger, bargaining, depression, acceptance. Order is not fixed."
       },
       {
-        "t": "Acceptance, then denial only — always in that fixed order",
+        "t": "Denial, anger, bargaining, depression, then denial only",
         "ok": false,
-        "why": "They do not always go in order."
+        "why": "Acceptance is the fifth, not a return to denial only."
       },
       {
-        "t": "Bargaining is not one of the five stages",
+        "t": "Denial, anger, depression, acceptance — no bargaining",
         "ok": false,
         "why": "Bargaining is on the list."
       },
       {
-        "t": "Tell the family Everything will be fine as the required script",
+        "t": "Anger, bargaining, depression, acceptance — no denial",
         "ok": false,
-        "why": "Empty platitudes are avoided."
+        "why": "Denial is on the list."
       }
     ]
   },
@@ -1174,24 +1174,24 @@
     "q": "What is the difference between a living will and a DNR?",
     "opts": [
       {
-        "t": "Living will: which life-sustaining treatments they do or do not want (ventilator, feeding tube). DNR: no CPR/advanced resuscitation if heart or breathing stops",
+        "t": "Living will names wanted treatments; DNR means no CPR if they arrest",
         "ok": true,
         "why": "Living will lists treatments they want or refuse. DNR means no CPR if they arrest."
       },
       {
-        "t": "A living will is the same as a DNR and always stops EMS care",
+        "t": "Living will is the same as a DNR; both always stop EMS care",
         "ok": false,
         "why": "A living will alone is often not enough to withhold emergency care."
       },
       {
-        "t": "A DNR names a health-care proxy to make all decisions",
+        "t": "Living will names a proxy; DNR lists a ventilator preference only",
         "ok": false,
-        "why": "The proxy is the durable power of attorney."
+        "why": "The proxy is the durable power of attorney. DNR means no CPR if they arrest."
       },
       {
-        "t": "POLST is only a diary of the patient's feelings",
+        "t": "Living will is a medical order; DNR is only a diary of feelings",
         "ok": false,
-        "why": "POLST is a medical order."
+        "why": "POLST is a medical order. A living will is a treatment-preference document."
       }
     ]
   },
@@ -1200,24 +1200,24 @@
     "q": "A living will is on the fridge. There is no DNR or POLST. They are in cardiac arrest. What do you do?",
     "opts": [
       {
-        "t": "A living will alone is often not enough to withhold emergency care — usually need a specific DNR or POLST. When in doubt, begin treatment and contact medical control",
+        "t": "Start resuscitation and call medical control.",
         "ok": true,
-        "why": "Follow a valid DNR or POLST if present and legitimate. If any question, resuscitate and let the hospital sort it out."
+        "why": "A living will alone is often not enough. When in doubt, begin treatment and contact medical control."
       },
       {
-        "t": "Always withhold CPR based on a living will alone",
+        "t": "Withhold CPR based on the living will alone.",
         "ok": false,
         "why": "Living will alone is often not enough."
       },
       {
-        "t": "Wait for the durable power of attorney to arrive before any care",
+        "t": "Wait for the proxy to arrive before any care.",
         "ok": false,
         "why": "Doubt means treat now."
       },
       {
-        "t": "Tear up the living will; advanced directives never apply to EMS",
+        "t": "Treat the living will as a valid DNR or POLST.",
         "ok": false,
-        "why": "Valid DNR/POLST does apply."
+        "why": "You need a specific DNR or POLST."
       }
     ]
   },
@@ -1249,7 +1249,7 @@
   },
   {
     "ch": 3,
-    "q": "Unresponsiveness, no breathing, and no pulse are listed. Which finding is still only a presumptive sign of death?",
+    "q": "Which finding is presumptive, not definitive?",
     "opts": [
       {
         "t": "Fixed, dilated pupils",
@@ -1257,19 +1257,19 @@
         "why": "Presumptive: unresponsiveness, no breathing, no pulse, fixed dilated pupils — not enough by themselves to withhold resuscitation."
       },
       {
-        "t": "Dependent lividity, rigor mortis, putrefaction, decapitation",
+        "t": "Dependent lividity",
         "ok": false,
-        "why": "Those are definitive signs."
+        "why": "That is a definitive sign."
       },
       {
-        "t": "Only a signed living will with no DNR",
+        "t": "Rigor mortis",
         "ok": false,
-        "why": "That is not a sign of death."
+        "why": "That is a definitive sign."
       },
       {
-        "t": "Cynicism and burnout after many calls",
+        "t": "Decapitation",
         "ok": false,
-        "why": "That is cumulative stress, not a death sign."
+        "why": "That is a definitive sign."
       }
     ]
   },
@@ -1379,27 +1379,27 @@
   },
   {
     "ch": 3,
-    "q": "Duty to act, breach of duty, and damages are three elements of negligence. What is the fourth?",
+    "q": "What are the four elements of negligence?",
     "opts": [
       {
-        "t": "Causation",
+        "t": "Duty to act, breach of duty, damages, and causation",
         "ok": true,
         "why": "Negligence needs all four: duty, breach, damages, causation."
       },
       {
-        "t": "Duty and breach only — harm is optional",
+        "t": "Duty to act, breach of duty, and damages only",
         "ok": false,
-        "why": "Harm/damages are required."
+        "why": "Causation is also required."
       },
       {
-        "t": "A news story, without duty",
+        "t": "Duty to act and breach of duty only",
         "ok": false,
-        "why": "Duty is required."
+        "why": "Damages and causation are also required."
       },
       {
-        "t": "Abandonment plus a living will",
+        "t": "Duty to act, damages, causation, and abandonment",
         "ok": false,
-        "why": "Those are different topics."
+        "why": "Abandonment is a different topic. Breach is also required."
       }
     ]
   },
@@ -1483,27 +1483,27 @@
   },
   {
     "ch": 3,
-    "q": "On a high-risk refusal, you explained the risks. What else belongs?",
+    "q": "What are the high-risk refusal steps?",
     "opts": [
       {
-        "t": "Offer alternatives when appropriate, contact medical control, and document thoroughly (what you told them, responses, capacity, witnesses, signature)",
+        "t": "Explain risks, offer alternatives, call medical control, and document",
         "ok": true,
-        "why": "Valid refusal still needs capacity, informed, voluntary, and a signature when possible."
+        "why": "High-risk refusal: explain risks, offer alternatives, contact medical control, and document thoroughly."
       },
       {
-        "t": "Force them into the ambulance because the risk is high",
+        "t": "Force transport because the risk is high",
         "ok": false,
         "why": "Capacity still allows refusal."
       },
       {
-        "t": "Ask the media to help persuade them",
+        "t": "Skip medical control and leave unsigned",
         "ok": false,
-        "why": "Do not share with the media."
+        "why": "Call medical control and document."
       },
       {
-        "t": "Skip medical control because online orders are only for pain meds",
+        "t": "Offer alternatives only; skip the risk talk",
         "ok": false,
-        "why": "Call medical control for high-risk refusals."
+        "why": "You still explain the risks."
       }
     ]
   },
@@ -1665,53 +1665,53 @@
   },
   {
     "ch": 4,
-    "q": "Eye contact, introduce yourself, use their proper name, tell the truth, use language they understand, watch body language, speak slowly and clearly, and face hearing-impaired patients. Which pair finishes the 10 golden rules?",
+    "q": "Which two items belong on the 10 golden rules?",
     "opts": [
       {
         "t": "Give them time to answer; use a calm confident manner",
         "ok": true,
-        "why": "Those finish the 10 golden rules for calming and reassuring."
+        "why": "Those are two of the 10 golden rules for calming and reassuring."
       },
       {
-        "t": "Talk over them with your partner and use jargon",
+        "t": "Talk over them with your partner; use jargon",
         "ok": false,
         "why": "Those are on the avoid list."
       },
       {
-        "t": "Give advice and leading questions first",
+        "t": "Give advice first; ask leading questions",
         "ok": false,
         "why": "Those are avoided."
       },
       {
-        "t": "Say their full name over the radio as a courtesy",
+        "t": "Say their full name over the radio; skip eye contact",
         "ok": false,
-        "why": "Do not say the patient's name over the radio."
+        "why": "Do not say the patient's name over the radio. Eye contact is a golden rule."
       }
     ]
   },
   {
     "ch": 4,
-    "q": "Radio traffic should be brief, clear, professional, and plain English. What else belongs?",
+    "q": "What belongs on radio traffic?",
     "opts": [
       {
-        "t": "Do not say the patient's name over the radio; repeat orders back to confirm",
+        "t": "Brief, clear, professional, plain English; no patient name; repeat orders back",
         "ok": true,
-        "why": "No names on the radio. Repeat orders back."
+        "why": "No names on the radio. Repeat orders back. Use plain English."
       },
       {
-        "t": "Always use 10-codes; they are listed in full",
+        "t": "Brief, clear, professional, plain English; say the name; skip the repeat",
         "ok": false,
-        "why": "10-codes and local templates are not listed; use plain English unless required."
+        "why": "Do not say the name. Repeat orders back."
       },
       {
-        "t": "Say the patient's name twice so the hospital can chart it",
+        "t": "Always use 10-codes; say the name twice; never repeat orders",
         "ok": false,
-        "why": "Do not say the name on the radio."
+        "why": "Use plain English unless required. No names. Repeat orders."
       },
       {
-        "t": "Never repeat a physician order — just guess if you missed it",
+        "t": "Long story, first names, and guess if you missed an order",
         "ok": false,
-        "why": "Repeat orders back."
+        "why": "Keep it brief. No names. Repeat orders back."
       }
     ]
   },
@@ -1852,22 +1852,22 @@
       {
         "t": "Capacity, risks explained, patient understanding, and signature (or refusal to sign)",
         "ok": true,
-        "why": "Same refusal documentation theme: capacity, risks, understanding, signature or refusal to sign."
+        "why": "Refusal documentation: capacity, risks, understanding, signature or refusal to sign."
       },
       {
-        "t": "Only the patient's nickname",
+        "t": "Capacity and a signature only; skip risks and understanding",
         "ok": false,
-        "why": "That is not enough."
+        "why": "Risks explained and understanding also belong."
       },
       {
-        "t": "A social-media summary for the family",
+        "t": "Risks explained and understanding; skip capacity and signature",
         "ok": false,
-        "why": "No social media."
+        "why": "Capacity and a signature (or refusal to sign) also belong."
       },
       {
-        "t": "Your opinion that they were stupid to refuse",
+        "t": "Capacity and risks explained; skip understanding and signature",
         "ok": false,
-        "why": "Facts only, no judgments."
+        "why": "Understanding and a signature (or refusal to sign) also belong."
       }
     ]
   },
@@ -2159,27 +2159,27 @@
   },
   {
     "ch": 5,
-    "q": "Using listed word parts, what does bradypnea mean?",
+    "q": "What does bradypnea mean?",
     "opts": [
       {
-        "t": "Slow + breathing",
+        "t": "Slow breathing",
         "ok": true,
-        "why": "brady- (slow) + -pnea (breathing)."
+        "why": "Brady- is slow. -pnea is breathing."
       },
       {
-        "t": "Fast + heart",
+        "t": "Fast breathing",
         "ok": false,
-        "why": "That is tachycardia."
+        "why": "That would be tachy- plus -pnea."
       },
       {
-        "t": "Without + eating/swallowing",
+        "t": "Slow heart rate",
         "ok": false,
-        "why": "That would be a- + -phagia."
+        "why": "That would be brady- plus cardi."
       },
       {
-        "t": "Difficult + heart",
+        "t": "Difficult breathing",
         "ok": false,
-        "why": "dys- + cardi is not the bradypnea build."
+        "why": "That would be dys- plus -pnea."
       }
     ]
   },
@@ -2705,27 +2705,27 @@
   },
   {
     "ch": 6,
-    "q": "Cells, tissues, and organs are the first three levels. What two levels finish the cells-to-organism order?",
+    "q": "What is the cells-to-organism order?",
     "opts": [
       {
-        "t": "4 organ systems, then 5 organism (complete human body)",
+        "t": "Cells, tissues, organs, organ systems, organism",
         "ok": true,
         "why": "Order: cells, tissues, organs, organ systems, organism."
       },
       {
-        "t": "Organs, then cells, then tissues as the whole order",
+        "t": "Organs, cells, tissues, organ systems, organism",
         "ok": false,
-        "why": "That order is scrambled."
+        "why": "That order is scrambled. Cells come first."
       },
       {
-        "t": "Organism first, then a single cell last",
+        "t": "Organism, organ systems, organs, tissues, cells",
         "ok": false,
-        "why": "Organism is last."
+        "why": "That order is reversed. Organism is last."
       },
       {
-        "t": "Tissues skip cells and become systems directly",
+        "t": "Cells, organs, tissues, organism, organ systems",
         "ok": false,
-        "why": "Cells come first."
+        "why": "Tissues come before organs, and organism is last."
       }
     ]
   },
@@ -2765,45 +2765,45 @@
         "why": "Cells need a constant oxygen and glucose supply to make energy. That is why ABC is first."
       },
       {
-        "t": "Skin dies first; the brain can wait",
+        "t": "Skin dies first; the brain can wait for oxygen",
         "ok": false,
         "why": "Brain dies quickly; skin lasts longer."
       },
       {
-        "t": "Because this chapter already covers the full respiratory and circulatory systems",
+        "t": "Glucose is optional if the airway is already open",
         "ok": false,
-        "why": "Those later systems are not in this chapter."
+        "why": "Cells still need glucose to make energy."
       },
       {
-        "t": "Because an unlisted later body-system chapter in this set requires it",
+        "t": "Pain control comes before oxygen and glucose",
         "ok": false,
-        "why": "Stay with the cell-energy reason."
+        "why": "ABC is first because brain cells die quickly without oxygen or glucose."
       }
     ]
   },
   {
     "ch": 6,
-    "q": "Besides shape/support, protect organs, and movement, what two functions does the skeleton have?",
+    "q": "What are the functions of the skeleton?",
     "opts": [
       {
-        "t": "Store minerals (especially calcium); produce blood cells (bone marrow)",
+        "t": "Shape/support, protect organs, movement, store minerals, produce blood cells",
         "ok": true,
         "why": "Five functions: support, protect, movement, store minerals (calcium), produce blood cells."
       },
       {
-        "t": "Only store fat; no role in blood cells",
+        "t": "Shape/support, protect organs, movement, store fat, skip blood-cell production",
         "ok": false,
         "why": "Marrow produces blood cells."
       },
       {
-        "t": "Think and pump blood as primary functions in this chapter",
+        "t": "Think, pump blood, digest food, store minerals, produce blood cells",
         "ok": false,
-        "why": "Those are not skeletal functions here."
+        "why": "Thinking and pumping blood are not skeletal functions here."
       },
       {
-        "t": "Digest glucose into ATP inside the marrow as the only function",
+        "t": "Shape/support, protect organs, and movement only",
         "ok": false,
-        "why": "ATP is the cell energy equation, not the only skeletal function."
+        "why": "It also stores minerals and produces blood cells."
       }
     ]
   },
