@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat 11:27 — Review of Human Body Systems</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat 11:27 — Review of Human Body Systems</h1>
+  <div class="sub">Recap only · you/your · 24 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch": "clot", "q": "Clotting factors on your bleeder — what picture does this recap give you?", "opts": [{"t": "They only live in the gallbladder after a fatty meal", "ok": false, "why": "Clotting factors are puzzle pieces. If even one is missing, the body cannot form an effective clot."}, {"t": "They are lymph-node waste that you squeeze out", "ok": false, "why": "Clotting factors are puzzle pieces. If even one is missing, the body cannot form an effective clot."}, {"t": "Puzzle pieces — one missing piece means no effective clot", "ok": true, "why": "Clotting factors are puzzle pieces. If even one is missing, the body cannot form an effective clot."}, {"t": "They are the colon’s water-absorption enzymes", "ok": false, "why": "Clotting factors are puzzle pieces. If even one is missing, the body cannot form an effective clot."}]}, {"ch": "hemo", "q": "Your patient has hemophilia. What does this recap want you to expect on scene?", "opts": [{"t": "Only massive trauma bleeds; a small cut is fine to ignore", "ok": false, "why": "Hemophilia is missing clotting factors (A is factor VIII — you do not need the number). Minor trauma can mean serious, prolonged bleeding. Direct pressure still matters; bleeding may restart when you let go. You will not carry factor replacement."}, {"t": "Minor trauma can bleed a long time; hold pressure and move them early", "ok": true, "why": "Hemophilia is missing clotting factors (A is factor VIII — you do not need the number). Minor trauma can mean serious, prolonged bleeding. Direct pressure still matters; bleeding may restart when you let go. You will not carry factor replacement."}, {"t": "You carry factor VIII on the truck and give it first", "ok": false, "why": "Hemophilia is missing clotting factors (A is factor VIII — you do not need the number). Minor trauma can mean serious, prolonged bleeding. Direct pressure still matters; bleeding may restart when you let go. You will not carry factor replacement."}, {"t": "Release pressure often so you can watch the clot form", "ok": false, "why": "Hemophilia is missing clotting factors (A is factor VIII — you do not need the number). Minor trauma can mean serious, prolonged bleeding. Direct pressure still matters; bleeding may restart when you let go. You will not carry factor replacement."}]}, {"ch": "hxbleed", "q": "History on a known bleeder — which questions does this recap lock in?", "opts": [{"t": "Bleeding disorder and what factors or meds they take", "ok": true, "why": "Ask: Do you have a bleeding disorder? What meds or factors do you take? Ask about recent infusions. Notify the hospital and transport early."}, {"t": "Only last meal fat content — skip clotting history", "ok": false, "why": "Ask: Do you have a bleeding disorder? What meds or factors do you take? Ask about recent infusions. Notify the hospital and transport early."}, {"t": "Only whether they had their gallbladder out", "ok": false, "why": "Ask: Do you have a bleeding disorder? What meds or factors do you take? Ask about recent infusions. Notify the hospital and transport early."}, {"t": "Only neck-node swelling and skip meds", "ok": false, "why": "Ask: Do you have a bleeding disorder? What meds or factors do you take? Ask about recent infusions. Notify the hospital and transport early."}]}, {"ch": "liv", "q": "Liver jobs this recap wants you to name?", "opts": [{"t": "Only water absorption and stool formation", "ok": false, "why": "Liver makes bile for fat digestion, stores glucose as glycogen and converts it back when sugar drops, detoxifies blood, and produces clotting factors."}, {"t": "Only insulin so cells can use glucose", "ok": false, "why": "Liver makes bile for fat digestion, stores glucose as glycogen and converts it back when sugar drops, detoxifies blood, and produces clotting factors."}, {"t": "Only on-demand bile storage after fatty meals", "ok": false, "why": "Liver makes bile for fat digestion, stores glucose as glycogen and converts it back when sugar drops, detoxifies blood, and produces clotting factors."}, {"t": "Bile, glycogen store, detox, clotting factors", "ok": true, "why": "Liver makes bile for fat digestion, stores glucose as glycogen and converts it back when sugar drops, detoxifies blood, and produces clotting factors."}]}, {"ch": "gb", "q": "Gallbladder — job, and what happens after it is removed?", "opts": [{"t": "Makes clotting factors and stores glycogen", "ok": false, "why": "Gallbladder stores bile and releases it into the small intestine after fatty meals. After removal they lose on-demand storage. Fatty meals can cause nausea, vomiting, gas, bloating, indigestion."}, {"t": "Stores and dumps bile after fat; after removal, fatty meals can wreck them", "ok": true, "why": "Gallbladder stores bile and releases it into the small intestine after fatty meals. After removal they lose on-demand storage. Fatty meals can cause nausea, vomiting, gas, bloating, indigestion."}, {"t": "Filters blood and sets blood pressure by volume", "ok": false, "why": "Gallbladder stores bile and releases it into the small intestine after fatty meals. After removal they lose on-demand storage. Fatty meals can cause nausea, vomiting, gas, bloating, indigestion."}, {"t": "Absorbs nutrients in the RLQ only", "ok": false, "why": "Gallbladder stores bile and releases it into the small intestine after fatty meals. After removal they lose on-demand storage. Fatty meals can cause nausea, vomiting, gas, bloating, indigestion."}]}, {"ch": "ruq", "q": "RUQ pain on your patient — what cluster does this recap point you to?", "opts": [{"t": "Liver or gallbladder — fatty meal, nausea/vomiting, RUQ tenderness", "ok": true, "why": "RUQ pain could be liver or gallbladder. Pain after fatty meals, nausea/vomiting, and RUQ tenderness → think biliary. History of gallbladder removal explains fat intolerance."}, {"t": "Appendix only — classic RLQ picture in the RUQ", "ok": false, "why": "RUQ pain could be liver or gallbladder. Pain after fatty meals, nausea/vomiting, and RUQ tenderness → think biliary. History of gallbladder removal explains fat intolerance."}, {"t": "Parathyroids — calcium crash first", "ok": false, "why": "RUQ pain could be liver or gallbladder. Pain after fatty meals, nausea/vomiting, and RUQ tenderness → think biliary. History of gallbladder removal explains fat intolerance."}, {"t": "Colon water loss with no biliary questions", "ok": false, "why": "RUQ pain could be liver or gallbladder. Pain after fatty meals, nausea/vomiting, and RUQ tenderness → think biliary. History of gallbladder removal explains fat intolerance."}]}, {"ch": "gi", "q": "Stomach versus small intestine versus colon — jobs from this recap?", "opts": [{"t": "Stomach digests; small bowel absorbs nutrients; colon absorbs water", "ok": true, "why": "Stomach: acid and enzymes do the bulk of digestion. Small intestine: nutrient absorption (also receives bile and pancreatic enzymes). Large intestine: water absorption and stool; without that, chronic diarrhea."}, {"t": "Stomach absorbs water; colon makes bile; small bowel filters blood", "ok": false, "why": "Stomach: acid and enzymes do the bulk of digestion. Small intestine: nutrient absorption (also receives bile and pancreatic enzymes). Large intestine: water absorption and stool; without that, chronic diarrhea."}, {"t": "All three only store glycogen for low sugar", "ok": false, "why": "Stomach: acid and enzymes do the bulk of digestion. Small intestine: nutrient absorption (also receives bile and pancreatic enzymes). Large intestine: water absorption and stool; without that, chronic diarrhea."}, {"t": "Small bowel is RLQ appendix pain and nothing else", "ok": false, "why": "Stomach: acid and enzymes do the bulk of digestion. Small intestine: nutrient absorption (also receives bile and pancreatic enzymes). Large intestine: water absorption and stool; without that, chronic diarrhea."}]}, {"ch": "app", "q": "Appendix location and classic pain this recap wants?", "opts": [{"t": "RUQ solid organ under the liver — fatty-meal pain", "ok": false, "why": "Appendix is attached near the beginning of the colon in the right lower quadrant (RLQ). Appendicitis classically is RLQ abdominal pain."}, {"t": "Near the start of the colon in the RLQ — RLQ pain", "ok": true, "why": "Appendix is attached near the beginning of the colon in the right lower quadrant (RLQ). Appendicitis classically is RLQ abdominal pain."}, {"t": "On top of the kidneys with the adrenals", "ok": false, "why": "Appendix is attached near the beginning of the colon in the right lower quadrant (RLQ). Appendicitis classically is RLQ abdominal pain."}, {"t": "In the neck next to the thyroid", "ok": false, "why": "Appendix is attached near the beginning of the colon in the right lower quadrant (RLQ). Appendicitis classically is RLQ abdominal pain."}]}, {"ch": "org", "q": "Solid versus hollow belly injury — the risk split here?", "opts": [{"t": "Solid bleeds inside; hollow leaks and infects (peritonitis)", "ok": true, "why": "Solid organ injury (liver, spleen) risks internal bleeding. Hollow organ injury (intestines) risks leakage, infection, and peritonitis."}, {"t": "Solid only leaks bile; hollow only stores glycogen", "ok": false, "why": "Solid organ injury (liver, spleen) risks internal bleeding. Hollow organ injury (intestines) risks leakage, infection, and peritonitis."}, {"t": "Both only cause neck-node swelling", "ok": false, "why": "Solid organ injury (liver, spleen) risks internal bleeding. Hollow organ injury (intestines) risks leakage, infection, and peritonitis."}, {"t": "Hollow always bleeds more than solid", "ok": false, "why": "Solid organ injury (liver, spleen) risks internal bleeding. Hollow organ injury (intestines) risks leakage, infection, and peritonitis."}]}, {"ch": "lym", "q": "Lymphatic system — what is it, and how does lymph move?", "opts": [{"t": "A second heart that pumps lymph like blood", "ok": false, "why": "It is the sewer: waste, toxins, damaged cells, bacteria. Nodes swell when full of waste and broken-down bacteria. No heart-like pump; movement, muscle activity, and breathing move lymph."}, {"t": "The master gland that tells other glands what to do", "ok": false, "why": "It is the sewer: waste, toxins, damaged cells, bacteria. Nodes swell when full of waste and broken-down bacteria. No heart-like pump; movement, muscle activity, and breathing move lymph."}, {"t": "Sewer for waste and bacteria — movement, muscle, and breathing move it", "ok": true, "why": "It is the sewer: waste, toxins, damaged cells, bacteria. Nodes swell when full of waste and broken-down bacteria. No heart-like pump; movement, muscle activity, and breathing move lymph."}, {"t": "The colon’s stool-forming pump", "ok": false, "why": "It is the sewer: waste, toxins, damaged cells, bacteria. Nodes swell when full of waste and broken-down bacteria. No heart-like pump; movement, muscle activity, and breathing move lymph."}]}, {"ch": "nodes", "q": "Swollen, tender neck nodes on your patient — how do you use that?", "opts": [{"t": "Always a clotting-factor emergency — hold pressure on the neck", "ok": false, "why": "Swollen tender neck nodes often support infection (for example a throat infection). Not usually life-threatening. Supporting evidence, not the primary emergency focus."}, {"t": "Supports infection — helpful clue, not the life threat", "ok": true, "why": "Swollen tender neck nodes often support infection (for example a throat infection). Not usually life-threatening. Supporting evidence, not the primary emergency focus."}, {"t": "Proof of gallbladder rupture until you operate", "ok": false, "why": "Swollen tender neck nodes often support infection (for example a throat infection). Not usually life-threatening. Supporting evidence, not the primary emergency focus."}, {"t": "The primary ABC problem you treat first", "ok": false, "why": "Swollen tender neck nodes often support infection (for example a throat infection). Not usually life-threatening. Supporting evidence, not the primary emergency focus."}]}, {"ch": "pit", "q": "Hypothalamus and pituitary — the chain this recap wants?", "opts": [{"t": "Pituitary stores bile; hypothalamus absorbs water in the colon", "ok": false, "why": "Hypothalamus bridges nervous (electrical) and endocrine (hormonal). Pituitary is the master gland. Domino chain: hypothalamus → pituitary → other glands."}, {"t": "Hypothalamus signals pituitary; pituitary tells other glands", "ok": true, "why": "Hypothalamus bridges nervous (electrical) and endocrine (hormonal). Pituitary is the master gland. Domino chain: hypothalamus → pituitary → other glands."}, {"t": "They sit on the kidneys and only make insulin", "ok": false, "why": "Hypothalamus bridges nervous (electrical) and endocrine (hormonal). Pituitary is the master gland. Domino chain: hypothalamus → pituitary → other glands."}, {"t": "They filter lymph when you sit still", "ok": false, "why": "Hypothalamus bridges nervous (electrical) and endocrine (hormonal). Pituitary is the master gland. Domino chain: hypothalamus → pituitary → other glands."}]}, {"ch": "adr", "q": "Adrenal glands — where, what they release, and why you care in shock?", "opts": [{"t": "In the neck — they only set calcium for the heart", "ok": false, "why": "Adrenals sit on top of the kidneys. They release epinephrine (adrenaline) for fight-or-flight, shock, and stress. You see tachycardia, vasoconstriction, anxiety, sweating. Epi you give (anaphylaxis) mimics that and helps perfusion and airway."}, {"t": "In the RUQ — they store bile after fatty meals", "ok": false, "why": "Adrenals sit on top of the kidneys. They release epinephrine (adrenaline) for fight-or-flight, shock, and stress. You see tachycardia, vasoconstriction, anxiety, sweating. Epi you give (anaphylaxis) mimics that and helps perfusion and airway."}, {"t": "They make insulin so Type 1 diabetes cannot happen", "ok": false, "why": "Adrenals sit on top of the kidneys. They release epinephrine (adrenaline) for fight-or-flight, shock, and stress. You see tachycardia, vasoconstriction, anxiety, sweating. Epi you give (anaphylaxis) mimics that and helps perfusion and airway."}, {"t": "On the kidneys — epinephrine for fight-or-flight and shock", "ok": true, "why": "Adrenals sit on top of the kidneys. They release epinephrine (adrenaline) for fight-or-flight, shock, and stress. You see tachycardia, vasoconstriction, anxiety, sweating. Epi you give (anaphylaxis) mimics that and helps perfusion and airway."}]}, {"ch": "panc", "q": "Pancreas and diabetes — the split this recap gives you?", "opts": [{"t": "Insulin only raises sugar; Type 1 is extra insulin", "ok": false, "why": "Pancreas makes insulin so cells can use glucose. Type 1: no insulin production. Type 2: resistance to insulin. Check diabetes history and meds. Consider a glucose check in altered mental status or odd behavior."}, {"t": "Pancreas only stores bile; diabetes is a colon problem", "ok": false, "why": "Pancreas makes insulin so cells can use glucose. Type 1: no insulin production. Type 2: resistance to insulin. Check diabetes history and meds. Consider a glucose check in altered mental status or odd behavior."}, {"t": "Insulin lets cells use glucose — Type 1 none, Type 2 resistance", "ok": true, "why": "Pancreas makes insulin so cells can use glucose. Type 1: no insulin production. Type 2: resistance to insulin. Check diabetes history and meds. Consider a glucose check in altered mental status or odd behavior."}, {"t": "Type 2 is missing clotting factor VIII", "ok": false, "why": "Pancreas makes insulin so cells can use glucose. Type 1: no insulin production. Type 2: resistance to insulin. Check diabetes history and meds. Consider a glucose check in altered mental status or odd behavior."}]}, {"ch": "thy", "q": "Thyroid versus parathyroids — jobs from this recap?", "opts": [{"t": "Thyroid filters urine; parathyroids make bile", "ok": false, "why": "Thyroid (neck) controls metabolism. Hypothyroidism: low metabolism, weight gain, fatigue — usually history, not a 911 emergency. Four parathyroids on the thyroid regulate calcium. Calcium is needed for muscle contraction, especially the heart."}, {"t": "Thyroid is metabolism; parathyroids are calcium (heart muscle)", "ok": true, "why": "Thyroid (neck) controls metabolism. Hypothyroidism: low metabolism, weight gain, fatigue — usually history, not a 911 emergency. Four parathyroids on the thyroid regulate calcium. Calcium is needed for muscle contraction, especially the heart."}, {"t": "Both only release epinephrine in fight-or-flight", "ok": false, "why": "Thyroid (neck) controls metabolism. Hypothyroidism: low metabolism, weight gain, fatigue — usually history, not a 911 emergency. Four parathyroids on the thyroid regulate calcium. Calcium is needed for muscle contraction, especially the heart."}, {"t": "Parathyroids absorb nutrients in the small intestine", "ok": false, "why": "Thyroid (neck) controls metabolism. Hypothyroidism: low metabolism, weight gain, fatigue — usually history, not a 911 emergency. Four parathyroids on the thyroid regulate calcium. Calcium is needed for muscle contraction, especially the heart."}]}, {"ch": "horm", "q": "Too much or too little hormone on your patient — what do you treat?", "opts": [{"t": "You mix and give the missing hormone from the drug box", "ok": false, "why": "Too much or too little hormone (insulin, thyroid hormones, and so on) causes dysfunction. You typically treat the effects, not the hormone itself."}, {"t": "You only treat if the gallbladder is still in", "ok": false, "why": "Too much or too little hormone (insulin, thyroid hormones, and so on) causes dysfunction. You typically treat the effects, not the hormone itself."}, {"t": "The effects — you do not replace the hormone in the field", "ok": true, "why": "Too much or too little hormone (insulin, thyroid hormones, and so on) causes dysfunction. You typically treat the effects, not the hormone itself."}, {"t": "You wait for lymph nodes to shrink first", "ok": false, "why": "Too much or too little hormone (insulin, thyroid hormones, and so on) causes dysfunction. You typically treat the effects, not the hormone itself."}]}, {"ch": "kid", "q": "Kidneys — keep versus pee, and the three controls here?", "opts": [{"t": "Filter: keep or pee — fluid, blood pressure, and pH (lungs do CO₂)", "ok": true, "why": "Kidneys filter blood and decide reabsorb versus urine. They control fluid balance, blood pressure through volume, and pH (water and some solutes). Lungs handle carbon dioxide."}, {"t": "They only make insulin and store glycogen", "ok": false, "why": "Kidneys filter blood and decide reabsorb versus urine. They control fluid balance, blood pressure through volume, and pH (water and some solutes). Lungs handle carbon dioxide."}, {"t": "They pump lymph when you walk", "ok": false, "why": "Kidneys filter blood and decide reabsorb versus urine. They control fluid balance, blood pressure through volume, and pH (water and some solutes). Lungs handle carbon dioxide."}, {"t": "They digest fat after the gallbladder is gone", "ok": false, "why": "Kidneys filter blood and decide reabsorb versus urine. They control fluid balance, blood pressure through volume, and pH (water and some solutes). Lungs handle carbon dioxide."}]}, {"ch": "kio", "q": "Kidney plumbing this recap wants: how many ways in and out?", "opts": [{"t": "Two vessels in; no urine path — waste leaves through lymph only", "ok": false, "why": "One blood vessel in. Two outputs: cleaned blood back to circulation, and urine down the ureters to the bladder."}, {"t": "Food in through the esophagus; stool out the ureter", "ok": false, "why": "One blood vessel in. Two outputs: cleaned blood back to circulation, and urine down the ureters to the bladder."}, {"t": "Bile in from the gallbladder; glucose out the colon", "ok": false, "why": "One blood vessel in. Two outputs: cleaned blood back to circulation, and urine down the ureters to the bladder."}, {"t": "One vessel in; cleaned blood back plus urine to the bladder", "ok": true, "why": "One blood vessel in. Two outputs: cleaned blood back to circulation, and urine down the ureters to the bladder."}]}, {"ch": "urine", "q": "Too much water versus dry versus extra sugar — kidney result?", "opts": [{"t": "Dry always means more urine to dump waste", "ok": false, "why": "Too much water → more urine. Dehydrated → retain water, less urine. Excess sugar beyond storage is lost in urine (uncontrolled diabetes)."}, {"t": "Sugar never leaves in urine — only in bile", "ok": false, "why": "Too much water → more urine. Dehydrated → retain water, less urine. Excess sugar beyond storage is lost in urine (uncontrolled diabetes)."}, {"t": "Water excess shuts the kidneys off completely", "ok": false, "why": "Too much water → more urine. Dehydrated → retain water, less urine. Excess sugar beyond storage is lost in urine (uncontrolled diabetes)."}, {"t": "Wet: more urine. Dry: less urine. Extra sugar can spill into urine", "ok": true, "why": "Too much water → more urine. Dehydrated → retain water, less urine. Excess sugar beyond storage is lost in urine (uncontrolled diabetes)."}]}, {"ch": "ph", "q": "Who regulates pH in this recap?", "opts": [{"t": "Lungs handle CO₂; kidneys handle water and solutes", "ok": true, "why": "Kidneys plus lungs regulate pH. Lungs blow off or retain carbon dioxide. Kidneys manage water and other solutes."}, {"t": "Only the gallbladder after a fatty meal", "ok": false, "why": "Kidneys plus lungs regulate pH. Lungs blow off or retain carbon dioxide. Kidneys manage water and other solutes."}, {"t": "Only lymph nodes in the neck", "ok": false, "why": "Kidneys plus lungs regulate pH. Lungs blow off or retain carbon dioxide. Kidneys manage water and other solutes."}, {"t": "Only the thyroid by speeding metabolism", "ok": false, "why": "Kidneys plus lungs regulate pH. Lungs blow off or retain carbon dioxide. Kidneys manage water and other solutes."}]}, {"ch": "qol", "q": "After ABCs are stable, which injuries does this recap call life-altering?", "opts": [{"t": "Hands, feet, face, genitals — function, fertility, vision, appearance", "ok": true, "why": "Hands, feet, face, genitals. They may not kill. They can permanently affect function, fertility, vision, or appearance. Treat them as high-priority once life threats are managed."}, {"t": "Only swollen neck nodes after a sore throat", "ok": false, "why": "Hands, feet, face, genitals. They may not kill. They can permanently affect function, fertility, vision, or appearance. Treat them as high-priority once life threats are managed."}, {"t": "Only the colon, because diarrhea is always fatal", "ok": false, "why": "Hands, feet, face, genitals. They may not kill. They can permanently affect function, fertility, vision, or appearance. Treat them as high-priority once life threats are managed."}, {"t": "Only the pituitary, because it is the master gland", "ok": false, "why": "Hands, feet, face, genitals. They may not kill. They can permanently affect function, fertility, vision, or appearance. Treat them as high-priority once life threats are managed."}]}, {"ch": "ob", "q": "Why does this recap push the female reproductive system so hard?", "opts": [{"t": "It is the only place clotting factors are made", "ok": false, "why": "Pregnancy (normal changes and complications), labor and delivery (normal versus abnormal), newborn care (normal versus compromised), and postpartum complications. Obstetrics is a major exam and real-world topic. Abdominal pain, bleeding, or contractions: think OB early. Be ready for field delivery and newborn care."}, {"t": "Pregnancy, labor, newborn, postpartum — major exam and street topic", "ok": true, "why": "Pregnancy (normal changes and complications), labor and delivery (normal versus abnormal), newborn care (normal versus compromised), and postpartum complications. Obstetrics is a major exam and real-world topic. Abdominal pain, bleeding, or contractions: think OB early. Be ready for field delivery and newborn care."}, {"t": "It is how lymph moves without a pump", "ok": false, "why": "Pregnancy (normal changes and complications), labor and delivery (normal versus abnormal), newborn care (normal versus compromised), and postpartum complications. Obstetrics is a major exam and real-world topic. Abdominal pain, bleeding, or contractions: think OB early. Be ready for field delivery and newborn care."}, {"t": "It replaces the kidneys for pH control", "ok": false, "why": "Pregnancy (normal changes and complications), labor and delivery (normal versus abnormal), newborn care (normal versus compromised), and postpartum complications. Obstetrics is a major exam and real-world topic. Abdominal pain, bleeding, or contractions: think OB early. Be ready for field delivery and newborn care."}]}, {"ch": "aero", "q": "Aerobic versus anaerobic on your shock patient — energy and waste?", "opts": [{"t": "Anaerobic makes more energy and only water", "ok": false, "why": "Oxygen plus glucose make energy (ATP), heat, CO₂, and water. Aerobic: plenty of energy; wastes are CO₂ and water (breathe and urinate). Anaerobic when oxygen is short: much less energy; lactic acid; acidosis, organ failure, hypothermia."}, {"t": "Aerobic’s main waste is lactic acid you cannot clear", "ok": false, "why": "Oxygen plus glucose make energy (ATP), heat, CO₂, and water. Aerobic: plenty of energy; wastes are CO₂ and water (breathe and urinate). Anaerobic when oxygen is short: much less energy; lactic acid; acidosis, organ failure, hypothermia."}, {"t": "Both only happen in the gallbladder after fat", "ok": false, "why": "Oxygen plus glucose make energy (ATP), heat, CO₂, and water. Aerobic: plenty of energy; wastes are CO₂ and water (breathe and urinate). Anaerobic when oxygen is short: much less energy; lactic acid; acidosis, organ failure, hypothermia."}, {"t": "Aerobic: lots of energy, CO₂ and water. Anaerobic: little energy, lactic acid", "ok": true, "why": "Oxygen plus glucose make energy (ATP), heat, CO₂, and water. Aerobic: plenty of energy; wastes are CO₂ and water (breathe and urinate). Anaerobic when oxygen is short: much less energy; lactic acid; acidosis, organ failure, hypothermia."}]}, {"ch": "shock", "q": "Shock in this recap — definition and the warmth rule?", "opts": [{"t": "Hypoperfusion / energy failure — blankets on no matter the outdoor temp", "ok": true, "why": "Shock is hypoperfusion: not enough blood flow and oxygen to tissues. It is cellular energy failure, not just low blood pressure (low BP is late). Less energy drops temperature. Keep them warm with blankets regardless of outside temperature. Oxygen, control bleeding, supine if tolerated, rapid transport."}, {"t": "Only low blood pressure counts, and skip blankets if it is hot outside", "ok": false, "why": "Shock is hypoperfusion: not enough blood flow and oxygen to tissues. It is cellular energy failure, not just low blood pressure (low BP is late). Less energy drops temperature. Keep them warm with blankets regardless of outside temperature. Oxygen, control bleeding, supine if tolerated, rapid transport."}, {"t": "It is extra aerobic energy, so you cool them on purpose", "ok": false, "why": "Shock is hypoperfusion: not enough blood flow and oxygen to tissues. It is cellular energy failure, not just low blood pressure (low BP is late). Less energy drops temperature. Keep them warm with blankets regardless of outside temperature. Oxygen, control bleeding, supine if tolerated, rapid transport."}, {"t": "It is lymph backup; you only check neck nodes", "ok": false, "why": "Shock is hypoperfusion: not enough blood flow and oxygen to tissues. It is cellular energy failure, not just low blood pressure (low BP is late). Less energy drops temperature. Keep them warm with blankets regardless of outside temperature. Oxygen, control bleeding, supine if tolerated, rapid transport."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"clot": "Clotting", "hemo": "Hemophilia", "hxbleed": "Bleed history", "liv": "Liver", "gb": "Gallbladder", "ruq": "RUQ pain", "gi": "GI jobs", "app": "Appendix", "org": "Solid / hollow", "lym": "Lymph", "nodes": "Nodes", "pit": "Pituitary chain", "adr": "Adrenals", "panc": "Pancreas", "thy": "Thyroid", "horm": "Hormones", "kid": "Kidneys", "kio": "Kidney I/O", "urine": "Urine", "ph": "pH", "qol": "Life-altering", "ob": "Obstetrics", "aero": "Aerobic / anaerobic", "shock": "Shock"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the Sat 11:27 body-review recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · body-review recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
