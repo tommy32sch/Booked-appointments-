@@ -1,0 +1,912 @@
+[
+  {
+    "ch": 10,
+    "q": "Talking adult or a wailing kid. Airway next?",
+    "opts": [
+      {
+        "t": "Airway check is done; move to breathing",
+        "ok": true,
+        "why": "If they can talk or wail, the path is open."
+      },
+      {
+        "t": "Open with a jaw thrust first",
+        "ok": false,
+        "why": "A talking path is already open."
+      },
+      {
+        "t": "Suction first even if the mouth is dry",
+        "ok": false,
+        "why": "Suction only if you see junk or hear gurgling."
+      },
+      {
+        "t": "Put an oral airway in while they talk",
+        "ok": false,
+        "why": "An oral airway is for fully out, no gag."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Unconscious. What is the number-one thing that blocks the path?",
+    "opts": [
+      {
+        "t": "The tongue",
+        "ok": true,
+        "why": "Muscles relax. Tongue is the number-one obstruction."
+      },
+      {
+        "t": "Pulmonary edema in the lower airway",
+        "ok": false,
+        "why": "You only suction what you see or hear up top."
+      },
+      {
+        "t": "A rigid catheter left in place",
+        "ok": false,
+        "why": "The catheter is a tool, not the first block."
+      },
+      {
+        "t": "A nasal airway that is too short",
+        "ok": false,
+        "why": "The first block is the floppy tongue."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Unconscious airway work. Where do they lie, and where do you stand?",
+    "opts": [
+      {
+        "t": "They are supine; you are at the top of the head",
+        "ok": true,
+        "why": "Preferred: supine, you at the crown."
+      },
+      {
+        "t": "They sit up; you stand at the feet",
+        "ok": false,
+        "why": "Awake people sit themselves. Unconscious work is supine at the head."
+      },
+      {
+        "t": "They are prone; you are at the side",
+        "ok": false,
+        "why": "Prone is not the airway position."
+      },
+      {
+        "t": "They are on the left side; you are at the feet",
+        "ok": false,
+        "why": "Recovery is later, and you still work from the head."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Found unconscious in bed, no crack on the floor. Which open?",
+    "opts": [
+      {
+        "t": "Head-tilt chin-lift",
+        "ok": true,
+        "why": "HTCL only with confidence there is no spinal injury. Bed or a seen couch slump."
+      },
+      {
+        "t": "Jaw thrust",
+        "ok": false,
+        "why": "Jaw thrust is unknown or possible spine."
+      },
+      {
+        "t": "Leave the tongue down and count breaths first",
+        "ok": false,
+        "why": "Do not judge breathing until the path is open."
+      },
+      {
+        "t": "Nasal airway before you open the mouth",
+        "ok": false,
+        "why": "Open first. Adjuncts come after assess and clear."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Unconscious on a sidewalk, maybe hit by a car. Which open?",
+    "opts": [
+      {
+        "t": "Jaw thrust",
+        "ok": true,
+        "why": "Unknown or possible spine: err caution, jaw thrust."
+      },
+      {
+        "t": "Head-tilt chin-lift",
+        "ok": false,
+        "why": "HTCL needs a no-spine story."
+      },
+      {
+        "t": "Sit them up and wait",
+        "ok": false,
+        "why": "Unconscious work is supine at the head."
+      },
+      {
+        "t": "Nasal airway first, then decide",
+        "ok": false,
+        "why": "Open first. A smashed face would also block a nasal tube."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Jaw thrust: where do the hands go, and what happens if you let go?",
+    "opts": [
+      {
+        "t": "Thumbs on the cheekbones, fingers behind the jaw angle, push up; let go and the tongue drops",
+        "ok": true,
+        "why": "Jaw up, head still. You are stuck holding it."
+      },
+      {
+        "t": "One hand on the forehead, one under the chin, tilt back; let go and the path stays open",
+        "ok": false,
+        "why": "That is head-tilt chin-lift, and the tongue still drops if you let go."
+      },
+      {
+        "t": "Fingers in the mouth to scissor it open; let go and the gag starts",
+        "ok": false,
+        "why": "Cross-finger is a book mouth-open, not the jaw thrust."
+      },
+      {
+        "t": "Hands on the chest, push down; let go and residual volume fills",
+        "ok": false,
+        "why": "That is not an airway open."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "What are the four airway steps, in order?",
+    "opts": [
+      {
+        "t": "Open, assess, clear, maintain",
+        "ok": true,
+        "why": "Then the airway check, then breathing rate, rhythm, quality."
+      },
+      {
+        "t": "Assess, open, maintain, clear",
+        "ok": false,
+        "why": "Open is first. Clear is before maintain."
+      },
+      {
+        "t": "Clear, open, assess, maintain",
+        "ok": false,
+        "why": "Open, then look and listen, then suction if needed."
+      },
+      {
+        "t": "Maintain, assess, open, clear",
+        "ok": false,
+        "why": "Maintain is last of the four."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "When is suction indicated?",
+    "opts": [
+      {
+        "t": "When you see fluid, blood, vomit, or secretions, or you hear gurgling",
+        "ok": true,
+        "why": "Indication is see it or hear it. Do not invent gurgling."
+      },
+      {
+        "t": "On every unconscious patient, even if the mouth is dry and quiet",
+        "ok": false,
+        "why": "Nothing seen or heard means do not pick suction."
+      },
+      {
+        "t": "Only after you have bagged for two minutes",
+        "ok": false,
+        "why": "The two-minute bag is the cycle after a maxed dirty pass."
+      },
+      {
+        "t": "Only if pulse ox is under 94 percent",
+        "ok": false,
+        "why": "Suction is about junk in the path, not the sat number."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Mouth is dirty and suction is not in your hand. First move?",
+    "opts": [
+      {
+        "t": "Roll them to the side so gravity drains",
+        "ok": true,
+        "why": "Fastest move is position. Then set up gear."
+      },
+      {
+        "t": "Wait supine until the wall unit is ready",
+        "ok": false,
+        "why": "Do not wait while junk sits in the path."
+      },
+      {
+        "t": "Bag first so you push the junk down",
+        "ok": false,
+        "why": "Clear first if you can. Bag-after is only the 10-second / 2-minute cycle."
+      },
+      {
+        "t": "Put a nasal airway in and sit them up",
+        "ok": false,
+        "why": "Roll now. Adjuncts come after the path is usable."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Mouth full of chunks versus down a trach or ET tube. Which catheter?",
+    "opts": [
+      {
+        "t": "Rigid for the mouth; flexible / non-rigid for a trach or ET tube",
+        "ok": true,
+        "why": "Rigid has the bigger hole. Flexible clogs on chunks."
+      },
+      {
+        "t": "Flexible for the mouth; rigid for a trach or ET tube",
+        "ok": false,
+        "why": "Those are swapped."
+      },
+      {
+        "t": "Only the hand-pump, no catheter",
+        "ok": false,
+        "why": "Hand-pump is the backup unit, not the tip choice."
+      },
+      {
+        "t": "Only the wall unit, no catheter",
+        "ok": false,
+        "why": "The wall is a power source, not the tip."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Start-of-shift vacuum number from the book?",
+    "opts": [
+      {
+        "t": "More than 300 mmHg",
+        "ok": true,
+        "why": "Test vacuum. Gage, light, or a glove if there is no gage."
+      },
+      {
+        "t": "More than 40 to 70 mmHg",
+        "ok": false,
+        "why": "40-70 psi is an oxygen regulator, not suction."
+      },
+      {
+        "t": "More than 2000 mmHg",
+        "ok": false,
+        "why": "About 2000 psi is a full oxygen tank."
+      },
+      {
+        "t": "More than 10 mmHg",
+        "ok": false,
+        "why": "10 seconds is the suction time cap, not the vacuum."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "How far does the rigid catheter go?",
+    "opts": [
+      {
+        "t": "Corner of the mouth to the earlobe, or to the angle of the jaw; only as far as you can see",
+        "ok": true,
+        "why": "Measure that far. Do not drive it into the trachea."
+      },
+      {
+        "t": "Nose to the earlobe, then into the trachea",
+        "ok": false,
+        "why": "Nose-to-ear is the nasal-airway measure."
+      },
+      {
+        "t": "Lips to the xiphoid, then sweep a finger",
+        "ok": false,
+        "why": "That is not the suction measure, and do not fish with a finger."
+      },
+      {
+        "t": "As far as the tube will feed, suction on the way in",
+        "ok": false,
+        "why": "Insert with suction off, and only as far as you see."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "When is suction applied?",
+    "opts": [
+      {
+        "t": "Insert with the hole open; cover the hole and use circles on the way out",
+        "ok": true,
+        "why": "Insert with suction off. Vacuum on withdrawal."
+      },
+      {
+        "t": "Cover the hole and suction the whole way in",
+        "ok": false,
+        "why": "No suction on insert."
+      },
+      {
+        "t": "Leave the hole open the whole way out",
+        "ok": false,
+        "why": "Cover the hole on the way out."
+      },
+      {
+        "t": "Suction only after you bag for two minutes first",
+        "ok": false,
+        "why": "The two-minute bag is the cycle after a maxed dirty pass."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Suction time now, all ages?",
+    "opts": [
+      {
+        "t": "Until clear, up to 10 seconds",
+        "ok": true,
+        "why": "One 10-second cap for adult, child, and infant. Then get them oxygen."
+      },
+      {
+        "t": "Adult 15, child 10, infant 5",
+        "ok": false,
+        "why": "That old split is retired."
+      },
+      {
+        "t": "Until clear, up to 2 minutes",
+        "ok": false,
+        "why": "Two minutes is the ventilate gap, not the suction cap."
+      },
+      {
+        "t": "Until clear, no time cap",
+        "ok": false,
+        "why": "There is a 10-second cap."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Partner recites adult 15, child 10, infant 5. What is the rule now?",
+    "opts": [
+      {
+        "t": "They do not do that anymore; one 10-second cap for all ages",
+        "ok": true,
+        "why": "Old 15/10/5 is retired. Infant may clear in about 2 seconds because there is less volume."
+      },
+      {
+        "t": "Keep 15/10/5 because the book still likes it",
+        "ok": false,
+        "why": "The lecture retired that split."
+      },
+      {
+        "t": "Use 15 seconds for every age",
+        "ok": false,
+        "why": "The cap is 10 seconds."
+      },
+      {
+        "t": "Use 5 seconds for every age",
+        "ok": false,
+        "why": "The cap is 10 seconds, then oxygen."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Still dirty at 10 seconds. What cycle?",
+    "opts": [
+      {
+        "t": "Ventilate 2 minutes, suction up to 10 seconds, repeat",
+        "ok": true,
+        "why": "No oxygen is 100% dead. That beats a 30-70% aspiration bump."
+      },
+      {
+        "t": "Suction 2 minutes, ventilate 10 seconds, repeat",
+        "ok": false,
+        "why": "Those times are swapped."
+      },
+      {
+        "t": "Suction 15 seconds, no ventilations",
+        "ok": false,
+        "why": "15 is the retired adult number, and they still need air."
+      },
+      {
+        "t": "Stop and put on a nose cannula only",
+        "ok": false,
+        "why": "They need positive-pressure depth, not a cannula."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Blood or vomit that reaches the lungs. What add-on mortality number?",
+    "opts": [
+      {
+        "t": "Mortality up 30 to 70 percent on top of the original problem",
+        "ok": true,
+        "why": "Aspiration raises death risk 30-70% on top."
+      },
+      {
+        "t": "Mortality up 10 seconds on top of the original problem",
+        "ok": false,
+        "why": "10 seconds is the suction cap."
+      },
+      {
+        "t": "Mortality up 100 percent only if you roll them",
+        "ok": false,
+        "why": "100% dead is no oxygen, not the roll."
+      },
+      {
+        "t": "Mortality up 21 percent because room air is 21 percent",
+        "ok": false,
+        "why": "21% is room-air oxygen, not this add-on."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Catheter keeps clogging on thick chunks. After a retry, what do you stop doing?",
+    "opts": [
+      {
+        "t": "Stop the same failed pass; roll, drain, scoop with the catheter",
+        "ok": true,
+        "why": "Log roll and gravity. Scoop with the catheter, not a finger safari."
+      },
+      {
+        "t": "Keep jamming the same clogged pass",
+        "ok": false,
+        "why": "Stop the failed pass."
+      },
+      {
+        "t": "Sweep with an ungloved finger",
+        "ok": false,
+        "why": "Do not fish with a finger."
+      },
+      {
+        "t": "Bag hard to blow the chunks into the lungs",
+        "ok": false,
+        "why": "Roll and drain. Bagging junk down is the least-bad later cycle, not the first clog fix."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Pulmonary edema versus what gets suctioned. Which line is right?",
+    "opts": [
+      {
+        "t": "Edema is lower-airway fluid; you only suction what you see or hear in the upper airway",
+        "ok": true,
+        "why": "Lower-lung fluid is a different intervention later."
+      },
+      {
+        "t": "Edema is upper-airway junk; suction until the alveoli are dry",
+        "ok": false,
+        "why": "You cannot suction alveoli."
+      },
+      {
+        "t": "Edema is blood in the chest; decompress it",
+        "ok": false,
+        "why": "Blood in the chest is hemothorax, and EMT does not decompress."
+      },
+      {
+        "t": "Edema is the tongue; pull it with a finger",
+        "ok": false,
+        "why": "The tongue is an open-and-hold problem."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Who is an oral airway for?",
+    "opts": [
+      {
+        "t": "Fully unresponsive and no gag",
+        "ok": true,
+        "why": "OPA = out on AVPU and no gag. Preferred go-to."
+      },
+      {
+        "t": "Semi-conscious with a gag",
+        "ok": false,
+        "why": "Gag means do not start with OPA."
+      },
+      {
+        "t": "Walking, talking, and asking for it",
+        "ok": false,
+        "why": "The lecture would not put it in a walking talking person."
+      },
+      {
+        "t": "Any head or face trauma, even with a gag",
+        "ok": false,
+        "why": "OPA is OK with face trauma only if there is no gag."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "The oral airway goes in and they gag. What now?",
+    "opts": [
+      {
+        "t": "Pull it out immediately and get ready for vomit",
+        "ok": true,
+        "why": "Gag means out now. Expect vomit."
+      },
+      {
+        "t": "Push it farther so the gag stops",
+        "ok": false,
+        "why": "Farther drives the tongue down and keeps the gag."
+      },
+      {
+        "t": "Tape it and start a nasal airway beside it",
+        "ok": false,
+        "why": "The oral airway comes out."
+      },
+      {
+        "t": "Leave it and bag through the gag",
+        "ok": false,
+        "why": "Out immediately."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "How is an oral airway sized?",
+    "opts": [
+      {
+        "t": "Corner of the mouth to the earlobe, or to the angle of the jaw",
+        "ok": true,
+        "why": "Same measure as a rigid suction catheter."
+      },
+      {
+        "t": "Nose to the earlobe, or nose to the jaw angle",
+        "ok": false,
+        "why": "That is the nasal-airway measure."
+      },
+      {
+        "t": "Lips to the xiphoid",
+        "ok": false,
+        "why": "That is not the OPA measure."
+      },
+      {
+        "t": "By color code only, no measure",
+        "ok": false,
+        "why": "Eyeball, then measure. Exact color codes were not given."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Which oral-airway insert is acceptable?",
+    "opts": [
+      {
+        "t": "Upside down and rotate 180, or sideways and rotate 90",
+        "ok": true,
+        "why": "Both are acceptable. Do not push straight in."
+      },
+      {
+        "t": "Only 180 is allowed; 90 fails the test",
+        "ok": false,
+        "why": "They will not make 180 versus 90 the only two choices."
+      },
+      {
+        "t": "Push straight in so the tongue goes down",
+        "ok": false,
+        "why": "Straight in drives the tongue down."
+      },
+      {
+        "t": "Bevel to the septum and feed it up the nose",
+        "ok": false,
+        "why": "That is nasal-airway placement."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Semi-awake, still gags, face uninjured. Which adjunct?",
+    "opts": [
+      {
+        "t": "Nasal airway",
+        "ok": true,
+        "why": "NPA is for semi-conscious or unresponsive with a gag, if the face is uninjured."
+      },
+      {
+        "t": "Oral airway",
+        "ok": false,
+        "why": "A gag is an OPA contraindication."
+      },
+      {
+        "t": "Neither; wait for a stair chair",
+        "ok": false,
+        "why": "A stair chair is a move tool, not an adjunct."
+      },
+      {
+        "t": "Both at the same time",
+        "ok": false,
+        "why": "One path. Gag means skip the oral airway."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Hard no for a nasal airway?",
+    "opts": [
+      {
+        "t": "Any head or face trauma",
+        "ok": true,
+        "why": "Do not wait for blood in the nose. Floor of the nose is the floor of the skull."
+      },
+      {
+        "t": "A gag reflex",
+        "ok": false,
+        "why": "A gag is a reason to pick NPA, not skip it."
+      },
+      {
+        "t": "They are unresponsive with no gag and no face trauma",
+        "ok": false,
+        "why": "That patient can take an oral airway first."
+      },
+      {
+        "t": "They are breathing adequately in recovery position",
+        "ok": false,
+        "why": "Recovery is a maintain option, not an NPA ban."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Unresponsive, no gag, obvious facial smash. Which statement is true?",
+    "opts": [
+      {
+        "t": "Mouth adjunct is allowed; nose adjunct is not",
+        "ok": true,
+        "why": "OPA is OK with head trauma if no gag. NPA is not."
+      },
+      {
+        "t": "Nose adjunct is allowed; mouth adjunct is not",
+        "ok": false,
+        "why": "Those are swapped."
+      },
+      {
+        "t": "Both adjuncts are banned",
+        "ok": false,
+        "why": "OPA is still allowed if there is no gag."
+      },
+      {
+        "t": "Both adjuncts are required",
+        "ok": false,
+        "why": "One path. NPA is banned with face trauma."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "They gag on the oral airway and the face is smashed. What is left?",
+    "opts": [
+      {
+        "t": "Neither tube; hold the jaw until a higher airway arrives",
+        "ok": true,
+        "why": "Gag kills OPA. Face trauma kills NPA."
+      },
+      {
+        "t": "Force the oral airway past the gag",
+        "ok": false,
+        "why": "Gag means out."
+      },
+      {
+        "t": "Force the nasal airway past the smash",
+        "ok": false,
+        "why": "Face trauma bans NPA."
+      },
+      {
+        "t": "Put both tubes in so one can fail",
+        "ok": false,
+        "why": "Neither tube is safe here."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "How is a nasal airway sized?",
+    "opts": [
+      {
+        "t": "Nose to the earlobe, or nose to the angle of the jaw",
+        "ok": true,
+        "why": "NPA measure is nose to ear or jaw angle."
+      },
+      {
+        "t": "Corner of the mouth to the earlobe, or to the jaw angle",
+        "ok": false,
+        "why": "That is the oral-airway and suction measure."
+      },
+      {
+        "t": "Lips to the xiphoid",
+        "ok": false,
+        "why": "That is not the NPA measure."
+      },
+      {
+        "t": "By color code only, no measure",
+        "ok": false,
+        "why": "Measure nose to ear or jaw."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "How is a nasal airway placed?",
+    "opts": [
+      {
+        "t": "Water-based lube, bevel toward the septum, straight in until flush on the nostril",
+        "ok": true,
+        "why": "Bevel to septum. Right nostril is how they are angled. Single-use, then trash."
+      },
+      {
+        "t": "No lube, bevel away from the septum, stop halfway",
+        "ok": false,
+        "why": "Water-based lube, bevel to septum, flush on the nostril."
+      },
+      {
+        "t": "Upside down and rotate 180",
+        "ok": false,
+        "why": "That is an oral-airway insert."
+      },
+      {
+        "t": "Oil-based lube, bevel toward the cheek, then tape it to the forehead",
+        "ok": false,
+        "why": "Water-based lube and bevel to the middle wall."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Unconscious, not injured, still breathing well enough. Which maintain option?",
+    "opts": [
+      {
+        "t": "Recovery position on the side",
+        "ok": true,
+        "why": "Recovery is maintain when they breathe well and there is no spine worry. Uncommon, because most need to stay supine to ventilate."
+      },
+      {
+        "t": "Prone, face down",
+        "ok": false,
+        "why": "Unconscious does not ride prone."
+      },
+      {
+        "t": "Sit them in a stair chair",
+        "ok": false,
+        "why": "Stair chair is a move tool for awake stairs."
+      },
+      {
+        "t": "Force a nasal airway even with face trauma",
+        "ok": false,
+        "why": "Face trauma bans NPA."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Trapped in a car, not breathing well, fire cutting. Airway versus spine?",
+    "opts": [
+      {
+        "t": "Urgent move out; someone tries to ventilate in the seat; spine may wait",
+        "ok": true,
+        "why": "A and B are life. Spine is quality of life. May sacrifice spine protection to keep them alive."
+      },
+      {
+        "t": "Finish a full board in the seat before any air",
+        "ok": false,
+        "why": "They need air now."
+      },
+      {
+        "t": "Wait for a stair chair",
+        "ok": false,
+        "why": "A stair chair is not the wreck tool."
+      },
+      {
+        "t": "Leave them and set up a wall suction unit first",
+        "ok": false,
+        "why": "Ventilate in the seat if you can, then get them out."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "Three suction units, and which one goes on scene?",
+    "opts": [
+      {
+        "t": "Hand-pump is backup; battery portable goes on scene; wall is in the ambulance",
+        "ok": true,
+        "why": "Check charge at the start of shift. Dead battery means the hand pump."
+      },
+      {
+        "t": "Wall unit goes on scene; hand-pump stays in the hospital; battery is backup only",
+        "ok": false,
+        "why": "Battery portable is the scene unit."
+      },
+      {
+        "t": "Only the wall unit exists",
+        "ok": false,
+        "why": "Three were named: hand-pump, battery, wall."
+      },
+      {
+        "t": "Only a finger sweep is used on scene",
+        "ok": false,
+        "why": "The scene unit is battery portable."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "What is the sterile water jug for during suction?",
+    "opts": [
+      {
+        "t": "Flush the line between passes so blood and vomit do not clot it",
+        "ok": true,
+        "why": "Suction water between passes."
+      },
+      {
+        "t": "Give them a drink after suction",
+        "ok": false,
+        "why": "The jug is for the tubing, not a drink."
+      },
+      {
+        "t": "Fill the oxygen humidifier on a D tank lying on its side",
+        "ok": false,
+        "why": "That jug-on-a-D-tank idea is a later oxygen talk, and it spills."
+      },
+      {
+        "t": "Wash the tongue before a jaw thrust",
+        "ok": false,
+        "why": "The jug clears the suction line."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "After suction, what is trash versus what is sprayed?",
+    "opts": [
+      {
+        "t": "Catheter and tubing are trash; canister goes to biohazard; the machine is spray-disinfected",
+        "ok": true,
+        "why": "Sterile wrap, single-patient path. Keep a packaged set with the unit."
+      },
+      {
+        "t": "The machine is trash; the catheter is washed and reused on the next patient",
+        "ok": false,
+        "why": "Catheter and tubing are single-patient trash."
+      },
+      {
+        "t": "Everything is saved for the next call",
+        "ok": false,
+        "why": "The fluid path is single-patient."
+      },
+      {
+        "t": "Only the wall unit is thrown away",
+        "ok": false,
+        "why": "The machine stays. The path is trash."
+      }
+    ]
+  },
+  {
+    "ch": 10,
+    "q": "After suction they still cannot clear themselves. What depth of air?",
+    "opts": [
+      {
+        "t": "Positive pressure depth, not a nose cannula or simple mask",
+        "ok": true,
+        "why": "They probably are not breathing adequately. They need a bag, not a cannula."
+      },
+      {
+        "t": "A nose cannula at 1 liter",
+        "ok": false,
+        "why": "A cannula is not enough depth here."
+      },
+      {
+        "t": "A simple mask at 2 liters",
+        "ok": false,
+        "why": "They need positive pressure."
+      },
+      {
+        "t": "No air until the next 15-second suction",
+        "ok": false,
+        "why": "The cap is 10 seconds, then they get oxygen."
+      }
+    ]
+  }
+]
