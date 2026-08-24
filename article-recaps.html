@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Article recaps</title>
+  <style>
+    :root {
+      --bg: #121212;
+      --card: #1c1c1e;
+      --text: #f2f2f2;
+      --muted: #b8b8b8;
+      --line: #3a3a3c;
+      --link: #8ab4ff;
+      --steal: #9ad67a;
+      --skip: #f0b27a;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      font-size: 18px;
+      line-height: 1.45;
+    }
+    main {
+      max-width: 40rem;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 3rem;
+    }
+    h1 {
+      font-size: 1.7rem;
+      margin: 0 0 0.4rem;
+    }
+    .purpose {
+      color: var(--muted);
+      margin: 0 0 1.5rem;
+    }
+    h2 {
+      font-size: 1.2rem;
+      margin: 0 0 0.6rem;
+    }
+    .findings {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1rem 1rem 1rem 1.3rem;
+      margin-bottom: 1.5rem;
+    }
+    .findings ul {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+    .findings li { margin: 0.45rem 0; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 1.1rem 1rem 1.2rem;
+      margin: 0 0 1rem;
+    }
+    .card h3 {
+      font-size: 1.25rem;
+      margin: 0 0 0.35rem;
+      line-height: 1.3;
+    }
+    .card a {
+      color: var(--link);
+      display: inline-block;
+      min-height: 44px;
+      padding: 0.45rem 0;
+      text-decoration: underline;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin: 0 0 0.7rem;
+    }
+    .recap p { margin: 0 0 0.55rem; }
+    .recap p:last-child { margin-bottom: 0.8rem; }
+    .steal { color: var(--steal); margin: 0 0 0.35rem; }
+    .skip { color: var(--skip); margin: 0; }
+    .note {
+      color: var(--muted);
+      font-style: italic;
+    }
+    footer {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Article recaps</h1>
+    <p class="purpose">Our recaps of X article RTs. Recaps only. Not the source articles.</p>
+
+    <section class="findings" aria-labelledby="findings-h">
+      <h2 id="findings-h">KEY FINDINGS</h2>
+      <ul>
+        <li>Build so a bot can run it; Tommy gets a simple check screen (Agent XP).</li>
+        <li>Train like a teammate: job → correct + why → save process → test weird case → then clock.</li>
+        <li>One job at a time. Draft, never send. Don't put a broken job on a timer.</li>
+        <li>Money numbers in these pieces are the author's claims, not checked.</li>
+        <li>Tommy is not the closer / not cold-calling.</li>
+      </ul>
+    </section>
+
+    <article class="card">
+      <h3><a href="https://x.com/sairahul1/status/2091831460055671085">My Grok Bot Just Paid Its Own Salary</a></h3>
+      <p class="meta">Rahul @sairahul1 · ~Mon Aug 24 2026</p>
+      <div class="recap">
+        <p>He gave the bot one job: publish one SEO tool page a day. Most people use Grok Bot for email and flights. He points it at money: nine systems (tools, local list, books, affiliate pages, newsletter, Facebook, X, Pinterest, YouTube).</p>
+        <p>He prints big Pinterest and YouTube numbers. Those are his claims. Not checked.</p>
+        <p>Same rule on every bot: draft, never send. Research, never publish until you look. Don't do the irreversible step.</p>
+      </div>
+      <p class="steal">Steal: one job, daily run, draft never send.</p>
+      <p class="skip">Skip: standing up all nine systems.</p>
+    </article>
+
+    <article class="card">
+      <h3><a href="https://x.com/eptwts/status/2091621484032614503">quote of Ronin's side-hustle guide</a></h3>
+      <p class="meta">EP @eptwts · Aug 23 2026 afternoon</p>
+      <div class="recap">
+        <p>Claim: EP made $100k in 10 months as a shadow growth operator (find a skilled creator with no audience, build the offer and posts, take a cut, stay off camera). Those dollars are Ronin's story, not a receipt.</p>
+        <p>Method: bot shortlists thin-niche creators; prompt writes posts that sell the offer; command-line checkout for plans/links/stats; never delete products, change prices, or move money without a yes.</p>
+      </div>
+      <p class="steal">Steal: which content sells the offer.</p>
+      <p class="skip">Skip: productizing someone else's skill / being the closer.</p>
+    </article>
+
+    <article class="card">
+      <h3><a href="https://x.com/liam_fallen/status/2091439459317264424">How to actually train Grok Bot</a></h3>
+      <p class="meta">Liam Fallen @liam_fallen · Aug 23 2026</p>
+      <div class="recap">
+        <p>Stop stuffing a giant prompt before it has done a job. Give it real work. Fix the output in chat. Say why. Show the job once on the computer (or say save what we just did). That becomes a saved process.</p>
+        <p>Test a weird case. Draft don't send. Only then a clock. If it fails by hand, a timer is a faster mistake. Order: job → correction → save → test → clock. Training never finishes.</p>
+      </div>
+      <p class="steal">Steal: coach the crew that way.</p>
+      <p class="skip">Skip: more giant prompts.</p>
+    </article>
+
+    <article class="card">
+      <h3>Grokbot 101</h3>
+      <p class="meta">EP @eptwts · Sat Aug 22 2026 morning · no URL on file</p>
+      <div class="recap">
+        <p>No prices. Grok Bot lives on a computer in the cloud that's already running. Keeps going when the phone is off. Watch the screen and take over the browser. Not a coding-agent replacement.</p>
+        <p>Teach a task once by recording, then schedule or text. Uses he lists: notes library, private dashboard, scheduled X, morning Gmail brief, scrape own stats, niche news pile, 30-day complaint scan. If more than two bots, keep one boss. Live X + live web is the edge he claims.</p>
+      </div>
+      <p class="steal">Steal: one boss bot, jobs we already run (class notes, quizzes, 8/12/4/8 feeds).</p>
+      <p class="skip">Skip: his checkout-company setup, a pile of extra bots, Gmail briefs unless Tommy asks.</p>
+    </article>
+
+    <article class="card">
+      <h3><a href="https://x.com/eptwts/status/2090117882286117136">Agent Experience Engineering</a></h3>
+      <p class="meta">EP @eptwts · Aug 19 2026</p>
+      <div class="recap">
+        <p>Next skill is AX: build things agents can use, not pretty human-only screens. Searchable pile + a command the bot can type beats a nicer app. Screens stay so Tommy can scan mistakes. Thesis, not a how-to. No prices.</p>
+      </div>
+      <p class="steal">Steal: this is the default for anything we ship.</p>
+      <p class="skip">Skip: none of the thesis; it is already locked.</p>
+    </article>
+
+    <footer>Money figures are author claims, not verified. Recaps only. Do not invent more cards.</footer>
+  </main>
+</body>
+</html>
