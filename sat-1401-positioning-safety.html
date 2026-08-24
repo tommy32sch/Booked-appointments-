@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat 2:01 EMS Patient Positioning and Safety Training</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat 2:01 EMS Patient Positioning and Safety Training</h1>
+  <div class="sub">Recap only · you/your · 25 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch": "shock", "q": "Your shock patient — how do you position them in this recap?", "opts": [{"t": "Feet up / Trendelenburg to push blood to the brain", "ok": false, "why": "Shock is supine — flat on the back. Elevating the legs is no longer recommended and caused more problems than benefits."}, {"t": "Supine, flat on the back — no leg elevation", "ok": true, "why": "Shock is supine — flat on the back. Elevating the legs is no longer recommended and caused more problems than benefits."}, {"t": "High Fowler so they can breathe", "ok": false, "why": "Shock is supine — flat on the back. Elevating the legs is no longer recommended and caused more problems than benefits."}, {"t": "Prone so secretions drain", "ok": false, "why": "Shock is supine — flat on the back. Elevating the legs is no longer recommended and caused more problems than benefits."}]}, {"ch": "preg", "q": "Your patient is pregnant at or past 20 weeks. Where do they ride?", "opts": [{"t": "Flat supine so you can watch the belly", "ok": false, "why": "Past 20 weeks you transport on the left side (left lateral), not flat supine, to keep the uterus off the aorta and IVC."}, {"t": "Left lateral — left side, not flat on the back", "ok": true, "why": "Past 20 weeks you transport on the left side (left lateral), not flat supine, to keep the uterus off the aorta and IVC."}, {"t": "Right side only — that offloads the aorta more", "ok": false, "why": "Past 20 weeks you transport on the left side (left lateral), not flat supine, to keep the uterus off the aorta and IVC."}, {"t": "Prone on a scoop stretcher", "ok": false, "why": "Past 20 weeks you transport on the left side (left lateral), not flat supine, to keep the uterus off the aorta and IVC."}]}, {"ch": "shs", "q": "Supine hypotensive syndrome — what is actually being squeezed, and what happens?", "opts": [{"t": "Only the stomach; they just get nauseated", "ok": false, "why": "Uterus, amniotic fluid, and fetus compress the aorta and inferior vena cava against the spine, cutting circulation and dropping blood pressure."}, {"t": "Uterus, fluid, and fetus on the aorta and IVC — circulation drops, BP falls", "ok": true, "why": "Uterus, amniotic fluid, and fetus compress the aorta and inferior vena cava against the spine, cutting circulation and dropping blood pressure."}, {"t": "The tongue falling back in the recovery position", "ok": false, "why": "Uterus, amniotic fluid, and fetus compress the aorta and inferior vena cava against the spine, cutting circulation and dropping blood pressure."}, {"t": "A manual gurney head-end lift", "ok": false, "why": "Uterus, amniotic fluid, and fetus compress the aorta and inferior vena cava against the spine, cutting circulation and dropping blood pressure."}]}, {"ch": "left", "q": "Why left side for late pregnancy — medical plus the box?", "opts": [{"t": "Right side offloads more; the bench does not matter", "ok": false, "why": "Left side relieves more pressure off the aorta and IVC than the right, and their face is toward you on the bench so you can watch consciousness, breathing, and color."}, {"t": "Left offloads aorta/IVC more, and the face is toward your bench", "ok": true, "why": "Left side relieves more pressure off the aorta and IVC than the right, and their face is toward you on the bench so you can watch consciousness, breathing, and color."}, {"t": "Left is only for shock with the feet up", "ok": false, "why": "Left side relieves more pressure off the aorta and IVC than the right, and their face is toward you on the bench so you can watch consciousness, breathing, and color."}, {"t": "Left is required for every Fowler patient", "ok": false, "why": "Left side relieves more pressure off the aorta and IVC than the right, and their face is toward you on the bench so you can watch consciousness, breathing, and color."}]}, {"ch": "recov", "q": "Unresponsive, breathing adequately, no suspected spinal injury — your position?", "opts": [{"t": "Prone so you never see the face", "ok": false, "why": "Recovery position (on the side) protects from tongue obstruction and from secretions or vomit pooling in the airway."}, {"t": "Recovery position — on their side", "ok": true, "why": "Recovery position (on the side) protects from tongue obstruction and from secretions or vomit pooling in the airway."}, {"t": "High Fowler only", "ok": false, "why": "Recovery position (on the side) protects from tongue obstruction and from secretions or vomit pooling in the airway."}, {"t": "Trendelenburg with the feet up", "ok": false, "why": "Recovery position (on the side) protects from tongue obstruction and from secretions or vomit pooling in the airway."}]}, {"ch": "unresp", "q": "Why is recovery position not that common on your unresponsive calls?", "opts": [{"t": "Unresponsive patients never have a tongue problem", "ok": false, "why": "Most unresponsive patients have compromised breathing and need to stay supine for airway management and a BVM."}, {"t": "Most cannot breathe well and need to stay supine for airway work and a BVM", "ok": true, "why": "Most unresponsive patients have compromised breathing and need to stay supine for airway management and a BVM."}, {"t": "The recap wants every unresponsive patient prone", "ok": false, "why": "Most unresponsive patients have compromised breathing and need to stay supine for airway management and a BVM."}, {"t": "Scoop stretchers forbid the recovery position by national rule", "ok": false, "why": "Most unresponsive patients have compromised breathing and need to stay supine for airway management and a BVM."}]}, {"ch": "sz", "q": "Your seizure patient — what drives the position?", "opts": [{"t": "Always prone after a seizure", "ok": false, "why": "Post-ictal and breathing adequately → recovery position. Not breathing adequately or needing airway support → supine. Airway and breathing status drive it."}, {"t": "Recovery if breathing well; supine if they need airway or ventilation", "ok": true, "why": "Post-ictal and breathing adequately → recovery position. Not breathing adequately or needing airway support → supine. Airway and breathing status drive it."}, {"t": "Always left lateral like late pregnancy", "ok": false, "why": "Post-ictal and breathing adequately → recovery position. Not breathing adequately or needing airway support → supine. Airway and breathing status drive it."}, {"t": "Always feet-up shock position", "ok": false, "why": "Post-ictal and breathing adequately → recovery position. Not breathing adequately or needing airway support → supine. Airway and breathing status drive it."}]}, {"ch": "fowl", "q": "Respiratory distress / dyspnea — how do you sit them if they tolerate it?", "opts": [{"t": "Flat supine with the legs up", "ok": false, "why": "Fowler or High Fowler (sitting up / very upright). Patients with difficulty breathing usually breathe better upright than lying flat, if tolerated and not contraindicated."}, {"t": "Fowler or High Fowler — sit them up", "ok": true, "why": "Fowler or High Fowler (sitting up / very upright). Patients with difficulty breathing usually breathe better upright than lying flat, if tolerated and not contraindicated."}, {"t": "Prone restraint on a backboard", "ok": false, "why": "Fowler or High Fowler (sitting up / very upright). Patients with difficulty breathing usually breathe better upright than lying flat, if tolerated and not contraindicated."}, {"t": "Recovery position even if they are talking and sitting", "ok": false, "why": "Fowler or High Fowler (sitting up / very upright). Patients with difficulty breathing usually breathe better upright than lying flat, if tolerated and not contraindicated."}]}, {"ch": "semi", "q": "Fowler vs High Fowler vs Semi-Fowler in this recap?", "opts": [{"t": "They all mean face-down prone", "ok": false, "why": "Fowler is sitting up. High Fowler is very upright. Semi-Fowler is partially reclined."}, {"t": "Sitting up; very upright; partially reclined", "ok": true, "why": "Fowler is sitting up. High Fowler is very upright. Semi-Fowler is partially reclined."}, {"t": "Shock; pregnancy; seizure — in that order", "ok": false, "why": "Fowler is sitting up. High Fowler is very upright. Semi-Fowler is partially reclined."}, {"t": "Only Semi-Fowler is allowed on a gurney", "ok": false, "why": "Fowler is sitting up. High Fowler is very upright. Semi-Fowler is partially reclined."}]}, {"ch": "comf", "q": "No strong medical reason for a set position — what do you do?", "opts": [{"t": "Force Trendelenburg on everyone", "ok": false, "why": "Use position of comfort. Ask if they are comfortable and whether they want to sit up more or lie back more."}, {"t": "Position of comfort — let the conscious patient choose", "ok": true, "why": "Use position of comfort. Ask if they are comfortable and whether they want to sit up more or lie back more."}, {"t": "Always prone if they ask once", "ok": false, "why": "Use position of comfort. Ask if they are comfortable and whether they want to sit up more or lie back more."}, {"t": "Restrain them so they cannot change position", "ok": false, "why": "Use position of comfort. Ask if they are comfortable and whether they want to sit up more or lie back more."}]}, {"ch": "prone", "q": "Prone (face down) on your unconscious patient?", "opts": [{"t": "Preferred — secretions always drain better", "ok": false, "why": "Never transport unconscious patients prone. Avoid prone especially with any airway or mental-status concern."}, {"t": "Never transport them prone", "ok": true, "why": "Never transport unconscious patients prone. Avoid prone especially with any airway or mental-status concern."}, {"t": "Required after every seizure", "ok": false, "why": "Never transport unconscious patients prone. Avoid prone especially with any airway or mental-status concern."}, {"t": "The only legal restraint position", "ok": false, "why": "Never transport unconscious patients prone. Avoid prone especially with any airway or mental-status concern."}]}, {"ch": "prone2", "q": "A conscious, stable patient asks to lie prone. What does this recap allow?", "opts": [{"t": "Always yes — prone is preferred if they ask", "ok": false, "why": "Rare and not preferred. Only consider if fully conscious, breathing well, and you can continuously monitor airway and breathing."}, {"t": "Rare, not preferred — only if fully awake, breathing well, and you watch airway the whole time", "ok": true, "why": "Rare and not preferred. Only consider if fully conscious, breathing well, and you can continuously monitor airway and breathing."}, {"t": "Yes if you also use prone restraints", "ok": false, "why": "Rare and not preferred. Only consider if fully conscious, breathing well, and you can continuously monitor airway and breathing."}, {"t": "Never even consider it if they are talking", "ok": false, "why": "Rare and not preferred. Only consider if fully conscious, breathing well, and you can continuously monitor airway and breathing."}]}, {"ch": "restr", "q": "When may you restrain in this recap?", "opts": [{"t": "Any rude or loud patient so the ride is quieter", "ok": false, "why": "Restraints are for combative patients who are actively trying to harm themselves or others — after you thought about medical causes."}, {"t": "They are actively trying to harm themselves or others", "ok": true, "why": "Restraints are for combative patients who are actively trying to harm themselves or others — after you thought about medical causes."}, {"t": "Any pregnant patient past 20 weeks", "ok": false, "why": "Restraints are for combative patients who are actively trying to harm themselves or others — after you thought about medical causes."}, {"t": "Every unresponsive patient in recovery position", "ok": false, "why": "Restraints are for combative patients who are actively trying to harm themselves or others — after you thought about medical causes."}]}, {"ch": "med", "q": "Before you call combativeness “behavioral,” what do you evaluate?", "opts": [{"t": "Only whether they were rude to law enforcement", "ok": false, "why": "Look for hypoxia (low oxygen), hypoglycemia (low blood sugar), head injury, and other medical or trauma causes. Do not jump to psych or “they are just a jerk.”"}, {"t": "Hypoxia, hypoglycemia, head injury, other medical or trauma causes", "ok": true, "why": "Look for hypoxia (low oxygen), hypoglycemia (low blood sugar), head injury, and other medical or trauma causes. Do not jump to psych or “they are just a jerk.”"}, {"t": "Only whether a scoop stretcher is on the truck", "ok": false, "why": "Look for hypoxia (low oxygen), hypoglycemia (low blood sugar), head injury, and other medical or trauma causes. Do not jump to psych or “they are just a jerk.”"}, {"t": "Only their Fowler angle", "ok": false, "why": "Look for hypoxia (low oxygen), hypoglycemia (low blood sugar), head injury, and other medical or trauma causes. Do not jump to psych or “they are just a jerk.”"}]}, {"ch": "five", "q": "Ideal restraint team and position?", "opts": [{"t": "Two people, prone, no one at the head", "ok": false, "why": "Ideal is five people — one per extremity plus one at the head — and supine only. Prone restraint is prohibited."}, {"t": "Five people (four limbs plus head), supine only", "ok": true, "why": "Ideal is five people — one per extremity plus one at the head — and supine only. Prone restraint is prohibited."}, {"t": "One EMT and Trendelenburg", "ok": false, "why": "Ideal is five people — one per extremity plus one at the head — and supine only. Prone restraint is prohibited."}, {"t": "Law enforcement only; you leave the box", "ok": false, "why": "Ideal is five people — one per extremity plus one at the head — and supine only. Prone restraint is prohibited."}]}, {"ch": "asph", "q": "Why is prone restraint prohibited here?", "opts": [{"t": "It is too comfortable and they fall asleep", "ok": false, "why": "Prone restraint risks positional asphyxia and you cannot monitor airway and breathing well."}, {"t": "Positional asphyxia and you cannot watch airway and breathing well", "ok": true, "why": "Prone restraint risks positional asphyxia and you cannot monitor airway and breathing well."}, {"t": "The IVC always ruptures in prone", "ok": false, "why": "Prone restraint risks positional asphyxia and you cannot monitor airway and breathing well."}, {"t": "National registry bans scoop stretchers if anyone is prone", "ok": false, "why": "Prone restraint risks positional asphyxia and you cannot monitor airway and breathing well."}]}, {"ch": "abc", "q": "After you restrain, what is still your job?", "opts": [{"t": "You can ignore them; law enforcement owns the patient now", "ok": false, "why": "Continuously monitor ABCs (airway, breathing, circulation) and mental status. They are still your patient and your responsibility."}, {"t": "Keep watching ABCs and mental status — they are still your patient", "ok": true, "why": "Continuously monitor ABCs (airway, breathing, circulation) and mental status. They are still your patient and your responsibility."}, {"t": "Put them prone so you do not have to watch the face", "ok": false, "why": "Continuously monitor ABCs (airway, breathing, circulation) and mental status. They are still your patient and your responsibility."}, {"t": "Skip vitals because restraints replace assessment", "ok": false, "why": "Continuously monitor ABCs (airway, breathing, circulation) and mental status. They are still your patient and your responsibility."}]}, {"ch": "doc", "q": "Restraint documentation this recap wants on your report?", "opts": [{"t": "Only the hospital room number", "ok": false, "why": "Write the situation (what you found), the interventions (what you did), and the outcome (how they did). Restrain without documenting combativeness and it can look like you kidnapped them."}, {"t": "Situation, what you did, and how they did afterward", "ok": true, "why": "Write the situation (what you found), the interventions (what you did), and the outcome (how they did). Restrain without documenting combativeness and it can look like you kidnapped them."}, {"t": "A joke about them being a jerk is enough", "ok": false, "why": "Write the situation (what you found), the interventions (what you did), and the outcome (how they did). Restrain without documenting combativeness and it can look like you kidnapped them."}, {"t": "Only that you used a stair chair", "ok": false, "why": "Write the situation (what you found), the interventions (what you did), and the outcome (how they did). Restrain without documenting combativeness and it can look like you kidnapped them."}]}, {"ch": "bsi", "q": "Standard Precautions / BSI after your call — even if the box looks clean?", "opts": [{"t": "Skip cleaning if you cannot see dirt", "ok": false, "why": "Assume every patient could be infectious. Discard disposables and clean and disinfect surfaces and equipment even if they look clean. Same way for everyone, every time."}, {"t": "Discard disposables and disinfect anyway — next patient could be a newborn or your grandmother", "ok": true, "why": "Assume every patient could be infectious. Discard disposables and clean and disinfect surfaces and equipment even if they look clean. Same way for everyone, every time."}, {"t": "Clean only after a restraint call", "ok": false, "why": "Assume every patient could be infectious. Discard disposables and clean and disinfect surfaces and equipment even if they look clean. Same way for everyone, every time."}, {"t": "PPE is optional if they look healthy", "ok": false, "why": "Assume every patient could be infectious. Discard disposables and clean and disinfect surfaces and equipment even if they look clean. Same way for everyone, every time."}]}, {"ch": "lift", "q": "Before you move the patient, which question does this recap want?", "opts": [{"t": "Only “Am I strong enough?” — ego first", "ok": false, "why": "Ask whether the team is strong enough and whether you need more help. If you think you are at the limit, decide to get help. Pride can drop a patient or hurt a partner."}, {"t": "“Are we strong enough?” and “Do we need more help?”", "ok": true, "why": "Ask whether the team is strong enough and whether you need more help. If you think you are at the limit, decide to get help. Pride can drop a patient or hurt a partner."}, {"t": "“Can we put them prone to make the lift lighter?”", "ok": false, "why": "Ask whether the team is strong enough and whether you need more help. If you think you are at the limit, decide to get help. Pride can drop a patient or hurt a partner."}, {"t": "Skip the question if someone said they were “good”", "ok": false, "why": "Ask whether the team is strong enough and whether you need more help. If you think you are at the limit, decide to get help. Pride can drop a patient or hurt a partner."}]}, {"ch": "head", "q": "Manual gurney — who goes at the head, and why?", "opts": [{"t": "The weakest person; the head end is light", "ok": false, "why": "The head end is heavier and has to be lifted higher because of the wheels. Put the stronger (and often taller) provider at the head."}, {"t": "Your stronger (often taller) person — head end is heavier and lifts higher", "ok": true, "why": "The head end is heavier and has to be lifted higher because of the wheels. Put the stronger (and often taller) provider at the head."}, {"t": "Height never matters and either end is the same", "ok": false, "why": "The head end is heavier and has to be lifted higher because of the wheels. Put the stronger (and often taller) provider at the head."}, {"t": "Whoever is documenting restraints", "ok": false, "why": "The head end is heavier and has to be lifted higher because of the wheels. Put the stronger (and often taller) provider at the head."}]}, {"ch": "water", "q": "Water rescue devices in this recap?", "opts": [{"t": "Only a stair chair — it floats best", "ok": false, "why": "Special teams often use a basket (Stokes) stretcher. A backboard can be pushed under and float up under the patient, and can sit inside a basket for a hoist."}, {"t": "Basket/Stokes stretcher; backboard can float up under them and ride in the basket", "ok": true, "why": "Special teams often use a basket (Stokes) stretcher. A backboard can be pushed under and float up under the patient, and can sit inside a basket for a hoist."}, {"t": "Only Fowler positioning — no hardware", "ok": false, "why": "Special teams often use a basket (Stokes) stretcher. A backboard can be pushed under and float up under the patient, and can sit inside a basket for a hoist."}, {"t": "Prone restraint on a gurney in the water", "ok": false, "why": "Special teams often use a basket (Stokes) stretcher. A backboard can be pushed under and float up under the patient, and can sit inside a basket for a hoist."}]}, {"ch": "scoop", "q": "Scoop stretcher — when does this recap want you to reach for it?", "opts": [{"t": "Only for late pregnancy on the left side", "ok": false, "why": "Especially useful for a hip fracture or anyone you do not want to roll — scoop from both sides and assemble under them. Also the exam job: pelvic/hip injuries, minimal movement."}, {"t": "Hip fracture or anyone you do not want to roll — scoop from both sides", "ok": true, "why": "Especially useful for a hip fracture or anyone you do not want to roll — scoop from both sides and assemble under them. Also the exam job: pelvic/hip injuries, minimal movement."}, {"t": "First choice for every confined-space stair move", "ok": false, "why": "Especially useful for a hip fracture or anyone you do not want to roll — scoop from both sides and assemble under them. Also the exam job: pelvic/hip injuries, minimal movement."}, {"t": "Required for all shock patients instead of supine", "ok": false, "why": "Especially useful for a hip fracture or anyone you do not want to roll — scoop from both sides and assemble under them. Also the exam job: pelvic/hip injuries, minimal movement."}]}, {"ch": "dev", "q": "Exam-level device jobs this recap wants you to hold?", "opts": [{"t": "Stair chair for water hoist; scoop for every walker", "ok": false, "why": "Stair chair: confined spaces, ambulatory but weak. Gurney: standard transport. Backboard: mainly extrication and certain trauma. Scoop: pelvic/hip, minimal movement. Kits vary so registry stays general."}, {"t": "Stair chair confined/weak walkers; gurney everyday; backboard extrication; scoop hip/pelvis", "ok": true, "why": "Stair chair: confined spaces, ambulatory but weak. Gurney: standard transport. Backboard: mainly extrication and certain trauma. Scoop: pelvic/hip, minimal movement. Kits vary so registry stays general."}, {"t": "National registry lists one exact device for every address", "ok": false, "why": "Stair chair: confined spaces, ambulatory but weak. Gurney: standard transport. Backboard: mainly extrication and certain trauma. Scoop: pelvic/hip, minimal movement. Kits vary so registry stays general."}, {"t": "Backboard is only for Fowler positioning", "ok": false, "why": "Stair chair: confined spaces, ambulatory but weak. Gurney: standard transport. Backboard: mainly extrication and certain trauma. Scoop: pelvic/hip, minimal movement. Kits vary so registry stays general."}]}, {"ch": "mind", "q": "After you fix immediately life-threatening problems, what is a lot of your job?", "opts": [{"t": "Keep inventing new emergency procedures in the back", "ok": false, "why": "Then supportive care, comfort, and safe transport. When it is no longer emergent, stay on comfort, safety, documentation, and professionalism."}, {"t": "Supportive care, comfort, and safe transport — then comfort, safety, documentation, professionalism", "ok": true, "why": "Then supportive care, comfort, and safe transport. When it is no longer emergent, stay on comfort, safety, documentation, and professionalism."}, {"t": "Prone restraint and skip the chart", "ok": false, "why": "Then supportive care, comfort, and safe transport. When it is no longer emergent, stay on comfort, safety, documentation, professionalism."}, {"t": "Only whether the gurney looks shiny", "ok": false, "why": "Then supportive care, comfort, and safe transport. When it is no longer emergent, stay on comfort, safety, documentation, and professionalism."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"shock": "Shock", "preg": "Pregnancy", "shs": "Supine hypotensive", "left": "Left lateral", "recov": "Recovery", "unresp": "Unresponsive airway", "sz": "Seizure", "fowl": "Fowler", "semi": "Fowler names", "comf": "Comfort", "prone": "Prone", "prone2": "Prone exception", "restr": "When to restrain", "med": "Medical first", "five": "Restraint team", "asph": "Positional asphyxia", "abc": "After restraint", "doc": "Documentation", "bsi": "BSI / cleaning", "lift": "Team lift", "head": "Gurney head", "water": "Water rescue", "scoop": "Scoop", "dev": "Device jobs", "mind": "Mindset"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the Sat 2:01 positioning and safety recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · positioning and safety recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
