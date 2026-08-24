@@ -131,7 +131,7 @@
   },
   {
     "ch": 12,
-    "q": "Route and timing pair?",
+    "q": "How do IV onset and swallowed-pill onset compare?",
     "opts": [
       {
         "t": "IV is immediate; a swallowed pill is about 20 to 30 minutes",
@@ -144,14 +144,14 @@
         "why": "Those are swapped."
       },
       {
-        "t": "Both take 6 hours",
+        "t": "Both take about 20 to 30 minutes",
         "ok": false,
-        "why": "About 6 hours is how long carbon monoxide can stay bound, not these routes."
+        "why": "IV is immediate."
       },
       {
-        "t": "Both take 10 seconds",
+        "t": "Both are immediate",
         "ok": false,
-        "why": "10 seconds is a suction cap."
+        "why": "A swallowed pill is about 20 to 30 minutes."
       }
     ]
   },
