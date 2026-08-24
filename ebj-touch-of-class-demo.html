@@ -91,6 +91,7 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 }
 .brand-name span{font-size:.72rem;color:var(--muted-dark);letter-spacing:.06em;text-transform:uppercase}
+@media (max-width:719px){.brand-name{display:none}}
 .head-call{
   flex:none;display:inline-flex;align-items:center;gap:8px;
   background:var(--red);color:#fff;text-decoration:none;font-weight:900;
@@ -118,6 +119,9 @@ a:focus-visible,button:focus-visible,.btn:focus-visible{
   border-bottom:3px solid transparent;
 }
 .subnav a:hover,.subnav a:focus-visible{color:#fff;border-bottom-color:var(--red)}
+@media (max-width:480px){
+  .subnav a{padding:0 10px;font-size:.8rem;letter-spacing:.03em}
+}
 
 /* ---------- hero ---------- */
 .hero{position:relative;background:var(--ink);color:#fff;overflow:hidden}
