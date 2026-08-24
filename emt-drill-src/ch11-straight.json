@@ -1,0 +1,860 @@
+[
+  {
+    "ch": 11,
+    "q": "Adequate breathing and they need oxygen, versus apneic or inadequate. Which pair?",
+    "opts": [
+      {
+        "t": "Non-rebreather if adequate; bag if apneic or inadequate",
+        "ok": true,
+        "why": "R/R/Q picks the device. Adequate plus need oxygen = NRB. Not enough air = BVM."
+      },
+      {
+        "t": "Bag if adequate; non-rebreather if apneic",
+        "ok": false,
+        "why": "Those are swapped."
+      },
+      {
+        "t": "Cannula for both",
+        "ok": false,
+        "why": "A cannula is not the test default, and it cannot ventilate."
+      },
+      {
+        "t": "CPAP for both",
+        "ok": false,
+        "why": "CPAP is for alert wet-lung patients who still breathe."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Unconscious, 18 breaths a minute, good chest rise. Which device?",
+    "opts": [
+      {
+        "t": "Non-rebreather to raise the percent",
+        "ok": true,
+        "why": "Unconscious does not automatically mean bag them. Rate, rhythm, and quality decide."
+      },
+      {
+        "t": "Bag them only because they are out",
+        "ok": false,
+        "why": "18 and good rise can still be adequate."
+      },
+      {
+        "t": "Cannula at 1 liter",
+        "ok": false,
+        "why": "If they need oxygen, the test default is a non-rebreather."
+      },
+      {
+        "t": "CPAP even if they cannot follow commands",
+        "ok": false,
+        "why": "Unconscious is a CPAP no."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Any mask on the face. What flow?",
+    "opts": [
+      {
+        "t": "10 to 15 liters per minute",
+        "ok": true,
+        "why": "Every face or trach mask is 10-15. Under 10 is a straw that suffocates."
+      },
+      {
+        "t": "1 to 6 liters per minute",
+        "ok": false,
+        "why": "That is the cannula range."
+      },
+      {
+        "t": "2 to 4 liters per minute",
+        "ok": false,
+        "why": "That is a common cannula play, not a mask."
+      },
+      {
+        "t": "Under 10 liters per minute so they are not flooded",
+        "ok": false,
+        "why": "Under 10 on a mask is the problem."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Why is it called a non-rebreather?",
+    "opts": [
+      {
+        "t": "Flaps let exhale out and seal on inhale so exhaled air is not breathed back in",
+        "ok": true,
+        "why": "Non-rebreather = not rebreathing exhaled air."
+      },
+      {
+        "t": "It has no reservoir, so they rebreathe room air only",
+        "ok": false,
+        "why": "It has a reservoir. The flaps stop rebreathing."
+      },
+      {
+        "t": "The valves are popped off on purpose",
+        "ok": false,
+        "why": "Popping the valves off makes a partial rebreather."
+      },
+      {
+        "t": "It runs at 1 to 6 liters",
+        "ok": false,
+        "why": "A mask runs 10-15."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Nasal cannula numbers?",
+    "opts": [
+      {
+        "t": "1 to 6 liters per minute, about 24 to 44 percent",
+        "ok": true,
+        "why": "1 L is about 24%. 6 L is about 44%. Room air is 21%."
+      },
+      {
+        "t": "10 to 15 liters per minute, about 90 to 95 percent",
+        "ok": false,
+        "why": "That is the non-rebreather range."
+      },
+      {
+        "t": "1 to 6 liters per minute, 100 percent if sealed",
+        "ok": false,
+        "why": "100% is a sealed bag."
+      },
+      {
+        "t": "10 to 15 liters per minute, about 24 to 44 percent",
+        "ok": false,
+        "why": "24-44% is the cannula percent, not a mask flow."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Thinking of turning a cannula to 6 liters. What is the next thought?",
+    "opts": [
+      {
+        "t": "They probably already need a non-rebreather",
+        "ok": true,
+        "why": "6 liters whistles and dries the nose. If they need that much, think NRB."
+      },
+      {
+        "t": "Stay at 6 forever because the test loves a cannula",
+        "ok": false,
+        "why": "The registry rarely wants a cannula as the pick."
+      },
+      {
+        "t": "Drop to under 10 on a mask instead",
+        "ok": false,
+        "why": "A mask is 10-15, not under 10."
+      },
+      {
+        "t": "Switch to CPAP for any 6-liter thought",
+        "ok": false,
+        "why": "CPAP is a wet-lung tool, not a 6-liter bump."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Partial rebreather. How is it made, and what percent?",
+    "opts": [
+      {
+        "t": "Pop the non-rebreather side valves off; about 80 to 90 percent; still 10 to 15 liters",
+        "ok": true,
+        "why": "Still a mask, so still 10-15. Book use is hyperventilation / panic later."
+      },
+      {
+        "t": "Add extra valves; about 24 to 44 percent; 1 to 6 liters",
+        "ok": false,
+        "why": "Valves come off, and that percent/flow is a cannula."
+      },
+      {
+        "t": "Leave the valves on; 100 percent; 1 liter",
+        "ok": false,
+        "why": "Valves on is a non-rebreather. 100% is a sealed bag."
+      },
+      {
+        "t": "Use a colored adapter; invent the printed liters",
+        "ok": false,
+        "why": "Colored adapters are Venturi. Printed numbers were not to be invented."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Venturi mask on the ambulance?",
+    "opts": [
+      {
+        "t": "Not an EMS carry; long-term percent control; read the adapter that is already on",
+        "ok": true,
+        "why": "Do not invent color liters. Interfacility: match what is already on."
+      },
+      {
+        "t": "Everyday first-line mask at 1 to 6 liters",
+        "ok": false,
+        "why": "It is not stocked as a first-line EMS mask."
+      },
+      {
+        "t": "The test default for any hypoxia",
+        "ok": false,
+        "why": "The test default is a non-rebreather."
+      },
+      {
+        "t": "Required on every D tank",
+        "ok": false,
+        "why": "They do not carry it."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "No trach mask in the bag. They breathe adequately through a stoma. What goes over the hole?",
+    "opts": [
+      {
+        "t": "A non-rebreather over the stoma at 10 to 15 liters",
+        "ok": true,
+        "why": "Functionally a mask. Still need adequate breathing."
+      },
+      {
+        "t": "A cannula in the nose at 1 liter",
+        "ok": false,
+        "why": "The hole is the stoma, not the nose."
+      },
+      {
+        "t": "A Venturi with invented color numbers",
+        "ok": false,
+        "why": "Do not invent Venturi liters."
+      },
+      {
+        "t": "CPAP because any hole gets pressure",
+        "ok": false,
+        "why": "CPAP is not the stoma-cover move."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Need oxygen now, only a D tank on its side. Humidified oxygen?",
+    "opts": [
+      {
+        "t": "Give dry oxygen. A water jug on a laid-down D tank spills",
+        "ok": true,
+        "why": "Humidify on an upright wall meter if a jug is there. Need oxygen now: give dry."
+      },
+      {
+        "t": "Lay the jug on the D tank and wait",
+        "ok": false,
+        "why": "It spills. They still need oxygen."
+      },
+      {
+        "t": "Withhold oxygen until a wall meter is found",
+        "ok": false,
+        "why": "Need oxygen now means give dry."
+      },
+      {
+        "t": "Switch to CPAP to skip the tank",
+        "ok": false,
+        "why": "CPAP still uses tank pressure."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Bag indication, flow, and percent if the seal is tight?",
+    "opts": [
+      {
+        "t": "Apnea or inadequate rate or volume; 10 to 15 liters; 100 percent",
+        "ok": true,
+        "why": "Tight seal, no room-air leak. Seal is the job."
+      },
+      {
+        "t": "Adequate but hypoxic; 1 to 6 liters; 24 to 44 percent",
+        "ok": false,
+        "why": "That is a cannula, and adequate hypoxic is a non-rebreather."
+      },
+      {
+        "t": "Apnea; under 10 liters; 21 percent",
+        "ok": false,
+        "why": "A bag is 10-15, and a tight seal is 100%."
+      },
+      {
+        "t": "Any unconscious patient; 2 liters; 80 to 90 percent",
+        "ok": false,
+        "why": "Unconscious plus good rise can be a non-rebreather. 80-90% is a partial rebreather."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Adult with a pulse who needs to be breathed for. What rate?",
+    "opts": [
+      {
+        "t": "One breath every 6 seconds, which is 10 a minute",
+        "ok": true,
+        "why": "Adult vent rate is 1 every 6 seconds = 10/min."
+      },
+      {
+        "t": "One breath every 2 to 3 seconds, which is 20 to 30 a minute",
+        "ok": false,
+        "why": "That is child and infant."
+      },
+      {
+        "t": "12 to 20 breaths a minute to match normal",
+        "ok": false,
+        "why": "They get 100% and more volume, so 10 a minute, not 12-20."
+      },
+      {
+        "t": "40 shallow breaths to match a panic rate",
+        "ok": false,
+        "why": "Do not match 40. Keep about 10 good breaths."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Child or infant who needs to be breathed for. What rate?",
+    "opts": [
+      {
+        "t": "One breath every 2 to 3 seconds, which is 20 to 30 a minute",
+        "ok": true,
+        "why": "Child and infant: 1 every 2-3 s = 20-30/min. Same 10-15 liter flow."
+      },
+      {
+        "t": "One breath every 6 seconds, which is 10 a minute",
+        "ok": false,
+        "why": "That is the adult rate."
+      },
+      {
+        "t": "A different liter flow than an adult mask",
+        "ok": false,
+        "why": "Peds NRB, cannula, and BVM use the same LPM as adult. Kids get faster breaths, not different flow."
+      },
+      {
+        "t": "One breath every 15 seconds",
+        "ok": false,
+        "why": "15 is not a bag interval."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "How hard is a bag squeeze?",
+    "opts": [
+      {
+        "t": "Gentle, about 1 second, just until chest rise, then stop and count",
+        "ok": true,
+        "why": "Not a blast. Count out loud so the hand waits."
+      },
+      {
+        "t": "Hard and fast until the bag is empty",
+        "ok": false,
+        "why": "Hard and fast stacks air and drops blood pressure."
+      },
+      {
+        "t": "Half a bag, no look at the chest",
+        "ok": false,
+        "why": "Stop at rise. Half a bag is not a known size."
+      },
+      {
+        "t": "Match 40 shallow breaths if they have any",
+        "ok": false,
+        "why": "Time with their inhale if they have one, but keep about 10 good adult breaths."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Bag too fast and too hard. What stacks?",
+    "opts": [
+      {
+        "t": "Air in the stomach, high chest pressure, blood pressure drops, pulse can go",
+        "ok": true,
+        "why": "Gastric distension plus squeezed heart and vessels. Adrenaline is the usual cause."
+      },
+      {
+        "t": "Only a dry nose from a 6-liter cannula",
+        "ok": false,
+        "why": "That is a cannula problem, not a bag blast."
+      },
+      {
+        "t": "Only a better seal",
+        "ok": false,
+        "why": "A blast is not a better seal."
+      },
+      {
+        "t": "Only a rise in residual volume that helps them",
+        "ok": false,
+        "why": "Stacked pressure hurts the pump."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Apneic adult with no pulse. What replaces the 1-every-6-seconds-only plan?",
+    "opts": [
+      {
+        "t": "CPR; adult 30 compressions and 2 breaths this hour",
+        "ok": true,
+        "why": "No pulse = CPR, not stand-alone 10 breaths a minute."
+      },
+      {
+        "t": "Keep 1 breath every 6 seconds and skip compressions",
+        "ok": false,
+        "why": "No pulse means compressions."
+      },
+      {
+        "t": "CPAP because they cannot follow commands",
+        "ok": false,
+        "why": "Arrest is a CPAP no. They need a bag and CPR."
+      },
+      {
+        "t": "A cannula at 1 liter during compressions",
+        "ok": false,
+        "why": "A cannula is not CPR."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Home 1-liter cannula, called for difficulty breathing, still adequate. What bump?",
+    "opts": [
+      {
+        "t": "Own assessment; if they need a lot, bump to a non-rebreather",
+        "ok": true,
+        "why": "Home flow is not the scene plan. Adequate plus need a lot = NRB."
+      },
+      {
+        "t": "Leave the home 1 liter because it is already on",
+        "ok": false,
+        "why": "The scene assessment decides."
+      },
+      {
+        "t": "Bag them only because they called",
+        "ok": false,
+        "why": "Adequate means raise the percent, not take over."
+      },
+      {
+        "t": "Start CPAP for any home-oxygen call",
+        "ok": false,
+        "why": "CPAP needs the wet-lung, alert, pressure-ok picture."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Main CPAP patient on a question?",
+    "opts": [
+      {
+        "t": "Pulmonary edema: blast fluid off the alveoli; alert and follows commands",
+        "ok": true,
+        "why": "Test = fluid in the lungs. Not a bag and not a ventilator."
+      },
+      {
+        "t": "Respiratory arrest",
+        "ok": false,
+        "why": "Arrest gets a bag."
+      },
+      {
+        "t": "Any trauma chest",
+        "ok": false,
+        "why": "Trauma takes CPAP off the table."
+      },
+      {
+        "t": "Unconscious with a gag",
+        "ok": false,
+        "why": "They must follow commands."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Adult systolic under 90. Why is that a CPAP stop?",
+    "opts": [
+      {
+        "t": "Extra chest pressure can drop blood pressure further",
+        "ok": true,
+        "why": "Adult SBP under 90 is a named veto. 88/60 means no CPAP."
+      },
+      {
+        "t": "Low pressure means they need a cannula at 1 liter",
+        "ok": false,
+        "why": "Shock is an oxygen reason, but CPAP is still a no."
+      },
+      {
+        "t": "Low pressure means pop the non-rebreather valves off",
+        "ok": false,
+        "why": "That is a partial rebreather, not a CPAP rule."
+      },
+      {
+        "t": "Low pressure is required before CPAP can start",
+        "ok": false,
+        "why": "Low pressure is the stop, not the start."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Which finding kills CPAP?",
+    "opts": [
+      {
+        "t": "Cannot follow commands, vomit, trauma, or they want to lie down while short of breath",
+        "ok": true,
+        "why": "Also hypotension, pneumothorax, face trauma, shock, GI bleed, cannot protect the airway. If they want to lie down, they have given up: bag."
+      },
+      {
+        "t": "Alert, sitting, wet lungs, systolic 110",
+        "ok": false,
+        "why": "That is a CPAP candidate picture."
+      },
+      {
+        "t": "They say they cannot breathe but still follow commands and sit up",
+        "ok": false,
+        "why": "Distress plus talking can still be CPAP if the vetoes are absent."
+      },
+      {
+        "t": "Pulse ox 92 percent and they are sitting",
+        "ok": false,
+        "why": "Hypoxia is a reason, not a veto."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Coughing, a little talk, noisy air, grabbing at the throat. What obstruction, and what is done?",
+    "opts": [
+      {
+        "t": "Mild: hands off, maybe a non-rebreather while they cough",
+        "ok": true,
+        "why": "Mild still moves air. Load oxygen in case it goes severe."
+      },
+      {
+        "t": "Severe: five back blows and five abdominal thrusts now",
+        "ok": false,
+        "why": "Talk and cough means it is not the silent severe picture."
+      },
+      {
+        "t": "Unresponsive: start CPR",
+        "ok": false,
+        "why": "They are still up and moving air."
+      },
+      {
+        "t": "Infant chest thrusts only",
+        "ok": false,
+        "why": "This is not the infant sequence, and they are still moving air."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Silent, blue, choking sign, still up. Adult or child. What sequence?",
+    "opts": [
+      {
+        "t": "Five back blows, then five abdominal thrusts, repeat",
+        "ok": true,
+        "why": "AHA now. They do not say Heimlich. Fist above the umbilicus, in and up."
+      },
+      {
+        "t": "Abdominal thrusts only, no backs",
+        "ok": false,
+        "why": "The 12th book missed backs. The update is 5 and 5."
+      },
+      {
+        "t": "Five backs, then five chest thrusts, like an infant",
+        "ok": false,
+        "why": "Chest thrusts are the infant half."
+      },
+      {
+        "t": "Hands off and a cannula at 1 liter",
+        "ok": false,
+        "why": "Severe and awake means hands on."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Conscious infant, severe obstruction. What sequence did not change?",
+    "opts": [
+      {
+        "t": "Support face on the forearm, five backs, sandwich flip, five chest thrusts",
+        "ok": true,
+        "why": "Infant book is unchanged: 5 back, 5 chest."
+      },
+      {
+        "t": "Five backs, then five abdominal thrusts",
+        "ok": false,
+        "why": "Abdominal thrusts are adult and child, not infant."
+      },
+      {
+        "t": "Hands off and watch",
+        "ok": false,
+        "why": "Severe means hands on."
+      },
+      {
+        "t": "Start adult 30 and 2 while they are still awake",
+        "ok": false,
+        "why": "CPR starts when they go unresponsive."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "They were choking and now they collapse. Next?",
+    "opts": [
+      {
+        "t": "On the back and start CPR; compressions still try to pop the object",
+        "ok": true,
+        "why": "Unresponsive from choke → supine CPR. Not because they already died."
+      },
+      {
+        "t": "Keep abdominal thrusts while they are down",
+        "ok": false,
+        "why": "Down means CPR."
+      },
+      {
+        "t": "CPAP to blast the object out",
+        "ok": false,
+        "why": "CPAP is not a choke tool."
+      },
+      {
+        "t": "A nasal airway through the object",
+        "ok": false,
+        "why": "That does not clear a choke."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Dentures while trying to seal a mask?",
+    "opts": [
+      {
+        "t": "Stable and not in the way: leave them; loose and a problem: take them out",
+        "ok": true,
+        "why": "Stable dentures can help the seal. Loose ones fall back."
+      },
+      {
+        "t": "Always pull them, even if they are solid",
+        "ok": false,
+        "why": "Solid ones stay."
+      },
+      {
+        "t": "Always leave them, even if they are loose",
+        "ok": false,
+        "why": "Loose ones come out."
+      },
+      {
+        "t": "Cut wires for fun on every brace",
+        "ok": false,
+        "why": "Wires only if they truly block."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Smashed, bleeding face. Which pair is true?",
+    "opts": [
+      {
+        "t": "Suction blood in the airway, pressure on the outside bleed, no nasal airway, no CPAP; oral airway is still OK if they qualify",
+        "ok": true,
+        "why": "Face trauma: no NPA, no CPAP. OPA is OK if unresponsive and no gag."
+      },
+      {
+        "t": "Nasal airway first, then CPAP",
+        "ok": false,
+        "why": "Both are banned with face trauma."
+      },
+      {
+        "t": "Skip suction and bag through the blood",
+        "ok": false,
+        "why": "Blood in the path is suctioned."
+      },
+      {
+        "t": "Oral airway is banned whenever the face is hit",
+        "ok": false,
+        "why": "OPA is still allowed if they qualify."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Adequately breathing. Which finding still gets oxygen?",
+    "opts": [
+      {
+        "t": "Pulse ox under 94, they say they cannot breathe, or shock signs",
+        "ok": true,
+        "why": "Need one of those three. Class target stays 94-99."
+      },
+      {
+        "t": "Pulse ox 99, no distress, no shock",
+        "ok": false,
+        "why": "None of the three means probably no oxygen."
+      },
+      {
+        "t": "Only a sat under 90, never under 94",
+        "ok": false,
+        "why": "The named cutoff is under 94."
+      },
+      {
+        "t": "Only after a Venturi color is chosen",
+        "ok": false,
+        "why": "Venturi numbers are not invented here."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "D cylinder versus H cylinder?",
+    "opts": [
+      {
+        "t": "D is the small portable; H is the tall one mounted for transport",
+        "ok": true,
+        "why": "Switch off the little tank onto H in the truck. Exact liters of gas were not given."
+      },
+      {
+        "t": "H is the small portable; D is the tall wall tank",
+        "ok": false,
+        "why": "Those letters are swapped."
+      },
+      {
+        "t": "Both are the same size and both stay unsecured",
+        "ok": false,
+        "why": "Sizes differ, and tanks stay secured."
+      },
+      {
+        "t": "D is only for CPAP; H is only for a cannula",
+        "ok": false,
+        "why": "Both are oxygen tanks, not device-specific."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Full tank pressure, then what does the regulator knock it to?",
+    "opts": [
+      {
+        "t": "About 2,000 psi down to about 40 to 70 psi",
+        "ok": true,
+        "why": "A car tire is about 30. The flow meter then reads liters per minute."
+      },
+      {
+        "t": "About 300 mmHg down to 10 psi",
+        "ok": false,
+        "why": "300 mmHg is a suction vacuum number."
+      },
+      {
+        "t": "About 21 psi down to 6 psi",
+        "ok": false,
+        "why": "21% is room air, and 6 is a cannula liter cap."
+      },
+      {
+        "t": "About 90 to 95 psi with no drop",
+        "ok": false,
+        "why": "90-95% is a non-rebreather percent, not tank psi."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Bourdon gage versus a pressure-compensated flow meter?",
+    "opts": [
+      {
+        "t": "Bourdon works in any position; pressure-compensated must stay upright",
+        "ok": true,
+        "why": "Bourdon is for tanks you lay down or strap. Compensated is wall ambulance / hospital."
+      },
+      {
+        "t": "Bourdon must stay upright; pressure-compensated works on its side",
+        "ok": false,
+        "why": "Those are swapped."
+      },
+      {
+        "t": "Both must stay upright, and both are suction gages",
+        "ok": false,
+        "why": "These are oxygen flow meters, and Bourdon can lie down."
+      },
+      {
+        "t": "Neither is used on oxygen",
+        "ok": false,
+        "why": "Both are oxygen flow meters."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Why must a cylinder stay in a hand, laid down, strapped, or locked?",
+    "opts": [
+      {
+        "t": "About 2,000 psi; a broken valve can turn it into a missile",
+        "ok": true,
+        "why": "Practice as if full. Lay it down when it is not in a hand."
+      },
+      {
+        "t": "About 21 psi; it only stains the floor",
+        "ok": false,
+        "why": "The danger is the high pressure, not a stain."
+      },
+      {
+        "t": "It is empty at school, so it can stand free",
+        "ok": false,
+        "why": "Practice as if full even when school tanks are empty."
+      },
+      {
+        "t": "Pin indexing already stops it from falling",
+        "ok": false,
+        "why": "Pin indexing stops the wrong gas, not a tip-over."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "What does pin indexing actually stop?",
+    "opts": [
+      {
+        "t": "Putting the wrong-gas regulator on an oxygen tank",
+        "ok": true,
+        "why": "Oxygen pins are two holes side by side. Oxygen regulator only on an oxygen tank. Tanks are silver and/or green."
+      },
+      {
+        "t": "A tank tipping over",
+        "ok": false,
+        "why": "A hand, a strap, or the floor stops a tip."
+      },
+      {
+        "t": "A mask running under 10 liters",
+        "ok": false,
+        "why": "Flow is a meter setting, not pins."
+      },
+      {
+        "t": "Carbon monoxide binding 250 to 300 times better",
+        "ok": false,
+        "why": "That bind ratio is a pulse-ox lie, not a pin pattern."
+      }
+    ]
+  },
+  {
+    "ch": 11,
+    "q": "Cheyne-Stokes or ataxic after a big head hit. What is likely needed?",
+    "opts": [
+      {
+        "t": "Ventilate; time with their inhale if they have one; do not match 40 a minute",
+        "ok": true,
+        "why": "Keep about 10 good breaths a minute for an adult. Good spells plus bad or apnea spells."
+      },
+      {
+        "t": "Hands off because any fast rate is Kussmaul",
+        "ok": false,
+        "why": "This pair often needs a bag, not a leave-it."
+      },
+      {
+        "t": "CPAP because the face was hit",
+        "ok": false,
+        "why": "Face or chest trauma kills CPAP."
+      },
+      {
+        "t": "A cannula at 1 liter only",
+        "ok": false,
+        "why": "They likely need a bag, not a cannula."
+      }
+    ]
+  }
+]
