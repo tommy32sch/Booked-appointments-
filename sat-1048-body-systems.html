@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat 10:48 — body systems (from recap)</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat 10:48 — body systems</h1>
+  <div class="sub">Recap only · you/your · 24 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":"cereb","q":"Your patient’s mental status is off — confusion, slurred speech, not oriented. Which piece does this recap point you at?","opts":[{"t":"Cerebellum — that is only balance and tying shoes","ok":false,"why":"Cerebrum controls speech, learning, conscious thought, sight, hearing, and memory of events. AMS and slurred speech point there."},{"t":"Cerebrum — speech, thought, memory, and the senses live here","ok":true,"why":"Cerebrum controls speech, learning, conscious thought, sight, hearing, and memory of events. AMS and slurred speech point there."},{"t":"Only the small intestine absorbing starch","ok":false,"why":"Cerebrum controls speech, learning, conscious thought, sight, hearing, and memory of events. AMS and slurred speech point there."},{"t":"Only a superficial epidermis burn","ok":false,"why":"Cerebrum controls speech, learning, conscious thought, sight, hearing, and memory of events. AMS and slurred speech point there."}]},{"ch":"cerebell","q":"Your patient cannot walk a straight line and looks uncoordinated. What does this recap assign to the cerebellum?","opts":[{"t":"Speech production and memory of events only","ok":false,"why":"Cerebellum is balance, coordination, posture, and muscle-memory tasks. Trouble here is ataxia and poor walking."},{"t":"Balance, muscle coordination, posture, and “muscle memory”","ok":true,"why":"Cerebellum is balance, coordination, posture, and muscle-memory tasks. Trouble here is ataxia and poor walking."},{"t":"Insulin and glucagon release","ok":false,"why":"Cerebellum is balance, coordination, posture, and muscle-memory tasks. Trouble here is ataxia and poor walking."},{"t":"Carotid pulse checks in unresponsive adults","ok":false,"why":"Cerebellum is balance, coordination, posture, and muscle-memory tasks. Trouble here is ataxia and poor walking."}]},{"ch":"stem","q":"Why is brainstem damage immediately life-threatening in this recap?","opts":[{"t":"It only stores shoe-tying muscle memory","ok":false,"why":"Brainstem controls HR, breathing, temperature, digestion, sleep–wake, and consciousness. Damage → apnea, abnormal respirations, loss of consciousness."},{"t":"It runs involuntary life functions — HR, breathing, temp, consciousness","ok":true,"why":"Brainstem controls HR, breathing, temperature, digestion, sleep–wake, and consciousness. Damage → apnea, abnormal respirations, loss of consciousness."},{"t":"It only filters background noise like the RAS","ok":false,"why":"Brainstem controls HR, breathing, temperature, digestion, sleep–wake, and consciousness. Damage → apnea, abnormal respirations, loss of consciousness."},{"t":"It is the outer tough epidermis","ok":false,"why":"Brainstem controls HR, breathing, temperature, digestion, sleep–wake, and consciousness. Damage → apnea, abnormal respirations, loss of consciousness."}]},{"ch":"ht","q":"Hypothalamus — what field problem does this recap tie to it?","opts":[{"t":"Nutrient absorption in the ileum","ok":false,"why":"Hypothalamus regulates body temperature and other autonomic functions, so brain injury or illness can swing temp."},{"t":"Body-temperature regulation — fever or temp dysregulation after brain injury","ok":true,"why":"Hypothalamus regulates body temperature and other autonomic functions, so brain injury or illness can swing temp."},{"t":"JVD from a flat external jugular","ok":false,"why":"Hypothalamus regulates body temperature and other autonomic functions, so brain injury or illness can swing temp."},{"t":"Full-thickness burn depth only","ok":false,"why":"Hypothalamus regulates body temperature and other autonomic functions, so brain injury or illness can swing temp."}]},{"ch":"ras","q":"RAS is disrupted by trauma, stroke, hypoxia, or toxins. What happens to your patient?","opts":[{"t":"Only RLQ pain from a ruptured appendix","ok":false,"why":"RAS is the gatekeeper of consciousness and filters background sensory info. Disrupt it and LOC goes."},{"t":"Consciousness is altered or lost — RAS is the gatekeeper","ok":true,"why":"RAS is the gatekeeper of consciousness and filters background sensory info. Disrupt it and LOC goes."},{"t":"Peristalsis speeds up and they get hungry","ok":false,"why":"RAS is the gatekeeper of consciousness and filters background sensory info. Disrupt it and LOC goes."},{"t":"Carotids stop carrying oxygenated blood","ok":false,"why":"RAS is the gatekeeper of consciousness and filters background sensory info. Disrupt it and LOC goes."}]},{"ch":"motor","q":"Motor nerves on this recap’s electrical highway run which way?","opts":[{"t":"Body → spinal cord → brain → sensation","ok":false,"why":"Motor: brain → cord → muscles → movement. Sensory is the reverse: body → cord → brain → sensation."},{"t":"Brain → spinal cord → muscles → movement","ok":true,"why":"Motor: brain → cord → muscles → movement. Sensory is the reverse: body → cord → brain → sensation."},{"t":"Liver → RUQ → clotting factors only","ok":false,"why":"Motor: brain → cord → muscles → movement. Sensory is the reverse: body → cord → brain → sensation."},{"t":"Jugulars → brain with oxygenated blood","ok":false,"why":"Motor: brain → cord → muscles → movement. Sensory is the reverse: body → cord → brain → sensation."}]},{"ch":"sci","q":"You suspect a spinal cord injury. What two losses does this recap say you will find below the level?","opts":[{"t":"Only a fever from the hypothalamus","ok":false,"why":"Damage blocks motor → paralysis below, and sensory → numbness/loss of feeling below. Protect the spine and check both."},{"t":"Paralysis (motor blocked) and numbness / no feeling (sensory blocked)","ok":true,"why":"Damage blocks motor → paralysis below, and sensory → numbness/loss of feeling below. Protect the spine and check both."},{"t":"Only JVD and a bounding carotid","ok":false,"why":"Damage blocks motor → paralysis below, and sensory → numbness/loss of feeling below. Protect the spine and check both."},{"t":"Only superficial red skin with no blisters","ok":false,"why":"Damage blocks motor → paralysis below, and sensory → numbness/loss of feeling below. Protect the spine and check both."}]},{"ch":"sns","q":"Sympathetic (“fight or flight”) signs this recap wants you to recognize?","opts":[{"t":"↓ HR, relaxed skin, digestion fully on","ok":false,"why":"SNS: ↑ heart rate, ↑ respiratory rate, dilated pupils, pale/cool/clammy, ↓ digestion — shock and stress picture."},{"t":"↑ HR, ↑ RR, dilated pupils, pale/cool/clammy, digestion down","ok":true,"why":"SNS: ↑ heart rate, ↑ respiratory rate, dilated pupils, pale/cool/clammy, ↓ digestion — shock and stress picture."},{"t":"Only CSF leaking from the ears","ok":false,"why":"SNS: ↑ heart rate, ↑ respiratory rate, dilated pupils, pale/cool/clammy, ↓ digestion — shock and stress picture."},{"t":"Only a leathery painless burn center","ok":false,"why":"SNS: ↑ heart rate, ↑ respiratory rate, dilated pupils, pale/cool/clammy, ↓ digestion — shock and stress picture."}]},{"ch":"pns","q":"Parasympathetic (“rest and digest”) in this recap looks like what?","opts":[{"t":"↑ HR, dilated pupils, pale/cool/clammy","ok":false,"why":"Parasympathetic drops heart rate, returns a relaxed/normal state, and keeps digestion active."},{"t":"↓ HR, relaxed/normal state, digestion active","ok":true,"why":"Parasympathetic drops heart rate, returns a relaxed/normal state, and keeps digestion active."},{"t":"Immediate apnea from brainstem death only","ok":false,"why":"Parasympathetic drops heart rate, returns a relaxed/normal state, and keeps digestion active."},{"t":"JVD from right-heart backup","ok":false,"why":"Parasympathetic drops heart rate, returns a relaxed/normal state, and keeps digestion active."}]},{"ch":"homeo","q":"Adult homeostasis numbers this recap listed — which set is right?","opts":[{"t":"HR 40–50, RR 6–8, BG 200–300, SpO₂ 70–80%","ok":false,"why":"Adults: HR 60–100, RR 12–20, blood glucose about 80–120 mg/dL, SpO₂ 94–99% on room air. You judge drift from those."},{"t":"HR 60–100, RR 12–20, BG ~80–120, SpO₂ 94–99%","ok":true,"why":"Adults: HR 60–100, RR 12–20, blood glucose about 80–120 mg/dL, SpO₂ 94–99% on room air. You judge drift from those."},{"t":"HR 100–140, RR 30–40, BG 20–40, SpO₂ 100% on room air only","ok":false,"why":"Adults: HR 60–100, RR 12–20, blood glucose about 80–120 mg/dL, SpO₂ 94–99% on room air. You judge drift from those."},{"t":"There are no numeric ranges in this recap","ok":false,"why":"Adults: HR 60–100, RR 12–20, blood glucose about 80–120 mg/dL, SpO₂ 94–99% on room air. You judge drift from those."}]},{"ch":"carot","q":"Carotid arteries — job and when you use them?","opts":[{"t":"Deoxygenated blood from brain to heart; only a JVD check","ok":false,"why":"Carotids carry oxygenated blood to the brain (deep beside the larynx) and are the unresponsive-adult pulse site."},{"t":"Oxygenated blood to the brain; pulse check on an unresponsive adult","ok":true,"why":"Carotids carry oxygenated blood to the brain (deep beside the larynx) and are the unresponsive-adult pulse site."},{"t":"Nutrient absorption in the jejunum","ok":false,"why":"Carotids carry oxygenated blood to the brain (deep beside the larynx) and are the unresponsive-adult pulse site."},{"t":"Insulin release from the pancreas","ok":false,"why":"Carotids carry oxygenated blood to the brain (deep beside the larynx) and are the unresponsive-adult pulse site."}]},{"ch":"jvd","q":"You see JVD — bulging neck veins — with the patient semi-upright. What does this recap say that means?","opts":[{"t":"Low volume — hemorrhage or severe dehydration","ok":false,"why":"JVD = backup toward the heart: right-sided heart problems or blocked venous return (right fail, tension pneumo, tamponade, other obstructive)."},{"t":"Blood backup toward the heart — right-sided or obstructive trouble","ok":true,"why":"JVD = backup toward the heart: right-sided heart problems or blocked venous return (right fail, tension pneumo, tamponade, other obstructive)."},{"t":"A superficial epidermis-only burn","ok":false,"why":"JVD = backup toward the heart: right-sided heart problems or blocked venous return (right fail, tension pneumo, tamponade, other obstructive)."},{"t":"RAS filtering background noise normally","ok":false,"why":"JVD = backup toward the heart: right-sided heart problems or blocked venous return (right fail, tension pneumo, tamponade, other obstructive)."}]},{"ch":"flat","q":"Neck veins look like a groove — collapsed, not full. What do you think?","opts":[{"t":"Right heart failure with a high-yield JVD picture","ok":false,"why":"Flattened jugulars suggest hypovolemia — hemorrhage or severe dehydration — not backup."},{"t":"Low blood volume — hemorrhagic shock or severe dehydration","ok":true,"why":"Flattened jugulars suggest hypovolemia — hemorrhage or severe dehydration — not backup."},{"t":"CSF leak from the nose","ok":false,"why":"Flattened jugulars suggest hypovolemia — hemorrhage or severe dehydration — not backup."},{"t":"Partial-thickness blisters on the neck","ok":false,"why":"Flattened jugulars suggest hypovolemia — hemorrhage or severe dehydration — not backup."}]},{"ch":"dermis","q":"Why does a cut that reaches the dermis hurt a lot more than a paper-cut in epidermis?","opts":[{"t":"Epidermis holds all the nerve endings; dermis has none","ok":false,"why":"Epidermis is the outer tough layer. Dermis has nerves, vessels, and follicles — so once you hit it, it hurts."},{"t":"Nerve endings live in the dermis — that is the painful layer","ok":true,"why":"Epidermis is the outer tough layer. Dermis has nerves, vessels, and follicles — so once you hit it, it hurts."},{"t":"The brainstem stores pain only in the RAS","ok":false,"why":"Epidermis is the outer tough layer. Dermis has nerves, vessels, and follicles — so once you hit it, it hurts."},{"t":"Jugulars sit in the epidermis","ok":false,"why":"Epidermis is the outer tough layer. Dermis has nerves, vessels, and follicles — so once you hit it, it hurts."}]},{"ch":"sup","q":"Superficial (about first-degree) burn — which description matches this recap?","opts":[{"t":"All layers, white/charred/leathery, little pain in the worst area","ok":false,"why":"Superficial = epidermis only: red, painful, no blisters."},{"t":"Epidermis only — red, painful, no blisters","ok":true,"why":"Superficial = epidermis only: red, painful, no blisters."},{"t":"Epidermis plus part of dermis — blisters, very painful","ok":false,"why":"Superficial = epidermis only: red, painful, no blisters."},{"t":"Subcutaneous fat only with no skin color change","ok":false,"why":"Superficial = epidermis only: red, painful, no blisters."}]},{"ch":"part","q":"Partial-thickness (about second-degree) burn — what did you burn, and how does it feel?","opts":[{"t":"Epidermis only; no blisters","ok":false,"why":"Partial thickness takes epidermis and part of dermis — blisters and a lot of pain (nerves still there)."},{"t":"Epidermis plus part of the dermis — blisters, very painful","ok":true,"why":"Partial thickness takes epidermis and part of dermis — blisters and a lot of pain (nerves still there)."},{"t":"All layers; nerves already gone so the center is numb","ok":false,"why":"Partial thickness takes epidermis and part of dermis — blisters and a lot of pain (nerves still there)."},{"t":"Only muscle and bone under intact skin","ok":false,"why":"Partial thickness takes epidermis and part of dermis — blisters and a lot of pain (nerves still there)."}]},{"ch":"full","q":"Full-thickness (about third-degree) burn — why can the worst area hurt less?","opts":[{"t":"The RAS turned pain off in the cerebellum","ok":false,"why":"Full thickness involves all layers — white, charred, or leathery — and little pain centrally because nerves are gone."},{"t":"All skin layers are destroyed, including the nerves in the dermis","ok":true,"why":"Full thickness involves all layers — white, charred, or leathery — and little pain centrally because nerves are gone."},{"t":"It never reaches the dermis so there is nothing to feel","ok":false,"why":"Full thickness involves all layers — white, charred, or leathery — and little pain centrally because nerves are gone."},{"t":"Insulin flooded the burn and numbed it","ok":false,"why":"Full thickness involves all layers — white, charred, or leathery — and little pain centrally because nerves are gone."}]},{"ch":"csf","q":"CSF around brain and cord — job, and the trauma clue?","opts":[{"t":"Nutrient absorption; you see RLQ rebound only","ok":false,"why":"CSF insulates and cushions like crash barrels. After head/spine trauma, fluid from ears or nose is the leak clue."},{"t":"Shock absorption/protection; leak from ears or nose after head injury","ok":true,"why":"CSF insulates and cushions like crash barrels. After head/spine trauma, fluid from ears or nose is the leak clue."},{"t":"Carries oxygenated blood in the carotids","ok":false,"why":"CSF insulates and cushions like crash barrels. After head/spine trauma, fluid from ears or nose is the leak clue."},{"t":"Makes clotting factors in the RUQ","ok":false,"why":"CSF insulates and cushions like crash barrels. After head/spine trauma, fluid from ears or nose is the leak clue."}]},{"ch":"si","q":"Small intestine — main job this recap wants, not the section names?","opts":[{"t":"Clotting-factor production","ok":false,"why":"Small intestine absorbs nutrients. Section names are extra; function is the point."},{"t":"Nutrient absorption (duodenum/jejunum/ileum are nice-to-know)","ok":true,"why":"Small intestine absorbs nutrients. Section names are extra; function is the point."},{"t":"Gatekeeper of consciousness","ok":false,"why":"Small intestine absorbs nutrients. Section names are extra; function is the point."},{"t":"Pulse check in unresponsive adults","ok":false,"why":"Small intestine absorbs nutrients. Section names are extra; function is the point."}]},{"ch":"peri","q":"Peristalsis in this recap is what?","opts":[{"t":"A heart-like pump in the gut that beats 60–100","ok":false,"why":"There is no heart-like pump in the gut. Smooth-muscle waves (peristalsis) keep contents moving."},{"t":"Smooth-muscle waves that move food through the GI tract","ok":true,"why":"There is no heart-like pump in the gut. Smooth-muscle waves (peristalsis) keep contents moving."},{"t":"Insulin lowering blood sugar","ok":false,"why":"There is no heart-like pump in the gut. Smooth-muscle waves (peristalsis) keep contents moving."},{"t":"Jugular backup from the right heart","ok":false,"why":"There is no heart-like pump in the gut. Smooth-muscle waves (peristalsis) keep contents moving."}]},{"ch":"rupt","q":"Hollow organ ruptures (appendix example). What chain does this recap walk?","opts":[{"t":"Instant JVD and a bounding carotid","ok":false,"why":"Contents spill → inflammation/peritonitis can paralyze peristalsis → severe bloating, distension, pain, backup. Rigid, ill, sudden pain change."},{"t":"Spill → peritonitis → peristalsis can freeze → bloating, distension, pain","ok":true,"why":"Contents spill → inflammation/peritonitis can paralyze peristalsis → severe bloating, distension, pain, backup. Rigid, ill, sudden pain change."},{"t":"Only a superficial red burn on the belly","ok":false,"why":"Contents spill → inflammation/peritonitis can paralyze peristalsis → severe bloating, distension, pain, backup. Rigid, ill, sudden pain change."},{"t":"RAS wakes the patient immediately","ok":false,"why":"Contents spill → inflammation/peritonitis can paralyze peristalsis → severe bloating, distension, pain, backup. Rigid, ill, sudden pain change."}]},{"ch":"panc","q":"Epigastric pain radiating to the back. Which organ and which two hormones?","opts":[{"t":"Liver in the RUQ; only clotting factors","ok":false,"why":"Pancreas sits mid–upper abdomen (RUQ/LUQ). Enzymes for starches/proteins; insulin ↓ BG, glucagon ↑ BG."},{"t":"Pancreas; insulin lowers BG, glucagon raises BG","ok":true,"why":"Pancreas sits mid–upper abdomen (RUQ/LUQ). Enzymes for starches/proteins; insulin ↓ BG, glucagon ↑ BG."},{"t":"Cerebellum; only muscle memory","ok":false,"why":"Pancreas sits mid–upper abdomen (RUQ/LUQ). Enzymes for starches/proteins; insulin ↓ BG, glucagon ↑ BG."},{"t":"Epidermis; only superficial pain","ok":false,"why":"Pancreas sits mid–upper abdomen (RUQ/LUQ). Enzymes for starches/proteins; insulin ↓ BG, glucagon ↑ BG."}]},{"ch":"liv","q":"Liver in this recap — location and why trauma there scares you?","opts":[{"t":"LLQ hollow organ; it only makes insulin","ok":false,"why":"Large solid RUQ organ: detox, clotting factors (bleed easier if diseased), and a major bleed source after blunt trauma."},{"t":"RUQ solid, blood-saturated — major internal bleed, plus clotting factors","ok":true,"why":"Large solid RUQ organ: detox, clotting factors (bleed easier if diseased), and a major bleed source after blunt trauma."},{"t":"Brainstem only; it sets respiratory rate","ok":false,"why":"Large solid RUQ organ: detox, clotting factors (bleed easier if diseased), and a major bleed source after blunt trauma."},{"t":"External jugular; it shows JVD","ok":false,"why":"Large solid RUQ organ: detox, clotting factors (bleed easier if diseased), and a major bleed source after blunt trauma."}]},{"ch":"field","q":"You are running the checklist from this recap. Which pairing is right?","opts":[{"t":"Speech/orientation → cerebellum; walking/finger-to-nose → cerebrum","ok":false,"why":"LOC/speech/memory → cerebrum/RAS. Balance → cerebellum. Breathing and HR pattern → brainstem. JVD = backup; flat = empty. Deep burns can hurt less centrally."},{"t":"Speech/orientation/memory → cerebrum; balance/coordination → cerebellum; breathing/HR pattern → brainstem","ok":true,"why":"LOC/speech/memory → cerebrum/RAS. Balance → cerebellum. Breathing and HR pattern → brainstem. JVD = backup; flat = empty. Deep burns can hurt less centrally."},{"t":"JVD always means low volume; flat veins always mean tamponade","ok":false,"why":"LOC/speech/memory → cerebrum/RAS. Balance → cerebellum. Breathing and HR pattern → brainstem. JVD = backup; flat = empty. Deep burns can hurt less centrally."},{"t":"Full-thickness burns always hurt more than partial-thickness","ok":false,"why":"LOC/speech/memory → cerebrum/RAS. Balance → cerebellum. Breathing and HR pattern → brainstem. JVD = backup; flat = empty. Deep burns can hurt less centrally."}]}];
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"cereb":"Cerebrum","cerebell":"Cerebellum","stem":"Brainstem","ht":"Hypothalamus","ras":"RAS","motor":"Motor path","sci":"Cord injury","sns":"Sympathetic","pns":"Parasympathetic","homeo":"Homeostasis","carot":"Carotids","jvd":"JVD","flat":"Flat veins","dermis":"Dermis","sup":"Superficial","part":"Partial thickness","full":"Full thickness","csf":"CSF","si":"Small intestine","peri":"Peristalsis","rupt":"Rupture","panc":"Pancreas","liv":"Liver","field":"Checklist"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the Sat 10:48 body-systems recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · body-systems recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>
