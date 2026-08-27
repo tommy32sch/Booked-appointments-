@@ -290,6 +290,18 @@
   }
   .about-pills svg{width:15px;height:15px}
 
+  /* ---------- reviews ---------- */
+  .rev-grid{display:grid;gap:14px;grid-template-columns:1fr}
+  @media (min-width:720px){.rev-grid{grid-template-columns:repeat(3,1fr)}}
+  .rev{
+    background:#fffdf8;border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 22px;box-shadow:0 2px 6px rgba(62,54,48,.05);text-align:left;
+  }
+  .rev blockquote{margin:0 0 16px}
+  .rev blockquote p{margin:0;color:var(--ink);font-size:1.05rem;font-family:'DM Serif Display',Georgia,serif;font-style:italic;line-height:1.45}
+  .rev .rev-who{font-weight:800;color:var(--ink);margin:0 0 4px;font-size:1rem}
+  .rev .rev-src{font-size:.88rem;font-weight:700}
+
   /* ---------- contact ---------- */
   .contact-grid{display:grid;gap:14px;grid-template-columns:1fr;max-width:760px;margin-inline:auto}
   @media (min-width:720px){.contact-grid{grid-template-columns:repeat(3,1fr)}}
@@ -434,6 +446,7 @@
     <ul>
       <li><a href="#services">Services</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -606,6 +619,40 @@
     </div>
   </section>
 
+  <!-- ============ REVIEWS ============ -->
+  <section class="sec" id="reviews" aria-labelledby="reviews-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="script-label">What people wrote</span>
+        <h2 id="reviews-h">Public reviews</h2>
+        <p>5.0 from 10 Google reviews. Quotes below are copied verbatim from Google Maps; ellipses are kept as published.</p>
+      </div>
+      <div class="rev-grid">
+        <figure class="rev reveal">
+          <blockquote>
+            <p>Absolutely Outstanding Service! I couldn't be happier with the cleaning service provided. Jade was punctual, professional, and incredibly thorough. Every corner of my home sparkled when they …</p>
+          </blockquote>
+          <p class="rev-who">laney pearson</p>
+          <p class="rev-src"><a href="https://www.google.com/maps/place/Shine+Effect+Cleaning+Services/@33.3804675,-111.8335985,17z" rel="noopener">Google Maps</a></p>
+        </figure>
+        <figure class="rev reveal">
+          <blockquote>
+            <p>I love this cleaning service, there professional, affordable, on time and I love coming home to my house when they have cleaned. Noone has cleaned my house better.</p>
+          </blockquote>
+          <p class="rev-who">Angel Fish</p>
+          <p class="rev-src"><a href="https://www.google.com/maps/place/Shine+Effect+Cleaning+Services/@33.3804675,-111.8335985,17z" rel="noopener">Google Maps</a></p>
+        </figure>
+        <figure class="rev reveal">
+          <blockquote>
+            <p>Highly recommend! Shine Effect Cleaning Services…</p>
+          </blockquote>
+          <p class="rev-who">Karyn Taylor</p>
+          <p class="rev-src"><a href="https://www.google.com/maps/place/Shine+Effect+Cleaning+Services/@33.3804675,-111.8335985,17z" rel="noopener">Google Maps</a></p>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ CONTACT ============ -->
   <section class="sec" id="contact" aria-labelledby="contact-h">
     <div class="wrap">
@@ -700,9 +747,10 @@
       <div class="foot-sources">
         <h3>Facts on this page sourced from</h3>
         <ul>
-          <li>The project brief for this demo (shop name, Mesa AZ, phone, email, cleaning trade). That is the only source used.</li>
+          <li>The project brief for this demo (shop name, Mesa AZ, phone, email, cleaning trade).</li>
           <li>The shop's previous website is offline (the domain and its Wix page both return errors), so nothing was taken from it — no service menus, claims, or neighborhood lists.</li>
-          <li>No street address, hours, prices, reviews, or social links are printed here because none were verified.</li>
+          <li>No street address, hours, or prices are printed here because none were verified.</li>
+          <li><a href="https://www.google.com/maps/place/Shine+Effect+Cleaning+Services/@33.3804675,-111.8335985,17z" rel="noopener">Google Maps</a> (5.0 from 10 Google reviews; laney pearson, Angel Fish, and Karyn Taylor quotes, verbatim; ellipses kept).</li>
         </ul>
       </div>
     </div>
