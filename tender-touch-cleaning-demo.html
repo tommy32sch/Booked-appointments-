@@ -26,10 +26,16 @@
     "addressRegion": "AZ",
     "addressCountry": "US"
   },
-  "areaServed": [
+    "areaServed": [
     "Mesa", "Apache Junction", "Gilbert", "Chandler",
     "San Tan Valley", "Queen Creek", "Scottsdale", "Gold Canyon", "Florence"
-  ]
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.3",
+    "reviewCount": "6",
+    "bestRating": "5"
+  }
 }
 </script>
 <style>
@@ -270,6 +276,28 @@
   }
   .about-photo figcaption{margin-top:8px;font-size:12px;color:var(--muted)}
 
+  .reviews{background:var(--cream-deep);border-block:1px solid var(--line)}
+  .rating-row{
+    display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;
+    margin-bottom:22px;
+  }
+  .rating-num{
+    font-family:'Cormorant Garamond',Georgia,serif;font-size:2.4rem;
+    color:var(--rose-deep);font-weight:600;letter-spacing:-.02em;line-height:1;
+  }
+  .rating-meta{font-size:.95rem;color:var(--muted);max-width:46ch}
+  .rating-meta a{font-weight:800}
+  .quotes{display:grid;gap:14px}
+  .quote{
+    background:var(--white);border:1px solid var(--line);border-radius:20px;
+    padding:24px 22px;
+  }
+  .quote p{color:var(--ink);font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:1.18rem;line-height:1.45}
+  .quote cite{
+    display:block;margin-top:14px;font-style:normal;font-weight:800;
+    font-family:'Nunito Sans',sans-serif;font-size:.88rem;color:var(--rose-deep);
+  }
+
   .contact-grid{display:grid;gap:14px;grid-template-columns:1fr}
   @media (min-width:720px){.contact-grid{grid-template-columns:repeat(3,1fr)}}
   .c-card{
@@ -397,6 +425,7 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#area">Area</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -548,6 +577,37 @@
     </div>
   </section>
 
+  <section class="sec reviews" id="reviews" aria-labelledby="rev-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Google Maps</p>
+        <h2 id="rev-h">What customers wrote</h2>
+        <p>Quotes below are printed verbatim from the Google Maps listing that matches this shop's phone. Nothing is completed past an ellipsis.</p>
+      </div>
+      <div class="rating-row reveal">
+        <span class="rating-num">4.3</span>
+        <p class="rating-meta">
+          from 6 Google reviews ·
+          <a href="https://www.google.com/maps/place/Tender+Touch+Cleaning/@33.274751,-114.1988969,8z" rel="noopener">Open the Maps listing</a>
+        </p>
+      </div>
+      <div class="quotes">
+        <blockquote class="quote reveal">
+          <p>It's always a treat when Beth and Bob come to clean our house! They have been cleaning our house for several months now and I would definitely recommend them! They are always prompt, trustworthy, courteous, work well together, friendly and …</p>
+          <cite>Tarver Laub</cite>
+        </blockquote>
+        <blockquote class="quote reveal">
+          <p>Beth and Bob are very professional and friendly. They have cleaned my house for several years. I highly recommend them. And the big plus, my dog loves them. They are very pet friendly.</p>
+          <cite>Pam Ellars</cite>
+        </blockquote>
+        <blockquote class="quote reveal">
+          <p>They were very professional. They left my house sparkling and smelling fresh and clean. They did everything I asked and were very reasonably priced will call them again.</p>
+          <cite>Elaine Williams</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
   <section class="sec" id="contact" aria-labelledby="contact-h" style="padding-top:12px">
     <div class="wrap">
       <div class="sec-head reveal">
@@ -628,7 +688,8 @@
         <ul>
           <li>The project brief for this demo (shop name, Mesa AZ, phone, email, cleaning trade).</li>
           <li><a href="https://www.hirerush.com/profile/tender-touch-cleaning-2675" rel="noopener">HireRush public profile</a> matching this phone number (family owned; housekeeping, apartment cleaning, house cleaning; the nine-city servicing list; paraphrased “experience in home cleaning” / friendly service wording).</li>
-          <li>Their previous website at cleaningservicemesaaz.com returns 404, so nothing was taken from it. No street address, hours, prices, or reviews are printed here. HireRush lists a street in Apache Junction; this page leaves it off.</li>
+          <li>Their previous website at cleaningservicemesaaz.com returns 404, so nothing was taken from it. No street address, hours, or prices are printed here. HireRush lists a street in Apache Junction; this page leaves it off.</li>
+          <li><a href="https://www.google.com/maps/place/Tender+Touch+Cleaning/@33.274751,-114.1988969,8z" rel="noopener">Google Maps listing</a> matching this phone (4.3 from 6 Google reviews). Three quotes on this page are printed verbatim from that listing, including the ellipsis on Tarver Laub's review. Angi quotes are unused.</li>
         </ul>
       </div>
     </div>
