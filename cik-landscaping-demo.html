@@ -327,6 +327,18 @@
   }
   .about-tags svg{width:14px;height:14px}
 
+  /* ---------- reviews ---------- */
+  .rev-grid{display:grid;gap:14px;grid-template-columns:1fr}
+  @media (min-width:720px){.rev-grid{grid-template-columns:repeat(3,1fr)}}
+  .rev{
+    background:var(--linen);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 22px;box-shadow:0 1px 3px rgba(61,52,35,.06);
+  }
+  .rev blockquote{margin:0 0 16px}
+  .rev blockquote p{margin:0;color:var(--soil);font-size:1.05rem;font-family:'Fraunces',Georgia,serif;font-style:italic;line-height:1.45}
+  .rev .rev-who{font-weight:800;color:var(--soil);margin:0 0 4px;font-size:1rem}
+  .rev .rev-src{font-size:.88rem;font-weight:700}
+
   /* ---------- contact ---------- */
   .contact{background:var(--linen);border-block:1px solid var(--line)}
   .contact-grid{display:grid;gap:14px;grid-template-columns:1fr}
@@ -475,6 +487,7 @@
       <li><a href="#services">Services</a></li>
       <li><a href="#area">Area</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#reviews">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -698,6 +711,40 @@
     </div>
   </section>
 
+  <!-- ============ REVIEWS ============ -->
+  <section class="sec" id="reviews" aria-labelledby="reviews-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">What people wrote</p>
+        <h2 id="reviews-h">Public reviews</h2>
+        <p>Three quotes copied from public listings. Facebook shows 15 reviews; those source pages do not print a star number, so this page does not invent one.</p>
+      </div>
+      <div class="rev-grid">
+        <figure class="rev reveal">
+          <blockquote>
+            <p>“We have used CIK landscaping a couple of times. They do a great job and their pricing is fair.”</p>
+          </blockquote>
+          <p class="rev-who">Jana C.</p>
+          <p class="rev-src"><a href="https://www.mapquest.com/us/arizona/cik-landscaping-376689429" rel="noopener">MapQuest</a></p>
+        </figure>
+        <figure class="rev reveal">
+          <blockquote>
+            <p>“They did a great job trimming our big mesquite trees!”</p>
+          </blockquote>
+          <p class="rev-who">Pati Snow</p>
+          <p class="rev-src"><a href="https://www.mapquest.com/us/arizona/cik-landscaping-376689429" rel="noopener">MapQuest</a></p>
+        </figure>
+        <figure class="rev reveal">
+          <blockquote>
+            <p>“I absolutely love this company…”</p>
+          </blockquote>
+          <p class="rev-who">Anna Bower</p>
+          <p class="rev-src"><a href="https://www.facebook.com/ciklandscapingllc/reviews" rel="noopener">Facebook</a></p>
+        </figure>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ CONTACT ============ -->
   <section class="sec contact" id="contact" aria-labelledby="contact-h">
     <div class="wrap">
@@ -799,7 +846,9 @@
         <ul>
           <li>The project brief for this demo (shop name, Mesa AZ, phone, email, trade).</li>
           <li><a href="https://www.hirerush.com/profile/cik-landscaping-llc-10220" rel="noopener">HireRush public profile</a> matching the shop's phone number (family owned; the five named services; the servicing-city list; the "pleased to help with your next lawn/tree project" and satisfaction wording, paraphrased).</li>
-          <li>Arizona public record (the LLC name "CIK Landscaping, LLC" shown above). No street address, hours, prices, or reviews are printed here because none were verified.</li>
+          <li>Arizona public record (the LLC name "CIK Landscaping, LLC" shown above). No street address, hours, or prices are printed here because none were verified.</li>
+          <li><a href="https://www.mapquest.com/us/arizona/cik-landscaping-376689429" rel="noopener">MapQuest</a> (Jana C. and Pati Snow quotes, verbatim).</li>
+          <li><a href="https://www.facebook.com/ciklandscapingllc/reviews" rel="noopener">Facebook reviews</a> (Anna Bower quote, kept with the published ellipsis; 15 reviews listed, no star number shown).</li>
         </ul>
       </div>
     </div>
