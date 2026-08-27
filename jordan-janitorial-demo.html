@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script>document.documentElement.classList.add('js');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jordan Janitorial — Commercial &amp; Contract Cleaning in Mesa, AZ</title>
+<meta name="description" content="Jordan Janitorial provides commercial janitorial and contract cleaning in Mesa, Arizona. Call or text (480) 984-3388, or email Service@GoJordan.US for a proposal.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#26251f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Jordan Janitorial",
+  "description": "Commercial janitorial and contract cleaning for offices and professional spaces in Mesa, Arizona.",
+  "telephone": "+14809843388",
+  "email": "Service@GoJordan.US",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Mesa",
+    "addressRegion": "AZ",
+    "addressCountry": "US"
+  },
+  "areaServed": "Mesa"
+}
+</script>
+<style>
+  :root{
+    --char:#26251f;          /* charcoal */
+    --char-2:#312f28;
+    --char-3:#3d3b32;
+    --paper:#f5f1e8;         /* warm paper */
+    --paper-2:#ece6d8;
+    --white:#fbf9f4;
+    --brass:#b08d3e;         /* brass accent */
+    --brass-soft:#d6b96f;
+    --inkblue:#2c4257;       /* ink blue */
+    --inkblue-2:#3a5570;
+    --text:#2b2a25;
+    --muted:#6c675a;
+    --muted-dark:#b5ae9c;
+    --line:#ddd5c3;
+    --line-dark:rgba(245,241,232,.16);
+    --radius:10px;
+    --maxw:1100px;
+    --sat:env(safe-area-inset-top,0px);
+    --sab:env(safe-area-inset-bottom,0px);
+    --sal:env(safe-area-inset-left,0px);
+    --sar:env(safe-area-inset-right,0px);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+  body{
+    font-family:'Libre Franklin',system-ui,-apple-system,'Segoe UI',sans-serif;
+    background:var(--paper);
+    color:var(--text);
+    line-height:1.62;
+    font-size:16.5px;
+    padding-bottom:calc(78px + var(--sab)); /* room for the sticky call/text bar */
+    overflow-x:hidden;
+    -webkit-tap-highlight-color:transparent;
+  }
+  h1,h2,h3{font-family:'Source Serif 4',Georgia,serif;line-height:1.14;font-weight:600}
+  img,svg{display:block;max-width:100%}
+  a{color:var(--inkblue)}
+  .wrap{width:min(var(--maxw),100%);margin-inline:auto;padding-inline:calc(20px + var(--sal)) calc(20px + var(--sar))}
+  :focus-visible{outline:3px solid var(--brass);outline-offset:3px;border-radius:4px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+  /* ---------- skip link ---------- */
+  .skip{
+    position:absolute;left:12px;top:-64px;z-index:300;
+    background:var(--inkblue);color:var(--white);font-weight:700;
+    padding:13px 18px;border-radius:8px;text-decoration:none;
+    transition:top .15s ease;
+  }
+  .skip:focus{top:calc(12px + var(--sat))}
+
+  /* ---------- sticky header ---------- */
+  header.site{
+    position:sticky;top:0;z-index:100;
+    padding-top:var(--sat);
+    background:var(--char);
+    border-bottom:2px solid var(--brass);
+    transition:box-shadow .2s ease;
+  }
+  header.site.scrolled{box-shadow:0 8px 26px rgba(38,37,31,.4)}
+  .bar{display:flex;align-items:center;gap:12px;min-height:64px;padding-block:8px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--paper);min-height:44px;min-width:0}
+  .brand-mark{
+    flex:none;width:42px;height:42px;border-radius:8px;
+    background:var(--brass);display:grid;place-items:center;
+    font-family:'Source Serif 4',Georgia,serif;font-weight:700;font-size:22px;color:var(--char);
+  }
+  .brand-name{line-height:1.1;min-width:0}
+  .brand-name b{
+    font-family:'Source Serif 4',Georgia,serif;font-weight:700;font-size:18.5px;display:block;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .brand-name span{font-size:10.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--muted-dark)}
+  .head-call{
+    margin-left:auto;flex:none;display:inline-flex;align-items:center;gap:8px;
+    background:var(--brass);color:var(--char);text-decoration:none;
+    font-weight:800;font-size:15px;
+    padding:12px 18px;border-radius:8px;min-height:46px;
+    transition:background .15s ease,transform .15s ease;
+  }
+  .head-call:hover{background:var(--brass-soft);transform:translateY(-1px)}
+  .head-call svg{width:16px;height:16px;flex:none}
+  @media (max-width:459px){.head-call .num{display:none}}
+
+  /* in-page nav */
+  .subnav{background:var(--char-2);border-bottom:1px solid var(--line-dark)}
+  .subnav ul{
+    list-style:none;display:flex;gap:2px;margin:0 auto;width:min(var(--maxw),100%);
+    padding:0 calc(12px + var(--sal)) 0 calc(12px + var(--sar));
+    overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+  }
+  .subnav ul::-webkit-scrollbar{display:none}
+  .subnav a{
+    display:inline-flex;align-items:center;min-height:46px;padding:0 15px;
+    color:var(--muted-dark);text-decoration:none;font-size:12.5px;font-weight:800;
+    letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;
+    border-bottom:3px solid transparent;
+  }
+  .subnav a:hover,.subnav a:focus-visible{color:var(--paper);border-bottom-color:var(--brass)}
+  section{scroll-margin-top:120px}
+  @media (max-width:480px){.subnav a{padding:0 11px;font-size:11.5px}}
+
+  /* ---------- hero (split editorial: statement panel + framed photo) ---------- */
+  .hero{
+    background:var(--char);color:var(--paper);
+    position:relative;overflow:hidden;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      linear-gradient(90deg,transparent 0 calc(50% - .5px),rgba(176,141,62,.14) calc(50% - .5px) calc(50% + .5px),transparent calc(50% + .5px)),
+      radial-gradient(700px 340px at 85% 0%,rgba(44,66,87,.5),transparent 70%);
+  }
+  .hero-inner{
+    position:relative;
+    display:flex;flex-direction:column;justify-content:center;gap:34px;
+    min-height:72vh;min-height:72svh;
+    padding-block:60px 56px;
+  }
+  @media (min-width:920px){
+    .hero-inner{
+      display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:56px;
+      padding-block:80px 84px;
+    }
+  }
+  .hero-rule{
+    display:flex;align-items:center;gap:14px;margin-bottom:20px;
+    font-size:12px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--brass-soft);
+  }
+  .hero-rule::before,.hero-rule::after{content:"";height:1px;background:rgba(176,141,62,.5);flex:0 0 34px}
+  .hero-rule::after{flex:1}
+  .hero h1{
+    font-size:clamp(2.3rem,8.4vw,3.7rem);font-weight:700;letter-spacing:-.012em;
+    max-width:16ch;
+  }
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--brass-soft)}
+  .hero-sub{
+    margin-top:18px;max-width:50ch;
+    font-size:clamp(1rem,3.3vw,1.16rem);color:#d9d3c4;
+  }
+  .hero-sub strong{color:var(--white);font-weight:700}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    min-height:52px;padding:14px 26px;border-radius:8px;
+    font-weight:800;font-size:16.5px;text-decoration:none;letter-spacing:.01em;
+    transition:transform .15s ease,background .15s ease,border-color .15s ease;
+  }
+  .btn svg{width:18px;height:18px;flex:none}
+  .btn-brass{background:var(--brass);color:var(--char);box-shadow:0 8px 24px rgba(176,141,62,.35)}
+  .btn-brass:hover{background:var(--brass-soft);transform:translateY(-2px)}
+  .btn-line{border:1.5px solid rgba(245,241,232,.45);color:var(--paper)}
+  .btn-line:hover{border-color:var(--brass);color:var(--brass-soft)}
+  .hero-note{margin-top:16px;font-size:13.5px;color:var(--muted-dark)}
+  .hero-note b{color:var(--brass-soft)}
+  .hero-photo{position:relative}
+  .hero-photo .frame{
+    border:1px solid rgba(176,141,62,.55);
+    padding:10px;background:var(--char-2);
+  }
+  .hero-photo .empty-frame{width:100%;height:280px;background:var(--char-3)}
+  @media (min-width:920px){.hero-photo .empty-frame{height:420px}}
+  .hero-photo::after{
+    content:"";position:absolute;top:-14px;right:-14px;width:76px;height:76px;
+    border-top:2px solid var(--brass);border-right:2px solid var(--brass);
+    pointer-events:none;
+  }
+
+  /* ---------- tagline band ---------- */
+  .tagband{background:var(--brass);color:var(--char)}
+  .tagband .wrap{
+    display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;
+    padding-block:15px;
+  }
+  .tagband p{font-family:'Source Serif 4',Georgia,serif;font-weight:700;font-size:1.06rem;font-style:italic}
+  .tagband small{font-size:.78rem;font-weight:600;opacity:.85}
+
+  /* ---------- section scaffolding ---------- */
+  .sec{padding-block:60px}
+  @media (min-width:860px){.sec{padding-block:84px}}
+  .sec-head{max-width:62ch;margin-bottom:34px}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:12px;
+    color:var(--inkblue);font-weight:800;font-size:12px;
+    letter-spacing:.24em;text-transform:uppercase;margin-bottom:12px;
+  }
+  .eyebrow::before{content:"";width:34px;height:1.5px;background:var(--brass)}
+  .sec-head h2{font-size:clamp(1.7rem,5.4vw,2.5rem);letter-spacing:-.012em;color:var(--char)}
+  .sec-head p{margin-top:12px;color:var(--muted);font-size:1.02rem}
+
+  /* ---------- services (ledger rows, not cards) ---------- */
+  .ledger{border-top:2px solid var(--char)}
+  .ledger-row{
+    display:grid;gap:14px;align-items:start;
+    grid-template-columns:52px 1fr;
+    padding:26px 4px;border-bottom:1px solid var(--line);
+    transition:background .18s ease;
+  }
+  @media (min-width:760px){
+    .ledger-row{grid-template-columns:64px 260px 1fr;gap:26px;padding:30px 8px}
+  }
+  .ledger-row:hover{background:var(--paper-2)}
+  .ledger-icon{
+    width:52px;height:52px;border-radius:8px;
+    background:var(--char);display:grid;place-items:center;
+  }
+  .ledger-icon svg{width:26px;height:26px;stroke:var(--brass-soft);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .ledger-row h3{font-size:1.3rem;color:var(--char)}
+  .ledger-row h3 span{
+    display:block;font-family:'Libre Franklin',sans-serif;font-size:11px;font-weight:800;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--brass);margin-bottom:5px;
+  }
+  .ledger-row p{color:var(--muted);font-size:.97rem;max-width:58ch}
+  @media (max-width:759px){.ledger-row p{grid-column:1 / -1}}
+  .ledger-note{
+    margin-top:26px;display:flex;gap:12px;align-items:flex-start;
+    background:var(--white);border:1px solid var(--line);border-left:4px solid var(--inkblue);
+    border-radius:8px;padding:16px 18px;font-size:.93rem;color:var(--muted);max-width:660px;
+  }
+  .ledger-note svg{flex:none;width:21px;height:21px;stroke:var(--inkblue);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+  .ledger-note b{color:var(--text)}
+
+  /* ---------- reach (how to reach them) ---------- */
+  .reach{background:var(--char);color:var(--paper)}
+  .reach .eyebrow{color:var(--brass-soft)}
+  .reach .eyebrow::before{background:var(--brass)}
+  .reach .sec-head h2{color:var(--paper)}
+  .reach .sec-head p{color:var(--muted-dark)}
+  .reach-grid{display:grid;gap:14px;grid-template-columns:1fr}
+  @media (min-width:720px){.reach-grid{grid-template-columns:repeat(3,1fr)}}
+  .reach-card{
+    background:var(--char-2);border:1px solid var(--line-dark);border-radius:var(--radius);
+    padding:26px 22px;display:flex;flex-direction:column;gap:4px;
+    transition:transform .18s ease,border-color .18s ease;
+  }
+  .reach-card:hover{transform:translateY(-3px);border-color:rgba(176,141,62,.6)}
+  .reach-ico{
+    width:48px;height:48px;border-radius:8px;background:rgba(176,141,62,.16);
+    border:1px solid rgba(176,141,62,.4);
+    display:grid;place-items:center;margin-bottom:12px;
+  }
+  .reach-ico svg{width:23px;height:23px;stroke:var(--brass-soft);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .reach-card h3{font-family:'Libre Franklin',sans-serif;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted-dark);font-weight:800}
+  .reach-card a{
+    display:inline-flex;align-items:center;min-height:44px;
+    font-weight:800;font-size:1.08rem;color:var(--paper);text-decoration:none;
+    word-break:break-word;line-height:1.3;
+  }
+  .reach-card a:hover,.reach-card a:focus-visible{color:var(--brass-soft);text-decoration:underline;text-underline-offset:3px}
+  .reach-card p{font-size:.88rem;color:var(--muted-dark)}
+  .reach-foot{margin-top:22px;font-size:.9rem;color:var(--muted-dark);max-width:66ch}
+  .reach-foot a{color:var(--brass-soft);font-weight:700}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid;gap:34px;align-items:center}
+  @media (min-width:880px){.about-grid{grid-template-columns:1fr 1fr;gap:60px}}
+  .about-copy h2{font-size:clamp(1.7rem,5.4vw,2.4rem);color:var(--char);letter-spacing:-.012em}
+  .about-copy h2 em{font-style:italic;font-weight:400;color:var(--inkblue)}
+  .about-copy p{margin-top:15px;color:var(--muted);max-width:58ch;font-size:1.02rem}
+  .about-copy p b{color:var(--text)}
+  .about-facts{
+    margin-top:24px;border-top:2px solid var(--char);
+    display:grid;gap:0;
+  }
+  .about-fact{
+    display:flex;gap:14px;align-items:center;
+    padding:15px 4px;border-bottom:1px solid var(--line);min-height:52px;
+  }
+  .about-fact svg{width:22px;height:22px;flex:none;stroke:var(--brass);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+  .about-fact b{font-size:.98rem;color:var(--text)}
+  .about-fact span{font-size:.85rem;color:var(--muted);display:block}
+  .about-art{
+    background:var(--inkblue);border-radius:var(--radius);
+    min-height:260px;display:grid;place-items:center;padding:34px;
+    position:relative;overflow:hidden;
+  }
+  .about-art::before{
+    content:"";position:absolute;inset:14px;border:1px solid rgba(245,241,232,.28);
+    border-radius:6px;pointer-events:none;
+  }
+  .about-art svg{width:min(220px,58vw);height:auto}
+
+  /* ---------- final CTA ---------- */
+  .cta-final{
+    background:var(--paper-2);border-block:1px solid var(--line);
+    text-align:center;
+  }
+  .cta-final h2{font-size:clamp(1.9rem,6.6vw,2.9rem);letter-spacing:-.012em;color:var(--char);max-width:24ch;margin-inline:auto}
+  .cta-final h2 em{font-style:italic;font-weight:400;color:var(--inkblue)}
+  .cta-final p{margin-top:14px;color:var(--muted);max-width:54ch;margin-inline:auto}
+  .cta-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:28px}
+  .btn-ink{background:var(--char);color:var(--paper)}
+  .btn-ink:hover{background:var(--char-3);transform:translateY(-2px)}
+  .btn-blue-line{border:1.5px solid var(--inkblue);color:var(--inkblue)}
+  .btn-blue-line:hover{background:var(--inkblue);color:var(--white)}
+  .cta-phone-big{
+    display:inline-flex;align-items:center;min-height:48px;margin-top:20px;
+    font-family:'Source Serif 4',Georgia,serif;font-weight:700;font-size:clamp(1.4rem,5vw,1.9rem);
+    color:var(--char);text-decoration:none;
+  }
+  .cta-phone-big:hover{color:var(--inkblue)}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--char);color:var(--muted-dark);font-size:13.5px}
+  footer .wrap{padding-block:42px 34px}
+  .foot-grid{display:grid;gap:26px}
+  @media (min-width:780px){.foot-grid{grid-template-columns:1.1fr .9fr}}
+  .foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .foot-brand .brand-mark{width:38px;height:38px;font-size:19px}
+  .foot-brand b{font-family:'Source Serif 4',Georgia,serif;font-size:17px;color:var(--paper);display:block;line-height:1.2}
+  .foot-brand span{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase}
+  footer a{color:var(--brass-soft);text-decoration:none}
+  footer a:hover{text-decoration:underline;text-underline-offset:2px}
+  .foot-sources{
+    border:1px solid var(--line-dark);border-radius:10px;
+    padding:18px 20px;background:var(--char-2);
+  }
+  .foot-sources h3{
+    font-family:'Libre Franklin',sans-serif;font-size:11px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--paper);margin-bottom:10px;font-weight:800;
+  }
+  .foot-sources ul{list-style:none;display:grid;gap:7px}
+  .foot-sources li{font-size:12.5px;line-height:1.55}
+  .foot-legal{
+    margin-top:26px;padding-top:18px;border-top:1px solid var(--line-dark);
+    font-size:12px;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between;
+  }
+
+  /* ---------- sticky call/text bar (small screens) ---------- */
+  .actionbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:200;
+    background:rgba(38,37,31,.97);
+    backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+    border-top:2px solid var(--brass);
+    padding:10px calc(14px + var(--sar)) calc(10px + var(--sab)) calc(14px + var(--sal));
+    display:flex;gap:10px;
+    transform:translateY(0);transition:transform .25s ease;
+  }
+  .actionbar.is-away{transform:translateY(110%);pointer-events:none}
+  .actionbar a{
+    flex:1;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    min-height:52px;border-radius:8px;text-decoration:none;
+    font-weight:800;font-size:1.02rem;letter-spacing:.01em;
+  }
+  .actionbar a svg{width:19px;height:19px;flex:none}
+  .actionbar .ab-call{background:var(--brass);color:var(--char)}
+  .actionbar .ab-text{background:transparent;color:var(--paper);border:1.5px solid rgba(245,241,232,.45)}
+  .actionbar .ab-text:active{background:rgba(245,241,232,.12)}
+  @media (min-width:860px){
+    .actionbar{display:none}
+    body{padding-bottom:0}
+  }
+
+  /* ---------- reveal on scroll (visible without JS) ---------- */
+  .reveal{opacity:1;transform:none}
+  .js .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}
+  .js .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .js .reveal,.reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to main content</a>
+
+<!-- sticky header -->
+<header class="site" id="siteHead">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Jordan Janitorial — back to top">
+      <span class="brand-mark" aria-hidden="true">J</span>
+      <span class="brand-name">
+        <b>Jordan Janitorial</b>
+        <span>Mesa · Arizona</span>
+      </span>
+    </a>
+    <a class="head-call" href="tel:+14809843388">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.5 2.9 3.8 5.2 6.7 6.7l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.2 2.2z"/></svg>
+      Call <span class="num">&nbsp;(480) 984-3388</span>
+    </a>
+  </div>
+  <nav class="subnav" aria-label="On this page">
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top" aria-labelledby="hero-h">
+    <div class="wrap hero-inner">
+      <div class="reveal">
+        <p class="hero-rule">Commercial · Contract · Mesa AZ</p>
+        <h1 id="hero-h">Clean buildings are <em>quiet business.</em></h1>
+        <p class="hero-sub">
+          <strong>Jordan Janitorial</strong> provides commercial janitorial and contract
+          cleaning for offices and professional spaces in <strong>Mesa, Arizona</strong>.
+          Their directory listing puts it plainly: premier cleaning services for professionals.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-brass" href="tel:+14809843388">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.5 2.9 3.8 5.2 6.7 6.7l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.2 2.2z"/></svg>
+            Call (480) 984-3388
+          </a>
+          <a class="btn btn-line" href="sms:+14809843388">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.9-.9L3 20l1-4.6a8.4 8.4 0 1 1 17-3.9z"/></svg>
+            Text the office
+          </a>
+        </div>
+        <p class="hero-note">Prefer email? They invite proposals at <b>Service@GoJordan.US</b> — see <a href="#contact" style="color:inherit">contact</a> below.</p>
+      </div>
+
+      <figure class="hero-photo reveal" aria-hidden="true">
+        <div class="frame">
+          <div class="empty-frame"></div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ TAGLINE BAND ============ -->
+  <div class="tagband">
+    <div class="wrap">
+      <p>&ldquo;Premier cleaning services for professionals.&rdquo;</p>
+      <small>Paraphrased from the company's public directory listing.</small>
+    </div>
+  </div>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="sec" id="services" aria-labelledby="svc-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">What they do</p>
+        <h2 id="svc-h">Janitorial work, on contract</h2>
+        <p>Directory listings describe Jordan Janitorial as a commercial janitorial and contract cleaning company in Mesa. No priced menu here — the way in is a call, a text, or an emailed request for a proposal.</p>
+      </div>
+
+      <div class="ledger">
+        <article class="ledger-row reveal">
+          <div class="ledger-icon" aria-hidden="true">
+            <!-- building -->
+            <svg viewBox="0 0 24 24"><rect x="4" y="3" width="12" height="18" rx="1"/><path d="M16 9h4v12h-4"/><path d="M8 7h2M8 11h2M8 15h2M12 7h1M12 11h1M12 15h1"/><path d="M9 21v-3h3v3"/></svg>
+          </div>
+          <h3><span>Service 01</span>Commercial Janitorial</h3>
+          <p>Ongoing janitorial service for commercial buildings — the recurring upkeep that keeps a professional space presentable every day people walk in.</p>
+        </article>
+
+        <article class="ledger-row reveal">
+          <div class="ledger-icon" aria-hidden="true">
+            <!-- contract / clipboard check -->
+            <svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 3v1"/><path d="M9 10h6M9 13.5h6"/><path d="m9 17.5 1.5 1.5 3-3"/></svg>
+          </div>
+          <h3><span>Service 02</span>Contract Cleaning</h3>
+          <p>Cleaning arranged on contract, scoped to your building and schedule. Email them what you need and they can put together a proposal.</p>
+        </article>
+
+        <article class="ledger-row reveal">
+          <div class="ledger-icon" aria-hidden="true">
+            <!-- bucket + mop -->
+            <svg viewBox="0 0 24 24"><path d="M5 11h14l-1.5 9a1.5 1.5 0 0 1-1.5 1.3H8a1.5 1.5 0 0 1-1.5-1.3z"/><path d="M6.5 11a5.5 5.5 0 0 1 11 0"/><path d="M15.5 11 19 3"/><path d="M17.6 6.2l3 1.3"/></svg>
+          </div>
+          <h3><span>Service 03</span>Office Cleaning</h3>
+          <p>The office itself — desks, floors, common areas, restrooms — cleaned so your team and your clients notice the result, not the process.</p>
+        </article>
+      </div>
+
+      <p class="ledger-note reveal">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+        <span><b>No price list on this page.</b> Commercial cleaning is scoped per building, so quotes come from a conversation — call <a href="tel:+14809843388">(480) 984-3388</a> or email <a href="mailto:Service@GoJordan.US">Service@GoJordan.US</a> for a proposal.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="sec" id="about" aria-labelledby="about-h" style="padding-top:0">
+    <div class="wrap about-grid">
+      <div class="about-copy reveal">
+        <p class="eyebrow">About the company</p>
+        <h2 id="about-h">A Mesa cleaning company for <em>professional spaces</em></h2>
+        <p>
+          <b>Jordan Janitorial</b> is a commercial cleaning company in <b>Mesa, Arizona</b>.
+          Their public directory listing describes premier cleaning services for professionals
+          and invites businesses to request a proposal by email.
+        </p>
+        <p>
+          That's the whole pitch, and it's a good one: if you manage an office or a commercial
+          space in Mesa, reach out and tell them about the building.
+        </p>
+        <div class="about-facts">
+          <div class="about-fact">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <div><b>Based in Mesa, Arizona</b><span>Commercial &amp; contract cleaning</span></div>
+          </div>
+          <div class="about-fact">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <div><b>Proposals by email</b><span>Service@GoJordan.US</span></div>
+          </div>
+          <div class="about-fact">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div><b>One phone number</b><span>(480) 984-3388 — call or text</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-art reveal" aria-hidden="true">
+        <!-- office building + shine illustration -->
+        <svg viewBox="0 0 220 200" role="img" aria-label="">
+          <!-- building -->
+          <rect x="52" y="34" width="80" height="132" rx="3" fill="#f5f1e8"/>
+          <rect x="132" y="70" width="46" height="96" rx="3" fill="#d6b96f"/>
+          <g fill="#2c4257">
+            <rect x="63" y="48" width="14" height="14" rx="1.5"/>
+            <rect x="85" y="48" width="14" height="14" rx="1.5"/>
+            <rect x="107" y="48" width="14" height="14" rx="1.5"/>
+            <rect x="63" y="72" width="14" height="14" rx="1.5"/>
+            <rect x="85" y="72" width="14" height="14" rx="1.5"/>
+            <rect x="107" y="72" width="14" height="14" rx="1.5"/>
+            <rect x="63" y="96" width="14" height="14" rx="1.5"/>
+            <rect x="85" y="96" width="14" height="14" rx="1.5"/>
+            <rect x="107" y="96" width="14" height="14" rx="1.5"/>
+            <rect x="63" y="120" width="14" height="14" rx="1.5"/>
+            <rect x="107" y="120" width="14" height="14" rx="1.5"/>
+          </g>
+          <g fill="#3a5570">
+            <rect x="141" y="82" width="10" height="10" rx="1.5"/>
+            <rect x="157" y="82" width="10" height="10" rx="1.5"/>
+            <rect x="141" y="102" width="10" height="10" rx="1.5"/>
+            <rect x="157" y="102" width="10" height="10" rx="1.5"/>
+            <rect x="141" y="122" width="10" height="10" rx="1.5"/>
+            <rect x="157" y="122" width="10" height="10" rx="1.5"/>
+          </g>
+          <rect x="85" y="140" width="14" height="26" rx="1.5" fill="#b08d3e"/>
+          <!-- ground line -->
+          <path d="M30 166h160" stroke="#f5f1e8" stroke-width="3" stroke-linecap="round"/>
+          <!-- shine sparkles -->
+          <g fill="#f5f1e8">
+            <path d="M40 52l3.2 8 8 3.2-8 3.2-3.2 8-3.2-8-8-3.2 8-3.2z"/>
+            <path d="M186 40l2.2 5.4 5.4 2.2-5.4 2.2-2.2 5.4-2.2-5.4-5.4-2.2 5.4-2.2z" opacity=".85"/>
+            <path d="M180 140l1.6 4 4 1.6-4 1.6-1.6 4-1.6-4-4-1.6 4-1.6z" opacity=".7"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT / HOW TO REACH THEM ============ -->
+  <section class="sec reach" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">How to reach them</p>
+        <h2 id="contact-h">Call, text, or ask for a proposal</h2>
+        <p>Each option below opens on your own device — nothing on this page sends a message by itself.</p>
+      </div>
+
+      <div class="reach-grid">
+        <div class="reach-card reveal">
+          <span class="reach-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+          <h3>Call</h3>
+          <a href="tel:+14809843388">(480) 984-3388</a>
+          <p>Quickest way to describe your building and what it needs.</p>
+        </div>
+
+        <div class="reach-card reveal">
+          <span class="reach-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.9-.9L3 20l1-4.6a8.4 8.4 0 1 1 17-3.9z"/></svg>
+          </span>
+          <h3>Text</h3>
+          <a href="sms:+14809843388">(480) 984-3388</a>
+          <p>Same number — send a text if that's easier during the workday.</p>
+        </div>
+
+        <div class="reach-card reveal">
+          <span class="reach-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          </span>
+          <h3>Email a proposal request</h3>
+          <a href="mailto:Service@GoJordan.US">Service@GoJordan.US</a>
+          <p>Their listing invites proposal requests by email — describe the space and the schedule you have in mind.</p>
+        </div>
+      </div>
+
+      <p class="reach-foot">
+        No street address is printed on this page — public listings for this company disagree
+        on the street, so this page leaves it out. The phone number and email above come from
+        the company's own public listing. Call <a href="tel:+14809843388">(480) 984-3388</a> to confirm anything else.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="sec cta-final" id="call" aria-labelledby="cta-h">
+    <div class="wrap reveal">
+      <h2 id="cta-h">Your building, <em>handled.</em></h2>
+      <p>Commercial janitorial and contract cleaning in Mesa, Arizona. One call or one email starts the proposal.</p>
+      <div class="cta-row">
+        <a class="btn btn-ink" href="tel:+14809843388">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.5 2.9 3.8 5.2 6.7 6.7l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.2 2.2z"/></svg>
+          Call the office
+        </a>
+        <a class="btn btn-blue-line" href="mailto:Service@GoJordan.US">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          Email for a proposal
+        </a>
+      </div>
+      <a class="cta-phone-big" href="tel:+14809843388">(480) 984-3388</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <span class="brand-mark" aria-hidden="true">J</span>
+          <div>
+            <b>Jordan Janitorial</b>
+            <span>Mesa · Arizona</span>
+          </div>
+        </div>
+        <p>
+          Commercial janitorial and contract cleaning for professional spaces.<br>
+          Mesa, AZ &nbsp;·&nbsp; <a href="tel:+14809843388">(480) 984-3388</a>
+          &nbsp;·&nbsp; <a href="mailto:Service@GoJordan.US">Service@GoJordan.US</a>
+        </p>
+      </div>
+      <div class="foot-sources">
+        <h3>Facts on this page sourced from</h3>
+        <ul>
+          <li>The project brief for this demo (company name, Mesa AZ, phone, email, trade).</li>
+          <li>Public directory listings: <a href="https://az.biznet-us.com/firms/7838066/" rel="noopener">az.biznet-us.com</a> and shopinphoenix (the "premier cleaning services for professionals" wording, commercial janitorial in Mesa, and the invitation to request a proposal by email — paraphrased).</li>
+          <li>No street address, hours, prices, service-area list beyond Mesa, or reviews are printed here because listings conflict or nothing was verified. The company's old website domain no longer resolves, so it is not linked.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>© <span id="yr">2026</span> Jordan Janitorial · Mesa, Arizona</span>
+      <span>Nothing on this page sends a message.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ STICKY CALL/TEXT BAR (small screens) ============ -->
+<div class="actionbar" id="actionbar" role="complementary" aria-label="Call or text Jordan Janitorial">
+  <a class="ab-call" href="tel:+14809843388">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.5 2.9 3.8 5.2 6.7 6.7l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.4c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.2 2.2z"/></svg>
+    Call
+  </a>
+  <a class="ab-text" href="sms:+14809843388">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.9 8.9 0 0 1-3.9-.9L3 20l1-4.6a8.4 8.4 0 1 1 17-3.9z"/></svg>
+    Text
+  </a>
+</div>
+
+<script>
+(function () {
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  var head = document.getElementById('siteHead');
+  var bar = document.getElementById('actionbar');
+  var footer = document.querySelector('footer');
+
+  window.addEventListener('scroll', function () {
+    if (head) head.classList.toggle('scrolled', window.scrollY > 8);
+  }, { passive: true });
+
+  // Hide the sticky bar while the footer is on screen (same behavior as SITE-5).
+  if ('IntersectionObserver' in window && footer && bar) {
+    new IntersectionObserver(function (entries) {
+      bar.classList.toggle('is-away', entries[0].isIntersecting);
+    }, { rootMargin: '0px 0px -40px 0px' }).observe(footer);
+  }
+
+  // Reveal-on-scroll, skipped for reduced motion; content is visible without JS.
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var items = document.querySelectorAll('.reveal');
+  if (!reduce && 'IntersectionObserver' in window && document.documentElement.classList.contains('js')) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    items.forEach(function (el) { io.observe(el); });
+  } else {
+    items.forEach(function (el) { el.classList.add('in'); });
+  }
+})();
+</script>
+
+</body>
+</html>
