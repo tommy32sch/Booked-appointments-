@@ -21,10 +21,14 @@
   "email": "Shineeffectllc@gmail.com",
   "address": {
     "@type": "PostalAddress",
+    "streetAddress": "1905 S MacDonald",
     "addressLocality": "Mesa",
     "addressRegion": "AZ",
+    "postalCode": "85210",
     "addressCountry": "US"
   },
+  "url": "https://shineeffectcleaningservices.com",
+  "openingHours": "Mo-Su 00:00-24:00",
   "areaServed": "Mesa"
 }
 </script>
@@ -190,13 +194,16 @@
   .hero-arch figure{
     width:min(680px,100%);margin:0;position:relative;
   }
-  .hero-arch .empty-frame{
-    width:100%;height:min(44vh,380px);
-    background:var(--linen);
+  .hero-arch img{
+    width:100%;height:min(44vh,380px);object-fit:cover;
     border-radius:260px 260px 0 0;
     border:6px solid var(--linen);border-bottom:none;
     box-shadow:0 -14px 44px rgba(62,54,48,.14);
   }
+  .work-row{display:grid;gap:16px;grid-template-columns:1fr;margin-top:28px;max-width:760px;margin-inline:auto}
+  @media (min-width:640px){.work-row{grid-template-columns:1fr 1fr}}
+  .work-row figure{margin:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
+  .work-row img{width:100%;height:280px;object-fit:cover;display:block}
   /* sun rays flanking the arch */
   .hero-ray{position:absolute;color:var(--sun);opacity:.8}
   .hero-ray svg{width:54px;height:54px}
@@ -467,9 +474,9 @@
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 5l1.2 3.3L16.5 9.5l-3.3 1.2L12 14l-1.2-3.3L7.5 9.5l3.3-1.2z"/></svg>
       </span>
     </div>
-    <div class="hero-arch" aria-hidden="true">
+    <div class="hero-arch">
       <figure>
-        <div class="empty-frame"></div>
+        <img src="demos/photos/shine-effect-cleaning/01.jpg" alt="Shine Effect Cleaning business cards, Celeste Porchas, Management" width="1200" height="900">
       </figure>
     </div>
   </section>
@@ -533,6 +540,14 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
         <span><b>No menu, no prices on this page.</b> These blurbs describe the cleaning trade in general, not a fixed package list. Ask the shop directly what they'd do for your place — call or text <a href="tel:+14804663501">(480) 466-3501</a>.</span>
       </p>
+      <div class="work-row">
+        <figure class="reveal">
+          <img src="demos/photos/shine-effect-cleaning/02.jpg" alt="Clean bathroom" width="1200" height="1600">
+        </figure>
+        <figure class="reveal">
+          <img src="demos/photos/shine-effect-cleaning/03.jpg" alt="Made bed" width="1200" height="900">
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -570,8 +585,10 @@
         <span class="script-label">About the shop</span>
         <h2 id="about-h">A <span class="script">Mesa</span> cleaning shop, one tap away</h2>
         <p>
-          <b>Shine Effect Cleaning</b> is a cleaning shop based in <b>Mesa, Arizona</b>.
-          They don't have a live website right now.
+          <b>Shine Effect Cleaning</b> is a cleaning shop based in <b>Mesa, Arizona</b>, at
+          <b>1905 S MacDonald, Mesa, AZ 85210</b>. Hours: open 24 hours.
+          Their site is <a href="https://shineeffectcleaningservices.com" rel="noopener">shineeffectcleaningservices.com</a>.
+          Google Maps lists the shop as women-owned and LGBTQ+ friendly.
         </p>
         <p>
           Reaching them is simple: <b>call, text, or email</b>. That's everything this
@@ -584,7 +601,11 @@
           </span>
           <span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.1 5.4 5.4 2.1-5.4 2.1L12 18l-2.1-5.4-5.4-2.1 5.4-2.1z"/></svg>
-            Cleaning trade
+            Women-owned
+          </span>
+          <span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.1 5.4 5.4 2.1-5.4 2.1L12 18l-2.1-5.4-5.4-2.1 5.4-2.1z"/></svg>
+            LGBTQ+ friendly
           </span>
           <span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -668,8 +689,9 @@
       </div>
 
       <p class="contact-foot reveal">
-        No street address, hours, or prices are printed on this page — none were verified.
-        The phone number and email above are the shop's own.
+        1905 S MacDonald, Mesa, AZ 85210. Open 24 hours.
+        <a href="https://shineeffectcleaningservices.com" rel="noopener">shineeffectcleaningservices.com</a>.
+        The phone number and email above are the shop's own. No prices are printed here.
       </p>
     </div>
   </section>
@@ -716,16 +738,19 @@
         </div>
         <p>
           A cleaning shop in Mesa, Arizona.<br>
+          1905 S MacDonald, Mesa, AZ 85210<br>
           <a href="tel:+14804663501">(480) 466-3501</a>
           &nbsp;·&nbsp; <a href="mailto:Shineeffectllc@gmail.com">Shineeffectllc@gmail.com</a>
+          &nbsp;·&nbsp; <a href="https://shineeffectcleaningservices.com" rel="noopener">shineeffectcleaningservices.com</a>
         </p>
       </div>
       <div class="foot-sources">
         <h3>Facts on this page sourced from</h3>
         <ul>
-          <li>The project brief for this demo (shop name, Mesa AZ, phone, email, cleaning trade).</li>
-          <li>The shop's previous website is offline (the domain and its Wix page both return errors), so nothing was taken from it — no service menus, claims, or neighborhood lists.</li>
-          <li>No street address, hours, or prices are printed here because none were verified.</li>
+          <li>The project brief for this page (shop name, Mesa AZ, phone, email, cleaning trade).</li>
+          <li><a href="https://shineeffectcleaningservices.com" rel="noopener">shineeffectcleaningservices.com</a> (the Maps listing site). The domain on the card photo is not used here.</li>
+          <li>Google Maps listing: 1905 S MacDonald, Mesa, AZ 85210; open 24 hours; women-owned; LGBTQ+ friendly. Photos from that listing.</li>
+          <li>No prices are printed here.</li>
           <li><a href="https://www.google.com/maps/place/Shine+Effect+Cleaning+Services/@33.3804675,-111.8335985,17z" rel="noopener">Google Maps</a> (5.0 from 10 Google reviews; laney pearson, Angel Fish, and Karyn Taylor quotes, verbatim; ellipses kept).</li>
         </ul>
       </div>

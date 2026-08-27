@@ -29,6 +29,7 @@
     "Mesa", "Apache Junction", "Gilbert", "Chandler",
     "San Tan Valley", "Queen Creek", "Scottsdale", "Gold Canyon", "Florence"
   ],
+  "openingHours": "Mo-Fr 09:00-17:00",
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "4.3",
@@ -179,9 +180,8 @@
     width:88px;height:88px;color:var(--sage);opacity:.55;
   }
   .hero-photo figure{position:relative;z-index:1;margin:0}
-  .hero-photo .empty-frame{
-    width:100%;height:min(52vh,420px);
-    background:var(--cream-deep);
+  .hero-photo img{
+    width:100%;height:min(52vh,420px);object-fit:cover;
     border-radius:46% 8px 46% 8px / 38% 8px 38% 8px;
     border:6px solid var(--white);
     box-shadow:0 18px 40px rgba(68,54,48,.14);
@@ -259,10 +259,14 @@
   .trust span{font-weight:400;color:var(--muted);display:block;font-size:.88rem}
 
   .about-photo{margin-top:28px}
-  .about-photo .empty-frame{
-    width:100%;height:240px;background:var(--cream-deep);border-radius:16px;
+  .about-photo img{
+    width:100%;height:240px;object-fit:cover;border-radius:16px;
     border:1px solid var(--line);
   }
+  .work-row{display:grid;gap:14px;grid-template-columns:1fr;margin-top:16px}
+  @media (min-width:640px){.work-row{grid-template-columns:1fr 1fr}}
+  .work-row figure{margin:0}
+  .work-row img{width:100%;height:240px;object-fit:cover;border-radius:16px;border:1px solid var(--line);display:block}
 
   .reviews{background:var(--cream-deep);border-block:1px solid var(--line)}
   .rating-row{
@@ -448,8 +452,8 @@
             <circle cx="8" cy="68" r="3"/><circle cx="28" cy="68" r="3"/><circle cx="48" cy="68" r="3"/><circle cx="68" cy="68" r="3"/>
           </g>
         </svg>
-        <figure aria-hidden="true">
-          <div class="empty-frame"></div>
+        <figure>
+          <img src="demos/photos/tender-touch-cleaning/01.jpg" alt="Living room being swept" width="1200" height="900">
         </figure>
       </div>
     </div>
@@ -548,9 +552,17 @@
           </li>
         </ul>
       </div>
-      <figure class="about-photo reveal" aria-hidden="true">
-        <div class="empty-frame"></div>
+      <figure class="about-photo reveal">
+        <img src="demos/photos/tender-touch-cleaning/02.jpg" alt="Carpet in a room" width="900" height="1200">
       </figure>
+      <div class="work-row">
+        <figure class="reveal">
+          <img src="demos/photos/tender-touch-cleaning/03.jpg" alt="Bathtub" width="900" height="1200">
+        </figure>
+        <figure class="reveal">
+          <img src="demos/photos/tender-touch-cleaning/04.jpg" alt="Room corner" width="900" height="1200">
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -613,7 +625,7 @@
         </div>
       </div>
       <p class="contact-foot reveal">
-        No street address, hours, or prices are printed here. The phone number and email above are the shop's own.
+        Hours: Monday–Friday 9 AM–5 PM. Saturday and Sunday closed. No street address or prices are printed here. The phone number and email above are the shop's own.
       </p>
     </div>
   </section>
@@ -663,9 +675,9 @@
       <div class="foot-sources">
         <h3>Facts on this page sourced from</h3>
         <ul>
-          <li>The project brief for this demo (shop name, Mesa AZ, phone, email, cleaning trade).</li>
+          <li>The project brief for this page (shop name, Mesa AZ, phone, email, cleaning trade).</li>
           <li><a href="https://www.hirerush.com/profile/tender-touch-cleaning-2675" rel="noopener">HireRush public profile</a> matching this phone number (family owned; housekeeping, apartment cleaning, house cleaning; the nine-city servicing list; paraphrased “experience in home cleaning” / friendly service wording).</li>
-          <li>Their previous website at cleaningservicemesaaz.com returns 404, so nothing was taken from it. No street address, hours, or prices are printed here. HireRush lists a street in Apache Junction; this page leaves it off.</li>
+          <li>Their previous website at cleaningservicemesaaz.com returns 404, so nothing was taken from it. No street address or prices are printed here. HireRush lists a street in Apache Junction; this page leaves it off. Hours Monday–Friday 9 AM–5 PM, Saturday and Sunday closed, from Google Maps. Photos from that listing.</li>
           <li><a href="https://www.google.com/maps/place/Tender+Touch+Cleaning/@33.274751,-114.1988969,8z" rel="noopener">Google Maps listing</a> matching this phone (4.3 from 6 Google reviews). Three quotes on this page are printed verbatim from that listing (Tarver Laub, Pam Ellars, Jan Jacobs), including the ellipsis on Tarver Laub's review. Angi quotes are unused.</li>
         </ul>
       </div>

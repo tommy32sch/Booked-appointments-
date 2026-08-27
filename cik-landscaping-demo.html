@@ -29,7 +29,8 @@
   "areaServed": [
     "Mesa", "Phoenix", "Scottsdale", "Fountain Hills", "Chandler",
     "Tempe", "San Tan Valley", "Gilbert", "Queen Creek"
-  ]
+  ],
+  "openingHours": "Mo-Sa 08:00-17:00"
 }
 </script>
 <style>
@@ -143,6 +144,8 @@
 
   /* ---------- hero ---------- */
   .hero{position:relative;background:var(--soil);color:var(--cream);overflow:hidden;isolation:isolate}
+  .hero-photo{position:absolute;inset:0;z-index:-2}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center 65%}
   .hero::before{
     content:"";position:absolute;inset:0;z-index:-1;
     background:
@@ -280,8 +283,12 @@
     border:1px solid rgba(247,242,230,.22);
     box-shadow:0 18px 44px rgba(30,34,18,.4);
   }
-  .area-photo .empty-frame{width:100%;height:300px;background:rgba(30,34,18,.35)}
-  @media (min-width:880px){.area-photo .empty-frame{height:360px}}
+  .area-photo img{width:100%;height:300px;object-fit:cover}
+  @media (min-width:880px){.area-photo img{height:360px}}
+  .work-row{display:grid;gap:15px;grid-template-columns:1fr;margin-top:28px}
+  @media (min-width:640px){.work-row{grid-template-columns:1fr 1fr}}
+  .work-row figure{margin:0;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line)}
+  .work-row img{width:100%;height:280px;object-fit:cover;display:block}
 
   /* ---------- about ---------- */
   .about{background:var(--cream)}
@@ -470,6 +477,9 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero" id="top" aria-labelledby="hero-h">
+    <div class="hero-photo">
+      <img src="demos/photos/cik-landscaping/01.jpg" alt="Before and after tree trim" width="675" height="1200">
+    </div>
     <div class="wrap hero-inner">
       <span class="hero-kicker">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c-4-3-7-6.5-7-10.5C5 6.9 8.1 4 12 4s7 2.9 7 6.5c0 4-3 7.5-7 10.5z"/><circle cx="12" cy="10.5" r="2.5"/></svg>
@@ -572,8 +582,16 @@
 
       <p class="svc-note reveal">
         <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
-        <span><b>No price list on this page.</b> Every yard is different — the shop can only quote after hearing about yours. Call or text <a href="tel:+14807092585">(480) 709-2585</a> to start that conversation.</span>
+        <span><b>No price list on this page.</b> Every yard is different — the shop can only quote after hearing about yours. Call or text <a href="tel:+14807092585">(480) 709-2585</a> to start that conversation. Their Google Maps listing also names tree removal, yard cleanup, palm trees, and weed control.</span>
       </p>
+      <div class="work-row">
+        <figure class="reveal">
+          <img src="demos/photos/cik-landscaping/03.jpg" alt="Paver patio and turf" width="900" height="1200">
+        </figure>
+        <figure class="reveal">
+          <img src="demos/photos/cik-landscaping/04.jpg" alt="Desert yard" width="900" height="1200">
+        </figure>
+      </div>
     </div>
   </section>
 
@@ -603,8 +621,8 @@
           </div>
           <p class="area-note">No street address printed on this page. Call or text <a href="tel:+14807092585">(480) 709-2585</a> to ask about your neighborhood.</p>
         </div>
-        <figure class="area-photo reveal" aria-hidden="true">
-          <div class="empty-frame"></div>
+        <figure class="area-photo reveal">
+          <img src="demos/photos/cik-landscaping/02.jpg" alt="Yard cleanup bin" width="675" height="1200">
         </figure>
       </div>
     </div>
@@ -762,7 +780,7 @@
       </div>
 
       <p class="contact-foot reveal">
-        No street address is printed on this page, and there's no contact form —
+        Hours: Monday–Saturday 8 AM–5 PM. Sunday closed. No street address is printed on this page, and there's no contact form —
         the phone number and email above are the shop's own, straight from public records.
       </p>
     </div>
@@ -822,9 +840,9 @@
       <div class="foot-sources">
         <h3>Facts on this page sourced from</h3>
         <ul>
-          <li>The project brief for this demo (shop name, Mesa AZ, phone, email, trade).</li>
+          <li>The project brief for this page (shop name, Mesa AZ, phone, email, trade).</li>
           <li><a href="https://www.hirerush.com/profile/cik-landscaping-llc-10220" rel="noopener">HireRush public profile</a> matching the shop's phone number (family owned; the five named services; the servicing-city list; the "pleased to help with your next lawn/tree project" and satisfaction wording, paraphrased).</li>
-          <li>Arizona public record (the LLC name "CIK Landscaping, LLC" shown above). No street address, hours, or prices are printed here because none were verified.</li>
+          <li>Arizona public record (the LLC name "CIK Landscaping, LLC" shown above). No street address or prices are printed here. Hours Monday–Saturday 8 AM–5 PM, Sunday closed, from Google Maps. Extra Maps services: tree removal, yard cleanup, palm trees, weed control. Photos from the Maps listing.</li>
           <li><a href="https://www.mapquest.com/us/arizona/cik-landscaping-376689429" rel="noopener">MapQuest</a> (Jana C. and Pati Snow quotes, verbatim).</li>
           <li><a href="https://www.facebook.com/ciklandscapingllc/reviews" rel="noopener">Facebook reviews</a> (Anna Bower quote, kept with the published ellipsis; 15 reviews listed, no star number shown).</li>
           <li><a href="https://www.google.com/maps/place/CIK+Landscaping,+LLC/@33.518261,-111.8950935,10z" rel="noopener">Google Maps</a> (4.0 from 32 Google reviews; J C and Elizabeth quotes, verbatim; Elizabeth ellipsis kept).</li>
