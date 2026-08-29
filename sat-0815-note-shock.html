@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat 8:15 Understanding Types of Shock</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat 8:15 Understanding Types of Shock</h1>
+  <div class="sub">Recap only · you/your · 16 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch": "comp", "q": "Fast pulse, fast breathing, cool pale clammy skin, blood pressure still okay. What is this?", "opts": [{"t": "Compensated shock", "ok": true, "why": "Epinephrine is still holding pressure. Heart rate and breathing are up. Skin is cool, pale, clammy."}, {"t": "Decompensated shock", "ok": false, "why": "Decompensated shock is when systolic pressure tanks and organs fail."}, {"t": "Adequate perfusion", "ok": false, "why": "Cool pale clammy skin and a fast pulse are not adequate perfusion."}, {"t": "Cardiogenic shock", "ok": false, "why": "Cardiogenic is a type (pump/MI). These signs are a stage: compensated shock."}]}, {"ch": "decomp", "q": "Compensatory moves fail and systolic blood pressure tanks. What is this?", "opts": [{"t": "Decompensated shock", "ok": true, "why": "When compensation fails, systolic pressure drops and vital-organ perfusion fails."}, {"t": "Compensated shock", "ok": false, "why": "Compensated shock still holds a near-normal pressure."}, {"t": "Adequate perfusion", "ok": false, "why": "A falling systolic is not adequate perfusion."}, {"t": "Cardiogenic shock", "ok": false, "why": "Cardiogenic is a type (pump/MI). These signs are a stage: decompensated shock."}]}, {"ch": "adultbp", "q": "What adult systolic floor does this recap give for perfusion?", "opts": [{"t": "90 mmHg", "ok": true, "why": "Adult minimum systolic for perfusion is ≥ 90 mmHg. Nitro thinking uses 100."}, {"t": "78 mmHg", "ok": false, "why": "78 is the 4-year-old example, not the adult floor."}, {"t": "70 mmHg", "ok": false, "why": "70 is the constant in the pediatric formula, not the adult floor."}, {"t": "25 mmHg", "ok": false, "why": "About 25 is a narrow pulse pressure, not the adult systolic floor."}]}, {"ch": "pedibp", "q": "What is the pediatric minimum systolic from this recap?", "opts": [{"t": "2 × age in years + 70", "ok": true, "why": "Pedi minimum systolic is 2 × age (years) + 70. A 4-year-old is 78."}, {"t": "2 × age in years + 90", "ok": false, "why": "90 is the adult floor. Pedi is 2 × age + 70."}, {"t": "Age in years + 70 only", "ok": false, "why": "You multiply age by 2, then add 70."}, {"t": "2 × age in years + 25", "ok": false, "why": "25 is a narrow pulse-pressure cue, not the pedi add-on."}]}, {"ch": "pp", "q": "How do you get pulse pressure in this recap?", "opts": [{"t": "Systolic minus diastolic", "ok": true, "why": "Pulse pressure = systolic − diastolic. Under about 25 can mean worsening shock."}, {"t": "Diastolic minus systolic", "ok": false, "why": "That reverses the subtraction. It is systolic minus diastolic."}, {"t": "Systolic plus diastolic", "ok": false, "why": "You subtract, not add."}, {"t": "Heart rate minus breathing", "ok": false, "why": "Pulse pressure is from the two blood-pressure numbers."}]}, {"ch": "pattern", "q": "Dropping pressure, rising heart rate and breathing, cool pale clammy skin. What is this until proven otherwise?", "opts": [{"t": "Call it shock", "ok": true, "why": "That four-part pattern is shock until proven otherwise. Then add extras to name the type."}, {"t": "Call it cardiogenic", "ok": false, "why": "Cardiogenic needs chest pain plus crackles on top of the classic shock pattern."}, {"t": "Call it a PE", "ok": false, "why": "PE needs sudden dyspnea and oxygen that does not help, on top of shock."}, {"t": "Call it tamponade", "ok": false, "why": "Tamponade needs JVD and a narrowing pulse pressure or muffled tones too."}]}, {"ch": "o2", "q": "Breathing is adequate. What oxygen setup does this recap want in shock?", "opts": [{"t": "Non-rebreather at 10–15 L/min", "ok": true, "why": "Adequate rate and tidal volume → NRB at 10–15 L/min. Inadequate breathing → BVM with oxygen."}, {"t": "Bag-valve mask with oxygen", "ok": false, "why": "BVM is for inadequate breathing, not adequate rate and volume."}, {"t": "Nasal cannula at 2 L/min", "ok": false, "why": "This recap’s shock oxygen is high-flow 10–15 L, not a 2 L cannula."}, {"t": "No oxygen until pressure falls", "ok": false, "why": "Give high-flow oxygen as part of universal shock care."}]}, {"ch": "pos", "q": "What position does this recap want for shock if they can tolerate it?", "opts": [{"t": "Supine (flat)", "ok": true, "why": "Flat helps venous return and blood pressure unless they cannot tolerate it."}, {"t": "Upright sitting", "ok": false, "why": "Upright is not the default shock position here. Supine is."}, {"t": "Prone (belly)", "ok": false, "why": "The recap says supine, not prone."}, {"t": "Standing still", "ok": false, "why": "Standing does not help venous return in shock."}]}, {"ch": "ncpap", "q": "They are already hypotensive in shock. Nitro and CPAP?", "opts": [{"t": "Hold nitro and CPAP", "ok": true, "why": "Nitro and CPAP both drop blood pressure. They are contraindicated if already hypotensive or in shock."}, {"t": "Give nitro and CPAP", "ok": false, "why": "They drop pressure. You hold them in shock."}, {"t": "Nitro only, hold CPAP", "ok": false, "why": "Nitro is also out if they are hypotensive."}, {"t": "CPAP only, hold nitro", "ok": false, "why": "CPAP is also out if systolic is already too low."}]}, {"ch": "cardio", "q": "Shock plus crushing chest pain plus crackles. What type is this?", "opts": [{"t": "Cardiogenic shock", "ok": true, "why": "A weak pump, usually a big MI. Left failure backs blood into the lungs."}, {"t": "Cardiac tamponade", "ok": false, "why": "Tamponade is JVD and a narrowing pulse pressure, not crackles from lung fluid."}, {"t": "Tension pneumothorax", "ok": false, "why": "Tension has absent breath sounds on one side, not crackles in both lungs."}, {"t": "Pulmonary embolism", "ok": false, "why": "PE is sudden dyspnea and a sat that will not rise. Crackles plus chest pain is cardiogenic."}]}, {"ch": "beck", "q": "Narrowing pulse pressure, jugular vein distension, muffled heart tones. What is this?", "opts": [{"t": "Beck’s triad (tamponade)", "ok": true, "why": "Those three are Beck’s triad for cardiac tamponade: fluid squeezing the heart."}, {"t": "Tension pneumothorax signs", "ok": false, "why": "Tension is one-sided absent breath sounds, not muffled tones as the triad."}, {"t": "Cardiogenic lung backup", "ok": false, "why": "Cardiogenic extras are chest pain and crackles, not this triad."}, {"t": "Massive pulmonary embolism", "ok": false, "why": "PE is sudden dyspnea and oxygen that does not help, not Beck’s triad."}]}, {"ch": "vs", "q": "Chest trauma, shock, and JVD. Equal clear breath sounds. What type?", "opts": [{"t": "Cardiac tamponade", "ok": true, "why": "Shared with tension: trauma, shock, JVD. Equal clear lungs point to tamponade."}, {"t": "Tension pneumothorax", "ok": false, "why": "Tension has absent breath sounds on one side."}, {"t": "Cardiogenic shock", "ok": false, "why": "Cardiogenic is a pump/MI pattern with crackles, not this trauma + JVD split."}, {"t": "Pulmonary embolism", "ok": false, "why": "PE is a medical clot, not chest trauma with JVD."}]}, {"ch": "tens", "q": "Chest trauma, shock, and JVD. Absent breath sounds on one side. What type?", "opts": [{"t": "Tension pneumothorax", "ok": true, "why": "Trapped air collapses that lung and shoves the heart. One silent side is the split from tamponade."}, {"t": "Cardiac tamponade", "ok": false, "why": "Tamponade keeps equal breath sounds."}, {"t": "Cardiogenic shock", "ok": false, "why": "Cardiogenic extras are chest pain and crackles, not a silent hemithorax."}, {"t": "Pulmonary embolism", "ok": false, "why": "PE is medical sudden dyspnea, not trauma with one silent lung."}]}, {"ch": "pe", "q": "Sudden severe dyspnea, sharp chest pain, hypoxia that does not improve with oxygen. What type?", "opts": [{"t": "Pulmonary embolism", "ok": true, "why": "A clot blocks lung arteries. Air in the alveoli with no blood under it will not pick up oxygen."}, {"t": "Cardiac tamponade", "ok": false, "why": "Tamponade is trauma, JVD, and a narrowing pulse pressure."}, {"t": "Tension pneumothorax", "ok": false, "why": "Tension is one-sided absent breath sounds after chest trauma."}, {"t": "Cardiogenic shock", "ok": false, "why": "Cardiogenic is chest pain plus crackles from lung backup, and oxygen still reaches blood."}]}, {"ch": "shunt", "q": "Where does early shock pull blood away from, so the skin looks cool and pale?", "opts": [{"t": "The skin and gut bed areas", "ok": true, "why": "Sphincters close in less important beds. Skin goes cool and pale. Blood goes to brain, heart, lungs, and big muscle."}, {"t": "The brain and heart first", "ok": false, "why": "Brain and heart are where blood is sent, not where it is taken from."}, {"t": "The lungs and big muscle", "ok": false, "why": "Those are protected, not shut down."}, {"t": "The aorta and carotid only", "ok": false, "why": "Those hold baroreceptors. They are not the shunt-away beds."}]}, {"ch": "asa", "q": "Suspected big MI in cardiogenic shock. They can chew. Aspirin vs nitro?", "opts": [{"t": "Aspirin yes; hold nitro if hypotensive", "ok": true, "why": "Aspirin does not care about the pressure. Nitro is out if they are already in shock."}, {"t": "Nitro yes; hold aspirin if hypotensive", "ok": false, "why": "That swaps them. Nitro drops pressure. Aspirin does not."}, {"t": "Hold both no matter the pressure", "ok": false, "why": "Aspirin can still go for an MI if they can chew and have no allergy."}, {"t": "Give both even if pressure has tanked", "ok": false, "why": "Nitro is contraindicated once they are hypotensive."}]}];
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"comp": "Compensated", "decomp": "Decompensated", "adultbp": "Adult BP", "pedibp": "Pedi BP", "pp": "Pulse pressure", "pattern": "Pattern", "o2": "Oxygen", "pos": "Position", "ncpap": "Nitro / CPAP", "cardio": "Cardiogenic", "beck": "Beck’s triad", "vs": "Tamponade vs tension", "tens": "Tension", "pe": "PE", "shunt": "Shunt", "asa": "Aspirin vs nitro"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the Sat 8:15 Understanding Types of Shock recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · types of shock recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>

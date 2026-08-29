@@ -1,0 +1,314 @@
+[
+  {
+    "ch": "perf",
+    "q": "What two jobs does perfusion do?",
+    "opts": [
+      {
+        "t": "Bring oxygen and nutrients in; take waste out",
+        "ok": true,
+        "why": "Perfusion pumps blood so cells get oxygen and sugar and waste leaves."
+      },
+      {
+        "t": "Bring waste in; take oxygen and nutrients out",
+        "ok": false,
+        "why": "That swaps the jobs. Perfusion delivers oxygen and nutrients and removes waste."
+      },
+      {
+        "t": "Bring oxygen in; skip removing any waste",
+        "ok": false,
+        "why": "Both jobs matter. Waste (CO\u2082, later lactic acid) has to leave too."
+      },
+      {
+        "t": "Bring waste in; skip delivering any oxygen",
+        "ok": false,
+        "why": "Cells need oxygen and nutrients in, not waste in."
+      }
+    ]
+  },
+  {
+    "ch": "shock",
+    "q": "For an EMT, shock is which of these?",
+    "opts": [
+      {
+        "t": "Hypoperfusion",
+        "ok": true,
+        "why": "Shock = hypoperfusion = a circulatory / perfusion problem."
+      },
+      {
+        "t": "Hyperperfusion",
+        "ok": false,
+        "why": "Hyper is too much flow. Shock is hypo: not enough perfusion."
+      },
+      {
+        "t": "Adequate perfusion",
+        "ok": false,
+        "why": "Adequate perfusion is the healthy state, not shock."
+      },
+      {
+        "t": "Aerobic metabolism",
+        "ok": false,
+        "why": "Aerobic work is what cells do when perfusion is already good."
+      }
+    ]
+  },
+  {
+    "ch": "aero",
+    "q": "When perfusion is adequate, what is the main cell waste?",
+    "opts": [
+      {
+        "t": "Carbon dioxide",
+        "ok": true,
+        "why": "Aerobic metabolism needs oxygen, makes lots of ATP, and wastes CO\u2082 that is easy to clear."
+      },
+      {
+        "t": "Lactic acid",
+        "ok": false,
+        "why": "Lactic acid is the anaerobic waste when perfusion is already failing."
+      },
+      {
+        "t": "Unused oxygen",
+        "ok": false,
+        "why": "Aerobic cells use oxygen. The waste they make is carbon dioxide."
+      },
+      {
+        "t": "Unused glucose",
+        "ok": false,
+        "why": "Glucose is fuel going in, not the aerobic waste product."
+      }
+    ]
+  },
+  {
+    "ch": "anaero",
+    "q": "When perfusion is inadequate, what is the main cell waste?",
+    "opts": [
+      {
+        "t": "Lactic acid",
+        "ok": true,
+        "why": "Anaerobic work makes less energy and lactic acid, which is hard to clear and adds acidosis."
+      },
+      {
+        "t": "Carbon dioxide",
+        "ok": false,
+        "why": "CO\u2082 is the aerobic waste. Shock cells switch to lactic acid."
+      },
+      {
+        "t": "Unused oxygen",
+        "ok": false,
+        "why": "These cells are short on oxygen. Their waste is lactic acid."
+      },
+      {
+        "t": "Unused glucose",
+        "ok": false,
+        "why": "Glucose is fuel. The anaerobic waste is lactic acid."
+      }
+    ]
+  },
+  {
+    "ch": "clock-bh",
+    "q": "Without oxygen, how long do brain and heart last?",
+    "opts": [
+      {
+        "t": "Minutes",
+        "ok": true,
+        "why": "Brain and heart injure and die in minutes. That is why time is critical."
+      },
+      {
+        "t": "Hours",
+        "ok": false,
+        "why": "Hours is the skin and gut clock, not brain and heart."
+      },
+      {
+        "t": "Days",
+        "ok": false,
+        "why": "Brain and heart do not last days without oxygen."
+      },
+      {
+        "t": "Seconds",
+        "ok": false,
+        "why": "The recap clock for brain and heart is minutes, not seconds."
+      }
+    ]
+  },
+  {
+    "ch": "clock-sg",
+    "q": "Without oxygen, how long do skin and intestines last?",
+    "opts": [
+      {
+        "t": "Hours",
+        "ok": true,
+        "why": "Skin and gut last hours. They still get injured, just slower. Brain and heart come first."
+      },
+      {
+        "t": "Minutes",
+        "ok": false,
+        "why": "Minutes is the brain and heart clock, not skin and gut."
+      },
+      {
+        "t": "Days",
+        "ok": false,
+        "why": "The recap clock for skin and gut is hours, not days."
+      },
+      {
+        "t": "Seconds",
+        "ok": false,
+        "why": "Seconds is too fast. Skin and gut last hours."
+      }
+    ]
+  },
+  {
+    "ch": "fof",
+    "q": "Heart rate up, harder squeeze, some vessels tight so heart and brain keep blood. What is this?",
+    "opts": [
+      {
+        "t": "Fight-or-flight epinephrine",
+        "ok": true,
+        "why": "Sympathetic epinephrine raises rate and squeeze and tightens some beds to protect heart and brain."
+      },
+      {
+        "t": "Decompensated late shock",
+        "ok": false,
+        "why": "Those epi moves are compensation, not the late collapse."
+      },
+      {
+        "t": "Aerobic cell metabolism",
+        "ok": false,
+        "why": "This is a vessel-and-heart response, not the aerobic waste path."
+      },
+      {
+        "t": "Hyperperfusion of cells",
+        "ok": false,
+        "why": "This fires because perfusion is dropping, not because flow is too high."
+      }
+    ]
+  },
+  {
+    "ch": "comp",
+    "q": "Fast pulse, fast breathing, cool pale clammy skin, blood pressure still normal. What is this?",
+    "opts": [
+      {
+        "t": "Compensated shock",
+        "ok": true,
+        "why": "Early compensation can hold the pressure. Do not wait for hypotension to name it."
+      },
+      {
+        "t": "Decompensated shock",
+        "ok": false,
+        "why": "Decompensated shock has a falling pressure and a much worse mental status."
+      },
+      {
+        "t": "Adequate perfusion",
+        "ok": false,
+        "why": "Cool pale clammy skin and a fast pulse are not adequate perfusion."
+      },
+      {
+        "t": "Hyperperfusion state",
+        "ok": false,
+        "why": "Hyper is too much flow. These signs are early low perfusion."
+      }
+    ]
+  },
+  {
+    "ch": "decomp",
+    "q": "Falling blood pressure, much worse mental status, very weak or absent wrist pulses, mottled very cool skin. What is this?",
+    "opts": [
+      {
+        "t": "Decompensated shock",
+        "ok": true,
+        "why": "When compensation fails you get hypotension, a worse mental status, and failing pulses and skin."
+      },
+      {
+        "t": "Compensated shock",
+        "ok": false,
+        "why": "Compensated shock still holds a near-normal pressure."
+      },
+      {
+        "t": "Adequate perfusion",
+        "ok": false,
+        "why": "These are late shock signs, not adequate perfusion."
+      },
+      {
+        "t": "Hyperperfusion state",
+        "ok": false,
+        "why": "Hyper is too much flow. This is late low perfusion."
+      }
+    ]
+  },
+  {
+    "ch": "bp",
+    "q": "When do you name shock?",
+    "opts": [
+      {
+        "t": "Call it from perfusion signs",
+        "ok": true,
+        "why": "Shock can exist before blood pressure drops. Read mental status, skin, and pulses first."
+      },
+      {
+        "t": "Call it from falling pressure",
+        "ok": false,
+        "why": "Waiting for hypotension means you missed compensated shock."
+      },
+      {
+        "t": "Call it from heart rate only",
+        "ok": false,
+        "why": "A fast pulse is one sign, not the whole perfusion check."
+      },
+      {
+        "t": "Call it from cap refill only",
+        "ok": false,
+        "why": "Cap refill can help. Name shock from perfusion signs, not one test."
+      }
+    ]
+  },
+  {
+    "ch": "look",
+    "q": "Besides blood pressure, what do you check first for perfusion?",
+    "opts": [
+      {
+        "t": "Mental status, skin, and pulses",
+        "ok": true,
+        "why": "Perfusion status first: mental status, skin signs, pulses. Blood pressure is a clue, not the whole story."
+      },
+      {
+        "t": "Heart rate, cap refill, and SBP",
+        "ok": false,
+        "why": "Heart rate and cap refill can help, but the recap\u2019s first look is mental status, skin, and pulses."
+      },
+      {
+        "t": "Heart rate, pressure, and color",
+        "ok": false,
+        "why": "Do not lead with the pressure number. Mental status, skin, and pulses come first."
+      },
+      {
+        "t": "Cap refill, pressure, and color",
+        "ok": false,
+        "why": "Cap refill is extra. The recap\u2019s first look is mental status, skin, and pulses."
+      }
+    ]
+  },
+  {
+    "ch": "warm",
+    "q": "Why keep a shock patient warm?",
+    "opts": [
+      {
+        "t": "Anaerobic work makes less heat",
+        "ok": true,
+        "why": "Less energy means less heat, so they slide toward hypothermia in the lethal triad."
+      },
+      {
+        "t": "Aerobic work makes extra heat",
+        "ok": false,
+        "why": "Shock cells are anaerobic. They make less heat, not extra heat."
+      },
+      {
+        "t": "Cold helps lactic acid clear",
+        "ok": false,
+        "why": "Cold is a problem (hypothermia), not a treatment for lactic acid."
+      },
+      {
+        "t": "Cold helps carbon dioxide clear",
+        "ok": false,
+        "why": "Keep them warm. Hypothermia is part of the lethal triad, not a clearance trick."
+      }
+    ]
+  }
+]
