@@ -10,50 +10,84 @@ Think of it as bring the good stuff in, take the trash out. When perfusion is no
 ## Shock
 For EMT work, shock, hypoperfusion, a perfusion problem, and a circulatory problem are the same idea. The circulatory system cannot deliver enough oxygenated blood to tissues. It also cannot clear waste well enough.
 
-Some cells are not getting enough blood and oxygen. Waste (carbon dioxide, then lactic acid) builds up around them. Those cells become doubly unhappy. They do not have enough oxygen (fuel), and they sit in accumulating trash.
+Some cells are not getting enough blood and oxygen. Waste (carbon dioxide, then lactic acid) builds up around them. Those cells become doubly unhappy. They do not have enough oxygen (fuel). They are surrounded by accumulating trash.
 
-## Aerobic vs anaerobic
-When perfusion is adequate, cells use aerobic metabolism. That needs oxygen. It makes lots of energy (ATP). The main waste is carbon dioxide (CO2), which is easy to dump through circulation and ventilation.
+Clinically this is a state of cardiovascular collapse. The cardiovascular / circulatory system cannot do its job of moving blood effectively.
 
-When perfusion is inadequate (shock), cells switch to anaerobic metabolism. Less energy is produced, so organs start to fail. The main waste is lactic acid, which is harder to clear. Lactic acid piles up and feeds metabolic acidosis. Less energy also means less heat, which feeds hypothermia. That hypothermia sits in the lethal triad you will learn: hypothermia, acidosis, and coagulopathy (clotting failure).
+## Aerobic versus anaerobic
+When perfusion is adequate, cells use aerobic metabolism. That path needs oxygen. It produces lots of energy (ATP). The main waste is carbon dioxide, which is easy to remove.
 
-## Time and cells
-Every cell deprived of oxygen walks the same timeline: normal → backup (anaerobic) → injury → death (irreversible). Speed changes by organ.
+When perfusion is inadequate — shock, hypoperfusion — cells switch to anaerobic metabolism. Less energy is produced, so the body’s functions start to fail. The main waste is lactic acid, which is harder for the body to clear. That lactic acid accumulates and contributes to metabolic acidosis.
 
-Brain cells and heart cells tolerate hypoxia for minutes. Lose perfusion and they injure and die fast. Skin, intestines, and some other organs can last hours. They are still injured. The clock is just slower. Time is critical. Brain and heart perfusion is your top priority. Once cells start dying, damage can stay irreversible even if you later fix blood pressure (BP).
+Two downstream hits matter to you. Less energy production means organs cannot function normally. Less heat production contributes to hypothermia. Hypothermia is critical in shock management. It is part of the lethal triad you will learn: hypothermia, acidosis, and coagulopathy (clotting failure).
+
+## Cellular injury and time
+Every cell walks a timeline when it is deprived of oxygen. First it is normal: happy, healthy, functioning. Then it switches to backup: anaerobic metabolism. Then it is injured. Then it dies, and that death is irreversible.
+
+What changes is how fast this happens. Brain cells and heart cells tolerate hypoxia for minutes. Lose perfusion and injury and death come on fast. Skin, intestines, and some other organs tolerate hypoxia for hours. They are still injured. The clock is just slower.
+
+That is why time is critical in shock. Preserving brain and heart perfusion is the top priority. Once cells start dying, the damage can stay irreversible even if you later fix the blood pressure (BP).
 
 ## Compensation
-When perfusion drops (often sensed as falling BP), the sympathetic nervous system fires fight-or-flight and dumps epinephrine (adrenaline). The goals are to hold blood pressure and keep blood on the heart and brain. Epinephrine raises heart rate, raises contractility (squeeze), and vasoconstricts some beds so heart and brain stay first in line.
+When the body senses perfusion dropping — often via falling blood pressure — it activates the sympathetic nervous system. That is fight-or-flight. It releases epinephrine (adrenaline).
 
-Early shock is often compensated shock. You may see tachycardia, possibly a narrowed pulse pressure, and cool pale clammy skin from that squeeze. Blood pressure may still be normal or near-normal. Do not wait for hypotension to call it shock.
+The physiologic goals are to maintain blood pressure and to maintain perfusion to critical organs. Epinephrine will increase heart rate. It will increase contractility. It will cause vasoconstriction in certain areas so blood flow is prioritized to the heart and brain.
 
-## Blood pressure is a clue
-Blood pressure is a big clue because it reflects overall circulatory performance. Shock can exist before BP drops. Read perfusion first: mental status, skin signs, pulses. Treat BP as an important late marker as they slide into decompensated shock.
+Early shock is often compensated shock. Vitals may show tachycardia. You may see a narrowed pulse pressure. Skin can turn cool, pale, and clammy from that vasoconstriction. Blood pressure may still be normal or near-normal at first. Do not wait for hypotension to call it shock.
 
-## Compensated vs decompensated
-Compensated (early): tachycardia, tachypnea, normal or slightly low BP, cool pale clammy skin, normal or mildly altered mental status.
+## Blood pressure as a clue
+Blood pressure is a big clue because it reflects the overall performance of the circulatory system. Shock can exist before BP drops. That is compensated shock.
 
-Decompensated (late): hypotension (falling BP), markedly altered mental status, very weak or absent peripheral pulses, worsening skin (mottled, very cool).
+Think perfusion status first: mental status, skin signs, pulses. Use blood pressure as an important indicator, especially as shock progresses to decompensated.
 
-Catch it while they are still compensating.
+Always ask: are the brain and vital organs being perfused? Catch subtle early signs — mental status, skin, pulses, heart rate — before the pressure falls.
 
-## Field mindset
-Suspect shock with significant trauma, blood loss, a gastrointestinal (GI) bleed, chest pain, dyspnea (shortness of breath), sepsis signs, or anaphylaxis. Weakness, dizziness, feeling faint. Confusion, anxiety, restlessness, decreased level of consciousness (LOC). Cold, clammy, pale, or mottled skin. Rapid breathing, rapid pulse. If they look badly perfused, think shock.
+## Suspect it
+Start thinking shock with significant trauma, blood loss, a gastrointestinal (GI) bleed, chest pain, dyspnea (shortness of breath), sepsis signs, or anaphylaxis. Symptoms and signs include weakness, dizziness, feeling faint; confusion, anxiety, restlessness, decreased level of consciousness (LOC); cold, clammy, pale, or mottled skin; rapid breathing and a rapid pulse.
 
-Check mental status (alert and appropriate versus new confusion, agitation, lethargy). Check skin color, temperature, and wet or dry. Check pulse rate and quality (strong versus weak/thready) and whether peripheral pulses are there. Heart rate is often up early. Respiratory rate is usually up. Blood pressure may be normal early. Falling BP is late. Watch if they are getting cold.
+If your gut says this patient looks bad or poorly perfused, start thinking shock.
 
-Treat them as sick. Open the airway. Give high-concentration oxygen per protocol. Assist ventilations if needed. Control obvious external bleeding. Check pulses, skin, and cap refill as age-appropriate. Position supine if they tolerate it, per protocol. Keep them warm — blankets, ambulance heat, no extra exposure. Rapid transport. Notify the hospital early if you can. Recheck vitals, mental status, and skin often and watch the trend.
+## Assess perfusion
+Mental status: are they alert, oriented, and appropriate? Any new confusion, agitation, or lethargy?
+
+Skin: color (pale, ashen, cyanotic, mottled), temperature (cool, cold, or warm), condition (dry versus sweaty/clammy).
+
+Pulses: rate (tachycardic?), quality (strong versus weak/thready), and whether peripheral pulses are present or absent.
+
+Vital signs: heart rate is often elevated early. Respiratory rate is usually elevated. Blood pressure may be normal early. Falling BP is a late sign — decompensated.
+
+Temperature and heat loss: are they getting cold? Factor in the environment, blood loss, and shock itself.
+
+## Compensated versus decompensated
+Compensated shock (early): tachycardia, tachypnea, normal or slightly low blood pressure, cool pale clammy skin, normal or mildly altered mental status.
+
+Decompensated shock (late): hypotension (falling BP), markedly altered mental status, very weak or absent peripheral pulses, worsening skin signs (mottled, very cool).
+
+Catch it in the compensated phase if you can.
+
+## What you do
+Shock-looking patients are sick. Scene safety and a general impression come first.
+
+Airway and breathing: keep a patent airway. Give high-concentration oxygen as appropriate per protocol. Assist ventilations if needed.
+
+Circulation: control obvious external bleeding. Check pulses, skin, and cap refill as age-appropriate. Consider positioning — supine if they tolerate it, per protocol.
+
+Prevent heat loss. Keep the patient warm with blankets and ambulance heat. Avoid unnecessary exposure.
+
+Shock is time-sensitive. Start early transport to an appropriate facility. Notify the receiving facility early if you can.
+
+Recheck vitals, mental status, and skin signs frequently. Watch the trend: improving, stable, or worsening?
 
 Keep them warm, oxygenated, and moving to the hospital.
 
 ## Practice
-- Do this: Define perfusion in one sentence. You did it right if you said deliver oxygen and nutrients to every cell and remove waste.
-- Do this: Say the shock same-word set. You did it right if shock = hypoperfusion = a circulatory / perfusion problem.
-- Do this: Name the two reasons cells are doubly unhappy. You did it right if not enough oxygen (fuel) and they sit in accumulating waste.
-- Do this: Aerobic versus anaerobic in one breath. You did it right if aerobic needs oxygen, makes lots of energy, and dumps easy CO2; anaerobic makes less energy, lactic acid, and acidosis.
-- Do this: Recite the cell timeline. You did it right if normal → backup (anaerobic) → injury → death (irreversible).
-- Do this: Two clocks. You did it right if brain and heart are minutes (top priority) and skin and gut are hours — still injured.
-- Do this: Recite what epinephrine does in compensation. You did it right if it raises heart rate, raises squeeze, and vasoconstricts some beds to protect heart and brain.
-- Do this: Call compensated versus decompensated. You did it right if compensated is shock signs with BP still okay, and decompensated is falling BP plus markedly worse mental status, pulses, and skin.
-- Do this: Say why a normal BP does not clear shock. You did it right if shock can exist before BP drops and you read mental status, skin, and pulses first.
-- Do this: Walk a shock patient. You did it right if airway and oxygen, stop obvious bleeding, keep them warm, rapid transport, and reassess often — do not wait for low BP.
+- Do this: Point to your own head and chest and say which organs you protect first in shock. You did it right if you said brain and heart, because those cells only last minutes.
+- Do this: Recite perfusion as two jobs. You did it right if good stuff in (oxygen, glucose) and trash out (CO2, later lactic acid).
+- Do this: Walk the cell timeline on four fingers. You did it right if normal, backup (anaerobic), injury, death — and death is irreversible.
+- Do this: Say aerobic versus anaerobic without looking. You did it right if aerobic is oxygen plus lots of energy plus easy CO2, and anaerobic is less energy plus lactic acid plus acidosis plus less heat.
+- Do this: Name the lethal triad. You did it right if hypothermia, acidosis, and coagulopathy (clotting failure).
+- Do this: Recite the epinephrine compensation package. You did it right if faster heart rate, harder squeeze, and vasoconstriction that keeps blood on heart and brain.
+- Do this: Call a patient who is tachycardic, cool, pale, clammy, and still at a near-normal BP. You did it right if you named compensated shock and did not wait for hypotension.
+- Do this: Call a patient with falling BP, markedly altered mental status, thready or absent peripheral pulses, and mottled very cool skin. You did it right if you named decompensated shock.
+- Do this: List your perfusion checks before you lean on BP. You did it right if mental status, skin, and pulses come first, and BP is a clue that gets louder as they decompensate.
+- Do this: Walk the treatment line out loud as if you are on scene. You did it right if airway and high-concentration oxygen per protocol, stop obvious bleeding, keep them warm, rapid transport, and frequent reassess of vitals, mental status, and skin.
