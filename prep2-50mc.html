@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Saturday 50-question quiz</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --green: #1b7a46;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(96px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+.score, .clock {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.clock.warn { background: #b42318; }
+.clock.idle { opacity: .7; font-weight: 650; }
+.prog-wrap { flex: 1; min-width: 110px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: flex; align-items: flex-start; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; flex: 1; }
+.opt.locked { cursor: default; }
+.opt.chosen { border-color: var(--navy); background: #eef3f8; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+.why-tap {
+  display: none; margin-top: 12px; width: 100%;
+  min-height: 48px; border: 2px solid var(--navy); border-radius: 12px;
+  background: #fff; color: var(--navy); font-size: 1.02rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.why-tap.visible { display: block; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.btn.ghost {
+  background: #fff; color: var(--navy); border: 2px solid var(--navy); margin-top: 10px;
+}
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.start-lead { font-size: 1.05rem; margin: 0 0 10px; }
+.start-meta { color: var(--muted); margin: 0 0 16px; font-size: .95rem; }
+.start-meta li { margin: 0 0 6px; }
+.err { color: var(--red); font-weight: 700; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Saturday 50-question quiz</h1>
+  <div class="sub">50 multiple choice · 1 hour · no notes</div>
+  <div class="bar">
+    <div class="clock idle" id="clock">1:00:00</div>
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Not started</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act">
+  <button type="button" class="btn" id="nextBtn">Next</button>
+</footer>
+<script>
+const BANK = [
+  {
+    "ch": 1,
+    "q": "The 1966 White Paper is credited with starting modern EMS mainly because it documented:",
+    "choices": [
+      "high death rates from infection",
+      "high death rates from trauma",
+      "high death rates from stroke",
+      "high death rates from overdose"
+    ],
+    "answer": "B",
+    "why": "The White Paper showed high trauma deaths, and that push started modern EMS."
+  },
+  {
+    "ch": 1,
+    "q": "An Emergency Medical Technician (EMT) gives care under whose license?",
+    "choices": [
+      "the ambulance company's business license",
+      "the hospital charge nurse's license",
+      "the state governor's license",
+      "the medical director's license"
+    ],
+    "answer": "D",
+    "why": "You and the paramedic work under the medical director's license; that doctor is legally responsible."
+  },
+  {
+    "ch": 1,
+    "q": "Offline medical direction is best described as:",
+    "choices": [
+      "standing orders you follow without a phone call",
+      "radio orders you request for that one call",
+      "a refusal form you leave at the scene",
+      "a hospital report you write after transfer"
+    ],
+    "answer": "A",
+    "why": "Offline direction is standing orders, so you treat without calling."
+  },
+  {
+    "ch": 2,
+    "q": "On a dangerous scene, who is first in the safety order?",
+    "choices": [
+      "the patient",
+      "bystanders",
+      "you",
+      "your crew"
+    ],
+    "answer": "C",
+    "why": "You first: you cannot help if you become a patient."
+  },
+  {
+    "ch": 2,
+    "q": "You park about how far from a fire, crash, or hazmat scene?",
+    "choices": [
+      "100 feet",
+      "50 feet",
+      "25 feet",
+      "10 feet"
+    ],
+    "answer": "A",
+    "why": "Park 100 feet from fires, crashes, and hazmat."
+  },
+  {
+    "ch": 2,
+    "q": "Alcohol-based hand sanitizer is OK on clean hands if it is at least:",
+    "choices": [
+      "25% alcohol",
+      "40% alcohol",
+      "10% alcohol",
+      "60% alcohol"
+    ],
+    "answer": "D",
+    "why": "Sanitizer needs at least 60% alcohol if hands are not dirty."
+  },
+  {
+    "ch": 3,
+    "q": "Causation in a negligence claim means:",
+    "choices": [
+      "your breach produced the patient's harm",
+      "you owed the patient a legal duty",
+      "you broke the accepted standard of care",
+      "the patient suffered money damages only"
+    ],
+    "answer": "A",
+    "why": "Causation means the breach actually produced the harm."
+  },
+  {
+    "ch": 3,
+    "q": "You start care, then leave a patient who still needs it without an equal or higher handoff. That is:",
+    "choices": [
+      "libel",
+      "assault",
+      "abandonment",
+      "slander"
+    ],
+    "answer": "C",
+    "why": "Abandonment is leaving without consent and without equal or higher handoff while they still need care."
+  },
+  {
+    "ch": 3,
+    "q": "You find no pulse, no breathing, and fixed pupils, but you are not sure they are dead. You:",
+    "choices": [
+      "start CPR after a living will",
+      "start CPR after no delay",
+      "start CPR after the examiner",
+      "start CPR after police arrive"
+    ],
+    "answer": "B",
+    "why": "Presumptive signs are not enough. If there is doubt, start CPR."
+  },
+  {
+    "ch": 4,
+    "q": "During a radio report you should:",
+    "choices": [
+      "give the patient's full name",
+      "spell the patient's last name",
+      "repeat the patient's home address",
+      "skip the patient's name"
+    ],
+    "answer": "D",
+    "why": "Keep the radio plain, and do not say the patient's name."
+  },
+  {
+    "ch": 4,
+    "q": "You catch a written error on a patient care report (PCR). You:",
+    "choices": [
+      "erase the words and correct it",
+      "draw one line and correct it",
+      "cover the words and correct it",
+      "scrap the page and rewrite it"
+    ],
+    "answer": "B",
+    "why": "Draw one line through the error and write the correct words. Never erase."
+  },
+  {
+    "ch": 4,
+    "q": "When you start a patient interview, you should ask:",
+    "choices": [
+      "an open-ended question first",
+      "a leading question first",
+      "a yes-or-no question first",
+      "a medical-jargon question first"
+    ],
+    "answer": "A",
+    "why": "Open-ended first, then closed yes-or-no if you need to pin details down."
+  },
+  {
+    "ch": 13,
+    "q": "Two rescuers are doing infant CPR. You compress with:",
+    "choices": [
+      "the heel of one hand",
+      "two fingers on the sternum",
+      "two thumbs encircling the chest",
+      "two adult hands stacked"
+    ],
+    "answer": "C",
+    "why": "Two rescuers on an infant use two-thumb encircling. Alone, the test default is the heel of one hand."
+  },
+  {
+    "ch": 5,
+    "q": "Semi-Fowler position is a sitting angle of about:",
+    "choices": [
+      "45 to 90 degrees",
+      "0 to 10 degrees",
+      "10 to 20 degrees",
+      "30 to 45 degrees"
+    ],
+    "answer": "D",
+    "why": "Semi-Fowler is 30\u201345 degrees; Fowler is 45\u201390."
+  },
+  {
+    "ch": 9,
+    "q": "Chest pain. Your partner is an EMT. You:",
+    "choices": [
+      "request paramedics now",
+      "assume paramedics now",
+      "delay paramedics now",
+      "skip paramedics now"
+    ],
+    "answer": "A",
+    "why": "Request paramedics. Your partner is an EMT."
+  },
+  {
+    "ch": 10,
+    "q": "A patient is breathing 16 times a minute with good chest rise, looks short of breath, and saturation is 88%. You give oxygen with:",
+    "choices": [
+      "a nasal cannula at 1\u20136 L/min",
+      "a non-rebreather mask at 10\u201315 L/min",
+      "a bag-valve mask at 1 breath every 6 seconds",
+      "a Venturi mask at 24%"
+    ],
+    "answer": "B",
+    "why": "Adequate breathing plus distress or sat under 94% gets a non-rebreather at 10\u201315 L/min, not a cannula."
+  },
+  {
+    "ch": 10,
+    "q": "An adult is not breathing but still has a pulse. You ventilate with:",
+    "choices": [
+      "a bag-valve mask, 1 breath every 2\u20133 seconds",
+      "a bag-valve mask, 1 breath every 10 seconds",
+      "a bag-valve mask, 1 breath every 30 seconds",
+      "a bag-valve mask, 1 breath every 6 seconds"
+    ],
+    "answer": "D",
+    "why": "Inadequate breathing or apnea gets a bag-valve mask. Adult rate is 1 breath every 6 seconds."
+  },
+  {
+    "ch": 11,
+    "q": "For chest pain you think is a heart attack, the aspirin dose is:",
+    "choices": [
+      "81 mg chewed by mouth",
+      "40 mg chewed by mouth",
+      "160\u2013325 mg chewed by mouth",
+      "648 mg chewed by mouth"
+    ],
+    "answer": "C",
+    "why": "Give 160\u2013325 mg chewed (2\u20134 baby tablets of 81 mg = 162\u2013324 mg)."
+  },
+  {
+    "ch": 8,
+    "q": "Do not take a wheeled stretcher (gurney):",
+    "choices": [
+      "onto a smooth hospital floor",
+      "up or down stairs",
+      "into the ambulance",
+      "across a paved sidewalk"
+    ],
+    "answer": "B",
+    "why": "A gurney is not for stairs, off-road ground, or angled slopes that can tip."
+  },
+  {
+    "ch": 8,
+    "q": "For shock with no other position rule, place the patient:",
+    "choices": [
+      "flat on the back",
+      "tilted with legs up",
+      "sitting straight up",
+      "lying on the right side"
+    ],
+    "answer": "A",
+    "why": "Shock is supine and flat now. Do not raise the legs."
+  },
+  {
+    "ch": 8,
+    "q": "A pregnant patient past 20 weeks is transported:",
+    "choices": [
+      "flat on the back",
+      "on the right side",
+      "sitting bolt upright",
+      "on the left side"
+    ],
+    "answer": "D",
+    "why": "Left lateral offloads the uterus from the aorta and vena cava (supine hypotensive syndrome)."
+  },
+  {
+    "ch": 9,
+    "q": "A patient who fell from a ladder is sorted first by:",
+    "choices": [
+      "nature of illness",
+      "past medical history",
+      "mechanism of injury (MOI)",
+      "home medication list"
+    ],
+    "answer": "C",
+    "why": "MOI is for trauma; nature of illness is for medical calls."
+  },
+  {
+    "ch": 9,
+    "q": "If you skip body substance isolation (BSI) or scene safety:",
+    "choices": [
+      "you passed that step",
+      "you delayed that step",
+      "you failed that step",
+      "you repeated that step"
+    ],
+    "answer": "C",
+    "why": "Skip BSI or scene safety and you failed."
+  },
+  {
+    "ch": 9,
+    "q": "An unstable or critical patient is reassessed every:",
+    "choices": [
+      "15 minutes",
+      "10 minutes",
+      "20 minutes",
+      "5 minutes"
+    ],
+    "answer": "D",
+    "why": "Unstable is every 5 minutes; stable is every 15."
+  },
+  {
+    "ch": 9,
+    "q": "The platinum 10 minutes is the goal for:",
+    "choices": [
+      "time from injury to the operating room",
+      "scene time from wheels-stop to wheels-roll",
+      "time from the 911 call to your arrival",
+      "time from the hospital door to surgery"
+    ],
+    "answer": "B",
+    "why": "Platinum 10 is pull-up to start driving; the golden hour is injury to surgery."
+  },
+  {
+    "ch": 10,
+    "q": "The number-one airway obstruction in an unconscious patient is the:",
+    "choices": [
+      "epiglottis",
+      "swollen tonsils",
+      "foreign food",
+      "tongue"
+    ],
+    "answer": "D",
+    "why": "When they go unconscious, muscles relax and the tongue falls back."
+  },
+  {
+    "ch": 10,
+    "q": "You suction a dirty airway until it is clear, for no more than:",
+    "choices": [
+      "10 seconds",
+      "15 seconds",
+      "5 seconds",
+      "20 seconds"
+    ],
+    "answer": "A",
+    "why": "Suction until clear, max 10 seconds, same for every age."
+  },
+  {
+    "ch": 10,
+    "q": "You insert an oropharyngeal airway (OPA) only if the patient is:",
+    "choices": [
+      "unresponsive and has a gag reflex",
+      "semi-conscious and following commands",
+      "unresponsive with no gag reflex",
+      "alert, talking, and protecting the airway"
+    ],
+    "answer": "C",
+    "why": "OPA is for fully unresponsive with no gag. Gag on insert means pull it now."
+  },
+  {
+    "ch": 10,
+    "q": "Do not place a nasopharyngeal airway (NPA) if there is:",
+    "choices": [
+      "a gag reflex with no trauma",
+      "any head or face trauma",
+      "snoring respirations",
+      "no teeth"
+    ],
+    "answer": "B",
+    "why": "Any head or face trauma is a hard stop for an NPA; a gag is actually a reason to use one."
+  },
+  {
+    "ch": 11,
+    "q": "Oral glucose is for low blood sugar if they:",
+    "choices": [
+      "are unresponsive but breathing",
+      "have a gag and cannot swallow",
+      "are seizing with a clenched jaw",
+      "are awake and can swallow"
+    ],
+    "answer": "D",
+    "why": "One tube if sugar is under 80 and they can protect the airway; unconscious is a no."
+  },
+  {
+    "ch": 11,
+    "q": "Aspirin given for suspected heart-attack chest pain works by:",
+    "choices": [
+      "keeping platelets from clumping so the clot does not grow",
+      "dissolving the clot already stuck inside the coronary artery",
+      "widening the coronary arteries the same way nitroglycerin does",
+      "blocking pain signals as they travel up the spinal cord"
+    ],
+    "answer": "A",
+    "why": "Aspirin makes platelets slippery so a clot does not grow. It does not dissolve clots."
+  },
+  {
+    "ch": 11,
+    "q": "Hold nitroglycerin if systolic blood pressure is under:",
+    "choices": [
+      "90 mm Hg",
+      "80 mm Hg",
+      "100 mm Hg",
+      "110 mm Hg"
+    ],
+    "answer": "C",
+    "why": "You need a triple-digit systolic (at least 100) before each nitro dose."
+  },
+  {
+    "ch": 12,
+    "q": "Shock means:",
+    "choices": [
+      "high blood pressure in the brain",
+      "hypoperfusion of the cells",
+      "a fever from infection only",
+      "a seizure from low sugar"
+    ],
+    "answer": "B",
+    "why": "Shock is hypoperfusion: not enough oxygenated blood to cells, and waste piles up."
+  },
+  {
+    "ch": 12,
+    "q": "In compensated shock, blood pressure is often:",
+    "choices": [
+      "near normal",
+      "very low",
+      "very high",
+      "not readable"
+    ],
+    "answer": "A",
+    "why": "Early shock can still hold pressure. Do not wait for hypotension to call it shock."
+  },
+  {
+    "ch": 12,
+    "q": "When cells switch to anaerobic metabolism in shock, the main waste is:",
+    "choices": [
+      "lactic acid",
+      "carbon dioxide",
+      "extra heat",
+      "extra ATP"
+    ],
+    "answer": "A",
+    "why": "Anaerobic work makes less energy and lactic acid, which feeds acidosis."
+  },
+  {
+    "ch": 12,
+    "q": "Cardiac tamponade is suggested by shock plus:",
+    "choices": [
+      "quiet lung, tracheal shift, and chest wall pain",
+      "clear lungs, falling sat, and sudden dyspnea",
+      "fever, flushed skin, and a slow pulse",
+      "JVD, muffled tones, and narrowing pulse pressure"
+    ],
+    "answer": "D",
+    "why": "Beck's triad is narrowing pulse pressure, JVD, and muffled heart tones."
+  },
+  {
+    "ch": 13,
+    "q": "The first step when you pick up an automated external defibrillator (AED) is:",
+    "choices": [
+      "dry the chest",
+      "turn it on",
+      "place the pads",
+      "deliver a shock"
+    ],
+    "answer": "B",
+    "why": "Turn the AED on first and follow the voice prompts."
+  },
+  {
+    "ch": 13,
+    "q": "Chest compression rate is:",
+    "choices": [
+      "100 to 120 per minute",
+      "80 to 100 per minute",
+      "60 to 80 per minute",
+      "120 to 140 per minute"
+    ],
+    "answer": "A",
+    "why": "Rate is 100\u2013120 per minute, not just \u201cat least 100.\u201d"
+  },
+  {
+    "ch": 13,
+    "q": "Adult compression depth is at least:",
+    "choices": [
+      "1 inch (2.5 cm)",
+      "1.5 inches (4 cm)",
+      "3 inches (7.5 cm)",
+      "2 inches (5 cm)"
+    ],
+    "answer": "D",
+    "why": "Adult depth is at least 2 inches, or 5 cm."
+  },
+  {
+    "ch": 15,
+    "q": "Stridor is:",
+    "choices": [
+      "a high-pitched lower-airway sound at the mouth",
+      "a high-pitched upper-airway sound at the mouth",
+      "a low-pitched mucus rattle at the mouth",
+      "a bubbling alveolar crackle at the mouth"
+    ],
+    "answer": "B",
+    "why": "Stridor is a high-pitched upper-airway sound you can hear standing in front."
+  },
+  {
+    "ch": 15,
+    "q": "Fever, night sweats, and coughing blood is the classic picture of:",
+    "choices": [
+      "croup",
+      "epiglottitis",
+      "tuberculosis (TB)",
+      "asthma"
+    ],
+    "answer": "C",
+    "why": "TB is fever, night sweats, and hemoptysis; you wear an N95."
+  },
+  {
+    "ch": 15,
+    "q": "On a short transport, a hypoxic chronic obstructive pulmonary disease (COPD) patient:",
+    "choices": [
+      "give high-flow oxygen now",
+      "withhold all of the oxygen",
+      "start CPAP at SBP 70",
+      "drop flow to two liters"
+    ],
+    "answer": "A",
+    "why": "On short runs you still give oxygen. Do not withhold it for hypoxic drive."
+  },
+  {
+    "ch": 16,
+    "q": "An implanted cardioverter-defibrillator (ICD) shocks from inside the chest. While it fires you:",
+    "choices": [
+      "take your hands off the patient",
+      "unzip the vest on the patient",
+      "switch the pacemaker off now",
+      "keep your hands on the patient"
+    ],
+    "answer": "D",
+    "why": "An ICD jolt is low and internal, so you can touch them when it fires."
+  },
+  {
+    "ch": 16,
+    "q": "A patient with a ventricular assist device (VAD) is talking but you cannot feel a pulse. You:",
+    "choices": [
+      "start CPR for the missing pulse",
+      "shock with the AED now",
+      "treat them as perfusing",
+      "turn the controller off"
+    ],
+    "answer": "C",
+    "why": "Many VADs have no palpable pulse; if they are talking, they are perfusing."
+  },
+  {
+    "ch": 16,
+    "q": "A wearable external defibrillator vest warns that it will shock. You:",
+    "choices": [
+      "take your hands off",
+      "take your hands back",
+      "take your hands closer",
+      "take your hands higher"
+    ],
+    "answer": "A",
+    "why": "A vest is a wearable AED. Hands off while it shocks."
+  },
+  {
+    "ch": 17,
+    "q": "For an arm-drift check, the palms should face:",
+    "choices": [
+      "down",
+      "in",
+      "up",
+      "out"
+    ],
+    "answer": "C",
+    "why": "Arm drift is palms up, eyes closed, so you can see one arm drop."
+  },
+  {
+    "ch": 17,
+    "q": "Last known well is the last time the patient was:",
+    "choices": [
+      "found by EMS",
+      "seen normal",
+      "admitted to the hospital",
+      "given aspirin"
+    ],
+    "answer": "B",
+    "why": "Last known well is last seen normal, not when you arrived."
+  },
+  {
+    "ch": 17,
+    "q": "A patient looks like a stroke. Before you lock in that impression, first:",
+    "choices": [
+      "give them an aspirin",
+      "check their blood sugar",
+      "give them nitroglycerin",
+      "start fibrinolytics now"
+    ],
+    "answer": "B",
+    "why": "Low sugar can copy a stroke. Check sugar first, and do not give aspirin for stroke."
+  },
+  {
+    "ch": 18,
+    "q": "The appendix sits in the:",
+    "choices": [
+      "right lower quadrant",
+      "right upper quadrant",
+      "left lower quadrant",
+      "left upper quadrant"
+    ],
+    "answer": "A",
+    "why": "The appendix is at the start of the large intestine in the right lower quadrant."
+  },
+  {
+    "ch": 13,
+    "q": "You are the only rescuer doing infant CPR. You compress with:",
+    "choices": [
+      "the heel of one hand",
+      "two thumbs encircling the chest",
+      "two fingers on the sternum",
+      "two adult hands stacked"
+    ],
+    "answer": "A",
+    "why": "Alone, the test default is the heel of one hand. Two rescuers use two-thumb encircling."
+  }
+]
+;
+const LETTERS = ["A", "B", "C", "D"];
+const TIME_LIMIT_MS = 60 * 60 * 1000;
+
+let i = 0;
+let correct = 0;
+let answered = 0;
+let picked = false;
+let whyOpen = false;
+let timedOut = false;
+let started = false;
+let deadline = 0;
+let tickTimer = null;
+let missed = [];
+let picks = [];
+
+function $(id) { return document.getElementById(id); }
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function formatTime(ms) {
+  const t = Math.max(0, Math.ceil(ms / 1000));
+  const h = Math.floor(t / 3600);
+  const m = Math.floor((t % 3600) / 60);
+  const s = t % 60;
+  const pad = function(n) { return (n < 10 ? "0" : "") + n; };
+  if (h > 0) return h + ":" + pad(m) + ":" + pad(s);
+  return pad(m) + ":" + pad(s);
+}
+
+function stopTick() {
+  if (tickTimer) { clearInterval(tickTimer); tickTimer = null; }
+}
+
+function updateClock() {
+  const el = $("clock");
+  if (!started) {
+    el.textContent = "1:00:00";
+    el.classList.add("idle");
+    el.classList.remove("warn");
+    return;
+  }
+  el.classList.remove("idle");
+  const left = deadline - Date.now();
+  el.textContent = formatTime(left);
+  if (left <= 5 * 60 * 1000) el.classList.add("warn");
+  else el.classList.remove("warn");
+  if (left <= 0) timeUp();
+}
+
+function startTimer() {
+  deadline = Date.now() + TIME_LIMIT_MS;
+  stopTick();
+  tickTimer = setInterval(updateClock, 250);
+  updateClock();
+}
+
+function updateScore() {
+  $("score").textContent = correct + " / " + answered;
+  const n = BANK.length;
+  if (!started) {
+    $("progLabel").textContent = "Not started";
+    $("progBar").style.width = "0%";
+    return;
+  }
+  if (timedOut || i >= n) {
+    $("progLabel").textContent = timedOut ? ("Time up · " + n + " questions") : ("Done · " + n + " questions");
+    $("progBar").style.width = "100%";
+    return;
+  }
+  $("progLabel").textContent = "Question " + (i + 1) + " of " + n;
+  $("progBar").style.width = Math.round(((i + (picked ? 1 : 0)) / n) * 100) + "%";
+}
+
+function gateScreen() {
+  started = false;
+  timedOut = false;
+  picked = false;
+  whyOpen = false;
+  i = 0; correct = 0; answered = 0; missed = []; picks = [];
+  stopTick();
+  deadline = 0;
+  $("nextBtn").classList.remove("visible");
+  $("nextBtn").textContent = "Next";
+  if (!Array.isArray(BANK) || BANK.length !== 50) {
+    $("main").innerHTML = '<div class="card"><p class="err">This page needs exactly 50 questions from prep2-50mc.json.</p></div>';
+    updateScore();
+    updateClock();
+    return;
+  }
+  $("main").innerHTML =
+    '<div class="card">'
+    + '<p class="start-lead">Straight 50-question multiple-choice test.</p>'
+    + '<ul class="start-meta">'
+    + '<li>One hour. The clock starts when you tap Begin and cannot be paused.</li>'
+    + '<li>When the hour hits 0, the quiz locks and submits.</li>'
+    + '<li>Pick a choice first. Correct letter and why stay hidden until then. Then tap Why.</li>'
+    + '</ul>'
+    + '<button type="button" class="btn visible" id="beginBtn">Begin</button>'
+    + '</div>';
+  $("beginBtn").addEventListener("click", begin);
+  updateScore();
+  updateClock();
+  window.scrollTo(0, 0);
+}
+
+function begin() {
+  if (started) return;
+  started = true;
+  timedOut = false;
+  picked = false;
+  whyOpen = false;
+  i = 0; correct = 0; answered = 0; missed = []; picks = new Array(BANK.length).fill(null);
+  startTimer();
+  render();
+}
+
+function render() {
+  if (timedOut) return endScreen();
+  picked = false;
+  whyOpen = false;
+  $("nextBtn").classList.remove("visible");
+  if (i >= BANK.length) { return endScreen(); }
+  const q = BANK[i];
+  let optsHtml = "";
+  LETTERS.forEach(function(letter, idx) {
+    optsHtml += '<button type="button" class="opt" data-idx="' + idx + '">'
+      + '<span class="letter">' + letter + '</span>'
+      + '<span class="ot"></span></button>';
+  });
+  $("main").innerHTML =
+    '<div class="card">'
+    + '<div class="ch-tag">Ch ' + q.ch + '</div>'
+    + '<p class="qtext"></p>'
+    + '<div class="opts">' + optsHtml + '</div>'
+    + '<button type="button" class="why-tap" id="whyTap">Why</button>'
+    + '<div class="why" id="whyBox"></div>'
+    + '</div>';
+  $("main").querySelector(".qtext").textContent = q.q;
+  const buttons = $("main").querySelectorAll(".opt");
+  buttons.forEach(function(btn, idx) {
+    btn.querySelector(".ot").textContent = q.choices[idx];
+    btn.addEventListener("click", function() { pick(idx); });
+  });
+  $("whyTap").addEventListener("click", showWhy);
+  updateScore();
+  window.scrollTo(0, 0);
+}
+
+function pick(idx) {
+  if (!started || timedOut || picked) return;
+  picked = true;
+  const q = BANK[i];
+  const letter = LETTERS[idx];
+  const ok = letter === q.answer;
+  answered += 1;
+  if (ok) correct += 1;
+  picks[i] = letter;
+  if (!ok) {
+    missed.push({
+      ch: q.ch,
+      q: q.q,
+      chosen: letter + ". " + q.choices[idx],
+      right: q.answer + ". " + q.choices[LETTERS.indexOf(q.answer)],
+      why: q.why
+    });
+  }
+  const buttons = $("main").querySelectorAll(".opt");
+  buttons.forEach(function(btn, j) {
+    btn.classList.add("locked");
+    btn.disabled = true;
+    if (j === idx) btn.classList.add("chosen");
+  });
+  $("whyTap").classList.add("visible");
+  $("nextBtn").textContent = (i + 1 >= BANK.length) ? "See results" : "Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+
+function showWhy() {
+  if (!picked || whyOpen || timedOut) return;
+  whyOpen = true;
+  const q = BANK[i];
+  const chosenLetter = picks[i];
+  const ok = chosenLetter === q.answer;
+  const buttons = $("main").querySelectorAll(".opt");
+  const rightIdx = LETTERS.indexOf(q.answer);
+  buttons.forEach(function(btn, j) {
+    const letter = LETTERS[j];
+    if (letter === chosenLetter && ok) btn.classList.add("right");
+    else if (letter === chosenLetter && !ok) btn.classList.add("wrong");
+    else if (letter === q.answer) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box = $("whyBox");
+  const verdict = ok
+    ? '<div class="verdict ok">Correct</div>'
+    : '<div class="verdict bad">Incorrect</div>';
+  const extra = ok ? "" :
+    '<div class="correct-line">Correct: ' + escapeHtml(q.answer + ". " + q.choices[rightIdx]) + '</div>';
+  box.innerHTML = verdict + '<div class="why-body"></div>' + extra;
+  box.querySelector(".why-body").textContent = q.why;
+  box.classList.add("visible");
+  $("whyTap").classList.remove("visible");
+}
+
+function timeUp() {
+  if (timedOut || !started) return;
+  timedOut = true;
+  stopTick();
+  deadline = Date.now();
+  updateClock();
+  endScreen();
+}
+
+function endScreen() {
+  $("nextBtn").classList.remove("visible");
+  const n = BANK.length;
+  const unanswered = n - answered;
+  const pct = n ? Math.round((correct / n) * 100) : 0;
+  let missHtml = "";
+  if (missed.length === 0 && unanswered === 0) {
+    missHtml = '<p>No missed questions.</p>';
+  } else {
+    missHtml = '<div class="miss"><h3>Missed or blank (' + (missed.length + unanswered) + ')</h3>';
+    missed.forEach(function() {
+      missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>';
+    });
+    if (unanswered) {
+      missHtml += '<p>' + unanswered + ' left unanswered when time ran out or the quiz locked.</p>';
+    }
+    missHtml += '</div>';
+  }
+  const title = timedOut ? "Time is up" : "Quiz complete";
+  $("main").innerHTML =
+    '<div class="card end">'
+    + '<h2>' + title + '</h2>'
+    + '<div class="big">' + correct + ' / ' + n + '</div>'
+    + '<div class="pct">' + pct + '% · 50 questions · 1 hour</div>'
+    + missHtml
+    + '<button type="button" class="btn visible" id="again">Back to start</button>'
+    + '</div>';
+  if (missed.length) {
+    const items = $("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m, idx) {
+      items[idx].querySelector(".ch-tag").textContent = "Ch " + m.ch;
+      items[idx].querySelector(".mq").textContent = m.q;
+      items[idx].querySelector(".mwhy").textContent =
+        "You chose: " + m.chosen + " — " + m.why + "  Correct: " + m.right;
+    });
+  }
+  $("again").addEventListener("click", gateScreen);
+  updateScore();
+  window.scrollTo(0, 0);
+}
+
+$("nextBtn").addEventListener("click", function() {
+  if (!picked || timedOut) return;
+  i += 1;
+  render();
+});
+
+gateScreen();
+</script>
+</body>
+</html>
