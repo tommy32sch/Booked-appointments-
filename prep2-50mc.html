@@ -744,7 +744,11 @@ const BANK = [
 ]
 ;
 const LETTERS = ["A", "B", "C", "D"];
-const TIME_LIMIT_MS = 60 * 60 * 1000;
+const TIME_LIMIT_MS_DEFAULT = 60 * 60 * 1000;
+const TIME_LIMIT_MS = (function () {
+  const n = Number(new URLSearchParams(location.search).get("ms"));
+  return (Number.isFinite(n) && n > 0) ? n : TIME_LIMIT_MS_DEFAULT;
+})();
 
 let i = 0;
 let correct = 0;
@@ -781,7 +785,7 @@ function stopTick() {
 function updateClock() {
   const el = $("clock");
   if (!started) {
-    el.textContent = "1:00:00";
+    el.textContent = formatTime(TIME_LIMIT_MS);
     el.classList.add("idle");
     el.classList.remove("warn");
     return;
