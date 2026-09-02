@@ -1,0 +1,602 @@
+[
+  {
+    "ch": 1,
+    "q": "In 1970, NHTSA was placed under:",
+    "choices": [
+      "the Department of Education",
+      "the Department of Transportation",
+      "the Department of Agriculture",
+      "the Department of the Interior"
+    ],
+    "answer": "B",
+    "why": "NHTSA sat under DOT in 1970."
+  },
+  {
+    "ch": 1,
+    "q": "An Emergency Medical Responder (EMR) course is about:",
+    "choices": [
+      "50 hours",
+      "150 hours",
+      "1,000 hours",
+      "130 hours"
+    ],
+    "answer": "A",
+    "why": "EMR is about 50 hours of CPR and first aid."
+  },
+  {
+    "ch": 1,
+    "q": "Vaccines and seatbelts are examples of:",
+    "choices": [
+      "primary prevention",
+      "secondary prevention",
+      "medical direction",
+      "online direction"
+    ],
+    "answer": "A",
+    "why": "Primary prevention stops harm before it starts, like vaccines and seatbelts."
+  },
+  {
+    "ch": 2,
+    "q": "On a hazmat call, look up the chemical in the:",
+    "choices": [
+      "Incident Command System",
+      "Material Safety sheet",
+      "Hazardous Waste plan",
+      "Emergency Response Guidebook"
+    ],
+    "answer": "D",
+    "why": "The hazmat guidebook is the Emergency Response Guidebook (ERG)."
+  },
+  {
+    "ch": 2,
+    "q": "An N95 respirator is for airborne risk and must be:",
+    "choices": [
+      "size-guessed for you",
+      "fit-tested for you",
+      "factory-sealed for you",
+      "crew-shared for you"
+    ],
+    "answer": "B",
+    "why": "N95 means airborne risk, and it must be fit-tested."
+  },
+  {
+    "ch": 2,
+    "q": "After a needlestick, you should:",
+    "choices": [
+      "wash or flush the site",
+      "squeeze and suck the site",
+      "bleach and heat the site",
+      "cover and ignore the site"
+    ],
+    "answer": "A",
+    "why": "Hand off, wash or flush, do not squeeze, suck, or bleach, then report."
+  },
+  {
+    "ch": 3,
+    "q": "A negligence claim requires duty, breach, damages, and:",
+    "choices": [
+      "causation",
+      "consent",
+      "intent",
+      "training"
+    ],
+    "answer": "A",
+    "why": "Negligence needs duty, breach, damages, and causation."
+  },
+  {
+    "ch": 3,
+    "q": "A living will is often not enough for EMS to withhold care. You need:",
+    "choices": [
+      "a valid family verbal ask",
+      "a valid hospital face sheet",
+      "a valid living will copy",
+      "a valid DNR or POLST"
+    ],
+    "answer": "D",
+    "why": "You need a valid DNR or POLST; a living will often is not enough."
+  },
+  {
+    "ch": 3,
+    "q": "When you must restrain a patient, never place them:",
+    "choices": [
+      "prone on the belly",
+      "supine on the back",
+      "sitting on the bench",
+      "standing at the wall"
+    ],
+    "answer": "A",
+    "why": "Never place a restrained patient prone."
+  },
+  {
+    "ch": 4,
+    "q": "SBAR handoff ends with Situation, Background, Assessment, and:",
+    "choices": [
+      "Refusal and signature",
+      "Radio and protocol",
+      "Recommendation or ETA",
+      "Response and billing"
+    ],
+    "answer": "C",
+    "why": "SBAR is Situation, Background, Assessment, Recommendation or ETA."
+  },
+  {
+    "ch": 4,
+    "q": "When medical control gives a radio order, you should:",
+    "choices": [
+      "skip the order back",
+      "delay the order back",
+      "change the order back",
+      "repeat the order back"
+    ],
+    "answer": "D",
+    "why": "Radio orders get repeated back."
+  },
+  {
+    "ch": 4,
+    "q": "The patient care report is a:",
+    "choices": [
+      "legal permanent record",
+      "draft radio script",
+      "private class note",
+      "scratch dispatch log"
+    ],
+    "answer": "A",
+    "why": "The PCR is a legal, permanent record."
+  },
+  {
+    "ch": 5,
+    "q": "The prefix cyan- means:",
+    "choices": [
+      "blue",
+      "red",
+      "white",
+      "black"
+    ],
+    "answer": "A",
+    "why": "Cyan means blue."
+  },
+  {
+    "ch": 5,
+    "q": "The prefix tachy- means:",
+    "choices": [
+      "fast",
+      "slow",
+      "normal",
+      "irregular"
+    ],
+    "answer": "A",
+    "why": "Tachy means fast."
+  },
+  {
+    "ch": 6,
+    "q": "The organ that filters the blood is the:",
+    "choices": [
+      "spleen",
+      "liver",
+      "pancreas",
+      "kidneys"
+    ],
+    "answer": "D",
+    "why": "Filters the blood means kidneys; the spleen removes old red cells."
+  },
+  {
+    "ch": 6,
+    "q": "Pulmonary arteries carry:",
+    "choices": [
+      "deoxygenated blood from the right ventricle to the lungs",
+      "oxygenated blood from the lungs to the left atrium",
+      "deoxygenated blood from the body to the right atrium",
+      "oxygenated blood from the left ventricle to the body"
+    ],
+    "answer": "A",
+    "why": "Pulmonary arteries are the exception: deoxygenated blood, right ventricle to lungs."
+  },
+  {
+    "ch": 6,
+    "q": "The heart's primary pacemaker is the:",
+    "choices": [
+      "AV node",
+      "mitral valve",
+      "SA node",
+      "aortic valve"
+    ],
+    "answer": "C",
+    "why": "The SA node is the primary pacemaker."
+  },
+  {
+    "ch": 6,
+    "q": "Breathing, heart rate, and blood pressure are run by the:",
+    "choices": [
+      "cerebellum",
+      "brainstem",
+      "cerebrum",
+      "hypothalamus"
+    ],
+    "answer": "B",
+    "why": "The brainstem runs breathing, heart rate, and blood pressure."
+  },
+  {
+    "ch": 8,
+    "q": "To carry an awake medical patient down stairs, use a:",
+    "choices": [
+      "scoop stretcher",
+      "vacuum mattress",
+      "Stokes basket",
+      "stair chair"
+    ],
+    "answer": "D",
+    "why": "A stair chair is for an awake patient with no spine injury."
+  },
+  {
+    "ch": 8,
+    "q": "An emergency move is done in under:",
+    "choices": [
+      "60 seconds",
+      "90 seconds",
+      "120 seconds",
+      "180 seconds"
+    ],
+    "answer": "A",
+    "why": "Emergency moves are seconds, under a minute."
+  },
+  {
+    "ch": 8,
+    "q": "Unresponsive, breathing, and no spine injury. Place them in:",
+    "choices": [
+      "recovery position",
+      "shock position",
+      "prone position",
+      "sitting position"
+    ],
+    "answer": "A",
+    "why": "Unresponsive, breathing, and no spine injury go in recovery position."
+  },
+  {
+    "ch": 9,
+    "q": "When you give a medication, the sequence is:",
+    "choices": [
+      "administer, then contact, then reassess",
+      "contact, then administer, then reassess",
+      "reassess, then administer, then contact",
+      "administer, then reassess, then contact"
+    ],
+    "answer": "B",
+    "why": "Right pieces in the wrong order are wrong; contact, give, reassess."
+  },
+  {
+    "ch": 9,
+    "q": "Eyes to sound, confused, localizes. The GCS total is:",
+    "choices": [
+      "13",
+      "15",
+      "11",
+      "12"
+    ],
+    "answer": "D",
+    "why": "Eyes 3, verbal 4, motor 5, total 12."
+  },
+  {
+    "ch": 9,
+    "q": "Alert and oriented times four:",
+    "choices": [
+      "does prove legal capacity",
+      "does prove implied consent",
+      "does not guarantee capacity",
+      "does not check orientation"
+    ],
+    "answer": "C",
+    "why": "A&O times four is not a guarantee of capacity."
+  },
+  {
+    "ch": 9,
+    "q": "If they need oxygen and may later need Narcan, you:",
+    "choices": [
+      "give oxygen first",
+      "give Narcan first",
+      "give EpiPen first",
+      "give aspirin first"
+    ],
+    "answer": "A",
+    "why": "Airway, breathing, and oxygen come before Narcan or an EpiPen."
+  },
+  {
+    "ch": 9,
+    "q": "Capillary refill is delayed if it takes more than:",
+    "choices": [
+      "2 seconds",
+      "5 seconds",
+      "10 seconds",
+      "30 seconds"
+    ],
+    "answer": "A",
+    "why": "Cap refill over 2 seconds is delayed, a shock sign in a child."
+  },
+  {
+    "ch": 10,
+    "q": "Mouth junk is suctioned with a:",
+    "choices": [
+      "non-rigid suction catheter",
+      "Yankauer suction catheter",
+      "whistle-tip suction catheter",
+      "rigid suction catheter"
+    ],
+    "answer": "D",
+    "why": "Mouth junk gets a rigid suction catheter."
+  },
+  {
+    "ch": 10,
+    "q": "The indication for CPAP is:",
+    "choices": [
+      "fluid in the lungs",
+      "spasm in the bronchi",
+      "mucus in the bronchi",
+      "air outside the lungs"
+    ],
+    "answer": "A",
+    "why": "CPAP is for fluid in the lungs."
+  },
+  {
+    "ch": 10,
+    "q": "Unconscious on a sidewalk with unknown trauma. Open the airway with a:",
+    "choices": [
+      "head-tilt chin-lift",
+      "tongue-jaw lift",
+      "jaw thrust",
+      "crossed-finger sweep"
+    ],
+    "answer": "C",
+    "why": "Unknown sidewalk trauma gets a jaw thrust; do not let go."
+  },
+  {
+    "ch": 10,
+    "q": "Any mask on the face is run at:",
+    "choices": [
+      "1 to 6 LPM",
+      "10 to 15 LPM",
+      "2 to 4 LPM",
+      "6 to 8 LPM"
+    ],
+    "answer": "B",
+    "why": "Any face mask is 10 to 15 LPM; less than 10 can smother them."
+  },
+  {
+    "ch": 10,
+    "q": "A child with a pulse and no breathing gets:",
+    "choices": [
+      "10 breaths per minute",
+      "12-20 breaths per minute",
+      "8 breaths per minute",
+      "20-30 breaths per minute"
+    ],
+    "answer": "D",
+    "why": "Child and infant bagging is 20 to 30 breaths a minute."
+  },
+  {
+    "ch": 11,
+    "q": "Epinephrine for anaphylaxis must be:",
+    "choices": [
+      "borrowed from a bystander",
+      "taken from expired stock",
+      "prescribed to the patient",
+      "shared from another crew"
+    ],
+    "answer": "C",
+    "why": "Epinephrine must be prescribed to the patient."
+  },
+  {
+    "ch": 11,
+    "q": "The nitroglycerin dose is:",
+    "choices": [
+      "0.4 mg under the tongue",
+      "0.4 mg chewed and swallowed",
+      "0.4 mg in the muscle",
+      "0.4 mg in the nose"
+    ],
+    "answer": "A",
+    "why": "Nitro is 0.4 mg under the tongue."
+  },
+  {
+    "ch": 11,
+    "q": "Naloxone binds opioid receptors and:",
+    "choices": [
+      "fires them",
+      "blocks them",
+      "dissolves them",
+      "dilates them"
+    ],
+    "answer": "B",
+    "why": "Naloxone is an antagonist: it binds and blocks opioid receptors."
+  },
+  {
+    "ch": 11,
+    "q": "Alpha receptors mainly:",
+    "choices": [
+      "slow digestion and store sugar",
+      "open pores and dump heat",
+      "drop sugar and store fat",
+      "squeeze vessels and raise pressure"
+    ],
+    "answer": "D",
+    "why": "Alpha stimulation squeezes vessels and raises blood pressure."
+  },
+  {
+    "ch": 12,
+    "q": "Neurogenic shock from a cord injury often shows a:",
+    "choices": [
+      "fast pulse",
+      "absent pulse",
+      "slow pulse",
+      "weak pulse"
+    ],
+    "answer": "C",
+    "why": "Neurogenic shock and big head injury: slow pulse. Other shock: fast pulse."
+  },
+  {
+    "ch": 12,
+    "q": "A 4-year-old's minimum systolic pressure is:",
+    "choices": [
+      "78 mm Hg",
+      "90 mm Hg",
+      "70 mm Hg",
+      "100 mm Hg"
+    ],
+    "answer": "A",
+    "why": "Pediatric minimum systolic is 2 times age plus 70, so 78."
+  },
+  {
+    "ch": 12,
+    "q": "Septic shock is suggested by infection plus:",
+    "choices": [
+      "cool skin and high pressure",
+      "dry skin and high pressure",
+      "pale skin and high pressure",
+      "hot skin and low pressure"
+    ],
+    "answer": "D",
+    "why": "Septic shock is infection with hot skin and low pressure."
+  },
+  {
+    "ch": 13,
+    "q": "A shockable AED rhythm is:",
+    "choices": [
+      "ventricular fibrillation",
+      "pulseless asystole",
+      "sinus bradycardia",
+      "sinus tachycardia"
+    ],
+    "answer": "A",
+    "why": "The AED shocks ventricular fibrillation and pulseless ventricular tachycardia."
+  },
+  {
+    "ch": 13,
+    "q": "One rescuer CPR uses:",
+    "choices": [
+      "15 compressions to 2 breaths",
+      "30 compressions to 1 breath",
+      "30 compressions to 2 breaths",
+      "5 compressions to 1 breath"
+    ],
+    "answer": "C",
+    "why": "Alone, every age is 30 compressions to 2 breaths."
+  },
+  {
+    "ch": 13,
+    "q": "Do not pause compressions longer than:",
+    "choices": [
+      "2 minutes",
+      "10 seconds",
+      "30 seconds",
+      "1 minute"
+    ],
+    "answer": "B",
+    "why": "Keep pauses at 10 seconds or less."
+  },
+  {
+    "ch": 15,
+    "q": "Sudden dyspnea, clear equal lungs, high-flow oxygen, sats still falling. Think:",
+    "choices": [
+      "tension pneumothorax",
+      "cardiac tamponade",
+      "pulmonary edema",
+      "pulmonary embolism"
+    ],
+    "answer": "D",
+    "why": "Clear equal lungs with falling sats on high-flow oxygen is the PE pattern."
+  },
+  {
+    "ch": 15,
+    "q": "Croup in a small child is classically a:",
+    "choices": [
+      "seal-bark cough and a low fever",
+      "drooling mouth and a high fever",
+      "whooping spell and a high fever",
+      "rusty sputum and a high fever"
+    ],
+    "answer": "A",
+    "why": "Croup is a seal-bark cough with a slow, low-grade fever."
+  },
+  {
+    "ch": 15,
+    "q": "Asthma wheeze is mostly heard on:",
+    "choices": [
+      "inhalation",
+      "swallowing",
+      "exhalation",
+      "coughing"
+    ],
+    "answer": "C",
+    "why": "Wheeze is lower-airway constriction, mostly on exhalation."
+  },
+  {
+    "ch": 16,
+    "q": "A hypertensive emergency. Do not give nitroglycerin just to:",
+    "choices": [
+      "treat the headache",
+      "drop the pressure",
+      "stop the nosebleed",
+      "calm the nausea"
+    ],
+    "answer": "B",
+    "why": "Do not give nitro just to drop pressure; rebound raises rupture risk."
+  },
+  {
+    "ch": 16,
+    "q": "Aortic dissection pain is often:",
+    "choices": [
+      "slow crushing to the arm",
+      "gradual burning to the belly",
+      "mild aching to the jaw",
+      "sudden tearing to the back"
+    ],
+    "answer": "D",
+    "why": "Dissection is sudden 10-out-of-10 tearing pain to the back."
+  },
+  {
+    "ch": 16,
+    "q": "A demand pacemaker fires when the heart is:",
+    "choices": [
+      "too slow",
+      "too fast",
+      "too empty",
+      "too full"
+    ],
+    "answer": "A",
+    "why": "A demand pacemaker fires when the native rate is too slow."
+  },
+  {
+    "ch": 17,
+    "q": "A right-brain stroke usually hits the:",
+    "choices": [
+      "left side of the body",
+      "right side of the body",
+      "front side of the body",
+      "back side of the body"
+    ],
+    "answer": "A",
+    "why": "Motor nerves cross in the brainstem, so a right-brain stroke hits the left body."
+  },
+  {
+    "ch": 17,
+    "q": "Expressive aphasia means they:",
+    "choices": [
+      "cannot understand what you said",
+      "understand you but cannot speak",
+      "understand you and speak clearly",
+      "cannot hear you or speak"
+    ],
+    "answer": "B",
+    "why": "Expressive aphasia: they understand you but cannot get words out."
+  },
+  {
+    "ch": 18,
+    "q": "Kidney stones are usually made of:",
+    "choices": [
+      "fluid",
+      "bile",
+      "glycogen",
+      "calcium"
+    ],
+    "answer": "D",
+    "why": "Stones are usually calcium, not too much fluid."
+  }
+]
