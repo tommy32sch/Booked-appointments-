@@ -1,0 +1,602 @@
+[
+  {
+    "ch": 1,
+    "q": "A paramedic course is at least about:",
+    "choices": [
+      "1,000 hours",
+      "150 hours",
+      "50 hours",
+      "300 hours"
+    ],
+    "answer": "A",
+    "why": "Paramedic ALS training is at least about 1,000 hours."
+  },
+  {
+    "ch": 1,
+    "q": "Screenings and early blood-pressure care are examples of:",
+    "choices": [
+      "primary prevention",
+      "secondary prevention",
+      "medical direction",
+      "online direction"
+    ],
+    "answer": "B",
+    "why": "Secondary prevention catches problems early, such as screenings and early BP care."
+  },
+  {
+    "ch": 1,
+    "q": "A knowledge-based error is choosing the wrong plan because the problem is:",
+    "choices": [
+      "familiar and fully trained",
+      "familiar and fully charted",
+      "new and incompletely known",
+      "old and fully practiced"
+    ],
+    "answer": "C",
+    "why": "Knowledge-based errors happen on new, incomplete problems — the wrong plan or antidote."
+  },
+  {
+    "ch": 2,
+    "q": "The correct order to put on PPE is:",
+    "choices": [
+      "gloves, gown, mask, eyes, hands",
+      "gown, gloves, mask, eyes, hands",
+      "mask, eyes, gown, gloves, hands",
+      "hands, gown, mask, eyes, gloves"
+    ],
+    "answer": "D",
+    "why": "On goes clean hands, gown, mask, eyes, then gloves."
+  },
+  {
+    "ch": 2,
+    "q": "Stress that shows days to months later with nightmares is:",
+    "choices": [
+      "delayed stress",
+      "acute stress",
+      "cumulative stress",
+      "immediate stress"
+    ],
+    "answer": "A",
+    "why": "Delayed stress hits days to months later, often with nightmares or flashbacks."
+  },
+  {
+    "ch": 2,
+    "q": "At a hazmat scene, you should stage:",
+    "choices": [
+      "downhill and downwind",
+      "uphill and upwind",
+      "uphill and downwind",
+      "downhill and upwind"
+    ],
+    "answer": "B",
+    "why": "Hazmat staging is uphill and upwind from the spill."
+  },
+  {
+    "ch": 3,
+    "q": "Implied consent applies when the patient is:",
+    "choices": [
+      "alert and refusing after full risks",
+      "awake but angry about the bill",
+      "unresponsive in a true emergency",
+      "signing a living will at home"
+    ],
+    "answer": "C",
+    "why": "Implied consent covers an unresponsive or badly altered patient in a true emergency."
+  },
+  {
+    "ch": 3,
+    "q": "Dependent lividity is a:",
+    "choices": [
+      "presumptive sign of death",
+      "refusal form of consent",
+      "definitive sign of death",
+      "capacity test of refusal"
+    ],
+    "answer": "C",
+    "why": "Lividity is a definitive sign of death, not a presumptive one."
+  },
+  {
+    "ch": 3,
+    "q": "Capacity to refuse care requires they can:",
+    "choices": [
+      "communicate a clear choice",
+      "recognize the real risks",
+      "explain their own reasoning",
+      "repeat the treatment plan"
+    ],
+    "answer": "A",
+    "why": "Capacity needs understanding, the downside, reasoning, and a communicated choice."
+  },
+  {
+    "ch": 4,
+    "q": "A patient care report should hold:",
+    "choices": [
+      "facts you can defend",
+      "guesses about motive",
+      "opinions about character",
+      "rumors from bystanders"
+    ],
+    "answer": "A",
+    "why": "PCR is facts only — not documented means it did not happen."
+  },
+  {
+    "ch": 4,
+    "q": "You transfer care only after a verbal handoff plus:",
+    "choices": [
+      "a signed living will alone",
+      "a dispatch time stamp alone",
+      "a finished patient care report",
+      "a bystander statement alone"
+    ],
+    "answer": "C",
+    "why": "Handoff needs a verbal report to equal or higher care and a finished PCR."
+  },
+  {
+    "ch": 4,
+    "q": "During an interview you should avoid:",
+    "choices": [
+      "open-ended first questions",
+      "false reassurance and hope",
+      "plain words at their level",
+      "time for them to answer"
+    ],
+    "answer": "B",
+    "why": "Avoid false reassurance, leading questions, jargon, and judgment."
+  },
+  {
+    "ch": 5,
+    "q": "The root hepat- means:",
+    "choices": [
+      "heart",
+      "liver",
+      "kidney",
+      "nerve"
+    ],
+    "answer": "B",
+    "why": "Hepat- means liver; cardi- is heart; nephr- is kidney."
+  },
+  {
+    "ch": 5,
+    "q": "Proximal means closer to the:",
+    "choices": [
+      "trunk of the body",
+      "toes of the foot",
+      "skin of the surface",
+      "side of the midline"
+    ],
+    "answer": "A",
+    "why": "Proximal is closer to the trunk; distal is farther out."
+  },
+  {
+    "ch": 6,
+    "q": "The cervical spine has how many vertebrae?",
+    "choices": [
+      "7",
+      "12",
+      "5",
+      "4"
+    ],
+    "answer": "A",
+    "why": "Cervical is 7; then 12 thoracic, 5 lumbar, 5 fused sacrum, 4 fused coccyx."
+  },
+  {
+    "ch": 6,
+    "q": "Beta-1 receptors mainly make the heart:",
+    "choices": [
+      "open the lung tubes",
+      "squeeze the vessels shut",
+      "slow the pulse rate",
+      "beat faster and harder"
+    ],
+    "answer": "D",
+    "why": "Beta-1 is one heart: faster and harder beat."
+  },
+  {
+    "ch": 6,
+    "q": "The AV node’s main job is to:",
+    "choices": [
+      "pause so the ventricles can fill",
+      "fire as the primary pacemaker",
+      "close the mitral valve early",
+      "open the pulmonary valve first"
+    ],
+    "answer": "A",
+    "why": "The AV node pauses so the ventricles have time to fill."
+  },
+  {
+    "ch": 8,
+    "q": "A power grip for lifting uses palms up about:",
+    "choices": [
+      "2 inches apart",
+      "10 inches apart",
+      "20 inches apart",
+      "30 inches apart"
+    ],
+    "answer": "B",
+    "why": "Power grip is palms up about 10 inches apart."
+  },
+  {
+    "ch": 8,
+    "q": "An urgent move is roughly about:",
+    "choices": [
+      "10 minutes",
+      "5 minutes",
+      "1 minute",
+      "30 minutes"
+    ],
+    "answer": "C",
+    "why": "Urgent is about one minute; emergency is seconds and may skip spine."
+  },
+  {
+    "ch": 8,
+    "q": "A scoop stretcher is especially useful for a:",
+    "choices": [
+      "neck sprain",
+      "mild ankle twist",
+      "simple finger cut",
+      "hip fracture"
+    ],
+    "answer": "D",
+    "why": "The scoop splits and is used for hip-fracture moves."
+  },
+  {
+    "ch": 9,
+    "q": "In OPQRST, the letter Q asks for:",
+    "choices": [
+      "what they were doing",
+      "their word for the pain",
+      "where the pain moves",
+      "when the pain started"
+    ],
+    "answer": "B",
+    "why": "Q is quality — their word for the pain. Do not lead with left-arm talk."
+  },
+  {
+    "ch": 9,
+    "q": "A rapid trauma scan should take about:",
+    "choices": [
+      "30 seconds",
+      "60 seconds",
+      "90 seconds",
+      "120 seconds"
+    ],
+    "answer": "B",
+    "why": "The rapid scan is about 60 seconds."
+  },
+  {
+    "ch": 9,
+    "q": "Adult positive-pressure ventilation is considered if the rate is:",
+    "choices": [
+      "exactly 16 each minute",
+      "between 12 and 20",
+      "over 28 or under 8",
+      "steady 18 with good rise"
+    ],
+    "answer": "C",
+    "why": "Think about bagging an adult if faster than 28 or slower than 8."
+  },
+  {
+    "ch": 9,
+    "q": "Your SpO2 goal for most patients is about:",
+    "choices": [
+      "70 to 80 percent",
+      "100 percent only",
+      "85 to 90 percent",
+      "94 to 99 percent"
+    ],
+    "answer": "D",
+    "why": "SpO2 goal is about 94–99 percent."
+  },
+  {
+    "ch": 9,
+    "q": "A tourniquet on a limb goes:",
+    "choices": [
+      "proximal to the wound",
+      "distal to the wound",
+      "directly on the wound",
+      "around the neck only"
+    ],
+    "answer": "A",
+    "why": "Tourniquet goes closer to the body (proximal) on an arm or leg."
+  },
+  {
+    "ch": 10,
+    "q": "A nasal cannula is typically run at:",
+    "choices": [
+      "10 to 15 LPM",
+      "1 to 6 LPM",
+      "15 to 25 LPM",
+      "20 to 30 LPM"
+    ],
+    "answer": "B",
+    "why": "Cannula flow is about 1–6 LPM."
+  },
+  {
+    "ch": 10,
+    "q": "CPAP for lung fluid needs the patient alert, sitting, and systolic at least:",
+    "choices": [
+      "60 mm Hg",
+      "70 mm Hg",
+      "90 mm Hg",
+      "80 mm Hg"
+    ],
+    "answer": "C",
+    "why": "CPAP needs alert, sitting, fluid picture, and SBP at least 90."
+  },
+  {
+    "ch": 10,
+    "q": "No trauma story and a medical collapse. Open the airway with:",
+    "choices": [
+      "jaw thrust without tilt",
+      "chin lift without head",
+      "tongue pull without lift",
+      "head-tilt with chin-lift"
+    ],
+    "answer": "D",
+    "why": "Medical with no spine worry uses head-tilt chin-lift."
+  },
+  {
+    "ch": 10,
+    "q": "A mild choking adult who still coughs and moves air gets:",
+    "choices": [
+      "hands off and encourage cough",
+      "five abdominal thrusts now",
+      "five back blows then thrusts",
+      "immediate blind finger sweeps"
+    ],
+    "answer": "A",
+    "why": "Mild choke: still moving air — hands off and encourage cough."
+  },
+  {
+    "ch": 10,
+    "q": "The pin-index system means an oxygen regulator fits:",
+    "choices": [
+      "any gas tank at all",
+      "only a nitrous tank",
+      "only an oxygen tank",
+      "only a carbon-dioxide tank"
+    ],
+    "answer": "C",
+    "why": "Pin-index: oxygen regulator only on an oxygen tank."
+  },
+  {
+    "ch": 11,
+    "q": "Nitroglycerin may be repeated every 5 minutes up to:",
+    "choices": [
+      "one dose total",
+      "two doses total",
+      "three doses total",
+      "five doses total"
+    ],
+    "answer": "C",
+    "why": "Nitro is 0.4 mg SL, every 5 minutes, max three doses."
+  },
+  {
+    "ch": 11,
+    "q": "Hold nitroglycerin if they took a -fil sexual med within:",
+    "choices": [
+      "6 hours",
+      "12 hours",
+      "36 hours",
+      "24 hours"
+    ],
+    "answer": "D",
+    "why": "Hold nitro after Viagra/Cialis/Levitra-type (-fil) drugs in the last 24 hours."
+  },
+  {
+    "ch": 11,
+    "q": "Adult epinephrine for anaphylaxis is:",
+    "choices": [
+      "0.3 mg IM thigh",
+      "0.15 mg IM thigh",
+      "1.0 mg IV push",
+      "0.5 mg under the tongue"
+    ],
+    "answer": "A",
+    "why": "Adult epi auto-injector is 0.3 mg IM in the lateral thigh."
+  },
+  {
+    "ch": 11,
+    "q": "Anaphylaxis is an allergic reaction involving:",
+    "choices": [
+      "skin findings only",
+      "two or more body systems",
+      "one body system only",
+      "fever without other signs"
+    ],
+    "answer": "B",
+    "why": "Anaphylaxis means allergic findings in two or more systems."
+  },
+  {
+    "ch": 12,
+    "q": "Flushed warm skin with low blood pressure suggests:",
+    "choices": [
+      "vessel dilation",
+      "vessel constriction",
+      "volume overload",
+      "pump overdrive"
+    ],
+    "answer": "A",
+    "why": "Flushed warm skin with low pressure means the vessels are dilated (sepsis or anaphylaxis)."
+  },
+  {
+    "ch": 12,
+    "q": "In tension pneumothorax, breath sounds are usually:",
+    "choices": [
+      "equal and clear both sides",
+      "wheezy and equal both sides",
+      "stridorous at the mouth only",
+      "absent on the injured side"
+    ],
+    "answer": "D",
+    "why": "Tension has absent sounds on one side; equal clear points to tamponade."
+  },
+  {
+    "ch": 12,
+    "q": "Cardiogenic shock after a big MI often adds:",
+    "choices": [
+      "crackles and chest pain",
+      "hot flushed dry skin",
+      "slow pulse with warm legs",
+      "hives and facial swelling"
+    ],
+    "answer": "A",
+    "why": "Cardiogenic: weak pump — shock plus chest pain and lung crackles."
+  },
+  {
+    "ch": 13,
+    "q": "Two rescuers doing child CPR use a ratio of:",
+    "choices": [
+      "30 compressions to 2 breaths",
+      "15 compressions to 2 breaths",
+      "15 compressions to 1 breath",
+      "5 compressions to 1 breath"
+    ],
+    "answer": "B",
+    "why": "Two-rescuer child or infant CPR is 15:2; single rescuer stays 30:2."
+  },
+  {
+    "ch": 13,
+    "q": "Infant compression depth is about:",
+    "choices": [
+      "one-half of the chest (~3 inches)",
+      "at least 3 inches flat",
+      "one-third of the chest (~1.5 inches)",
+      "less than 1 inch only"
+    ],
+    "answer": "C",
+    "why": "Infant depth is about one-third of the chest, roughly 1.5 inches."
+  },
+  {
+    "ch": 13,
+    "q": "Adult AED pads go on the:",
+    "choices": [
+      "upper left and lower right chest",
+      "both sides of the neck only",
+      "center back and left hip only",
+      "upper right and lower left chest"
+    ],
+    "answer": "D",
+    "why": "Adult pads: upper right chest and lower left chest."
+  },
+  {
+    "ch": 15,
+    "q": "On a suspected epiglottitis child you should:",
+    "choices": [
+      "leave the throat alone",
+      "insert an oral airway",
+      "suction the back throat",
+      "force them flat supine"
+    ],
+    "answer": "A",
+    "why": "Epiglottitis: leave the throat alone — no OPA, no deep suction; keep calm and upright."
+  },
+  {
+    "ch": 15,
+    "q": "Emphysema is often pictured as a:",
+    "choices": [
+      "seal-bark cough with low fever",
+      "barrel chest with pursed-lip breathing",
+      "sudden tearing pain to the back",
+      "one-sided facial droop alone"
+    ],
+    "answer": "B",
+    "why": "Emphysema (pink puffer): lost elasticity, barrel chest, pursed-lip breathing."
+  },
+  {
+    "ch": 15,
+    "q": "Pink frothy sputum points strongly to:",
+    "choices": [
+      "a simple viral croup",
+      "a mild allergic hive set",
+      "acute pulmonary edema",
+      "stable angina at rest"
+    ],
+    "answer": "C",
+    "why": "Pink frothy sputum is the classic pulmonary-edema / CHF picture."
+  },
+  {
+    "ch": 16,
+    "q": "Left-sided heart failure backs blood into the:",
+    "choices": [
+      "legs and sacrum",
+      "neck vein system",
+      "kidney blood beds",
+      "lung air fields"
+    ],
+    "answer": "D",
+    "why": "Failing left ventricle backs blood into the lungs (crackles, dyspnea)."
+  },
+  {
+    "ch": 16,
+    "q": "Unstable angina is best described as a:",
+    "choices": [
+      "changing pattern that may hit at rest",
+      "pain that always eases with rest",
+      "pain that never radiates at all",
+      "pain that only lasts under a minute"
+    ],
+    "answer": "A",
+    "why": "Unstable angina is a changing pattern — less work, at rest, longer, or more nitro."
+  },
+  {
+    "ch": 16,
+    "q": "Right-sided heart failure often shows:",
+    "choices": [
+      "crackles and pink froth only",
+      "JVD and dependent edema",
+      "wheeze on exhalation only",
+      "stridor without fever"
+    ],
+    "answer": "B",
+    "why": "Right failure backs into the body: JVD and dependent edema."
+  },
+  {
+    "ch": 17,
+    "q": "Clot-buster drugs for stroke are often only given within about:",
+    "choices": [
+      "3 hours of onset",
+      "12 hours of onset",
+      "24 hours of onset",
+      "48 hours of onset"
+    ],
+    "answer": "A",
+    "why": "Clot-busters are often only inside about 3 hours from onset — get last known well exact."
+  },
+  {
+    "ch": 17,
+    "q": "About what share of strokes are hemorrhagic?",
+    "choices": [
+      "13 percent",
+      "50 percent",
+      "87 percent",
+      "5 percent"
+    ],
+    "answer": "A",
+    "why": "About 13% are hemorrhagic; about 87% are ischemic."
+  },
+  {
+    "ch": 18,
+    "q": "The spleen sits in the left upper quadrant and removes:",
+    "choices": [
+      "waste from the blood",
+      "old red blood cells",
+      "bile from the liver",
+      "clotting factors made"
+    ],
+    "answer": "B",
+    "why": "Spleen is LUQ and removes old red cells; kidneys filter waste."
+  },
+  {
+    "ch": 18,
+    "q": "Pancreas pain is mid-upper and can shoot to the:",
+    "choices": [
+      "left ear only",
+      "upper back",
+      "right toes only",
+      "scalp only"
+    ],
+    "answer": "B",
+    "why": "Pancreas is mid-upper and can refer to the back."
+  }
+]
