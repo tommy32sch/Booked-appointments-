@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Ch 23–25 Trauma Overview — practice</title>
+<style>
+:root {
+  --bg: #f4efe6; --paper: #fffdf8; --ink: #1c2430; --muted: #5a6573;
+  --navy: #1e3a5f; --navy-2: #16304d; --red: #b42318; --green: #1b7a46;
+  --line: #d8d0c4; --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px); --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+input[type=text] {
+  width: 100%; min-height: 48px; font-size: 1.05rem; font-family: inherit;
+  padding: 12px 14px; border: 2px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink);
+}
+input[type=text]:focus { outline: 2px solid var(--navy); border-color: var(--navy); }
+input[type=text]:disabled { background: #f3f1ec; }
+.check {
+  width: 100%; min-height: 48px; margin-top: 12px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.check:active { background: var(--navy-2); }
+.check:disabled { opacity: .55; cursor: default; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.links { display:flex; flex-wrap:wrap; gap:8px; margin: 12px 0 0; }
+.links a { font-size:.82rem; color:#1e3a5f; background:#e8e1d4; border-radius:999px; padding:4px 10px; text-decoration:none; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Ch 23–25 Trauma Overview</h1>
+  <div class="sub">Type-in · 21 from locked notes</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":25,"q":"What does index of suspicion mean in trauma?","a":["worry about unseen inside injuries","how worried you are about injuries you cannot see","concern for hidden internal injuries","worry about unseen internal injuries"],"why":"Index of suspicion = worry about unseen injuries inside. Those need surgery. No OR in the ambulance."},{"ch":25,"q":"What is the biggest driver of survival in serious trauma?","a":["fast transport to a trauma center","get them to a trauma center fast","rapid transport to trauma center / surgery","trauma center fast"],"why":"Biggest driver of survival: get them to a trauma center fast. Inside problems need surgery."},{"ch":25,"q":"What is the Platinum 10?","a":["arrival to wheels rolling","on-scene time from arrival to departure","from park to start driving","10 minutes from arrival to wheels rolling"],"why":"Platinum 10 minutes = from arrival on scene to wheels rolling. For a real trauma concern."},{"ch":23,"q":"On a possible behavioral call, what should you do before calling it “just psych”?","a":["full medical check","do a full medical assessment first","rule out medical causes with a full check","full ABCs / medical check first"],"why":"Do not start with “just psych.” Do a full medical check. Could be low oxygen, low sugar, or head injury."},{"ch":23,"q":"Nobody who knows the behavioral patient is on scene. How do you treat the episode?","a":["as new and bad","treat as new/bad","assume new and bad","treat it as new and bad"],"why":"Ask how this compares to their normal. Nobody who knows them → treat as new and bad. Then ABCs and transport."},{"ch":24,"q":"How was Chapter 24 gyn taught in this class block?","a":["not its own lecture; merges with OB next week","not taught alone; merges with pregnancy/OB next week","light; merges with obstetrics next week","not a separate lecture; with OB next week"],"why":"Gyn was not its own lecture. Merges with pregnancy / obstetrics next week. Still has a 5-question homework."},{"ch":25,"q":"What are the most common trauma calls?","a":["crashes and falls","car crashes and falls","MVCs and falls","crashes / falls (not GSW/stabbings)"],"why":"Most common trauma calls: car crashes and falls. Not shootings and stabbings."},{"ch":25,"q":"In kinetic energy, what matters more: a little more speed or a little more weight?","a":["speed","a little more speed","speed matters more","speed (except huge mass change)"],"why":"KE idea: ½mv². A little more speed matters more than a little more weight, except a huge mass change."},{"ch":25,"q":"Name the three collisions in a car crash.","a":["vehicle, body, organs","car, body, organs","vehicle then body then organs","1 vehicle 2 body 3 organs"],"why":"Three collisions: vehicle, body, organs. Organs = life threat (aorta shear, renal vessels, gut vessels)."},{"ch":25,"q":"Which of the three car-crash collisions is the life threat?","a":["organs / third collision","organ collision","collision 3 — organs","organs"],"why":"Collision 3 (organs) is the life threat. You cannot fix aorta shear or torn vessels in the field."},{"ch":25,"q":"Which intrusion worries you more: passenger compartment or trunk crush zone?","a":["passenger compartment","where people sit / passenger compartment","intrusion into the passenger compartment","door / passenger space intrusion"],"why":"Trunk and engine are built to crush. Intrusion into the passenger compartment is the big worry."},{"ch":25,"q":"Bent steering wheel on scene — what body region do you assume was hit?","a":["chest","the chest","chest trauma","chest hit the wheel"],"why":"Bent steering wheel → assume chest hit it. Lower dash → knee. Starred windshield → head."},{"ch":25,"q":"What is the classic femur pattern when a motorcycle rider is thrown forward into the bars?","a":["bilateral femur fractures","both femurs broken","classic bilateral femurs","broken femurs in both legs"],"why":"Motorcycle thrown forward: classic broken femurs in both legs. Look at gear and helmet."},{"ch":25,"q":"Car vs person: is an adult more likely to go over or under a regular bumper?","a":["over","up and over","over the car","adult goes over"],"why":"Adult (bumper ~knee height) more likely over. Child (bumper ~chest height) more likely under."},{"ch":25,"q":"What three factors grade how bad a fall is?","a":["height, surface, what hit first","height / surface / body part that hit first","height, landing surface, what hit first","height, surface, first impact point"],"why":"Falls: height (20 ft magic; or >2–3× height for kids), surface, what hit first. Older bones break easier at standing height too."},{"ch":25,"q":"When do you remove an impaled object?","a":["blocks CPR with no pulse, blocks airway, or stuck immovable","only if it blocks no-pulse CPR, airway, or you cannot move them","CPR (no pulse), airway, or immovable stuck","blocks CPR/airway or patient stuck"],"why":"Leave impaled in unless it blocks CPR with no pulse, blocks the airway, or they are stuck immovable. Back + no pulse must come out for flat CPR."},{"ch":25,"q":"Blast primary phase mainly damages what with the pressure wave?","a":["hollow organs / lungs","hollow spaces and lungs","lungs (hollow organs)","pressure wave to hollow organs/lungs"],"why":"Primary = pressure wave. Hits hollow spaces. Eardrums easy but not the killer. Lungs are the real worry; air bubbles act like clots."},{"ch":25,"q":"In XABCs, what does X mean and when does it come?","a":["huge outside bleed before airway","exsanguinating bleed before airway","massive external hemorrhage before A","stop huge outside bleed first (before airway)"],"why":"X = huge outside bleed. Comes BEFORE the airway. You do not carry blood."},{"ch":25,"q":"Minimum helicopter landing zone size, and the better size?","a":["60×60 feet; better 100×100","60 by 60 min; 100 by 100 better","60x60 minimum, 100x100 better","60 ft square min; 100 ft square better"],"why":"LZ minimum 60×60 feet. Better 100×100. Ask early. Nearest safe open space is fine."},{"ch":25,"q":"You already have a patient and another wreck appears. What must you not do?","a":["leave the patient you already have","abandon the patient you have","do not leave the one you have","leave your current patient"],"why":"Do not leave the patient you already have. Send help if you can. Mass-casualty triage rules come later."},{"ch":25,"q":"Should you wait for bruises to show before treating pain with a real MOI?","a":["no","no — do not wait for bruises","no; pain + real MOI is enough","do not wait for bruises"],"why":"Bruising often does not show yet. Pain plus a real MOI is enough. Fast HR/RR means the body is reacting — go."}];
+const LINKS = "<a href=\"emt-quiz-index.html\">Hub</a><a href=\"ch23-25-trauma-overview-key.html\">Key</a><a href=\"ch23-25-trauma-overview-detailed.html\">Detailed</a>";
+
+function norm(s) { return String(s).trim().toLowerCase(); }
+function acceptList(item) {
+  if (Array.isArray(item.a)) return item.a.map(String);
+  if (item.a == null) return [];
+  return [String(item.a)];
+}
+function isRight(item, typed) {
+  const n = norm(typed);
+  if (!n) return false;
+  return acceptList(item).some(function (a) { return norm(a) === n; });
+}
+
+let i = 0, correct = 0, answered = 0, locked = false;
+const main = document.getElementById("main");
+const nextBtn = document.getElementById("nextBtn");
+const scoreEl = document.getElementById("score");
+const progLabel = document.getElementById("progLabel");
+const progBar = document.getElementById("progBar");
+
+function setProg() {
+  scoreEl.textContent = correct + " / " + answered;
+  progLabel.textContent = i < BANK.length ? ("Question " + (i + 1) + " of " + BANK.length) : "Done";
+  progBar.style.width = (Math.min(i, BANK.length) / BANK.length * 100) + "%";
+}
+
+function renderEnd() {
+  nextBtn.classList.remove("visible");
+  const pct = BANK.length ? Math.round(correct / BANK.length * 100) : 0;
+  main.innerHTML = '<div class="card end"><h2>Done</h2><div class="big">' + correct + " / " + BANK.length + '</div><p class="pct">' + pct + '% first-check correct</p><div class="links">' + LINKS + '</div><button type="button" class="check restart" id="restart">Again</button></div>';
+  document.getElementById("restart").onclick = function () {
+    i = 0; correct = 0; answered = 0; locked = false; renderQ();
+  };
+}
+
+function renderQ() {
+  if (i >= BANK.length) { setProg(); renderEnd(); return; }
+  locked = false;
+  nextBtn.classList.remove("visible");
+  const item = BANK[i];
+  setProg();
+  main.innerHTML = '<div class="card"><p class="qtext"></p><input type="text" id="ans" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Type your answer"><button type="button" class="check" id="check">Check</button><div class="why" id="why"></div></div>';
+  main.querySelector(".qtext").textContent = item.q;
+  const input = document.getElementById("ans");
+  const check = document.getElementById("check");
+  const why = document.getElementById("why");
+  input.focus();
+
+  function submit() {
+    if (locked) return;
+    const typed = input.value;
+    if (!norm(typed)) { input.focus(); return; }
+    locked = true;
+    answered += 1;
+    const ok = isRight(item, typed);
+    if (ok) correct += 1;
+    input.disabled = true;
+    check.disabled = true;
+    why.classList.add("visible");
+    why.innerHTML = "";
+    const v = document.createElement("div");
+    v.className = "verdict " + (ok ? "ok" : "bad");
+    v.textContent = ok ? "Correct" : "Not quite";
+    const w = document.createElement("div");
+    w.textContent = item.why;
+    why.appendChild(v);
+    why.appendChild(w);
+    setProg();
+    nextBtn.textContent = i === BANK.length - 1 ? "Finish" : "Next";
+    nextBtn.classList.add("visible");
+  }
+  check.onclick = submit;
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); submit(); }
+  });
+}
+
+nextBtn.onclick = function () {
+  if (!locked) return;
+  i += 1;
+  renderQ();
+};
+
+renderQ();
+</script>
+</body>
+</html>
