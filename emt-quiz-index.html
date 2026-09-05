@@ -27,6 +27,16 @@ a.card {
   box-shadow: 0 2px 10px rgba(28,36,48,.06);
 }
 a.card:active { transform: scale(.99); }
+div.card {
+  display: block; background: var(--paper); color: inherit;
+  border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin: 0 0 12px;
+  box-shadow: 0 2px 10px rgba(28,36,48,.06);
+}
+.card-links { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; }
+.card-links a {
+  font-size: .85rem; font-weight: 700; color: #fff; background: var(--navy);
+  border-radius: 999px; padding: 6px 12px; text-decoration: none;
+}
 .kicker { font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
 .title { margin: 4px 0 2px; font-size: 1.05rem; font-weight: 700; color: var(--navy); }
 .meta { margin: 0; font-size: .85rem; color: var(--muted); }
@@ -206,6 +216,27 @@ a.card:active { transform: scale(.99); }
     <div class="title">Detailed notes</div>
     <p class="meta">Longer write-up from the same notes.</p>
   </a>
+  <p class="kicker" style="margin:18px 4px 8px;">Chapter notes</p>
+  <div class="card">
+    <div class="kicker">Book · Chapter 21</div>
+    <div class="title">Allergy &amp; Anaphylaxis</div>
+    <p class="meta">Key notes, detailed notes, 20 type-in from locked captain notes.</p>
+    <div class="card-links">
+      <a href="ch21-allergy-anaphylaxis-key.html">Key</a>
+      <a href="ch21-allergy-anaphylaxis-detailed.html">Detailed</a>
+      <a href="ch21-allergy-anaphylaxis-practice.html">Practice</a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="kicker">Book · Chapter 22</div>
+    <div class="title">Toxicology Part 1</div>
+    <p class="meta">Key notes, detailed notes, 20 type-in from locked captain notes.</p>
+    <div class="card-links">
+      <a href="ch22-toxicology-part1-key.html">Key</a>
+      <a href="ch22-toxicology-part1-detailed.html">Detailed</a>
+      <a href="ch22-toxicology-part1-practice.html">Practice</a>
+    </div>
+  </div>
 </main>
 </body>
 </html>
