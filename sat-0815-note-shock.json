@@ -1,0 +1,418 @@
+[
+  {
+    "ch": "comp",
+    "q": "Fast pulse, fast breathing, cool pale clammy skin, blood pressure still okay. What is this?",
+    "opts": [
+      {
+        "t": "Compensated shock",
+        "ok": true,
+        "why": "Epinephrine is still holding pressure. Heart rate and breathing are up. Skin is cool, pale, clammy."
+      },
+      {
+        "t": "Decompensated shock",
+        "ok": false,
+        "why": "Decompensated shock is when systolic pressure tanks and organs fail."
+      },
+      {
+        "t": "Adequate perfusion",
+        "ok": false,
+        "why": "Cool pale clammy skin and a fast pulse are not adequate perfusion."
+      },
+      {
+        "t": "Cardiogenic shock",
+        "ok": false,
+        "why": "Cardiogenic is a type (pump/MI). These signs are a stage: compensated shock."
+      }
+    ]
+  },
+  {
+    "ch": "decomp",
+    "q": "Compensatory moves fail and systolic blood pressure tanks. What is this?",
+    "opts": [
+      {
+        "t": "Decompensated shock",
+        "ok": true,
+        "why": "When compensation fails, systolic pressure drops and vital-organ perfusion fails."
+      },
+      {
+        "t": "Compensated shock",
+        "ok": false,
+        "why": "Compensated shock still holds a near-normal pressure."
+      },
+      {
+        "t": "Adequate perfusion",
+        "ok": false,
+        "why": "A falling systolic is not adequate perfusion."
+      },
+      {
+        "t": "Cardiogenic shock",
+        "ok": false,
+        "why": "Cardiogenic is a type (pump/MI). These signs are a stage: decompensated shock."
+      }
+    ]
+  },
+  {
+    "ch": "adultbp",
+    "q": "What adult systolic floor does this recap give for perfusion?",
+    "opts": [
+      {
+        "t": "90 mmHg",
+        "ok": true,
+        "why": "Adult minimum systolic for perfusion is \u2265 90 mmHg. Nitro thinking uses 100."
+      },
+      {
+        "t": "78 mmHg",
+        "ok": false,
+        "why": "78 is the 4-year-old example, not the adult floor."
+      },
+      {
+        "t": "70 mmHg",
+        "ok": false,
+        "why": "70 is the constant in the pediatric formula, not the adult floor."
+      },
+      {
+        "t": "25 mmHg",
+        "ok": false,
+        "why": "About 25 is a narrow pulse pressure, not the adult systolic floor."
+      }
+    ]
+  },
+  {
+    "ch": "pedibp",
+    "q": "What is the pediatric minimum systolic from this recap?",
+    "opts": [
+      {
+        "t": "2 \u00d7 age in years + 70",
+        "ok": true,
+        "why": "Pedi minimum systolic is 2 \u00d7 age (years) + 70. A 4-year-old is 78."
+      },
+      {
+        "t": "2 \u00d7 age in years + 90",
+        "ok": false,
+        "why": "90 is the adult floor. Pedi is 2 \u00d7 age + 70."
+      },
+      {
+        "t": "Age in years + 70 only",
+        "ok": false,
+        "why": "You multiply age by 2, then add 70."
+      },
+      {
+        "t": "2 \u00d7 age in years + 25",
+        "ok": false,
+        "why": "25 is a narrow pulse-pressure cue, not the pedi add-on."
+      }
+    ]
+  },
+  {
+    "ch": "pp",
+    "q": "How do you get pulse pressure in this recap?",
+    "opts": [
+      {
+        "t": "Systolic minus diastolic",
+        "ok": true,
+        "why": "Pulse pressure = systolic \u2212 diastolic. Under about 25 can mean worsening shock."
+      },
+      {
+        "t": "Diastolic minus systolic",
+        "ok": false,
+        "why": "That reverses the subtraction. It is systolic minus diastolic."
+      },
+      {
+        "t": "Systolic plus diastolic",
+        "ok": false,
+        "why": "You subtract, not add."
+      },
+      {
+        "t": "Heart rate minus breathing",
+        "ok": false,
+        "why": "Pulse pressure is from the two blood-pressure numbers."
+      }
+    ]
+  },
+  {
+    "ch": "pattern",
+    "q": "Dropping pressure, rising heart rate and breathing, cool pale clammy skin. What is this until proven otherwise?",
+    "opts": [
+      {
+        "t": "Call it shock",
+        "ok": true,
+        "why": "That four-part pattern is shock until proven otherwise. Then add extras to name the type."
+      },
+      {
+        "t": "Call it cardiogenic",
+        "ok": false,
+        "why": "Cardiogenic needs chest pain plus crackles on top of the classic shock pattern."
+      },
+      {
+        "t": "Call it a PE",
+        "ok": false,
+        "why": "PE needs sudden dyspnea and oxygen that does not help, on top of shock."
+      },
+      {
+        "t": "Call it tamponade",
+        "ok": false,
+        "why": "Tamponade needs JVD and a narrowing pulse pressure or muffled tones too."
+      }
+    ]
+  },
+  {
+    "ch": "o2",
+    "q": "Breathing is adequate. What oxygen setup does this recap want in shock?",
+    "opts": [
+      {
+        "t": "Non-rebreather at 10\u201315 L/min",
+        "ok": true,
+        "why": "Adequate rate and tidal volume \u2192 NRB at 10\u201315 L/min. Inadequate breathing \u2192 BVM with oxygen."
+      },
+      {
+        "t": "Bag-valve mask with oxygen",
+        "ok": false,
+        "why": "BVM is for inadequate breathing, not adequate rate and volume."
+      },
+      {
+        "t": "Nasal cannula at 2 L/min",
+        "ok": false,
+        "why": "This recap\u2019s shock oxygen is high-flow 10\u201315 L, not a 2 L cannula."
+      },
+      {
+        "t": "No oxygen until pressure falls",
+        "ok": false,
+        "why": "Give high-flow oxygen as part of universal shock care."
+      }
+    ]
+  },
+  {
+    "ch": "pos",
+    "q": "What position does this recap want for shock if they can tolerate it?",
+    "opts": [
+      {
+        "t": "Supine (flat)",
+        "ok": true,
+        "why": "Flat helps venous return and blood pressure unless they cannot tolerate it."
+      },
+      {
+        "t": "Upright sitting",
+        "ok": false,
+        "why": "Upright is not the default shock position here. Supine is."
+      },
+      {
+        "t": "Prone (belly)",
+        "ok": false,
+        "why": "The recap says supine, not prone."
+      },
+      {
+        "t": "Standing still",
+        "ok": false,
+        "why": "Standing does not help venous return in shock."
+      }
+    ]
+  },
+  {
+    "ch": "ncpap",
+    "q": "They are already hypotensive in shock. Nitro and CPAP?",
+    "opts": [
+      {
+        "t": "Hold nitro and CPAP",
+        "ok": true,
+        "why": "Nitro and CPAP both drop blood pressure. They are contraindicated if already hypotensive or in shock."
+      },
+      {
+        "t": "Give nitro and CPAP",
+        "ok": false,
+        "why": "They drop pressure. You hold them in shock."
+      },
+      {
+        "t": "Nitro only, hold CPAP",
+        "ok": false,
+        "why": "Nitro is also out if they are hypotensive."
+      },
+      {
+        "t": "CPAP only, hold nitro",
+        "ok": false,
+        "why": "CPAP is also out if systolic is already too low."
+      }
+    ]
+  },
+  {
+    "ch": "cardio",
+    "q": "Shock plus crushing chest pain plus crackles. What type is this?",
+    "opts": [
+      {
+        "t": "Cardiogenic shock",
+        "ok": true,
+        "why": "A weak pump, usually a big MI. Left failure backs blood into the lungs."
+      },
+      {
+        "t": "Cardiac tamponade",
+        "ok": false,
+        "why": "Tamponade is JVD and a narrowing pulse pressure, not crackles from lung fluid."
+      },
+      {
+        "t": "Tension pneumothorax",
+        "ok": false,
+        "why": "Tension has absent breath sounds on one side, not crackles in both lungs."
+      },
+      {
+        "t": "Pulmonary embolism",
+        "ok": false,
+        "why": "PE is sudden dyspnea and a sat that will not rise. Crackles plus chest pain is cardiogenic."
+      }
+    ]
+  },
+  {
+    "ch": "beck",
+    "q": "Narrowing pulse pressure, jugular vein distension, muffled heart tones. What is this?",
+    "opts": [
+      {
+        "t": "Beck\u2019s triad (tamponade)",
+        "ok": true,
+        "why": "Those three are Beck\u2019s triad for cardiac tamponade: fluid squeezing the heart."
+      },
+      {
+        "t": "Tension pneumothorax signs",
+        "ok": false,
+        "why": "Tension is one-sided absent breath sounds, not muffled tones as the triad."
+      },
+      {
+        "t": "Cardiogenic lung backup",
+        "ok": false,
+        "why": "Cardiogenic extras are chest pain and crackles, not this triad."
+      },
+      {
+        "t": "Massive pulmonary embolism",
+        "ok": false,
+        "why": "PE is sudden dyspnea and oxygen that does not help, not Beck\u2019s triad."
+      }
+    ]
+  },
+  {
+    "ch": "vs",
+    "q": "Chest trauma, shock, and JVD. Equal clear breath sounds. What type?",
+    "opts": [
+      {
+        "t": "Cardiac tamponade",
+        "ok": true,
+        "why": "Shared with tension: trauma, shock, JVD. Equal clear lungs point to tamponade."
+      },
+      {
+        "t": "Tension pneumothorax",
+        "ok": false,
+        "why": "Tension has absent breath sounds on one side."
+      },
+      {
+        "t": "Cardiogenic shock",
+        "ok": false,
+        "why": "Cardiogenic is a pump/MI pattern with crackles, not this trauma + JVD split."
+      },
+      {
+        "t": "Pulmonary embolism",
+        "ok": false,
+        "why": "PE is a medical clot, not chest trauma with JVD."
+      }
+    ]
+  },
+  {
+    "ch": "tens",
+    "q": "Chest trauma, shock, and JVD. Absent breath sounds on one side. What type?",
+    "opts": [
+      {
+        "t": "Tension pneumothorax",
+        "ok": true,
+        "why": "Trapped air collapses that lung and shoves the heart. One silent side is the split from tamponade."
+      },
+      {
+        "t": "Cardiac tamponade",
+        "ok": false,
+        "why": "Tamponade keeps equal breath sounds."
+      },
+      {
+        "t": "Cardiogenic shock",
+        "ok": false,
+        "why": "Cardiogenic extras are chest pain and crackles, not a silent hemithorax."
+      },
+      {
+        "t": "Pulmonary embolism",
+        "ok": false,
+        "why": "PE is medical sudden dyspnea, not trauma with one silent lung."
+      }
+    ]
+  },
+  {
+    "ch": "pe",
+    "q": "Sudden severe dyspnea, sharp chest pain, hypoxia that does not improve with oxygen. What type?",
+    "opts": [
+      {
+        "t": "Pulmonary embolism",
+        "ok": true,
+        "why": "A clot blocks lung arteries. Air in the alveoli with no blood under it will not pick up oxygen."
+      },
+      {
+        "t": "Cardiac tamponade",
+        "ok": false,
+        "why": "Tamponade is trauma, JVD, and a narrowing pulse pressure."
+      },
+      {
+        "t": "Tension pneumothorax",
+        "ok": false,
+        "why": "Tension is one-sided absent breath sounds after chest trauma."
+      },
+      {
+        "t": "Cardiogenic shock",
+        "ok": false,
+        "why": "Cardiogenic is chest pain plus crackles from lung backup, and oxygen still reaches blood."
+      }
+    ]
+  },
+  {
+    "ch": "shunt",
+    "q": "Where does early shock pull blood away from, so the skin looks cool and pale?",
+    "opts": [
+      {
+        "t": "The skin and gut bed areas",
+        "ok": true,
+        "why": "Sphincters close in less important beds. Skin goes cool and pale. Blood goes to brain, heart, lungs, and big muscle."
+      },
+      {
+        "t": "The brain and heart first",
+        "ok": false,
+        "why": "Brain and heart are where blood is sent, not where it is taken from."
+      },
+      {
+        "t": "The lungs and big muscle",
+        "ok": false,
+        "why": "Those are protected, not shut down."
+      },
+      {
+        "t": "The aorta and carotid only",
+        "ok": false,
+        "why": "Those hold baroreceptors. They are not the shunt-away beds."
+      }
+    ]
+  },
+  {
+    "ch": "asa",
+    "q": "Suspected big MI in cardiogenic shock. They can chew. Aspirin vs nitro?",
+    "opts": [
+      {
+        "t": "Aspirin yes; hold nitro if hypotensive",
+        "ok": true,
+        "why": "Aspirin does not care about the pressure. Nitro is out if they are already in shock."
+      },
+      {
+        "t": "Nitro yes; hold aspirin if hypotensive",
+        "ok": false,
+        "why": "That swaps them. Nitro drops pressure. Aspirin does not."
+      },
+      {
+        "t": "Hold both no matter the pressure",
+        "ok": false,
+        "why": "Aspirin can still go for an MI if they can chew and have no allergy."
+      },
+      {
+        "t": "Give both even if pressure has tanked",
+        "ok": false,
+        "why": "Nitro is contraindicated once they are hypotensive."
+      }
+    ]
+  }
+]
