@@ -1,0 +1,366 @@
+[
+  {
+    "ch": "comp",
+    "q": "Adult systolic still at or above 90, heart rate and breathing up, cool pale clammy skin. What is this?",
+    "opts": [
+      {
+        "t": "Compensated shock",
+        "ok": true,
+        "why": "Epinephrine is still holding adult systolic \u2265 90. They can look okay and still be in trouble."
+      },
+      {
+        "t": "Decompensated shock",
+        "ok": false,
+        "why": "Decompensated shock is when adult systolic falls under 90."
+      },
+      {
+        "t": "No shock is present",
+        "ok": false,
+        "why": "Fast pulse, fast breathing, and cool pale clammy skin are compensated shock, not no shock."
+      },
+      {
+        "t": "Only a late crash",
+        "ok": false,
+        "why": "A late crash is decompensated. This stem still has a pressure of 90 or more."
+      }
+    ]
+  },
+  {
+    "ch": "decomp",
+    "q": "Adult systolic falls under 90. Compensatory moves have failed. What is this?",
+    "opts": [
+      {
+        "t": "Decompensated shock",
+        "ok": true,
+        "why": "Adult systolic under 90 means decompensated (uncompensated on some tests)."
+      },
+      {
+        "t": "Compensated, BP holds",
+        "ok": false,
+        "why": "Compensated shock still holds adult systolic at or above 90."
+      },
+      {
+        "t": "No shock is present",
+        "ok": false,
+        "why": "A falling systolic with failed compensation is shock, not no shock."
+      },
+      {
+        "t": "Still holding the BP",
+        "ok": false,
+        "why": "Under 90 means the pressure is no longer holding."
+      }
+    ]
+  },
+  {
+    "ch": "cap",
+    "q": "What cap-refill cutoff does this recap call delayed in a child?",
+    "opts": [
+      {
+        "t": "Over 2 seconds",
+        "ok": true,
+        "why": "Cap refill over 2 seconds is delayed and matters for shock in kids, even if pressure still looks okay."
+      },
+      {
+        "t": "Over 4 seconds",
+        "ok": false,
+        "why": "The recap\u2019s cutoff is over 2 seconds, not over 4."
+      },
+      {
+        "t": "Over 5 seconds",
+        "ok": false,
+        "why": "The recap\u2019s cutoff is over 2 seconds, not over 5."
+      },
+      {
+        "t": "Over 8 seconds",
+        "ok": false,
+        "why": "The recap\u2019s cutoff is over 2 seconds, not over 8."
+      }
+    ]
+  },
+  {
+    "ch": "neuro",
+    "q": "Trauma, low blood pressure, slow pulse, warm flushed skin below the injury. What type?",
+    "opts": [
+      {
+        "t": "Neurogenic (slow HR)",
+        "ok": true,
+        "why": "Cord injury drops sympathetic tone. Almost every other shock speeds the pulse; this one slows it."
+      },
+      {
+        "t": "Septic shock (fever)",
+        "ok": false,
+        "why": "Septic is fever and hot skin from infection, not trauma with a slow pulse."
+      },
+      {
+        "t": "Anaphylaxis (hives)",
+        "ok": false,
+        "why": "Anaphylaxis is two or more systems after an allergen, not a cord pattern."
+      },
+      {
+        "t": "Hemorrhage (bleeding)",
+        "ok": false,
+        "why": "Hemorrhagic shock is volume loss. It does not give this slow-pulse cord pattern."
+      }
+    ]
+  },
+  {
+    "ch": "septic",
+    "q": "Fever or an infection source, hot skin, and low blood pressure. What type?",
+    "opts": [
+      {
+        "t": "Septic shock (fever)",
+        "ok": true,
+        "why": "Severe infection dilates and leaks vessels. Hot skin and fever with low pressure is septic."
+      },
+      {
+        "t": "Neurogenic (slow HR)",
+        "ok": false,
+        "why": "Neurogenic is trauma, a slow pulse, and a warm line below the injury."
+      },
+      {
+        "t": "Anaphylaxis (hives)",
+        "ok": false,
+        "why": "Anaphylaxis needs two or more systems after an allergen, not an infection source."
+      },
+      {
+        "t": "Hemorrhage (bleeding)",
+        "ok": false,
+        "why": "Hemorrhagic shock is blood loss, not fever and hot skin."
+      }
+    ]
+  },
+  {
+    "ch": "ana",
+    "q": "After an allergen, how many body systems make this recap call it anaphylaxis?",
+    "opts": [
+      {
+        "t": "Two or more systems",
+        "ok": true,
+        "why": "Anaphylaxis is an allergic reaction involving two or more systems (skin, breathing, circulation, gut)."
+      },
+      {
+        "t": "Skin findings only",
+        "ok": false,
+        "why": "Skin alone is not two or more systems."
+      },
+      {
+        "t": "One system, plus fever",
+        "ok": false,
+        "why": "Fever is a septic clue. Anaphylaxis is two or more systems after an allergen."
+      },
+      {
+        "t": "Trauma plus slow pulse",
+        "ok": false,
+        "why": "Trauma and a slow pulse is neurogenic, not anaphylaxis."
+      }
+    ]
+  },
+  {
+    "ch": "epi",
+    "q": "Adult anaphylaxis. What epinephrine dose does this recap want?",
+    "opts": [
+      {
+        "t": "0.3 mg IM, lateral thigh",
+        "ok": true,
+        "why": "Adult EpiPen is 0.3 mg IM in the lateral thigh. Hold about 3 seconds. Pediatric is 0.15 mg."
+      },
+      {
+        "t": "0.15 mg IM lateral thigh",
+        "ok": false,
+        "why": "0.15 mg is the pediatric dose, not the adult dose. Same site."
+      },
+      {
+        "t": "0.5 mg IM, lateral thigh",
+        "ok": false,
+        "why": "Adult dose in this recap is 0.3 mg, not 0.5 mg. Same site."
+      },
+      {
+        "t": "1.0 mg IM, lateral thigh",
+        "ok": false,
+        "why": "Adult dose in this recap is 0.3 mg, not 1.0 mg. Same site."
+      }
+    ]
+  },
+  {
+    "ch": "npo",
+    "q": "They are in shock. Food and drink?",
+    "opts": [
+      {
+        "t": "Hold food and drink now",
+        "ok": true,
+        "why": "Do not let them eat or drink. It complicates assessment and possible surgery."
+      },
+      {
+        "t": "Hold food, allow drink",
+        "ok": false,
+        "why": "Hold drink too. Nothing by mouth."
+      },
+      {
+        "t": "Hold drink, allow food",
+        "ok": false,
+        "why": "Hold food too. Nothing by mouth."
+      },
+      {
+        "t": "Delay to treat on scene",
+        "ok": false,
+        "why": "Do not delay transport while you try to fix everything on scene."
+      }
+    ]
+  },
+  {
+    "ch": "cab",
+    "q": "Unresponsive, not breathing normally, possible arrest. ABC or CAB?",
+    "opts": [
+      {
+        "t": "C-A-B, compressions first",
+        "ok": true,
+        "why": "Suspected cardiac arrest is CAB: circulation and compressions first, then airway and breathing."
+      },
+      {
+        "t": "ABC, airway first always",
+        "ok": false,
+        "why": "ABC is for patients who are still alive. Arrest switches to CAB."
+      },
+      {
+        "t": "Breathing, then the pulse",
+        "ok": false,
+        "why": "You check breathing and pulse together, then compressions first if there is no pulse."
+      },
+      {
+        "t": "AED shock before the CPR",
+        "ok": false,
+        "why": "Start compressions. Use the AED when it arrives; do not wait to start CPR."
+      }
+    ]
+  },
+  {
+    "ch": "pulse",
+    "q": "Unresponsive infant under 1 year. Where do you check a pulse?",
+    "opts": [
+      {
+        "t": "Brachial on the infant",
+        "ok": true,
+        "why": "Infants under 1 year: brachial. Check with breathing, 10 seconds or less."
+      },
+      {
+        "t": "Carotid on that infant",
+        "ok": false,
+        "why": "Carotid is the adult and child site. This stem is an infant: brachial."
+      },
+      {
+        "t": "Radial, on that infant",
+        "ok": false,
+        "why": "This recap\u2019s infant site is brachial, not radial."
+      },
+      {
+        "t": "Femoral on that infant",
+        "ok": false,
+        "why": "This recap\u2019s infant site is brachial, not femoral."
+      }
+    ]
+  },
+  {
+    "ch": "pause",
+    "q": "How long may you pause compressions in this recap?",
+    "opts": [
+      {
+        "t": "10 seconds or less",
+        "ok": true,
+        "why": "Minimize interruptions. Any pause is 10 seconds or less."
+      },
+      {
+        "t": "15 seconds or less",
+        "ok": false,
+        "why": "15 seconds is over the recap\u2019s 10-second pause limit."
+      },
+      {
+        "t": "20 seconds or less",
+        "ok": false,
+        "why": "20 seconds is over the recap\u2019s 10-second pause limit."
+      },
+      {
+        "t": "30 seconds or less",
+        "ok": false,
+        "why": "30 seconds is over the recap\u2019s 10-second pause limit."
+      }
+    ]
+  },
+  {
+    "ch": "aed",
+    "q": "The AED sees asystole (flatline). What does this recap say it will advise?",
+    "opts": [
+      {
+        "t": "No shock advised",
+        "ok": true,
+        "why": "Shock will not help asystole. The AED says no shock advised. Keep CPR going."
+      },
+      {
+        "t": "Shock to restart it",
+        "ok": false,
+        "why": "The AED does not restart a flatline. No shock advised."
+      },
+      {
+        "t": "Shock then stop CPR",
+        "ok": false,
+        "why": "Do not stop CPR. Resume right after a no-shock prompt."
+      },
+      {
+        "t": "Wait with no CPR",
+        "ok": false,
+        "why": "Continue CPR and follow prompts. Do not wait without compressions."
+      }
+    ]
+  },
+  {
+    "ch": "psy",
+    "q": "They fainted from a scare, then woke when they were flat. What does this recap want?",
+    "opts": [
+      {
+        "t": "Treat as a medical eval",
+        "ok": true,
+        "why": "Psychogenic fainting is not true cellular shock. Still do a full medical eval and check fall injuries."
+      },
+      {
+        "t": "Ignore them, they woke",
+        "ok": false,
+        "why": "Do not ignore it because they woke up."
+      },
+      {
+        "t": "Skip checking the fall",
+        "ok": false,
+        "why": "Check injuries from the fall."
+      },
+      {
+        "t": "Call it true cell shock",
+        "ok": false,
+        "why": "This recap says it is not true cells-dying shock."
+      }
+    ]
+  },
+  {
+    "ch": "o2",
+    "q": "Standard shock oxygen in this recap. How do you pick the device?",
+    "opts": [
+      {
+        "t": "NRB or BVM by breathing",
+        "ok": true,
+        "why": "High-flow oxygen. Non-rebreather or bag-valve mask from whether breathing is adequate."
+      },
+      {
+        "t": "Wait for ALS for oxygen",
+        "ok": false,
+        "why": "Give oxygen now. Do not wait for ALS to start it."
+      },
+      {
+        "t": "Oxygen only if BP falls",
+        "ok": false,
+        "why": "High-flow oxygen is in the always-do list, not only after pressure tanks."
+      },
+      {
+        "t": "Skip oxygen if febrile",
+        "ok": false,
+        "why": "Septic patients still get oxygen and stay warm."
+      }
+    ]
+  }
+]

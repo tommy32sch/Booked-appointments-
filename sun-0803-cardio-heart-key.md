@@ -1,0 +1,40 @@
+# Cardiovascular emergencies and heart attacks — key
+
+Cardiovascular disease is the leading killer in the U.S. Lifestyle and genetics both matter. Public CPR and AEDs matter because people die of sudden cardiac arrest during a myocardial infarction (MI).
+
+Blood flow: body to the right heart to the lungs to the left heart to the body. Reverse the arrows from a failing chamber to predict the backup. Left ventricle fails: blood backs up into the lungs. Crackles, shortness of breath, pink frothy sputum. Right ventricle fails: blood backs up into the body. Jugular venous distention (JVD) and dependent edema (legs if they walk, sacrum if they are in bed). Right-sided failure often follows left-sided failure.
+
+The heart muscle is supplied from the outside by coronary arteries that branch off the aorta. Atherosclerosis is cholesterol and calcium plaque that narrows the lumen. Slow flow lets a clot form on the plaque. Ischemia is low flow. MI is death of cardiac muscle cells. Dead cells do not come back. You are trying to save the tissue around them that is not dead yet.
+
+Angina is the same crushing, squeezing, substernal pressure as an MI, and it can radiate to the left arm, neck, jaw, or shoulder. Stable angina is predictable with a set amount of work. It eases with rest, oxygen, or nitroglycerin, often in 3 to 8 minutes. Unstable angina is a changing pattern: less work than usual, pain at rest, longer pain, or more nitro than usual. Treat that as the edge of an MI.
+
+MI pain does not ease with rest or usual nitro. Classic: crushing pressure, radiation, shortness of breath, nausea, sweating, clammy skin. It does not change with breathing or pressing on the chest. Older adults, women, and people with diabetes can have odd complaints (belly pain, back pain, "I do not feel right"). The hospital uses an electrocardiogram (EKG) and cardiac enzymes.
+
+Aspirin: 162 to 324 milligrams by mouth, chewed (four 81 mg baby tablets is common). It makes platelets slippery so the clot does not grow. Do not expect the pain to vanish. The EMT-level no is an aspirin allergy.
+
+Nitroglycerin: 0.4 milligrams under the tongue. Up to three doses, five minutes apart. Before each dose: systolic blood pressure at least 100, no erectile-dysfunction meds in the last 24 to 48 hours, no head injury, still having chest pain. Recheck pressure and pain after each dose.
+
+Oxygen: keep saturation 94 to 99 percent. Adequate breathing: cannula or non-rebreather. Inadequate: bag-valve mask with high-flow oxygen. Chest pain with a stable pressure: sit them up. Shock: lie them flat unless they cannot breathe that way. Calm them. That lowers oxygen demand. Get advanced life support (ALS) and go.
+
+AED shockable rhythms: ventricular fibrillation and pulseless ventricular tachycardia. Turn it on. Follow the voice. CPR: 100 to 120 compressions a minute. Adult depth at least 2 inches. Child about 2 inches. Infant about 1.5 inches. Interruptions no more than 10 seconds. Single rescuer 30:2. Two-rescuer child or infant 15:2. Two-rescuer adult still 30:2.
+
+Left-sided congestive heart failure (CHF): sit them up. CPAP if they are conscious, breathing adequately, systolic at least 90, and they are not vomiting or traumatized. Right-sided: JVD and edema. Support and go.
+
+Cardiogenic shock: low pressure, cool pale clammy skin, weak rapid pulse, maybe altered. High-flow oxygen, supine, keep warm, rapid transport, ALS.
+
+## Practice
+Do this: reverse the arrows from a failing left ventricle. You did it right if the backup landed in the lungs.
+
+Do this: reverse the arrows from a failing right ventricle. You did it right if you named JVD and dependent edema.
+
+Do this: split stable from unstable angina on one drill. You did it right if the changing pattern was unstable.
+
+Do this: give four baby aspirins chewed. You did it right if the total was 324 milligrams and you checked allergy first.
+
+Do this: check pressure before each nitro. You did it right if you held nitro when systolic was under 100, after erectile-dysfunction meds, or after a head injury.
+
+Do this: turn the AED on first and name the shockable pair. You did it right if you said ventricular fibrillation and pulseless ventricular tachycardia.
+
+Do this: time a 10-second pause in CPR. You did it right if you treated anything longer as too long.
+
+Do this: sit a left-sided CHF patient up and refuse CPAP under 90. You did it right if shock then put them flat unless they could not breathe.

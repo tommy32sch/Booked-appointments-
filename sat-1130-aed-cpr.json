@@ -1,0 +1,314 @@
+[
+  {
+    "ch": "shockable",
+    "q": "Which rhythms does this recap say the AED is looking for?",
+    "opts": [
+      {
+        "t": "VF and pulseless VT",
+        "ok": true,
+        "why": "The AED looks for ventricular fibrillation and pulseless ventricular tachycardia."
+      },
+      {
+        "t": "Asystole / flatline",
+        "ok": false,
+        "why": "Asystole (flatline) is not shockable. The AED looks for VF and pulseless VT."
+      },
+      {
+        "t": "Non-shockable rhythm",
+        "ok": false,
+        "why": "No-shock rhythms are not what the AED is looking to treat with a shock."
+      },
+      {
+        "t": "Not VF, not VT here",
+        "ok": false,
+        "why": "The shockable pair in this recap is VF and pulseless VT."
+      }
+    ]
+  },
+  {
+    "ch": "noshock",
+    "q": "The AED says no shock advised. What do you do?",
+    "opts": [
+      {
+        "t": "Resume CPR right away",
+        "ok": true,
+        "why": "No shock advised means it is not VF/VT. Resume CPR immediately."
+      },
+      {
+        "t": "Wait with no CPR now",
+        "ok": false,
+        "why": "Do not wait without compressions."
+      },
+      {
+        "t": "Turn the AED off now",
+        "ok": false,
+        "why": "Keep the AED on and keep CPR going."
+      },
+      {
+        "t": "Clear and wait longer",
+        "ok": false,
+        "why": "Stay clear only for analysis or shock. After no-shock, resume CPR."
+      }
+    ]
+  },
+  {
+    "ch": "hands",
+    "q": "Why hands off while the AED analyzes?",
+    "opts": [
+      {
+        "t": "Picks up your own rhythm",
+        "ok": true,
+        "why": "If you are touching them, the AED may pick up your heart rhythm."
+      },
+      {
+        "t": "It charges the pads only",
+        "ok": false,
+        "why": "Hands off is so it reads their rhythm, not because it is charging pads."
+      },
+      {
+        "t": "It checks pad stick only",
+        "ok": false,
+        "why": "The prompt is for rhythm analysis, not a pad-stick check."
+      },
+      {
+        "t": "Keep compressing through",
+        "ok": false,
+        "why": "Stop touching for analysis. Resume compressions after."
+      }
+    ]
+  },
+  {
+    "ch": "pads",
+    "q": "Standard adult AED pad placement in this recap?",
+    "opts": [
+      {
+        "t": "Upper right, lower left",
+        "ok": true,
+        "why": "One pad upper right chest, one pad lower left chest, along the heart\u2019s path."
+      },
+      {
+        "t": "Upper left, lower right",
+        "ok": false,
+        "why": "That reverses the path. It is upper right and lower left."
+      },
+      {
+        "t": "Both pads on the back",
+        "ok": false,
+        "why": "Adult default is anterior-lateral, not both on the back."
+      },
+      {
+        "t": "Center chest and the back",
+        "ok": false,
+        "why": "Front-back is for a child or infant who is too small, not the adult default."
+      }
+    ]
+  },
+  {
+    "ch": "ap",
+    "q": "Child or infant too small for adult pad placement. Where do the pads go?",
+    "opts": [
+      {
+        "t": "Center chest and back",
+        "ok": true,
+        "why": "Anterior-posterior: one pad center of the chest, one pad center of the back."
+      },
+      {
+        "t": "Upper right, lower left",
+        "ok": false,
+        "why": "That adult placement is only if the child is big enough."
+      },
+      {
+        "t": "Both pads on the back",
+        "ok": false,
+        "why": "One is on the chest and one is on the back."
+      },
+      {
+        "t": "Both pads on the chest",
+        "ok": false,
+        "why": "Front-back is chest and back, not both on the chest."
+      }
+    ]
+  },
+  {
+    "ch": "pedipad",
+    "q": "No pediatric pads. The patient is a child who needs a shock. What pads?",
+    "opts": [
+      {
+        "t": "Adult pads on the child",
+        "ok": true,
+        "why": "No pediatric pads? Use adult pads. More electricity than needed beats none."
+      },
+      {
+        "t": "Skip the shock entirely",
+        "ok": false,
+        "why": "Do not skip a needed shock. Use adult pads."
+      },
+      {
+        "t": "Wait for pediatric pads",
+        "ok": false,
+        "why": "Do not wait. Adult pads on the child."
+      },
+      {
+        "t": "Hold for lower energy",
+        "ok": false,
+        "why": "Do not hold for pediatric energy. Adult pads on the child."
+      }
+    ]
+  },
+  {
+    "ch": "pacer",
+    "q": "There is a pacemaker bump under the skin. Where does the pad go?",
+    "opts": [
+      {
+        "t": "About 1 inch off device",
+        "ok": true,
+        "why": "Do not place a pad on the device. Move it about 1 inch (2\u20133 cm) away."
+      },
+      {
+        "t": "Directly over the device",
+        "ok": false,
+        "why": "Do not park a pad on the pacemaker or ICD."
+      },
+      {
+        "t": "Skip pads on that chest",
+        "ok": false,
+        "why": "You still place both pads. Shift the one near the bump."
+      },
+      {
+        "t": "Both pads on the back now",
+        "ok": false,
+        "why": "This recap\u2019s pacemaker rule is shift the pad 1 inch, not both on the back."
+      }
+    ]
+  },
+  {
+    "ch": "rate",
+    "q": "What compression rate does this recap want?",
+    "opts": [
+      {
+        "t": "100 to 120 per minute",
+        "ok": true,
+        "why": "100\u2013120 per minute. Faster than 120 drops quality. Not just \u201cat least 100.\u201d"
+      },
+      {
+        "t": "At least 100, no cap",
+        "ok": false,
+        "why": "There is a cap. Over 120 reduces quality."
+      },
+      {
+        "t": "60 to 80 per minute",
+        "ok": false,
+        "why": "That is too slow. The band is 100\u2013120."
+      },
+      {
+        "t": "140 to 160 per minute",
+        "ok": false,
+        "why": "That is too fast. Stay at 100\u2013120."
+      }
+    ]
+  },
+  {
+    "ch": "depth",
+    "q": "Adult compression depth in this recap?",
+    "opts": [
+      {
+        "t": "At least 2 inches (5 cm)",
+        "ok": true,
+        "why": "Adults: at least 2 inches (5 cm). Allow full recoil."
+      },
+      {
+        "t": "About 1.5 inches (4 cm)",
+        "ok": false,
+        "why": "1.5 inches is the infant ballpark, not the adult depth."
+      },
+      {
+        "t": "At least 4 inches (10 cm)",
+        "ok": false,
+        "why": "4 inches is too deep for this recap\u2019s adult number."
+      },
+      {
+        "t": "Only 1 inch on an adult",
+        "ok": false,
+        "why": "Adult depth is at least 2 inches, not 1 inch."
+      }
+    ]
+  },
+  {
+    "ch": "solo",
+    "q": "You are the only one doing CPR (partner is getting the AED). Ratio?",
+    "opts": [
+      {
+        "t": "30:2 for every age",
+        "ok": true,
+        "why": "Single rescuer is 30:2 for all ages. Two-rescuer 15:2 is only when two people are actually doing CPR."
+      },
+      {
+        "t": "15:2 for every age",
+        "ok": false,
+        "why": "15:2 is two-rescuer CPR on a child or infant, not a solo rescuer."
+      },
+      {
+        "t": "15:2 if it is a child",
+        "ok": false,
+        "why": "If you are alone on CPR, a child is still 30:2."
+      },
+      {
+        "t": "30:2 adults, 15:2 kids",
+        "ok": false,
+        "why": "That split is two-rescuer CPR. Solo is 30:2 for every age."
+      }
+    ]
+  },
+  {
+    "ch": "two",
+    "q": "Two people are actually doing CPR on a child. Ratio?",
+    "opts": [
+      {
+        "t": "15 compressions, 2 breaths",
+        "ok": true,
+        "why": "Two-rescuer CPR on children and infants is 15:2. Adults stay 30:2."
+      },
+      {
+        "t": "30 compressions, 2 breaths",
+        "ok": false,
+        "why": "30:2 is single-rescuer (all ages) or two-rescuer adults, not two-rescuer child."
+      },
+      {
+        "t": "15 compressions, 1 breath",
+        "ok": false,
+        "why": "The two breaths stay. It is 15:2, not 15:1."
+      },
+      {
+        "t": "30 compressions, 1 breath",
+        "ok": false,
+        "why": "Two-rescuer child is 15:2, not 30:1."
+      }
+    ]
+  },
+  {
+    "ch": "water",
+    "q": "They are in pooled water. What does this recap want before you shock?",
+    "opts": [
+      {
+        "t": "Move them out of water",
+        "ok": true,
+        "why": "Water conducts. Move them out of pooled water. A quick wipe of damp skin is enough."
+      },
+      {
+        "t": "Wait until bone-dry skin",
+        "ok": false,
+        "why": "They do not need to be bone dry. Wipe and shock on dry ground."
+      },
+      {
+        "t": "Skip the AED entirely",
+        "ok": false,
+        "why": "Still use the AED after you move them out of the water."
+      },
+      {
+        "t": "Wipe only, stay in water",
+        "ok": false,
+        "why": "A wipe is for damp skin, not pooled water. Move them out first."
+      }
+    ]
+  }
+]

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat 2:46 Respiratory and Infection Overview</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat 2:46 Respiratory and Infection Overview</h1>
+  <div class="sub">Recap only · you/your · 12 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch": "croup", "q": "Child, low-grade fever, slow onset, seal-bark cough, stridor. What does this recap call it?", "opts": [{"t": "Croup (viral, upper kid)", "ok": true, "why": "Croup is viral in young kids: low-grade fever, slow onset, seal-bark cough, stridor."}, {"t": "Epiglottitis (bacterial)", "ok": false, "why": "Epiglottitis is high fever, rapid onset, tripod, and drooling, not a seal-bark."}, {"t": "Pertussis (whoop after)", "ok": false, "why": "Pertussis is coughing spells then a whoop on inspiration, not a seal-bark."}, {"t": "Influenza (aches, fever)", "ok": false, "why": "Flu has fever and cough with no unique bark or drool clue."}]}, {"ch": "epig", "q": "Child, high fever, rapid onset, stridor, tripod, drooling. What does this recap call it?", "opts": [{"t": "Epiglottitis (bacterial)", "ok": true, "why": "Epiglottitis is bacterial, high fever, rapid onset, stridor, tripod, and drooling. The epiglottis can swell shut."}, {"t": "Croup (viral, upper kid)", "ok": false, "why": "Croup is low-grade, slow, and seal-bark, not tripod and drooling."}, {"t": "Pertussis (whoop after)", "ok": false, "why": "Pertussis is the whoop after a coughing spell, not drooling and tripod."}, {"t": "Influenza (aches, fever)", "ok": false, "why": "Flu has no unique tripod-and-drool pattern."}]}, {"ch": "throat", "q": "Suspected epiglottitis. What does this recap say about the throat?", "opts": [{"t": "Avoid instrumenting throat", "ok": true, "why": "Do not agitate. Avoid an oropharyngeal airway or suctioning the back of the throat. That can worsen swelling."}, {"t": "Suction back of the throat", "ok": false, "why": "Do not suction the back of the throat in epiglottitis."}, {"t": "Place an OPA in the throat", "ok": false, "why": "Do not put an oropharyngeal airway in. It can worsen swelling."}, {"t": "Agitate to check the throat", "ok": false, "why": "Keep them very calm. Agitation can close the airway."}]}, {"ch": "stridor", "q": "To hear stridor in this recap, do you need a stethoscope?", "opts": [{"t": "Heard without a scope", "ok": true, "why": "Stridor is an upper-airway sound heard without a stethoscope. High-pitched on inspiration."}, {"t": "Needs the stethoscope", "ok": false, "why": "Lower sounds need a stethoscope. Stridor is audible without one."}, {"t": "Heard on exhalation now", "ok": false, "why": "Stridor is high-pitched on inspiration. Exhalation musical sound is wheeze."}, {"t": "Lower-airway sound now", "ok": false, "why": "Stridor is upper. Lower sounds are wheeze, rhonchi, and crackles."}]}, {"ch": "wheeze", "q": "Wheezing in this recap means what?", "opts": [{"t": "Lower airway constriction", "ok": true, "why": "Wheeze is musical, usually on exhalation, lower constriction (asthma, bronchiolitis, RSV, bronchitis). Needs a stethoscope."}, {"t": "Upper airway swelling now", "ok": false, "why": "Upper swelling is stridor, not wheeze."}, {"t": "Mucus in the large tubes", "ok": false, "why": "That is rhonchi (low rattles), often pneumonia."}, {"t": "Fluid in the alveoli now", "ok": false, "why": "That is crackles, not wheeze."}]}, {"ch": "pna", "q": "Fever, colored sputum, and a localized abnormal lung sound. What does this recap call it?", "opts": [{"t": "Pneumonia infection", "ok": true, "why": "Fever, productive colored sputum, and a localized abnormal sound is pneumonia in this recap."}, {"t": "Bronchitis (infection)", "ok": false, "why": "This recap’s localized colored-sputum pattern is pneumonia, not bronchitis."}, {"t": "Pulmonary edema now", "ok": false, "why": "Pulmonary edema is crackles from fluid in alveoli, not this colored-sputum infection picture."}, {"t": "Atelectasis (collapse)", "ok": false, "why": "Atelectasis is collapsed alveoli, not fever plus colored sputum."}]}, {"ch": "tb", "q": "Fever, night sweats, coughing up blood. What PPE does this recap want on you?", "opts": [{"t": "N95/HEPA mask on you", "ok": true, "why": "TB triad is fever, night sweats, hemoptysis. N95/HEPA on you. Surgical mask on the patient."}, {"t": "Surgical mask on you", "ok": false, "why": "Surgical mask goes on the patient. You need N95/HEPA."}, {"t": "Gloves, eye protection", "ok": false, "why": "Gloves and eye protection are not enough. This recap wants N95/HEPA on you."}, {"t": "No respirator needed", "ok": false, "why": "This recap says N95/HEPA is a must. There is no US vaccine here."}]}, {"ch": "rsv", "q": "Infant with RSV/bronchiolitis and a lot of mucus. What extra step does this recap want?", "opts": [{"t": "Suction the infant nose", "ok": true, "why": "Infants are nose-breathers. Suction the nose. It can make a big difference."}, {"t": "Skip suction entirely", "ok": false, "why": "Do not skip suction. This recap wants you to suction the nose."}, {"t": "Oxygen only, no suction", "ok": false, "why": "Oxygen as needed, but still suction the nose."}, {"t": "Suction the mouth first", "ok": false, "why": "This recap’s RSV step is suction the nose, not the mouth first."}]}, {"ch": "septic", "q": "Infection plus which finding makes this recap call septic shock?", "opts": [{"t": "Low blood pressure now", "ok": true, "why": "Septic shock: evidence of infection plus hypotension. High-flow oxygen, warm, flat if tolerated, rapid transport."}, {"t": "High blood pressure now", "ok": false, "why": "The shock clue here is low pressure, not high."}, {"t": "Normal blood pressure", "ok": false, "why": "Normal pressure is not septic shock in this recap. You need hypotension."}, {"t": "Fever only, no low BP", "ok": false, "why": "Fever is infection. Septic shock also needs low blood pressure."}]}, {"ch": "humid", "q": "Humidified oxygen is preferred for upper-airway infection. No humidifier. What then?", "opts": [{"t": "Give dry oxygen anyway", "ok": true, "why": "Humidified is preferred. If you do not have it, still give dry oxygen. Hypoxia is worse than irritation."}, {"t": "Hold oxygen until humid", "ok": false, "why": "Do not withhold oxygen waiting on a humidifier."}, {"t": "Skip oxygen on purpose", "ok": false, "why": "Give oxygen if they need it, even dry."}, {"t": "Wait for the hospital O2", "ok": false, "why": "Start oxygen now. Do not wait for the hospital."}]}, {"ch": "resid", "q": "What does residual volume do in this recap?", "opts": [{"t": "Keeps alveoli from collapse", "ok": true, "why": "Residual volume is air left after a max exhale. It keeps alveoli open so the next breath does not have to pop them open."}, {"t": "Collapses the alveoli fully", "ok": false, "why": "Collapsed alveoli is atelectasis, the opposite of residual volume’s job."}, {"t": "Fills only the upper airway", "ok": false, "why": "Residual volume is about alveoli staying open, not filling the upper airway."}, {"t": "Blocks the bronchioles now", "ok": false, "why": "That is not residual volume. Residual volume keeps alveoli open."}]}, {"ch": "sit", "q": "Most dyspnea patients in this recap. How do you position them?", "opts": [{"t": "Sitting up for dyspnea", "ok": true, "why": "Most short-of-breath patients sit up (Fowler/tripod). Supine is for shock with no respiratory compromise."}, {"t": "Flat supine for dyspnea", "ok": false, "why": "Supine is for shock if breathing is okay, not for most dyspnea."}, {"t": "Prone down for dyspnea", "ok": false, "why": "This recap wants sitting up, not prone."}, {"t": "Head-down for dyspnea", "ok": false, "why": "This recap does not put dyspnea patients head-down."}]}];
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"croup": "Croup", "epig": "Epiglottitis", "throat": "Throat", "stridor": "Stridor", "wheeze": "Wheeze", "pna": "Pneumonia", "tb": "TB", "rsv": "RSV", "septic": "Septic shock", "humid": "Oxygen", "resid": "Residual volume", "sit": "Position"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the Sat 2:46 Respiratory and Infection Overview recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · respiratory/infection recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>

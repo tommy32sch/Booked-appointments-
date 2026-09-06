@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat 10:00 Types of Shock and CPR Fundamentals</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat 10:00 Types of Shock and CPR Fundamentals</h1>
+  <div class="sub">Recap only · you/your · 14 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch": "comp", "q": "Adult systolic still at or above 90, heart rate and breathing up, cool pale clammy skin. What is this?", "opts": [{"t": "Compensated shock", "ok": true, "why": "Epinephrine is still holding adult systolic ≥ 90. They can look okay and still be in trouble."}, {"t": "Decompensated shock", "ok": false, "why": "Decompensated shock is when adult systolic falls under 90."}, {"t": "No shock is present", "ok": false, "why": "Fast pulse, fast breathing, and cool pale clammy skin are compensated shock, not no shock."}, {"t": "Only a late crash", "ok": false, "why": "A late crash is decompensated. This stem still has a pressure of 90 or more."}]}, {"ch": "decomp", "q": "Adult systolic falls under 90. Compensatory moves have failed. What is this?", "opts": [{"t": "Decompensated shock", "ok": true, "why": "Adult systolic under 90 means decompensated (uncompensated on some tests)."}, {"t": "Compensated, BP holds", "ok": false, "why": "Compensated shock still holds adult systolic at or above 90."}, {"t": "No shock is present", "ok": false, "why": "A falling systolic with failed compensation is shock, not no shock."}, {"t": "Still holding the BP", "ok": false, "why": "Under 90 means the pressure is no longer holding."}]}, {"ch": "cap", "q": "What cap-refill cutoff does this recap call delayed in a child?", "opts": [{"t": "Over 2 seconds", "ok": true, "why": "Cap refill over 2 seconds is delayed and matters for shock in kids, even if pressure still looks okay."}, {"t": "Over 4 seconds", "ok": false, "why": "The recap’s cutoff is over 2 seconds, not over 4."}, {"t": "Over 5 seconds", "ok": false, "why": "The recap’s cutoff is over 2 seconds, not over 5."}, {"t": "Over 8 seconds", "ok": false, "why": "The recap’s cutoff is over 2 seconds, not over 8."}]}, {"ch": "neuro", "q": "Trauma, low blood pressure, slow pulse, warm flushed skin below the injury. What type?", "opts": [{"t": "Neurogenic (slow HR)", "ok": true, "why": "Cord injury drops sympathetic tone. Almost every other shock speeds the pulse; this one slows it."}, {"t": "Septic shock (fever)", "ok": false, "why": "Septic is fever and hot skin from infection, not trauma with a slow pulse."}, {"t": "Anaphylaxis (hives)", "ok": false, "why": "Anaphylaxis is two or more systems after an allergen, not a cord pattern."}, {"t": "Hemorrhage (bleeding)", "ok": false, "why": "Hemorrhagic shock is volume loss. It does not give this slow-pulse cord pattern."}]}, {"ch": "septic", "q": "Fever or an infection source, hot skin, and low blood pressure. What type?", "opts": [{"t": "Septic shock (fever)", "ok": true, "why": "Severe infection dilates and leaks vessels. Hot skin and fever with low pressure is septic."}, {"t": "Neurogenic (slow HR)", "ok": false, "why": "Neurogenic is trauma, a slow pulse, and a warm line below the injury."}, {"t": "Anaphylaxis (hives)", "ok": false, "why": "Anaphylaxis needs two or more systems after an allergen, not an infection source."}, {"t": "Hemorrhage (bleeding)", "ok": false, "why": "Hemorrhagic shock is blood loss, not fever and hot skin."}]}, {"ch": "ana", "q": "After an allergen, how many body systems make this recap call it anaphylaxis?", "opts": [{"t": "Two or more systems", "ok": true, "why": "Anaphylaxis is an allergic reaction involving two or more systems (skin, breathing, circulation, gut)."}, {"t": "Skin findings only", "ok": false, "why": "Skin alone is not two or more systems."}, {"t": "One system, plus fever", "ok": false, "why": "Fever is a septic clue. Anaphylaxis is two or more systems after an allergen."}, {"t": "Trauma plus slow pulse", "ok": false, "why": "Trauma and a slow pulse is neurogenic, not anaphylaxis."}]}, {"ch": "epi", "q": "Adult anaphylaxis. What epinephrine dose does this recap want?", "opts": [{"t": "0.3 mg IM, lateral thigh", "ok": true, "why": "Adult EpiPen is 0.3 mg IM in the lateral thigh. Hold about 3 seconds. Pediatric is 0.15 mg."}, {"t": "0.15 mg IM lateral thigh", "ok": false, "why": "0.15 mg is the pediatric dose, not the adult dose. Same site."}, {"t": "0.5 mg IM, lateral thigh", "ok": false, "why": "Adult dose in this recap is 0.3 mg, not 0.5 mg. Same site."}, {"t": "1.0 mg IM, lateral thigh", "ok": false, "why": "Adult dose in this recap is 0.3 mg, not 1.0 mg. Same site."}]}, {"ch": "npo", "q": "They are in shock. Food and drink?", "opts": [{"t": "Hold food and drink now", "ok": true, "why": "Do not let them eat or drink. It complicates assessment and possible surgery."}, {"t": "Hold food, allow drink", "ok": false, "why": "Hold drink too. Nothing by mouth."}, {"t": "Hold drink, allow food", "ok": false, "why": "Hold food too. Nothing by mouth."}, {"t": "Delay to treat on scene", "ok": false, "why": "Do not delay transport while you try to fix everything on scene."}]}, {"ch": "cab", "q": "Unresponsive, not breathing normally, possible arrest. ABC or CAB?", "opts": [{"t": "C-A-B, compressions first", "ok": true, "why": "Suspected cardiac arrest is CAB: circulation and compressions first, then airway and breathing."}, {"t": "ABC, airway first always", "ok": false, "why": "ABC is for patients who are still alive. Arrest switches to CAB."}, {"t": "Breathing, then the pulse", "ok": false, "why": "You check breathing and pulse together, then compressions first if there is no pulse."}, {"t": "AED shock before the CPR", "ok": false, "why": "Start compressions. Use the AED when it arrives; do not wait to start CPR."}]}, {"ch": "pulse", "q": "Unresponsive infant under 1 year. Where do you check a pulse?", "opts": [{"t": "Brachial on the infant", "ok": true, "why": "Infants under 1 year: brachial. Check with breathing, 10 seconds or less."}, {"t": "Carotid on that infant", "ok": false, "why": "Carotid is the adult and child site. This stem is an infant: brachial."}, {"t": "Radial, on that infant", "ok": false, "why": "This recap’s infant site is brachial, not radial."}, {"t": "Femoral on that infant", "ok": false, "why": "This recap’s infant site is brachial, not femoral."}]}, {"ch": "pause", "q": "How long may you pause compressions in this recap?", "opts": [{"t": "10 seconds or less", "ok": true, "why": "Minimize interruptions. Any pause is 10 seconds or less."}, {"t": "15 seconds or less", "ok": false, "why": "15 seconds is over the recap’s 10-second pause limit."}, {"t": "20 seconds or less", "ok": false, "why": "20 seconds is over the recap’s 10-second pause limit."}, {"t": "30 seconds or less", "ok": false, "why": "30 seconds is over the recap’s 10-second pause limit."}]}, {"ch": "aed", "q": "The AED sees asystole (flatline). What does this recap say it will advise?", "opts": [{"t": "No shock advised", "ok": true, "why": "Shock will not help asystole. The AED says no shock advised. Keep CPR going."}, {"t": "Shock to restart it", "ok": false, "why": "The AED does not restart a flatline. No shock advised."}, {"t": "Shock then stop CPR", "ok": false, "why": "Do not stop CPR. Resume right after a no-shock prompt."}, {"t": "Wait with no CPR", "ok": false, "why": "Continue CPR and follow prompts. Do not wait without compressions."}]}, {"ch": "psy", "q": "They fainted from a scare, then woke when they were flat. What does this recap want?", "opts": [{"t": "Treat as a medical eval", "ok": true, "why": "Psychogenic fainting is not true cellular shock. Still do a full medical eval and check fall injuries."}, {"t": "Ignore them, they woke", "ok": false, "why": "Do not ignore it because they woke up."}, {"t": "Skip checking the fall", "ok": false, "why": "Check injuries from the fall."}, {"t": "Call it true cell shock", "ok": false, "why": "This recap says it is not true cells-dying shock."}]}, {"ch": "o2", "q": "Standard shock oxygen in this recap. How do you pick the device?", "opts": [{"t": "NRB or BVM by breathing", "ok": true, "why": "High-flow oxygen. Non-rebreather or bag-valve mask from whether breathing is adequate."}, {"t": "Wait for ALS for oxygen", "ok": false, "why": "Give oxygen now. Do not wait for ALS to start it."}, {"t": "Oxygen only if BP falls", "ok": false, "why": "High-flow oxygen is in the always-do list, not only after pressure tanks."}, {"t": "Skip oxygen if febrile", "ok": false, "why": "Septic patients still get oxygen and stay warm."}]}];
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"comp": "Compensated", "decomp": "Decompensated", "cap": "Cap refill", "neuro": "Neurogenic", "septic": "Septic", "ana": "Anaphylaxis", "epi": "Epinephrine", "npo": "Food and drink", "cab": "CAB", "pulse": "Infant pulse", "pause": "CPR pauses", "aed": "AED asystole", "psy": "Psychogenic", "o2": "Oxygen"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the Sat 10:00 Types of Shock and CPR Fundamentals recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · types of shock and CPR recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>

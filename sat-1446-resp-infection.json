@@ -1,0 +1,314 @@
+[
+  {
+    "ch": "croup",
+    "q": "Child, low-grade fever, slow onset, seal-bark cough, stridor. What does this recap call it?",
+    "opts": [
+      {
+        "t": "Croup (viral, upper kid)",
+        "ok": true,
+        "why": "Croup is viral in young kids: low-grade fever, slow onset, seal-bark cough, stridor."
+      },
+      {
+        "t": "Epiglottitis (bacterial)",
+        "ok": false,
+        "why": "Epiglottitis is high fever, rapid onset, tripod, and drooling, not a seal-bark."
+      },
+      {
+        "t": "Pertussis (whoop after)",
+        "ok": false,
+        "why": "Pertussis is coughing spells then a whoop on inspiration, not a seal-bark."
+      },
+      {
+        "t": "Influenza (aches, fever)",
+        "ok": false,
+        "why": "Flu has fever and cough with no unique bark or drool clue."
+      }
+    ]
+  },
+  {
+    "ch": "epig",
+    "q": "Child, high fever, rapid onset, stridor, tripod, drooling. What does this recap call it?",
+    "opts": [
+      {
+        "t": "Epiglottitis (bacterial)",
+        "ok": true,
+        "why": "Epiglottitis is bacterial, high fever, rapid onset, stridor, tripod, and drooling. The epiglottis can swell shut."
+      },
+      {
+        "t": "Croup (viral, upper kid)",
+        "ok": false,
+        "why": "Croup is low-grade, slow, and seal-bark, not tripod and drooling."
+      },
+      {
+        "t": "Pertussis (whoop after)",
+        "ok": false,
+        "why": "Pertussis is the whoop after a coughing spell, not drooling and tripod."
+      },
+      {
+        "t": "Influenza (aches, fever)",
+        "ok": false,
+        "why": "Flu has no unique tripod-and-drool pattern."
+      }
+    ]
+  },
+  {
+    "ch": "throat",
+    "q": "Suspected epiglottitis. What does this recap say about the throat?",
+    "opts": [
+      {
+        "t": "Avoid instrumenting throat",
+        "ok": true,
+        "why": "Do not agitate. Avoid an oropharyngeal airway or suctioning the back of the throat. That can worsen swelling."
+      },
+      {
+        "t": "Suction back of the throat",
+        "ok": false,
+        "why": "Do not suction the back of the throat in epiglottitis."
+      },
+      {
+        "t": "Place an OPA in the throat",
+        "ok": false,
+        "why": "Do not put an oropharyngeal airway in. It can worsen swelling."
+      },
+      {
+        "t": "Agitate to check the throat",
+        "ok": false,
+        "why": "Keep them very calm. Agitation can close the airway."
+      }
+    ]
+  },
+  {
+    "ch": "stridor",
+    "q": "To hear stridor in this recap, do you need a stethoscope?",
+    "opts": [
+      {
+        "t": "Heard without a scope",
+        "ok": true,
+        "why": "Stridor is an upper-airway sound heard without a stethoscope. High-pitched on inspiration."
+      },
+      {
+        "t": "Needs the stethoscope",
+        "ok": false,
+        "why": "Lower sounds need a stethoscope. Stridor is audible without one."
+      },
+      {
+        "t": "Heard on exhalation now",
+        "ok": false,
+        "why": "Stridor is high-pitched on inspiration. Exhalation musical sound is wheeze."
+      },
+      {
+        "t": "Lower-airway sound now",
+        "ok": false,
+        "why": "Stridor is upper. Lower sounds are wheeze, rhonchi, and crackles."
+      }
+    ]
+  },
+  {
+    "ch": "wheeze",
+    "q": "Wheezing in this recap means what?",
+    "opts": [
+      {
+        "t": "Lower airway constriction",
+        "ok": true,
+        "why": "Wheeze is musical, usually on exhalation, lower constriction (asthma, bronchiolitis, RSV, bronchitis). Needs a stethoscope."
+      },
+      {
+        "t": "Upper airway swelling now",
+        "ok": false,
+        "why": "Upper swelling is stridor, not wheeze."
+      },
+      {
+        "t": "Mucus in the large tubes",
+        "ok": false,
+        "why": "That is rhonchi (low rattles), often pneumonia."
+      },
+      {
+        "t": "Fluid in the alveoli now",
+        "ok": false,
+        "why": "That is crackles, not wheeze."
+      }
+    ]
+  },
+  {
+    "ch": "pna",
+    "q": "Fever, colored sputum, and a localized abnormal lung sound. What does this recap call it?",
+    "opts": [
+      {
+        "t": "Pneumonia infection",
+        "ok": true,
+        "why": "Fever, productive colored sputum, and a localized abnormal sound is pneumonia in this recap."
+      },
+      {
+        "t": "Bronchitis (infection)",
+        "ok": false,
+        "why": "This recap\u2019s localized colored-sputum pattern is pneumonia, not bronchitis."
+      },
+      {
+        "t": "Pulmonary edema now",
+        "ok": false,
+        "why": "Pulmonary edema is crackles from fluid in alveoli, not this colored-sputum infection picture."
+      },
+      {
+        "t": "Atelectasis (collapse)",
+        "ok": false,
+        "why": "Atelectasis is collapsed alveoli, not fever plus colored sputum."
+      }
+    ]
+  },
+  {
+    "ch": "tb",
+    "q": "Fever, night sweats, coughing up blood. What PPE does this recap want on you?",
+    "opts": [
+      {
+        "t": "N95/HEPA mask on you",
+        "ok": true,
+        "why": "TB triad is fever, night sweats, hemoptysis. N95/HEPA on you. Surgical mask on the patient."
+      },
+      {
+        "t": "Surgical mask on you",
+        "ok": false,
+        "why": "Surgical mask goes on the patient. You need N95/HEPA."
+      },
+      {
+        "t": "Gloves, eye protection",
+        "ok": false,
+        "why": "Gloves and eye protection are not enough. This recap wants N95/HEPA on you."
+      },
+      {
+        "t": "No respirator needed",
+        "ok": false,
+        "why": "This recap says N95/HEPA is a must. There is no US vaccine here."
+      }
+    ]
+  },
+  {
+    "ch": "rsv",
+    "q": "Infant with RSV/bronchiolitis and a lot of mucus. What extra step does this recap want?",
+    "opts": [
+      {
+        "t": "Suction the infant nose",
+        "ok": true,
+        "why": "Infants are nose-breathers. Suction the nose. It can make a big difference."
+      },
+      {
+        "t": "Skip suction entirely",
+        "ok": false,
+        "why": "Do not skip suction. This recap wants you to suction the nose."
+      },
+      {
+        "t": "Oxygen only, no suction",
+        "ok": false,
+        "why": "Oxygen as needed, but still suction the nose."
+      },
+      {
+        "t": "Suction the mouth first",
+        "ok": false,
+        "why": "This recap\u2019s RSV step is suction the nose, not the mouth first."
+      }
+    ]
+  },
+  {
+    "ch": "septic",
+    "q": "Infection plus which finding makes this recap call septic shock?",
+    "opts": [
+      {
+        "t": "Low blood pressure now",
+        "ok": true,
+        "why": "Septic shock: evidence of infection plus hypotension. High-flow oxygen, warm, flat if tolerated, rapid transport."
+      },
+      {
+        "t": "High blood pressure now",
+        "ok": false,
+        "why": "The shock clue here is low pressure, not high."
+      },
+      {
+        "t": "Normal blood pressure",
+        "ok": false,
+        "why": "Normal pressure is not septic shock in this recap. You need hypotension."
+      },
+      {
+        "t": "Fever only, no low BP",
+        "ok": false,
+        "why": "Fever is infection. Septic shock also needs low blood pressure."
+      }
+    ]
+  },
+  {
+    "ch": "humid",
+    "q": "Humidified oxygen is preferred for upper-airway infection. No humidifier. What then?",
+    "opts": [
+      {
+        "t": "Give dry oxygen anyway",
+        "ok": true,
+        "why": "Humidified is preferred. If you do not have it, still give dry oxygen. Hypoxia is worse than irritation."
+      },
+      {
+        "t": "Hold oxygen until humid",
+        "ok": false,
+        "why": "Do not withhold oxygen waiting on a humidifier."
+      },
+      {
+        "t": "Skip oxygen on purpose",
+        "ok": false,
+        "why": "Give oxygen if they need it, even dry."
+      },
+      {
+        "t": "Wait for the hospital O2",
+        "ok": false,
+        "why": "Start oxygen now. Do not wait for the hospital."
+      }
+    ]
+  },
+  {
+    "ch": "resid",
+    "q": "What does residual volume do in this recap?",
+    "opts": [
+      {
+        "t": "Keeps alveoli from collapse",
+        "ok": true,
+        "why": "Residual volume is air left after a max exhale. It keeps alveoli open so the next breath does not have to pop them open."
+      },
+      {
+        "t": "Collapses the alveoli fully",
+        "ok": false,
+        "why": "Collapsed alveoli is atelectasis, the opposite of residual volume\u2019s job."
+      },
+      {
+        "t": "Fills only the upper airway",
+        "ok": false,
+        "why": "Residual volume is about alveoli staying open, not filling the upper airway."
+      },
+      {
+        "t": "Blocks the bronchioles now",
+        "ok": false,
+        "why": "That is not residual volume. Residual volume keeps alveoli open."
+      }
+    ]
+  },
+  {
+    "ch": "sit",
+    "q": "Most dyspnea patients in this recap. How do you position them?",
+    "opts": [
+      {
+        "t": "Sitting up for dyspnea",
+        "ok": true,
+        "why": "Most short-of-breath patients sit up (Fowler/tripod). Supine is for shock with no respiratory compromise."
+      },
+      {
+        "t": "Flat supine for dyspnea",
+        "ok": false,
+        "why": "Supine is for shock if breathing is okay, not for most dyspnea."
+      },
+      {
+        "t": "Prone down for dyspnea",
+        "ok": false,
+        "why": "This recap wants sitting up, not prone."
+      },
+      {
+        "t": "Head-down for dyspnea",
+        "ok": false,
+        "why": "This recap does not put dyspnea patients head-down."
+      }
+    ]
+  }
+]

@@ -1,0 +1,314 @@
+[
+  {
+    "ch": "cpapbp",
+    "q": "Which finding is a CPAP contraindication in this recap?",
+    "opts": [
+      {
+        "t": "Low pressure or shock",
+        "ok": true,
+        "why": "CPAP drops blood pressure more. Skip it in hypotension or shock."
+      },
+      {
+        "t": "High pressure only now",
+        "ok": false,
+        "why": "High pressure is not the CPAP no in this recap. Low pressure is."
+      },
+      {
+        "t": "Crackles in both lungs",
+        "ok": false,
+        "why": "Crackles from pulmonary edema are a CPAP picture, not a contraindication."
+      },
+      {
+        "t": "History of CHF alone",
+        "ok": false,
+        "why": "CHF with edema is why you consider CPAP, if pressure is adequate."
+      }
+    ]
+  },
+  {
+    "ch": "cpaphow",
+    "q": "How does CPAP move fluid in pulmonary edema in this recap?",
+    "opts": [
+      {
+        "t": "Back into the bloodstream",
+        "ok": true,
+        "why": "They exhale against pressure. That back pressure pushes fluid from the alveoli back into the bloodstream."
+      },
+      {
+        "t": "Deeper into the alveoli",
+        "ok": false,
+        "why": "CPAP is meant to push fluid out of the alveoli, not deeper in."
+      },
+      {
+        "t": "Out through the mouth only",
+        "ok": false,
+        "why": "The fluid goes back into the blood, not out the mouth."
+      },
+      {
+        "t": "Into the pleural space now",
+        "ok": false,
+        "why": "Pleural fluid is effusion, not what CPAP does to alveolar fluid."
+      }
+    ]
+  },
+  {
+    "ch": "pnd",
+    "q": "Paroxysmal nocturnal dyspnea in this recap. How do you position them?",
+    "opts": [
+      {
+        "t": "Keep them sitting upright",
+        "ok": true,
+        "why": "PND is dyspnea lying down at night. They sleep upright. Keep them sitting up."
+      },
+      {
+        "t": "Force them onto their back",
+        "ok": false,
+        "why": "Lying flat spreads fluid over more lung. Do not force them flat."
+      },
+      {
+        "t": "Prone for every PND case",
+        "ok": false,
+        "why": "This recap wants them sitting upright, not prone."
+      },
+      {
+        "t": "Head-down to shift fluid",
+        "ok": false,
+        "why": "Head-down is not the PND position. Sit them up."
+      }
+    ]
+  },
+  {
+    "ch": "copdo2",
+    "q": "Hypoxic COPD patient, short EMS transport. Oxygen in this recap?",
+    "opts": [
+      {
+        "t": "Give oxygen for hypoxia",
+        "ok": true,
+        "why": "Short transports: still treat hypoxia. Do not withhold oxygen for hypoxic drive."
+      },
+      {
+        "t": "Hold oxygen for drive",
+        "ok": false,
+        "why": "Do not withhold oxygen from a hypoxic COPD patient on a short run."
+      },
+      {
+        "t": "Cannula first, short run",
+        "ok": false,
+        "why": "A cannula instead of a non-rebreather is the long-transport option, not a short run."
+      },
+      {
+        "t": "Med control before any O2",
+        "ok": false,
+        "why": "Medical direction is for long or borderline cases. On a short hypoxic run, give oxygen."
+      }
+    ]
+  },
+  {
+    "ch": "ana",
+    "q": "When does this recap want epinephrine for an allergic reaction?",
+    "opts": [
+      {
+        "t": "Two or more body systems",
+        "ok": true,
+        "why": "Anaphylaxis is two or more systems. Then epinephrine IM. One system only: no epi."
+      },
+      {
+        "t": "Skin findings only, hives",
+        "ok": false,
+        "why": "One system (often skin) is a mild reaction. Monitor and transport. No epi."
+      },
+      {
+        "t": "Itching with no other sign",
+        "ok": false,
+        "why": "Itch alone is one system. No epinephrine."
+      },
+      {
+        "t": "Any sneeze after a sting",
+        "ok": false,
+        "why": "You need two or more systems, not any sneeze."
+      }
+    ]
+  },
+  {
+    "ch": "stinger",
+    "q": "Bee stinger still in the skin. How does this recap want it out?",
+    "opts": [
+      {
+        "t": "Scrape it with straight edge",
+        "ok": true,
+        "why": "Scrape it out with a straight edge. Tweezers can squeeze more venom. The sac can inject for about 20 minutes."
+      },
+      {
+        "t": "Pull it out with tweezers now",
+        "ok": false,
+        "why": "Avoid tweezers. They can squeeze more venom from the sac."
+      },
+      {
+        "t": "Leave the stinger in the skin",
+        "ok": false,
+        "why": "Scrape it out. The sac can keep injecting."
+      },
+      {
+        "t": "Squeeze the venom sac harder",
+        "ok": false,
+        "why": "Do not squeeze the sac. Scrape with a straight edge."
+      }
+    ]
+  },
+  {
+    "ch": "pe",
+    "q": "Suspected PE. Why can a non-rebreather leave the saturation low in this recap?",
+    "opts": [
+      {
+        "t": "Blood can't reach alveoli",
+        "ok": true,
+        "why": "Air reaches the alveoli, but the clot blocks blood from getting there, so gas exchange fails."
+      },
+      {
+        "t": "Air cannot reach alveoli",
+        "ok": false,
+        "why": "Air does reach the alveoli. Blood does not."
+      },
+      {
+        "t": "Not breathing deep enough",
+        "ok": false,
+        "why": "This recap\u2019s PE has adequate rate and depth. The clot is the problem, not shallow breaths."
+      },
+      {
+        "t": "Fluid in the alveoli now",
+        "ok": false,
+        "why": "Alveolar fluid is pulmonary edema. PE often has normal sounds."
+      }
+    ]
+  },
+  {
+    "ch": "co",
+    "q": "Carbon monoxide poisoning. What does this recap say about the pulse ox?",
+    "opts": [
+      {
+        "t": "Pulse ox can lie here",
+        "ok": true,
+        "why": "The probe sees hemoglobin occupied and cannot tell carbon monoxide from oxygen. SpO\u2082 can look normal. Still give high-flow oxygen."
+      },
+      {
+        "t": "Pulse ox is always right",
+        "ok": false,
+        "why": "Pulse ox can read normal or high in carbon monoxide. It lies."
+      },
+      {
+        "t": "Reads low, so skip O2",
+        "ok": false,
+        "why": "The recap\u2019s lie is a normal or high reading, not a low one, and you still give high-flow oxygen."
+      },
+      {
+        "t": "Can tell CO from oxygen",
+        "ok": false,
+        "why": "The probe cannot tell carbon monoxide from oxygen."
+      }
+    ]
+  },
+  {
+    "ch": "bag",
+    "q": "Panic hyperventilation. What does this recap say not to do?",
+    "opts": [
+      {
+        "t": "Do not use a paper bag",
+        "ok": true,
+        "why": "Do not have them breathe into a paper bag. It restricts oxygen. Coach slow breathing after a full assessment."
+      },
+      {
+        "t": "Coach slow breathing now",
+        "ok": false,
+        "why": "Coaching slow breathing is what you do. The recap\u2019s don\u2019t is the paper bag."
+      },
+      {
+        "t": "Box breathing 4-4-4-4",
+        "ok": false,
+        "why": "Box breathing is the recap\u2019s coaching tool. The don\u2019t is the paper bag."
+      },
+      {
+        "t": "Oxygen if you are unsure",
+        "ok": false,
+        "why": "Oxygen is okay if you are not sure. The recap\u2019s don\u2019t is the paper bag."
+      }
+    ]
+  },
+  {
+    "ch": "crack",
+    "q": "Crackles in this recap mean fluid where?",
+    "opts": [
+      {
+        "t": "Inside the alveoli only",
+        "ok": true,
+        "why": "Crackles are popping from fluid in the alveoli (pulmonary edema). Pleural effusion is fluid around the lung, so no crackles."
+      },
+      {
+        "t": "Around the lung only now",
+        "ok": false,
+        "why": "Fluid around the lung is pleural effusion and does not make crackles."
+      },
+      {
+        "t": "In the upper airway now",
+        "ok": false,
+        "why": "Upper fluid is gurgling, not crackles."
+      },
+      {
+        "t": "In the larger airways now",
+        "ok": false,
+        "why": "Mucus in larger airways is rhonchi. Crackles are fluid in the alveoli."
+      }
+    ]
+  },
+  {
+    "ch": "albut",
+    "q": "After albuterol, heart rate goes up. What does this recap want you to call that?",
+    "opts": [
+      {
+        "t": "Expected beta-1 signs",
+        "ok": true,
+        "why": "Albuterol is a beta-2 agonist that also hits beta-1, so heart rate, palpitations, and shakiness go up. That is not shock."
+      },
+      {
+        "t": "New cardiogenic shock",
+        "ok": false,
+        "why": "Do not over-call shock when the pulse rises after albuterol."
+      },
+      {
+        "t": "Toxic albuterol dosing",
+        "ok": false,
+        "why": "Jitter and a faster pulse are expected side effects, not a toxic-dose name."
+      },
+      {
+        "t": "New hypovolemic shock",
+        "ok": false,
+        "why": "A faster pulse after albuterol is a drug effect, not hypovolemic shock."
+      }
+    ]
+  },
+  {
+    "ch": "spont",
+    "q": "Who is the classic spontaneous pneumothorax patient in this recap?",
+    "opts": [
+      {
+        "t": "Tall thin male, a smoker",
+        "ok": true,
+        "why": "Air leak without trauma. Often a tall, thin male smoker, sometimes after a hard cough. Sudden sharp pleuritic pain."
+      },
+      {
+        "t": "Short heavy older adult",
+        "ok": false,
+        "why": "The recap\u2019s classic is tall, thin, male, and a smoker."
+      },
+      {
+        "t": "Young child after trauma",
+        "ok": false,
+        "why": "This recap\u2019s spontaneous pneumothorax is without trauma."
+      },
+      {
+        "t": "Pink puffer, barrel chest",
+        "ok": false,
+        "why": "Barrel chest and pursed lips are emphysema in this recap, not the spontaneous pneumothorax classic."
+      }
+    ]
+  }
+]
