@@ -1,0 +1,314 @@
+[
+  {
+    "ch": "pipe",
+    "q": "A pulmonary embolism blocks which pipe?",
+    "opts": [
+      {
+        "t": "Pulmonary blood flow",
+        "ok": true,
+        "why": "PE blocks the blood-flow pipe (pulmonary circulation). Airway pipes can still be open."
+      },
+      {
+        "t": "Airway airflow pipes",
+        "ok": false,
+        "why": "Airflow pipes stay intact. Breath sounds can still be clear."
+      },
+      {
+        "t": "Tracheal air movement",
+        "ok": false,
+        "why": "The trachea can still move air. The blocked pipe is pulmonary blood flow."
+      },
+      {
+        "t": "Bronchial air movement",
+        "ok": false,
+        "why": "Bronchi can still move air. The blocked pipe is pulmonary blood flow."
+      }
+    ]
+  },
+  {
+    "ch": "sounds",
+    "q": "Why can breath sounds stay clear and equal in a PE?",
+    "opts": [
+      {
+        "t": "They track the air moving",
+        "ok": true,
+        "why": "Breath sounds reflect air moving, not blood flow. The airway can still be open."
+      },
+      {
+        "t": "They track blood movement",
+        "ok": false,
+        "why": "Sounds do not tell you blood is reaching the alveoli."
+      },
+      {
+        "t": "They mean air has stopped",
+        "ok": false,
+        "why": "Clear equal sounds mean air is still moving, not that it stopped."
+      },
+      {
+        "t": "They mean airway is closed",
+        "ok": false,
+        "why": "If the airway were closed, sounds would not stay clear and equal."
+      }
+    ]
+  },
+  {
+    "ch": "split",
+    "q": "Ventilation looks good. Saturation keeps falling. What split is this?",
+    "opts": [
+      {
+        "t": "Gas exchange is failing",
+        "ok": true,
+        "why": "Ventilation is air in and out. Respiration is gas exchange. PE breaks gas exchange."
+      },
+      {
+        "t": "Ventilation is failing",
+        "ok": false,
+        "why": "Ventilation looking good means air is still moving. Gas exchange is the failure."
+      },
+      {
+        "t": "Air in and out failing",
+        "ok": false,
+        "why": "Air in and out is ventilation, and that still looks good."
+      },
+      {
+        "t": "Breathing quality failing",
+        "ok": false,
+        "why": "Quality is part of ventilation. This split is gas exchange failing."
+      }
+    ]
+  },
+  {
+    "ch": "pattern",
+    "q": "Sudden dyspnea, clear lungs, non-rebreather, sat still dropping. What is this?",
+    "opts": [
+      {
+        "t": "Pulmonary embolism",
+        "ok": true,
+        "why": "Normal ventilation signs plus hypoxia that high-flow oxygen does not fix. Think PE."
+      },
+      {
+        "t": "Tension pneumothorax",
+        "ok": false,
+        "why": "Tension takes sounds away on one side. PE keeps them."
+      },
+      {
+        "t": "Cardiac tamponade",
+        "ok": false,
+        "why": "Tamponade is JVD, hypotension, and muffled tones, not this lung pattern."
+      },
+      {
+        "t": "Asthma with wheezes",
+        "ok": false,
+        "why": "Asthma/COPD usually bring wheezes. PE keeps clear lungs."
+      }
+    ]
+  },
+  {
+    "ch": "o2fail",
+    "q": "Breathing looks like it should fix the hypoxia. High-flow oxygen does not. What is going on?",
+    "opts": [
+      {
+        "t": "Oxygenation is failing",
+        "ok": true,
+        "why": "Ventilation can look fine while oxygenation fails. High-flow oxygen does not fix it."
+      },
+      {
+        "t": "Ventilation has stopped",
+        "ok": false,
+        "why": "Breathing looking like it should work means ventilation is still going."
+      },
+      {
+        "t": "Airway just closed off",
+        "ok": false,
+        "why": "A closed airway would not look like breathing that should fix hypoxia."
+      },
+      {
+        "t": "Chest rise has stopped",
+        "ok": false,
+        "why": "Good-looking breathing includes chest rise. The failure is oxygenation."
+      }
+    ]
+  },
+  {
+    "ch": "emt",
+    "q": "What can you do in the field for a PE obstruction?",
+    "opts": [
+      {
+        "t": "Treat shock and transport",
+        "ok": true,
+        "why": "You cannot pull the clot. Treat for shock and get to the hospital fast."
+      },
+      {
+        "t": "Needle decompress as ALS",
+        "ok": false,
+        "why": "Needle decompression is a paramedic move for tension, not an EMT PE fix."
+      },
+      {
+        "t": "Drain the pericardial sac",
+        "ok": false,
+        "why": "You cannot drain tamponade. Treat shock and transport."
+      },
+      {
+        "t": "Pull the clot in the field",
+        "ok": false,
+        "why": "You cannot remove the clot in the field."
+      }
+    ]
+  },
+  {
+    "ch": "needle",
+    "q": "Who may needle-decompress a tension pneumothorax in this recap?",
+    "opts": [
+      {
+        "t": "Paramedics if in scope",
+        "ok": true,
+        "why": "Paramedics may needle decompress. This recap does not give that to EMTs."
+      },
+      {
+        "t": "EMTs on every protocol",
+        "ok": false,
+        "why": "EMTs usually cannot perform this here."
+      },
+      {
+        "t": "Hospital staff only here",
+        "ok": false,
+        "why": "Paramedics may do it in the field if it is in scope."
+      },
+      {
+        "t": "EMT skill on this recap",
+        "ok": false,
+        "why": "This recap does not give needle decompression to EMTs."
+      }
+    ]
+  },
+  {
+    "ch": "tens",
+    "q": "Severe dyspnea, absent sounds on one side, JVD, tracheal deviation late. What is this?",
+    "opts": [
+      {
+        "t": "Tension pneumo (one side)",
+        "ok": true,
+        "why": "One silent side plus those shock extras is tension, not a PE with clear lungs."
+      },
+      {
+        "t": "Pulmonary PE (clear lung)",
+        "ok": false,
+        "why": "PE keeps clear, equal breath sounds."
+      },
+      {
+        "t": "Tamponade (muffled tones)",
+        "ok": false,
+        "why": "Tamponade keeps equal sounds and adds muffled heart tones."
+      },
+      {
+        "t": "Asthma/COPD (wheeze set)",
+        "ok": false,
+        "why": "Asthma/COPD usually bring wheezes, not a silent hemithorax."
+      }
+    ]
+  },
+  {
+    "ch": "tamp",
+    "q": "JVD, hypotension, muffled heart sounds. What is this?",
+    "opts": [
+      {
+        "t": "Tamponade (muffled tones)",
+        "ok": true,
+        "why": "Those three are tamponade (Beck\u2019s triad). Fluid in the sac restricts filling."
+      },
+      {
+        "t": "Tension pneumo (one side)",
+        "ok": false,
+        "why": "Tension is a silent lung, not muffled heart tones as the triad."
+      },
+      {
+        "t": "Pulmonary PE (clear lung)",
+        "ok": false,
+        "why": "PE is sudden dyspnea and oxygen that does not help, not this triad."
+      },
+      {
+        "t": "Tension (muffled tones)",
+        "ok": false,
+        "why": "Muffled tones go with tamponade, not tension."
+      }
+    ]
+  },
+  {
+    "ch": "nrb",
+    "q": "Breathing is adequate. What oxygen does this recap want?",
+    "opts": [
+      {
+        "t": "Non-rebreather, adequate",
+        "ok": true,
+        "why": "High-flow oxygen on a non-rebreather about 15 L/min if breathing is adequate. Bag them if it is not."
+      },
+      {
+        "t": "Bag-valve mask, still ok",
+        "ok": false,
+        "why": "BVM is for inadequate breathing, not adequate rate and volume."
+      },
+      {
+        "t": "Non-rebreather after tire",
+        "ok": false,
+        "why": "Give the non-rebreather now if they are in distress and breathing is adequate. Prepare a BVM if they tire."
+      },
+      {
+        "t": "Bag-valve mask, inadequate",
+        "ok": false,
+        "why": "Breathing is adequate on this stem. BVM is for when breathing is not."
+      }
+    ]
+  },
+  {
+    "ch": "reassess",
+    "q": "They are unstable. How often does this recap want a reassess?",
+    "opts": [
+      {
+        "t": "Every 5 mins (unstable)",
+        "ok": true,
+        "why": "Unstable: reassess every 5 minutes (LOC, ABCs, vitals, sat, skin)."
+      },
+      {
+        "t": "Every 15 min (unstable)",
+        "ok": false,
+        "why": "15 minutes is not the unstable interval in this recap."
+      },
+      {
+        "t": "Every 5 min (if stable)",
+        "ok": false,
+        "why": "This stem is unstable. The recap\u2019s 5-minute check is for unstable patients."
+      },
+      {
+        "t": "Once on hospital arrival",
+        "ok": false,
+        "why": "Reassess on the way, not once you arrive."
+      }
+    ]
+  },
+  {
+    "ch": "warm",
+    "q": "Besides oxygen and rapid transport, how do you treat them for shock here?",
+    "opts": [
+      {
+        "t": "Keep them warm, blankets",
+        "ok": true,
+        "why": "Treat for shock: high-flow oxygen, keep warm with blankets, rapid transport, hospital alert."
+      },
+      {
+        "t": "Needle the PE yourself",
+        "ok": false,
+        "why": "You cannot pull the clot. Keep them warm and transport."
+      },
+      {
+        "t": "Drain tamponade on scene",
+        "ok": false,
+        "why": "You cannot drain the sac. Keep them warm and transport."
+      },
+      {
+        "t": "Wait for the sat to rise",
+        "ok": false,
+        "why": "Do not wait. Keep them warm, give high-flow oxygen, and load and go."
+      }
+    ]
+  }
+]
