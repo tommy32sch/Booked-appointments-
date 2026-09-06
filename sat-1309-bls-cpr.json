@@ -1,0 +1,314 @@
+[
+  {
+    "ch": "infant1",
+    "q": "One-rescuer infant CPR. What compression technique does this recap want for the test?",
+    "opts": [
+      {
+        "t": "One-hand heel for infant",
+        "ok": true,
+        "why": "New AHA: one-hand heel for one-rescuer infant CPR. Two fingers were not getting depth."
+      },
+      {
+        "t": "Two-finger for an infant",
+        "ok": false,
+        "why": "Two-finger is the old method. The update is one-hand heel."
+      },
+      {
+        "t": "Two-thumb encircling now",
+        "ok": false,
+        "why": "Two-thumb encircling is preferred for two-rescuer infant CPR, not one rescuer."
+      },
+      {
+        "t": "Two-hand adult style now",
+        "ok": false,
+        "why": "Adult two-hand is not the infant one-rescuer default here."
+      }
+    ]
+  },
+  {
+    "ch": "infant2",
+    "q": "Two-rescuer infant or child CPR. Preferred compression technique?",
+    "opts": [
+      {
+        "t": "Two-thumb encircling",
+        "ok": true,
+        "why": "Two-thumb encircling stays preferred for two-rescuer infant or child CPR."
+      },
+      {
+        "t": "One-hand heel (solo)",
+        "ok": false,
+        "why": "One-hand heel is the one-rescuer infant update, not the two-rescuer preference."
+      },
+      {
+        "t": "Two-finger only, now",
+        "ok": false,
+        "why": "Two-finger is not the two-rescuer preferred method."
+      },
+      {
+        "t": "Two-hand adult style",
+        "ok": false,
+        "why": "Adult two-hand is not the preferred infant two-rescuer grip."
+      }
+    ]
+  },
+  {
+    "ch": "ccf",
+    "q": "What chest compression fraction does this recap want you to hit?",
+    "opts": [
+      {
+        "t": "80% or more (floor 60%)",
+        "ok": true,
+        "why": "CCF floor is 60%. Target is \u226580%. A 10% rise in CCF is about an 11% rise in survival."
+      },
+      {
+        "t": "60% or more (floor 40%)",
+        "ok": false,
+        "why": "60% is the floor, not the target. Aim for 80% or more."
+      },
+      {
+        "t": "40% or more (floor 20%)",
+        "ok": false,
+        "why": "Those numbers are below the recap\u2019s 60% floor."
+      },
+      {
+        "t": "90% or more (floor 80%)",
+        "ok": false,
+        "why": "80% is the target, not the floor. The floor is 60%."
+      }
+    ]
+  },
+  {
+    "ch": "pause",
+    "q": "How long may a compression pause last in this recap?",
+    "opts": [
+      {
+        "t": "Under 10 seconds",
+        "ok": true,
+        "why": "Never interrupt compressions for more than 10 seconds if you can help it."
+      },
+      {
+        "t": "Under 15 seconds",
+        "ok": false,
+        "why": "15 seconds is over the 10-second cap."
+      },
+      {
+        "t": "Under 20 seconds",
+        "ok": false,
+        "why": "20 seconds is over the 10-second cap."
+      },
+      {
+        "t": "Under 30 seconds",
+        "ok": false,
+        "why": "30 seconds is over the 10-second cap."
+      }
+    ]
+  },
+  {
+    "ch": "lucas",
+    "q": "Routine mechanical CPR (Lucas) in this recap?",
+    "opts": [
+      {
+        "t": "Not recommended routinely",
+        "ok": true,
+        "why": "AHA does not recommend routine mechanical CPR. Setup pauses interrupt compressions and worsen outcomes."
+      },
+      {
+        "t": "Don't tire, use routinely",
+        "ok": false,
+        "why": "They don't tire, but routine use is still not recommended. Setup pauses hurt."
+      },
+      {
+        "t": "Consistent, use routinely",
+        "ok": false,
+        "why": "Depth and rate stay consistent, but routine use is still not recommended."
+      },
+      {
+        "t": "Setup fast, use routinely",
+        "ok": false,
+        "why": "Setup is the problem: long pauses. Routine use is not recommended."
+      }
+    ]
+  },
+  {
+    "ch": "dnr",
+    "q": "Which DNR does this recap treat as a reason not to start CPR?",
+    "opts": [
+      {
+        "t": "Original form, in hand",
+        "ok": true,
+        "why": "A valid original, state-specific DNR that is physically present. A photo is not enough."
+      },
+      {
+        "t": "Photo of the form only",
+        "ok": false,
+        "why": "A photo does not count here. You need the original in hand."
+      },
+      {
+        "t": "Rigor mortis is present",
+        "ok": false,
+        "why": "Rigor is a do-not-start sign, but it is not a DNR. This stem is the DNR rule."
+      },
+      {
+        "t": "Dependent lividity now",
+        "ok": false,
+        "why": "Dependent lividity is a do-not-start sign, but it is not a DNR."
+      }
+    ]
+  },
+  {
+    "ch": "stop",
+    "q": "STOP mnemonic. What does S stand for here?",
+    "opts": [
+      {
+        "t": "Starts breathing and pulse",
+        "ok": true,
+        "why": "S is Starts breathing and has a pulse (ROSC). Then you stop compressions."
+      },
+      {
+        "t": "Starts breathing, no pulse",
+        "ok": false,
+        "why": "S needs breathing AND a pulse. Breathing without a pulse is still arrest."
+      },
+      {
+        "t": "Pulse back, not breathing",
+        "ok": false,
+        "why": "S needs breathing AND a pulse. Pulse without breathing is not the S in STOP."
+      },
+      {
+        "t": "Transferred to other care",
+        "ok": false,
+        "why": "Transferred is T in STOP, not S."
+      }
+    ]
+  },
+  {
+    "ch": "resp",
+    "q": "Adult respiratory arrest (pulse present). Breath rate in this recap?",
+    "opts": [
+      {
+        "t": "1 breath every 6 seconds",
+        "ok": true,
+        "why": "Adults: 1 breath every 6 seconds (10 per minute). Child and infant is 1 every 2\u20133 seconds."
+      },
+      {
+        "t": "1 breath every 2 seconds",
+        "ok": false,
+        "why": "Every 2\u20133 seconds is the child and infant rate, not adult."
+      },
+      {
+        "t": "1 breath every 10 seconds",
+        "ok": false,
+        "why": "That is too slow. Adult is every 6 seconds."
+      },
+      {
+        "t": "2 breaths every 6 seconds",
+        "ok": false,
+        "why": "It is 1 breath every 6 seconds, not 2."
+      }
+    ]
+  },
+  {
+    "ch": "mild",
+    "q": "They are choking but still coughing and moving air. What do you do?",
+    "opts": [
+      {
+        "t": "Encourage coughing only",
+        "ok": true,
+        "why": "Mild obstruction: hands off. Let them cough. Do not start thrusts yet. Oxygen is fine."
+      },
+      {
+        "t": "Start abdominal thrusts",
+        "ok": false,
+        "why": "Thrusts are for severe obstruction, not a patient who is still moving air."
+      },
+      {
+        "t": "Start 5 back blows, now",
+        "ok": false,
+        "why": "Back blows are for severe obstruction. Mild still coughing: hands off."
+      },
+      {
+        "t": "Start five chest thrusts",
+        "ok": false,
+        "why": "Chest thrusts are the infant or pregnant/obese severe rule, not mild obstruction."
+      }
+    ]
+  },
+  {
+    "ch": "unresp",
+    "q": "A choking patient goes unresponsive. After 30 compressions you look in the mouth. Blind finger sweep?",
+    "opts": [
+      {
+        "t": "No blind finger sweep now",
+        "ok": true,
+        "why": "Pull only what you can easily see and safely grab. No blind finger sweeps. Then 2 breaths."
+      },
+      {
+        "t": "Sweep every cycle blind",
+        "ok": false,
+        "why": "Do not sweep blindly. Only remove a visible object."
+      },
+      {
+        "t": "Sweep before compressions",
+        "ok": false,
+        "why": "Compress first, then look, then breaths."
+      },
+      {
+        "t": "Skip looking in the mouth",
+        "ok": false,
+        "why": "You do look after compressions. You just do not sweep blind."
+      }
+    ]
+  },
+  {
+    "ch": "narcan",
+    "q": "Obvious opioid overdose in arrest or respiratory failure. Naloxone vs ABCs?",
+    "opts": [
+      {
+        "t": "ABCs first, then naloxone",
+        "ok": true,
+        "why": "They die of hypoxia. Ventilate or do CPR first. Naloxone is secondary after ABCs."
+      },
+      {
+        "t": "Naloxone before any BVM",
+        "ok": false,
+        "why": "Do not delay the airway and oxygen for the drug."
+      },
+      {
+        "t": "Naloxone, skip all CPR now",
+        "ok": false,
+        "why": "If they are pulseless, they still need CPR."
+      },
+      {
+        "t": "Wait, give nothing yet now",
+        "ok": false,
+        "why": "Address ABCs now. Then naloxone per protocol."
+      }
+    ]
+  },
+  {
+    "ch": "tube",
+    "q": "An advanced airway is in. How do you ventilate during CPR in this recap?",
+    "opts": [
+      {
+        "t": "Async CPR, 1 breath / 6s",
+        "ok": true,
+        "why": "Asynchronous CPR: compressions 100\u2013120 with no 30:2 pause. 1 breath every 6 seconds."
+      },
+      {
+        "t": "Keep pausing for 30:2 now",
+        "ok": false,
+        "why": "Drop 30:2 once the advanced airway is in."
+      },
+      {
+        "t": "Stop CPR for each breath",
+        "ok": false,
+        "why": "Do not stop compressions for breaths after an advanced airway."
+      },
+      {
+        "t": "1 breath every 2 seconds",
+        "ok": false,
+        "why": "That is the child respiratory-arrest range, not asynchronous adult CPR breaths."
+      }
+    ]
+  }
+]

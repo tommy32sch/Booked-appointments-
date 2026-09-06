@@ -1,0 +1,314 @@
+[
+  {
+    "ch": "leftfail",
+    "q": "Left ventricle fails in this recap. Where does blood back up?",
+    "opts": [
+      {
+        "t": "Into the lungs now",
+        "ok": true,
+        "why": "The left side receives from the lungs. Fail the left ventricle and fluid is pushed into the alveoli: crackles, shortness of breath, pink frothy sputum."
+      },
+      {
+        "t": "Into the body only",
+        "ok": false,
+        "why": "Body backup is right-sided failure: JVD and dependent edema."
+      },
+      {
+        "t": "Into the vena cava",
+        "ok": false,
+        "why": "Vena cava backup is the right-sided path, not left ventricle failure."
+      },
+      {
+        "t": "Into the legs only",
+        "ok": false,
+        "why": "Leg edema is a right-sided backup. Left failure backs up into the lungs."
+      }
+    ]
+  },
+  {
+    "ch": "rightfail",
+    "q": "Right ventricle fails in this recap. What finding fits?",
+    "opts": [
+      {
+        "t": "JVD and dependent edema",
+        "ok": true,
+        "why": "The right side receives from the body. Fail it and blood backs up into the vena cava: JVD and dependent edema (legs or sacrum)."
+      },
+      {
+        "t": "Backup into the lungs",
+        "ok": false,
+        "why": "Lung backup is left-sided failure, not right ventricle failure."
+      },
+      {
+        "t": "Crushing chest pressure",
+        "ok": false,
+        "why": "Crushing pressure is the MI picture. Right failure is JVD and dependent edema."
+      },
+      {
+        "t": "Pain that eases with rest",
+        "ok": false,
+        "why": "Pain that eases with rest is stable angina, not right-sided backup."
+      }
+    ]
+  },
+  {
+    "ch": "mi",
+    "q": "What does myocardial infarction mean in this recap?",
+    "opts": [
+      {
+        "t": "Heart muscle cells die now",
+        "ok": true,
+        "why": "MI is death of cardiac muscle cells. Dead cells do not come back. Save the tissue around them that is not dead yet."
+      },
+      {
+        "t": "Low flow, cells still live",
+        "ok": false,
+        "why": "Low flow with cells still alive is ischemia, not infarction."
+      },
+      {
+        "t": "Plaque of cholesterol only",
+        "ok": false,
+        "why": "Plaque is atherosclerosis. Infarction is cell death after ischemia lasts long enough."
+      },
+      {
+        "t": "Clot sitting on the plaque",
+        "ok": false,
+        "why": "A clot on plaque is how the block grows. Infarction is cell death after ischemia lasts long enough."
+      }
+    ]
+  },
+  {
+    "ch": "unstable",
+    "q": "Unstable angina in this recap. What is changing?",
+    "opts": [
+      {
+        "t": "Pain pattern is changing",
+        "ok": true,
+        "why": "Unstable angina is a changing pattern: less work than usual, pain at rest, longer pain, or more nitro than usual."
+      },
+      {
+        "t": "Same work every time here",
+        "ok": false,
+        "why": "Same work every time is stable angina, not a changing pattern."
+      },
+      {
+        "t": "Eases in 3 to 8 minutes",
+        "ok": false,
+        "why": "Easing in 3 to 8 minutes is the stable picture. Unstable is the pattern changing."
+      },
+      {
+        "t": "Usual nitro still works",
+        "ok": false,
+        "why": "Usual nitro still working is stable. Unstable needs more nitro or does not respond."
+      }
+    ]
+  },
+  {
+    "ch": "asa",
+    "q": "Aspirin dose in this recap, if they have taken none?",
+    "opts": [
+      {
+        "t": "162 to 324 mg, chewed",
+        "ok": true,
+        "why": "Two to four baby aspirins of 81 mg each, total 162 to 324 mg, chewed. Four is common if they have taken none."
+      },
+      {
+        "t": "0.4 mg under the tongue",
+        "ok": false,
+        "why": "0.4 mg under the tongue is nitroglycerin, not aspirin."
+      },
+      {
+        "t": "81 mg swallowed whole",
+        "ok": false,
+        "why": "81 mg is one baby tablet, not the full dose, and this recap wants it chewed."
+      },
+      {
+        "t": "324 mg swallowed whole",
+        "ok": false,
+        "why": "This recap wants the aspirin chewed, not swallowed whole."
+      }
+    ]
+  },
+  {
+    "ch": "nitrobp",
+    "q": "Before each nitro dose in this recap, systolic pressure must be at least what?",
+    "opts": [
+      {
+        "t": "Nitro floor is 100 mmHg",
+        "ok": true,
+        "why": "Confirm systolic pressure of at least 100 mmHg before each nitro dose. Recheck after each dose."
+      },
+      {
+        "t": "CPAP floor is 90 mmHg",
+        "ok": false,
+        "why": "90 mmHg is the CPAP floor in this recap, not the nitro floor."
+      },
+      {
+        "t": "Sat floor is 94 percent",
+        "ok": false,
+        "why": "94 percent is the oxygen-sat floor, not the nitro pressure floor."
+      },
+      {
+        "t": "Check pressure one time",
+        "ok": false,
+        "why": "You check pressure before every nitro dose, not once."
+      }
+    ]
+  },
+  {
+    "ch": "nitroed",
+    "q": "Recent erectile-dysfunction meds. Nitro in this recap?",
+    "opts": [
+      {
+        "t": "Hold nitro 24 to 48 hrs",
+        "ok": true,
+        "why": "No recent erectile-dysfunction meds (Viagra, Cialis, Levitra) in the last 24 to 48 hours."
+      },
+      {
+        "t": "Hold nitro five minutes",
+        "ok": false,
+        "why": "Five minutes is the gap between nitro doses, not the erectile-dysfunction window."
+      },
+      {
+        "t": "Give if pressure is 110",
+        "ok": false,
+        "why": "Good pressure does not cancel the erectile-dysfunction hold."
+      },
+      {
+        "t": "Hold only if pain is gone",
+        "ok": false,
+        "why": "Still having pain is a nitro yes. Erectile-dysfunction meds are still a no."
+      }
+    ]
+  },
+  {
+    "ch": "aed",
+    "q": "Which rhythms does this recap say the AED shocks?",
+    "opts": [
+      {
+        "t": "VF plus pulseless VT",
+        "ok": true,
+        "why": "Shockable rhythms are ventricular fibrillation and ventricular tachycardia. Pulseless VT is treated the same as VF."
+      },
+      {
+        "t": "VT that still has pulse",
+        "ok": false,
+        "why": "The AED shock for VT in this recap is pulseless VT, same as VF."
+      },
+      {
+        "t": "SA node at 60 to 100",
+        "ok": false,
+        "why": "SA node at 60 to 100 is the normal pacemaker, not a shockable arrest rhythm."
+      },
+      {
+        "t": "AV node delay, atria first",
+        "ok": false,
+        "why": "AV delay is normal conduction. The AED shocks VF and pulseless VT."
+      }
+    ]
+  },
+  {
+    "ch": "cprdepth",
+    "q": "Adult CPR depth in this recap?",
+    "opts": [
+      {
+        "t": "At least 2 inches",
+        "ok": true,
+        "why": "Adult depth is at least 2 inches. Child is about 2 inches. Infant is about 1.5 inches."
+      },
+      {
+        "t": "About 1.5 inches",
+        "ok": false,
+        "why": "1.5 inches is the infant depth, not the adult depth."
+      },
+      {
+        "t": "Child, about 2 inches",
+        "ok": false,
+        "why": "About 2 inches is the child depth. Adult is at least 2 inches."
+      },
+      {
+        "t": "Infant one-third chest",
+        "ok": false,
+        "why": "One-third chest is the child/infant rule. Adult depth is at least 2 inches."
+      }
+    ]
+  },
+  {
+    "ch": "cpap",
+    "q": "CPAP for left-sided failure in this recap. Lowest systolic?",
+    "opts": [
+      {
+        "t": "CPAP floor stays 90 mmHg",
+        "ok": true,
+        "why": "CPAP if they are conscious, breathing adequately, and systolic pressure is at least 90, with no major vomiting or trauma."
+      },
+      {
+        "t": "Nitro floor is 100 mmHg",
+        "ok": false,
+        "why": "100 mmHg is the nitro floor in this recap, not the CPAP floor."
+      },
+      {
+        "t": "Sat floor is 94 percent",
+        "ok": false,
+        "why": "94 percent is the oxygen-sat floor, not the CPAP pressure floor."
+      },
+      {
+        "t": "Check pressure only once",
+        "ok": false,
+        "why": "CPAP still needs a systolic of at least 90, not a one-time skip."
+      }
+    ]
+  },
+  {
+    "ch": "o2sat",
+    "q": "Oxygen target in this recap?",
+    "opts": [
+      {
+        "t": "94 to 99 percent",
+        "ok": true,
+        "why": "Aim for SpO2 94 to 99 percent. Device depends on rate, rhythm, and quality of breathing."
+      },
+      {
+        "t": "100 percent always",
+        "ok": false,
+        "why": "This recap target is 94 to 99 percent, not 100 every time."
+      },
+      {
+        "t": "90 to 93 percent",
+        "ok": false,
+        "why": "90 to 93 is below this recap\u2019s 94 to 99 percent target."
+      },
+      {
+        "t": "Exactly 94 percent only",
+        "ok": false,
+        "why": "The target is the band 94 to 99 percent, not a single 94."
+      }
+    ]
+  },
+  {
+    "ch": "shockpos",
+    "q": "Cardiogenic shock in this recap. How do you position them?",
+    "opts": [
+      {
+        "t": "Flat unless they cannot",
+        "ok": true,
+        "why": "Shock wins over sitting up. Lie them supine unless they absolutely cannot breathe lying down."
+      },
+      {
+        "t": "Sitting up no matter what",
+        "ok": false,
+        "why": "Sitting up is for chest pain with a stable pressure, not for shock."
+      },
+      {
+        "t": "Upright, extra pillows",
+        "ok": false,
+        "why": "Extra pillows and sitting up are the PND/CHF positions, not cardiogenic shock."
+      },
+      {
+        "t": "Force flat if they gasp",
+        "ok": false,
+        "why": "If they cannot breathe lying down, do not force them flat. Shock still usually wants supine."
+      }
+    ]
+  }
+]

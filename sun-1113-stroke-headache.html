@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sun 11:13 Stroke and Headache Overview</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sun 11:13 Stroke and Headache Overview</h1>
+  <div class="sub">Recap only · you/your · 12 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch": "cross", "q": "Right-brain stroke in this recap. Which body side is weak?", "opts": [{"t": "Left side of the body", "ok": true, "why": "Motor nerves cross in the brainstem. Right brain controls the left body."}, {"t": "Right side of the body", "ok": false, "why": "Right body weakness is a left-brain stroke."}, {"t": "Both sides of the body", "ok": false, "why": "This recap\u2019s motor finding is one-sided, opposite the brain side."}, {"t": "Face side of the body", "ok": false, "why": "The motor finding is the opposite body side, not the face alone."}]}, {"ch": "leftsp", "q": "Left-brain stroke in this recap often adds what?", "opts": [{"t": "Speech problems as well", "ok": true, "why": "Left-brain strokes often bring speech problems (left frontal) plus right-body weakness."}, {"t": "No awareness of deficit", "ok": false, "why": "Poor awareness of the deficit is the right-brain picture in this recap."}, {"t": "Only left-body weakness", "ok": false, "why": "Left brain hits the right body, and often speech."}, {"t": "Only right-body weakness", "ok": false, "why": "Right-body weakness is the laterality. Left-brain strokes often add speech on top of that."}]}, {"ch": "types", "q": "Most strokes in this recap are which type?", "opts": [{"t": "Ischemic stroke, 87 percent", "ok": true, "why": "About 87 percent are ischemic clots. About 13 percent are hemorrhagic bleeds."}, {"t": "Hemorrhagic, about 87 percent", "ok": false, "why": "Hemorrhagic is about 13 percent. Ischemic is about 87 percent."}, {"t": "Split evenly, half and half", "ok": false, "why": "They are not even. Ischemic is about 87 percent."}, {"t": "All bleeds until proven clot", "ok": false, "why": "Most are clots. You still wait for CT to treat the type."}]}, {"ch": "ct", "q": "Why does this recap wait on a head CT before treating stroke type?", "opts": [{"t": "Clot care can kill the bleed", "ok": true, "why": "Clot treatment breaks clots. Bleed treatment wants clotting. Treatment for one can kill the other. CT tells them apart."}, {"t": "CT replaces last known well", "ok": false, "why": "You still get last known well. CT is to choose clot versus bleed care."}, {"t": "EMTs give clot-busters first", "ok": false, "why": "You do not treat the type. Definitive care waits on CT."}, {"t": "Aspirin sorts clot from bleed", "ok": false, "why": "Do not give aspirin for stroke. CT sorts the type."}]}, {"ch": "sugar", "q": "Stroke-like patient in this recap. What must you check before you lock in stroke?", "opts": [{"t": "Blood sugar, check first", "ok": true, "why": "Hypoglycemia can perfectly mimic stroke. Always check glucose in altered or stroke-like patients before you commit to stroke."}, {"t": "Fly them before the sugar", "ok": false, "why": "The recap story is they almost flew a textbook-looking stroke before anyone checked sugar. Check sugar first."}, {"t": "Aspirin first, then sugar", "ok": false, "why": "Do not give aspirin for stroke. Check sugar."}, {"t": "Skip sugar if they droop", "ok": false, "why": "Droop does not skip the sugar check. Hypoglycemia can look just like that."}]}, {"ch": "lkw", "q": "Found down this morning, last seen normal at 1900 yesterday. Last known well in this recap?", "opts": [{"t": "1900 yesterday evening", "ok": true, "why": "Last known well is the last time anyone saw them normal. If that was 1900 yesterday, last known well is 1900 yesterday."}, {"t": "Time that you arrived", "ok": false, "why": "Arrival time is not last known well. Use last seen normal."}, {"t": "When they were found down", "ok": false, "why": "Found-down time is not last seen normal. Use 1900 yesterday."}, {"t": "Midnight last night time", "ok": false, "why": "This recap\u2019s example uses 1900 yesterday, not midnight."}]}, {"ch": "asa", "q": "Suspected stroke. Aspirin in this recap?", "opts": [{"t": "Do not give it for stroke", "ok": true, "why": "Do not give aspirin for stroke. Aspirin in this recap is for suspected cardiac chest pain."}, {"t": "Give it for every stroke", "ok": false, "why": "Aspirin is not a stroke drug here."}, {"t": "Give it only if they bleed", "ok": false, "why": "You do not treat type in the field, and you do not give aspirin for stroke."}, {"t": "Give it after the sugar check", "ok": false, "why": "Sugar check does not unlock aspirin. Stroke still gets no aspirin."}]}, {"ch": "window", "q": "Ischemic stroke clot-busters in this recap are often only given within about how long from onset?", "opts": [{"t": "About 3 hours from onset", "ok": true, "why": "Thrombolytics are often only given if within about 3 hours from onset. Times vary by protocol."}, {"t": "About 10 minutes dying", "ok": false, "why": "Brain cells start dying in about 10 minutes. The common clot-buster window is about 3 hours."}, {"t": "About 24 hours always", "ok": false, "why": "This recap\u2019s common window is about 3 hours, not 24."}, {"t": "No time limit at all here", "ok": false, "why": "There is a time window. Commonly about 3 hours from onset."}]}, {"ch": "redflag", "q": "Which headache does this recap want you to worry about?", "opts": [{"t": "Sudden worst-ever headache", "ok": true, "why": "Sudden-onset severe worst-ever headache is a red flag, and so is headache plus fever, seizure, altered mental status, or trauma."}, {"t": "Dull squeezing tension ache", "ok": false, "why": "Tension headaches are usually non-emergent, but you still cannot be sure in the field."}, {"t": "Sinus pressure with a cold", "ok": false, "why": "Sinus headaches are usually not 911 calls. Worst-ever sudden is the red flag."}, {"t": "Mild ache after a long day", "ok": false, "why": "A mild long-day ache is not the red-flag picture. Sudden worst-ever is."}]}, {"ch": "otc", "q": "Severe headache. Over-the-counter pills in this recap?", "opts": [{"t": "Do not recommend those pills", "ok": true, "why": "Do not recommend OTC meds if they are not in your scope to give. Push hospital if they called 911."}, {"t": "Tell them to take ibuprofen", "ok": false, "why": "Do not recommend ibuprofen or Tylenol from the field."}, {"t": "Tell them to take Tylenol now", "ok": false, "why": "You have no EMS headache medicine and you do not recommend OTC pills."}, {"t": "Skip transport if pills help", "ok": false, "why": "If the headache was bad enough to call 911, push the hospital."}]}, {"ch": "aphasia", "q": "They understand you but cannot get words out. What does this recap call that?", "opts": [{"t": "Expressive aphasia", "ok": true, "why": "Expressive aphasia: they understand you but cannot get words out or make sense."}, {"t": "Receptive aphasia", "ok": false, "why": "Receptive aphasia is not processing what you said, and they may talk nonsense."}, {"t": "Dysarthria, slurred talk", "ok": false, "why": "Dysarthria is slurred or poorly articulated speech, not cannot-get-words-out aphasia."}, {"t": "Normal baseline speech", "ok": false, "why": "Cannot get words out is new aphasia unless that is their old baseline."}]}, {"ch": "fast", "q": "Arms out, palms up, eyes closed in this recap. What are you looking for?", "opts": [{"t": "One arm is drifting down", "ok": true, "why": "Arm drift: one arm drifts down and suggests weakness on that side."}, {"t": "Equal lift on both sides", "ok": false, "why": "Equal lift is a negative drift. You are looking for one arm drifting down."}, {"t": "Smile that stays even now", "ok": false, "why": "The smile is the face check. This stem is the arm-drift test."}, {"t": "Last known well time only", "ok": false, "why": "Last known well is Time. This test is the arms."}]}];
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"cross": "Right-brain stroke", "leftsp": "Left-brain stroke", "types": "Stroke types", "ct": "Head CT", "sugar": "Glucose", "lkw": "Last known well", "asa": "Aspirin", "window": "Clot-buster window", "redflag": "Red-flag headache", "otc": "OTC pills", "aphasia": "Aphasia", "fast": "Arm drift"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the Sun 11:13 Stroke and Headache Overview recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · stroke and headache recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>

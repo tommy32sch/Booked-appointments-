@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Sat 11:30 AED and CPR Training Guide</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: block; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; }
+.opt.locked { cursor: default; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.restart { margin-top: 8px; }
+#start-note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Sat 11:30 AED and CPR Training Guide</h1>
+  <div class="sub">Recap only · you/your · 12 questions</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch": "shockable", "q": "Which rhythms does this recap say the AED is looking for?", "opts": [{"t": "VF and pulseless VT", "ok": true, "why": "The AED looks for ventricular fibrillation and pulseless ventricular tachycardia."}, {"t": "Asystole / flatline", "ok": false, "why": "Asystole (flatline) is not shockable. The AED looks for VF and pulseless VT."}, {"t": "Non-shockable rhythm", "ok": false, "why": "No-shock rhythms are not what the AED is looking to treat with a shock."}, {"t": "Not VF, not VT here", "ok": false, "why": "The shockable pair in this recap is VF and pulseless VT."}]}, {"ch": "noshock", "q": "The AED says no shock advised. What do you do?", "opts": [{"t": "Resume CPR right away", "ok": true, "why": "No shock advised means it is not VF/VT. Resume CPR immediately."}, {"t": "Wait with no CPR now", "ok": false, "why": "Do not wait without compressions."}, {"t": "Turn the AED off now", "ok": false, "why": "Keep the AED on and keep CPR going."}, {"t": "Clear and wait longer", "ok": false, "why": "Stay clear only for analysis or shock. After no-shock, resume CPR."}]}, {"ch": "hands", "q": "Why hands off while the AED analyzes?", "opts": [{"t": "Picks up your own rhythm", "ok": true, "why": "If you are touching them, the AED may pick up your heart rhythm."}, {"t": "It charges the pads only", "ok": false, "why": "Hands off is so it reads their rhythm, not because it is charging pads."}, {"t": "It checks pad stick only", "ok": false, "why": "The prompt is for rhythm analysis, not a pad-stick check."}, {"t": "Keep compressing through", "ok": false, "why": "Stop touching for analysis. Resume compressions after."}]}, {"ch": "pads", "q": "Standard adult AED pad placement in this recap?", "opts": [{"t": "Upper right, lower left", "ok": true, "why": "One pad upper right chest, one pad lower left chest, along the heart’s path."}, {"t": "Upper left, lower right", "ok": false, "why": "That reverses the path. It is upper right and lower left."}, {"t": "Both pads on the back", "ok": false, "why": "Adult default is anterior-lateral, not both on the back."}, {"t": "Center chest and the back", "ok": false, "why": "Front-back is for a child or infant who is too small, not the adult default."}]}, {"ch": "ap", "q": "Child or infant too small for adult pad placement. Where do the pads go?", "opts": [{"t": "Center chest and back", "ok": true, "why": "Anterior-posterior: one pad center of the chest, one pad center of the back."}, {"t": "Upper right, lower left", "ok": false, "why": "That adult placement is only if the child is big enough."}, {"t": "Both pads on the back", "ok": false, "why": "One is on the chest and one is on the back."}, {"t": "Both pads on the chest", "ok": false, "why": "Front-back is chest and back, not both on the chest."}]}, {"ch": "pedipad", "q": "No pediatric pads. The patient is a child who needs a shock. What pads?", "opts": [{"t": "Adult pads on the child", "ok": true, "why": "No pediatric pads? Use adult pads. More electricity than needed beats none."}, {"t": "Skip the shock entirely", "ok": false, "why": "Do not skip a needed shock. Use adult pads."}, {"t": "Wait for pediatric pads", "ok": false, "why": "Do not wait. Adult pads on the child."}, {"t": "Hold for lower energy", "ok": false, "why": "Do not hold for pediatric energy. Adult pads on the child."}]}, {"ch": "pacer", "q": "There is a pacemaker bump under the skin. Where does the pad go?", "opts": [{"t": "About 1 inch off device", "ok": true, "why": "Do not place a pad on the device. Move it about 1 inch (2–3 cm) away."}, {"t": "Directly over the device", "ok": false, "why": "Do not park a pad on the pacemaker or ICD."}, {"t": "Skip pads on that chest", "ok": false, "why": "You still place both pads. Shift the one near the bump."}, {"t": "Both pads on the back now", "ok": false, "why": "This recap’s pacemaker rule is shift the pad 1 inch, not both on the back."}]}, {"ch": "rate", "q": "What compression rate does this recap want?", "opts": [{"t": "100 to 120 per minute", "ok": true, "why": "100–120 per minute. Faster than 120 drops quality. Not just “at least 100.”"}, {"t": "At least 100, no cap", "ok": false, "why": "There is a cap. Over 120 reduces quality."}, {"t": "60 to 80 per minute", "ok": false, "why": "That is too slow. The band is 100–120."}, {"t": "140 to 160 per minute", "ok": false, "why": "That is too fast. Stay at 100–120."}]}, {"ch": "depth", "q": "Adult compression depth in this recap?", "opts": [{"t": "At least 2 inches (5 cm)", "ok": true, "why": "Adults: at least 2 inches (5 cm). Allow full recoil."}, {"t": "About 1.5 inches (4 cm)", "ok": false, "why": "1.5 inches is the infant ballpark, not the adult depth."}, {"t": "At least 4 inches (10 cm)", "ok": false, "why": "4 inches is too deep for this recap’s adult number."}, {"t": "Only 1 inch on an adult", "ok": false, "why": "Adult depth is at least 2 inches, not 1 inch."}]}, {"ch": "solo", "q": "You are the only one doing CPR (partner is getting the AED). Ratio?", "opts": [{"t": "30:2 for every age", "ok": true, "why": "Single rescuer is 30:2 for all ages. Two-rescuer 15:2 is only when two people are actually doing CPR."}, {"t": "15:2 for every age", "ok": false, "why": "15:2 is two-rescuer CPR on a child or infant, not a solo rescuer."}, {"t": "15:2 if it is a child", "ok": false, "why": "If you are alone on CPR, a child is still 30:2."}, {"t": "30:2 adults, 15:2 kids", "ok": false, "why": "That split is two-rescuer CPR. Solo is 30:2 for every age."}]}, {"ch": "two", "q": "Two people are actually doing CPR on a child. Ratio?", "opts": [{"t": "15 compressions, 2 breaths", "ok": true, "why": "Two-rescuer CPR on children and infants is 15:2. Adults stay 30:2."}, {"t": "30 compressions, 2 breaths", "ok": false, "why": "30:2 is single-rescuer (all ages) or two-rescuer adults, not two-rescuer child."}, {"t": "15 compressions, 1 breath", "ok": false, "why": "The two breaths stay. It is 15:2, not 15:1."}, {"t": "30 compressions, 1 breath", "ok": false, "why": "Two-rescuer child is 15:2, not 30:1."}]}, {"ch": "water", "q": "They are in pooled water. What does this recap want before you shock?", "opts": [{"t": "Move them out of water", "ok": true, "why": "Water conducts. Move them out of pooled water. A quick wipe of damp skin is enough."}, {"t": "Wait until bone-dry skin", "ok": false, "why": "They do not need to be bone dry. Wipe and shock on dry ground."}, {"t": "Skip the AED entirely", "ok": false, "why": "Still use the AED after you move them out of the water."}, {"t": "Wipe only, stay in water", "ok": false, "why": "A wipe is for damp skin, not pooled water. Move them out first."}]}];
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = a[i]; a[i] = a[j]; a[j] = t;
+  }
+  return a;
+}
+const CH_NAME = {"shockable": "Shockable rhythms", "noshock": "No shock", "hands": "Hands off", "pads": "Adult pads", "ap": "Front-back", "pedipad": "Pediatric pads", "pacer": "Pacemaker", "rate": "Rate", "depth": "Depth", "solo": "Single rescuer", "two": "Two-rescuer", "water": "Water"};
+let queue=[], i=0, correct=0, answered=0, locked=false, missed=[];
+function $(id){return document.getElementById(id);}
+function start(){
+  queue = shuffle(BANK).map(function(q){return {ch:q.ch,q:q.q,opts:shuffle(q.opts)};});
+  i=0; correct=0; answered=0; locked=false; missed=[];
+  $("nextBtn").textContent="Next";
+  render();
+}
+function updateScore(){
+  $("score").textContent = correct+" / "+answered;
+  const n=queue.length;
+  $("progLabel").textContent = (i<n)?("Question "+(i+1)+" of "+n):("Done · "+n+" questions");
+  $("progBar").style.width = (n?Math.round(((i+(locked?1:0))/n)*100):0)+"%";
+}
+function render(){
+  locked=false; $("nextBtn").classList.remove("visible");
+  if(i>=queue.length) return endScreen();
+  const q=queue[i], letters=["A","B","C","D"];
+  let optsHtml="";
+  q.opts.forEach(function(o,idx){
+    optsHtml += '<button type="button" class="opt" data-idx="'+idx+'"><span class="letter">'+letters[idx]+'</span><span class="ot"></span></button>';
+  });
+  $("main").innerHTML='<div class="card"><div class="ch-tag">'+(CH_NAME[q.ch]||q.ch)+'</div><p class="qtext"></p><div class="opts">'+optsHtml+'</div><div class="why" id="whyBox"></div></div><p id="start-note">Facts from the Sat 11:30 AED and CPR Training Guide recap only.</p>';
+  $("main").querySelector(".qtext").textContent=q.q;
+  $("main").querySelectorAll(".opt").forEach(function(btn,idx){
+    btn.querySelector(".ot").textContent=q.opts[idx].t;
+    btn.addEventListener("click", function(){ pick(idx); });
+  });
+  updateScore(); window.scrollTo(0,0);
+}
+function pick(idx){
+  if(locked) return; locked=true;
+  const q=queue[i], chosen=q.opts[idx], correctOpt=q.opts.find(function(o){return o.ok;});
+  answered+=1;
+  if(chosen.ok) correct+=1;
+  else missed.push({ch:q.ch,q:q.q,chosen:chosen.t,why:chosen.why,right:correctOpt.t});
+  $("main").querySelectorAll(".opt").forEach(function(btn,j){
+    btn.classList.add("locked"); btn.disabled=true;
+    const o=q.opts[j];
+    if(j===idx && o.ok) btn.classList.add("chosen","right");
+    else if(j===idx && !o.ok) btn.classList.add("chosen","wrong");
+    else if(o.ok) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box=$("whyBox");
+  box.innerHTML=(chosen.ok?'<div class="verdict ok">Correct</div>':'<div class="verdict bad">Incorrect</div>')+'<div class="why-body"></div>'+(chosen.ok?"":'<div class="correct-line">Correct answer: '+escapeHtml(correctOpt.t)+'</div>');
+  box.querySelector(".why-body").textContent=chosen.why;
+  box.classList.add("visible");
+  $("nextBtn").textContent=(i+1>=queue.length)?"See results":"Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+function escapeHtml(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function endScreen(){
+  locked=true; $("nextBtn").classList.remove("visible");
+  const n=queue.length, pct=n?Math.round((correct/n)*100):0;
+  let missHtml = missed.length? '<div class="miss"><h3>Missed questions ('+missed.length+')</h3>' : '<p>No missed questions. Nice work.</p>';
+  missed.forEach(function(){ missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>'; });
+  if(missed.length) missHtml += '</div>';
+  $("main").innerHTML='<div class="card end"><h2>Quiz complete</h2><div class="big">'+correct+' / '+n+'</div><div class="pct">'+pct+'% · AED and CPR recap</div>'+missHtml+'<button type="button" class="btn visible restart" id="again">Shuffle &amp; retry</button></div>';
+  if(missed.length){
+    const items=$("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m,idx){
+      items[idx].querySelector(".ch-tag").textContent=CH_NAME[m.ch]||m.ch;
+      items[idx].querySelector(".mq").textContent=m.q;
+      items[idx].querySelector(".mwhy").textContent="You chose: "+m.chosen+" — "+m.why+"  Correct: "+m.right;
+    });
+  }
+  $("again").addEventListener("click", start);
+  updateScore(); window.scrollTo(0,0);
+}
+$("nextBtn").addEventListener("click", function(){ if(!locked) return; i+=1; render(); });
+start();
+</script>
+</body>
+</html>

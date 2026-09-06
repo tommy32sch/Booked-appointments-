@@ -1,0 +1,314 @@
+[
+  {
+    "ch": "htn",
+    "q": "Hypertensive emergency in this recap. Systolic is typically above what, with end-organ signs?",
+    "opts": [
+      {
+        "t": "180 mmHg with signs",
+        "ok": true,
+        "why": "Hypertensive emergency is typically a systolic over 180 with end-organ signs (headache, bounding pulse, ringing ears, nosebleed, nausea, dizziness, altered)."
+      },
+      {
+        "t": "120 mmHg with signs",
+        "ok": false,
+        "why": "90 to 120 is a normal systolic in this recap, not the emergency cut."
+      },
+      {
+        "t": "90 mmHg with signs",
+        "ok": false,
+        "why": "90 is the low end of normal systolic here, not the hypertensive-emergency number."
+      },
+      {
+        "t": "130 mmHg with signs",
+        "ok": false,
+        "why": "Some texts call 130 the top of normal. Emergency here is over 180 with signs."
+      }
+    ]
+  },
+  {
+    "ch": "nitrohtn",
+    "q": "High blood pressure only. Nitroglycerin in this recap?",
+    "opts": [
+      {
+        "t": "Do not give it just for BP",
+        "ok": true,
+        "why": "Do not give nitroglycerin solely to treat hypertension. It drops, then rebounds, and the rebound is when rupture risk is highest."
+      },
+      {
+        "t": "Give it for a nosebleed too",
+        "ok": false,
+        "why": "A nosebleed is an end-organ sign of high pressure. It is not a reason to give nitro for the pressure."
+      },
+      {
+        "t": "Give extra after rebound",
+        "ok": false,
+        "why": "Rebound is the danger. Do not chase it with more nitro for pressure alone."
+      },
+      {
+        "t": "Hold it only if they hurt",
+        "ok": false,
+        "why": "Chest-pain nitro is a different protocol question. Pressure-only is a no."
+      }
+    ]
+  },
+  {
+    "ch": "dissect",
+    "q": "Classic aortic dissection pain in this recap?",
+    "opts": [
+      {
+        "t": "Sudden tearing to the back",
+        "ok": true,
+        "why": "Sudden, 10 out of 10 from the start, tearing chest pain radiating to the back between the shoulder blades."
+      },
+      {
+        "t": "Crushing pain that builds",
+        "ok": false,
+        "why": "Crushing, squeezing pressure that builds is the MI wording in this recap, not dissection."
+      },
+      {
+        "t": "Slow mild ache in the chest",
+        "ok": false,
+        "why": "Dissection is maximal at onset, not a slow mild ache."
+      },
+      {
+        "t": "Sudden tearing down the arm",
+        "ok": false,
+        "why": "Classic radiation in this recap is to the back between the shoulder blades, not down the arm."
+      }
+    ]
+  },
+  {
+    "ch": "icd",
+    "q": "An implanted defibrillator fires. Can you touch them in this recap?",
+    "opts": [
+      {
+        "t": "Yes, internal jolt is safe",
+        "ok": true,
+        "why": "ICD electricity is low and internal. You may feel a tiny jolt at most. Safe to touch when it fires."
+      },
+      {
+        "t": "No, clear them like an AED",
+        "ok": false,
+        "why": "Clearing is for an AED or a vest. An ICD shock is internal and low."
+      },
+      {
+        "t": "Hands off like the vest",
+        "ok": false,
+        "why": "Hands off is the vest and AED rule. An ICD shock is safe to touch."
+      },
+      {
+        "t": "Only if they still have pulse",
+        "ok": false,
+        "why": "Touch is safe either way. Arrest still gets standard CPR and AED."
+      }
+    ]
+  },
+  {
+    "ch": "vest",
+    "q": "External defibrillator vest is counting down. What does this recap want?",
+    "opts": [
+      {
+        "t": "Hands off while it shocks",
+        "ok": true,
+        "why": "The vest warns out loud, then delivers a high-energy external shock. Do not touch while it is shocking, like an AED."
+      },
+      {
+        "t": "Hold them through the shock",
+        "ok": false,
+        "why": "Holding through the shock is not the vest rule. Hands off like an AED."
+      },
+      {
+        "t": "Touch them like an ICD",
+        "ok": false,
+        "why": "ICD touch is safe because that shock is internal. The vest is an external shock. Hands off."
+      },
+      {
+        "t": "Ignore the voice prompts",
+        "ok": false,
+        "why": "The vest talks. Follow the voice. Then standard resuscitation as needed."
+      }
+    ]
+  },
+  {
+    "ch": "vadpulse",
+    "q": "VAD patient, no pulse, talking. What does this recap say?",
+    "opts": [
+      {
+        "t": "Talking means they perfuse",
+        "ok": true,
+        "why": "Many VADs are continuous flow, so there is no palpable pulse. If they are conscious and talking, they are perfusing."
+      },
+      {
+        "t": "No pulse means start CPR",
+        "ok": false,
+        "why": "Do not start CPR just because there is no pulse. Talking means they are perfusing."
+      },
+      {
+        "t": "No pulse means they are dead",
+        "ok": false,
+        "why": "No pulse is expected on many continuous-flow VADs. Talking is the perfusion check."
+      },
+      {
+        "t": "No pulse means the VAD failed",
+        "ok": false,
+        "why": "A missing pulse on a talking VAD patient is expected with continuous flow, not proof the pump failed."
+      }
+    ]
+  },
+  {
+    "ch": "vadcall",
+    "q": "Unconscious VAD patient. Who does this recap want you to call?",
+    "opts": [
+      {
+        "t": "Team number on controller",
+        "ok": true,
+        "why": "Find and call the phone number on the controller. The VAD team talks you through CPR, troubleshooting, and destination."
+      },
+      {
+        "t": "Only the closest hospital",
+        "ok": false,
+        "why": "The extra step is the VAD team number on the controller, not a guess at the closest hospital."
+      },
+      {
+        "t": "Only online medical control",
+        "ok": false,
+        "why": "This recap wants the number on the controller so the VAD team can talk you through it."
+      },
+      {
+        "t": "Nobody until family calls",
+        "ok": false,
+        "why": "Do not wait on family. Call the number on the controller."
+      }
+    ]
+  },
+  {
+    "ch": "noshock",
+    "q": "AED says no shock advised. What does this recap want next?",
+    "opts": [
+      {
+        "t": "Check pulse after no shock",
+        "ok": true,
+        "why": "No shock advised only means it is not VF or pulseless VT. Check a pulse. No pulse: keep CPR. Pulse: ROSC."
+      },
+      {
+        "t": "Resume CPR, skip the pulse",
+        "ok": false,
+        "why": "You still check a pulse after no-shock-advised. Then CPR or ROSC."
+      },
+      {
+        "t": "Call it asystole for sure",
+        "ok": false,
+        "why": "No shock only means not VF or pulseless VT. It can be asystole or PEA. Check a pulse."
+      },
+      {
+        "t": "They have ROSC for sure",
+        "ok": false,
+        "why": "No shock is not proof of a pulse. You still check."
+      }
+    ]
+  },
+  {
+    "ch": "kids",
+    "q": "Pediatric arrest in this recap. What is the usual path?",
+    "opts": [
+      {
+        "t": "Hypoxia, then a slow heart",
+        "ok": true,
+        "why": "Kids usually do not arrest from primary VF. Respiratory failure, hypoxia, bradycardia, then PEA or asystole. Still use the AED. Expect no shock more often."
+      },
+      {
+        "t": "Primary VF like most adults",
+        "ok": false,
+        "why": "Primary VF is the adult pattern. Kids usually start with a breathing problem."
+      },
+      {
+        "t": "PEA first, then hypoxia",
+        "ok": false,
+        "why": "PEA is later in the kid path, after hypoxia and a slow heart, not first."
+      },
+      {
+        "t": "Asystole first, then hypoxia",
+        "ok": false,
+        "why": "Asystole is later in the kid path. The usual start is respiratory failure and hypoxia."
+      }
+    ]
+  },
+  {
+    "ch": "hair",
+    "q": "AED says check pads on a hairy chest. What does this recap want?",
+    "opts": [
+      {
+        "t": "Shave or rip the first pads",
+        "ok": true,
+        "why": "Shave with the included razor, or stick one pad set on and rip it off to wax hair, then apply a second set."
+      },
+      {
+        "t": "Skip the AED for the hair",
+        "ok": false,
+        "why": "Do not skip the AED. Get the pads to stick."
+      },
+      {
+        "t": "Just press the pads harder",
+        "ok": false,
+        "why": "The AED may say push firmly. The fix in this recap is still shave or wax, then a second set."
+      },
+      {
+        "t": "Wait until they shave later",
+        "ok": false,
+        "why": "Fix the pads now. The AED will keep saying check pads until they stick."
+      }
+    ]
+  },
+  {
+    "ch": "stopamb",
+    "q": "AED shock during transport in this recap?",
+    "opts": [
+      {
+        "t": "Stop the vehicle to shock",
+        "ok": true,
+        "why": "Stop the vehicle briefly for defibrillation. Movement affects analysis and safety."
+      },
+      {
+        "t": "Shock while still rolling",
+        "ok": false,
+        "why": "Do not shock while rolling. Stop first."
+      },
+      {
+        "t": "Never stop for a shock",
+        "ok": false,
+        "why": "This recap wants you to stop for the shock."
+      },
+      {
+        "t": "Wait for the hospital shock",
+        "ok": false,
+        "why": "Do not wait until the hospital. Stop briefly and shock now."
+      }
+    ]
+  },
+  {
+    "ch": "pacer",
+    "q": "Pacemaker fails in this recap. What can you do in the field?",
+    "opts": [
+      {
+        "t": "Treat the slow rhythm",
+        "ok": true,
+        "why": "The heart reverts to the old slow rhythm. Treat bradycardia and shock. Rapid transport. You cannot fix the pacemaker."
+      },
+      {
+        "t": "Fix the pacemaker now",
+        "ok": false,
+        "why": "You cannot fix the pacemaker in the field."
+      },
+      {
+        "t": "Wait it out on scene now",
+        "ok": false,
+        "why": "Do not wait. Treat the slow rate and shock, then rapid transport."
+      },
+      {
+        "t": "Put pads over the lump",
+        "ok": false,
+        "why": "Treat the slow-perfusion problem. Pads go on, not directly over the device."
+      }
+    ]
+  }
+]

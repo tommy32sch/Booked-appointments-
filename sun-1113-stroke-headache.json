@@ -1,0 +1,314 @@
+[
+  {
+    "ch": "cross",
+    "q": "Right-brain stroke in this recap. Which body side is weak?",
+    "opts": [
+      {
+        "t": "Left side of the body",
+        "ok": true,
+        "why": "Motor nerves cross in the brainstem. Right brain controls the left body."
+      },
+      {
+        "t": "Right side of the body",
+        "ok": false,
+        "why": "Right body weakness is a left-brain stroke."
+      },
+      {
+        "t": "Both sides of the body",
+        "ok": false,
+        "why": "This recap\u2019s motor finding is one-sided, opposite the brain side."
+      },
+      {
+        "t": "Face side of the body",
+        "ok": false,
+        "why": "The motor finding is the opposite body side, not the face alone."
+      }
+    ]
+  },
+  {
+    "ch": "leftsp",
+    "q": "Left-brain stroke in this recap often adds what?",
+    "opts": [
+      {
+        "t": "Speech problems as well",
+        "ok": true,
+        "why": "Left-brain strokes often bring speech problems (left frontal) plus right-body weakness."
+      },
+      {
+        "t": "No awareness of deficit",
+        "ok": false,
+        "why": "Poor awareness of the deficit is the right-brain picture in this recap."
+      },
+      {
+        "t": "Only left-body weakness",
+        "ok": false,
+        "why": "Left brain hits the right body, and often speech."
+      },
+      {
+        "t": "Only right-body weakness",
+        "ok": false,
+        "why": "Right-body weakness is the laterality. Left-brain strokes often add speech on top of that."
+      }
+    ]
+  },
+  {
+    "ch": "types",
+    "q": "Most strokes in this recap are which type?",
+    "opts": [
+      {
+        "t": "Ischemic stroke, 87 percent",
+        "ok": true,
+        "why": "About 87 percent are ischemic clots. About 13 percent are hemorrhagic bleeds."
+      },
+      {
+        "t": "Hemorrhagic, about 87 percent",
+        "ok": false,
+        "why": "Hemorrhagic is about 13 percent. Ischemic is about 87 percent."
+      },
+      {
+        "t": "Split evenly, half and half",
+        "ok": false,
+        "why": "They are not even. Ischemic is about 87 percent."
+      },
+      {
+        "t": "All bleeds until proven clot",
+        "ok": false,
+        "why": "Most are clots. You still wait for CT to treat the type."
+      }
+    ]
+  },
+  {
+    "ch": "ct",
+    "q": "Why does this recap wait on a head CT before treating stroke type?",
+    "opts": [
+      {
+        "t": "Clot care can kill the bleed",
+        "ok": true,
+        "why": "Clot treatment breaks clots. Bleed treatment wants clotting. Treatment for one can kill the other. CT tells them apart."
+      },
+      {
+        "t": "CT replaces last known well",
+        "ok": false,
+        "why": "You still get last known well. CT is to choose clot versus bleed care."
+      },
+      {
+        "t": "EMTs give clot-busters first",
+        "ok": false,
+        "why": "You do not treat the type. Definitive care waits on CT."
+      },
+      {
+        "t": "Aspirin sorts clot from bleed",
+        "ok": false,
+        "why": "Do not give aspirin for stroke. CT sorts the type."
+      }
+    ]
+  },
+  {
+    "ch": "sugar",
+    "q": "Stroke-like patient in this recap. What must you check before you lock in stroke?",
+    "opts": [
+      {
+        "t": "Blood sugar, check first",
+        "ok": true,
+        "why": "Hypoglycemia can perfectly mimic stroke. Always check glucose in altered or stroke-like patients before you commit to stroke."
+      },
+      {
+        "t": "Fly them before the sugar",
+        "ok": false,
+        "why": "The recap story is they almost flew a textbook-looking stroke before anyone checked sugar. Check sugar first."
+      },
+      {
+        "t": "Aspirin first, then sugar",
+        "ok": false,
+        "why": "Do not give aspirin for stroke. Check sugar."
+      },
+      {
+        "t": "Skip sugar if they droop",
+        "ok": false,
+        "why": "Droop does not skip the sugar check. Hypoglycemia can look just like that."
+      }
+    ]
+  },
+  {
+    "ch": "lkw",
+    "q": "Found down this morning, last seen normal at 1900 yesterday. Last known well in this recap?",
+    "opts": [
+      {
+        "t": "1900 yesterday evening",
+        "ok": true,
+        "why": "Last known well is the last time anyone saw them normal. If that was 1900 yesterday, last known well is 1900 yesterday."
+      },
+      {
+        "t": "Time that you arrived",
+        "ok": false,
+        "why": "Arrival time is not last known well. Use last seen normal."
+      },
+      {
+        "t": "When they were found down",
+        "ok": false,
+        "why": "Found-down time is not last seen normal. Use 1900 yesterday."
+      },
+      {
+        "t": "Midnight last night time",
+        "ok": false,
+        "why": "This recap\u2019s example uses 1900 yesterday, not midnight."
+      }
+    ]
+  },
+  {
+    "ch": "asa",
+    "q": "Suspected stroke. Aspirin in this recap?",
+    "opts": [
+      {
+        "t": "Do not give it for stroke",
+        "ok": true,
+        "why": "Do not give aspirin for stroke. Aspirin in this recap is for suspected cardiac chest pain."
+      },
+      {
+        "t": "Give it for every stroke",
+        "ok": false,
+        "why": "Aspirin is not a stroke drug here."
+      },
+      {
+        "t": "Give it only if they bleed",
+        "ok": false,
+        "why": "You do not treat type in the field, and you do not give aspirin for stroke."
+      },
+      {
+        "t": "Give it after the sugar check",
+        "ok": false,
+        "why": "Sugar check does not unlock aspirin. Stroke still gets no aspirin."
+      }
+    ]
+  },
+  {
+    "ch": "window",
+    "q": "Ischemic stroke clot-busters in this recap are often only given within about how long from onset?",
+    "opts": [
+      {
+        "t": "About 3 hours from onset",
+        "ok": true,
+        "why": "Thrombolytics are often only given if within about 3 hours from onset. Times vary by protocol."
+      },
+      {
+        "t": "About 10 minutes dying",
+        "ok": false,
+        "why": "Brain cells start dying in about 10 minutes. The common clot-buster window is about 3 hours."
+      },
+      {
+        "t": "About 24 hours always",
+        "ok": false,
+        "why": "This recap\u2019s common window is about 3 hours, not 24."
+      },
+      {
+        "t": "No time limit at all here",
+        "ok": false,
+        "why": "There is a time window. Commonly about 3 hours from onset."
+      }
+    ]
+  },
+  {
+    "ch": "redflag",
+    "q": "Which headache does this recap want you to worry about?",
+    "opts": [
+      {
+        "t": "Sudden worst-ever headache",
+        "ok": true,
+        "why": "Sudden-onset severe worst-ever headache is a red flag, and so is headache plus fever, seizure, altered mental status, or trauma."
+      },
+      {
+        "t": "Dull squeezing tension ache",
+        "ok": false,
+        "why": "Tension headaches are usually non-emergent, but you still cannot be sure in the field."
+      },
+      {
+        "t": "Sinus pressure with a cold",
+        "ok": false,
+        "why": "Sinus headaches are usually not 911 calls. Worst-ever sudden is the red flag."
+      },
+      {
+        "t": "Mild ache after a long day",
+        "ok": false,
+        "why": "A mild long-day ache is not the red-flag picture. Sudden worst-ever is."
+      }
+    ]
+  },
+  {
+    "ch": "otc",
+    "q": "Severe headache. Over-the-counter pills in this recap?",
+    "opts": [
+      {
+        "t": "Do not recommend those pills",
+        "ok": true,
+        "why": "Do not recommend OTC meds if they are not in your scope to give. Push hospital if they called 911."
+      },
+      {
+        "t": "Tell them to take ibuprofen",
+        "ok": false,
+        "why": "Do not recommend ibuprofen or Tylenol from the field."
+      },
+      {
+        "t": "Tell them to take Tylenol now",
+        "ok": false,
+        "why": "You have no EMS headache medicine and you do not recommend OTC pills."
+      },
+      {
+        "t": "Skip transport if pills help",
+        "ok": false,
+        "why": "If the headache was bad enough to call 911, push the hospital."
+      }
+    ]
+  },
+  {
+    "ch": "aphasia",
+    "q": "They understand you but cannot get words out. What does this recap call that?",
+    "opts": [
+      {
+        "t": "Expressive aphasia",
+        "ok": true,
+        "why": "Expressive aphasia: they understand you but cannot get words out or make sense."
+      },
+      {
+        "t": "Receptive aphasia",
+        "ok": false,
+        "why": "Receptive aphasia is not processing what you said, and they may talk nonsense."
+      },
+      {
+        "t": "Dysarthria, slurred talk",
+        "ok": false,
+        "why": "Dysarthria is slurred or poorly articulated speech, not cannot-get-words-out aphasia."
+      },
+      {
+        "t": "Normal baseline speech",
+        "ok": false,
+        "why": "Cannot get words out is new aphasia unless that is their old baseline."
+      }
+    ]
+  },
+  {
+    "ch": "fast",
+    "q": "Arms out, palms up, eyes closed in this recap. What are you looking for?",
+    "opts": [
+      {
+        "t": "One arm is drifting down",
+        "ok": true,
+        "why": "Arm drift: one arm drifts down and suggests weakness on that side."
+      },
+      {
+        "t": "Equal lift on both sides",
+        "ok": false,
+        "why": "Equal lift is a negative drift. You are looking for one arm drifting down."
+      },
+      {
+        "t": "Smile that stays even now",
+        "ok": false,
+        "why": "The smile is the face check. This stem is the arm-drift test."
+      },
+      {
+        "t": "Last known well time only",
+        "ok": false,
+        "why": "Last known well is Time. This test is the arms."
+      }
+    ]
+  }
+]
