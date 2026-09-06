@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Ch 26 Soft Tissue Part 2 — practice</title>
+<style>
+:root {
+  --bg: #f4efe6; --paper: #fffdf8; --ink: #1c2430; --muted: #5a6573;
+  --navy: #1e3a5f; --navy-2: #16304d; --red: #b42318; --green: #1b7a46;
+  --line: #d8d0c4; --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px); --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+input[type=text] {
+  width: 100%; min-height: 48px; font-size: 1.05rem; font-family: inherit;
+  padding: 12px 14px; border: 2px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink);
+}
+input[type=text]:focus { outline: 2px solid var(--navy); border-color: var(--navy); }
+input[type=text]:disabled { background: #f3f1ec; }
+.check {
+  width: 100%; min-height: 48px; margin-top: 12px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.check:active { background: var(--navy-2); }
+.check:disabled { opacity: .55; cursor: default; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.links { display:flex; flex-wrap:wrap; gap:8px; margin: 12px 0 0; }
+.links a { font-size:.82rem; color:#1e3a5f; background:#e8e1d4; border-radius:999px; padding:4px 10px; text-decoration:none; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Ch 26 Soft Tissue Part 2</h1>
+  <div class="sub">Type-in · 21 from locked notes</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [{"ch":26,"q":"Ugly injury that will not kill in the next minute. What do you do?","a":["note it and keep going","note and continue","write it down and keep going","note it; keep going"],"why":"Ask: will this kill in the next minute? If no, note it and keep going. Major bleed → stop and treat."},{"ch":26,"q":"What kills soft-tissue patients first?","a":["hemorrhagic shock","bleeding / hemorrhagic shock","bleeding","hemorrhagic shock (bleeding)"],"why":"Killers: hemorrhagic shock then later septic shock. The amount of blood is the threat."},{"ch":26,"q":"Outer skin layer name?","a":["epidermis","the epidermis","epidermis (outer)"],"why":"Epidermis = outer layer. Dermis = inner layer."},{"ch":26,"q":"After a big burn, what temperature problem do you worry about?","a":["hypothermia","getting cold","they get cold / hypothermia","hypothermia (cannot hold heat)"],"why":"After a big burn stops, worry about them getting cold. Burned skin cannot hold heat."},{"ch":26,"q":"Partial-thickness burn is which old degree name?","a":["2nd degree","second degree","2nd","2nd degree (into dermis)"],"why":"Partial thickness = 2nd degree. Into the dermis. Superficial = 1st. Full = 3rd."},{"ch":26,"q":"Does an open fracture require the bone to stick out?","a":["no","no (nearby skin cut is enough)","no; bone need not stick out","no — break + nearby skin cut"],"why":"Open fracture = broken bone + a cut in the nearby skin. The bone does not have to stick out."},{"ch":26,"q":"What does the vessel do first after a cut so a clot can form?","a":["clamps down","vessel clamps","clamps / constricts","clamps down (slows blood)"],"why":"First the vessel clamps down so blood slows and a clot can form."},{"ch":26,"q":"Ecchymosis means what about a bruise?","a":["the color","bruise color","the color of the bruise","color (blue/purple to green/yellow)"],"why":"Ecchymosis = the color of a bruise. Contusion = bruise. Hematoma = bigger pool."},{"ch":26,"q":"Crush syndrome starts after how many hours of crush?","a":["4+ hours","4 or more hours","4 hours or more","4+ hrs"],"why":"Crush syndrome = crush lasting 4+ hours."},{"ch":26,"q":"Before lifting a 4+ hour crushed limb, what do you apply?","a":["tourniquet","a tourniquet","TQ before they lift","tourniquet the limb first"],"why":"Tourniquet the limb BEFORE they lift. Trap K+ and junk until the hospital."},{"ch":26,"q":"When the weight lifts off a long crush, what ion flood can stop the heart?","a":["potassium","K+","potassium (K+)","extra potassium / K+"],"why":"When they lift the weight, potassium (K+) floods. Heart hates extra K+. Kidneys fail from myoglobin too."},{"ch":26,"q":"When may you loosen a crush-syndrome tourniquet?","a":["only if a doctor says so","doctor says so","when a doctor says","not unless a doctor says"],"why":"Do not loosen a tourniquet unless a doctor says so."},{"ch":26,"q":"Compartment syndrome is squeeze from where?","a":["inside","from the inside","internal","inside (internal tourniquet)"],"why":"Compartment = squeeze from the inside (“internal tourniquet”). Takes hours (~6–12), not minutes."},{"ch":26,"q":"Laceration vs incision — which is jagged?","a":["laceration","laceration is jagged","laceration (jagged)","a laceration"],"why":"Laceration = jagged cut. Incision = smooth cut."},{"ch":26,"q":"Avulsion means what happened to tissue?","a":["flap or chunk torn off","tissue flap or ripped off","torn into a flap or chunk","chunk / flap of tissue"],"why":"Avulsion = tissue torn into a flap or ripped clean off. A chunk of tissue."},{"ch":26,"q":"Avulsion flap still attached. What do you do with the flap?","a":["lay it back and bandage","lay flap back, bandage","replace flap and bandage","lay it back where it belongs and bandage"],"why":"If still a flap, lay it back where it belongs and bandage. Do not wash dirt from the hole."},{"ch":26,"q":"Big adult arm amputation. First bleed control?","a":["tourniquet","go to a tourniquet","tourniquet straight away","TQ (pressure will not stop it)"],"why":"Big adult arm or leg: go straight to a tourniquet. Finger/small child arm: still try pressure first."},{"ch":26,"q":"How do you package an amputated part for transport?","a":["sterile wrap, plastic, cool","sterile → plastic → cool","wrap sterile, bag plastic, keep cool","sterile dressing then plastic then cool"],"why":"Wrap in sterile dressing → put in plastic → keep cool. Do not delay transport hunting for the part."},{"ch":26,"q":"Chest/upper-belly occlusive covers from where to where?","a":["sternal notch to belly button","notch to umbilicus","sternal notch down to belly button","notch to belly button, front and back"],"why":"From the sternal notch down to the belly button, front and back. Seal both bullet holes. Tape 3 sides."},{"ch":26,"q":"RICE is for which patient picture?","a":["isolated sprain","isolated sprained ankle","isolated sprain only","isolated sprain (not multi-trauma)"],"why":"RICE: rest, ice, compression, elevation. Fine for an isolated sprained ankle. Critical multi-trauma gets shock care and go."},{"ch":26,"q":"Most wounds get what kind of sterile dressing?","a":["dry","dry sterile","dry sterile dressing","dry sterile (most wounds)"],"why":"Moist list is short (guts/eyes). Chest = plastic. Most other wounds = dry sterile."}];
+const LINKS = "<a href=\"emt-quiz-index.html\">Hub</a><a href=\"ch26-soft-tissue-part2-key.html\">Key</a><a href=\"ch26-soft-tissue-part2-detailed.html\">Detailed</a>";
+
+function norm(s) { return String(s).trim().toLowerCase(); }
+function acceptList(item) {
+  if (Array.isArray(item.a)) return item.a.map(String);
+  if (item.a == null) return [];
+  return [String(item.a)];
+}
+function isRight(item, typed) {
+  const n = norm(typed);
+  if (!n) return false;
+  return acceptList(item).some(function (a) { return norm(a) === n; });
+}
+
+let i = 0, correct = 0, answered = 0, locked = false;
+const main = document.getElementById("main");
+const nextBtn = document.getElementById("nextBtn");
+const scoreEl = document.getElementById("score");
+const progLabel = document.getElementById("progLabel");
+const progBar = document.getElementById("progBar");
+
+function setProg() {
+  scoreEl.textContent = correct + " / " + answered;
+  progLabel.textContent = i < BANK.length ? ("Question " + (i + 1) + " of " + BANK.length) : "Done";
+  progBar.style.width = (Math.min(i, BANK.length) / BANK.length * 100) + "%";
+}
+
+function renderEnd() {
+  nextBtn.classList.remove("visible");
+  const pct = BANK.length ? Math.round(correct / BANK.length * 100) : 0;
+  main.innerHTML = '<div class="card end"><h2>Done</h2><div class="big">' + correct + " / " + BANK.length + '</div><p class="pct">' + pct + '% first-check correct</p><div class="links">' + LINKS + '</div><button type="button" class="check restart" id="restart">Again</button></div>';
+  document.getElementById("restart").onclick = function () {
+    i = 0; correct = 0; answered = 0; locked = false; renderQ();
+  };
+}
+
+function renderQ() {
+  if (i >= BANK.length) { setProg(); renderEnd(); return; }
+  locked = false;
+  nextBtn.classList.remove("visible");
+  const item = BANK[i];
+  setProg();
+  main.innerHTML = '<div class="card"><p class="qtext"></p><input type="text" id="ans" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Type your answer"><button type="button" class="check" id="check">Check</button><div class="why" id="why"></div></div>';
+  main.querySelector(".qtext").textContent = item.q;
+  const input = document.getElementById("ans");
+  const check = document.getElementById("check");
+  const why = document.getElementById("why");
+  input.focus();
+
+  function submit() {
+    if (locked) return;
+    const typed = input.value;
+    if (!norm(typed)) { input.focus(); return; }
+    locked = true;
+    answered += 1;
+    const ok = isRight(item, typed);
+    if (ok) correct += 1;
+    input.disabled = true;
+    check.disabled = true;
+    why.classList.add("visible");
+    why.innerHTML = "";
+    const v = document.createElement("div");
+    v.className = "verdict " + (ok ? "ok" : "bad");
+    v.textContent = ok ? "Correct" : "Not quite";
+    const w = document.createElement("div");
+    w.textContent = item.why;
+    why.appendChild(v);
+    why.appendChild(w);
+    setProg();
+    nextBtn.textContent = i === BANK.length - 1 ? "Finish" : "Next";
+    nextBtn.classList.add("visible");
+  }
+  check.onclick = submit;
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); submit(); }
+  });
+}
+
+nextBtn.onclick = function () {
+  if (!locked) return;
+  i += 1;
+  renderQ();
+};
+
+renderQ();
+</script>
+</body>
+</html>
