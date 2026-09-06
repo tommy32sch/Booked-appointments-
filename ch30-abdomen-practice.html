@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Ch 30 Abdomen — practice</title>
+<style>
+:root {
+  --bg: #f4efe6; --paper: #fffdf8; --ink: #1c2430; --muted: #5a6573;
+  --navy: #1e3a5f; --navy-2: #16304d; --red: #b42318; --green: #1b7a46;
+  --line: #d8d0c4; --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px); --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(88px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+input[type=text] {
+  width: 100%; min-height: 48px; font-size: 1.05rem; font-family: inherit;
+  padding: 12px 14px; border: 2px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink);
+}
+input[type=text]:focus { outline: 2px solid var(--navy); border-color: var(--navy); }
+input[type=text]:disabled { background: #f3f1ec; }
+.check {
+  width: 100%; min-height: 48px; margin-top: 12px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.check:active { background: var(--navy-2); }
+.check:disabled { opacity: .55; cursor: default; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.links { display:flex; flex-wrap:wrap; gap:8px; margin: 12px 0 0; }
+.links a { font-size:.82rem; color:#1e3a5f; background:#e8e1d4; border-radius:999px; padding:4px 10px; text-decoration:none; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Ch 30 Abdomen</h1>
+  <div class="sub">Type-in · 24 from locked notes</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act"><button type="button" class="btn" id="nextBtn">Next</button></footer>
+<script>
+const BANK = [
+  {
+    "ch": 30,
+    "q": "After abdominal trauma, what is the answer, and what do you assume when there is pain?",
+    "a": [
+      "surgery; bleeding and leaking — go",
+      "surgery; assume bleed and leak; go",
+      "surgery is the answer; assume something bleeding and leaking",
+      "surgery; pain = bleed + leak; go"
+    ],
+    "why": "Surgery is the answer. Pain after trauma: assume something is bleeding and something is leaking. Go."
+  },
+  {
+    "ch": 30,
+    "q": "About how many liters of blood does the body have, and how much can the abdomen hide before it looks swollen or bruised?",
+    "a": [
+      "about 6 L; a couple of 2-liter bottles",
+      "6 liters; couple of 2L bottles",
+      "about 6; couple of 2-liter bottles before swollen/bruised",
+      "6 L body; abdomen holds couple of 2L bottles"
+    ],
+    "why": "About 6 liters in the body. The abdomen can hold a couple of 2-liter bottles before it looks swollen or bruised. Do not wait for a fat, bruised belly."
+  },
+  {
+    "ch": 30,
+    "q": "Breath sounds are fine and you still have unexplained shock. Where do you think the bleed is?",
+    "a": [
+      "abdomen",
+      "the abdomen",
+      "belly / abdomen",
+      "assume abdomen"
+    ],
+    "why": "Good lungs + shock you cannot explain = think abdomen. Chest bleed would change breath sounds."
+  },
+  {
+    "ch": 30,
+    "q": "Right after a wreck, will you see fever yet if a hollow organ just leaked?",
+    "a": [
+      "no",
+      "no fever yet",
+      "no — infection takes time",
+      "not yet"
+    ],
+    "why": "Right after the wreck you will not see fever even if a hollow organ leaked. Infection takes time."
+  },
+  {
+    "ch": 30,
+    "q": "Which organs live in the right upper and left upper?",
+    "a": [
+      "right upper liver+gallbladder; left upper stomach+spleen",
+      "RUQ liver and gallbladder; LUQ stomach and spleen",
+      "right upper: liver and gallbladder; left upper: stomach and spleen",
+      "liver+gallbladder right upper; stomach+spleen left upper"
+    ],
+    "why": "Right upper = liver (solid) and gallbladder (hollow). Left upper = stomach (hollow) and spleen (solid)."
+  },
+  {
+    "ch": 30,
+    "q": "Where do appendix and kidneys live on the map?",
+    "a": [
+      "appendix right lower; kidneys flank/back",
+      "appendix = right lower; kidneys = flank / back",
+      "RLQ appendix; flank kidneys",
+      "appendix right lower; kidneys not a front-quadrant organ — flank"
+    ],
+    "why": "Appendix = right lower. Kidneys = flank / back. Not a front-quadrant organ."
+  },
+  {
+    "ch": 30,
+    "q": "Solid organs do what? Hollow organs do what? Early on scene can you tell them apart?",
+    "a": [
+      "solid bleed; hollow leak; no — early feel the same",
+      "solid bleed (hemorrhagic); hollow leak (peritonitis/septic later); cannot sort on scene",
+      "bleed vs leak; early same — transport",
+      "solid bleed; hollow spill/irritate lining; early same — go"
+    ],
+    "why": "Solid bleed. Hollow leak (peritonitis / septic later). Early leak and early bleed feel the same. Transport."
+  },
+  {
+    "ch": 30,
+    "q": "Why can one hit smash liver and spleen in a kid?",
+    "a": [
+      "organs bigger, closer, more exposed under short rib cage",
+      "kid organs bigger/closer/more exposed",
+      "packed closer and short rib cage leaves them more exposed",
+      "bigger for the belly, closer, short ribs — one hit both"
+    ],
+    "why": "Kid organs are bigger for the belly, packed closer, and the short rib cage leaves them more exposed. One hit can smash liver and spleen at once."
+  },
+  {
+    "ch": 30,
+    "q": "Biggest bleeder organ, and where can its pain refer?",
+    "a": [
+      "liver; right shoulder",
+      "liver — biggest bleeder; right shoulder",
+      "liver (right ribs); pain to right shoulder",
+      "liver; right shoulder same path as gallbladder"
+    ],
+    "why": "Liver is the biggest bleeder. Right lower ribs can cut it. Pain can go to the right shoulder (same path as gallbladder)."
+  },
+  {
+    "ch": 30,
+    "q": "Bowel sounds / gurgles in the chest after trauma mean what?",
+    "a": [
+      "torn diaphragm — bowel in the chest",
+      "diaphragm tear; bowel into chest",
+      "torn diaphragm",
+      "diaphragm tear lets bowel into the chest"
+    ],
+    "why": "Diaphragm tear lets bowel into the chest. Hard to breathe. Gurgles when you listen on the chest."
+  },
+  {
+    "ch": 30,
+    "q": "Cullen’s sign is a bruise where, and do you wait for it?",
+    "a": [
+      "around the belly button; no do not wait",
+      "belly button; late — do not wait",
+      "bruise around belly button; do not wait",
+      "belly-button bruise; late — go anyway"
+    ],
+    "why": "Cullen’s sign: bruise around the belly button = a lot of blood already inside. Late. Do not wait for it."
+  },
+  {
+    "ch": 30,
+    "q": "Where should the seatbelt catch, and how do you transport second-half pregnancy?",
+    "a": [
+      "pelvis not soft belly; left side",
+      "belt on pelvis; second half left side",
+      "pelvis (booster for kids); left side — supine hypotensive if flat",
+      "catch pelvis; second-half pregnancy left side"
+    ],
+    "why": "Belt catches the pelvis, not the soft belly. Second half of pregnancy: left side. Flat lets the uterus sandwich aorta and vena cava (supine hypotensive syndrome)."
+  },
+  {
+    "ch": 30,
+    "q": "Evisceration: push organs back? Dressing order?",
+    "a": [
+      "do not push; moist then plastic for heat",
+      "no push; moist sterile then plastic",
+      "do not push back; moist on organs, plastic over for heat",
+      "no push; moist then plastic (wet/bulky dry/blankets if no plastic)"
+    ],
+    "why": "Do not push organs back in. Moist sterile on the organs, plastic over that for heat. No big plastic: wet, then bulky dry, then blankets."
+  },
+  {
+    "ch": 30,
+    "q": "High belly wound vs low belly wound — which dressing?",
+    "a": [
+      "high: plastic/occlusive like chest; low: dry sterile",
+      "high belly plastic; low belly dry sterile",
+      "could be chest → plastic; lower no chest concern → dry sterile",
+      "high lean plastic; low dry sterile"
+    ],
+    "why": "High belly that could be chest → plastic / occlusive. Lower belly, no chest concern → dry sterile."
+  },
+  {
+    "ch": 30,
+    "q": "XABCs vs board, and which quadrant do you palpate last?",
+    "a": [
+      "XABCs first board later; sore / hurt quadrant last",
+      "XABCs first, Platinum 10, board after; sore last",
+      "life threats first board later; palpate sore last",
+      "XABCs first; hurt quadrant LAST"
+    ],
+    "why": "XABCs first. Board after life threats. Platinum 10. Look first. Push four quadrants. Hurt quadrant LAST."
+  },
+  {
+    "ch": 30,
+    "q": "Pulsating abdominal mass means what until proven otherwise?",
+    "a": [
+      "abdominal aortic aneurysm",
+      "AAA / abdominal aortic aneurysm",
+      "abdominal aortic aneurysm until proven otherwise",
+      "AAA"
+    ],
+    "why": "Pulsating mass = abdominal aortic aneurysm until proven otherwise. Not a normal pulse-check spot."
+  },
+  {
+    "ch": 30,
+    "q": "Flank always points to which organ? Gray Turner bruise means blood where?",
+    "a": [
+      "kidney; back compartment",
+      "kidney; blood in the back compartment",
+      "flank = kidney; Gray Turner = back-compartment blood",
+      "kidney; Gray Turner flank bruise = back compartment"
+    ],
+    "why": "Flank = kidney. Always. Gray Turner: bruise on the flank. Blood in the back compartment. Late."
+  },
+  {
+    "ch": 30,
+    "q": "Bad pelvis break can dump how much blood, and what three life threats?",
+    "a": [
+      "2+ L of ~6 (a third); bone bleed, femoral vessel cut, poke bladder/rectum",
+      "2+ liters / third of tank; bone, femoral artery/vein, bladder or rectum",
+      "2+ of about 6; bone bleed + femoral cut + poke hollow organs",
+      "2+ liters; bone bleed, femoral vessel, poke bladder/rectum infection"
+    ],
+    "why": "Worst bone for bleeding. 2+ liters of about 6 — a third. Three threats: bone bleed, femoral artery or vein cut, poke bladder or rectum → infection later."
+  },
+  {
+    "ch": 30,
+    "q": "Where can you pack hemostatic gauze, and can you pack deep belly or chest?",
+    "a": [
+      "junctions only — groin and just inside shoulder; no deep belly/chest",
+      "groin and inside shoulder junctions; cannot pack deep belly or chest",
+      "junctions groin/inside shoulder only; surgery for deep belly/chest",
+      "only junctions; cannot pack deep belly or chest"
+    ],
+    "why": "Pack hemostatic gauze only at junctions — groin and just inside the shoulder. You cannot pack a deep belly or a chest. Surgery."
+  },
+  {
+    "ch": 30,
+    "q": "Genital bleed vs not bleeding — which dressing? Vaginal bleed: pack or pad?",
+    "a": [
+      "blood → dry sterile; no blood → moist; pad outside do not pack",
+      "any bleed dry; not bleeding moist (eyes/guts list); vaginal pad outside save pads",
+      "dry if blood, moist if no blood; pad outside never pack vagina",
+      "bleed dry sterile; no bleed moist sterile; pad outside, save pads"
+    ],
+    "why": "Any bleed gets dry sterile. Not bleeding: moist sterile (same list as eyes and guts). Vaginal bleed: pad outside. Do not pack. Save the pads."
+  },
+  {
+    "ch": 30,
+    "q": "Pregnant trauma: why treat shock early, and Narcan — who decides?",
+    "a": [
+      "mom looks fine longer; call medical control — do not decide Narcan yourself",
+      "higher volume mom looks fine; fetus already in trouble; call med control for Narcan",
+      "treat shock early — mom looks fine longer; bag her / call medical control for Narcan",
+      "mom fine longer while baby in trouble; call doctor — you can bag her"
+    ],
+    "why": "Higher pregnant blood volume — mom looks fine longer. Treat shock early. If opioids whole pregnancy, fetus may be dependent. You can bag her. Call medical control. Do not decide Narcan yourself."
+  },
+  {
+    "ch": 30,
+    "q": "Sexual assault evidence: paper or plastic bag? Why?",
+    "a": [
+      "paper bag; plastic traps moisture and ruins DNA",
+      "paper; plastic ruins DNA",
+      "clothes/evidence in paper bag — plastic traps moisture",
+      "paper bag not plastic"
+    ],
+    "why": "Clothes and evidence go in a paper bag. Plastic traps moisture and ruins DNA."
+  },
+  {
+    "ch": 30,
+    "q": "Kehr sign is pain to the shoulder. Class Right upper maps to which shoulder/organs? Book classic often which side from spleen?",
+    "a": [
+      "right shoulder gallbladder/liver; book often left shoulder spleen",
+      "class Right upper → right shoulder (gallbladder/liver); book classic left shoulder spleen",
+      "right shoulder liver/gallbladder; left shoulder smashed spleen",
+      "RUQ→right shoulder; book often left from spleen"
+    ],
+    "why": "Kehr = pain to the shoulder. Class used Right upper → right shoulder (gallbladder / liver). Book classic is often left shoulder from a smashed spleen."
+  },
+  {
+    "ch": 30,
+    "q": "Cold trauma/shock patient — can they clot? What do you do?",
+    "a": [
+      "no — cold cannot clot; keep them warm",
+      "cold blood does not clot; keep warm",
+      "cannot clot when cold; keep every trauma/shock patient warm",
+      "no clot if cold; keep warm"
+    ],
+    "why": "Cold patients cannot clot. Keep every trauma / shock patient warm. Cold blood does not clot."
+  }
+]
+;
+
+const LINKS = "<a href=\"emt-quiz-index.html\">Hub</a><a href=\"ch30-abdomen-key.html\">Key</a><a href=\"ch30-abdomen-detailed.html\">Detailed</a>";
+
+function norm(s) { return String(s).trim().toLowerCase(); }
+function acceptList(item) {
+  if (Array.isArray(item.a)) return item.a.map(String);
+  if (item.a == null) return [];
+  return [String(item.a)];
+}
+function isRight(item, typed) {
+  const n = norm(typed);
+  if (!n) return false;
+  return acceptList(item).some(function (a) { return norm(a) === n; });
+}
+
+let i = 0, correct = 0, answered = 0, locked = false;
+const main = document.getElementById("main");
+const nextBtn = document.getElementById("nextBtn");
+const scoreEl = document.getElementById("score");
+const progLabel = document.getElementById("progLabel");
+const progBar = document.getElementById("progBar");
+
+function setProg() {
+  scoreEl.textContent = correct + " / " + answered;
+  progLabel.textContent = i < BANK.length ? ("Question " + (i + 1) + " of " + BANK.length) : "Done";
+  progBar.style.width = (Math.min(i, BANK.length) / BANK.length * 100) + "%";
+}
+
+function renderEnd() {
+  nextBtn.classList.remove("visible");
+  const pct = BANK.length ? Math.round(correct / BANK.length * 100) : 0;
+  main.innerHTML = '<div class="card end"><h2>Done</h2><div class="big">' + correct + " / " + BANK.length + '</div><p class="pct">' + pct + '% first-check correct</p><div class="links">' + LINKS + '</div><button type="button" class="check restart" id="restart">Again</button></div>';
+  document.getElementById("restart").onclick = function () {
+    i = 0; correct = 0; answered = 0; locked = false; renderQ();
+  };
+}
+
+function renderQ() {
+  if (i >= BANK.length) { setProg(); renderEnd(); return; }
+  locked = false;
+  nextBtn.classList.remove("visible");
+  const item = BANK[i];
+  setProg();
+  main.innerHTML = '<div class="card"><p class="qtext"></p><input type="text" id="ans" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Type your answer"><button type="button" class="check" id="check">Check</button><div class="why" id="why"></div></div>';
+  main.querySelector(".qtext").textContent = item.q;
+  const input = document.getElementById("ans");
+  const check = document.getElementById("check");
+  const why = document.getElementById("why");
+  input.focus();
+
+  function submit() {
+    if (locked) return;
+    const typed = input.value;
+    if (!norm(typed)) { input.focus(); return; }
+    locked = true;
+    answered += 1;
+    const ok = isRight(item, typed);
+    if (ok) correct += 1;
+    input.disabled = true;
+    check.disabled = true;
+    why.classList.add("visible");
+    why.innerHTML = "";
+    const v = document.createElement("div");
+    v.className = "verdict " + (ok ? "ok" : "bad");
+    v.textContent = ok ? "Correct" : "Not quite";
+    const w = document.createElement("div");
+    w.textContent = item.why;
+    why.appendChild(v);
+    why.appendChild(w);
+    setProg();
+    nextBtn.textContent = i === BANK.length - 1 ? "Finish" : "Next";
+    nextBtn.classList.add("visible");
+  }
+  check.onclick = submit;
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); submit(); }
+  });
+}
+
+nextBtn.onclick = function () {
+  if (!locked) return;
+  i += 1;
+  renderQ();
+};
+
+renderQ();
+
+</script>
+</body>
+</html>

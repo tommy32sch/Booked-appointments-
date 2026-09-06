@@ -1,0 +1,266 @@
+[
+  {
+    "ch": 30,
+    "q": "After abdominal trauma, what is the answer, and what do you assume when there is pain?",
+    "a": [
+      "surgery; bleeding and leaking — go",
+      "surgery; assume bleed and leak; go",
+      "surgery is the answer; assume something bleeding and leaking",
+      "surgery; pain = bleed + leak; go"
+    ],
+    "why": "Surgery is the answer. Pain after trauma: assume something is bleeding and something is leaking. Go."
+  },
+  {
+    "ch": 30,
+    "q": "About how many liters of blood does the body have, and how much can the abdomen hide before it looks swollen or bruised?",
+    "a": [
+      "about 6 L; a couple of 2-liter bottles",
+      "6 liters; couple of 2L bottles",
+      "about 6; couple of 2-liter bottles before swollen/bruised",
+      "6 L body; abdomen holds couple of 2L bottles"
+    ],
+    "why": "About 6 liters in the body. The abdomen can hold a couple of 2-liter bottles before it looks swollen or bruised. Do not wait for a fat, bruised belly."
+  },
+  {
+    "ch": 30,
+    "q": "Breath sounds are fine and you still have unexplained shock. Where do you think the bleed is?",
+    "a": [
+      "abdomen",
+      "the abdomen",
+      "belly / abdomen",
+      "assume abdomen"
+    ],
+    "why": "Good lungs + shock you cannot explain = think abdomen. Chest bleed would change breath sounds."
+  },
+  {
+    "ch": 30,
+    "q": "Right after a wreck, will you see fever yet if a hollow organ just leaked?",
+    "a": [
+      "no",
+      "no fever yet",
+      "no — infection takes time",
+      "not yet"
+    ],
+    "why": "Right after the wreck you will not see fever even if a hollow organ leaked. Infection takes time."
+  },
+  {
+    "ch": 30,
+    "q": "Which organs live in the right upper and left upper?",
+    "a": [
+      "right upper liver+gallbladder; left upper stomach+spleen",
+      "RUQ liver and gallbladder; LUQ stomach and spleen",
+      "right upper: liver and gallbladder; left upper: stomach and spleen",
+      "liver+gallbladder right upper; stomach+spleen left upper"
+    ],
+    "why": "Right upper = liver (solid) and gallbladder (hollow). Left upper = stomach (hollow) and spleen (solid)."
+  },
+  {
+    "ch": 30,
+    "q": "Where do appendix and kidneys live on the map?",
+    "a": [
+      "appendix right lower; kidneys flank/back",
+      "appendix = right lower; kidneys = flank / back",
+      "RLQ appendix; flank kidneys",
+      "appendix right lower; kidneys not a front-quadrant organ — flank"
+    ],
+    "why": "Appendix = right lower. Kidneys = flank / back. Not a front-quadrant organ."
+  },
+  {
+    "ch": 30,
+    "q": "Solid organs do what? Hollow organs do what? Early on scene can you tell them apart?",
+    "a": [
+      "solid bleed; hollow leak; no — early feel the same",
+      "solid bleed (hemorrhagic); hollow leak (peritonitis/septic later); cannot sort on scene",
+      "bleed vs leak; early same — transport",
+      "solid bleed; hollow spill/irritate lining; early same — go"
+    ],
+    "why": "Solid bleed. Hollow leak (peritonitis / septic later). Early leak and early bleed feel the same. Transport."
+  },
+  {
+    "ch": 30,
+    "q": "Why can one hit smash liver and spleen in a kid?",
+    "a": [
+      "organs bigger, closer, more exposed under short rib cage",
+      "kid organs bigger/closer/more exposed",
+      "packed closer and short rib cage leaves them more exposed",
+      "bigger for the belly, closer, short ribs — one hit both"
+    ],
+    "why": "Kid organs are bigger for the belly, packed closer, and the short rib cage leaves them more exposed. One hit can smash liver and spleen at once."
+  },
+  {
+    "ch": 30,
+    "q": "Biggest bleeder organ, and where can its pain refer?",
+    "a": [
+      "liver; right shoulder",
+      "liver — biggest bleeder; right shoulder",
+      "liver (right ribs); pain to right shoulder",
+      "liver; right shoulder same path as gallbladder"
+    ],
+    "why": "Liver is the biggest bleeder. Right lower ribs can cut it. Pain can go to the right shoulder (same path as gallbladder)."
+  },
+  {
+    "ch": 30,
+    "q": "Bowel sounds / gurgles in the chest after trauma mean what?",
+    "a": [
+      "torn diaphragm — bowel in the chest",
+      "diaphragm tear; bowel into chest",
+      "torn diaphragm",
+      "diaphragm tear lets bowel into the chest"
+    ],
+    "why": "Diaphragm tear lets bowel into the chest. Hard to breathe. Gurgles when you listen on the chest."
+  },
+  {
+    "ch": 30,
+    "q": "Cullen’s sign is a bruise where, and do you wait for it?",
+    "a": [
+      "around the belly button; no do not wait",
+      "belly button; late — do not wait",
+      "bruise around belly button; do not wait",
+      "belly-button bruise; late — go anyway"
+    ],
+    "why": "Cullen’s sign: bruise around the belly button = a lot of blood already inside. Late. Do not wait for it."
+  },
+  {
+    "ch": 30,
+    "q": "Where should the seatbelt catch, and how do you transport second-half pregnancy?",
+    "a": [
+      "pelvis not soft belly; left side",
+      "belt on pelvis; second half left side",
+      "pelvis (booster for kids); left side — supine hypotensive if flat",
+      "catch pelvis; second-half pregnancy left side"
+    ],
+    "why": "Belt catches the pelvis, not the soft belly. Second half of pregnancy: left side. Flat lets the uterus sandwich aorta and vena cava (supine hypotensive syndrome)."
+  },
+  {
+    "ch": 30,
+    "q": "Evisceration: push organs back? Dressing order?",
+    "a": [
+      "do not push; moist then plastic for heat",
+      "no push; moist sterile then plastic",
+      "do not push back; moist on organs, plastic over for heat",
+      "no push; moist then plastic (wet/bulky dry/blankets if no plastic)"
+    ],
+    "why": "Do not push organs back in. Moist sterile on the organs, plastic over that for heat. No big plastic: wet, then bulky dry, then blankets."
+  },
+  {
+    "ch": 30,
+    "q": "High belly wound vs low belly wound — which dressing?",
+    "a": [
+      "high: plastic/occlusive like chest; low: dry sterile",
+      "high belly plastic; low belly dry sterile",
+      "could be chest → plastic; lower no chest concern → dry sterile",
+      "high lean plastic; low dry sterile"
+    ],
+    "why": "High belly that could be chest → plastic / occlusive. Lower belly, no chest concern → dry sterile."
+  },
+  {
+    "ch": 30,
+    "q": "XABCs vs board, and which quadrant do you palpate last?",
+    "a": [
+      "XABCs first board later; sore / hurt quadrant last",
+      "XABCs first, Platinum 10, board after; sore last",
+      "life threats first board later; palpate sore last",
+      "XABCs first; hurt quadrant LAST"
+    ],
+    "why": "XABCs first. Board after life threats. Platinum 10. Look first. Push four quadrants. Hurt quadrant LAST."
+  },
+  {
+    "ch": 30,
+    "q": "Pulsating abdominal mass means what until proven otherwise?",
+    "a": [
+      "abdominal aortic aneurysm",
+      "AAA / abdominal aortic aneurysm",
+      "abdominal aortic aneurysm until proven otherwise",
+      "AAA"
+    ],
+    "why": "Pulsating mass = abdominal aortic aneurysm until proven otherwise. Not a normal pulse-check spot."
+  },
+  {
+    "ch": 30,
+    "q": "Flank always points to which organ? Gray Turner bruise means blood where?",
+    "a": [
+      "kidney; back compartment",
+      "kidney; blood in the back compartment",
+      "flank = kidney; Gray Turner = back-compartment blood",
+      "kidney; Gray Turner flank bruise = back compartment"
+    ],
+    "why": "Flank = kidney. Always. Gray Turner: bruise on the flank. Blood in the back compartment. Late."
+  },
+  {
+    "ch": 30,
+    "q": "Bad pelvis break can dump how much blood, and what three life threats?",
+    "a": [
+      "2+ L of ~6 (a third); bone bleed, femoral vessel cut, poke bladder/rectum",
+      "2+ liters / third of tank; bone, femoral artery/vein, bladder or rectum",
+      "2+ of about 6; bone bleed + femoral cut + poke hollow organs",
+      "2+ liters; bone bleed, femoral vessel, poke bladder/rectum infection"
+    ],
+    "why": "Worst bone for bleeding. 2+ liters of about 6 — a third. Three threats: bone bleed, femoral artery or vein cut, poke bladder or rectum → infection later."
+  },
+  {
+    "ch": 30,
+    "q": "Where can you pack hemostatic gauze, and can you pack deep belly or chest?",
+    "a": [
+      "junctions only — groin and just inside shoulder; no deep belly/chest",
+      "groin and inside shoulder junctions; cannot pack deep belly or chest",
+      "junctions groin/inside shoulder only; surgery for deep belly/chest",
+      "only junctions; cannot pack deep belly or chest"
+    ],
+    "why": "Pack hemostatic gauze only at junctions — groin and just inside the shoulder. You cannot pack a deep belly or a chest. Surgery."
+  },
+  {
+    "ch": 30,
+    "q": "Genital bleed vs not bleeding — which dressing? Vaginal bleed: pack or pad?",
+    "a": [
+      "blood → dry sterile; no blood → moist; pad outside do not pack",
+      "any bleed dry; not bleeding moist (eyes/guts list); vaginal pad outside save pads",
+      "dry if blood, moist if no blood; pad outside never pack vagina",
+      "bleed dry sterile; no bleed moist sterile; pad outside, save pads"
+    ],
+    "why": "Any bleed gets dry sterile. Not bleeding: moist sterile (same list as eyes and guts). Vaginal bleed: pad outside. Do not pack. Save the pads."
+  },
+  {
+    "ch": 30,
+    "q": "Pregnant trauma: why treat shock early, and Narcan — who decides?",
+    "a": [
+      "mom looks fine longer; call medical control — do not decide Narcan yourself",
+      "higher volume mom looks fine; fetus already in trouble; call med control for Narcan",
+      "treat shock early — mom looks fine longer; bag her / call medical control for Narcan",
+      "mom fine longer while baby in trouble; call doctor — you can bag her"
+    ],
+    "why": "Higher pregnant blood volume — mom looks fine longer. Treat shock early. If opioids whole pregnancy, fetus may be dependent. You can bag her. Call medical control. Do not decide Narcan yourself."
+  },
+  {
+    "ch": 30,
+    "q": "Sexual assault evidence: paper or plastic bag? Why?",
+    "a": [
+      "paper bag; plastic traps moisture and ruins DNA",
+      "paper; plastic ruins DNA",
+      "clothes/evidence in paper bag — plastic traps moisture",
+      "paper bag not plastic"
+    ],
+    "why": "Clothes and evidence go in a paper bag. Plastic traps moisture and ruins DNA."
+  },
+  {
+    "ch": 30,
+    "q": "Kehr sign is pain to the shoulder. Class Right upper maps to which shoulder/organs? Book classic often which side from spleen?",
+    "a": [
+      "right shoulder gallbladder/liver; book often left shoulder spleen",
+      "class Right upper → right shoulder (gallbladder/liver); book classic left shoulder spleen",
+      "right shoulder liver/gallbladder; left shoulder smashed spleen",
+      "RUQ→right shoulder; book often left from spleen"
+    ],
+    "why": "Kehr = pain to the shoulder. Class used Right upper → right shoulder (gallbladder / liver). Book classic is often left shoulder from a smashed spleen."
+  },
+  {
+    "ch": 30,
+    "q": "Cold trauma/shock patient — can they clot? What do you do?",
+    "a": [
+      "no — cold cannot clot; keep them warm",
+      "cold blood does not clot; keep warm",
+      "cannot clot when cold; keep every trauma/shock patient warm",
+      "no clot if cold; keep warm"
+    ],
+    "why": "Cold patients cannot clot. Keep every trauma / shock patient warm. Cold blood does not clot."
+  }
+]
