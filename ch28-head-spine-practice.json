@@ -1,0 +1,244 @@
+[
+  {
+    "ch": 28,
+    "q": "Work outside-in on head injury. What is the order?",
+    "a": [
+      "scalp → skull → bleeds around brain → brain → cord",
+      "scalp, skull, bleeds around the brain, brain, cord",
+      "scalp to skull to bleeds around brain to brain to cord",
+      "outside-in: scalp → skull → bleeds → brain → cord"
+    ],
+    "why": "Work from the outside in: scalp → skull → bleeds around the brain → the brain itself → the cord."
+  },
+  {
+    "ch": 28,
+    "q": "Primary brain injury already happened. What three secondary problems do you fight?",
+    "a": [
+      "low oxygen, low blood pressure, infection",
+      "low O2, low BP, infection",
+      "low oxygen, low BP, infection",
+      "low oxygen / low blood pressure / infection"
+    ],
+    "why": "Fight the secondary stuff: low oxygen, low blood pressure, infection."
+  },
+  {
+    "ch": 28,
+    "q": "Trauma patient has a slow heart. What two problems are on your short list?",
+    "a": [
+      "pressure in the head or spinal cord injury",
+      "head pressure or spinal cord / neurogenic",
+      "Cushing’s / head pressure OR spinal cord injury",
+      "pressure inside the head, or a spinal cord injury"
+    ],
+    "why": "Trauma + slow heart rate = only two things: pressure in the head, or a spinal cord injury."
+  },
+  {
+    "ch": 28,
+    "q": "Slow heart + HIGH blood pressure after trauma — what do you think?",
+    "a": [
+      "pressure inside the head (Cushing’s)",
+      "Cushing’s / head pressure",
+      "pressure in the head",
+      "head pressure (Cushing’s)"
+    ],
+    "why": "Slow heart + HIGH blood pressure = pressure inside the head (Cushing’s)."
+  },
+  {
+    "ch": 28,
+    "q": "Slow heart + LOW blood pressure after trauma — what do you think?",
+    "a": [
+      "spinal cord / neurogenic shock",
+      "spinal cord injury / neurogenic",
+      "spinal / neurogenic shock",
+      "spinal cord or neurogenic shock"
+    ],
+    "why": "Slow heart + LOW blood pressure = spinal cord / neurogenic shock."
+  },
+  {
+    "ch": 28,
+    "q": "Name Cushing’s triad.",
+    "a": [
+      "high wide BP, slow heart, irregular breathing",
+      "high and wide blood pressure, slow heart, irregular breathing",
+      "high wide BP + slow heart + irregular breathing",
+      "high wide BP, slow HR, irregular breathing"
+    ],
+    "why": "Cushing’s triad: high wide BP, slow heart, irregular breathing."
+  },
+  {
+    "ch": 28,
+    "q": "What BP pattern fits Cushing’s better — 200/90 or 160/110?",
+    "a": [
+      "200/90",
+      "200/90 (high wide)",
+      "200/90 — systolic up, diastolic nearer normal",
+      "200/90 (high and wide)"
+    ],
+    "why": "High and WIDE BP: systolic shoots up, diastolic stays nearer normal. Example 200/90. Regular high blood pressure usually climbs together like 160/110."
+  },
+  {
+    "ch": 28,
+    "q": "May you give nitro to drop Cushing’s high BP?",
+    "a": [
+      "no",
+      "no — do not give nitro",
+      "no (do not drop that BP)",
+      "no nitro"
+    ],
+    "why": "Do not give nitro to drop that blood pressure. A drop in BP after a brain injury is a secondary killer."
+  },
+  {
+    "ch": 28,
+    "q": "Central nervous system equals what?",
+    "a": [
+      "brain + spinal cord",
+      "brain and spinal cord",
+      "brain and cord",
+      "CNS = brain + spinal cord"
+    ],
+    "why": "Central nervous system = brain + spinal cord."
+  },
+  {
+    "ch": 28,
+    "q": "Meninges outside to inside — name the three layers.",
+    "a": [
+      "dura, arachnoid, pia",
+      "dura → arachnoid → pia",
+      "dura, arachnoid, pia (outside in)",
+      "dura then arachnoid then pia"
+    ],
+    "why": "Meninges outside to inside: dura, arachnoid, pia."
+  },
+  {
+    "ch": 28,
+    "q": "Where is CSF made, and about how much?",
+    "a": [
+      "inside the brain, about 125 mL",
+      "made inside the brain (~125 mL)",
+      "inside the brain — about 125 mL",
+      "brain; ~125 mL"
+    ],
+    "why": "CSF is made inside the brain (about 125 mL)."
+  },
+  {
+    "ch": 28,
+    "q": "Late rising pressure shoves the brainstem down which hole?",
+    "a": [
+      "foramen magnum",
+      "foramen magnum (herniation)",
+      "the foramen magnum",
+      "foramen magnum at base of skull"
+    ],
+    "why": "Foramen magnum = big hole at base of skull. Late rising pressure shoves brainstem down that hole (herniation)."
+  },
+  {
+    "ch": 28,
+    "q": "Basilar skull fracture clues — name three.",
+    "a": [
+      "raccoon eyes, Battle’s sign, CSF nose/ear",
+      "raccoon eyes, Battle’s (mastoid), CSF from nose or ear",
+      "raccoon eyes + Battle’s sign + CSF leak",
+      "raccoon eyes, Battle’s sign, CSF from nose or ear"
+    ],
+    "why": "Basilar: raccoon eyes. Battle’s sign (mastoid bruise). CSF from nose or ear."
+  },
+  {
+    "ch": 28,
+    "q": "Epidural bleed classic pattern?",
+    "a": [
+      "lucid interval — down → up → down",
+      "hit, pass out, wake up talking, pass out again",
+      "lucid interval (down-up-down)",
+      "down → up → down (lucid interval)"
+    ],
+    "why": "Epidural: usually artery, fast. Lucid interval — down → up → down."
+  },
+  {
+    "ch": 28,
+    "q": "Subdural bleed — fast or slow, and who is it common in?",
+    "a": [
+      "slow; older people and alcoholics",
+      "vein / slow; older and alcoholics",
+      "slow delayed; older people and alcoholics",
+      "slow; common in older people and alcoholics"
+    ],
+    "why": "Subdural: usually a vein. Slow. Common in older people and alcoholics."
+  },
+  {
+    "ch": 28,
+    "q": "Sudden worst headache after a head event — which bleed pattern?",
+    "a": [
+      "subarachnoid",
+      "subarachnoid bleed",
+      "subarachnoid (sudden worst headache)",
+      "subarachnoid — sudden worst headache"
+    ],
+    "why": "Subarachnoid: sudden worst headache. Clutch the head and drop."
+  },
+  {
+    "ch": 28,
+    "q": "Concussion CT — normal or bruise? About what percent never pass out?",
+    "a": [
+      "CT normal; about 90% never pass out",
+      "CT looks normal; ~90% never pass out",
+      "normal CT; 90% never pass out",
+      "CT looks normal; about 90% never pass out"
+    ],
+    "why": "Concussion: CT looks normal. About 90% never pass out."
+  },
+  {
+    "ch": 28,
+    "q": "Bones out of place pinch the cord without cutting it. What can happen when pressure comes off?",
+    "a": [
+      "feeling and movement can return",
+      "numbness/paralysis can reverse",
+      "feeling and movement returned when pinch gone",
+      "pressure off → feeling and movement can return"
+    ],
+    "why": "Bones can pinch without cutting. Same numbness and paralysis until the pinch is gone; pressure off can return feeling and movement."
+  },
+  {
+    "ch": 28,
+    "q": "Name board reasons after trauma.",
+    "a": [
+      "unconscious, numb/paralysis, neck/back pain, or you do not believe them",
+      "unconscious; numbness or paralysis; neck or back pain; do not trust them",
+      "unconscious, numb/paralyzed, neck/back pain, or do not believe them",
+      "unconscious / numb or paralyzed / neck or back pain / you do not trust them"
+    ],
+    "why": "Board for unconscious, numbness or paralysis, neck or back pain after trauma, or you do not believe them."
+  },
+  {
+    "ch": 28,
+    "q": "Full-face helmet blocks airway, or head rattles inside — what do you do?",
+    "a": [
+      "take it off (two people)",
+      "remove helmet; two people",
+      "take it off — two people, no neck bend",
+      "remove it with two people"
+    ],
+    "why": "Take it off if full-face blocks airway, head rattles, arrest, or cannot immobilize with it. Two people; do not bend the neck."
+  },
+  {
+    "ch": 28,
+    "q": "Trauma airway — which maneuver, and may you use an NPA?",
+    "a": [
+      "jaw thrust; no NPA",
+      "jaw thrust. No NPA.",
+      "jaw thrust; refuse NPA",
+      "jaw thrust — no NPA"
+    ],
+    "why": "Jaw thrust. No NPA."
+  },
+  {
+    "ch": 28,
+    "q": "One minute of low oxygen after a brain injury — what happens to death risk?",
+    "a": [
+      "makes death much more likely",
+      "death much more likely",
+      "much more likely to die",
+      "greatly raises death risk"
+    ],
+    "why": "One minute of low oxygen after a brain injury makes death much more likely."
+  }
+]
