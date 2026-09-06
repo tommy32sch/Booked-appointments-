@@ -1,0 +1,244 @@
+[
+  {
+    "ch": 29,
+    "q": "Platinum time goal, real fix, and order of XABCs vs board?",
+    "a": [
+      "Platinum 10; surgery; XABCs first, board later",
+      "10 minutes; surgery is the real fix; XABCs first board later",
+      "Platinum 10 / surgery / XABCs before board",
+      "Platinum 10; surgery; XABCs first"
+    ],
+    "why": "Surgery is the real fix. Platinum 10 minutes. XABCs first. Board later."
+  },
+  {
+    "ch": 29,
+    "q": "What makes the chest box, and does an upper-belly stab still get a chest seal?",
+    "a": [
+      "ribs + spine + diaphragm; yes — diaphragm position unknown",
+      "box = ribs + spine + diaphragm; yes still seal upper-belly stab",
+      "ribs, spine, diaphragm; yes chest seal (don’t know where diaphragm was)",
+      "ribs + spine + diaphragm; yes still gets a chest seal"
+    ],
+    "why": "Box = ribs + spine + diaphragm. Upper-belly stab still gets a chest seal. You do not know where the diaphragm was."
+  },
+  {
+    "ch": 29,
+    "q": "Adults vs kids breathing muscles, and what runs under each rib?",
+    "a": [
+      "adults diaphragm + intercostals; kids almost all diaphragm; under rib nerve/vein/artery",
+      "adults both; kids almost all diaphragm; nerve, vein, artery under each rib",
+      "adults diaphragm+intercostals, kids almost all diaphragm; nerve vein artery under rib",
+      "adults diaphragm + intercostals; kids almost all diaphragm; nerve, vein, artery"
+    ],
+    "why": "Adults breathe with diaphragm + intercostals. Kids are almost all diaphragm. Under each rib: nerve, vein, artery."
+  },
+  {
+    "ch": 29,
+    "q": "Parietal vs visceral pleura; pneumothorax vs hemothorax; what is the mediastinum?",
+    "a": [
+      "parietal=chest wall lining; visceral=on lung; pneumo=air; hemo=blood; mediastinum=middle space heart/aorta/vena cava/trachea/esophagus",
+      "parietal chest wall, visceral on lung; air vs blood in gap; middle space with heart aorta vena cava trachea esophagus",
+      "parietal wall / visceral lung; pneumo air hemo blood; mediastinum middle space",
+      "parietal=chest wall; visceral=lung lining; pneumothorax air; hemothorax blood; mediastinum middle space"
+    ],
+    "why": "Parietal pleura = lining of the chest wall. Visceral pleura = lining on the lung. Pneumothorax = air in that gap. Hemothorax = blood in that gap. Mediastinum = middle space: heart, aorta, vena cava, trachea, esophagus."
+  },
+  {
+    "ch": 29,
+    "q": "Phrenic levels; cord cut above C5 vs below C5 — breathing?",
+    "a": [
+      "C3-4-5; above C5 no breathe; below C5 diaphragm works intercostals don’t",
+      "phrenic C3-4-5; above C5 they do not breathe; below C5 diaphragm still works, intercostals do not",
+      "C3, C4, C5; cut above C5 → no breathe; below C5 diaphragm works, intercostals don’t",
+      "C3-4-5 keeps diaphragm; above C5 no breathe; below C5 diaphragm yes intercostals no"
+    ],
+    "why": "Phrenic nerve = C3, C4, C5. Cord cut above C5 → they do not breathe. Below C5 → diaphragm still works, intercostals do not."
+  },
+  {
+    "ch": 29,
+    "q": "Ventilation vs respiration vs oxygenation; crackles mean fluid where?",
+    "a": [
+      "vent=air in/out; resp=gas exchange; ox=O2 onto red cells; crackles=fluid in alveoli",
+      "ventilation air in/out; respiration alveoli gas exchange; oxygenation onto red cells; crackles fluid in alveoli",
+      "air in/out; gas exchange; oxygen onto red cells; crackles = fluid in the alveoli",
+      "vent in/out; resp gas exchange; ox onto red cells; crackles water or blood in alveoli"
+    ],
+    "why": "Ventilation: air in and out. Respiration: gas exchange in the alveoli. Oxygenation: oxygen onto red cells. Crackles = fluid in the alveoli (water or blood)."
+  },
+  {
+    "ch": 29,
+    "q": "BVM pressure type, and where can some air go?",
+    "a": [
+      "positive pressure; some air to the stomach",
+      "BVM positive pressure → some air also to stomach",
+      "positive pressure; air can go to stomach",
+      "positive pressure, some air to stomach"
+    ],
+    "why": "A BVM pushes air in (positive pressure), so some air also goes to the stomach."
+  },
+  {
+    "ch": 29,
+    "q": "Hemoptysis vs hematemesis; pink frothy sputum means what?",
+    "a": [
+      "hemoptysis coughing blood=lung; hematemesis vomiting blood=gut; pink frothy=pulmonary edema",
+      "coughing blood=lung; vomiting blood=gut; pink frothy=pulmonary edema",
+      "hemoptysis=lung; hematemesis=gut; pink frothy sputum=pulmonary edema",
+      "cough blood lung; vomit blood gut; pink frothy pulmonary edema"
+    ],
+    "why": "Hemoptysis = coughing blood = lung. Hematemesis = vomiting blood = gut. Pink frothy sputum = pulmonary edema."
+  },
+  {
+    "ch": 29,
+    "q": "Paradoxical motion: one segment or whole side? Default trauma shock then what?",
+    "a": [
+      "one flail segment wrong way (not whole side); default bleed then tension/tamponade",
+      "one segment (flail), not whole side; bleed first, then obstructive tension or tamponade",
+      "paradoxical = one segment flail not whole side; default bleed then tension pneumo or tamponade",
+      "one segment not whole side; bleed then tension/tamponade"
+    ],
+    "why": "Paradoxical motion = one segment moves the wrong way. Flail. Not the whole side. Default shock in trauma is bleed. Then think obstructive: tension pneumo or tamponade."
+  },
+  {
+    "ch": 29,
+    "q": "Open chest hole: what seal, how many sides, clog fix, both holes?",
+    "a": [
+      "occlusive/chest seal/3-sided or non-porous; peel vent reseal if clog; seal both holes",
+      "plastic occlusive / chest seal / 3-sided; clog→peel vent reseal; in-and-out seal both",
+      "occlusive chest seal 3-sided or non-porous; peel/vent/reseal; seal both holes",
+      "occlusive / chest seal / 3-sided; peel vent reseal; both holes"
+    ],
+    "why": "Seal with plastic: occlusive dressing, chest seal, or non-porous dressing. Tape 3 sides or vented seal. If it clogs: peel it, let it vent, reseal. In-and-out wound: seal both holes."
+  },
+  {
+    "ch": 29,
+    "q": "Tension signs: shock + JVD + quiet side — trachea which way? Do we needle?",
+    "a": [
+      "trachea AWAY from bad side; we do not needle (medic needle closed tension only)",
+      "trachea pushed away from bad side; we don’t needle",
+      "away from bad side; paramedic needle closed tension only — we do not needle",
+      "trachea away; we do not needle"
+    ],
+    "why": "Trachea pushed AWAY from the bad side. Paramedic needle is for a CLOSED tension pneumo. We do not needle."
+  },
+  {
+    "ch": 29,
+    "q": "Quiet one lung: fat neck veins vs flat neck veins — which injury each?",
+    "a": [
+      "fat/JVD = tension; flat = hemothorax",
+      "JVD/fat veins = tension pneumo; flat/collapsed = hemo",
+      "fat veins tension; flat veins hemothorax",
+      "fat / JVD = tension; flat = hemo (bled out)"
+    ],
+    "why": "Neck veins fat / JVD → tension pneumo. Neck veins flat / collapsed → hemothorax."
+  },
+  {
+    "ch": 29,
+    "q": "Beck’s triad for tamponade; how do lungs compare to tension?",
+    "a": [
+      "JVD + muffled heart + narrow pulse pressure; two good lungs (not quiet side)",
+      "JVD, muffled/quiet heart sounds, narrow PP; two good lungs → heart not lung",
+      "Beck’s: JVD, muffled sounds, narrow pulse pressure; tamponade has two good lungs",
+      "JVD muffled narrow PP; two good lungs unlike tension"
+    ],
+    "why": "Beck’s triad: JVD; muffled / quiet heart sounds; narrow pulse pressure. Tamponade does not have a quiet lung. Two good lungs → think heart, not lung."
+  },
+  {
+    "ch": 29,
+    "q": "Flail chest care — bulky dressing / sandbags?",
+    "a": [
+      "no bulky dress or sandbags (old answer); ABCs O2 shock go",
+      "do not bulky-dress or sandbags; ABCs, oxygen, shock care, go",
+      "refuse bulky dressing/sandbags; ABCs oxygen shock go",
+      "no bulky dress/sandbags; ABCs O2 shock go; watch bruised lung"
+    ],
+    "why": "Do not tape a bulky dressing over it. Do not use sandbags. That is the old answer. ABCs, oxygen, shock care, go."
+  },
+  {
+    "ch": 29,
+    "q": "Pulmonary contusion: crackles timing, CPAP, BVM rule?",
+    "a": [
+      "crackles hours/days; no CPAP trauma; BVM only if not breathing well",
+      "crackles can take hours may kill days later; no CPAP; BVM if not breathing well",
+      "hours to days; refuse CPAP in trauma; BVM only if not breathing well",
+      "crackles hours/days later; no CPAP; BVM if needed"
+    ],
+    "why": "Pulmonary contusion: crackles; can take hours; may kill days later. No CPAP in trauma. BVM only if they are not breathing well."
+  },
+  {
+    "ch": 29,
+    "q": "Steering-wheel hit + shock + irregular pulse; sternal and clavicle worry?",
+    "a": [
+      "cardiac contusion; heart 2 inches behind sternum; clavicle can poke lung",
+      "bruised heart / cardiac contusion; sternal = heart behind it; clavicle can poke top of lung",
+      "cardiac/myocardial contusion; heart behind sternum; clavicle can poke lung",
+      "cardiac contusion; sternal→heart; clavicle can poke lung"
+    ],
+    "why": "Steering wheel + shock + irregular pulse = cardiac contusion. Sternal fracture: the heart is two inches behind it. Clavicle can poke the top of the lung."
+  },
+  {
+    "ch": 29,
+    "q": "Traumatic asphyxia look — face/neck, eyes, veins?",
+    "a": [
+      "purple/bruised face and neck; bloodshot eyes; JVD",
+      "purple bruised face/neck, bloodshot whites of eyes, JVD",
+      "purple face and neck; bloodshot eyes; JVD",
+      "purple/bruised face neck + bloodshot eyes + JVD"
+    ],
+    "why": "Purple / bruised face and neck. Bloodshot whites of the eyes. JVD."
+  },
+  {
+    "ch": 29,
+    "q": "Kid drops after a ball to the chest — what happened and what do you do?",
+    "a": [
+      "commotio cordis → V-fib; CPR + AED",
+      "commotio cordis (blow during recharge); CPR and AED",
+      "commotio → V-fib; start CPR + AED fast",
+      "commotio cordis; CPR + AED"
+    ],
+    "why": "Kid drops after a ball to the chest = commotio cordis. They drop in V-fib. CPR + AED."
+  },
+  {
+    "ch": 29,
+    "q": "Commotio on the EKG: normal beat order, and which wave is the hit?",
+    "a": [
+      "P → QRS → T; hit during T wave (repolarization / recharge)",
+      "P QRS T; hit on T wave recharge/repolarization → V-fib",
+      "normal P→QRS→T; blow during T wave while recharging → V-fib",
+      "P→QRS→T; T-wave hit (repolarization)"
+    ],
+    "why": "Normal beat: P wave → QRS → T wave. The hit is during the T wave — recharge / repolarization. Force fire while recharging → V-fib."
+  },
+  {
+    "ch": 29,
+    "q": "Pulse pressure: Cushing/ICP vs tamponade — example numbers?",
+    "a": [
+      "Cushing high WIDE (e.g. 200/90); tamponade NARROW and low",
+      "ICP/Cushing wide 200/90; tamponade narrow and low",
+      "Cushing wide high; tamponade narrow low (numbers squeeze)",
+      "wide Cushing 200/90; narrow tamponade"
+    ],
+    "why": "Head / Cushing / ICP: high and WIDE. Example 200/90. Cardiac tamponade: NARROW and low."
+  },
+  {
+    "ch": 29,
+    "q": "Can you pinch the chest aorta like a limb? Torn aorta / aneurysm / mesh sleeve?",
+    "a": [
+      "no access unless chest open; torn often dead on scene; aneurysm tearing pain; mesh sleeve ≠ bypass graft",
+      "limb yes chest aorta no; torn often dead on scene; medical aneurysm tearing chest pain; sleeve ≠ graft",
+      "cannot pinch chest aorta; trauma tear often dead on scene; aneurysm tearing pain; mesh ≠ bypass",
+      "no chest aorta pinch; often dead on scene; tearing chest pain; mesh sleeve not bypass graft"
+    ],
+    "why": "We have no access to the chest aorta unless already wide open. Torn aorta often dead on scene. Medical aneurysm: tearing chest pain. Mesh sleeve / sock is not a bypass graft."
+  },
+  {
+    "ch": 29,
+    "q": "Crepitus means what? One-sided rise or quiet lung means what?",
+    "a": [
+      "crepitus = broken-rib grind; one-sided/quiet = that lung not filling",
+      "broken-rib grind; that lung is not filling",
+      "crepitus broken-rib grind; quiet one side = lung not filling",
+      "rib grind; lung on that side not filling"
+    ],
+    "why": "Crepitus = broken-rib grind. One-sided chest rise or quiet lung = that lung is not filling."
+  }
+]
