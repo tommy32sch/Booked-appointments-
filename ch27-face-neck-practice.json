@@ -1,0 +1,233 @@
+[
+  {
+    "ch": 27,
+    "q": "Face trauma \u2014 what two body areas do you also think about?",
+    "a": [
+      "brain and C-spine",
+      "brain and cervical spine",
+      "brain + C-spine",
+      "brain and neck/spine"
+    ],
+    "why": "Face hit \u2192 think brain. Head snapped back \u2192 think C-spine."
+  },
+  {
+    "ch": 27,
+    "q": "What comes before jaw, tooth, or eyeball care?",
+    "a": [
+      "XABCs",
+      "XABCs first",
+      "exsanguinating bleed / airway / breathing / circulation",
+      "XABCs (airway and big bleeding)"
+    ],
+    "why": "XABCs first. Broken jaw, tooth, and eyeball are not next-minute killers."
+  },
+  {
+    "ch": 27,
+    "q": "Trauma patient needs an airway opened. Which maneuver?",
+    "a": [
+      "jaw thrust",
+      "jaw-thrust",
+      "jaw thrust (possible C-spine)",
+      "jaw thrust for trauma"
+    ],
+    "why": "Open the airway with a jaw thrust when there is trauma or possible C-spine injury."
+  },
+  {
+    "ch": 27,
+    "q": "May you use an NPA on face or head trauma?",
+    "a": [
+      "no",
+      "no NPA",
+      "no \u2014 cracked skull risk",
+      "no (can go into brain)"
+    ],
+    "why": "NPA is out. Cracked skull + NPA can go into the brain. BVM would blast air into the skull."
+  },
+  {
+    "ch": 27,
+    "q": "When is an OPA still fine on a face-trauma patient?",
+    "a": [
+      "if no gag",
+      "no gag reflex",
+      "OPA OK if no gag",
+      "when there is no gag"
+    ],
+    "why": "OPA is still fine if there is no gag."
+  },
+  {
+    "ch": 27,
+    "q": "How tight do you wrap a bleeding scalp?",
+    "a": [
+      "loosely",
+      "loose wrap",
+      "wrap loosely",
+      "loose (not tight)"
+    ],
+    "why": "Wrap a bleeding scalp loosely. Tight wrap adds pressure inside a skull that may already be swelling."
+  },
+  {
+    "ch": 27,
+    "q": "Bruise on the mastoid behind the ear is which skull-fracture clue?",
+    "a": [
+      "Battle\u2019s sign",
+      "Battles sign",
+      "Battle's sign",
+      "Battle\u2019s sign (skull fracture)"
+    ],
+    "why": "Bump behind the ear = mastoid. A bruise there is Battle\u2019s sign \u2014 skull-fracture clue."
+  },
+  {
+    "ch": 27,
+    "q": "Knocked-out tooth \u2014 hold which part?",
+    "a": [
+      "the crown",
+      "crown not root",
+      "hold by the crown",
+      "crown (not the root)"
+    ],
+    "why": "Hold the tooth by the crown, not the root."
+  },
+  {
+    "ch": 27,
+    "q": "Where do you store a knocked-out tooth?",
+    "a": [
+      "tooth solution / cold milk / sterile saline",
+      "cold milk or saline",
+      "tooth solution, milk, or sterile saline",
+      "milk or sterile saline"
+    ],
+    "why": "Store in tooth solution, cold milk, or sterile saline. Replant window 20 minutes to 1 hour."
+  },
+  {
+    "ch": 27,
+    "q": "One eye hurt. How many eyes do you cover?",
+    "a": [
+      "both",
+      "both eyes",
+      "cover both",
+      "both (eyes move together)"
+    ],
+    "why": "Cover BOTH eyes even if only one is hurt. Eyes move together."
+  },
+  {
+    "ch": 27,
+    "q": "Dangling eyeball \u2014 do you push it back in?",
+    "a": [
+      "no",
+      "no \u2014 moist gauze and tape",
+      "do not push it back in",
+      "no; moist gauze, tape so no swing"
+    ],
+    "why": "Do not push a dangling globe back in. Moist gauze on it. Tape it so it does not swing."
+  },
+  {
+    "ch": 27,
+    "q": "Chemical in the eye. Minimum flush time?",
+    "a": [
+      "20 minutes",
+      "at least 20 minutes",
+      "\u226520 minutes",
+      "20 min inside to outside"
+    ],
+    "why": "Contacts out. Force lids open. Flush inside \u2192 outside at least 20 minutes."
+  },
+  {
+    "ch": 27,
+    "q": "Something loose on the eye \u2014 flush which direction?",
+    "a": [
+      "nose outward",
+      "from the nose outward",
+      "inside to outside / nose out",
+      "nose \u2192 outward"
+    ],
+    "why": "Flush from the nose outward so it does not run into the other eye."
+  },
+  {
+    "ch": 27,
+    "q": "Epistaxis care \u2014 pinch and lean which way?",
+    "a": [
+      "forward",
+      "lean forward",
+      "pinch and lean forward",
+      "forward (not back)"
+    ],
+    "why": "Pinch the nose and lean FORWARD. Head back dumps blood into the throat."
+  },
+  {
+    "ch": 27,
+    "q": "Halo test yellow ring around blood means what fluid?",
+    "a": [
+      "CSF",
+      "cerebrospinal fluid",
+      "CSF (skull cracked)",
+      "cerebrospinal fluid / CSF"
+    ],
+    "why": "Halo test: blood in the middle, yellow ring = CSF. Skull is cracked."
+  },
+  {
+    "ch": 27,
+    "q": "Torn-off ear packing \u2014 cool how?",
+    "a": [
+      "moist \u2192 plastic \u2192 cool (not bare ice)",
+      "moist wrap, plastic, cool",
+      "cool but not bare ice",
+      "moist then plastic then cool"
+    ],
+    "why": "Avulsed ear: moist wrap \u2192 plastic \u2192 keep cool. Do not set it on bare ice."
+  },
+  {
+    "ch": 27,
+    "q": "Penetrating neck bleed \u2014 pressure on how many sides?",
+    "a": [
+      "one side only",
+      "one side",
+      "bleeding side only",
+      "one side (never both)"
+    ],
+    "why": "Pressure on the bleeding side only. Never wrap a full circle. Never squeeze both sides."
+  },
+  {
+    "ch": 27,
+    "q": "How do you secure gauze on a neck hole without circling the neck?",
+    "a": [
+      "wrap under the opposite armpit",
+      "under opposite armpit",
+      "gauze then wrap under opposite armpit",
+      "under the other armpit"
+    ],
+    "why": "Gauze on the wound, wrap under the opposite armpit. Plastic on top to keep air out."
+  },
+  {
+    "ch": 27,
+    "q": "Rice Krispies feel under neck skin after blunt trauma means what?",
+    "a": [
+      "subcutaneous emphysema / cracked airway",
+      "air under the skin / cracked larynx or trachea",
+      "subcutaneous emphysema (crepitus)",
+      "leaked air from cracked airway"
+    ],
+    "why": "Cracked larynx/trachea leaks air into soft tissue. Subcutaneous emphysema feels like Rice Krispies."
+  },
+  {
+    "ch": 27,
+    "q": "Blunt neck with swelling and air under the skin \u2014 tight C-collar?",
+    "a": [
+      "no / skip it",
+      "skip the tight C-collar",
+      "no tight collar",
+      "skip tight C-collar (neck already swelling)"
+    ],
+    "why": "Board them if the force was big. Skip the tight C-collar. The neck is already swelling."
+  },
+  {
+    "ch": 27,
+    "q": "Unequal pupils name?",
+    "a": [
+      "anisocoria",
+      "anisocoria (unequal pupils)",
+      "anisocoria \u2014 treat as bad if unknown",
+      "unequal pupils / anisocoria"
+    ],
+    "why": "Anisocoria = unequal pupils. Born that way in some people; if you do not know, treat as bad."
+  }
+]
