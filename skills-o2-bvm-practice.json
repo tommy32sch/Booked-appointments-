@@ -1,0 +1,200 @@
+[
+  {
+    "ch": "lab",
+    "q": "While your hands work a skills station, what do you do with your mouth?",
+    "a": [
+      "say the step while your hands do it",
+      "say each step as you do it",
+      "talk the step while hands work",
+      "say it while you do it"
+    ],
+    "why": "Say the step while your hands do it. Your mouth and hands stay on the same line."
+  },
+  {
+    "ch": "lab",
+    "q": "What must you name on medical assessment or you fail?",
+    "a": [
+      "the field impression",
+      "field impression / the problem",
+      "name the field impression",
+      "say the field impression"
+    ],
+    "why": "Medical assessment fails if you never name the problem. You must say the field impression."
+  },
+  {
+    "ch": "lab",
+    "q": "If you finish medical and have no idea what is wrong, what happened?",
+    "a": [
+      "you skipped a check / a box",
+      "skipped a check",
+      "you skipped a box",
+      "lost = skipped a check"
+    ],
+    "why": "If you are lost, you skipped a check. If you finish medical with no idea, you skipped a box — look at your notes."
+  },
+  {
+    "ch": "lab",
+    "q": "What flow do you run on an NRB?",
+    "a": [
+      "10–15 L/min",
+      "10 to 15 L/min",
+      "10-15 L/min",
+      "NRB 10–15 L/min"
+    ],
+    "why": "NRB is 10–15 L/min. Less than 10 is a straw — you suffocate them."
+  },
+  {
+    "ch": "lab",
+    "q": "What is the adult BVM rate, squeeze time, and when do you stop the squeeze?",
+    "a": [
+      "1 breath every 6 seconds; squeeze 1 second; until chest rises",
+      "1/6s; squeeze ~1s; stop when chest rises",
+      "one every 6 seconds; 1-second squeeze; chest rise",
+      "1 breath/6s; squeeze 1s; just until chest rises"
+    ],
+    "why": "BVM: 1 breath every 6 seconds. Squeeze 1 second. Just until the chest rises."
+  },
+  {
+    "ch": "lab",
+    "q": "What is the time limit for suction and for the pulse + breathing check?",
+    "a": [
+      "≤10 seconds each",
+      "no more than 10 seconds each",
+      "suction ≤10s; pulse+breathing ≤10s",
+      "10 seconds max for both"
+    ],
+    "why": "Suction no more than 10 seconds. Pulse + breathing check no more than 10 seconds."
+  },
+  {
+    "ch": "lab",
+    "q": "What is Chapter 10 in book form for these skills?",
+    "a": [
+      "the skill sheet",
+      "Chapter 10 = the skill sheet in book form",
+      "skill sheet in book form",
+      "the skill sheet (book form)"
+    ],
+    "why": "Review Chapter 10. That chapter is the skill sheet in book form."
+  },
+  {
+    "ch": "lab",
+    "q": "After you gather tank, regulator, mask, and wrench, what is cracking the tank?",
+    "a": [
+      "quick open then close to blow dirt out of the outlet",
+      "quick open, then close; blows dirt out",
+      "brief open/close to clear the outlet",
+      "crack = quick open then close (dirt out)"
+    ],
+    "why": "Crack the tank. Quick open, then close. Blows dirt out of the outlet. Open = lefty-loosey."
+  },
+  {
+    "ch": "lab",
+    "q": "How do you seat the regulator so it is right?",
+    "a": [
+      "two pins in two holes first, then screw down; sits at a right angle",
+      "pins first, then screw; right angle (tilted = not seated)",
+      "pins in holes first; screw down; right angle",
+      "two pins first; screw; right angle — tilted means not seated"
+    ],
+    "why": "Seat the regulator. Two pins go in the two holes first. Then screw it down. It should sit at a right angle. Tilted = not seated."
+  },
+  {
+    "ch": "lab",
+    "q": "After opening the tank one full turn, what gauge reading is about full, and what do you listen for?",
+    "a": [
+      "about 2000 PSI; listen for a hiss / leak",
+      "~2000 PSI; hiss (leak often dead brass washer)",
+      "full ~2000 PSI; listen for hiss",
+      "about 2000 PSI; hiss = leak check"
+    ],
+    "why": "Check the gauge. Full tank is about 2000 PSI. Listen for a hiss. A leak is usually a dead brass washer."
+  },
+  {
+    "ch": "lab",
+    "q": "What flow do you set from the start on the tank build, and why not start low?",
+    "a": [
+      "10–15 L/min from the start; do not start low and forget",
+      "set 10–15 first; do not start low and forget",
+      "10–15 from the start so you do not forget",
+      "turn flow to 10–15 L/min from the start"
+    ],
+    "why": "Turn flow to 10–15 L/min from the start. Do not start low and forget. Shortcut: set 10–15 first so “adjust to at least 10” is already done."
+  },
+  {
+    "ch": "lab",
+    "q": "Is 0.5 L/min a treatment on an NRB?",
+    "a": [
+      "no — not a treatment",
+      "no; 0.5 L/min is not a treatment",
+      "no — NRB below 10 restricts breathing",
+      "no"
+    ],
+    "why": "0.5 L/min is not a treatment. NRB below 10 restricts breathing."
+  },
+  {
+    "ch": "lab",
+    "q": "If you are not holding the O2 tank, what do you do with it, and why?",
+    "a": [
+      "lay it down; standing tank with snapped neck becomes a missile",
+      "lay it down — snapped neck = missile",
+      "lay the tank down; standing + snapped neck = missile",
+      "lay it down so it cannot become a missile"
+    ],
+    "why": "If you are not holding the tank, lay it down. A standing tank with a snapped neck becomes a missile."
+  },
+  {
+    "ch": "lab",
+    "q": "On the BVM station the patient is unresponsive, not breathing, with a weak pulse of 60. What does that mean for you?",
+    "a": [
+      "alive, not breathing — keep going",
+      "alive not breathing; keep going with airway/BVM",
+      "weak pulse 60 = alive, not breathing; keep going",
+      "keep going — alive but not breathing"
+    ],
+    "why": "The station says: unresponsive, not breathing, weak pulse of 60. Alive, not breathing. Keep going."
+  },
+  {
+    "ch": "lab",
+    "q": "How do you run suction after you find a mouth full of vomit?",
+    "a": [
+      "on+test; measure mouth-corner to earlobe; insert OFF; ON coming out circling ≤10s",
+      "test suction; measure; insert OFF; suction ON on the way out; circle; ≤10s",
+      "measure corner to earlobe; insert OFF; ON while out; ≤10 seconds",
+      "turn on/test; measure; insert OFF; suction ON coming out; ≤10s"
+    ],
+    "why": "Turn it on. Test that it sucks. Measure corner of mouth to earlobe. Insert with suction OFF. Suction ON while you come out. Circle. No more than 10 seconds."
+  },
+  {
+    "ch": "lab",
+    "q": "How do you measure and insert an OPA?",
+    "a": [
+      "corner of mouth to earlobe; insert sideways; twist 90°",
+      "measure mouth-corner to earlobe; sideways then twist 90°",
+      "corner-to-earlobe; insert sideways; twist 90 degrees",
+      "OPA: measure corner to earlobe; sideways; twist 90°"
+    ],
+    "why": "OPA. Measure corner of mouth to earlobe. Insert sideways. Twist 90°. The station says: no gag — patient accepts it."
+  },
+  {
+    "ch": "lab",
+    "q": "On BVM, what oxygen setup and grip do you use once the airway is held open?",
+    "a": [
+      "high-flow O2 at 15 L/min; C-E grip; seal the mask",
+      "BVM on 15 L/min; C-E grip; seal",
+      "15 L/min high-flow; C-E grip; seal the mask",
+      "high-flow 15 L/min with C-E grip seal"
+    ],
+    "why": "BVM on high-flow oxygen at 15 L/min. C-E grip. Seal the mask."
+  },
+  {
+    "ch": "lab",
+    "q": "The printed sheet wants room air first, then oxygen after ventilations work. Class put 15 L on right away. What do you do on test day?",
+    "a": [
+      "do whatever that day’s sheet says",
+      "follow that day’s sheet",
+      "do the printed sheet order for that day",
+      "that day’s sheet wins"
+    ],
+    "why": "The printed sheet may have you bag on room air first, then add oxygen after ventilations are working. Do whatever that day’s sheet says. In class he put 15 L on right away."
+  }
+]
