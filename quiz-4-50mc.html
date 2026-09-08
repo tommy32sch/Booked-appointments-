@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Quiz 4 — Weekend 50-question quiz</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --green: #1b7a46;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(96px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+.score, .clock {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.clock.warn { background: #b42318; }
+.clock.idle { opacity: .7; font-weight: 650; }
+.prog-wrap { flex: 1; min-width: 110px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: flex; align-items: flex-start; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; flex: 1; }
+.opt.locked { cursor: default; }
+.opt.chosen { border-color: var(--navy); background: #eef3f8; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+.why-tap {
+  display: none; margin-top: 12px; width: 100%;
+  min-height: 48px; border: 2px solid var(--navy); border-radius: 12px;
+  background: #fff; color: var(--navy); font-size: 1.02rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.why-tap.visible { display: block; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.btn.ghost {
+  background: #fff; color: var(--navy); border: 2px solid var(--navy); margin-top: 10px;
+}
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.start-lead { font-size: 1.05rem; margin: 0 0 10px; }
+.start-meta { color: var(--muted); margin: 0 0 16px; font-size: .95rem; }
+.start-meta li { margin: 0 0 6px; }
+.err { color: var(--red); font-weight: 700; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Quiz 4</h1>
+  <div class="sub">Weekend 50-question quiz · 50 multiple choice · 1 hour · no notes</div>
+  <div class="bar">
+    <div class="clock idle" id="clock">1:00:00</div>
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Not started</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act">
+  <button type="button" class="btn" id="nextBtn">Next</button>
+</footer>
+<script>
+const BANK = [
+  {
+    "ch": 21,
+    "q": "Skin itching and hives alone, without breathing trouble or low pressure, is treated as:",
+    "choices": [
+      "distributive shock needing rapid transport only",
+      "asthma flare needing a bag-valve mask first",
+      "mild allergic reaction without epinephrine",
+      "anaphylaxis requiring immediate epinephrine"
+    ],
+    "answer": "C",
+    "why": "Skin-only allergy is mild; do not give Epi until a second system appears."
+  },
+  {
+    "ch": 21,
+    "q": "Adult epinephrine auto-injector dose for anaphylaxis is:",
+    "choices": [
+      "1 mg subcutaneous",
+      "0.15 mg intramuscular",
+      "0.5 mg intravenous",
+      "0.3 mg intramuscular"
+    ],
+    "answer": "D",
+    "why": "Adult Epi is 0.3 mg IM; child dose is 0.15 mg IM."
+  },
+  {
+    "ch": 21,
+    "q": "A retained honeybee stinger should be removed by:",
+    "choices": [
+      "scraping with a firm card edge",
+      "grasping with tweezers and pulling straight out",
+      "squeezing the site until the stinger pops free",
+      "leaving it until the hospital can dig it out"
+    ],
+    "answer": "A",
+    "why": "Scrape with a credit card; tweezers squeeze more venom in."
+  },
+  {
+    "ch": 21,
+    "q": "Anaphylactic shock is classified as which shock type:",
+    "choices": [
+      "obstructive shock from tension pneumothorax",
+      "distributive shock from wide-open vessels",
+      "cardiogenic shock from weak pump output",
+      "hypovolemic shock from blood loss"
+    ],
+    "answer": "B",
+    "why": "Anaphylaxis is distributive shock, same group as septic and neurogenic."
+  },
+  {
+    "ch": 22,
+    "q": "Safe senses for poison-scene clues are:",
+    "choices": [
+      "sight and sound only",
+      "smell and touch only",
+      "touch and taste only",
+      "taste and smell only"
+    ],
+    "answer": "A",
+    "why": "Sight and sound are safe; smell, touch, and taste are not."
+  },
+  {
+    "ch": 22,
+    "q": "Powder chemical on skin is cleaned by:",
+    "choices": [
+      "wiping with alcohol, then a dry sterile dressing",
+      "brushing powder off, then flushing 15–20 minutes",
+      "covering with occlusive plastic until hazmat arrives",
+      "flushing with water for five minutes first"
+    ],
+    "answer": "B",
+    "why": "Brush powder first, then flush 15–20 minutes; five minutes is wrong."
+  },
+  {
+    "ch": 22,
+    "q": "Naloxone reverses which toxidrome class:",
+    "choices": [
+      "stimulant and cocaine uppers",
+      "opioid respiratory depression only",
+      "barbiturate and anticholinergic toxidromes",
+      "alcohol and benzodiazepine downers"
+    ],
+    "answer": "B",
+    "why": "Narcan works only on opioids; it does nothing for alcohol, benzos, or barbs."
+  },
+  {
+    "ch": 22,
+    "q": "After naloxone wakes a refusing opioid patient, transport is pushed because:",
+    "choices": [
+      "naloxone permanently blocks opioid receptors for days",
+      "naloxone wears off faster than opioid still onboard",
+      "naloxone converts the opioid into a stimulant toxidrome",
+      "naloxone lasts longer than most street opioids"
+    ],
+    "answer": "B",
+    "why": "Narcan wears off faster than the opioid; they can go out again in about 30 minutes."
+  },
+  {
+    "ch": 22,
+    "q": "Which toxidrome matches hot as a hare, dry as a bone, and mad as a hatter?",
+    "choices": [
+      "Opioid overdose",
+      "Botulism from bad canned food",
+      "Anticholinergic exposure",
+      "Cholinergic / nerve-agent exposure"
+    ],
+    "answer": "C",
+    "why": "Anticholinergic: hot/blind/dry/red/mad; cholinergic is SLUDGE/DUMBELS."
+  },
+  {
+    "ch": 22,
+    "q": "Botulism from bad home-canned food classically causes:",
+    "choices": [
+      "top-to-bottom paralysis that hits breathing muscles",
+      "immediate pinpoint pupils reversed by naloxone",
+      "stimulant stroke from very high blood pressure",
+      "rotten-egg odor followed by pulmonary edema alone"
+    ],
+    "answer": "A",
+    "why": "Botulism = top-to-bottom paralysis; kills breathing muscles; ABCs/BVM."
+  },
+  {
+    "ch": 23,
+    "q": "On a possible behavioral call, the first assessment priority is:",
+    "choices": [
+      "immediate soft restraints before any history",
+      "labeling the problem as psychiatric only",
+      "chemical sedation before airway and breathing care",
+      "a full medical check for hypoxia, hypoglycemia, or head injury"
+    ],
+    "answer": "D",
+    "why": "Do not start with “just psych”; rule out low oxygen, low sugar, or head injury."
+  },
+  {
+    "ch": 25,
+    "q": "Platinum 10 minutes for trauma means time from:",
+    "choices": [
+      "first IV start until blood products arrive",
+      "dispatch until the trauma surgeon opens",
+      "arrival on scene until wheels rolling",
+      "injury until the first hospital CT scan"
+    ],
+    "answer": "C",
+    "why": "Platinum 10 = arrival on scene to wheels rolling toward a trauma center."
+  },
+  {
+    "ch": 25,
+    "q": "In the three collisions of a car crash, the main field life threat is:",
+    "choices": [
+      "the body striking the passenger compartment",
+      "the airbag deploying into the face and chest",
+      "organs continuing forward and shearing inside",
+      "the vehicle stopping against another object"
+    ],
+    "answer": "C",
+    "why": "Collision 3 (organs) is the life threat — aorta, renal, and gut vessel shear."
+  },
+  {
+    "ch": 25,
+    "q": "Significant fall height cue for an adult is about:",
+    "choices": [
+      "40 feet only when landing on the feet",
+      "20 feet, or more than 2–3 times height for kids",
+      "10 feet onto carpet",
+      "5 feet onto soft grass"
+    ],
+    "answer": "B",
+    "why": "Grade falls by height; 20 feet (or >2–3× height for kids) is the height cue."
+  },
+  {
+    "ch": 25,
+    "q": "On XABCs for major trauma, the X means:",
+    "choices": [
+      "exit strategy before cervical immobilization",
+      "x-ray clearance before any oxygen",
+      "extra help before gloves and scene safety",
+      "exsanguinating outside bleed before airway"
+    ],
+    "answer": "D",
+    "why": "X = huge outside bleed BEFORE airway; EMS does not carry blood."
+  },
+  {
+    "ch": 26,
+    "q": "All external bleeding control begins with:",
+    "choices": [
+      "elevation and ice for every limb",
+      "a tourniquet high and tight",
+      "wound packing with clotting gauze",
+      "direct pressure on the wound"
+    ],
+    "answer": "D",
+    "why": "Start every bleed with direct pressure; pressure dressing if that works."
+  },
+  {
+    "ch": 26,
+    "q": "Groin or just-inside-shoulder arterial bleed that cannot take a tourniquet above it needs:",
+    "choices": [
+      "RICE only until the hospital",
+      "a CAT twisted until it feels tight",
+      "wound packing with clotting gauze",
+      "a neck-style circumferential wrap"
+    ],
+    "answer": "C",
+    "why": "Junctional sites get packing; arms and legs get a tourniquet."
+  },
+  {
+    "ch": 26,
+    "q": "Eviscerated bowel dressing order is:",
+    "choices": [
+      "hemostatic powder only, then a tourniquet strap",
+      "moist sterile dressing on organs, then occlusive over",
+      "push organs back in, then a pressure bandage",
+      "dry sterile gauze, then tape all four sides"
+    ],
+    "answer": "B",
+    "why": "Do not push guts in; moist sterile on organs, then plastic/occlusive over."
+  },
+  {
+    "ch": 26,
+    "q": "Crush syndrome time threshold before lifting a trapped limb is about:",
+    "choices": [
+      "2 hours of heavy force",
+      "30 minutes of heavy force",
+      "12 or more hours of light force",
+      "4 or more hours of heavy force"
+    ],
+    "answer": "D",
+    "why": "Crush syndrome = crush lasting 4+ hours; TQ the limb BEFORE they lift."
+  },
+  {
+    "ch": 26,
+    "q": "Compartment syndrome is best described as:",
+    "choices": [
+      "an internal tourniquet that takes about 6–12 hours",
+      "instant paralysis the moment a limb is crushed",
+      "a scalp bruise that kills in under five seconds",
+      "air bubbles from blast primary wave in the blood"
+    ],
+    "answer": "A",
+    "why": "Compartment = squeeze from inside; book about 6–12 hours, not minutes."
+  },
+  {
+    "ch": 26,
+    "q": "Open sucking chest wound dressing should be:",
+    "choices": [
+      "moist sterile only with no plastic cover",
+      "dry sterile gauze taped on all four sides",
+      "a bulky sandbag strapped over the flail segment",
+      "occlusive plastic taped on three sides to vent"
+    ],
+    "answer": "D",
+    "why": "Open chest gets occlusive; tape 3 sides so extra air can burp out."
+  },
+  {
+    "ch": 27,
+    "q": "On face or head trauma, the preferred airway adjunct rule is:",
+    "choices": [
+      "oropharyngeal airway is banned after any face hit",
+      "any NPA is fine if the skull feels cracked",
+      "no NPA; use jaw thrust; OPA only if no gag",
+      "nasopharyngeal airway is preferred over jaw thrust"
+    ],
+    "answer": "C",
+    "why": "No NPA on face/head trauma; jaw thrust; OPA OK if no gag."
+  },
+  {
+    "ch": 27,
+    "q": "Chemical burn to the eye is treated by:",
+    "choices": [
+      "pressing firmly on the globe then covering one eye",
+      "moist dressings only with lids left closed",
+      "contacts out, lids forced open, flush inside to outside ≥20 minutes",
+      "dunking the whole face in a basin for five minutes"
+    ],
+    "answer": "C",
+    "why": "Chemical still burns: contacts out, force lids, flush ≥20 minutes inside→out."
+  },
+  {
+    "ch": 27,
+    "q": "Epistaxis positioning for a sitting patient is:",
+    "choices": [
+      "ice only on the forehead with no pinch",
+      "pack both nostrils and lie fully flat",
+      "pinch the nose and lean the head forward",
+      "pinch the nose and lean the head backward"
+    ],
+    "answer": "C",
+    "why": "Pinch and lean FORWARD; head back dumps blood into the throat."
+  },
+  {
+    "ch": 27,
+    "q": "Penetrating neck vessel bleed dressing rule is:",
+    "choices": [
+      "tourniquet high around the entire neck",
+      "dry gauze only with a tight circumferential collar",
+      "squeeze both carotids until bleeding slows",
+      "pressure on one side; wrap under the opposite armpit; occlusive on top"
+    ],
+    "answer": "D",
+    "why": "One-side pressure, under opposite armpit, plastic to keep air out; never full circle."
+  },
+  {
+    "ch": 28,
+    "q": "Trauma with slow heart rate and HIGH blood pressure suggests:",
+    "choices": [
+      "hypovolemic shock from uncontrolled bleeding",
+      "distributive shock from anaphylaxis alone",
+      "Cushing response from rising intracranial pressure",
+      "neurogenic shock from spinal cord injury"
+    ],
+    "answer": "C",
+    "why": "Slow heart + HIGH BP = head pressure (Cushing’s); slow + LOW BP = spinal/neurogenic."
+  },
+  {
+    "ch": 28,
+    "q": "After blunt head trauma, blood pressure is 200/90, the pulse is slow, and breathing is irregular. Which pattern is this?",
+    "choices": [
+      "Cushing’s triad from rising pressure in the head",
+      "Compensated hemorrhagic shock from blood loss",
+      "Neurogenic shock from a spinal cord injury",
+      "Beck’s triad from cardiac tamponade"
+    ],
+    "answer": "A",
+    "why": "Cushing’s = high wide BP, bradycardia, irregular breathing; do not give nitro."
+  },
+  {
+    "ch": 28,
+    "q": "Epidural intracranial bleed classic pattern is:",
+    "choices": [
+      "sudden worst headache without any trauma story",
+      "lucid interval — down, then up, then down again",
+      "slow venous bleed delayed for days in older adults",
+      "normal CT with no loss of consciousness ever"
+    ],
+    "answer": "B",
+    "why": "Epidural (artery, fast) = lucid interval; subdural is slow venous/delayed."
+  },
+  {
+    "ch": 28,
+    "q": "Which set of findings points to a basilar skull fracture?",
+    "choices": [
+      "Raccoon eyes, Battle’s sign behind the ear, and CSF from the nose or ear",
+      "Paradoxical motion of one chest segment and crackles in both lungs",
+      "Pinpoint pupils, slow breathing, and a response to naloxone",
+      "Kehr shoulder pain plus a pulsating mass in the belly"
+    ],
+    "answer": "A",
+    "why": "Basilar = raccoon eyes, Battle’s (mastoid), CSF from nose or ear."
+  },
+  {
+    "ch": 28,
+    "q": "A helmet should be removed when:",
+    "choices": [
+      "the patient walked after the wreck and denies pain",
+      "full-face design blocks airway or the head rattles inside",
+      "it fits snug and airway care is still possible",
+      "the crash looked significant even with perfect fit"
+    ],
+    "answer": "B",
+    "why": "Remove if full-face blocks airway, head rattles, arrest, or cannot immobilize with it."
+  },
+  {
+    "ch": 28,
+    "q": "Spinal board indication after trauma includes:",
+    "choices": [
+      "isolated finger fracture with normal neurologic exam",
+      "walking around after the wreck with no complaints",
+      "any car crash regardless of exam findings",
+      "unconsciousness, numbness or paralysis, or neck/back pain"
+    ],
+    "answer": "D",
+    "why": "Board for unconscious, numb/paralyzed, neck/back pain, or distrust — not just walking MOI."
+  },
+  {
+    "ch": 29,
+    "q": "Tension pneumothorax versus hemothorax is told apart mainly by:",
+    "choices": [
+      "trachea pulled toward the quiet side in hemothorax",
+      "crackles throughout the flooded lung fields",
+      "narrow pulse pressure present only in hemothorax",
+      "neck veins — fat/JVD with tension, flat with hemo"
+    ],
+    "answer": "D",
+    "why": "Both quiet one side + shock; fat veins = air/tension, flat veins = bled-out hemo."
+  },
+  {
+    "ch": 29,
+    "q": "Cardiac tamponade versus tension pneumothorax: tamponade typically shows:",
+    "choices": [
+      "two good lungs and a narrow pulse pressure",
+      "paradoxical flail segment moving the wrong way",
+      "flat neck veins from massive blood loss alone",
+      "quiet lung on one side and trachea pushed away"
+    ],
+    "answer": "A",
+    "why": "Both shock + JVD; tamponade has two good lungs and narrow pulse pressure."
+  },
+  {
+    "ch": 29,
+    "q": "Current flail chest field care is:",
+    "choices": [
+      "ABCs, oxygen, shock care, and rapid transport",
+      "tape a bulky dressing and sandbags on the segment",
+      "CPAP for every pulmonary contusion under flail",
+      "needle decompression by every EMT on scene"
+    ],
+    "answer": "A",
+    "why": "Do not tape bulky dressings or sandbags; ABCs, O2, shock care, go."
+  },
+  {
+    "ch": 29,
+    "q": "A child who drops after a baseball to the chest needs:",
+    "choices": [
+      "high-flow oxygen only while awaiting a rhythm strip",
+      "nitroglycerin to drop a wide Cushing pulse pressure",
+      "three-sided chest seal on the impact site first",
+      "CPR and AED for suspected commotio cordis / V-fib"
+    ],
+    "answer": "D",
+    "why": "Commotio cordis → V-fib; classic kid baseball; CPR + AED."
+  },
+  {
+    "ch": 29,
+    "q": "Which nerve roots keep the diaphragm alive (phrenic nerve)?",
+    "choices": [
+      "The first three thoracic roots",
+      "C3 through C5",
+      "L1, L2, and L3 in a straight list",
+      "Only C1 and C2 at the skull base"
+    ],
+    "answer": "B",
+    "why": "Phrenic = C3–C5; cord cut above C5 → they do not breathe."
+  },
+  {
+    "ch": 29,
+    "q": "Pulse pressure pattern for rising intracranial pressure is:",
+    "choices": [
+      "equal systolic and diastolic from the start",
+      "high and wide, for example 200/90",
+      "falling systolic with rising diastolic only",
+      "narrow and low like tamponade numbers"
+    ],
+    "answer": "B",
+    "why": "Cushing/ICP = high and WIDE pulse pressure; tamponade is narrow and low."
+  },
+  {
+    "ch": 30,
+    "q": "Solid abdominal organs mainly cause early:",
+    "choices": [
+      "septic shock within four minutes of injury",
+      "supine hypotensive syndrome in every adult",
+      "hemorrhagic shock from bleeding",
+      "peritonitis from spilled bile and stool"
+    ],
+    "answer": "C",
+    "why": "Solid organs (liver, spleen, kidney, pancreas) bleed; hollow organs spill and irritate later."
+  },
+  {
+    "ch": 30,
+    "q": "Flank trauma word always points first to the:",
+    "choices": [
+      "kidney in the back compartment",
+      "appendix in the right lower quadrant",
+      "spleen filtering old red cells up front",
+      "gallbladder under the right lower ribs"
+    ],
+    "answer": "A",
+    "why": "Flank = kidney always; Gray Turner flank bruise = back-compartment blood (late)."
+  },
+  {
+    "ch": 30,
+    "q": "Second-half pregnancy trauma transport position is:",
+    "choices": [
+      "right side with legs elevated above the heart",
+      "fully supine to protect the spine",
+      "left side to avoid supine hypotensive syndrome",
+      "prone with a board under the gravid uterus"
+    ],
+    "answer": "C",
+    "why": "Left side in second half; flat supine lets uterus sandwich aorta/vena cava."
+  },
+  {
+    "ch": 30,
+    "q": "A badly smashed pelvis can dump about:",
+    "choices": [
+      "200 mL, a minor soft-tissue loss",
+      "nothing until bruising shows around the navel",
+      "the entire 6 liters into the chest only",
+      "2 or more liters, about a third of the blood tank"
+    ],
+    "answer": "D",
+    "why": "Bad pelvis break can dump 2+ liters of about 6 — a third of the tank."
+  },
+  {
+    "ch": 30,
+    "q": "Abdominal exam order after look is:",
+    "choices": [
+      "skip palpation if the belt mark looks minor",
+      "check for a normal pulse at a pulsating mass",
+      "push all four quadrants with the hurt quadrant last",
+      "push the sore quadrant first, then the others"
+    ],
+    "answer": "C",
+    "why": "Hurt quadrant LAST; poking sore first lights up the whole belly."
+  },
+  {
+    "ch": 30,
+    "q": "Vaginal bleeding field dressing is:",
+    "choices": [
+      "moist sterile only because genitals never get dry",
+      "pack the vagina with clotting gauze tightly",
+      "pad on the outside, save pads, do not pack",
+      "occlusive plastic sealed on all four sides"
+    ],
+    "answer": "C",
+    "why": "Any blood → dry sterile; vaginal pad outside, never pack, save pads for the hospital."
+  },
+  {
+    "ch": "lab",
+    "q": "Non-rebreather oxygen flow must be set to:",
+    "choices": [
+      "2–6 L/min from the start",
+      "0.5 L/min as a maintenance rate",
+      "20–25 L/min only after the bag fills",
+      "10–15 L/min from the start"
+    ],
+    "answer": "D",
+    "why": "NRB is 10–15 L/min; below 10 acts like a straw and restricts breathing."
+  },
+  {
+    "ch": "lab",
+    "q": "Adult BVM ventilation rate for a patient not breathing is:",
+    "choices": [
+      "1 breath every 3 seconds",
+      "1 breath every 6 seconds",
+      "1 breath every 15 seconds",
+      "2 breaths every 5 seconds"
+    ],
+    "answer": "B",
+    "why": "BVM: 1 breath every 6 seconds (10/min); squeeze about 1 second until chest rises."
+  },
+  {
+    "ch": "lab",
+    "q": "Maximum suction time in the adult airway skill is:",
+    "choices": [
+      "5 seconds",
+      "20 seconds",
+      "10 seconds",
+      "30 seconds"
+    ],
+    "answer": "C",
+    "why": "Suction no more than 10 seconds; same 10-second cap for pulse+breathing check."
+  },
+  {
+    "ch": "lab",
+    "q": "A full oxygen tank gauge reading is about:",
+    "choices": [
+      "2000 PSI",
+      "1000 PSI",
+      "500 PSI",
+      "3500 PSI"
+    ],
+    "answer": "A",
+    "why": "Full tank is about 2000 PSI; listen for a hiss from a dead brass washer leak."
+  },
+  {
+    "ch": "lab",
+    "q": "When seating the regulator on an O2 tank, the first step is:",
+    "choices": [
+      "seat the two pins in the two holes, then screw it down at a right angle",
+      "screw it down tilted, then seat the pins",
+      "set flow to 15 L/min before cracking the tank",
+      "open the tank fully before the regulator touches"
+    ],
+    "answer": "A",
+    "why": "Pins go in first, then screw down; tilted means not seated."
+  },
+  {
+    "ch": "lab",
+    "q": "Suction catheter technique after measuring mouth-corner to earlobe is:",
+    "choices": [
+      "insert with suction OFF, suction ON while withdrawing in a circle",
+      "leave suction ON the whole time the tip sits deep",
+      "insert with suction ON, then pull straight out dry",
+      "measure nose to earlobe, then suction for 20 seconds"
+    ],
+    "answer": "A",
+    "why": "Insert OFF; suction ON coming out in a circle; stop by 10 seconds."
+  },
+  {
+    "ch": "lab",
+    "q": "OPA insertion after measuring corner of mouth to earlobe is:",
+    "choices": [
+      "insert sideways, then twist 90 degrees into place",
+      "insert upside down and leave it without twisting",
+      "place only after the BVM has already failed twice",
+      "force past a strong gag to guarantee an open airway"
+    ],
+    "answer": "A",
+    "why": "Measure corner-of-mouth to earlobe; insert sideways; twist 90°; needs no gag."
+  }
+]
+;
+const LETTERS = ["A", "B", "C", "D"];
+const TIME_LIMIT_MS_DEFAULT = 60 * 60 * 1000;
+const TIME_LIMIT_MS = (function () {
+  const n = Number(new URLSearchParams(location.search).get("ms"));
+  return (Number.isFinite(n) && n > 0) ? n : TIME_LIMIT_MS_DEFAULT;
+})();
+
+let i = 0;
+let correct = 0;
+let answered = 0;
+let picked = false;
+let whyOpen = false;
+let timedOut = false;
+let started = false;
+let deadline = 0;
+let tickTimer = null;
+let missed = [];
+let picks = [];
+
+function $(id) { return document.getElementById(id); }
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function formatTime(ms) {
+  const t = Math.max(0, Math.floor(ms / 1000));
+  const h = Math.floor(t / 3600);
+  const m = Math.floor((t % 3600) / 60);
+  const s = t % 60;
+  const pad = function(n) { return (n < 10 ? "0" : "") + n; };
+  if (h > 0) return h + ":" + pad(m) + ":" + pad(s);
+  return pad(m) + ":" + pad(s);
+}
+
+function stopTick() {
+  if (tickTimer) { clearInterval(tickTimer); tickTimer = null; }
+}
+
+function updateClock() {
+  const el = $("clock");
+  if (!started) {
+    el.textContent = formatTime(TIME_LIMIT_MS);
+    el.classList.add("idle");
+    el.classList.remove("warn");
+    return;
+  }
+  el.classList.remove("idle");
+  const left = deadline - Date.now();
+  el.textContent = formatTime(left);
+  if (left <= 5 * 60 * 1000) el.classList.add("warn");
+  else el.classList.remove("warn");
+  if (left <= 0) timeUp();
+}
+
+function startTimer() {
+  deadline = Date.now() + TIME_LIMIT_MS;
+  stopTick();
+  tickTimer = setInterval(updateClock, 250);
+  updateClock();
+}
+
+function updateScore() {
+  $("score").textContent = correct + " / " + answered;
+  const n = BANK.length;
+  if (!started) {
+    $("progLabel").textContent = "Not started";
+    $("progBar").style.width = "0%";
+    return;
+  }
+  if (timedOut || i >= n) {
+    $("progLabel").textContent = timedOut ? ("Time up · " + n + " questions") : ("Done · " + n + " questions");
+    $("progBar").style.width = "100%";
+    return;
+  }
+  $("progLabel").textContent = "Question " + (i + 1) + " of " + n;
+  $("progBar").style.width = Math.round(((i + (picked ? 1 : 0)) / n) * 100) + "%";
+}
+
+function gateScreen() {
+  started = false;
+  timedOut = false;
+  picked = false;
+  whyOpen = false;
+  i = 0; correct = 0; answered = 0; missed = []; picks = [];
+  stopTick();
+  deadline = 0;
+  $("nextBtn").classList.remove("visible");
+  $("nextBtn").textContent = "Next";
+  if (!Array.isArray(BANK) || BANK.length !== 50) {
+    $("main").innerHTML = '<div class="card"><p class="err">This page needs exactly 50 questions from quiz4-50mc.json.</p></div>';
+    updateScore();
+    updateClock();
+    return;
+  }
+  $("main").innerHTML =
+    '<div class="card">'
+    + '<p class="start-lead">Straight 50-question multiple-choice test.</p>'
+    + '<ul class="start-meta">'
+    + '<li>One hour. The clock starts when you tap Begin and cannot be paused.</li>'
+    + '<li>When the hour hits 0, the quiz locks and submits.</li>'
+    + '<li>Pick a choice first. Correct letter and why stay hidden until then. Then tap Why.</li>'
+    + '</ul>'
+    + '<button type="button" class="btn visible" id="beginBtn">Begin</button>'
+    + '</div>';
+  $("beginBtn").addEventListener("click", begin);
+  updateScore();
+  updateClock();
+  window.scrollTo(0, 0);
+}
+
+function begin() {
+  if (started) return;
+  started = true;
+  timedOut = false;
+  picked = false;
+  whyOpen = false;
+  i = 0; correct = 0; answered = 0; missed = []; picks = new Array(BANK.length).fill(null);
+  startTimer();
+  render();
+}
+
+function render() {
+  if (timedOut) return endScreen();
+  picked = false;
+  whyOpen = false;
+  $("nextBtn").classList.remove("visible");
+  if (i >= BANK.length) { return endScreen(); }
+  const q = BANK[i];
+  let optsHtml = "";
+  LETTERS.forEach(function(letter, idx) {
+    optsHtml += '<button type="button" class="opt" data-idx="' + idx + '">'
+      + '<span class="letter">' + letter + '</span>'
+      + '<span class="ot"></span></button>';
+  });
+  $("main").innerHTML =
+    '<div class="card">'
+    + '<div class="ch-tag">Ch ' + q.ch + '</div>'
+    + '<p class="qtext"></p>'
+    + '<div class="opts">' + optsHtml + '</div>'
+    + '<button type="button" class="why-tap" id="whyTap">Why</button>'
+    + '<div class="why" id="whyBox"></div>'
+    + '</div>';
+  $("main").querySelector(".qtext").textContent = q.q;
+  const buttons = $("main").querySelectorAll(".opt");
+  buttons.forEach(function(btn, idx) {
+    btn.querySelector(".ot").textContent = q.choices[idx];
+    btn.addEventListener("click", function() { pick(idx); });
+  });
+  $("whyTap").addEventListener("click", showWhy);
+  updateScore();
+  window.scrollTo(0, 0);
+}
+
+function pick(idx) {
+  if (!started || timedOut || picked) return;
+  picked = true;
+  const q = BANK[i];
+  const letter = LETTERS[idx];
+  const ok = letter === q.answer;
+  answered += 1;
+  if (ok) correct += 1;
+  picks[i] = letter;
+  if (!ok) {
+    missed.push({
+      ch: q.ch,
+      q: q.q,
+      chosen: letter + ". " + q.choices[idx],
+      right: q.answer + ". " + q.choices[LETTERS.indexOf(q.answer)],
+      why: q.why
+    });
+  }
+  const buttons = $("main").querySelectorAll(".opt");
+  buttons.forEach(function(btn, j) {
+    btn.classList.add("locked");
+    btn.disabled = true;
+    if (j === idx) btn.classList.add("chosen");
+  });
+  $("whyTap").classList.add("visible");
+  $("nextBtn").textContent = (i + 1 >= BANK.length) ? "See results" : "Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+
+function showWhy() {
+  if (!picked || whyOpen || timedOut) return;
+  whyOpen = true;
+  const q = BANK[i];
+  const chosenLetter = picks[i];
+  const ok = chosenLetter === q.answer;
+  const buttons = $("main").querySelectorAll(".opt");
+  const rightIdx = LETTERS.indexOf(q.answer);
+  buttons.forEach(function(btn, j) {
+    const letter = LETTERS[j];
+    if (letter === chosenLetter && ok) btn.classList.add("right");
+    else if (letter === chosenLetter && !ok) btn.classList.add("wrong");
+    else if (letter === q.answer) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box = $("whyBox");
+  const verdict = ok
+    ? '<div class="verdict ok">Correct</div>'
+    : '<div class="verdict bad">Incorrect</div>';
+  const extra = ok ? "" :
+    '<div class="correct-line">Correct: ' + escapeHtml(q.answer + ". " + q.choices[rightIdx]) + '</div>';
+  box.innerHTML = verdict + '<div class="why-body"></div>' + extra;
+  box.querySelector(".why-body").textContent = q.why;
+  box.classList.add("visible");
+  $("whyTap").classList.remove("visible");
+}
+
+function timeUp() {
+  if (timedOut || !started) return;
+  timedOut = true;
+  stopTick();
+  deadline = Date.now();
+  updateClock();
+  endScreen();
+}
+
+function endScreen() {
+  $("nextBtn").classList.remove("visible");
+  const n = BANK.length;
+  const unanswered = n - answered;
+  const pct = n ? Math.round((correct / n) * 100) : 0;
+  let missHtml = "";
+  if (missed.length === 0 && unanswered === 0) {
+    missHtml = '<p>No missed questions.</p>';
+  } else {
+    missHtml = '<div class="miss"><h3>Missed or blank (' + (missed.length + unanswered) + ')</h3>';
+    missed.forEach(function() {
+      missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>';
+    });
+    if (unanswered) {
+      missHtml += '<p>' + unanswered + ' left unanswered when time ran out or the quiz locked.</p>';
+    }
+    missHtml += '</div>';
+  }
+  const title = timedOut ? "Time is up" : "Quiz complete";
+  $("main").innerHTML =
+    '<div class="card end">'
+    + '<h2>' + title + '</h2>'
+    + '<div class="big">' + correct + ' / ' + n + '</div>'
+    + '<div class="pct">' + pct + '% · 50 questions · 1 hour</div>'
+    + missHtml
+    + '<button type="button" class="btn visible" id="again">Back to start</button>'
+    + '</div>';
+  if (missed.length) {
+    const items = $("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m, idx) {
+      items[idx].querySelector(".ch-tag").textContent = "Ch " + m.ch;
+      items[idx].querySelector(".mq").textContent = m.q;
+      items[idx].querySelector(".mwhy").textContent =
+        "You chose: " + m.chosen + " — " + m.why + "  Correct: " + m.right;
+    });
+  }
+  $("again").addEventListener("click", gateScreen);
+  updateScore();
+  window.scrollTo(0, 0);
+}
+
+$("nextBtn").addEventListener("click", function() {
+  if (!picked || timedOut) return;
+  i += 1;
+  render();
+});
+
+gateScreen();
+</script>
+</body>
+</html>
