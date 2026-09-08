@@ -168,14 +168,17 @@
     width:100%;height:min(72%,520px);pointer-events:none;
   }
   .hero-art svg{width:100%;height:100%;object-fit:cover}
-  @media (max-width:720px){
-    .hero-art{transform:translateX(14%);width:118%}
+  @media (max-width:859px){
+    .hero-art{bottom:72px;height:min(70%,480px)}
   }
   .hero-inner{
     display:flex;flex-direction:column;justify-content:flex-end;
     min-height:78vh;min-height:78svh;
     padding-block:88px 54px;
     position:relative;
+  }
+  @media (max-width:859px){
+    .hero-inner{padding-bottom:calc(72px + 36px)}
   }
   .hero-kicker{
     display:inline-flex;align-items:center;gap:9px;align-self:flex-start;
