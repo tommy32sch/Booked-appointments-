@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Quiz 5 — Ch 37 Special Challenges + Transport Ops + Med/Trauma Assessment</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --green: #1b7a46;
+  --line: #d8d0c4;
+  --chosen-wrong: #f8d7d4;
+  --chosen-right: #c8edd4;
+  --correct-outline: #1b7a46;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden; }
+body { min-height: 100dvh; padding-bottom: calc(96px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+.score, .clock {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.clock.warn { background: #b42318; }
+.clock.idle { opacity: .7; font-weight: 650; }
+.prog-wrap { flex: 1; min-width: 110px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: #f0c14b; border-radius: 99px; transition: width .2s; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 14px; }
+.opts { display: flex; flex-direction: column; gap: 10px; }
+.opt {
+  display: flex; align-items: flex-start; width: 100%; text-align: left;
+  min-height: 48px; padding: 12px 14px;
+  font-size: 1rem; line-height: 1.35;
+  border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+  cursor: pointer; appearance: none;
+  font-family: inherit;
+}
+.opt:active { transform: scale(.995); }
+.opt .letter {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: #eef2f6; font-weight: 700; font-size: .85rem; margin-right: 8px; flex-shrink: 0;
+}
+.opt .ot { display: inline; flex: 1; }
+.opt.locked { cursor: default; }
+.opt.chosen { border-color: var(--navy); background: #eef3f8; }
+.opt.chosen.wrong { background: var(--chosen-wrong); border-color: var(--red); }
+.opt.chosen.right, .opt.show-correct { background: var(--chosen-right); border-color: var(--correct-outline); }
+.opt.dim { opacity: .55; }
+.why {
+  display: none; margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.visible { display: block; }
+.why .verdict { font-weight: 800; margin-bottom: 6px; }
+.why .verdict.ok { color: var(--green); }
+.why .verdict.bad { color: var(--red); }
+.why .correct-line { margin-top: 8px; font-weight: 650; }
+.why-tap {
+  display: none; margin-top: 12px; width: 100%;
+  min-height: 48px; border: 2px solid var(--navy); border-radius: 12px;
+  background: #fff; color: var(--navy); font-size: 1.02rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.why-tap.visible { display: block; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.btn.ghost {
+  background: #fff; color: var(--navy); border: 2px solid var(--navy); margin-top: 10px;
+}
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.start-lead { font-size: 1.05rem; margin: 0 0 10px; }
+.start-meta { color: var(--muted); margin: 0 0 16px; font-size: .95rem; }
+.start-meta li { margin: 0 0 6px; }
+.err { color: var(--red); font-weight: 700; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Quiz 5</h1>
+  <div class="sub">Ch 37 Special Challenges + Transport Ops + Med/Trauma Assessment · 50 multiple choice · 1 hour · no notes</div>
+  <div class="bar">
+    <div class="clock idle" id="clock">1:00:00</div>
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Not started</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+</header>
+<main id="main"></main>
+<footer class="act">
+  <button type="button" class="btn" id="nextBtn">Next</button>
+</footer>
+<script>
+const BANK = [
+  {
+    "ch": 37,
+    "q": "A nonverbal special-needs adult is silent on arrival. Before treating silence as a new emergency, you should:",
+    "choices": [
+      "assume the home ventilator is the only possible problem",
+      "treat every nonverbal adult as a new stroke automatically",
+      "skip ABCs until the entire rare-device history is done",
+      "ask the caregiver whether this silence is their usual baseline"
+    ],
+    "answer": "D",
+    "why": "Find baseline first; not talking may be normal for them, or new and bad."
+  },
+  {
+    "ch": 37,
+    "q": "When you approach a blind patient, you should:",
+    "choices": [
+      "say each action out loud before you make contact",
+      "stay silent so extra talk does not startle them",
+      "ask only the caregiver and never the patient",
+      "touch a shoulder first so they know you are there"
+    ],
+    "answer": "A",
+    "why": "Blind: announce each action before you touch them."
+  },
+  {
+    "ch": 37,
+    "q": "A deaf patient's hearing aid is whistling. That finding usually means:",
+    "choices": [
+      "you should leave the aid out for the whole transport",
+      "the aid is not seated in the ear, or the battery is dead",
+      "the aid is working and they can hear you clearly",
+      "they have an inner-ear infection until proven otherwise"
+    ],
+    "answer": "B",
+    "why": "Whistling aid means it is not seated or the battery is dead."
+  },
+  {
+    "ch": 37,
+    "q": "A critical patient at home has a service dog. You should:",
+    "choices": [
+      "put the dog in the cab so the patient stays calm",
+      "leave the animal and arrange for it later",
+      "always bring the dog even if the patient is crashing",
+      "tie the dog in the yard with no follow-up plan"
+    ],
+    "answer": "B",
+    "why": "Critical at home: leave the service animal and arrange later."
+  },
+  {
+    "ch": 37,
+    "q": "Opening a Down syndrome airway, you should expect a larger tongue and prefer:",
+    "choices": [
+      "no airway maneuver until the hospital can see them",
+      "jaw thrust instead of an aggressive head-tilt",
+      "blind nasotracheal intubation before any jaw move",
+      "maximal head-tilt because the neck is always stable"
+    ],
+    "answer": "B",
+    "why": "Bigger tongue; jaw thrust is often easier than a big head-tilt."
+  },
+  {
+    "ch": 37,
+    "q": "About 15% of people with Down syndrome have:",
+    "choices": [
+      "a guaranteed stable neck in every trauma",
+      "no cervical vertebrae, so a collar is never used",
+      "a surgically fused C6–C7 joint from birth",
+      "an unstable C1–C2 (atlanto-axial) joint"
+    ],
+    "answer": "D",
+    "why": "About 15% have unstable atlanto-axial C1–C2; higher spine risk in trauma."
+  },
+  {
+    "ch": 37,
+    "q": "Unlike a VP shunt into the belly, a VA shunt drains CSF into the:",
+    "choices": [
+      "the heart",
+      "the bladder",
+      "the pleural space",
+      "the colon"
+    ],
+    "answer": "A",
+    "why": "VP = ventricles to belly. VA = ventricles to heart."
+  },
+  {
+    "ch": 37,
+    "q": "A clogged or infected shunt looks most like:",
+    "choices": [
+      "anaphylaxis with hives and wheezing",
+      "simple dehydration with a sunken fontanelle",
+      "rising intracranial pressure with Cushing's vitals",
+      "low sugar that clears after juice"
+    ],
+    "answer": "C",
+    "why": "Shunt failure = head-injury/Cushing's: slow pulse, high wide BP, irregular breathing."
+  },
+  {
+    "ch": 37,
+    "q": "An infant with a failing shunt is more likely to show:",
+    "choices": [
+      "no fontanelle change until school age",
+      "a sunken fontanelle from extra CSF pressure",
+      "a flat fontanelle and a low hoarse cry only",
+      "a bulging fontanelle and a high-pitched cry"
+    ],
+    "answer": "D",
+    "why": "Infant clues: high-pitched cry, bulging fontanelle, projectile vomit; sunken is dehydration."
+  },
+  {
+    "ch": 37,
+    "q": "A tracheostomy tube is out. You ventilate the stoma with:",
+    "choices": [
+      "a large adult mask on a neonatal bag over the stoma",
+      "a small infant mask on an adult bag over the stoma",
+      "a pocket mask on the mouth with the stoma left open",
+      "the dirty trach pushed back into the hole"
+    ],
+    "answer": "B",
+    "why": "Infant mask on the stoma, adult bag for volume. Do not replace the trach."
+  },
+  {
+    "ch": 37,
+    "q": "A home-vent patient is cyanotic. Your first move is:",
+    "choices": [
+      "tighten the tubing and wait for the next machine cycle",
+      "put a new trach in before you try to bag",
+      "disconnect the ventilator and ventilate with a BVM",
+      "finish SAMPLE before you touch the machine"
+    ],
+    "answer": "C",
+    "why": "Blue on a vent → disconnect and bag; if they improve, it was the machine."
+  },
+  {
+    "ch": 37,
+    "q": "DOPE for a failed tube or vent stands for:",
+    "choices": [
+      "displaced, obstruction, pneumothorax, equipment failure",
+      "dissection, orthostasis, pulmonary edema, electrolytes",
+      "dehydration, overdose, pulse deficit, embolism",
+      "diabetes, oxygen toxicity, pericardial tamponade, epilepsy"
+    ],
+    "answer": "A",
+    "why": "D displaced/dislodged/damaged, O obstruction (mucus), P pneumothorax, E equipment."
+  },
+  {
+    "ch": 37,
+    "q": "A PICC or central line pulls out. You should:",
+    "choices": [
+      "treat the site like a wound and go to the closest ER",
+      "use the broken lumen for your next IV drugs",
+      "re-thread the catheter and flush it with saline",
+      "leave the hole open so staff can inspect it"
+    ],
+    "answer": "A",
+    "why": "Pulled line = wound: pressure, dry sterile, closest ER. Do not replace it."
+  },
+  {
+    "ch": 37,
+    "q": "A G-tube has come out. You should:",
+    "choices": [
+      "push the tube back in before the tract starts to close",
+      "pack the stoma with a four-sided occlusive seal",
+      "suction the belly opening until the stomach is empty",
+      "cover the site dry and sterile and leave the tube out"
+    ],
+    "answer": "D",
+    "why": "G-tube out: dry sterile dressing. We do not put tubes back in."
+  },
+  {
+    "ch": 37,
+    "q": "A feeding-tube patient needs suction. You suction:",
+    "choices": [
+      "the belly stoma until gastric contents run clear",
+      "the mouth, not the gastrostomy opening",
+      "neither the mouth nor the gastrostomy opening",
+      "only the G-tube lumen, never the mouth"
+    ],
+    "answer": "B",
+    "why": "Higher aspiration risk; suction the mouth, not the belly hole."
+  },
+  {
+    "ch": 37,
+    "q": "Cerebral palsy is primarily which kind of problem:",
+    "choices": [
+      "a cord cut that always removes all feeling",
+      "a body-control problem; thinking may still be sharp",
+      "a guarantee of severe intellectual disability",
+      "today's new brain injury until proven otherwise"
+    ],
+    "answer": "B",
+    "why": "CP is body, not always brain. Do not assume they cannot think."
+  },
+  {
+    "ch": 37,
+    "q": "A newborn with open spina bifida should have the exposed cord:",
+    "choices": [
+      "packed dry with hemostatic gauze",
+      "pushed back into the spine before transport",
+      "kept moist, with the baby kept warm",
+      "covered with a four-sided occlusive seal"
+    ],
+    "answer": "C",
+    "why": "Treat like evisceration: moist on the tissue, keep warm; latex allergy is common."
+  },
+  {
+    "ch": "transport",
+    "q": "Due regard while driving the ambulance means:",
+    "choices": [
+      "claim the intersection as soon as the siren is on",
+      "let a fire escort own any crash if you draft them",
+      "drive so a crash you could still avoid does not happen",
+      "ignore posted limits once lights are flashing"
+    ],
+    "answer": "C",
+    "why": "Due regard: drive so you can still avoid a crash. An avoidable wreck is on us."
+  },
+  {
+    "ch": "transport",
+    "q": "Code driving to a call is done with:",
+    "choices": [
+      "both warning lights and the siren",
+      "lights only, at every hour of the day",
+      "neither, because right of way is already yours",
+      "siren only, to avoid blinding oncoming drivers"
+    ],
+    "answer": "A",
+    "why": "Lights AND sirens together. Right of way is a request, not a command."
+  },
+  {
+    "ch": "transport",
+    "q": "A school bus has its stop arm out while you run lights and sirens. You:",
+    "choices": [
+      "stop too, even if CPR is in progress in the back",
+      "honk once and then go through the stop arm",
+      "pass on the left because you own the right of way",
+      "creep past at 10 over with the siren still on"
+    ],
+    "answer": "A",
+    "why": "Stop-arm out: we stop too, even with CPR in the back."
+  },
+  {
+    "ch": "transport",
+    "q": "A fire engine escort clears a red light ahead of you. You should:",
+    "choices": [
+      "assume green-light cars will remain stopped for you",
+      "follow bumper-to-bumper so traffic stays stopped",
+      "draft through the hole they just made",
+      "stop and clear the intersection yourself"
+    ],
+    "answer": "D",
+    "why": "Do not draft the fire truck. They clear; then you stop and clear it yourself."
+  },
+  {
+    "ch": "transport",
+    "q": "First unit on a roadway wreck should park:",
+    "choices": [
+      "past the wreck so the ambulance can be the shield",
+      "in the intersection with lights and siren both running",
+      "on the opposite shoulder, facing oncoming traffic",
+      "before the wreck, blocking a lane as a shield"
+    ],
+    "answer": "D",
+    "why": "First unit parks BEFORE the wreck and blocks a lane. You are the shield."
+  },
+  {
+    "ch": "transport",
+    "q": "The ambulance, usually second on a wreck, should park:",
+    "choices": [
+      "on the opposite side, about 500 feet away",
+      "across both lanes so no traffic can pass at all",
+      "past the wreck so it can leave without moving the shield",
+      "before the wreck so it becomes the blocking shield"
+    ],
+    "answer": "C",
+    "why": "Ambulance parks PAST the wreck so you can leave without pulling the shield away."
+  },
+  {
+    "ch": "transport",
+    "q": "On a roadway wreck, you park about:",
+    "choices": [
+      "10 feet away, tight to the wreck for equipment",
+      "100 feet away, on the same side of the road",
+      "100 feet away, on the opposite side of the road",
+      "500 feet away, downhill and downwind every time"
+    ],
+    "answer": "B",
+    "why": "Park about 100 feet away, on the same side of the road."
+  },
+  {
+    "ch": "transport",
+    "q": "A helicopter landing zone should be at least:",
+    "choices": [
+      "200 × 200 feet, or the aircraft cannot land",
+      "60 × 60 feet, and 100 × 100 is better",
+      "40 × 40 feet, with loose junk at the corners",
+      "20 × 20 feet, marked with tape and flares"
+    ],
+    "answer": "B",
+    "why": "LZ: 60×60 ft minimum, 100×100 better; weighted corners, no tape or flares."
+  },
+  {
+    "ch": "transport",
+    "q": "A hot aircraft (rotors spinning) is approached:",
+    "choices": [
+      "alone from either side once the skids touch",
+      "from uphill on a slope, walking under the rotor disc",
+      "from the tail, because that is the quiet side",
+      "from the front, with the flight crew, staying off the tail"
+    ],
+    "answer": "D",
+    "why": "Hot bird: front with the crew; stay away from the tail; downhill side on a slope."
+  },
+  {
+    "ch": "transport",
+    "q": "Who decides the helicopter cannot fly because of weather?",
+    "choices": [
+      "the EMT who first asked for the bird",
+      "the patient's family after they refuse ground",
+      "the pilot, not the ground crew",
+      "the receiving surgeon by radio only"
+    ],
+    "answer": "C",
+    "why": "Let the pilot refuse for weather. That is their job, not yours."
+  },
+  {
+    "ch": "transport",
+    "q": "Before a helicopter lands in Arizona summer heat, give the crew:",
+    "choices": [
+      "a weight guess after they are already on the ground",
+      "only the street address, and never a weight estimate",
+      "estimated patient weight before they commit to land",
+      "the family's preferred hospital instead of a weight"
+    ],
+    "answer": "C",
+    "why": "Thin air, tight weight: give estimated patient weight early so they can say no."
+  },
+  {
+    "ch": "transport",
+    "q": "The class ambulance is Type 3, which is:",
+    "choices": [
+      "a sedan with a stretcher in the trunk",
+      "a pickup front with a box on the back",
+      "a van front with a box on the back",
+      "a van used mainly for wheelchair non-emergent trips"
+    ],
+    "answer": "C",
+    "why": "Type 3 = van front + box (class truck). Type 1 = pickup+box. Type 2 = van."
+  },
+  {
+    "ch": "transport",
+    "q": "At the start of shift, the ambulance is checked by:",
+    "choices": [
+      "the last crew, if they said they already restocked",
+      "the medical director during an unannounced audit only",
+      "the supervisor, so EMTs do not open cabinets",
+      "you; last-crew restock talk does not protect your card"
+    ],
+    "answer": "D",
+    "why": "You own the truck. Check it yourself. Last-crew restock talk will not save you."
+  },
+  {
+    "ch": "transport",
+    "q": "The Star of Life marking is placed:",
+    "choices": [
+      "only on the rear doors, and never on the roof",
+      "inside the cab, facing the driver only",
+      "on a personal car to make it an emergency vehicle",
+      "on every side and the roof so aircraft can see it"
+    ],
+    "answer": "D",
+    "why": "Star of Life on every side and the roof so a helicopter can see it too."
+  },
+  {
+    "ch": "transport",
+    "q": "The squad bench is built on the patient's:",
+    "choices": [
+      "foot wall below the patient",
+      "head wall above the patient",
+      "left side of the patient",
+      "right side of the patient"
+    ],
+    "answer": "C",
+    "why": "Bench is on the patient's left (late-pregnancy patient faces you on their left)."
+  },
+  {
+    "ch": "transport",
+    "q": "On a hazmat scene you park the unit:",
+    "choices": [
+      "uphill and downwind",
+      "downhill and upwind",
+      "downhill and downwind",
+      "uphill and upwind"
+    ],
+    "answer": "D",
+    "why": "Hazmat: uphill and upwind. Tell other units which way to come in."
+  },
+  {
+    "ch": "transport",
+    "q": "You request a helicopter mainly for:",
+    "choices": [
+      "any same-day discharge that looks like a good call",
+      "time and level of care, not for miles alone",
+      "family preference, even if the patient has capacity",
+      "mileage only; short trips never justify a bird"
+    ],
+    "answer": "B",
+    "why": "Fly for time and level of care, not miles. A patient with capacity can refuse."
+  },
+  {
+    "ch": "skills",
+    "q": "Every oral station starts by saying:",
+    "choices": [
+      "BSI, then asking if the scene is safe",
+      "patient count, then putting on gloves",
+      "C-spine, then asking if the scene is safe",
+      "NOI or MOI, then putting on gloves"
+    ],
+    "answer": "A",
+    "why": "BSI and scene safety is the first sentence of every station. Say it out loud."
+  },
+  {
+    "ch": "skills",
+    "q": "After BSI and scene safety, the trauma opening asks:",
+    "choices": [
+      "a hospital diagnosis before XABC",
+      "field impression, then SAMPLE",
+      "nature of illness, not mechanism of injury",
+      "mechanism of injury, not nature of illness"
+    ],
+    "answer": "D",
+    "why": "Medical opening asks NOI. Trauma opening asks MOI instead."
+  },
+  {
+    "ch": "skills",
+    "q": "Even on a medical chest-pain station, you still say:",
+    "choices": [
+      "C-spine is skipped because this is not trauma",
+      "I will wait to request ALS until after the test",
+      "I am going to consider C-spine on this call",
+      "I will not ask how many patients on a medical call"
+    ],
+    "answer": "C",
+    "why": "Consider C-spine even on chest pain. Ask how many patients anyway."
+  },
+  {
+    "ch": "skills",
+    "q": "On XABC, when you find a life threat you:",
+    "choices": [
+      "skip to field impression before any treatment",
+      "name every injury out loud and then start care",
+      "treat it now, mark that letter, and keep walking",
+      "note it and finish the whole head-to-toe first"
+    ],
+    "answer": "C",
+    "why": "Find a life threat → treat it now, mental-check that letter, keep walking."
+  },
+  {
+    "ch": "skills",
+    "q": "The medical oral sheet requires you to say a:",
+    "choices": [
+      "field impression, then the treatments",
+      "C-spine skip because it is not trauma",
+      "refusal to take vitals if SAMPLE is done",
+      "hospital diagnosis over the radio as a fact"
+    ],
+    "answer": "A",
+    "why": "Medical extras include SAMPLE (±OPQRST), matching secondary, vitals, field impression + treatments."
+  },
+  {
+    "ch": "skills",
+    "q": "On the trauma oral sheet you do not:",
+    "choices": [
+      "give a field impression or call in your diagnosis",
+      "say the shock package when shock is present",
+      "treat XABC life threats as you find them",
+      "get vitals even if secondary order swaps"
+    ],
+    "answer": "A",
+    "why": "Trauma: no field impression. Do not call the hospital to announce a diagnosis."
+  },
+  {
+    "ch": "skills",
+    "q": "In DCAP-BTLS, the letter T stands for:",
+    "choices": [
+      "tachycardia",
+      "tourniquet time",
+      "tenderness",
+      "tracheal deviation"
+    ],
+    "answer": "C",
+    "why": "DCAP-BTLS: deformities, contusions, abrasions, punctures, burns, tenderness, lacerations, swelling."
+  },
+  {
+    "ch": "skills",
+    "q": "Unstable vs stable reassessment times are:",
+    "choices": [
+      "every 5 minutes if unstable, every 15 if stable",
+      "every 15 minutes if unstable, every 5 if stable",
+      "only after the hospital gives a diagnosis",
+      "once on scene and never again in the truck"
+    ],
+    "answer": "A",
+    "why": "Reassess unstable every 5 minutes and stable every 15."
+  },
+  {
+    "ch": "skills",
+    "q": "Signs of shock on trauma: say the shock package out loud as:",
+    "choices": [
+      "sit them up, withhold oxygen, wait for a full secondary",
+      "oxygen, supine, keep warm, rapid transport",
+      "needle the chest, then splint the tibia on scene",
+      "oral fluids, walk them to the truck, delayed transport"
+    ],
+    "answer": "B",
+    "why": "Shock package: oxygen, supine, warm, rapid transport."
+  },
+  {
+    "ch": "skills",
+    "q": "Suction of vomit, blood, or gurgling in the airway is limited to:",
+    "choices": [
+      "until the suction canister fills",
+      "no more than 10 seconds",
+      "no more than 30 seconds",
+      "no more than 20 seconds"
+    ],
+    "answer": "B",
+    "why": "Vomit / blood / teeth / gurgling = suction ≤ 10 seconds."
+  },
+  {
+    "ch": "skills",
+    "q": "Rate 8 and shallow is treated with a BVM at 15 L and:",
+    "choices": [
+      "two breaths every 5 seconds",
+      "one breath every 6 seconds",
+      "one breath every 3 seconds",
+      "one breath every 15 seconds"
+    ],
+    "answer": "B",
+    "why": "Rate 8 and shallow → BVM, 15 L, one breath every 6 seconds."
+  },
+  {
+    "ch": "skills",
+    "q": "An unresponsive trauma patient's airway is opened with:",
+    "choices": [
+      "blind nasotracheal tube before opening",
+      "sternal rub until they open their own airway",
+      "head-tilt–chin-lift as if this were medical",
+      "jaw thrust, because this is trauma"
+    ],
+    "answer": "D",
+    "why": "Trauma = jaw thrust. Talking means the airway is patent."
+  },
+  {
+    "ch": "skills",
+    "q": "Before burning a medical oral attempt, you should:",
+    "choices": [
+      "skip medical because trauma is the only station",
+      "fail the written on purpose to save a skills try",
+      "pass the written final first when you can",
+      "use all three attempts as your study plan"
+    ],
+    "answer": "C",
+    "why": "Failing the written usually means failing medical too. Three attempts is not a plan."
+  },
+  {
+    "ch": "skills",
+    "q": "A sucking chest hole is first sealed with:",
+    "choices": [
+      "a moist gauze with no occlusive cover",
+      "a dry sterile dressing taped on 4 sides",
+      "a gloved hand, then plastic taped on 3 sides",
+      "a tourniquet high on the chest wall"
+    ],
+    "answer": "C",
+    "why": "Sucking hole: gloved hand first, then plastic taped on 3 sides."
+  },
+  {
+    "ch": "skills",
+    "q": "Eyes are closed when you check LOC. You start with:",
+    "choices": [
+      "a verbal check, then pain — not a first sternal rub",
+      "skipping AVPU and going straight to the pupils",
+      "calling unresponsive without a verbal attempt",
+      "a sternal rub before you say anything to them"
+    ],
+    "answer": "A",
+    "why": "Eyes closed: verbal first, then pain. Do not start with a sternal rub."
+  },
+  {
+    "ch": "skills",
+    "q": "Trachea shifting and one silent side: you:",
+    "choices": [
+      "wait for the lung to refill before you bag",
+      "keep bagging; EMTs do not needle the chest",
+      "stop the BVM and needle the chest on scene",
+      "name the injury and skip the rest of XABC"
+    ],
+    "answer": "B",
+    "why": "Tension stays a mental note. Keep bagging. We do not needle."
+  }
+]
+;
+const LETTERS = ["A", "B", "C", "D"];
+const TIME_LIMIT_MS_DEFAULT = 60 * 60 * 1000;
+const TIME_LIMIT_MS = (function () {
+  const n = Number(new URLSearchParams(location.search).get("ms"));
+  return (Number.isFinite(n) && n > 0) ? n : TIME_LIMIT_MS_DEFAULT;
+})();
+
+let i = 0;
+let correct = 0;
+let answered = 0;
+let picked = false;
+let whyOpen = false;
+let timedOut = false;
+let started = false;
+let deadline = 0;
+let tickTimer = null;
+let missed = [];
+let picks = [];
+
+function $(id) { return document.getElementById(id); }
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function chLabel(ch) {
+  if (ch === "transport") return "Transport";
+  if (ch === "skills") return "Skills";
+  return String(ch);
+}
+
+function formatTime(ms) {
+  const t = Math.max(0, Math.floor(ms / 1000));
+  const h = Math.floor(t / 3600);
+  const m = Math.floor((t % 3600) / 60);
+  const s = t % 60;
+  const pad = function(n) { return (n < 10 ? "0" : "") + n; };
+  if (h > 0) return h + ":" + pad(m) + ":" + pad(s);
+  return pad(m) + ":" + pad(s);
+}
+
+function stopTick() {
+  if (tickTimer) { clearInterval(tickTimer); tickTimer = null; }
+}
+
+function updateClock() {
+  const el = $("clock");
+  if (!started) {
+    el.textContent = formatTime(TIME_LIMIT_MS);
+    el.classList.add("idle");
+    el.classList.remove("warn");
+    return;
+  }
+  el.classList.remove("idle");
+  const left = deadline - Date.now();
+  el.textContent = formatTime(left);
+  if (left <= 5 * 60 * 1000) el.classList.add("warn");
+  else el.classList.remove("warn");
+  if (left <= 0) timeUp();
+}
+
+function startTimer() {
+  deadline = Date.now() + TIME_LIMIT_MS;
+  stopTick();
+  tickTimer = setInterval(updateClock, 250);
+  updateClock();
+}
+
+function updateScore() {
+  $("score").textContent = correct + " / " + answered;
+  const n = BANK.length;
+  if (!started) {
+    $("progLabel").textContent = "Not started";
+    $("progBar").style.width = "0%";
+    return;
+  }
+  if (timedOut || i >= n) {
+    $("progLabel").textContent = timedOut ? ("Time up · " + n + " questions") : ("Done · " + n + " questions");
+    $("progBar").style.width = "100%";
+    return;
+  }
+  $("progLabel").textContent = "Question " + (i + 1) + " of " + n;
+  $("progBar").style.width = Math.round(((i + (picked ? 1 : 0)) / n) * 100) + "%";
+}
+
+function gateScreen() {
+  started = false;
+  timedOut = false;
+  picked = false;
+  whyOpen = false;
+  i = 0; correct = 0; answered = 0; missed = []; picks = [];
+  stopTick();
+  deadline = 0;
+  $("nextBtn").classList.remove("visible");
+  $("nextBtn").textContent = "Next";
+  if (!Array.isArray(BANK) || BANK.length !== 50) {
+    $("main").innerHTML = '<div class="card"><p class="err">This page needs exactly 50 questions from quiz5-50mc.json.</p></div>';
+    updateScore();
+    updateClock();
+    return;
+  }
+  $("main").innerHTML =
+    '<div class="card">'
+    + '<p class="start-lead">Straight 50-question multiple-choice test.</p>'
+    + '<ul class="start-meta">'
+    + '<li>One hour. The clock starts when you tap Begin and cannot be paused.</li>'
+    + '<li>When the hour hits 0, the quiz locks and submits.</li>'
+    + '<li>Pick a choice first. Correct letter and why stay hidden until then. Then tap Why.</li>'
+    + '</ul>'
+    + '<button type="button" class="btn visible" id="beginBtn">Begin</button>'
+    + '</div>';
+  $("beginBtn").addEventListener("click", begin);
+  updateScore();
+  updateClock();
+  window.scrollTo(0, 0);
+}
+
+function begin() {
+  if (started) return;
+  started = true;
+  timedOut = false;
+  picked = false;
+  whyOpen = false;
+  i = 0; correct = 0; answered = 0; missed = []; picks = new Array(BANK.length).fill(null);
+  startTimer();
+  render();
+}
+
+function render() {
+  if (timedOut) return endScreen();
+  picked = false;
+  whyOpen = false;
+  $("nextBtn").classList.remove("visible");
+  if (i >= BANK.length) { return endScreen(); }
+  const q = BANK[i];
+  let optsHtml = "";
+  LETTERS.forEach(function(letter, idx) {
+    optsHtml += '<button type="button" class="opt" data-idx="' + idx + '">'
+      + '<span class="letter">' + letter + '</span>'
+      + '<span class="ot"></span></button>';
+  });
+  $("main").innerHTML =
+    '<div class="card">'
+    + '<div class="ch-tag">' + chLabel(q.ch) + '</div>'
+    + '<p class="qtext"></p>'
+    + '<div class="opts">' + optsHtml + '</div>'
+    + '<button type="button" class="why-tap" id="whyTap">Why</button>'
+    + '<div class="why" id="whyBox"></div>'
+    + '</div>';
+  $("main").querySelector(".qtext").textContent = q.q;
+  const buttons = $("main").querySelectorAll(".opt");
+  buttons.forEach(function(btn, idx) {
+    btn.querySelector(".ot").textContent = q.choices[idx];
+    btn.addEventListener("click", function() { pick(idx); });
+  });
+  $("whyTap").addEventListener("click", showWhy);
+  updateScore();
+  window.scrollTo(0, 0);
+}
+
+function pick(idx) {
+  if (!started || timedOut || picked) return;
+  picked = true;
+  const q = BANK[i];
+  const letter = LETTERS[idx];
+  const ok = letter === q.answer;
+  answered += 1;
+  if (ok) correct += 1;
+  picks[i] = letter;
+  if (!ok) {
+    missed.push({
+      ch: q.ch,
+      q: q.q,
+      chosen: letter + ". " + q.choices[idx],
+      right: q.answer + ". " + q.choices[LETTERS.indexOf(q.answer)],
+      why: q.why
+    });
+  }
+  const buttons = $("main").querySelectorAll(".opt");
+  buttons.forEach(function(btn, j) {
+    btn.classList.add("locked");
+    btn.disabled = true;
+    if (j === idx) btn.classList.add("chosen");
+  });
+  $("whyTap").classList.add("visible");
+  $("nextBtn").textContent = (i + 1 >= BANK.length) ? "See results" : "Next";
+  $("nextBtn").classList.add("visible");
+  updateScore();
+}
+
+function showWhy() {
+  if (!picked || whyOpen || timedOut) return;
+  whyOpen = true;
+  const q = BANK[i];
+  const chosenLetter = picks[i];
+  const ok = chosenLetter === q.answer;
+  const buttons = $("main").querySelectorAll(".opt");
+  const rightIdx = LETTERS.indexOf(q.answer);
+  buttons.forEach(function(btn, j) {
+    const letter = LETTERS[j];
+    if (letter === chosenLetter && ok) btn.classList.add("right");
+    else if (letter === chosenLetter && !ok) btn.classList.add("wrong");
+    else if (letter === q.answer) btn.classList.add("show-correct");
+    else btn.classList.add("dim");
+  });
+  const box = $("whyBox");
+  const verdict = ok
+    ? '<div class="verdict ok">Correct</div>'
+    : '<div class="verdict bad">Incorrect</div>';
+  const extra = ok ? "" :
+    '<div class="correct-line">Correct: ' + escapeHtml(q.answer + ". " + q.choices[rightIdx]) + '</div>';
+  box.innerHTML = verdict + '<div class="why-body"></div>' + extra;
+  box.querySelector(".why-body").textContent = q.why;
+  box.classList.add("visible");
+  $("whyTap").classList.remove("visible");
+}
+
+function timeUp() {
+  if (timedOut || !started) return;
+  timedOut = true;
+  stopTick();
+  deadline = Date.now();
+  updateClock();
+  endScreen();
+}
+
+function endScreen() {
+  $("nextBtn").classList.remove("visible");
+  const n = BANK.length;
+  const unanswered = n - answered;
+  const pct = n ? Math.round((correct / n) * 100) : 0;
+  let missHtml = "";
+  if (missed.length === 0 && unanswered === 0) {
+    missHtml = '<p>No missed questions.</p>';
+  } else {
+    missHtml = '<div class="miss"><h3>Missed or blank (' + (missed.length + unanswered) + ')</h3>';
+    missed.forEach(function() {
+      missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="mwhy"></div></div>';
+    });
+    if (unanswered) {
+      missHtml += '<p>' + unanswered + ' left unanswered when time ran out or the quiz locked.</p>';
+    }
+    missHtml += '</div>';
+  }
+  const title = timedOut ? "Time is up" : "Quiz complete";
+  $("main").innerHTML =
+    '<div class="card end">'
+    + '<h2>' + title + '</h2>'
+    + '<div class="big">' + correct + ' / ' + n + '</div>'
+    + '<div class="pct">' + pct + '% · 50 questions · 1 hour</div>'
+    + missHtml
+    + '<button type="button" class="btn visible" id="again">Back to start</button>'
+    + '</div>';
+  if (missed.length) {
+    const items = $("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m, idx) {
+      items[idx].querySelector(".ch-tag").textContent = chLabel(m.ch);
+      items[idx].querySelector(".mq").textContent = m.q;
+      items[idx].querySelector(".mwhy").textContent =
+        "You chose: " + m.chosen + " — " + m.why + "  Correct: " + m.right;
+    });
+  }
+  $("again").addEventListener("click", gateScreen);
+  updateScore();
+  window.scrollTo(0, 0);
+}
+
+$("nextBtn").addEventListener("click", function() {
+  if (!picked || timedOut) return;
+  i += 1;
+  render();
+});
+
+gateScreen();
+</script>
+</body>
+</html>
