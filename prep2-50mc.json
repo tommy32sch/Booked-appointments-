@@ -1,0 +1,602 @@
+[
+  {
+    "ch": 1,
+    "q": "The 1966 White Paper is credited with starting modern EMS mainly because it documented:",
+    "choices": [
+      "high death rates from infection",
+      "high death rates from trauma",
+      "high death rates from stroke",
+      "high death rates from overdose"
+    ],
+    "answer": "B",
+    "why": "The White Paper showed high trauma deaths, and that push started modern EMS."
+  },
+  {
+    "ch": 1,
+    "q": "An Emergency Medical Technician (EMT) gives care under whose license?",
+    "choices": [
+      "the ambulance company's business license",
+      "the hospital charge nurse's license",
+      "the state governor's license",
+      "the medical director's license"
+    ],
+    "answer": "D",
+    "why": "You and the paramedic work under the medical director's license; that doctor is legally responsible."
+  },
+  {
+    "ch": 1,
+    "q": "Offline medical direction is best described as:",
+    "choices": [
+      "standing orders you follow without a phone call",
+      "radio orders you request for that one call",
+      "a refusal form you leave at the scene",
+      "a hospital report you write after transfer"
+    ],
+    "answer": "A",
+    "why": "Offline direction is standing orders, so you treat without calling."
+  },
+  {
+    "ch": 2,
+    "q": "On a dangerous scene, who is first in the safety order?",
+    "choices": [
+      "the patient",
+      "bystanders",
+      "you",
+      "your crew"
+    ],
+    "answer": "C",
+    "why": "You first: you cannot help if you become a patient."
+  },
+  {
+    "ch": 2,
+    "q": "You park about how far from a fire, crash, or hazmat scene?",
+    "choices": [
+      "100 feet",
+      "50 feet",
+      "25 feet",
+      "10 feet"
+    ],
+    "answer": "A",
+    "why": "Park 100 feet from fires, crashes, and hazmat."
+  },
+  {
+    "ch": 2,
+    "q": "Alcohol-based hand sanitizer is OK on clean hands if it is at least:",
+    "choices": [
+      "25% alcohol",
+      "40% alcohol",
+      "10% alcohol",
+      "60% alcohol"
+    ],
+    "answer": "D",
+    "why": "Sanitizer needs at least 60% alcohol if hands are not dirty."
+  },
+  {
+    "ch": 3,
+    "q": "Causation in a negligence claim means:",
+    "choices": [
+      "your breach produced the patient's harm",
+      "you owed the patient a legal duty",
+      "you broke the accepted standard of care",
+      "the patient suffered money damages only"
+    ],
+    "answer": "A",
+    "why": "Causation means the breach actually produced the harm."
+  },
+  {
+    "ch": 3,
+    "q": "You start care, then leave a patient who still needs it without an equal or higher handoff. That is:",
+    "choices": [
+      "libel",
+      "assault",
+      "abandonment",
+      "slander"
+    ],
+    "answer": "C",
+    "why": "Abandonment is leaving without consent and without equal or higher handoff while they still need care."
+  },
+  {
+    "ch": 3,
+    "q": "You find no pulse, no breathing, and fixed pupils, but you are not sure they are dead. You:",
+    "choices": [
+      "start CPR after a living will",
+      "start CPR after no delay",
+      "start CPR after the examiner",
+      "start CPR after police arrive"
+    ],
+    "answer": "B",
+    "why": "Presumptive signs are not enough. If there is doubt, start CPR."
+  },
+  {
+    "ch": 4,
+    "q": "During a radio report you should:",
+    "choices": [
+      "give the patient's full name",
+      "spell the patient's last name",
+      "repeat the patient's home address",
+      "skip the patient's name"
+    ],
+    "answer": "D",
+    "why": "Keep the radio plain, and do not say the patient's name."
+  },
+  {
+    "ch": 4,
+    "q": "You catch a written error on a patient care report (PCR). You:",
+    "choices": [
+      "erase the words and correct it",
+      "draw one line and correct it",
+      "cover the words and correct it",
+      "scrap the page and rewrite it"
+    ],
+    "answer": "B",
+    "why": "Draw one line through the error and write the correct words. Never erase."
+  },
+  {
+    "ch": 4,
+    "q": "When you start a patient interview, you should ask:",
+    "choices": [
+      "an open-ended question first",
+      "a leading question first",
+      "a yes-or-no question first",
+      "a medical-jargon question first"
+    ],
+    "answer": "A",
+    "why": "Open-ended first, then closed yes-or-no if you need to pin details down."
+  },
+  {
+    "ch": 13,
+    "q": "Two rescuers are doing infant CPR. You compress with:",
+    "choices": [
+      "the heel of one hand",
+      "two fingers on the sternum",
+      "two thumbs encircling the chest",
+      "two adult hands stacked"
+    ],
+    "answer": "C",
+    "why": "Two rescuers on an infant use two-thumb encircling. Alone, the test default is the heel of one hand."
+  },
+  {
+    "ch": 5,
+    "q": "Semi-Fowler position is a sitting angle of about:",
+    "choices": [
+      "45 to 90 degrees",
+      "0 to 10 degrees",
+      "10 to 20 degrees",
+      "30 to 45 degrees"
+    ],
+    "answer": "D",
+    "why": "Semi-Fowler is 30\u201345 degrees; Fowler is 45\u201390."
+  },
+  {
+    "ch": 9,
+    "q": "Chest pain. Your partner is an EMT. You:",
+    "choices": [
+      "request paramedics now",
+      "assume paramedics now",
+      "delay paramedics now",
+      "skip paramedics now"
+    ],
+    "answer": "A",
+    "why": "Request paramedics. Your partner is an EMT."
+  },
+  {
+    "ch": 10,
+    "q": "A patient is breathing 16 times a minute with good chest rise, looks short of breath, and saturation is 88%. You give oxygen with:",
+    "choices": [
+      "a nasal cannula at 1\u20136 L/min",
+      "a non-rebreather mask at 10\u201315 L/min",
+      "a bag-valve mask at 1 breath every 6 seconds",
+      "a Venturi mask at 24%"
+    ],
+    "answer": "B",
+    "why": "Adequate breathing plus distress or sat under 94% gets a non-rebreather at 10\u201315 L/min, not a cannula."
+  },
+  {
+    "ch": 10,
+    "q": "An adult is not breathing but still has a pulse. You ventilate with:",
+    "choices": [
+      "a bag-valve mask, 1 breath every 2\u20133 seconds",
+      "a bag-valve mask, 1 breath every 10 seconds",
+      "a bag-valve mask, 1 breath every 30 seconds",
+      "a bag-valve mask, 1 breath every 6 seconds"
+    ],
+    "answer": "D",
+    "why": "Inadequate breathing or apnea gets a bag-valve mask. Adult rate is 1 breath every 6 seconds."
+  },
+  {
+    "ch": 11,
+    "q": "For chest pain you think is a heart attack, the aspirin dose is:",
+    "choices": [
+      "81 mg chewed by mouth",
+      "40 mg chewed by mouth",
+      "160\u2013325 mg chewed by mouth",
+      "648 mg chewed by mouth"
+    ],
+    "answer": "C",
+    "why": "Give 160\u2013325 mg chewed (2\u20134 baby tablets of 81 mg = 162\u2013324 mg)."
+  },
+  {
+    "ch": 8,
+    "q": "Do not take a wheeled stretcher (gurney):",
+    "choices": [
+      "onto a smooth hospital floor",
+      "up or down stairs",
+      "into the ambulance",
+      "across a paved sidewalk"
+    ],
+    "answer": "B",
+    "why": "A gurney is not for stairs, off-road ground, or angled slopes that can tip."
+  },
+  {
+    "ch": 8,
+    "q": "For shock with no other position rule, place the patient:",
+    "choices": [
+      "flat on the back",
+      "tilted with legs up",
+      "sitting straight up",
+      "lying on the right side"
+    ],
+    "answer": "A",
+    "why": "Shock is supine and flat now. Do not raise the legs."
+  },
+  {
+    "ch": 8,
+    "q": "A pregnant patient past 20 weeks is transported:",
+    "choices": [
+      "flat on the back",
+      "on the right side",
+      "sitting bolt upright",
+      "on the left side"
+    ],
+    "answer": "D",
+    "why": "Left lateral offloads the uterus from the aorta and vena cava (supine hypotensive syndrome)."
+  },
+  {
+    "ch": 9,
+    "q": "A patient who fell from a ladder is sorted first by:",
+    "choices": [
+      "nature of illness",
+      "past medical history",
+      "mechanism of injury (MOI)",
+      "home medication list"
+    ],
+    "answer": "C",
+    "why": "MOI is for trauma; nature of illness is for medical calls."
+  },
+  {
+    "ch": 9,
+    "q": "If you skip body substance isolation (BSI) or scene safety:",
+    "choices": [
+      "you passed that step",
+      "you delayed that step",
+      "you failed that step",
+      "you repeated that step"
+    ],
+    "answer": "C",
+    "why": "Skip BSI or scene safety and you failed."
+  },
+  {
+    "ch": 9,
+    "q": "An unstable or critical patient is reassessed every:",
+    "choices": [
+      "15 minutes",
+      "10 minutes",
+      "20 minutes",
+      "5 minutes"
+    ],
+    "answer": "D",
+    "why": "Unstable is every 5 minutes; stable is every 15."
+  },
+  {
+    "ch": 9,
+    "q": "The platinum 10 minutes is the goal for:",
+    "choices": [
+      "time from injury to the operating room",
+      "scene time from wheels-stop to wheels-roll",
+      "time from the 911 call to your arrival",
+      "time from the hospital door to surgery"
+    ],
+    "answer": "B",
+    "why": "Platinum 10 is pull-up to start driving; the golden hour is injury to surgery."
+  },
+  {
+    "ch": 10,
+    "q": "The number-one airway obstruction in an unconscious patient is the:",
+    "choices": [
+      "epiglottis",
+      "swollen tonsils",
+      "foreign food",
+      "tongue"
+    ],
+    "answer": "D",
+    "why": "When they go unconscious, muscles relax and the tongue falls back."
+  },
+  {
+    "ch": 10,
+    "q": "You suction a dirty airway until it is clear, for no more than:",
+    "choices": [
+      "10 seconds",
+      "15 seconds",
+      "5 seconds",
+      "20 seconds"
+    ],
+    "answer": "A",
+    "why": "Suction until clear, max 10 seconds, same for every age."
+  },
+  {
+    "ch": 10,
+    "q": "You insert an oropharyngeal airway (OPA) only if the patient is:",
+    "choices": [
+      "unresponsive and has a gag reflex",
+      "semi-conscious and following commands",
+      "unresponsive with no gag reflex",
+      "alert, talking, and protecting the airway"
+    ],
+    "answer": "C",
+    "why": "OPA is for fully unresponsive with no gag. Gag on insert means pull it now."
+  },
+  {
+    "ch": 10,
+    "q": "Do not place a nasopharyngeal airway (NPA) if there is:",
+    "choices": [
+      "a gag reflex with no trauma",
+      "any head or face trauma",
+      "snoring respirations",
+      "no teeth"
+    ],
+    "answer": "B",
+    "why": "Any head or face trauma is a hard stop for an NPA; a gag is actually a reason to use one."
+  },
+  {
+    "ch": 11,
+    "q": "Oral glucose is for low blood sugar if they:",
+    "choices": [
+      "are unresponsive but breathing",
+      "have a gag and cannot swallow",
+      "are seizing with a clenched jaw",
+      "are awake and can swallow"
+    ],
+    "answer": "D",
+    "why": "One tube if sugar is under 80 and they can protect the airway; unconscious is a no."
+  },
+  {
+    "ch": 11,
+    "q": "Aspirin given for suspected heart-attack chest pain works by:",
+    "choices": [
+      "keeping platelets from clumping so the clot does not grow",
+      "dissolving the clot already stuck inside the coronary artery",
+      "widening the coronary arteries the same way nitroglycerin does",
+      "blocking pain signals as they travel up the spinal cord"
+    ],
+    "answer": "A",
+    "why": "Aspirin makes platelets slippery so a clot does not grow. It does not dissolve clots."
+  },
+  {
+    "ch": 11,
+    "q": "Hold nitroglycerin if systolic blood pressure is under:",
+    "choices": [
+      "90 mm Hg",
+      "80 mm Hg",
+      "100 mm Hg",
+      "110 mm Hg"
+    ],
+    "answer": "C",
+    "why": "You need a triple-digit systolic (at least 100) before each nitro dose."
+  },
+  {
+    "ch": 12,
+    "q": "Shock means:",
+    "choices": [
+      "high blood pressure in the brain",
+      "hypoperfusion of the cells",
+      "a fever from infection only",
+      "a seizure from low sugar"
+    ],
+    "answer": "B",
+    "why": "Shock is hypoperfusion: not enough oxygenated blood to cells, and waste piles up."
+  },
+  {
+    "ch": 12,
+    "q": "In compensated shock, blood pressure is often:",
+    "choices": [
+      "near normal",
+      "very low",
+      "very high",
+      "not readable"
+    ],
+    "answer": "A",
+    "why": "Early shock can still hold pressure. Do not wait for hypotension to call it shock."
+  },
+  {
+    "ch": 12,
+    "q": "When cells switch to anaerobic metabolism in shock, the main waste is:",
+    "choices": [
+      "lactic acid",
+      "carbon dioxide",
+      "extra heat",
+      "extra ATP"
+    ],
+    "answer": "A",
+    "why": "Anaerobic work makes less energy and lactic acid, which feeds acidosis."
+  },
+  {
+    "ch": 12,
+    "q": "Cardiac tamponade is suggested by shock plus:",
+    "choices": [
+      "quiet lung, tracheal shift, and chest wall pain",
+      "clear lungs, falling sat, and sudden dyspnea",
+      "fever, flushed skin, and a slow pulse",
+      "JVD, muffled tones, and narrowing pulse pressure"
+    ],
+    "answer": "D",
+    "why": "Beck's triad is narrowing pulse pressure, JVD, and muffled heart tones."
+  },
+  {
+    "ch": 13,
+    "q": "The first step when you pick up an automated external defibrillator (AED) is:",
+    "choices": [
+      "dry the chest",
+      "turn it on",
+      "place the pads",
+      "deliver a shock"
+    ],
+    "answer": "B",
+    "why": "Turn the AED on first and follow the voice prompts."
+  },
+  {
+    "ch": 13,
+    "q": "Chest compression rate is:",
+    "choices": [
+      "100 to 120 per minute",
+      "80 to 100 per minute",
+      "60 to 80 per minute",
+      "120 to 140 per minute"
+    ],
+    "answer": "A",
+    "why": "Rate is 100\u2013120 per minute, not just \u201cat least 100.\u201d"
+  },
+  {
+    "ch": 13,
+    "q": "Adult compression depth is at least:",
+    "choices": [
+      "1 inch (2.5 cm)",
+      "1.5 inches (4 cm)",
+      "3 inches (7.5 cm)",
+      "2 inches (5 cm)"
+    ],
+    "answer": "D",
+    "why": "Adult depth is at least 2 inches, or 5 cm."
+  },
+  {
+    "ch": 15,
+    "q": "Stridor is:",
+    "choices": [
+      "a high-pitched lower-airway sound at the mouth",
+      "a high-pitched upper-airway sound at the mouth",
+      "a low-pitched mucus rattle at the mouth",
+      "a bubbling alveolar crackle at the mouth"
+    ],
+    "answer": "B",
+    "why": "Stridor is a high-pitched upper-airway sound you can hear standing in front."
+  },
+  {
+    "ch": 15,
+    "q": "Fever, night sweats, and coughing blood is the classic picture of:",
+    "choices": [
+      "croup",
+      "epiglottitis",
+      "tuberculosis (TB)",
+      "asthma"
+    ],
+    "answer": "C",
+    "why": "TB is fever, night sweats, and hemoptysis; you wear an N95."
+  },
+  {
+    "ch": 15,
+    "q": "On a short transport, a hypoxic chronic obstructive pulmonary disease (COPD) patient:",
+    "choices": [
+      "give high-flow oxygen now",
+      "withhold all of the oxygen",
+      "start CPAP at SBP 70",
+      "drop flow to two liters"
+    ],
+    "answer": "A",
+    "why": "On short runs you still give oxygen. Do not withhold it for hypoxic drive."
+  },
+  {
+    "ch": 16,
+    "q": "An implanted cardioverter-defibrillator (ICD) shocks from inside the chest. While it fires you:",
+    "choices": [
+      "take your hands off the patient",
+      "unzip the vest on the patient",
+      "switch the pacemaker off now",
+      "keep your hands on the patient"
+    ],
+    "answer": "D",
+    "why": "An ICD jolt is low and internal, so you can touch them when it fires."
+  },
+  {
+    "ch": 16,
+    "q": "A patient with a ventricular assist device (VAD) is talking but you cannot feel a pulse. You:",
+    "choices": [
+      "start CPR for the missing pulse",
+      "shock with the AED now",
+      "treat them as perfusing",
+      "turn the controller off"
+    ],
+    "answer": "C",
+    "why": "Many VADs have no palpable pulse; if they are talking, they are perfusing."
+  },
+  {
+    "ch": 16,
+    "q": "A wearable external defibrillator vest warns that it will shock. You:",
+    "choices": [
+      "take your hands off",
+      "take your hands back",
+      "take your hands closer",
+      "take your hands higher"
+    ],
+    "answer": "A",
+    "why": "A vest is a wearable AED. Hands off while it shocks."
+  },
+  {
+    "ch": 17,
+    "q": "For an arm-drift check, the palms should face:",
+    "choices": [
+      "down",
+      "in",
+      "up",
+      "out"
+    ],
+    "answer": "C",
+    "why": "Arm drift is palms up, eyes closed, so you can see one arm drop."
+  },
+  {
+    "ch": 17,
+    "q": "Last known well is the last time the patient was:",
+    "choices": [
+      "found by EMS",
+      "seen normal",
+      "admitted to the hospital",
+      "given aspirin"
+    ],
+    "answer": "B",
+    "why": "Last known well is last seen normal, not when you arrived."
+  },
+  {
+    "ch": 17,
+    "q": "A patient looks like a stroke. Before you lock in that impression, first:",
+    "choices": [
+      "give them an aspirin",
+      "check their blood sugar",
+      "give them nitroglycerin",
+      "start fibrinolytics now"
+    ],
+    "answer": "B",
+    "why": "Low sugar can copy a stroke. Check sugar first, and do not give aspirin for stroke."
+  },
+  {
+    "ch": 18,
+    "q": "The appendix sits in the:",
+    "choices": [
+      "right lower quadrant",
+      "right upper quadrant",
+      "left lower quadrant",
+      "left upper quadrant"
+    ],
+    "answer": "A",
+    "why": "The appendix is at the start of the large intestine in the right lower quadrant."
+  },
+  {
+    "ch": 13,
+    "q": "You are the only rescuer doing infant CPR. You compress with:",
+    "choices": [
+      "the heel of one hand",
+      "two thumbs encircling the chest",
+      "two fingers on the sternum",
+      "two adult hands stacked"
+    ],
+    "answer": "A",
+    "why": "Alone, the test default is the heel of one hand. Two rescuers use two-thumb encircling."
+  }
+]
