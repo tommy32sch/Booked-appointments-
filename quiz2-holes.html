@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Holes type-in</title>
+<style>
+:root {
+  --bg: #f4efe6;
+  --paper: #fffdf8;
+  --ink: #1c2430;
+  --muted: #5a6573;
+  --navy: #1e3a5f;
+  --navy-2: #16304d;
+  --red: #b42318;
+  --red-soft: #fde8e6;
+  --green: #1b7a46;
+  --green-soft: #e5f6ec;
+  --line: #d8d0c4;
+  --gold: #f0c14b;
+  --shadow: 0 2px 10px rgba(28,36,48,.08);
+  --safe-b: env(safe-area-inset-bottom, 0px);
+  --safe-t: env(safe-area-inset-top, 0px);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body {
+  margin: 0; padding: 0; background: var(--bg); color: var(--ink);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px; line-height: 1.45; overflow-x: hidden;
+}
+body { min-height: 100dvh; padding-bottom: calc(92px + var(--safe-b)); }
+header {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--navy); color: #fff;
+  padding: calc(10px + var(--safe-t)) 16px 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.18);
+}
+header h1 { margin: 0; font-size: 1.05rem; font-weight: 700; letter-spacing: .01em; }
+header .sub { margin: 2px 0 0; font-size: .78rem; opacity: .85; font-weight: 400; }
+.bar { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+.score {
+  font-variant-numeric: tabular-nums; font-weight: 700; font-size: .95rem;
+  background: rgba(255,255,255,.12); padding: 6px 10px; border-radius: 8px;
+}
+.prog-wrap { flex: 1; min-width: 120px; }
+.prog-label { font-size: .75rem; opacity: .85; margin-bottom: 4px; }
+.prog { height: 8px; background: rgba(255,255,255,.18); border-radius: 99px; overflow: hidden; }
+.prog > span { display: block; height: 100%; width: 0; background: var(--gold); border-radius: 99px; transition: width .2s; }
+.links { margin-top: 8px; font-size: .75rem; opacity: .9; }
+.links a { color: #fff; }
+main { max-width: 720px; margin: 0 auto; padding: 14px 14px 0; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+.ch-tag {
+  display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  background: #e8eef6; color: var(--navy); padding: 4px 8px; border-radius: 6px; margin-bottom: 10px;
+}
+.qtext { font-size: 1.12rem; font-weight: 650; margin: 0 0 10px; }
+.hint { margin: 0 0 10px; font-size: .86rem; color: var(--muted); }
+textarea#answer {
+  width: 100%; min-height: 132px; resize: vertical;
+  font-family: inherit; font-size: 16px; line-height: 1.4;
+  padding: 12px 14px; border: 2px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink);
+}
+textarea#answer:focus { outline: none; border-color: var(--navy); }
+textarea#answer[readonly] { background: #f6f3ec; }
+.char { margin: 6px 0 0; font-size: .78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+#cardCheck { margin-top: 12px; }
+.char.ok { color: var(--green); }
+.banner {
+  margin: 0 0 12px; padding: 10px 12px; border-radius: 10px;
+  background: #e8eef6; color: var(--navy); font-size: .9rem; font-weight: 650;
+}
+.why {
+  margin-top: 14px; padding: 12px 14px; border-radius: 10px;
+  background: #f6f1e6; border-left: 4px solid var(--navy); font-size: .95rem;
+}
+.why.solid { background: var(--green-soft); border-left-color: var(--green); }
+.why.miss { background: var(--red-soft); border-left-color: var(--red); }
+.verdict { font-weight: 800; margin-bottom: 6px; }
+.verdict.ok { color: var(--green); }
+.verdict.bad { color: var(--red); }
+.model-label, .coach-label {
+  font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--muted); margin: 12px 0 6px;
+}
+.model { margin: 0; }
+.why-text { margin: 0; }
+footer.act {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  background: var(--paper); border-top: 1px solid var(--line);
+  padding: 10px 14px calc(10px + var(--safe-b));
+}
+.btn {
+  display: none; width: 100%; max-width: 720px; margin: 0 auto;
+  min-height: 48px; border: 0; border-radius: 12px;
+  background: var(--navy); color: #fff; font-size: 1.05rem; font-weight: 700;
+  font-family: inherit; cursor: pointer;
+}
+.btn.visible { display: block; }
+.btn:active { background: var(--navy-2); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn.secondary { background: #fff; color: var(--navy); border: 2px solid var(--navy); margin-top: 8px; }
+.end h2 { margin: 0 0 8px; font-size: 1.4rem; }
+.end .big { font-size: 2.2rem; font-weight: 800; color: var(--navy); margin: 8px 0; }
+.end .pct { font-size: 1.1rem; color: var(--muted); margin-bottom: 16px; }
+.miss { margin-top: 18px; }
+.miss h3 { margin: 0 0 10px; font-size: 1.05rem; }
+.miss-item { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 10px; }
+.miss-item .mq { font-weight: 650; margin-bottom: 6px; }
+.miss-item .mwhy { font-size: .92rem; color: #333; }
+.note { font-size: .86rem; color: var(--muted); margin: 10px 0 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Holes type-in</h1>
+  <div class="sub" id="sub">Write the answer. No multiple choice.</div>
+  <div class="bar">
+    <div class="score" id="score">0 / 0</div>
+    <div class="prog-wrap">
+      <div class="prog-label" id="progLabel">Question 1</div>
+      <div class="prog"><span id="progBar"></span></div>
+    </div>
+  </div>
+  <div class="links" id="seedLinks"></div>
+</header>
+<main id="main"></main>
+<footer class="act">
+  <button type="button" class="btn" id="checkBtn">Check</button>
+  <button type="button" class="btn" id="nextBtn">Next</button>
+</footer>
+<script id="bank" type="application/json">[
+  {
+    "ch": 1,
+    "q": "In what year was the White Paper published?",
+    "a": [
+      "1966"
+    ],
+    "why": "The 1966 White Paper started modern EMS after too many trauma deaths."
+  },
+  {
+    "ch": 1,
+    "q": "Name the four EMS levels.",
+    "a": [
+      "EMR EMT AEMT paramedic",
+      "EMR, EMT, AEMT, paramedic",
+      "emergency medical responder, EMT, AEMT, paramedic"
+    ],
+    "why": "EMR, EMT, AEMT, paramedic."
+  },
+  {
+    "ch": 1,
+    "q": "About how many hours of training is EMT?",
+    "a": [
+      "130-150",
+      "130\u2013150",
+      "130 to 150",
+      "130-150 hours"
+    ],
+    "why": "EMT is about 130 to 150 hours of BLS and a short med list."
+  },
+  {
+    "ch": 1,
+    "q": "Whose license do you and the paramedic work under?",
+    "a": [
+      "medical director",
+      "the medical director",
+      "Medical Director"
+    ],
+    "why": "That doctor is legally responsible."
+  },
+  {
+    "ch": 2,
+    "q": "Who do you protect first on scene?",
+    "a": [
+      "you",
+      "yourself",
+      "me"
+    ],
+    "why": "You first. If you become a patient, you help nobody."
+  },
+  {
+    "ch": 2,
+    "q": "What is the safety order on scene?",
+    "a": [
+      "you crew patient",
+      "you, crew, patient",
+      "you, then crew, then patient"
+    ],
+    "why": "You first, then crew, then the patient."
+  },
+  {
+    "ch": 2,
+    "q": "In what order do you put PPE on?",
+    "a": [
+      "hands gown mask eyes gloves",
+      "hands, gown, mask, eyes, gloves",
+      "clean hands, gown, mask, eyes, gloves"
+    ],
+    "why": "On: clean hands, gown, mask, eyes, gloves."
+  },
+  {
+    "ch": 2,
+    "q": "How far do you park from a fire, crash, or hazmat?",
+    "a": [
+      "100 feet",
+      "100 ft",
+      "100 feet away"
+    ],
+    "why": "Park 100 feet from fires, crashes, hazmat."
+  },
+  {
+    "ch": 3,
+    "q": "Name the four pieces of negligence.",
+    "a": [
+      "duty breach damages causation",
+      "duty, breach, damages, causation"
+    ],
+    "why": "Negligence needs all four: duty, breach, damages, causation."
+  },
+  {
+    "ch": 13,
+    "q": "What is the first thing you do with an AED?",
+    "a": [
+      "turn it on",
+      "turn the AED on",
+      "power it on"
+    ],
+    "why": "Turn the AED on and follow the voice prompts."
+  },
+  {
+    "ch": 13,
+    "q": "What adult compression depth?",
+    "a": [
+      "at least 2 inches",
+      "at least 2 inches (5 cm)",
+      "at least 2 in",
+      "2 inches"
+    ],
+    "why": "Adult depth is at least 2 inches (5 cm). Allow full recoil."
+  },
+  {
+    "ch": 13,
+    "q": "What compression rate?",
+    "a": [
+      "100-120",
+      "100-120/min",
+      "100 to 120 per minute",
+      "100\u2013120 per minute"
+    ],
+    "why": "Rate 100\u2013120 per minute. Not just at least 100."
+  },
+  {
+    "ch": 13,
+    "q": "You are the only one doing CPR. What ratio?",
+    "a": [
+      "30:2",
+      "30 to 2",
+      "30 compressions 2 breaths"
+    ],
+    "why": "Single rescuer is 30:2 for every age."
+  },
+  {
+    "ch": 16,
+    "q": "An ICD fires. Can you touch them?",
+    "a": [
+      "yes",
+      "yes you can touch them",
+      "yes, safe to touch"
+    ],
+    "why": "The jolt is low and internal. You can touch them when it fires."
+  },
+  {
+    "ch": 16,
+    "q": "An external defibrillator vest is shocking. What do you do with your hands?",
+    "a": [
+      "hands off",
+      "do not touch",
+      "clear them",
+      "hands off like an AED"
+    ],
+    "why": "The vest is a high-energy external shock. Do not touch while it shocks."
+  },
+  {
+    "ch": 16,
+    "q": "VAD patient, no pulse, talking. Are they perfusing?",
+    "a": [
+      "yes",
+      "yes they are perfusing",
+      "yes, talking means they perfuse"
+    ],
+    "why": "Many VADs are continuous flow. If they are talking, they are perfusing."
+  },
+  {
+    "ch": 16,
+    "q": "Unconscious VAD patient. Who do you call?",
+    "a": [
+      "the number on the controller",
+      "number on the controller",
+      "VAD team on the controller",
+      "the VAD team"
+    ],
+    "why": "Call the phone number on the controller and follow that team."
+  },
+  {
+    "ch": 16,
+    "q": "A pacemaker fails in the field. Can you fix it?",
+    "a": [
+      "no",
+      "you cannot fix it",
+      "cannot fix the pacemaker"
+    ],
+    "why": "You cannot fix the pacemaker. Treat the slow rhythm and shock."
+  },
+  {
+    "ch": 17,
+    "q": "You ask them to smile on a stroke exam. What are you looking for?",
+    "a": [
+      "facial droop",
+      "droop",
+      "one-sided droop"
+    ],
+    "why": "Face: smile and look for droop."
+  },
+  {
+    "ch": 17,
+    "q": "Arms out, palms up, eyes closed. What finding means weakness?",
+    "a": [
+      "arm drift",
+      "drift",
+      "one arm drifts down"
+    ],
+    "why": "One arm drifting down suggests weakness on that side."
+  },
+  {
+    "ch": 17,
+    "q": "What is last known well?",
+    "a": [
+      "last time they were seen normal",
+      "last seen normal",
+      "the last time anyone saw them normal"
+    ],
+    "why": "Last known well is the last time anyone saw them normal."
+  },
+  {
+    "ch": 17,
+    "q": "About what percent of strokes are ischemic clots?",
+    "a": [
+      "87",
+      "87 percent",
+      "about 87",
+      "about 87 percent"
+    ],
+    "why": "About 87 percent are ischemic. About 13 percent are hemorrhagic."
+  },
+  {
+    "ch": 17,
+    "q": "Do you give aspirin for suspected stroke?",
+    "a": [
+      "no",
+      "do not",
+      "do not give aspirin"
+    ],
+    "why": "Do not give aspirin for stroke. Aspirin in this recap is for suspected cardiac chest pain."
+  },
+  {
+    "ch": 17,
+    "q": "Stroke-like patient. What must you check before you lock in stroke?",
+    "a": [
+      "blood sugar",
+      "sugar",
+      "glucose",
+      "blood glucose"
+    ],
+    "why": "Hypoglycemia can look exactly like a stroke. Check sugar first."
+  },
+  {
+    "ch": 18,
+    "q": "Where is classic appendicitis pain?",
+    "a": [
+      "RLQ",
+      "right lower quadrant",
+      "right lower quadrant (RLQ)"
+    ],
+    "why": "The appendix sits near the start of the colon in the right lower quadrant."
+  },
+  {
+    "ch": 18,
+    "q": "Kidney stones are usually made of what?",
+    "a": [
+      "calcium",
+      "usually calcium"
+    ],
+    "why": "Stones are usually calcium, not too much fluid."
+  }
+]
+</script>
+<script>
+const QUESTIONS = JSON.parse(document.getElementById("bank").textContent);
+
+function hashSeed(str) {
+  let h = 2166136261;
+  for (let i = 0; i < str.length; i++) {
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+function mulberry32(a) {
+  return function() {
+    a |= 0;
+    a = a + 0x6D2B79F5 | 0;
+    var t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+function seededShuffle(arr, rng) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    const tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+function hourSeed() {
+  const d = new Date();
+  function p(n) { return String(n).padStart(2, "0"); }
+  return String(d.getFullYear()) + p(d.getMonth() + 1) + p(d.getDate()) + p(d.getHours());
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function $(id) { return document.getElementById(id); }
+
+function accepts(text, item) {
+  const t = (text || "").trim().toLowerCase();
+  return (item.a || []).some(function(ans) {
+    return String(ans).trim().toLowerCase() === t;
+  });
+}
+
+const params = new URLSearchParams(location.search);
+const seedParam = (params.get("seed") || "").trim();
+
+function pool() {
+  if (!seedParam) return QUESTIONS.slice();
+  return seededShuffle(QUESTIONS, mulberry32(hashSeed(seedParam)));
+}
+
+let queue = [];
+let i = 0;
+let locked = false;
+let solid = 0;
+let answered = 0;
+let missed = [];
+let retrying = false;
+let draft = "";
+
+function setQueue(list, isRetry) {
+  queue = list.slice();
+  i = 0;
+  locked = false;
+  solid = 0;
+  answered = 0;
+  missed = [];
+  retrying = !!isRetry;
+  draft = "";
+}
+
+function renderSeedLinks() {
+  const hour = hourSeed();
+  const uAll = new URL(location.href);
+  uAll.searchParams.delete("seed");
+  const uHour = new URL(location.href);
+  uHour.searchParams.set("seed", hour);
+  if (seedParam) {
+    $("sub").textContent = "Seed " + seedParam + " · " + QUESTIONS.length + " shuffled · type-in";
+    $("seedLinks").innerHTML = '<a href="' + escapeHtml(uAll.pathname + uAll.search) + '">All ' + QUESTIONS.length + " in file order</a>";
+  } else {
+    $("sub").textContent = "All " + QUESTIONS.length + " · file order · type-in, no multiple choice";
+    $("seedLinks").innerHTML = '<a href="' + escapeHtml(uHour.pathname + uHour.search) + '">Shuffle all ' + QUESTIONS.length + "</a> · seed=" + escapeHtml(hour);
+  }
+}
+
+function updateScore() {
+  $("score").textContent = solid + " / " + answered;
+  const n = queue.length;
+  if (n === 0) {
+    $("progLabel").textContent = "No questions";
+    $("progBar").style.width = "0%";
+    return;
+  }
+  const done = i >= n;
+  $("progLabel").textContent = done ? ("Done · " + n + " questions") : ("Question " + (i + 1) + " of " + n);
+  $("progBar").style.width = (n ? Math.round(((i + (locked ? 1 : 0)) / n) * 100) : 0) + "%";
+}
+
+function showFooter(which) {
+  $("checkBtn").classList.toggle("visible", which === "check");
+  $("nextBtn").classList.toggle("visible", which === "next");
+}
+
+function render() {
+  locked = false;
+  draft = "";
+  showFooter(null);
+  if (queue.length === 0) {
+    $("main").innerHTML = '<div class="card"><h2>No questions</h2></div>';
+    updateScore();
+    return;
+  }
+  if (i >= queue.length) return endScreen();
+  const q = queue[i];
+  $("main").innerHTML =
+    (retrying ? '<div class="banner">Retrying missed items</div>' : "") +
+    '<div class="card">' +
+      '<div class="ch-tag"></div>' +
+      '<p class="qtext"></p>' +
+      '<p class="hint">Type the answer. No choices.</p>' +
+      '<textarea id="answer" rows="5" autocomplete="off" autocorrect="on" autocapitalize="sentences" spellcheck="true" inputmode="text" placeholder="Type your answer…"></textarea>' +
+      '<p class="char" id="charHint">Type an answer to check</p>' +
+      '<button type="button" class="btn visible" id="cardCheck" disabled>Check</button>' +
+      '<div id="feedback"></div>' +
+    '</div>' +
+    '<p class="note">26 holes. Type-in, no A-B-C-D.</p>';
+  $("main").querySelector(".ch-tag").textContent = "Ch " + q.ch;
+  $("main").querySelector(".qtext").textContent = q.q;
+  const area = $("answer");
+  area.addEventListener("input", onDraft);
+  area.addEventListener("keydown", function(ev) {
+    if ((ev.metaKey || ev.ctrlKey) && ev.key === "Enter") {
+      ev.preventDefault();
+      submit();
+    }
+  });
+  $("checkBtn").disabled = true;
+  $("cardCheck").disabled = true;
+  $("cardCheck").addEventListener("click", submit);
+  showFooter("check");
+  updateScore();
+  window.scrollTo(0, 0);
+  area.focus();
+}
+
+function onDraft() {
+  if (locked) return;
+  draft = $("answer").value;
+  const n = draft.trim().length;
+  const ready = n > 0;
+  $("checkBtn").disabled = !ready;
+  const cardCheck = $("cardCheck");
+  if (cardCheck) cardCheck.disabled = !ready;
+  const hint = $("charHint");
+  if (ready) {
+    hint.textContent = n + " characters · ready to check";
+    hint.classList.add("ok");
+  } else {
+    hint.textContent = "Type an answer to check";
+    hint.classList.remove("ok");
+  }
+}
+
+function submit() {
+  if (locked) return;
+  const q = queue[i];
+  const text = ($("answer").value || "");
+  if (!text.trim()) return;
+  locked = true;
+  $("answer").readOnly = true;
+  const grade = accepts(text, q) ? "solid" : "miss";
+  answered += 1;
+  if (grade === "solid") solid += 1;
+  else missed.push({ q: q, text: text });
+  const box = $("feedback");
+  box.innerHTML =
+    '<div class="why ' + grade + '">' +
+      '<div class="verdict ' + (grade === "solid" ? "ok" : "bad") + '">' +
+        (grade === "solid" ? "Solid" : "Miss") +
+      "</div>" +
+      '<p class="coach-label">Why</p>' +
+      '<p class="why-text"></p>' +
+    "</div>";
+  box.querySelector(".why-text").textContent = q.why;
+  const cardCheck = $("cardCheck");
+  if (cardCheck) cardCheck.classList.remove("visible");
+  $("nextBtn").textContent = (i + 1 >= queue.length) ? "See results" : "Next";
+  showFooter("next");
+  updateScore();
+}
+
+function endScreen() {
+  locked = true;
+  showFooter(null);
+  const n = queue.length;
+  const pct = n ? Math.round((solid / n) * 100) : 0;
+  let missHtml = missed.length
+    ? '<div class="miss"><h3>Missed (' + missed.length + ")</h3>"
+    : "<p>No misses. Nice work.</p>";
+  missed.forEach(function() {
+    missHtml += '<div class="miss-item"><div class="ch-tag"></div><div class="mq"></div><div class="model-label">Why</div><div class="mwhy"></div></div>';
+  });
+  if (missed.length) missHtml += "</div>";
+  const retryBtn = missed.length
+    ? '<button type="button" class="btn visible" id="retryMissed">Retry missed</button>'
+    : "";
+  $("main").innerHTML =
+    '<div class="card end"><h2>Pass complete</h2>' +
+    '<div class="big">' + solid + " / " + n + "</div>" +
+    '<div class="pct">' + pct + "% solid · type-in</div>" +
+    missHtml +
+    retryBtn +
+    '<button type="button" class="btn visible secondary" id="again">Start over</button>' +
+    "</div>";
+  if (missed.length) {
+    const items = $("main").querySelectorAll(".miss-item");
+    missed.forEach(function(m, idx) {
+      items[idx].querySelector(".ch-tag").textContent = "Ch " + m.q.ch;
+      items[idx].querySelector(".mq").textContent = m.q.q;
+      items[idx].querySelector(".mwhy").textContent = m.q.why;
+    });
+    $("retryMissed").addEventListener("click", function() {
+      setQueue(missed.map(function(m) { return m.q; }), true);
+      render();
+    });
+  }
+  $("again").addEventListener("click", function() {
+    setQueue(pool(), false);
+    render();
+  });
+  updateScore();
+  window.scrollTo(0, 0);
+}
+
+$("checkBtn").addEventListener("click", submit);
+$("nextBtn").addEventListener("click", function() {
+  if (!locked) return;
+  i += 1;
+  render();
+});
+
+renderSeedLinks();
+setQueue(pool(), false);
+render();
+</script>
+</body>
+</html>

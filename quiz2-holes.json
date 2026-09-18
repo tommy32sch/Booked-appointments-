@@ -1,0 +1,265 @@
+[
+  {
+    "ch": 1,
+    "q": "In what year was the White Paper published?",
+    "a": [
+      "1966"
+    ],
+    "why": "The 1966 White Paper started modern EMS after too many trauma deaths."
+  },
+  {
+    "ch": 1,
+    "q": "Name the four EMS levels.",
+    "a": [
+      "EMR EMT AEMT paramedic",
+      "EMR, EMT, AEMT, paramedic",
+      "emergency medical responder, EMT, AEMT, paramedic"
+    ],
+    "why": "EMR, EMT, AEMT, paramedic."
+  },
+  {
+    "ch": 1,
+    "q": "About how many hours of training is EMT?",
+    "a": [
+      "130-150",
+      "130\u2013150",
+      "130 to 150",
+      "130-150 hours"
+    ],
+    "why": "EMT is about 130 to 150 hours of BLS and a short med list."
+  },
+  {
+    "ch": 1,
+    "q": "Whose license do you and the paramedic work under?",
+    "a": [
+      "medical director",
+      "the medical director",
+      "Medical Director"
+    ],
+    "why": "That doctor is legally responsible."
+  },
+  {
+    "ch": 2,
+    "q": "Who do you protect first on scene?",
+    "a": [
+      "you",
+      "yourself",
+      "me"
+    ],
+    "why": "You first. If you become a patient, you help nobody."
+  },
+  {
+    "ch": 2,
+    "q": "What is the safety order on scene?",
+    "a": [
+      "you crew patient",
+      "you, crew, patient",
+      "you, then crew, then patient"
+    ],
+    "why": "You first, then crew, then the patient."
+  },
+  {
+    "ch": 2,
+    "q": "In what order do you put PPE on?",
+    "a": [
+      "hands gown mask eyes gloves",
+      "hands, gown, mask, eyes, gloves",
+      "clean hands, gown, mask, eyes, gloves"
+    ],
+    "why": "On: clean hands, gown, mask, eyes, gloves."
+  },
+  {
+    "ch": 2,
+    "q": "How far do you park from a fire, crash, or hazmat?",
+    "a": [
+      "100 feet",
+      "100 ft",
+      "100 feet away"
+    ],
+    "why": "Park 100 feet from fires, crashes, hazmat."
+  },
+  {
+    "ch": 3,
+    "q": "Name the four pieces of negligence.",
+    "a": [
+      "duty breach damages causation",
+      "duty, breach, damages, causation"
+    ],
+    "why": "Negligence needs all four: duty, breach, damages, causation."
+  },
+  {
+    "ch": 13,
+    "q": "What is the first thing you do with an AED?",
+    "a": [
+      "turn it on",
+      "turn the AED on",
+      "power it on"
+    ],
+    "why": "Turn the AED on and follow the voice prompts."
+  },
+  {
+    "ch": 13,
+    "q": "What adult compression depth?",
+    "a": [
+      "at least 2 inches",
+      "at least 2 inches (5 cm)",
+      "at least 2 in",
+      "2 inches"
+    ],
+    "why": "Adult depth is at least 2 inches (5 cm). Allow full recoil."
+  },
+  {
+    "ch": 13,
+    "q": "What compression rate?",
+    "a": [
+      "100-120",
+      "100-120/min",
+      "100 to 120 per minute",
+      "100\u2013120 per minute"
+    ],
+    "why": "Rate 100\u2013120 per minute. Not just at least 100."
+  },
+  {
+    "ch": 13,
+    "q": "You are the only one doing CPR. What ratio?",
+    "a": [
+      "30:2",
+      "30 to 2",
+      "30 compressions 2 breaths"
+    ],
+    "why": "Single rescuer is 30:2 for every age."
+  },
+  {
+    "ch": 16,
+    "q": "An ICD fires. Can you touch them?",
+    "a": [
+      "yes",
+      "yes you can touch them",
+      "yes, safe to touch"
+    ],
+    "why": "The jolt is low and internal. You can touch them when it fires."
+  },
+  {
+    "ch": 16,
+    "q": "An external defibrillator vest is shocking. What do you do with your hands?",
+    "a": [
+      "hands off",
+      "do not touch",
+      "clear them",
+      "hands off like an AED"
+    ],
+    "why": "The vest is a high-energy external shock. Do not touch while it shocks."
+  },
+  {
+    "ch": 16,
+    "q": "VAD patient, no pulse, talking. Are they perfusing?",
+    "a": [
+      "yes",
+      "yes they are perfusing",
+      "yes, talking means they perfuse"
+    ],
+    "why": "Many VADs are continuous flow. If they are talking, they are perfusing."
+  },
+  {
+    "ch": 16,
+    "q": "Unconscious VAD patient. Who do you call?",
+    "a": [
+      "the number on the controller",
+      "number on the controller",
+      "VAD team on the controller",
+      "the VAD team"
+    ],
+    "why": "Call the phone number on the controller and follow that team."
+  },
+  {
+    "ch": 16,
+    "q": "A pacemaker fails in the field. Can you fix it?",
+    "a": [
+      "no",
+      "you cannot fix it",
+      "cannot fix the pacemaker"
+    ],
+    "why": "You cannot fix the pacemaker. Treat the slow rhythm and shock."
+  },
+  {
+    "ch": 17,
+    "q": "You ask them to smile on a stroke exam. What are you looking for?",
+    "a": [
+      "facial droop",
+      "droop",
+      "one-sided droop"
+    ],
+    "why": "Face: smile and look for droop."
+  },
+  {
+    "ch": 17,
+    "q": "Arms out, palms up, eyes closed. What finding means weakness?",
+    "a": [
+      "arm drift",
+      "drift",
+      "one arm drifts down"
+    ],
+    "why": "One arm drifting down suggests weakness on that side."
+  },
+  {
+    "ch": 17,
+    "q": "What is last known well?",
+    "a": [
+      "last time they were seen normal",
+      "last seen normal",
+      "the last time anyone saw them normal"
+    ],
+    "why": "Last known well is the last time anyone saw them normal."
+  },
+  {
+    "ch": 17,
+    "q": "About what percent of strokes are ischemic clots?",
+    "a": [
+      "87",
+      "87 percent",
+      "about 87",
+      "about 87 percent"
+    ],
+    "why": "About 87 percent are ischemic. About 13 percent are hemorrhagic."
+  },
+  {
+    "ch": 17,
+    "q": "Do you give aspirin for suspected stroke?",
+    "a": [
+      "no",
+      "do not",
+      "do not give aspirin"
+    ],
+    "why": "Do not give aspirin for stroke. Aspirin in this recap is for suspected cardiac chest pain."
+  },
+  {
+    "ch": 17,
+    "q": "Stroke-like patient. What must you check before you lock in stroke?",
+    "a": [
+      "blood sugar",
+      "sugar",
+      "glucose",
+      "blood glucose"
+    ],
+    "why": "Hypoglycemia can look exactly like a stroke. Check sugar first."
+  },
+  {
+    "ch": 18,
+    "q": "Where is classic appendicitis pain?",
+    "a": [
+      "RLQ",
+      "right lower quadrant",
+      "right lower quadrant (RLQ)"
+    ],
+    "why": "The appendix sits near the start of the colon in the right lower quadrant."
+  },
+  {
+    "ch": 18,
+    "q": "Kidney stones are usually made of what?",
+    "a": [
+      "calcium",
+      "usually calcium"
+    ],
+    "why": "Stones are usually calcium, not too much fluid."
+  }
+]
